@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/10 08:41:23 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/10 09:19:12 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ t_tuple	normalize(t_tuple a);
 double	dot_product(t_tuple a, t_tuple b);
 t_tuple	cross_product(t_tuple a, t_tuple b);
 int	matrix_comparison(double **a, double **b, int size);
+double **matrix_multi_square(double **a, double **b, int size);
 
 /* error handle*/
 void	handle_errors(t_win	*win);
