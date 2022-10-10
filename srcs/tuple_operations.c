@@ -6,11 +6,25 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:20:54 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/09 17:45:08 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/10 15:00:45 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/RTv1.h"
+
+double **tuple_to_array(t_tuple tuple)
+{
+	double **array;
+	array = (double **)ft_memallocarray(4,1);
+	if (array)
+	{
+		array[0][0] = tuple.x;
+		array[1][0] = tuple.y;
+		array[2][0] = tuple.z;
+		array[3][0] = tuple.w;
+	}
+	return (array);
+}
 
 t_tuple point(double x, double y, double z)
 {
@@ -23,6 +37,19 @@ t_tuple point(double x, double y, double z)
 
 	return (temp);
 }
+// do we want to pass as an array, or as individual data points?
+
+// t_tuple point(double *array)
+// {
+// 	t_tuple temp;
+
+// 	temp.x = array[0];
+// 	temp.y = array[1];
+// 	temp.z = array[2];
+// 	temp.w = 1;
+
+// 	return (temp);
+// }
 
 t_tuple vector(double x, double y, double z)
 {
