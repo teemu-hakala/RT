@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 17:21:03 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/10 09:19:39 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/10 10:48:25 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ int	matrix_comparison(double **a, double **b, int size)
 	}
 	return (1);
 }
+
+/* matrix multiplication for two identical square matrices - eg. 4x4 * 4x4, or
+3 x 3 * 3 x 3*/
 
 double **matrix_multi_square(double **a, double **b, int size)
 {

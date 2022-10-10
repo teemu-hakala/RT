@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 13:08:41 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/09 18:18:57 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/10 09:27:00 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 The memory allocated is initialized to 0.
 If the allocation fails, the function returns NULL.*/
 
-void	**ft_memallocarray(size_t x, size_t y)
+void	**ft_memallocarray(size_t y, size_t x)
 {
 	void	**temp;
 	size_t	i;

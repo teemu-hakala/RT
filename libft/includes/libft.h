@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 15:25:23 by deelliot          #+#    #+#             */
-/*   Updated: 2022/08/29 15:42:22 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/10 09:27:16 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	ft_print_list(t_list *list);
 char	*ft_strndup(const char *s1, size_t n);
 int		get_next_line(const int fd, char **line);
 int		ft_abs(int i);
-void	**ft_memallocarray(size_t x, size_t y);
+void	**ft_memallocarray(size_t y, size_t x);
 int		ft_sqrt(int nb);
 int		ft_find_next_sqrt(int nb);
 int		ft_max(int x, int y);
