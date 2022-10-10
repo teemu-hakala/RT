@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 17:21:03 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/10 15:30:36 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/10 16:08:53 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	matrix_comparison(double **a, double **b, int size)
 /* matrix multiplication for two identical square matrices - eg. 4x4 * 4x4, or
 3 x 3 * 3 x 3*/
 
-double **matrix_multi_square(double **a, double **b, int size)
+double	**matrix_multi_square(double **a, double **b, int size)
 {
 	double **temp;
 	int x; //col
@@ -72,7 +72,7 @@ double **matrix_multi_square(double **a, double **b, int size)
 	return (temp);
 }
 
-double *matrix_tuple_multi(double **a, t_tuple tuple)
+double	*matrix_tuple_multi(double **a, t_tuple tuple)
 {
 	double **b;
 	int y; //row
@@ -103,6 +103,30 @@ double *matrix_tuple_multi(double **a, t_tuple tuple)
 	return (temp);
 }
 
+double	**transpose_matrix(double **a)
+{
+	double **temp;
+	int y;
+	int x;
+
+	temp = (double **)ft_memallocarray(4, 4);
+	if (temp)
+	{
+		y = 0;
+		while (y < 4)
+		{
+			x = 0;
+			while (x < 4)
+			{
+				temp[y][x] = a[x][y];
+				x++;
+			}
+			y++;
+		}
+	}
+	return (temp);
+}
+
 void	ft_print_num_array(double **array, int y, int x)
 {
 	int	i;
@@ -126,3 +150,4 @@ void	ft_print_num_array(double **array, int y, int x)
 		i++;
 	}
 }
+
