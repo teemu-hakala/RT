@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 17:21:03 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/10 16:08:53 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/10 16:23:38 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,14 @@ double	**transpose_matrix(double **a)
 	return (temp);
 }
 
+double	matrix_determinant(double **a)
+{
+	double temp;
+
+	temp = (a[0][0] * a[1][1]) - (a[0][1] * a[1][0]);
+	return (temp);
+}
+
 void	ft_print_num_array(double **array, int y, int x)
 {
 	int	i;
@@ -151,3 +159,17 @@ void	ft_print_num_array(double **array, int y, int x)
 	}
 }
 
+double **identity_matrix(void)
+{
+	double **id_matrix;
+
+	id_matrix = (double **)ft_memallocarray(4, 4);
+	if (id_matrix)
+	{
+		id_matrix[0][0] = 1;
+		id_matrix[1][1] = 1;
+		id_matrix[2][2] = 1;
+		id_matrix[3][3] = 1;
+	}
+	return (id_matrix);
+}

@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/10 15:16:34 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/10 16:26:24 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,9 @@ t_tuple	cross_product(t_tuple a, t_tuple b);
 int	matrix_comparison(double **a, double **b, int size);
 double **matrix_multi_square(double **a, double **b, int size);
 double *matrix_tuple_multi(double **a, t_tuple tuple);
+double	**transpose_matrix(double **a);
+double **identity_matrix(void);
+double	matrix_determinant(double **a);
 
 /* error handle*/
 void	handle_errors(t_win	*win);
