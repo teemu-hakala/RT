@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 17:21:03 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/10 08:39:42 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/10 08:55:35 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,36 +34,6 @@ int	matrix_comparison(double **a, double **b, int size)
 		y++;
 	}
 	return (1);
-}
-
-double **matrix_multi_4x4(double **a, double **b)
-{
-	double **temp;
-	int x;
-	int y;
-	int i;
-	double res;
-
-	temp = (double **)ft_memallocarray(3, 3);
-	y = 0;
-	while (y < 3)
-	{
-		x = 0;
-		while (x < 3)
-		{
-			res = 0;
-			i = 0;
-			while (i < 3)
-			{
-				res = res + a[y][x + i] * b[x + i][y];
-				i++;
-			}
-			temp[y][x] = res;
-			x++;
-		}
-		y++;
-	}
-	return (temp);
 }
 
 void	ft_print_num_array(double **array, int y, int x)
