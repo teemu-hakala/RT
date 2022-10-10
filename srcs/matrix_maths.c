@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 17:21:03 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/10 10:48:25 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/10 15:30:36 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,24 +48,58 @@ double **matrix_multi_square(double **a, double **b, int size)
 	double res;
 
 	temp = (double **)ft_memallocarray(size, size);
-	y = 0;
-	while (y < size)
+	if (temp)
 	{
-		x = 0;
-		while (x < size)
+		y = 0;
+		while (y < size)
+		{
+			x = 0;
+			while (x < size)
+			{
+				res = 0;
+				i = 0;
+				while (i < size)
+				{
+					res = res + a[y][i] * b[i][x];
+					i++;
+				}
+				temp[y][x] = res;
+				x++;
+			}
+			y++;
+		}
+		}
+	return (temp);
+}
+
+double *matrix_tuple_multi(double **a, t_tuple tuple)
+{
+	double **b;
+	int y; //row
+	int i;
+	double res;
+	double *temp;
+
+	b = tuple_to_array(tuple);
+	ft_print_num_array(b, 4, 1);
+	temp = ft_memalloc(4);
+	if (temp)
+	{
+		y = 0;
+		while (y < 4)
 		{
 			res = 0;
 			i = 0;
-			while (i < size)
+			while (i < 4)
 			{
-				res = res + a[y][i] * b[i][x];
+				res = res + a[y][i] * b[i][0];
 				i++;
 			}
-			temp[y][x] = res;
-			x++;
+			temp[y] = res;
+			y++;
 		}
-		y++;
 	}
+	ft_memdelarray((void *)b, 4);
 	return (temp);
 }
 
@@ -91,42 +125,4 @@ void	ft_print_num_array(double **array, int y, int x)
 		write(1, "\n", 1);
 		i++;
 	}
-}
-
-int main(void)
-{
-	double **a;
-	double **b;
-	double **c;
-	int x;
-
-	a = (double **)ft_memallocarray(3, 3);
-	a[0][0] = 0;
-	a[0][1] = 1;
-	a[0][2] = 2;
-	a[1][0] = 3;
-	a[1][1] = 4;
-	a[1][2] = 5;
-	a[2][0] = 6;
-	a[2][1] = 7;
-	a[2][2] = 8;
-
-	b = (double **)ft_memallocarray(3, 3);
-	b[0][0] = 9;
-	b[0][1] = 10;
-	b[0][2] = 11;
-	b[1][0] = 12;
-	b[1][1] = 13;
-	b[1][2] = 14;
-	b[2][0] = 15;
-	b[2][1] = 16;
-	b[2][2] = 17;
-	x = matrix_comparison(a, b, 3);
-	if (x == 1)
-		printf("a = b\n");
-	else
-		printf("a != b\n");
-	c = matrix_multi_square(a, b, 3);
-	ft_print_num_array(c, 3, 3);
-	return (0);
 }

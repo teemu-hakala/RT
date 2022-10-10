@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/10 09:19:12 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/10 15:16:34 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_win
 /*tuple operations & matrix maths*/
 t_tuple	point(double x, double y, double z);
 t_tuple	vector(double x, double y, double z);
+double	**tuple_to_array(t_tuple tuple);
 t_tuple	tuple_add(t_tuple a, t_tuple b);
 t_tuple	tuple_sub(t_tuple a, t_tuple b);
 t_tuple	tuple_multi(t_tuple a, double scalar);
@@ -61,6 +62,7 @@ double	dot_product(t_tuple a, t_tuple b);
 t_tuple	cross_product(t_tuple a, t_tuple b);
 int	matrix_comparison(double **a, double **b, int size);
 double **matrix_multi_square(double **a, double **b, int size);
+double *matrix_tuple_multi(double **a, t_tuple tuple);
 
 /* error handle*/
 void	handle_errors(t_win	*win);
@@ -74,7 +76,8 @@ void	img_pixel_put(t_win *win, int x, int y, int colour);
 /* handle input*/
 int	handle_input(int key, t_win *win);
 
-
+/* testing */
+void	ft_print_num_array(double **array, int y, int x);
 
 
 
