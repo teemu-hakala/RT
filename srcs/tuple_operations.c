@@ -6,12 +6,11 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:20:54 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/09 16:21:19 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/09 17:45:08 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/RTv1.h"
-#include <stdio.h>
 
 t_tuple point(double x, double y, double z)
 {

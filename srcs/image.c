@@ -6,12 +6,11 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:32:35 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/09 16:59:04 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/09 17:45:01 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/RTv1.h"
-#include <stdio.h>
 
 void	img_pixel_put(t_win *win, int x, int y, int colour)
 {

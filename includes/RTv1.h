@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/09 17:05:07 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/10 08:41:23 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@
 # include <math.h>
 # include "../libft/includes/libft.h"
 # include "../minilibx/mlx.h"
+#include <stdio.h>
 
 # define WIDTH 600
 # define HEIGHT 400
 # define KEY_DOWN 2
 # define ESC 53
+# define EPSILON 0.00001
 
 typedef struct s_tuple
 {
@@ -46,7 +48,7 @@ typedef struct s_win
 	void		*win;
 }				t_win;
 
-/*tuple operations*/
+/*tuple operations & matrix maths*/
 t_tuple	point(double x, double y, double z);
 t_tuple	vector(double x, double y, double z);
 t_tuple	tuple_add(t_tuple a, t_tuple b);
@@ -57,6 +59,7 @@ double	magnitude(t_tuple a);
 t_tuple	normalize(t_tuple a);
 double	dot_product(t_tuple a, t_tuple b);
 t_tuple	cross_product(t_tuple a, t_tuple b);
+int	matrix_comparison(double **a, double **b, int size);
 
 /* error handle*/
 void	handle_errors(t_win	*win);

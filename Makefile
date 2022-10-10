@@ -6,7 +6,7 @@
 #    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2022/10/09 17:04:32 by deelliot         ###   ########.fr        #
+#    Updated: 2022/10/10 08:39:57 by deelliot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRCS += initialise.c
 SRCS += image.c
 SRCS += error_handling.c
 SRCS += tuple_operations.c
+SRCS += matrix_maths.c
 SRCS += handle_input.c
 
 OBJ_FILES = $(SRCS:.c=.o)
