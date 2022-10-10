@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 17:21:03 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/10 16:23:38 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/10 16:32:56 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,4 +172,14 @@ double **identity_matrix(void)
 		id_matrix[3][3] = 1;
 	}
 	return (id_matrix);
+}
+
+double **submatrix(double **a, int size, int row, int col)
+{
+	double **new_matrix;
+
+	new_matrix = (double **)ft_memallocarray(size - 1, size - 1);
+	
+
+
 }
