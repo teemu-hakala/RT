@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 13:08:41 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/10 16:23:38 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/11 10:11:56 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	**ft_memallocarray(size_t y, size_t x)
 			ft_memdelarray(temp, i - 1);
 			return (NULL);
 		}
-		ft_memset(temp[i], 0, x);
+		ft_memset(temp[i], '\0', x);
 		i++;
 	}
 	return (temp);

@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/10 16:26:24 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/11 10:37:55 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <math.h>
 # include "../libft/includes/libft.h"
-# include "../minilibx/mlx.h"
+# include <mlx.h>
 #include <stdio.h>
 
 # define WIDTH 600
@@ -66,6 +66,7 @@ double *matrix_tuple_multi(double **a, t_tuple tuple);
 double	**transpose_matrix(double **a);
 double **identity_matrix(void);
 double	matrix_determinant(double **a);
+double	**submatrix(double **a, int size, int row, int col);
 
 /* error handle*/
 void	handle_errors(t_win	*win);

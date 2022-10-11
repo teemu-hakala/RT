@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 17:21:03 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/10 16:32:56 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/11 11:00:55 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,11 +150,10 @@ void	ft_print_num_array(double **array, int y, int x)
 		j = 0;
 		while (j < x)
 		{
-			ft_putnbr(array[i][j]);
-			write(1, ",", 1);
+			printf("%0.f, ", array[i][j]);
 			j++;
 		}
-		write(1, "\n", 1);
+		printf("\n");
 		i++;
 	}
 }
@@ -174,12 +173,39 @@ double **identity_matrix(void)
 	return (id_matrix);
 }
 
-double **submatrix(double **a, int size, int row, int col)
+double	**submatrix(double **a, int size, int row, int col)
 {
 	double **new_matrix;
+	int new_matrix_row;
+	int new_matrix_col;
+	int row_a;
+	int col_a;
 
 	new_matrix = (double **)ft_memallocarray(size - 1, size - 1);
-	
-
-
+	row_a = 0;
+	new_matrix_row = 0;
+	while (row_a <= size - 1)
+	{
+		if (row_a == row)
+		{
+			row_a++;
+			continue ;
+		}
+		col_a = 0;
+		new_matrix_col = 0;
+		while (col_a <= size - 1)
+		{
+			if (col_a == col)
+			{
+				col_a++;
+				continue ;
+			}
+			new_matrix[new_matrix_row][new_matrix_col] = a[row_a][col_a];
+			col_a++;
+			new_matrix_col++;
+		}
+		row_a++;
+		new_matrix_row++;
+	}
+	return (new_matrix);
 }
