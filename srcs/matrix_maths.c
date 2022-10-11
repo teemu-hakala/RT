@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 17:21:03 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/11 11:00:55 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/11 11:21:31 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 //use memallocarray to create matrix
 //matrix needs to be freed once it's no longer in use
+
+/* compares two matrices to see if they are the same. Returns 0 if different, 1
+if equal */
 
 int	matrix_comparison(double **a, double **b, int size)
 {
@@ -72,6 +75,8 @@ double	**matrix_multi_square(double **a, double **b, int size)
 	return (temp);
 }
 
+/* matrix multiplication for 4 x 4 matrix by a tuple */
+
 double	*matrix_tuple_multi(double **a, t_tuple tuple)
 {
 	double **b;
@@ -103,6 +108,8 @@ double	*matrix_tuple_multi(double **a, t_tuple tuple)
 	return (temp);
 }
 
+/* swops rows and columns of the matrix */
+
 double	**transpose_matrix(double **a)
 {
 	double **temp;
@@ -127,37 +134,6 @@ double	**transpose_matrix(double **a)
 	return (temp);
 }
 
-double	matrix_determinant(double **a)
-{
-	double temp;
-
-	temp = (a[0][0] * a[1][1]) - (a[0][1] * a[1][0]);
-	return (temp);
-}
-
-void	ft_print_num_array(double **array, int y, int x)
-{
-	int	i;
-	int	j;
-
-	if (!array)
-		return ;
-	if (y == 0 || x == 0)
-		return ;
-	i = 0;
-	while (i < y)
-	{
-		j = 0;
-		while (j < x)
-		{
-			printf("%0.f, ", array[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
-}
-
 double **identity_matrix(void)
 {
 	double **id_matrix;
@@ -172,6 +148,21 @@ double **identity_matrix(void)
 	}
 	return (id_matrix);
 }
+
+/* the following functions are needed to invert a matrix.*/
+
+/* determinant of 2 x 2 matrix*/
+
+double	matrix_determinant(double **a)
+{
+	double temp;
+
+	temp = (a[0][0] * a[1][1]) - (a[0][1] * a[1][0]);
+	return (temp);
+}
+
+/* function to remove a specified row and col from a matrix.
+Returns a new matrix with 1 column and 1 row less*/
 
 double	**submatrix(double **a, int size, int row, int col)
 {
@@ -208,4 +199,43 @@ double	**submatrix(double **a, int size, int row, int col)
 		new_matrix_row++;
 	}
 	return (new_matrix);
+}
+
+double matrix_minors(double **a, int row, int col)
+{
+	double **temp;
+	double minor;
+
+	temp = submatrix(a, 3, row, col);
+	minor = matrix_determinant(temp);
+
+	free (temp);
+	return (minor);
+
+
+}
+
+/* test function to print arrays*/
+
+void	ft_print_num_array(double **array, int y, int x)
+{
+	int	i;
+	int	j;
+
+	if (!array)
+		return ;
+	if (y == 0 || x == 0)
+		return ;
+	i = 0;
+	while (i < y)
+	{
+		j = 0;
+		while (j < x)
+		{
+			printf("%0.f, ", array[i][j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
 }

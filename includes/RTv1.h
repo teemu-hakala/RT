@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/11 10:37:55 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/11 11:18:58 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ double	**transpose_matrix(double **a);
 double **identity_matrix(void);
 double	matrix_determinant(double **a);
 double	**submatrix(double **a, int size, int row, int col);
+double	matrix_minors(double **a, int row, int col);
 
 /* error handle*/
 void	handle_errors(t_win	*win);
