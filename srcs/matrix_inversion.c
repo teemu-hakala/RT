@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:50:49 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/11 16:56:49 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/11 17:24:35 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,4 +99,64 @@ double determinant(double **a, int size)
 		}
 	}
 	return (det);
+}
+
+/* matrix inversion - allows to reverse effects of matrix multiplication*/
+
+double **matrix_inversion(double **a, int size)
+{
+	double det;
+	double **temp;
+	int y;
+	int x;
+
+	det = determinant(a, size);
+	if (det == 0)
+		return (a);
+	else
+	{
+		temp = (double **)ft_memallocarray(size, size);
+		if (temp)
+		{
+			y = -1;
+			while (++y < size)
+			{
+				x = -1;
+				while (++x < size)
+					temp[y][x] = matrix_cofactor(a, y, x, size) / det;
+			}
+			a = transpose_matrix(temp);
+		}
+	}
+	return (a);
+}
+
+int main(void)
+{
+	double **a4;
+	a4 = (double **)ft_memallocarray(4, 4);
+
+	a4[0][0] = -5;
+	a4[0][1] = 2;
+	a4[0][2] = 6;
+	a4[0][3] = -8;
+
+	a4[1][0] = 1;
+	a4[1][1] = -5;
+	a4[1][2] = 1;
+	a4[1][3] = 8;
+
+	a4[2][0] = 7;
+	a4[2][1] = 7;
+	a4[2][2] = -6;
+	a4[2][3] = -7;
+
+	a4[3][0] = 1;
+	a4[3][1] = -3;
+	a4[3][2] = 7;
+	a4[3][3] = 4;
+
+	printf("determinant a = %0.f\n", determinant(a4, 4));
+	matrix_inversion(a4, 4);
+	return (0);
 }

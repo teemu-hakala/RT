@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 17:21:03 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/11 16:55:30 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/11 17:24:05 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,7 @@ void	ft_print_num_array(double **array, int y, int x)
 		j = 0;
 		while (j < x)
 		{
-			printf("%0.f, ", array[i][j]);
+			printf("%f, ", array[i][j]);
 			j++;
 		}
 		printf("\n");
