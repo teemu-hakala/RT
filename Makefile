@@ -6,7 +6,7 @@
 #    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2022/10/11 16:59:08 by deelliot         ###   ########.fr        #
+#    Updated: 2022/10/11 17:29:44 by deelliot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRCS = main.c
 SRCS += initialise.c
 SRCS += image.c
 SRCS += error_handling.c
-# SRCS += tuple_operations.c
+SRCS += tuple_operations.c
 SRCS += matrix_maths.c
 SRCS += matrix_inversion.c
 SRCS += handle_input.c
@@ -63,7 +63,6 @@ $(NAME): $(OBJ)
 clean:
 	@rm -Rf $(OBJ_DIR)
 	@make clean -C $(LIBFT_DIR)
-	@make clean -C $(MINILBX_DIR)
 	@echo " Objects removed"
 
 fclean: clean

@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:02:35 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/11 11:21:17 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/11 17:04:31 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,41 @@
 // 	return (0);
 // }
 
-int main(void)
+void	test_three_matrix_a3(void)
+{
+	double **a3;
+
+	a3 = (double **)ft_memallocarray(3, 3);
+
+	a3[0][0] = 1;
+	a3[0][1] = 2;
+	a3[0][2] = 6;
+
+	a3[1][0] = -5;
+	a3[1][1] = 8;
+	a3[1][2] =-4;
+
+	a3[2][0] = 2;
+	a3[2][1] = 6;
+	a3[2][2] = 4;
+
+	double minor;
+	double cofactor;
+	double determinant;
+
+	cofactor = matrix_cofactor(a3, 0, 0);
+	printf("cofactor = %f\n", cofactor);
+	cofactor = matrix_cofactor(a3, 0, 1);
+	printf("cofactor = %f\n", cofactor);
+	cofactor = matrix_cofactor(a3, 0, 2);
+	printf("cofactor = %f\n", cofactor);
+	minor = matrix_minors(a3, 0, 0);
+	printf("minor: %f\n", minor);
+}
+
+void	test_matrix_tuple_multi_four_matrix(void)
 {
 	double **a4;
-	double **a3;
-	double minor;
 
 	a4 = (double **)ft_memallocarray(4, 4);
 
@@ -49,22 +79,32 @@ int main(void)
 	a4[3][1] = 1;
 	a4[3][2] = -1;
 	a4[3][3] = 1;
+}
 
-	a3 = (double **)ft_memallocarray(3, 3);
+void	test_matrix_determinant(void)
+{
 
-	a3[0][0] = 3;
-	a3[0][1] = 5;
-	a3[0][2] = 0;
+}
 
-	a3[1][0] = 2;
-	a3[1][1] = -1;
-	a3[1][2] =-7;
+void	test_tuple_reading(void)
+{
+	t_tuple tuple;
 
-	a3[2][0] = 6;
-	a3[2][1] = -1;
-	a3[2][2] = 5;
+	tuple.tuple = (t_units){ 1, 3, 5, 0 };
 
-	minor = matrix_minors(a3, 1, 0);
-	printf("%f\n", minor);
+	int i;
+	i = 0;
+	while (i < 4)
+	{
+		printf("%0.f, ", tuple.array[i]);
+		i++;
+	}
+}
+
+int main(void)
+{
+	// int count;
+	// printf("no. cols = %d\n", count);
+
 	return (0);
 }

@@ -6,36 +6,30 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:20:54 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/10 15:00:45 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/11 17:09:58 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/RTv1.h"
 
-double **tuple_to_array(t_tuple tuple)
+enum e_tuple_type
 {
-	double **array;
-	array = (double **)ft_memallocarray(4,1);
-	if (array)
-	{
-		array[0][0] = tuple.x;
-		array[1][0] = tuple.y;
-		array[2][0] = tuple.z;
-		array[3][0] = tuple.w;
-	}
-	return (array);
-}
+	W_ID_VECTOR = 0,
+	W_ID_POINT = 1
+};
+
 
 t_tuple point(double x, double y, double z)
 {
-	t_tuple temp;
+	t_tuple new_point;
 
-	temp.x = x;
-	temp.y = y;
-	temp.z = z;
-	temp.w = 1;
-
-	return (temp);
+	new_point.tuple.x_width = x;
+	new_point.tuple.y_height = y;
+	new_point.tuple.z_depth = z;
+	new_point.tuple.w_id = W_ID_POINT;
+	new_point.tuple = (t_coords){.x_width = x, .y_height = y, \
+		.z_depth = z, .w_id = W_ID_POINT};
+	return (new_point);
 }
 // do we want to pass as an array, or as individual data points?
 
@@ -53,29 +47,29 @@ t_tuple point(double x, double y, double z)
 
 t_tuple vector(double x, double y, double z)
 {
-	t_tuple temp;
+	t_tuple new_vector;
 
-	temp.x = x;
-	temp.y = y;
-	temp.z = z;
-	temp.w = 0;
-
-	return (temp);
+	new_vector.tuple.x_width = x;
+	new_vector.tuple.y_height = y;
+	new_vector.tuple.z_depth = z;
+	new_vector.tuple.w_id = W_ID_VECTOR;
+	new_vector.tuple = (t_units){.x_width = x, .y_height = y, \
+		.z_depth = z, .w_id = W_ID_VECTOR};
+	return (new_vector);
 }
 
-t_tuple tuple_add(t_tuple a, t_tuple b)
+t_tuple tuple_add(t_tuple *a, t_tuple *b)
 {
-	t_tuple temp;
-
-	temp.x = a.x + b.x;
-	temp.y = a.y + b.y;
-	temp.z = a.z + b.z;
-	temp.w = a.w + b.w;
-
-	return (temp);
+	return ((t_tuple)
+	{
+		.tuple.x_width = a->tuple.x_width + b->tuple.x_width,
+		.tuple.y_height = a->tuple.y_height + b->tuple.y_height,
+		.tuple.z_depth = a->tuple.z_depth + b->tuple.z_depth,
+		.tuple.w_id = a->tuple.w_id + b->tuple.w_id
+	});
 }
 
-t_tuple tuple_sub(t_tuple a, t_tuple b)
+t_tuple tuple_sub(t_tuple *a, t_tuple *b)
 {
 	t_tuple temp;
 
@@ -87,7 +81,7 @@ t_tuple tuple_sub(t_tuple a, t_tuple b)
 	return (temp);
 }
 
-t_tuple tuple_multi(t_tuple a, double scalar)
+t_tuple tuple_multi(t_tuple *a, double scalar)
 {
 	t_tuple temp;
 
@@ -99,7 +93,7 @@ t_tuple tuple_multi(t_tuple a, double scalar)
 	return (temp);
 }
 
-t_tuple tuple_div(t_tuple a, double scalar)
+t_tuple tuple_div(t_tuple *a, double scalar)
 {
 	t_tuple temp;
 

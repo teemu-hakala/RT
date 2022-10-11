@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/11 11:18:58 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/11 16:52:06 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,15 @@
 # include <math.h>
 # include "../libft/includes/libft.h"
 # include <mlx.h>
-#include <stdio.h>
+# include <stdint.h>
+# include <stdio.h>
+# include "tuple.h"
 
 # define WIDTH 600
 # define HEIGHT 400
 # define KEY_DOWN 2
 # define ESC 53
 # define EPSILON 0.00001
-
-typedef struct s_tuple
-{
-	double	x;
-	double	y;
-	double	z;
-	double	w;
-}			t_tuple;
 
 typedef struct s_img
 {
@@ -67,7 +61,9 @@ double	**transpose_matrix(double **a);
 double **identity_matrix(void);
 double	matrix_determinant(double **a);
 double	**submatrix(double **a, int size, int row, int col);
-double	matrix_minors(double **a, int row, int col);
+double matrix_minors(double **a, int row, int col, int size);
+double matrix_cofactor(double **a, int row, int col, int size);
+double determinant(double **a, int size);
 
 /* error handle*/
 void	handle_errors(t_win	*win);

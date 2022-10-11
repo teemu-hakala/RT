@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:07:10 by thakala           #+#    #+#             */
-/*   Updated: 2022/10/11 16:08:07 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/11 17:04:22 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,16 @@ enum e_coords {
 	W_ID = 3
 };
 
-typedef struct s_coords {
+typedef struct s_units {
 	t_fl	x_width;
 	t_fl	y_height;
 	t_fl	z_depth;
 	t_fl	w_id;
-}	t_coords;
+}	t_units;
 
 typedef union u_wrapper {
-	// struct s_tuple {
-	// 	t_fl	x_width;
-	// 	t_fl	y_height;
-	// 	t_fl	z_depth;
-	// 	t_fl	w_id;
-	// }	tuple;
-	t_coords	tuple;
-	t_fl		array[sizeof(t_coords) / sizeof(t_fl)];
+	t_units	tuple;
+	t_fl	array[sizeof(t_units) / sizeof(t_fl)];
 }	t_tuple;
 
 #endif
