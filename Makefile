@@ -6,7 +6,7 @@
 #    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2022/10/11 17:29:44 by deelliot         ###   ########.fr        #
+#    Updated: 2022/10/12 12:34:51 by deelliot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRC_DIR = ./srcs/
 OBJ_DIR = ./obj/
 INC_DIR = ./includes/
 LIBFT_DIR = ./libft/
+MINILBX_DIR = ./minilibx/
 
 # Source and object files
 SRCS = main.c
@@ -37,26 +38,29 @@ OBJ_FILES = $(SRCS:.c=.o)
 SRC = $(addprefix $(SRC_DIR), $(SRCS))
 OBJ = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
 LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
+MINLBX = $(addprefix $(MINILBX_DIR), libmlx.a)
 
 # Libraries
 LINKS =  -L $(LIBFT_DIR) -lft
-LINKS += -L /usr/local/lib -lmlx -I /usr/local/include -framework \
-	OpenGL -framework AppKit
+LINKS +=  -L $(MINILBX_DIR) -lmlx -Ofast -framework OpenGL -framework Appkit
+# LINKS += -L /usr/local/lib -lmlx -I /usr/local/include -framework \
+# 	OpenGL -framework AppKit
+
 
 #Rules
-all: obj $(LIBFT) $(NAME)
+all: obj $(LIBFT) $(MINLBX) $(NAME)
 
 obj:
 	@mkdir -p $(OBJ_DIR)
 $(OBJ_DIR)%.o:$(SRC_DIR)%.c
-	@gcc $(FLAGS) -I $(LIBFT_DIR) -I $(INC_DIR) -o $@ -c $<
+	@gcc $(FLAGS) -I $(MINILBX_DIR) -I $(LIBFT_DIR) -I $(INC_DIR) -o $@ -c $<
 $(LIBFT):
 	@make -C $(LIBFT_DIR)
-
+$(MINLBX):
+	@make -C $(MINILBX_DIR)
 
 $(NAME): $(OBJ)
 	@gcc $(OBJ) $(FLAGS) $(LINKS) -lm -o $(NAME)
-	@echo
 	@echo "Usage: ./RTV1 + option"
 	@echo "options: >> ??"
 

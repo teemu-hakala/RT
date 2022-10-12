@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RTv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/12 11:37:53 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/12 12:17:22 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 # include <math.h>
 # include "../libft/includes/libft.h"
-# include <mlx.h>
+// # include <mlx.h>
+# include "../minilibx/mlx.h"
 # include <stdint.h>
 # include <stdio.h>
 # include "tuple.h"
@@ -53,7 +54,7 @@ t_tuple	tuple_div(t_tuple *a, double scalar);
 double	magnitude(t_tuple *a);
 t_tuple	normalize(t_tuple *a);
 double	dot_product(t_tuple *a, t_tuple *b);
-t_tuple	cross_product(t_tuple *a, t_tuple b);
+t_tuple	cross_product(t_tuple *a, t_tuple *b);
 int	matrix_comparison(double **a, double **b, int size);
 double **matrix_multi_square(double **a, double **b, int size);
 double *matrix_tuple_multi(double **a, t_tuple tuple);
