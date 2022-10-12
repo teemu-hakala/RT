@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   tuple_operations.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:20:54 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/12 13:40:41 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/12 22:13:07 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RTv1.h"
 
-t_tuple	point(double x, double y, double z)
+t_tuple	point(t_fl x, t_fl y, t_fl z)
 {
 	return ((t_tuple){
 		.tuple.x_width = x,
@@ -22,7 +22,7 @@ t_tuple	point(double x, double y, double z)
 	});
 }
 
-t_tuple	vector(double x, double y, double z)
+t_tuple	vector(t_fl x, t_fl y, t_fl z)
 {
 	return ((t_tuple){
 		.tuple.x_width = x,
@@ -52,7 +52,7 @@ t_tuple	tuple_sub(t_tuple *a, t_tuple *b)
 	});
 }
 
-t_tuple	tuple_multi(t_tuple *a, double scalar)
+t_tuple	tuple_multi(t_tuple *a, t_fl scalar)
 {
 	return ((t_tuple){
 		.tuple.x_width = a->tuple.x_width * scalar,
@@ -62,7 +62,7 @@ t_tuple	tuple_multi(t_tuple *a, double scalar)
 	});
 }
 
-t_tuple	tuple_div(t_tuple *a, double scalar)
+t_tuple	tuple_div(t_tuple *a, t_fl scalar)
 {
 	return ((t_tuple){
 		.tuple.x_width = a->tuple.x_width / scalar,
@@ -72,14 +72,19 @@ t_tuple	tuple_div(t_tuple *a, double scalar)
 	});
 }
 
-double	magnitude(t_tuple *a)
+t_fl	magnitude(t_tuple *a)
 {
-	return (sqrt(((a->tuple.x_width * a->tuple.x_width)
-				+ (a->tuple.y_height * a->tuple.y_height)
-				+ (a->tuple.z_depth * a->tuple.z_depth))));
+	if (sizeof(t_fl) == sizeof(double))
+		return (sqrt(((a->tuple.x_width * a->tuple.x_width)
+					+ (a->tuple.y_height * a->tuple.y_height)
+					+ (a->tuple.z_depth * a->tuple.z_depth))));
+	else
+		return (sqrtl(((a->tuple.x_width * a->tuple.x_width)
+					+ (a->tuple.y_height * a->tuple.y_height)
+					+ (a->tuple.z_depth * a->tuple.z_depth))));
 }
 
-t_tuple normalize(t_tuple* a)
+t_tuple	normalize(t_tuple* a)
 {
 	double	mag;
 
@@ -94,7 +99,7 @@ t_tuple normalize(t_tuple* a)
 	});
 }
 
-double	dot_product(t_tuple *a, t_tuple *b)
+t_fl	dot_product(t_tuple *a, t_tuple *b)
 {
 	return ((a->tuple.x_width * b->tuple.x_width)
 		+ (a->tuple.y_height * b->tuple.y_height)
@@ -102,7 +107,7 @@ double	dot_product(t_tuple *a, t_tuple *b)
 		+ (a->tuple.w_id * b->tuple.w_id));
 }
 
-t_tuple cross_product(t_tuple *a, t_tuple *b)
+t_tuple	cross_product(t_tuple *a, t_tuple *b)
 {
 	return ((t_tuple){
 		.tuple.x_width = a->tuple.y_height * b->tuple.z_depth

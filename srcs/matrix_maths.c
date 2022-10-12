@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_maths.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 17:21:03 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/12 15:06:11 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/12 22:14:56 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ if equal */
 
 int	matrix_comparison(t_fl **a, t_fl **b, int size)
 {
-	int x;
-	int y;
+	int		x;
+	int		y;
 
 	y = 0;
 	while (y < size)
@@ -29,7 +29,7 @@ int	matrix_comparison(t_fl **a, t_fl **b, int size)
 		x = 0;
 		while (x < size)
 		{
-			if (a[y][x] - b[y][x] < EPSILON)
+			if (a[y][x] - b[y][x] < EPSILON) // "wrong - don't do this" https://floating-point-gui.de/errors/comparison/
 				x++;
 			else
 				return (0);
@@ -44,11 +44,11 @@ int	matrix_comparison(t_fl **a, t_fl **b, int size)
 
 t_fl	**matrix_multi_square(t_fl **a, t_fl **b, int size)
 {
-	t_fl **temp;
-	int x; //col
-	int y; //row
-	int i;
-	t_fl res;
+	t_fl	**temp;
+	int		x; //col
+	int		y; //row
+	int		i;
+	t_fl	res;
 
 	temp = (t_fl **)ft_memallocarray(sizeof(t_fl) * size, sizeof(t_fl) * size);
 	if (temp)
@@ -71,7 +71,7 @@ t_fl	**matrix_multi_square(t_fl **a, t_fl **b, int size)
 			}
 			y++;
 		}
-		}
+	}
 	return (temp);
 }
 
@@ -79,10 +79,10 @@ t_fl	**matrix_multi_square(t_fl **a, t_fl **b, int size)
 
 t_fl	*matrix_tuple_multi(t_fl **a, t_tuple tuple)
 {
-	int y;
-	int i;
-	t_fl res;
-	t_fl *temp;
+	int		y;
+	int		i;
+	t_fl	res;
+	t_fl	*temp;
 
 	temp = ft_memalloc(4 * sizeof(t_fl));
 	if (temp)
@@ -114,9 +114,9 @@ t_fl	*matrix_tuple_multi(t_fl **a, t_tuple tuple)
 
 t_fl	**transpose_matrix(t_fl **a)
 {
-	t_fl **temp;
-	int y;
-	int x;
+	t_fl	**temp;
+	int		y;
+	int		x;
 
 	temp = (t_fl **)ft_memallocarray(sizeof(t_fl) * 4, sizeof(t_fl) * 4);
 	if (temp)
@@ -136,9 +136,9 @@ t_fl	**transpose_matrix(t_fl **a)
 	return (temp);
 }
 
-t_fl **identity_matrix(void)
+t_fl	**identity_matrix(void)
 {
-	t_fl **id_matrix;
+	t_fl	**id_matrix;
 
 	id_matrix = (t_fl **)ft_memallocarray(sizeof(t_fl) * 4, sizeof(t_fl) * 4);
 	if (id_matrix)
@@ -150,8 +150,6 @@ t_fl **identity_matrix(void)
 	}
 	return (id_matrix);
 }
-
-
 
 /* test function to print arrays*/
 

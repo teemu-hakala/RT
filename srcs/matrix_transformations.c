@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_transformations.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 11:03:46 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/12 14:59:52 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/12 22:12:29 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/RTv1.h"
 
-t_fl *translate(t_tuple tuple, t_fl x, t_fl y, t_fl z)
+t_fl	*translate(t_tuple tuple, t_fl x, t_fl y, t_fl z)
 {
-	t_fl **temp;
-	t_fl *a;
+	t_fl	**temp;
+	t_fl	*a;
 
 	temp = identity_matrix();
 	if (temp)
@@ -29,10 +29,10 @@ t_fl *translate(t_tuple tuple, t_fl x, t_fl y, t_fl z)
 	return (a);
 }
 
-t_fl *scale(t_tuple tuple, t_fl x, t_fl y, t_fl z)
+t_fl	*scale(t_tuple tuple, t_fl x, t_fl y, t_fl z)
 {
-	t_fl **temp;
-	t_fl *a;
+	t_fl	**temp;
+	t_fl	*a;
 
 	temp = identity_matrix();
 	if (temp)
@@ -46,10 +46,10 @@ t_fl *scale(t_tuple tuple, t_fl x, t_fl y, t_fl z)
 	return (a);
 }
 
-t_fl *rot_x(t_tuple tuple, t_fl angle)
+t_fl	*rot_x(t_tuple tuple, t_fl angle)
 {
-	t_fl **temp;
-	t_fl *a;
+	t_fl	**temp;
+	t_fl	*a;
 
 	temp = identity_matrix();
 	if (temp)
@@ -64,10 +64,10 @@ t_fl *rot_x(t_tuple tuple, t_fl angle)
 	return (a);
 }
 
-	t_fl *rot_y(t_tuple tuple, t_fl angle)
+t_fl	*rot_y(t_tuple tuple, t_fl angle)
 {
-	t_fl **temp;
-	t_fl *a;
+	t_fl	**temp;
+	t_fl	*a;
 
 	temp = identity_matrix();
 	if (temp)
@@ -82,10 +82,10 @@ t_fl *rot_x(t_tuple tuple, t_fl angle)
 	return (a);
 }
 
-	t_fl *rot_z(t_tuple tuple, t_fl angle)
+t_fl	*rot_z(t_tuple tuple, t_fl angle)
 {
-	t_fl **temp;
-	t_fl *a;
+	t_fl	**temp;
+	t_fl	*a;
 
 	temp = identity_matrix();
 	if (temp)
