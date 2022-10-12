@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:20:54 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/12 11:37:40 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/12 13:38:44 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ t_tuple	tuple_div(t_tuple *a, double scalar)
 
 double	magnitude(t_tuple *a)
 {
-	return (sqrt(((a->tuple.x_width * a->tuple.w_id)
+	return (sqrt(((a->tuple.x_width * a->tuple.x_width)
 				+ (a->tuple.y_height * a->tuple.y_height)
 				+ (a->tuple.z_depth * a->tuple.z_depth))));
 }
