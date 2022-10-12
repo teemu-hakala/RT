@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:50:49 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/12 09:27:08 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/12 15:03:43 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@
 /* function to remove a specified row and col from a matrix.
 Returns a new matrix with 1 column and 1 row less*/
 
-double	**submatrix(double **a, int size, int row, int col)
+t_fl	**submatrix(t_fl **a, int size, int row, int col)
 {
-	double **new_matrix;
+	t_fl **new_matrix;
 	int new_matrix_row;
 	int new_matrix_col;
 	int row_a;
 	int col_a;
 
-	new_matrix = (double **)ft_memallocarray(size - 1, size - 1);
+	new_matrix = (t_fl **)ft_memallocarray(sizeof(t_fl) * size - 1, sizeof(t_fl) * size - 1);
 	row_a = 0;
 	new_matrix_row = 0;
 	while (row_a <= size - 1)
@@ -54,10 +54,10 @@ double	**submatrix(double **a, int size, int row, int col)
 	return (new_matrix);
 }
 
-double matrix_minors(double **a, int row, int col, int size)
+t_fl matrix_minors(t_fl **a, int row, int col, int size)
 {
-	double **temp;
-	double minor;
+	t_fl **temp;
+	t_fl minor;
 
 	temp = submatrix(a, size, row, col);
 	minor = determinant(temp, size - 1);
@@ -66,10 +66,10 @@ double matrix_minors(double **a, int row, int col, int size)
 	return (minor);
 }
 
-double matrix_cofactor(double **a, int row, int col, int size)
+t_fl matrix_cofactor(t_fl **a, int row, int col, int size)
 {
-	double cofactor;
-	double minor;
+	t_fl cofactor;
+	t_fl minor;
 
 	minor = matrix_minors(a, row, col, size);
 	if ((row + col)% 2 == 0)
@@ -81,9 +81,9 @@ double matrix_cofactor(double **a, int row, int col, int size)
 
 /* calculates the determinant of any sized matrix*/
 
-double determinant(double **a, int size)
+t_fl determinant(t_fl **a, int size)
 {
-	double	det;
+	t_fl	det;
 	int	col;
 
 	col = 0;
@@ -103,10 +103,10 @@ double determinant(double **a, int size)
 
 /* matrix inversion - allows to reverse effects of matrix multiplication*/
 
-double **matrix_inversion(double **a, int size)
+t_fl **matrix_inversion(t_fl **a, int size)
 {
-	double det;
-	double **temp;
+	t_fl det;
+	t_fl **temp;
 	int y;
 	int x;
 
@@ -115,7 +115,7 @@ double **matrix_inversion(double **a, int size)
 		return (a);
 	else
 	{
-		temp = (double **)ft_memallocarray(size, size);
+		temp = (t_fl **)ft_memallocarray(sizeof(t_fl) * size, sizeof(t_fl) * size);
 		if (temp)
 		{
 			y = -1;
@@ -127,37 +127,7 @@ double **matrix_inversion(double **a, int size)
 			}
 			a = transpose_matrix(temp);
 		}
-		ft_memdelarray(temp, size);
+		ft_memdelarray((void **)temp, size);
 	}
 	return (a);
-}
-
-int main(void)
-{
-	double **a4;
-	a4 = (double **)ft_memallocarray(4, 4);
-
-	a4[0][0] = -5;
-	a4[0][1] = 2;
-	a4[0][2] = 6;
-	a4[0][3] = -8;
-
-	a4[1][0] = 1;
-	a4[1][1] = -5;
-	a4[1][2] = 1;
-	a4[1][3] = 8;
-
-	a4[2][0] = 7;
-	a4[2][1] = 7;
-	a4[2][2] = -6;
-	a4[2][3] = -7;
-
-	a4[3][0] = 1;
-	a4[3][1] = -3;
-	a4[3][2] = 7;
-	a4[3][3] = 4;
-
-	printf("determinant a = %0.f\n", determinant(a4, 4));
-	matrix_inversion(a4, 4);
-	return (0);
 }
