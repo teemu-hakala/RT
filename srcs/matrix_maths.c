@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 17:21:03 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/11 17:24:05 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/12 15:05:30 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 /* compares two matrices to see if they are the same. Returns 0 if different, 1
 if equal */
 
-int	matrix_comparison(double **a, double **b, int size)
+int	matrix_comparison(t_fl **a, t_fl **b, int size)
 {
 	int x;
 	int y;
@@ -42,15 +42,15 @@ int	matrix_comparison(double **a, double **b, int size)
 /* matrix multiplication for two identical square matrices - eg. 4x4 * 4x4, or
 3 x 3 * 3 x 3*/
 
-double	**matrix_multi_square(double **a, double **b, int size)
+t_fl	**matrix_multi_square(t_fl **a, t_fl **b, int size)
 {
-	double **temp;
+	t_fl **temp;
 	int x; //col
 	int y; //row
 	int i;
-	double res;
+	t_fl res;
 
-	temp = (double **)ft_memallocarray(size, size);
+	temp = (t_fl **)ft_memallocarray(sizeof(t_fl) * size, sizeof(t_fl) * size);
 	if (temp)
 	{
 		y = 0;
@@ -77,14 +77,14 @@ double	**matrix_multi_square(double **a, double **b, int size)
 
 /* matrix multiplication for 4 x 4 matrix by a tuple */
 
-double	*matrix_tuple_multi(double **a, t_tuple tuple)
+t_fl	*matrix_tuple_multi(t_fl **a, t_tuple tuple)
 {
 	int y;
 	int i;
-	double res;
-	double *temp;
+	t_fl res;
+	t_fl *temp;
 
-	temp = ft_memalloc(4);
+	temp = ft_memalloc(4 * sizeof(t_fl));
 	if (temp)
 	{
 		y = 0;
@@ -101,18 +101,24 @@ double	*matrix_tuple_multi(double **a, t_tuple tuple)
 			y++;
 		}
 	}
+	i = 0;
+	while (i < 4)
+	{
+		printf("%f, ", temp[i]);
+		i++;
+	}
 	return (temp);
 }
 
 /* swops rows and columns of the matrix */
 
-double	**transpose_matrix(double **a)
+t_fl	**transpose_matrix(t_fl **a)
 {
-	double **temp;
+	t_fl **temp;
 	int y;
 	int x;
 
-	temp = (double **)ft_memallocarray(4, 4);
+	temp = (t_fl **)ft_memallocarray(sizeof(t_fl) * size, sizeof(t_fl) * size);
 	if (temp)
 	{
 		y = 0;
@@ -130,17 +136,17 @@ double	**transpose_matrix(double **a)
 	return (temp);
 }
 
-double **identity_matrix(void)
+t_fl **identity_matrix(void)
 {
-	double **id_matrix;
+	t_fl **id_matrix;
 
-	id_matrix = (double **)ft_memallocarray(4, 4);
+	id_matrix = (t_fl **)ft_memallocarray(sizeof(t_fl) * 4, sizeof(t_fl) * 4);
 	if (id_matrix)
 	{
-		id_matrix[0][0] = 1;
-		id_matrix[1][1] = 1;
-		id_matrix[2][2] = 1;
-		id_matrix[3][3] = 1;
+		id_matrix[0][0] = 1.0;
+		id_matrix[1][1] = 1.0;
+		id_matrix[2][2] = 1.0;
+		id_matrix[3][3] = 1.0;
 	}
 	return (id_matrix);
 }
@@ -149,7 +155,7 @@ double **identity_matrix(void)
 
 /* test function to print arrays*/
 
-void	ft_print_num_array(double **array, int y, int x)
+void	ft_print_num_array(t_fl **array, int y, int x)
 {
 	int	i;
 	int	j;
