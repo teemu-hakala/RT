@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/12 11:37:53 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/12 13:41:04 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define RTV1_H
 
 # include <math.h>
-# include "../libft/includes/libft.h"
+# include "libft.h"
 # include <mlx.h>
 # include <stdint.h>
 # include <stdio.h>
@@ -33,14 +33,14 @@ typedef struct s_img
 	int		bpp;
 	int		length;
 	int		endian;
-}				t_img;
+}	t_img;
 
 typedef struct s_win
 {
 	t_img		img;
 	void		*mlx;
 	void		*win;
-}				t_win;
+}	t_win;
 
 /*tuple operations & matrix maths*/
 t_tuple	point(double x, double y, double z);
@@ -53,7 +53,7 @@ t_tuple	tuple_div(t_tuple *a, double scalar);
 double	magnitude(t_tuple *a);
 t_tuple	normalize(t_tuple *a);
 double	dot_product(t_tuple *a, t_tuple *b);
-t_tuple	cross_product(t_tuple *a, t_tuple b);
+t_tuple	cross_product(t_tuple *a, t_tuple *b);
 int	matrix_comparison(double **a, double **b, int size);
 double **matrix_multi_square(double **a, double **b, int size);
 double *matrix_tuple_multi(double **a, t_tuple tuple);

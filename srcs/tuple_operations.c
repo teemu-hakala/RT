@@ -6,11 +6,11 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:20:54 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/12 13:38:44 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/12 13:40:41 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/RTv1.h"
+#include "RTv1.h"
 
 t_tuple	point(double x, double y, double z)
 {
