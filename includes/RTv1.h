@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RTv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/11 16:52:06 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/12 11:29:04 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,14 @@ typedef struct s_win
 t_tuple	point(double x, double y, double z);
 t_tuple	vector(double x, double y, double z);
 double	**tuple_to_array(t_tuple tuple);
-t_tuple	tuple_add(t_tuple a, t_tuple b);
-t_tuple	tuple_sub(t_tuple a, t_tuple b);
-t_tuple	tuple_multi(t_tuple a, double scalar);
-t_tuple	tuple_div(t_tuple a, double scalar);
-double	magnitude(t_tuple a);
-t_tuple	normalize(t_tuple a);
-double	dot_product(t_tuple a, t_tuple b);
-t_tuple	cross_product(t_tuple a, t_tuple b);
+t_tuple	tuple_add(t_tuple *a, t_tuple *b);
+t_tuple	tuple_sub(t_tuple *a, t_tuple *b);
+t_tuple	tuple_multi(t_tuple *a, double scalar);
+t_tuple	tuple_div(t_tuple *a, double scalar);
+double	magnitude(t_tuple *a);
+t_tuple	normalize(t_tuple *a);
+double	dot_product(t_tuple *a, t_tuple *b);
+t_tuple	cross_product(t_tuple *a, t_tuple b);
 int	matrix_comparison(double **a, double **b, int size);
 double **matrix_multi_square(double **a, double **b, int size);
 double *matrix_tuple_multi(double **a, t_tuple tuple);
