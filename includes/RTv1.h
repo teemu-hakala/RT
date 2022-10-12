@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/12 12:17:22 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/12 21:35:28 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 # define RTV1_H
 
 # include <math.h>
-# include "../libft/includes/libft.h"
-// # include <mlx.h>
-# include "../minilibx/mlx.h"
+# include "libft.h"
+# include <mlx.h>
 # include <stdint.h>
 # include <stdio.h>
 # include "tuple.h"
@@ -34,14 +33,14 @@ typedef struct s_img
 	int		bpp;
 	int		length;
 	int		endian;
-}				t_img;
+}	t_img;
 
 typedef struct s_win
 {
 	t_img		img;
 	void		*mlx;
 	void		*win;
-}				t_win;
+}	t_win;
 
 /*tuple operations & matrix maths*/
 t_tuple	point(double x, double y, double z);
