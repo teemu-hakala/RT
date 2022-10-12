@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:50:49 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/11 17:24:35 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/12 09:27:08 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ double **matrix_inversion(double **a, int size)
 			}
 			a = transpose_matrix(temp);
 		}
+		ft_memdelarray(temp, size);
 	}
 	return (a);
 }
