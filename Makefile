@@ -3,76 +3,84 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: thakala <thakala@student.42.fr>            +#+  +:+       +#+         #
+#    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2022/10/13 14:26:15 by thakala          ###   ########.fr        #
+#    Updated: 2022/10/13 16:42:50 by deelliot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = RTv1
 
-FLAGS = -Wall -Wextra -Werror -g -fsanitize=address -Wconversion
+FLAGS = -Wall -Wextra -Werror -g -fsanitize=address -Wconversion -Ofast
 
 # Directories
-SRC_DIR = ./srcs/
-OBJ_DIR = ./obj/
-INC_DIR = ./includes/
-LIBFT_DIR = ./libft/
-MINILBX_DIR = ./minilibx/
+SRCS_DIR = srcs
+OBJS_DIR = objs
+INCS = -I includes/ -I libft/includes/ -I minilibx/
+LIBFT_DIR = libft
+MINILIBX_DIR = minilibx
 
 # Source and object files
-SRCS = main.c
-SRCS += initialise.c
-SRCS += image.c
-SRCS += error_handling.c
-SRCS += tuple_operations.c
-SRCS += matrix_maths.c
-SRCS += matrix_inversion.c
-SRCS += handle_input.c
+FILES = \
+	main \
+	initialise \
+	image \
+	error_handling \
+	tuple_operations \
+	matrix_maths \
+	matrix_inversion \
+	handle_input
 
-
-OBJ_FILES = $(SRCS:.c=.o)
+SRCS = $(addprefix $(SRCS_DIR)/, $(addsuffix .c, $(FILES)))
+OBJS = $(addprefix $(OBJS_DIR)/, $(addsuffix .o, $(FILES)))
 
 # Paths
-SRC = $(addprefix $(SRC_DIR), $(SRCS))
-OBJ = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
-LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
-MINLBX = $(addprefix $(MINILBX_DIR), libmlx.a)
+LIBFT_A = $(LIBFT_DIR)/libft.a
+MINILIBX_A = $(MINILIBX_DIR)/libmlx.a
+LIBS = $(LIBFT_A) $(MINILIBX_A)
 
 # Libraries
-LINKS =  -L $(LIBFT_DIR) -lft
-LINKS +=  -L $(MINILBX_DIR) -lmlx -Ofast -framework OpenGL -framework Appkit
-# LINKS += -L /usr/local/lib -lmlx -I /usr/local/include -framework \
+LINKS = \
+	-lm \
+	-L $(LIBFT_DIR) -lft \
+	-L $(MINILIBX_DIR) -lmlx \
+	-framework OpenGL -framework Appkit
+
+# iMac minilibx:
+# LINKS = -L /usr/local/lib -lmlx -I /usr/local/include -framework \
 # 	OpenGL -framework AppKit
 
-
 #Rules
-all: obj $(LIBFT) $(MINLBX) $(NAME)
+all: $(NAME)
 
-obj:
-	@mkdir -p $(OBJ_DIR)
-$(OBJ_DIR)%.o:$(SRC_DIR)%.c
-	@gcc $(FLAGS) -I $(MINILBX_DIR) -I $(LIBFT_DIR) -I $(INC_DIR) -I libft/includes/ -o $@ -c $<
-$(LIBFT):
-	@make -C $(LIBFT_DIR)
-$(MINLBX):
-	@make -C $(MINILBX_DIR)
+$(NAME): .prerequisites $(LIBS) $(OBJS) Makefile
+	touch .prerequisites
+	gcc $(FLAGS) $(LINKS) $(OBJS) -o $(NAME)
+	echo "Usage: ./RTV1 + option"
+	echo "options: >> ??"
 
-$(NAME): $(OBJ)
-	@gcc $(OBJ) $(FLAGS) $(LINKS) -lm -o $(NAME)
-	@echo "Usage: ./RTV1 + option"
-	@echo "options: >> ??"
+$(OBJS): $(OBJS_DIR)%.o:$(SRCS_DIR)%.c $(HDRS) Makefile
+	gcc $(FLAGS) $(INCS) -o $@ -c $<
+
+.prerequisites: $(OBJS_DIR)
+
+$(OBJS_DIR):
+	mkdir -p $(OBJS_DIR)
+$(LIBFT_A):
+	make -C $(LIBFT_DIR)
+$(MINILIBX_A):
+	make -C $(MINILIBX_DIR)
 
 clean:
-	@rm -Rf $(OBJ_DIR)
-	@make clean -C $(LIBFT_DIR)
-	@echo " Objects removed"
+	/bin/rm -Rf $(OBJS_DIR)
+	make clean -C $(LIBFT_DIR)
+	echo " Objects removed"
 
 fclean: clean
-	@rm -f $(NAME)
-	@make -C $(LIBFT_DIR) fclean
-	@echo " $(NAME) removed "
+	/bin/rm -f $(NAME) .prerequisites
+	make -C $(LIBFT_DIR) fclean
+	echo " $(NAME) removed "
 
 re: fclean all
 
