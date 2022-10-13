@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RTv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/13 16:04:37 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/13 17:37:10 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,16 @@
 #include <stdio.h>
 # include "tuple.h"
 # include "matrices.h"
+# include "objects.h"
+# include "colour.h"
 
 # define WIDTH 600
 # define HEIGHT 400
 # define KEY_DOWN 2
 # define ESC 53
 # define EPSILON 0.00001
+
+typedef double	t_fl;
 
 typedef struct s_img
 {
@@ -35,6 +39,28 @@ typedef struct s_img
 	int		length;
 	int		endian;
 }	t_img;
+
+typedef struct s_ray
+{
+	t_tuple	origin;
+	t_tuple	direction;
+}			t_ray;
+
+typedef struct s_intersections
+{
+	t_fl		time;
+	t_object	shape;
+	int 		hit;
+}				t_intersections;
+
+
+// need new name here
+typedef struct s_instance
+{
+	int num;
+	t_intersections *intersections;
+
+}				t_instance;
 
 typedef struct s_win
 {
