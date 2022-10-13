@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_transformations.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 11:03:46 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/12 22:12:29 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/13 16:11:46 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,14 @@ t_fl	*translate(t_tuple tuple, t_fl x, t_fl y, t_fl z)
 	}
 	return (a);
 }
+
+/*t_mtx_4	*translate(t_tuple tuple, t_mtx_4 *transform, t_tuple vector)
+{
+	transform->array[3] = vector.tuple.x_width;
+	transform->array[7] = vector.tuple.y_height;
+	transform->array[11] = vector.tuple.z_depth;
+	return (transform);
+}*/
 
 t_fl	*scale(t_tuple tuple, t_fl x, t_fl y, t_fl z)
 {

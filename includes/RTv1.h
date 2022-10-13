@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RTv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/12 22:15:28 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/13 16:04:37 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdint.h>
 #include <stdio.h>
 # include "tuple.h"
+# include "matrices.h"
 
 # define WIDTH 600
 # define HEIGHT 400
@@ -58,6 +59,7 @@ t_fl	**matrix_multi_square(t_fl **a, t_fl **b, int size);
 t_fl	*matrix_tuple_multi(t_fl **a, t_tuple tuple);
 t_fl	**transpose_matrix(t_fl **a);
 t_fl	**identity_matrix(void);
+//t_mtx_4	*identity_matrix(t_mtx_4 *dst); // transform = identity_matrix(&(t_mtx_4){});
 double	matrix_determinant(double **a);
 t_fl	**submatrix(t_fl **a, int size, int row, int col);
 t_fl	matrix_minors(t_fl **a, int row, int col, int size);
@@ -71,7 +73,7 @@ void	free_win(t_win *win);
 /* initialise */
 void	initialise_window(t_win *win);
 
-void	img_pixel_put(t_win *win, int x, int y, int colour);
+void	img_pixel_put(t_win *win, int x, int y, unsigned int colour);
 
 /* handle input*/
 int		handle_input(int key, t_win *win);

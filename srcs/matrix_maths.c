@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_maths.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 17:21:03 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/12 22:14:56 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/13 16:10:12 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,16 @@ t_fl	**transpose_matrix(t_fl **a)
 	}
 	return (temp);
 }
+
+/*
+t_mtx_4	*identity_matrix(t_mtx_4 *dst)
+{
+	dst->tuple_rows[0] = (t_quad_tuple){1.0, 0.0, 0.0, 0.0};
+	dst->tuple_rows[1] = (t_quad_tuple){0.0, 1.0, 0.0, 0.0};
+	dst->tuple_rows[2] = (t_quad_tuple){0.0, 0.0, 1.0, 0.0};
+	dst->tuple_rows[3] = (t_quad_tuple){0.0, 0.0, 0.0, 1.0};
+	return (dst);
+}*/
 
 t_fl	**identity_matrix(void)
 {

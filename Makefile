@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+         #
+#    By: thakala <thakala@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2022/10/12 22:11:29 by thakala          ###   ########.fr        #
+#    Updated: 2022/10/13 14:26:15 by thakala          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ all: obj $(LIBFT) $(MINLBX) $(NAME)
 obj:
 	@mkdir -p $(OBJ_DIR)
 $(OBJ_DIR)%.o:$(SRC_DIR)%.c
-	@gcc $(FLAGS) -I $(MINILBX_DIR) -I $(LIBFT_DIR) -I $(INC_DIR) -o $@ -c $<
+	@gcc $(FLAGS) -I $(MINILBX_DIR) -I $(LIBFT_DIR) -I $(INC_DIR) -I libft/includes/ -o $@ -c $<
 $(LIBFT):
 	@make -C $(LIBFT_DIR)
 $(MINLBX):

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:02:35 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/12 14:28:34 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/13 14:27:30 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ double *translate(t_tuple tuple, t_fl x, t_fl y, t_fl z)
 
 	a = NULL;
 	temp = identity_matrix();
+	ft_print_num_array(temp, 4, 4);
 	temp[0][3] = x;
 	temp[1][3] = y;
 	temp[2][3] = z;

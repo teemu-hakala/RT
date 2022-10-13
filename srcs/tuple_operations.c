@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tuple_operations.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:20:54 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/12 22:13:07 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/13 14:26:11 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,12 @@ t_tuple	tuple_div(t_tuple *a, t_fl scalar)
 
 t_fl	magnitude(t_tuple *a)
 {
-	if (sizeof(t_fl) == sizeof(double))
-		return (sqrt(((a->tuple.x_width * a->tuple.x_width)
+	if (sizeof(t_fl) == sizeof(long double))
+		return (sqrtl(((a->tuple.x_width * a->tuple.x_width)
 					+ (a->tuple.y_height * a->tuple.y_height)
 					+ (a->tuple.z_depth * a->tuple.z_depth))));
 	else
-		return (sqrtl(((a->tuple.x_width * a->tuple.x_width)
+		return (sqrt(((a->tuple.x_width * a->tuple.x_width)
 					+ (a->tuple.y_height * a->tuple.y_height)
 					+ (a->tuple.z_depth * a->tuple.z_depth))));
 }

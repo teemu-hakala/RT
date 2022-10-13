@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   initialise.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:03:00 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/09 17:01:07 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/13 14:23:20 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/RTv1.h"
+#include "RTv1.h"
 
 void	background_colour(t_win *win)
 {
@@ -23,7 +23,7 @@ void	background_colour(t_win *win)
 		x = -1;
 		while (++x < WIDTH)
 		{
-			img_pixel_put(win, x, y, 0x40E0D0);
+			img_pixel_put(win, x, y, 0x40E0D0U);
 		}
 	}
 	mlx_put_image_to_window(win->mlx, win->win, win->img.img, 0, 0);
