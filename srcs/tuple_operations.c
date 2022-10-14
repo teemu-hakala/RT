@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tuple_operations.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:20:54 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/13 14:26:11 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/14 12:51:19 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,73 +15,73 @@
 t_tuple	point(t_fl x, t_fl y, t_fl z)
 {
 	return ((t_tuple){
-		.tuple.x_width = x,
-		.tuple.y_height = y,
-		.tuple.z_depth = z,
-		.tuple.w_id = W_ID_POINT_1
+		.tuple.units.x = x,
+		.tuple.units.y = y,
+		.tuple.units.z = z,
+		.tuple.units.w = POINT_1
 	});
 }
 
 t_tuple	vector(t_fl x, t_fl y, t_fl z)
 {
 	return ((t_tuple){
-		.tuple.x_width = x,
-		.tuple.y_height = y,
-		.tuple.z_depth = z,
-		.tuple.w_id = W_ID_VECTOR_0
+		.tuple.units.x = x,
+		.tuple.units.y = y,
+		.tuple.units.z = z,
+		.tuple.units.w = VECTOR_0
 	});
 }
 
 t_tuple	tuple_add(t_tuple *a, t_tuple *b)
 {
 	return ((t_tuple){
-		.tuple.x_width = a->tuple.x_width + b->tuple.x_width,
-		.tuple.y_height = a->tuple.y_height + b->tuple.y_height,
-		.tuple.z_depth = a->tuple.z_depth + b->tuple.z_depth,
-		.tuple.w_id = a->tuple.w_id + b->tuple.w_id
+		.tuple.units.x = a->tuple.units.x + b->tuple.units.x,
+		.tuple.units.y = a->tuple.units.y + b->tuple.units.y,
+		.tuple.units.z = a->tuple.units.z + b->tuple.units.z,
+		.tuple.units.w = a->tuple.units.w + b->tuple.units.w
 	});
 }
 
 t_tuple	tuple_sub(t_tuple *a, t_tuple *b)
 {
 	return ((t_tuple){
-		.tuple.x_width = a->tuple.x_width - b->tuple.x_width,
-		.tuple.y_height = a->tuple.y_height - b->tuple.y_height,
-		.tuple.z_depth = a->tuple.z_depth - b->tuple.z_depth,
-		.tuple.w_id = a->tuple.w_id - b->tuple.w_id
+		.tuple.units.x = a->tuple.units.x - b->tuple.units.x,
+		.tuple.units.y = a->tuple.units.y - b->tuple.units.y,
+		.tuple.units.z = a->tuple.units.z - b->tuple.units.z,
+		.tuple.units.w = a->tuple.units.w - b->tuple.units.w
 	});
 }
 
 t_tuple	tuple_multi(t_tuple *a, t_fl scalar)
 {
 	return ((t_tuple){
-		.tuple.x_width = a->tuple.x_width * scalar,
-		.tuple.y_height = a->tuple.y_height * scalar,
-		.tuple.z_depth = a->tuple.z_depth * scalar,
-		.tuple.w_id = a->tuple.w_id * scalar
+		.tuple.units.x = a->tuple.units.x * scalar,
+		.tuple.units.y = a->tuple.units.y * scalar,
+		.tuple.units.z = a->tuple.units.z * scalar,
+		.tuple.units.w = a->tuple.units.w * scalar
 	});
 }
 
 t_tuple	tuple_div(t_tuple *a, t_fl scalar)
 {
 	return ((t_tuple){
-		.tuple.x_width = a->tuple.x_width / scalar,
-		.tuple.y_height = a->tuple.y_height / scalar,
-		.tuple.z_depth = a->tuple.z_depth / scalar,
-		.tuple.w_id = a->tuple.w_id / scalar
+		.tuple.units.x = a->tuple.units.x / scalar,
+		.tuple.units.y = a->tuple.units.y / scalar,
+		.tuple.units.z = a->tuple.units.z / scalar,
+		.tuple.units.w = a->tuple.units.w / scalar
 	});
 }
 
 t_fl	magnitude(t_tuple *a)
 {
-	if (sizeof(t_fl) == sizeof(long double))
-		return (sqrtl(((a->tuple.x_width * a->tuple.x_width)
-					+ (a->tuple.y_height * a->tuple.y_height)
-					+ (a->tuple.z_depth * a->tuple.z_depth))));
-	else
-		return (sqrt(((a->tuple.x_width * a->tuple.x_width)
-					+ (a->tuple.y_height * a->tuple.y_height)
-					+ (a->tuple.z_depth * a->tuple.z_depth))));
+	// if (sizeof(t_fl) == sizeof(long double))
+	// 	return (sqrtl(((a->tuple.units.x * a->tuple.units.x)
+	// 				+ (a->tuple.units.y * a->tuple.units.y)
+	// 				+ (a->tuple.units.z * a->tuple.units.z))));
+	// else
+		return (sqrt(((a->tuple.units.x * a->tuple.units.x)
+					+ (a->tuple.units.y * a->tuple.units.y)
+					+ (a->tuple.units.z * a->tuple.units.z))));
 }
 
 t_tuple	normalize(t_tuple* a)
@@ -92,33 +92,33 @@ t_tuple	normalize(t_tuple* a)
 	if (mag != 0)
 		return (tuple_div(a, mag));
 	return ((t_tuple){
-		.tuple.x_width = 0,
-		.tuple.y_height = 0,
-		.tuple.z_depth = 0,
-		.tuple.w_id = W_ID_VECTOR_0
+		.tuple.units.x = 0,
+		.tuple.units.y = 0,
+		.tuple.units.z = 0,
+		.tuple.units.w = VECTOR_0
 	});
 }
 
 t_fl	dot_product(t_tuple *a, t_tuple *b)
 {
-	return ((a->tuple.x_width * b->tuple.x_width)
-		+ (a->tuple.y_height * b->tuple.y_height)
-		+ (a->tuple.z_depth * b->tuple.z_depth)
-		+ (a->tuple.w_id * b->tuple.w_id));
+	return ((a->tuple.units.x * b->tuple.units.x)
+		+ (a->tuple.units.y * b->tuple.units.y)
+		+ (a->tuple.units.z * b->tuple.units.z)
+		+ (a->tuple.units.w * b->tuple.units.w));
 }
 
 t_tuple	cross_product(t_tuple *a, t_tuple *b)
 {
 	return ((t_tuple){
-		.tuple.x_width = a->tuple.y_height * b->tuple.z_depth
-		- a->tuple.z_depth * b->tuple.y_height,
-		.tuple.y_height = a->tuple.z_depth * b->tuple.x_width
-		- a->tuple.x_width * b->tuple.z_depth,
-		.tuple.z_depth = a->tuple.x_width * b->tuple.y_height
-		- a->tuple.y_height * b->tuple.x_width
+		.tuple.units.x = a->tuple.units.y * b->tuple.units.z
+		- a->tuple.units.z * b->tuple.units.y,
+		.tuple.units.y = a->tuple.units.z * b->tuple.units.x
+		- a->tuple.units.x * b->tuple.units.z,
+		.tuple.units.z = a->tuple.units.x * b->tuple.units.y
+		- a->tuple.units.y * b->tuple.units.x
 	});
 }
 
-// .tuple.x_width = a->y * b->z - a->z * b->y,
-// .tuple.y_height = a->z * b->x - a->x * b->z,
-// .tuple.z_depth = a->x * b->y - a->y * b->x
+// .tuple.units.x = a->y * b->z - a->z * b->y,
+// .tuple.units.y = a->z * b->x - a->x * b->z,
+// .tuple.units.z = a->x * b->y - a->y * b->x

@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:50:49 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/12 15:03:43 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/14 13:17:05 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,18 @@
 /* function to remove a specified row and col from a matrix.
 Returns a new matrix with 1 column and 1 row less*/
 
-t_fl	**submatrix(t_fl **a, int size, int row, int col)
+t_fl	**submatrix(t_fl **a, uint32_t size, uint32_t row, uint32_t col)
 {
 	t_fl **new_matrix;
-	int new_matrix_row;
-	int new_matrix_col;
-	int row_a;
-	int col_a;
+	uint32_t new_matrix_row;
+	uint32_t new_matrix_col;
+	uint32_t row_a;
+	uint32_t col_a;
 
-	new_matrix = (t_fl **)ft_memallocarray(sizeof(t_fl) * size - 1, sizeof(t_fl) * size - 1);
+	new_matrix = (t_fl **)ft_memallocarray(
+			sizeof(t_fl) * (size - 1),
+			sizeof(t_fl) * (size - 1)
+		);
 	row_a = 0;
 	new_matrix_row = 0;
 	while (row_a <= size - 1)
@@ -54,7 +57,7 @@ t_fl	**submatrix(t_fl **a, int size, int row, int col)
 	return (new_matrix);
 }
 
-t_fl matrix_minors(t_fl **a, int row, int col, int size)
+t_fl matrix_minors(t_fl **a, uint32_t row, uint32_t col, uint32_t size)
 {
 	t_fl **temp;
 	t_fl minor;
@@ -66,7 +69,7 @@ t_fl matrix_minors(t_fl **a, int row, int col, int size)
 	return (minor);
 }
 
-t_fl matrix_cofactor(t_fl **a, int row, int col, int size)
+t_fl matrix_cofactor(t_fl **a, uint32_t row, uint32_t col, uint32_t size)
 {
 	t_fl cofactor;
 	t_fl minor;
@@ -81,10 +84,10 @@ t_fl matrix_cofactor(t_fl **a, int row, int col, int size)
 
 /* calculates the determinant of any sized matrix*/
 
-t_fl determinant(t_fl **a, int size)
+t_fl	determinant(t_fl **a, uint32_t size)
 {
-	t_fl	det;
-	int	col;
+	t_fl		det;
+	uint32_t	col;
 
 	col = 0;
 	det = 0;
@@ -103,12 +106,12 @@ t_fl determinant(t_fl **a, int size)
 
 /* matrix inversion - allows to reverse effects of matrix multiplication*/
 
-t_fl **matrix_inversion(t_fl **a, int size)
+t_fl	**matrix_inversion(t_fl **a, uint32_t size)
 {
 	t_fl det;
 	t_fl **temp;
-	int y;
-	int x;
+	uint32_t y;
+	uint32_t x;
 
 	det = determinant(a, size);
 	if (det == 0)
@@ -118,10 +121,10 @@ t_fl **matrix_inversion(t_fl **a, int size)
 		temp = (t_fl **)ft_memallocarray(sizeof(t_fl) * size, sizeof(t_fl) * size);
 		if (temp)
 		{
-			y = -1;
+			y = (uint32_t)(-1);
 			while (++y < size)
 			{
-				x = -1;
+				x = (uint32_t)(-1);
 				while (++x < size)
 					temp[y][x] = matrix_cofactor(a, y, x, size) / det;
 			}

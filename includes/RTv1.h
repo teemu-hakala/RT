@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/14 11:28:17 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/14 13:46:10 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 # define RTV1_H
 
 # include <math.h>
-# include "libft.h"
 # include <mlx.h>
 # include <stdint.h>
 #include <stdio.h>
+# include "libft.h"
 # include "tuple.h"
 # include "matrices.h"
 # include "objects.h"
@@ -27,8 +27,6 @@
 # define KEY_DOWN 2
 # define ESC 53
 # define EPSILON 0.00001
-
-typedef double	t_fl;
 
 typedef struct s_img
 {
@@ -48,7 +46,7 @@ typedef struct s_ray
 typedef struct s_intersect
 {
 	t_fl		time;
-	t_object	shape;
+	t_object	*shape;
 	// int			hit;
 }				t_intersect;
 
@@ -79,17 +77,18 @@ t_fl	magnitude(t_tuple *a);
 t_tuple	normalize(t_tuple *a);
 t_fl	dot_product(t_tuple *a, t_tuple *b);
 t_tuple	cross_product(t_tuple *a, t_tuple *b);
-int		matrix_comparison(t_fl **a, t_fl **b, int size);
-t_fl	**matrix_multi_square(t_fl **a, t_fl **b, int size);
+int		matrix_comparison(t_fl **a, t_fl **b, uint32_t size);
+t_fl	**matrix_multi_square(t_fl **a, t_fl **b, uint32_t size);
 t_fl	*matrix_tuple_multi(t_fl **a, t_tuple tuple);
 t_fl	**transpose_matrix(t_fl **a);
 t_fl	**identity_matrix(void);
 //t_mtx_4	*identity_matrix(t_mtx_4 *dst); // transform = identity_matrix(&(t_mtx_4){});
 double	matrix_determinant(double **a);
-t_fl	**submatrix(t_fl **a, int size, int row, int col);
-t_fl	matrix_minors(t_fl **a, int row, int col, int size);
-t_fl	matrix_cofactor(t_fl **a, int row, int col, int size);
-t_fl	determinant(t_fl **a, int size);
+t_fl	**submatrix(t_fl **a, uint32_t size, uint32_t row, uint32_t col);
+t_fl	matrix_minors(t_fl **a, uint32_t row, uint32_t col, uint32_t size);
+t_fl	matrix_cofactor(t_fl **a, uint32_t row, uint32_t col, uint32_t size);
+t_fl	determinant(t_fl **a, uint32_t size);
+t_fl	**matrix_inversion(t_fl **a, uint32_t size);
 
 /* error handle*/
 void	handle_errors(char *str);
@@ -102,6 +101,15 @@ void	img_pixel_put(t_win *win, int x, int y, unsigned int colour);
 
 /* handle input*/
 int		handle_input(int key, t_win *win);
+
+/* colour */
+t_tuple	hex_to_argb(uint32_t colour);
+
+/* object intialisation */
+t_object sphere(t_tuple *origin, t_transform *transform, t_tuple *colour);
+
+/* object intersection */
+void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array);
 
 /* testing */
 void	ft_print_num_array(t_fl **array, int y, int x);

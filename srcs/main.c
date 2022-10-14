@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:02:35 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/13 14:27:30 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/14 14:18:47 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,31 +109,73 @@
 // 	return (0);
 // }
 
-double *translate(t_tuple tuple, t_fl x, t_fl y, t_fl z)
-{
-	t_fl **temp;
-	double *a;
+// double *translate(t_tuple tuple, t_fl x, t_fl y, t_fl z)
+// {
+// 	t_fl **temp;
+// 	double *a;
 
-	a = NULL;
-	temp = identity_matrix();
-	ft_print_num_array(temp, 4, 4);
-	temp[0][3] = x;
-	temp[1][3] = y;
-	temp[2][3] = z;
+// 	a = NULL;
+// 	temp = identity_matrix();
+// 	ft_print_num_array(temp, 4, 4);
+// 	temp[0][3] = x;
+// 	temp[1][3] = y;
+// 	temp[2][3] = z;
 
-	a = matrix_tuple_multi(temp, tuple);
-	ft_memdelarray((void *)temp, 4);
-	return (a);
-}
+// 	a = matrix_tuple_multi(temp, tuple);
+// 	ft_memdelarray((void *)temp, 4);
+// 	return (a);
+// }
+
+// int main(void)
+// {
+// 	t_tuple tuple;
+// 	double *a;
+
+// 	tuple.tuple = (t_units){ -3.0, 4.0, 5.0, 1.0 };
+// 	a = translate(tuple, 1, 2, 3);
+// 	printf("\nfirst double of a = %0.f\n", a[0]);
+
+// 	return (0);
+// }
 
 int main(void)
 {
-	t_tuple tuple;
-	double *a;
+	t_ray		ray;
+	t_objects	objects;
+	t_tuple		purple;
+	t_transform transform;
+	t_object	object_sphere;
+	t_intersections array;
 
-	tuple.tuple = (t_units){ -3.0, 4.0, 5.0, 1.0 };
-	a = translate(tuple, 1, 2, 3);
-	printf("\nfirst double of a = %0.f\n", a[0]);
-
-	return (0);
+	purple = hex_to_argb(0x4c00b0);
+	ray.origin.tuple.units = (t_units){ 0.0, 0.0, 5.0, 1.0 };
+	ray.direction.tuple.units = (t_units){ 0.0, 0.0, 1.0, 0.0 };
+	transform =(t_transform)
+	{
+		.translation = (t_tuple)
+		{
+			.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1 }
+		},
+		.rotation = (t_tuple)
+		{
+			.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1 }
+		},
+		.scale = (t_tuple)
+		{
+			.tuple.units = (t_units){ 1.0, 1.0, 1.0, POINT_1 }
+		}
+	};
+	objects.list = (t_object *)malloc(sizeof(t_object) * 3);
+	if (objects.list == NULL)
+		exit(EXIT_FAILURE);
+	object_sphere = sphere(
+			&(t_tuple){.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1}},
+			&transform,
+			&purple
+		);
+	sphere_intersection(&ray, &object_sphere, &array);
+	if (array.num > 0)
+		printf("time at 1st: %f\ntime at 2nd: %f\n", array.intersections[0].time ,array.intersections[1].time);
+	else
+		printf("no hits\n");
 }

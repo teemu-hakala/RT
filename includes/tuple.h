@@ -6,13 +6,16 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:07:10 by thakala           #+#    #+#             */
-/*   Updated: 2022/10/14 09:59:41 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/14 13:22:09 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TUPLE_H
 # define TUPLE_H
+
 # include "RTv1.h"
+
+typedef double	t_fl;
 
 enum e_tuple_type
 {
@@ -27,7 +30,8 @@ enum e_tuple_component_indices {
 	INDEX_W_ID = 3
 };
 
-typedef struct s_units_of_axial_length {
+typedef struct s_units_of_axial_length
+{
 	t_fl	x;
 	t_fl	y;
 	t_fl	z;
@@ -57,7 +61,8 @@ typedef union u_tuple_alias
 	t_rotation	rotation;
 }	t_tuple_alias;
 
-typedef union u_wrapper {
+typedef union u_wrapper
+{
 	t_tuple_alias	tuple;
 	t_fl			array[sizeof(t_units) / sizeof(t_fl)];
 }	t_tuple;

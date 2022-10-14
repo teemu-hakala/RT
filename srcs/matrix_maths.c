@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_maths.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 17:21:03 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/13 16:10:12 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/14 13:14:55 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 /* compares two matrices to see if they are the same. Returns 0 if different, 1
 if equal */
 
-int	matrix_comparison(t_fl **a, t_fl **b, int size)
+int	matrix_comparison(t_fl **a, t_fl **b, uint32_t size)
 {
-	int		x;
-	int		y;
+	uint32_t	x;
+	uint32_t	y;
 
 	y = 0;
 	while (y < size)
@@ -42,12 +42,12 @@ int	matrix_comparison(t_fl **a, t_fl **b, int size)
 /* matrix multiplication for two identical square matrices - eg. 4x4 * 4x4, or
 3 x 3 * 3 x 3*/
 
-t_fl	**matrix_multi_square(t_fl **a, t_fl **b, int size)
+t_fl	**matrix_multi_square(t_fl **a, t_fl **b, uint32_t size)
 {
 	t_fl	**temp;
-	int		x; //col
-	int		y; //row
-	int		i;
+	uint32_t	x; //col
+	uint32_t	y; //row
+	uint32_t	i;
 	t_fl	res;
 
 	temp = (t_fl **)ft_memallocarray(sizeof(t_fl) * size, sizeof(t_fl) * size);

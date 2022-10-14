@@ -6,13 +6,14 @@
 #    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2022/10/13 16:42:50 by deelliot         ###   ########.fr        #
+#    Updated: 2022/10/14 13:31:43 by deelliot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = RTv1
 
-FLAGS = -Wall -Wextra -Werror -g -fsanitize=address -Wconversion -Ofast
+FLAGS = -Wall -Wextra -Werror -g
+# FLAGS += -fsanitize=address -Wconversion -Ofast -flto
 
 # Directories
 SRCS_DIR = srcs
@@ -30,7 +31,8 @@ FILES = \
 	tuple_operations \
 	matrix_maths \
 	matrix_inversion \
-	handle_input
+	handle_input \
+	intersect
 
 SRCS = $(addprefix $(SRCS_DIR)/, $(addsuffix .c, $(FILES)))
 OBJS = $(addprefix $(OBJS_DIR)/, $(addsuffix .o, $(FILES)))
@@ -56,9 +58,9 @@ all: $(NAME)
 
 $(NAME): .prerequisites $(LIBS) $(OBJS) Makefile
 	touch .prerequisites
-	gcc $(FLAGS) $(LINKS) $(OBJS) -o $(NAME)
-	echo "Usage: ./RTV1 + option"
-	echo "options: >> ??"
+	gcc $(FLAGS) $(INCS) $(LINKS) $(OBJS) -o $(NAME)
+	@echo "Usage: ./RTV1 + option"
+	@echo "options: >> ??"
 
 $(OBJS): $(OBJS_DIR)%.o:$(SRCS_DIR)%.c $(HDRS) Makefile
 	gcc $(FLAGS) $(INCS) -o $@ -c $<
@@ -75,12 +77,12 @@ $(MINILIBX_A):
 clean:
 	/bin/rm -Rf $(OBJS_DIR)
 	make clean -C $(LIBFT_DIR)
-	echo " Objects removed"
+	@echo " Objects removed"
 
 fclean: clean
 	/bin/rm -f $(NAME) .prerequisites
 	make -C $(LIBFT_DIR) fclean
-	echo " $(NAME) removed "
+	@echo " $(NAME) removed "
 
 re: fclean all
 
