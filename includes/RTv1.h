@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/14 13:46:10 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/14 15:26:13 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_intersect
 {
 	t_fl		time;
 	t_object	*shape;
-	// int			hit;
+	int			hit;
 }				t_intersect;
 
 
@@ -109,6 +109,7 @@ t_tuple	hex_to_argb(uint32_t colour);
 t_object sphere(t_tuple *origin, t_transform *transform, t_tuple *colour);
 
 /* object intersection */
+void	identify_hit(t_intersections *array);
 void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array);
 
 /* testing */

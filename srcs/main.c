@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:02:35 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/14 14:18:47 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/14 15:19:17 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,9 +146,10 @@ int main(void)
 	t_transform transform;
 	t_object	object_sphere;
 	t_intersections array;
+	int i;
 
 	purple = hex_to_argb(0x4c00b0);
-	ray.origin.tuple.units = (t_units){ 0.0, 0.0, 5.0, 1.0 };
+	ray.origin.tuple.units = (t_units){ 0.0, 0.0, -5.0, 1.0 };
 	ray.direction.tuple.units = (t_units){ 0.0, 0.0, 1.0, 0.0 };
 	transform =(t_transform)
 	{
@@ -178,4 +179,11 @@ int main(void)
 		printf("time at 1st: %f\ntime at 2nd: %f\n", array.intersections[0].time ,array.intersections[1].time);
 	else
 		printf("no hits\n");
+	i = -1;
+	while (++i < array.num)
+	{
+		if (array.intersections[i].hit == 1)
+			printf("time of hit = %f\n", array.intersections[i].time);
+	}
+	return (0);
 }

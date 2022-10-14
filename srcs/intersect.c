@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 16:14:00 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/14 14:15:56 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/14 15:26:25 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,25 @@ Assume for now all spheres are unit spheres, therefore radius of 1
 
 diameter of sphere: 2 * r
 */
+
+void	identify_hit(t_intersections *array)
+{
+	int i;
+	int hit;
+
+	i = -1;
+	hit = -1;
+	while (++i < array->num)
+	{
+		if (array->intersections[i].time >= 0 && hit == -1)
+		{
+			hit = i;
+			array->intersections[i].hit = 1;
+		}
+		else
+			array->intersections[i].hit = 0;
+	}
+}
 
 void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array)
 {
@@ -32,7 +51,6 @@ void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array)
 	c = dot_product(&sphere_to_ray, &sphere_to_ray) - 1;
 
 	discriminant = (b * b) - 4 * a * c;
-	printf("discriminant = %f\n", discriminant);
 	if (discriminant < 0.0)
 	{
 		array->num = 0;
@@ -55,10 +73,11 @@ void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array)
 		{
 			array->intersections[0].time = (-b - sqrt(discriminant)) / (2 * a);
 			array->intersections[0].shape = shape;
-			array->intersections[1].time = array->intersections[0].time + 2;
+			array->intersections[1].time = array->intersections[0].time + 2; // radius * 2
 			array->intersections[1].shape = shape;
 		}
 	}
+	identify_hit(array);
 }
 
 t_object sphere(t_tuple *origin, t_transform *transform, t_tuple *colour)
