@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:03:00 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/14 13:20:57 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/14 16:50:08 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,12 @@ void	initialise_window(t_win *win)
 	// 	handle_errors(win);
 	// initialise_image(&win->img, win);
 	background_colour(win);
+}
+
+void	identity_matrix_set(t_mtx_4 *dst)
+{
+	dst->array[MATRIX_FOUR_BY_FOUR_ROW_0__COL_0] = 1.0;
+	dst->array[MATRIX_FOUR_BY_FOUR_ROW_1__COL_1] = 1.0;
+	dst->array[MATRIX_FOUR_BY_FOUR_ROW_2__COL_2] = 1.0;
+	dst->array[MATRIX_FOUR_BY_FOUR_ROW_3__COL_3] = 1.0;
 }
