@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RTv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/14 16:49:07 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/14 18:55:30 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ t_fl	dot_product(t_tuple *a, t_tuple *b);
 t_tuple	cross_product(t_tuple *a, t_tuple *b);
 int		matrix_comparison(t_fl **a, t_fl **b, uint32_t size);
 t_fl	**matrix_multi_square(t_fl **a, t_fl **b, uint32_t size);
-t_tuple	matrix_tuple_multi(t_fl **a, t_tuple *tuple);
+// t_tuple	matrix_tuple_multi_array(t_fl **a, t_tuple *tuple);
+t_tuple	matrix_tuple_multi(t_mtx_4 *mtx, t_tuple *tuple);
 t_fl	**transpose_matrix(t_fl **a);
 t_fl	**identity_matrix(void);
 //t_mtx_4	*identity_matrix(t_mtx_4 *dst); // transform = identity_matrix(&(t_mtx_4){});
