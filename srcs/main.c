@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:02:35 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/14 16:52:18 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/14 19:13:08 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,16 +103,16 @@
 
 int main(void)
 {
-	t_ray ray;
-	t_tuple transform;
-	t_ray new;
+	t_ray	ray;
+	t_tuple	transform;
+	t_ray	new;
 
-	ray.origin.tuple.units = (t_units){ 1.0, 2.0, 3.0, 1.0 };
-	ray.direction.tuple.units = (t_units){ 0.0, 1.0, 0.0, 0.0 };
+	ray.origin.tuple.units = (t_units){1.0, 2.0, 3.0, 1.0};
+	ray.direction.tuple.units = (t_units){0.0, 1.0, 0.0, 0.0};
 	transform.tuple.units = (t_units){3.0, 4.0, 5.0, 1.0};
 	new = ray_translation(ray, transform);
-	printf("translated: \norigin: {%f, %f, %f}\ndirection: {%f, %f, %f}", new.origin.tuple.units.x, new.origin.tuple.units.y, new.origin.tuple.units.z, new.direction.tuple.units.x, new.direction.tuple.units.y, new.direction.tuple.units.z);
+	printf("translated: \norigin: {%f, %f, %f}\ndirection: {%f, %f, %f}\n", new.origin.tuple.units.x, new.origin.tuple.units.y, new.origin.tuple.units.z, new.direction.tuple.units.x, new.direction.tuple.units.y, new.direction.tuple.units.z);
 	new = ray_scale(ray, transform);
-	printf("translated: \norigin: {%f, %f, %f}\ndirection: {%f, %f, %f}", new.origin.tuple.units.x, new.origin.tuple.units.y, new.origin.tuple.units.z, new.direction.tuple.units.x, new.direction.tuple.units.y, new.direction.tuple.units.z);
+	printf("translated: \norigin: {%f, %f, %f}\ndirection: {%f, %f, %f}\n", new.origin.tuple.units.x, new.origin.tuple.units.y, new.origin.tuple.units.z, new.direction.tuple.units.x, new.direction.tuple.units.y, new.direction.tuple.units.z);
 	return (0);
 }
