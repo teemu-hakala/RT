@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 17:21:03 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/14 13:14:55 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/14 16:12:56 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,37 +77,33 @@ t_fl	**matrix_multi_square(t_fl **a, t_fl **b, uint32_t size)
 
 /* matrix multiplication for 4 x 4 matrix by a tuple */
 
-t_fl	*matrix_tuple_multi(t_fl **a, t_tuple tuple)
+t_tuple	matrix_tuple_multi(t_fl **a, t_tuple *tuple)
 {
 	int		y;
 	int		i;
 	t_fl	res;
-	t_fl	*temp;
+	t_tuple	new;
 
-	temp = ft_memalloc(4 * sizeof(t_fl));
-	if (temp)
+	y = 0;
+	while (y < 4)
 	{
-		y = 0;
-		while (y < 4)
+		res = 0;
+		i = 0;
+		while (i < 4)
 		{
-			res = 0;
-			i = 0;
-			while (i < 4)
-			{
-				res = res + a[y][i] * tuple.array[i];
-				i++;
-			}
-			temp[y] = res;
-			y++;
+			res = res + a[y][i] * tuple->array[i];
+			i++;
 		}
+		new.array[y] = res;
+		y++;
 	}
 	i = 0;
 	while (i < 4)
 	{
-		printf("%f, ", temp[i]);
+		printf("%f, ", new.array[i]);
 		i++;
 	}
-	return (temp);
+	return (new);
 }
 
 /* swops rows and columns of the matrix */
