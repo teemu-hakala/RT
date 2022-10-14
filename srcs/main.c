@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:02:35 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/14 15:19:17 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/14 16:52:18 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,89 +101,18 @@
 // 	}
 // }
 
-// int main(void)
-// {
-// 	// int count;
-// 	// printf("no. cols = %d\n", count);
-
-// 	return (0);
-// }
-
-// double *translate(t_tuple tuple, t_fl x, t_fl y, t_fl z)
-// {
-// 	t_fl **temp;
-// 	double *a;
-
-// 	a = NULL;
-// 	temp = identity_matrix();
-// 	ft_print_num_array(temp, 4, 4);
-// 	temp[0][3] = x;
-// 	temp[1][3] = y;
-// 	temp[2][3] = z;
-
-// 	a = matrix_tuple_multi(temp, tuple);
-// 	ft_memdelarray((void *)temp, 4);
-// 	return (a);
-// }
-
-// int main(void)
-// {
-// 	t_tuple tuple;
-// 	double *a;
-
-// 	tuple.tuple = (t_units){ -3.0, 4.0, 5.0, 1.0 };
-// 	a = translate(tuple, 1, 2, 3);
-// 	printf("\nfirst double of a = %0.f\n", a[0]);
-
-// 	return (0);
-// }
-
 int main(void)
 {
-	t_ray		ray;
-	t_objects	objects;
-	t_tuple		purple;
-	t_transform transform;
-	t_object	object_sphere;
-	t_intersections array;
-	int i;
+	t_ray ray;
+	t_tuple transform;
+	t_ray new;
 
-	purple = hex_to_argb(0x4c00b0);
-	ray.origin.tuple.units = (t_units){ 0.0, 0.0, -5.0, 1.0 };
-	ray.direction.tuple.units = (t_units){ 0.0, 0.0, 1.0, 0.0 };
-	transform =(t_transform)
-	{
-		.translation = (t_tuple)
-		{
-			.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1 }
-		},
-		.rotation = (t_tuple)
-		{
-			.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1 }
-		},
-		.scale = (t_tuple)
-		{
-			.tuple.units = (t_units){ 1.0, 1.0, 1.0, POINT_1 }
-		}
-	};
-	objects.list = (t_object *)malloc(sizeof(t_object) * 3);
-	if (objects.list == NULL)
-		exit(EXIT_FAILURE);
-	object_sphere = sphere(
-			&(t_tuple){.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1}},
-			&transform,
-			&purple
-		);
-	sphere_intersection(&ray, &object_sphere, &array);
-	if (array.num > 0)
-		printf("time at 1st: %f\ntime at 2nd: %f\n", array.intersections[0].time ,array.intersections[1].time);
-	else
-		printf("no hits\n");
-	i = -1;
-	while (++i < array.num)
-	{
-		if (array.intersections[i].hit == 1)
-			printf("time of hit = %f\n", array.intersections[i].time);
-	}
+	ray.origin.tuple.units = (t_units){ 1.0, 2.0, 3.0, 1.0 };
+	ray.direction.tuple.units = (t_units){ 0.0, 1.0, 0.0, 0.0 };
+	transform.tuple.units = (t_units){3.0, 4.0, 5.0, 1.0};
+	new = ray_translation(ray, transform);
+	printf("translated: \norigin: {%f, %f, %f}\ndirection: {%f, %f, %f}", new.origin.tuple.units.x, new.origin.tuple.units.y, new.origin.tuple.units.z, new.direction.tuple.units.x, new.direction.tuple.units.y, new.direction.tuple.units.z);
+	new = ray_scale(ray, transform);
+	printf("translated: \norigin: {%f, %f, %f}\ndirection: {%f, %f, %f}", new.origin.tuple.units.x, new.origin.tuple.units.y, new.origin.tuple.units.z, new.direction.tuple.units.x, new.direction.tuple.units.y, new.direction.tuple.units.z);
 	return (0);
 }

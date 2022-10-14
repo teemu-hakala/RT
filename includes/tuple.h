@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:07:10 by thakala           #+#    #+#             */
-/*   Updated: 2022/10/14 13:22:09 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/14 15:54:39 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ enum e_tuple_type
 };
 
 enum e_tuple_component_indices {
-	INDEX_X_WIDTH = 0,
-	INDEX_Y_HEIGHT = 1,
-	INDEX_Z_DEPTH = 2,
-	INDEX_W_ID = 3
+	X = 0,
+	Y = 1,
+	Z = 2,
+	W = 3
 };
 
 typedef struct s_units_of_axial_length

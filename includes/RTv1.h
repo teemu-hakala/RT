@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/14 15:26:13 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/14 16:49:07 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ t_fl	dot_product(t_tuple *a, t_tuple *b);
 t_tuple	cross_product(t_tuple *a, t_tuple *b);
 int		matrix_comparison(t_fl **a, t_fl **b, uint32_t size);
 t_fl	**matrix_multi_square(t_fl **a, t_fl **b, uint32_t size);
-t_fl	*matrix_tuple_multi(t_fl **a, t_tuple tuple);
+t_tuple	matrix_tuple_multi(t_fl **a, t_tuple *tuple);
 t_fl	**transpose_matrix(t_fl **a);
 t_fl	**identity_matrix(void);
 //t_mtx_4	*identity_matrix(t_mtx_4 *dst); // transform = identity_matrix(&(t_mtx_4){});
@@ -89,6 +89,20 @@ t_fl	matrix_minors(t_fl **a, uint32_t row, uint32_t col, uint32_t size);
 t_fl	matrix_cofactor(t_fl **a, uint32_t row, uint32_t col, uint32_t size);
 t_fl	determinant(t_fl **a, uint32_t size);
 t_fl	**matrix_inversion(t_fl **a, uint32_t size);
+
+/* matrix transformations */
+t_tuple	translate(t_tuple *tuple, t_tuple *transform);
+t_tuple	scale(t_tuple *tuple, t_tuple *transform);
+t_tuple	rot_x(t_tuple *tuple, t_fl angle);
+t_tuple	rot_y(t_tuple *tuple, t_fl angle);
+t_tuple	rot_z(t_tuple *tuple, t_fl angle);
+
+/* matrix support */
+void	identity_matrix_set(t_mtx_4 *dst);
+
+/* ray transformations */
+t_ray ray_translation(t_ray ray, t_tuple transform);
+t_ray ray_scale(t_ray ray, t_tuple transform);
 
 /* error handle*/
 void	handle_errors(char *str);
