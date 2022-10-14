@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 16:14:00 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/14 15:26:25 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/14 16:21:50 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,12 @@ void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array)
 	if (discriminant < 0.0)
 	{
 		array->num = 0;
+		array->intersections = NULL;
 		return ;
 	}
 	else
 	{
-		array->num = 2; // for other shapes can do num = (uint64)discriminant;
+		array->num = 2;
 		array->intersections = (t_intersect *)malloc(sizeof(t_intersect) * 2);
 		if (!array->intersections)
 			handle_errors("intersect malloc fail");
@@ -119,9 +120,11 @@ t_tuple	hex_to_argb(uint32_t colour)
 // 	t_tuple		purple;
 // 	t_transform transform;
 // 	t_object	object_sphere;
+// 	t_intersections array;
+// 	int i;
 
 // 	purple = hex_to_argb(0x4c00b0);
-// 	ray.origin.tuple.units = (t_units){ 0.0, 0.0, -5.0, 1.0 };
+// 	ray.origin.tuple.units = (t_units){ 0.0, 2.0, -5.0, 1.0 };
 // 	ray.direction.tuple.units = (t_units){ 0.0, 0.0, 1.0, 0.0 };
 // 	transform =(t_transform)
 // 	{
@@ -146,4 +149,16 @@ t_tuple	hex_to_argb(uint32_t colour)
 // 			&transform,
 // 			&purple
 // 		);
+// 	sphere_intersection(&ray, &object_sphere, &array);
+// 	if (array.num > 0)
+// 		printf("time at 1st: %f\ntime at 2nd: %f\n", array.intersections[0].time ,array.intersections[1].time);
+// 	else
+// 		printf("no hits\n");
+// 	i = -1;
+// 	while (++i < array.num)
+// 	{
+// 		if (array.intersections[i].hit == 1)
+// 			printf("time of hit = %f\n", array.intersections[i].time);
+// 	}
+// 	return (0);
 // }
