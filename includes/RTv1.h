@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/13 17:37:10 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/14 11:28:17 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include "tuple.h"
 # include "matrices.h"
 # include "objects.h"
-# include "colour.h"
 
 # define WIDTH 600
 # define HEIGHT 400
@@ -46,21 +45,21 @@ typedef struct s_ray
 	t_tuple	direction;
 }			t_ray;
 
-typedef struct s_intersections
+typedef struct s_intersect
 {
 	t_fl		time;
 	t_object	shape;
-	int 		hit;
-}				t_intersections;
+	// int			hit;
+}				t_intersect;
 
 
 // need new name here
-typedef struct s_instance
+typedef struct s_intersections
 {
 	int num;
-	t_intersections *intersections;
+	t_intersect *intersections;
 
-}				t_instance;
+}				t_intersections;
 
 typedef struct s_win
 {
@@ -93,7 +92,7 @@ t_fl	matrix_cofactor(t_fl **a, int row, int col, int size);
 t_fl	determinant(t_fl **a, int size);
 
 /* error handle*/
-void	handle_errors(t_win	*win);
+void	handle_errors(char *str);
 void	free_win(t_win *win);
 
 /* initialise */

@@ -35,14 +35,14 @@ typedef struct s_plane
 	t_tuple		origin;
 	t_transform	transform;
 	t_tuple		normal;
-	t_argb		colour;
+	t_tuple		colour;
 }	t_plane;
 
 typedef struct s_sphere
 {
 	t_tuple		origin;
 	t_transform	transform;
-	t_argb		colour;
+	t_tuple		colour;
 }	t_sphere;
 
 typedef struct s_cylinder
@@ -50,14 +50,14 @@ typedef struct s_cylinder
 	t_tuple		origin;
 	t_transform	transform;
 	t_fl		radius;
-	t_argb		colour;
+	t_tuple		colour;
 }	t_cylinder;
 
 typedef struct s_cone
 {
 	t_tuple		origin;
 	t_transform	transform;
-	t_argb		colour;
+	t_tuple		colour;
 }	t_cone;
 
 typedef struct s_light
@@ -104,7 +104,7 @@ typedef struct s_object
 
 typedef struct s_objects
 {
-	t_object	objects[20];
+	t_object	*list;
 	uint64_t	len;
 }	t_objects;
 

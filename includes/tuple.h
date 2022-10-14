@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:07:10 by thakala           #+#    #+#             */
-/*   Updated: 2022/10/14 09:43:13 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/14 09:59:41 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 enum e_tuple_type
 {
-	W_ID_VECTOR_0 = 0,
-	W_ID_POINT_1 = 1
+	VECTOR_0 = 0,
+	POINT_1 = 1
 };
 
 enum e_tuple_component_indices {
