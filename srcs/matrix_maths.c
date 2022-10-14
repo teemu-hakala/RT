@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_maths.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 17:21:03 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/14 16:12:56 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/14 18:55:19 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ t_fl	**matrix_multi_square(t_fl **a, t_fl **b, uint32_t size)
 
 /* matrix multiplication for 4 x 4 matrix by a tuple */
 
-t_tuple	matrix_tuple_multi(t_fl **a, t_tuple *tuple)
+/*t_tuple	matrix_tuple_multi_array(t_fl **a, t_tuple *tuple)
 {
 	int		y;
 	int		i;
@@ -92,6 +92,35 @@ t_tuple	matrix_tuple_multi(t_fl **a, t_tuple *tuple)
 		while (i < 4)
 		{
 			res = res + a[y][i] * tuple->array[i];
+			i++;
+		}
+		new.array[y] = res;
+		y++;
+	}
+	i = 0;
+	while (i < 4)
+	{
+		printf("%f, ", new.array[i]);
+		i++;
+	}
+	return (new);
+}*/
+
+t_tuple	matrix_tuple_multi(t_mtx_4 *mtx, t_tuple *tuple)
+{
+	int		y;
+	int		i;
+	t_fl	res;
+	t_tuple	new;
+
+	y = 0;
+	while (y < 4)
+	{
+		res = 0;
+		i = 0;
+		while (i < 4)
+		{
+			res = res + mtx->array[4 * y + i] * tuple->array[i];
 			i++;
 		}
 		new.array[y] = res;
