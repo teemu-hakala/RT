@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialise.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:03:00 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/14 16:50:08 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/14 19:16:59 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ void	initialise_window(t_win *win)
 
 void	identity_matrix_set(t_mtx_4 *dst)
 {
-	dst->array[MATRIX_FOUR_BY_FOUR_ROW_0__COL_0] = 1.0;
-	dst->array[MATRIX_FOUR_BY_FOUR_ROW_1__COL_1] = 1.0;
-	dst->array[MATRIX_FOUR_BY_FOUR_ROW_2__COL_2] = 1.0;
-	dst->array[MATRIX_FOUR_BY_FOUR_ROW_3__COL_3] = 1.0;
+	dst->tuple_rows[0] = (t_quad_tuple){1.0, 0.0, 0.0, 0.0};
+	dst->tuple_rows[1] = (t_quad_tuple){0.0, 1.0, 0.0, 0.0};
+	dst->tuple_rows[2] = (t_quad_tuple){0.0, 0.0, 1.0, 0.0};
+	dst->tuple_rows[3] = (t_quad_tuple){0.0, 0.0, 0.0, 1.0};
 }
