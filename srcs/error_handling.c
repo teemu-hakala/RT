@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:13:53 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/09 16:21:35 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/14 10:54:24 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	free_win(t_win *win)
 		mlx_destroy_window(win->mlx, win->win);
 }
 
-void	handle_errors(t_win	*win)
+void	handle_errors(char *str)
 {
-	free_win(win);
-	ft_stderror("error");
-	exit(1);
+	// free_win(win);
+	ft_stderror(str);
+	exit(EXIT_FAILURE);
 }
