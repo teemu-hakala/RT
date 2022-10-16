@@ -12,7 +12,6 @@
 
 #ifndef OBJECTS_H
 # define OBJECTS_H
-# include <stdint.h>
 # include "RTv1.h"
 
 /* AN EXAMPLE: */
@@ -77,9 +76,10 @@ typedef struct s_camera
 
 enum	e_object_type
 {
-	OBJECT_PLANE,
-	OBJECT_SPHERE,
-	OBJECT_CONE,
+	OBJECT_PLANE = 0,
+	OBJECT_SPHERE = 1,
+	OBJECT_CONE = 2,
+	OBJECT_CYLINDER = 3,
 	OBJECT_CAMERA,
 	OBJECT_LIGHT,
 	OBJECT_ERROR,
@@ -101,6 +101,8 @@ typedef struct s_object
 	union u_object		object;
 	enum e_object_type	type;
 }	t_object;
+
+typedef t_tuple	(*t_normal_fn)(t_object *, t_tuple *);
 
 typedef struct s_objects
 {
