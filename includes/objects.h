@@ -30,6 +30,17 @@ typedef struct s_transform
 	t_tuple	scale;
 }	t_transform;
 
+// need to add a material struct such as one below to each of the object shapes
+
+/* typedef struct s_material
+{
+	t_fl	ambient; btw 0 - 1
+	t_fl	diffuse; btw 0 - 1
+	t_fl	specular; btw 0 - 1
+	t_fl	shininess; btw 10 - 200
+	t_tuple	colour;
+}				t_material; */
+
 typedef struct s_plane
 {
 	t_tuple		origin;
