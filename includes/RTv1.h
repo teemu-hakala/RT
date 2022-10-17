@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/17 16:30:46 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/17 16:41:37 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ t_fl	**submatrix(t_fl **a, uint32_t size, uint32_t row, uint32_t col);
 t_fl	matrix_minors(t_fl **a, uint32_t row, uint32_t col, uint32_t size);
 t_fl	matrix_cofactor(t_fl **a, uint32_t row, uint32_t col, uint32_t size);
 t_fl	determinant(t_fl **a, uint32_t size);
-t_fl	**matrix_inversion(t_fl **a, uint32_t size);
+void	matrix_inversion(t_mtx_4 *mtx, uint32_t size);
 void	matrix_multi_square(t_mtx_4 *mtx, t_mtx_4 *transformation, uint32_t size);
 
 /* matrix transformations */
