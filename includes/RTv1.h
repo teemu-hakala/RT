@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RTv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/14 18:55:30 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/17 16:30:46 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ t_tuple	normalize(t_tuple *a);
 t_fl	dot_product(t_tuple *a, t_tuple *b);
 t_tuple	cross_product(t_tuple *a, t_tuple *b);
 int		matrix_comparison(t_fl **a, t_fl **b, uint32_t size);
-t_fl	**matrix_multi_square(t_fl **a, t_fl **b, uint32_t size);
+//t_fl	**matrix_multi_square(t_fl **a, t_fl **b, uint32_t size);
 // t_tuple	matrix_tuple_multi_array(t_fl **a, t_tuple *tuple);
 t_tuple	matrix_tuple_multi(t_mtx_4 *mtx, t_tuple *tuple);
 t_fl	**transpose_matrix(t_fl **a);
@@ -90,13 +90,21 @@ t_fl	matrix_minors(t_fl **a, uint32_t row, uint32_t col, uint32_t size);
 t_fl	matrix_cofactor(t_fl **a, uint32_t row, uint32_t col, uint32_t size);
 t_fl	determinant(t_fl **a, uint32_t size);
 t_fl	**matrix_inversion(t_fl **a, uint32_t size);
+void	matrix_multi_square(t_mtx_4 *mtx, t_mtx_4 *transformation, uint32_t size);
 
 /* matrix transformations */
-t_tuple	translate(t_tuple *tuple, t_tuple *transform);
-t_tuple	scale(t_tuple *tuple, t_tuple *transform);
-t_tuple	rot_x(t_tuple *tuple, t_fl angle);
-t_tuple	rot_y(t_tuple *tuple, t_fl angle);
-t_tuple	rot_z(t_tuple *tuple, t_fl angle);
+t_tuple	translate_tuple(t_tuple *tuple, t_tuple *transform);
+t_tuple	scale_tuple(t_tuple *tuple, t_tuple *transform);
+void	rotate(t_mtx_4 *mtx, t_tuple *rotations);
+t_tuple	rot_x_tuple(t_tuple *tuple, t_fl angle);
+t_tuple	rot_y_tuple(t_tuple *tuple, t_fl angle);
+t_tuple	rot_z_tuple(t_tuple *tuple, t_fl angle);
+
+void	translate(t_mtx_4 *mtx, t_tuple *transform);
+void	scale(t_mtx_4 *mtx, t_tuple *transform);
+void	rot_x(t_mtx_4 *mtx, t_fl angle);
+void	rot_y(t_mtx_4 *mtx, t_fl angle);
+void	rot_z(t_mtx_4 *mtx, t_fl angle);
 
 /* matrix support */
 void	identity_matrix_set(t_mtx_4 *dst);

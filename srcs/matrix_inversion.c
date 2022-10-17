@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_inversion.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:50:49 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/14 13:17:05 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/17 16:11:37 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ Returns a new matrix with 1 column and 1 row less*/
 
 t_fl	**submatrix(t_fl **a, uint32_t size, uint32_t row, uint32_t col)
 {
-	t_fl **new_matrix;
-	uint32_t new_matrix_row;
-	uint32_t new_matrix_col;
-	uint32_t row_a;
-	uint32_t col_a;
+	t_fl		**new_matrix;
+	uint32_t	new_matrix_row;
+	uint32_t	new_matrix_col;
+	uint32_t	row_a;
+	uint32_t	col_a;
 
 	new_matrix = (t_fl **)ft_memallocarray(
 			sizeof(t_fl) * (size - 1),
 			sizeof(t_fl) * (size - 1)
-		);
+			);
 	row_a = 0;
 	new_matrix_row = 0;
 	while (row_a <= size - 1)
@@ -57,10 +57,10 @@ t_fl	**submatrix(t_fl **a, uint32_t size, uint32_t row, uint32_t col)
 	return (new_matrix);
 }
 
-t_fl matrix_minors(t_fl **a, uint32_t row, uint32_t col, uint32_t size)
+t_fl	matrix_minors(t_fl **a, uint32_t row, uint32_t col, uint32_t size)
 {
-	t_fl **temp;
-	t_fl minor;
+	t_fl	**temp;
+	t_fl	minor;
 
 	temp = submatrix(a, size, row, col);
 	minor = determinant(temp, size - 1);
@@ -69,10 +69,10 @@ t_fl matrix_minors(t_fl **a, uint32_t row, uint32_t col, uint32_t size)
 	return (minor);
 }
 
-t_fl matrix_cofactor(t_fl **a, uint32_t row, uint32_t col, uint32_t size)
+t_fl	matrix_cofactor(t_fl **a, uint32_t row, uint32_t col, uint32_t size)
 {
-	t_fl cofactor;
-	t_fl minor;
+	t_fl	cofactor;
+	t_fl	minor;
 
 	minor = matrix_minors(a, row, col, size);
 	if ((row + col)% 2 == 0)
@@ -108,10 +108,10 @@ t_fl	determinant(t_fl **a, uint32_t size)
 
 t_fl	**matrix_inversion(t_fl **a, uint32_t size)
 {
-	t_fl det;
-	t_fl **temp;
-	uint32_t y;
-	uint32_t x;
+	t_fl		det;
+	t_fl		**temp;
+	uint32_t	y;
+	uint32_t	x;
 
 	det = determinant(a, size);
 	if (det == 0)

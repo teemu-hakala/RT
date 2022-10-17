@@ -12,6 +12,7 @@
 		"utility": "c",
 		"vector": "c",
 		"__tuple": "c",
-		"algorithm": "c"
+		"algorithm": "c",
+		"__locale": "c"
 	}
 }

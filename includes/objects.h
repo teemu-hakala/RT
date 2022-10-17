@@ -22,11 +22,46 @@ typedef struct s_field_of_view
 	t_fl	vertical;
 }	t_fov2;
 
+typedef struct s_transform_matricex
+{
+	t_mtx_4	resultant;
+	t_mtx_4	inverse;
+}	t_tf_mtx;
+
+/*typedef t_mtx_4	*(*t_transformation_fn)(t_mtx_4 *, t_tuple *);
+
+typedef enum e_transform_actions
+{
+	NONE = 0,
+	TRANSLATE = 0b1,
+	ROT_X = 0b10,
+	ROT_Y = 0b100,
+	ROT_Z = 0b1000,
+	SCALE = 0b10000
+}	t_tf_acts;*/
+
+// sizeof(enum_e_transform_actions);
+
+/*typedef struct s_translation
+{
+	t_tuple	translation_tuple;
+	uint8_t	default : 1;
+};
+
+typedef union u_tuple_default_check
+{
+	t_translation	translation;
+	t_rotation		rotation;
+	t_scale			scale;
+}	t_tuple_default;*/
+
 typedef struct s_transform
 {
-	t_tuple	translation;
-	t_tuple	rotation;
-	t_tuple	scale;
+	t_tf_mtx	matrix;
+	/*t_tf_acts	actions;*/
+	t_tuple		translation;
+	t_tuple		rotation;
+	t_tuple		scale;
 }	t_transform;
 
 // need to add a material struct such as one below to each of the object shapes
@@ -74,7 +109,7 @@ typedef struct s_light
 {
 	t_tuple		origin;
 	t_transform	transform;
-	t_fl		intensity;
+	t_colour	intensity;
 	t_fl		ambience;
 }	t_light;
 

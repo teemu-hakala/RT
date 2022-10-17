@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tuple.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:07:10 by thakala           #+#    #+#             */
-/*   Updated: 2022/10/14 15:54:39 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/17 11:13:20 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ typedef double	t_fl;
 
 enum e_tuple_type
 {
+	PRISTINE = -1,
 	VECTOR_0 = 0,
 	POINT_1 = 1
 };

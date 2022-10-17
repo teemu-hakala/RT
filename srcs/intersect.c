@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 16:14:00 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/14 16:21:50 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/17 16:29:35 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array)
 	identify_hit(array);
 }
 
-t_object sphere(t_tuple *origin, t_transform *transform, t_tuple *colour)
+/*t_object sphere(t_tuple *origin, t_transform *transform, t_tuple *colour)
 {
 	return ((t_object)
 	{
@@ -103,7 +103,7 @@ t_object sphere(t_tuple *origin, t_transform *transform, t_tuple *colour)
 		},
 		.type = OBJECT_SPHERE
 	});
-}
+}*/
 
 t_tuple	hex_to_argb(uint32_t colour)
 {

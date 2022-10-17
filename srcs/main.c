@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:02:35 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/14 19:13:08 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/17 16:27:00 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,18 +101,61 @@
 // 	}
 // }
 
+// int main(void)
+// {
+// 	t_ray	ray;
+// 	t_tuple	transform;
+// 	t_ray	new;
+
+// 	ray.origin.tuple.units = (t_units){1.0, 2.0, 3.0, 1.0};
+// 	ray.direction.tuple.units = (t_units){0.0, 1.0, 0.0, 0.0};
+// 	transform.tuple.units = (t_units){3.0, 4.0, 5.0, 1.0};
+// 	new = ray_translation(ray, transform);
+// 	printf("translated: \norigin: {%f, %f, %f}\ndirection: {%f, %f, %f}\n", new.origin.tuple.units.x, new.origin.tuple.units.y, new.origin.tuple.units.z, new.direction.tuple.units.x, new.direction.tuple.units.y, new.direction.tuple.units.z);
+// 	new = ray_scale(ray, transform);
+// 	printf("translated: \norigin: {%f, %f, %f}\ndirection: {%f, %f, %f}\n", new.origin.tuple.units.x, new.origin.tuple.units.y, new.origin.tuple.units.z, new.direction.tuple.units.x, new.direction.tuple.units.y, new.direction.tuple.units.z);
+// 	return (0);
+// }
+
+
+void	ft_print_mtx_4(t_mtx_4 *mtx)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < 4)
+	{
+		j = 0;
+		while (j < 4)
+		{
+			printf("%f, ", mtx->array[4 * i + j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
+}
+
 int main(void)
 {
-	t_ray	ray;
-	t_tuple	transform;
-	t_ray	new;
+	t_mtx_4 mtx;
+	t_mtx_4 transformation;
 
-	ray.origin.tuple.units = (t_units){1.0, 2.0, 3.0, 1.0};
-	ray.direction.tuple.units = (t_units){0.0, 1.0, 0.0, 0.0};
-	transform.tuple.units = (t_units){3.0, 4.0, 5.0, 1.0};
-	new = ray_translation(ray, transform);
-	printf("translated: \norigin: {%f, %f, %f}\ndirection: {%f, %f, %f}\n", new.origin.tuple.units.x, new.origin.tuple.units.y, new.origin.tuple.units.z, new.direction.tuple.units.x, new.direction.tuple.units.y, new.direction.tuple.units.z);
-	new = ray_scale(ray, transform);
-	printf("translated: \norigin: {%f, %f, %f}\ndirection: {%f, %f, %f}\n", new.origin.tuple.units.x, new.origin.tuple.units.y, new.origin.tuple.units.z, new.direction.tuple.units.x, new.direction.tuple.units.y, new.direction.tuple.units.z);
+
+	mtx.tuple_rows[0] = (t_quad_tuple){1.0, 2.0, 1.0, 1.0};
+	mtx.tuple_rows[1] = (t_quad_tuple){0.0, 1.0, 0.0, 1.0};
+	mtx.tuple_rows[2] = (t_quad_tuple){2.0, 3.0, 4.0, 1.0};
+	mtx.tuple_rows[3] = (t_quad_tuple){1.0, 1.0, 1.0, 1.0};
+
+	transformation.tuple_rows[0] = (t_quad_tuple){2.0, 5.0, 1.0, 1.0};
+	transformation.tuple_rows[1] = (t_quad_tuple){6.0, 7.0, 1.0, 1.0};
+	transformation.tuple_rows[2] = (t_quad_tuple){1.0, 8.0, 1.0, 1.0};
+	transformation.tuple_rows[3] = (t_quad_tuple){1.0, 1.0, 1.0, 1.0};
+
+	ft_print_mtx_4 (&mtx);
+	printf("\n");
+	matrix_multi_square (&mtx, &transformation, 4);
+	ft_print_mtx_4 (&mtx);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_maths.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 17:21:03 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/14 18:55:19 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/17 16:28:11 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	matrix_comparison(t_fl **a, t_fl **b, uint32_t size)
 /* matrix multiplication for two identical square matrices - eg. 4x4 * 4x4, or
 3 x 3 * 3 x 3*/
 
-t_fl	**matrix_multi_square(t_fl **a, t_fl **b, uint32_t size)
+/*t_fl	**matrix_multi_square(t_fl **a, t_fl **b, uint32_t size)
 {
 	t_fl	**temp;
 	uint32_t	x; //col
@@ -73,6 +73,37 @@ t_fl	**matrix_multi_square(t_fl **a, t_fl **b, uint32_t size)
 		}
 	}
 	return (temp);
+}*/
+
+
+void	matrix_multi_square(t_mtx_4 *mtx, t_mtx_4 *transformation, uint32_t size)
+{
+	t_mtx_4		temp;
+	uint8_t		row;
+	uint8_t		col;
+	uint8_t		i;
+	t_fl		res;
+
+	size = 4;
+	row = 0;
+	while (row < size)
+	{
+		col = 0;
+		while (col < size)
+		{
+			res = 0;
+			i = 0;
+			while (i < size)
+			{
+				res += mtx->array[size * row + i] * transformation->array[size * i + col];
+				i++;
+			}
+			temp.array[size * row + col] = res;
+			col++;
+		}
+		row++;
+	}
+	*mtx = temp;
 }
 
 /* matrix multiplication for 4 x 4 matrix by a tuple */
