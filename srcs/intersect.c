@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 16:14:00 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/18 13:00:21 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/18 16:16:40 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	identify_hit(t_intersections *array)
 	}
 }
 
-void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array)
+void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array, t_win *win)
 {
 	t_fl	discriminant;
 	t_fl	a;
@@ -61,7 +61,7 @@ void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array)
 		array->num = 2;
 		array->intersections = (t_intersect *)malloc(sizeof(t_intersect) * 2);
 		if (!array->intersections)
-			handle_errors("intersect malloc fail");
+			handle_errors(win, "intersect malloc fail");
 		if (discriminant <= 1)
 		{
 			array->intersections[0].time = (-b - sqrt(discriminant)) / (2 * a);

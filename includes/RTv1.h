@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/18 12:56:06 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/18 16:23:51 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # include "matrices.h"
 # include "objects.h"
 
-# define WIDTH 600
-# define HEIGHT 400
+# define WIDTH 100
+# define HEIGHT 100
 # define KEY_DOWN 2
 # define ESC 53
 # define EPSILON 0.00001
@@ -108,13 +108,12 @@ t_ray ray_translation(t_ray ray, t_tuple transform);
 t_ray ray_scale(t_ray ray, t_tuple transform);
 
 /* error handle*/
-void	handle_errors(char *str);
+// void	handle_errors(char *str);
+void	handle_errors(t_win *win, char *str);
 void	free_win(t_win *win);
 
 /* initialise */
 void	initialise_window(t_win *win);
-
-void	img_pixel_put(t_win *win, int x, int y, unsigned int colour);
 
 /* handle input*/
 int		handle_input(int key, t_win *win);
@@ -127,11 +126,13 @@ t_object sphere(t_tuple *origin, t_transform *transform, t_tuple *colour);
 
 /* object intersection */
 void	identify_hit(t_intersections *array);
-void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array);
+// void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array);
+void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array, t_win *win);
 
+/* plot pixels */
+void plot_points(t_win *win, t_object sphere);
+void	img_pixel_put(t_win *win, int x, int y, unsigned int colour);
 /* testing */
 void	ft_print_num_array(t_fl **array, int y, int x);
-
-
 
 #endif

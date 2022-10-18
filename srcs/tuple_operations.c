@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:20:54 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/14 12:51:19 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/18 15:49:58 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,12 @@ t_fl	magnitude(t_tuple *a)
 	// 				+ (a->tuple.units.y * a->tuple.units.y)
 	// 				+ (a->tuple.units.z * a->tuple.units.z))));
 	// else
-		return (sqrt(((a->tuple.units.x * a->tuple.units.x)
-					+ (a->tuple.units.y * a->tuple.units.y)
-					+ (a->tuple.units.z * a->tuple.units.z))));
+	return (sqrt(((a->tuple.units.x * a->tuple.units.x)
+				+ (a->tuple.units.y * a->tuple.units.y)
+				+ (a->tuple.units.z * a->tuple.units.z))));
 }
 
-t_tuple	normalize(t_tuple* a)
+t_tuple	normalize(t_tuple *a)
 {
 	double	mag;
 
