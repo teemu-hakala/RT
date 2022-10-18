@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/18 11:42:37 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/18 12:31:49 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,15 +81,17 @@ int		matrix_comparison(t_fl **a, t_fl **b, uint32_t size);
 //t_fl	**matrix_multi_square(t_fl **a, t_fl **b, uint32_t size);
 // t_tuple	matrix_tuple_multi_array(t_fl **a, t_tuple *tuple);
 t_tuple	matrix_tuple_multi(t_mtx_4 *mtx, t_tuple *tuple);
-t_fl	**transpose_matrix(t_fl **a);
+// t_fl	**transpose_matrix(t_fl **a);
+t_mtx_4	transpose_matrix(t_mtx_4 *mtx);
 t_fl	**identity_matrix(void);
 //t_mtx_4	*identity_matrix(t_mtx_4 *dst); // transform = identity_matrix(&(t_mtx_4){});
 double	matrix_determinant(double **a);
-t_fl	**submatrix(t_fl **a, uint32_t size, uint32_t row, uint32_t col);
-t_fl	matrix_minors(t_fl **a, uint32_t row, uint32_t col, uint32_t size);
-t_fl	matrix_cofactor(t_fl **a, uint32_t row, uint32_t col, uint32_t size);
-t_fl	determinant(t_fl **a, uint32_t size);
-t_fl	**matrix_inversion(t_fl **a, uint32_t size);
+t_mtx submatrix(t_mtx *mtx, uint32_t size, uint32_t row, uint32_t col);
+t_fl	matrix_minors(t_mtx *mtx, uint32_t row, uint32_t col, uint32_t size);
+t_fl	matrix_cofactor(t_mtx *mtx, uint32_t row, uint32_t col, uint32_t size);
+t_fl	determinant(t_mtx *mtx, uint32_t size);
+// t_fl	**matrix_inversion(t_fl **a, uint32_t size);
+void	matrix_inversion(t_mtx_4 *mtx, uint32_t size);
 void	matrix_multi_square(t_mtx_4 *mtx, t_mtx_4 *transformation, uint32_t size);
 
 /* matrix transformations */

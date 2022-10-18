@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_maths.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 17:21:03 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/17 16:41:38 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/18 12:42:48 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,26 +168,46 @@ t_tuple	matrix_tuple_multi(t_mtx_4 *mtx, t_tuple *tuple)
 
 /* swops rows and columns of the matrix */
 
-t_fl	**transpose_matrix(t_fl **a)
+// t_fl	**transpose_matrix(t_fl **a)
+// {
+// 	t_fl	**temp;
+// 	int		y;
+// 	int		x;
+
+// 	temp = (t_fl **)ft_memallocarray(sizeof(t_fl) * 4, sizeof(t_fl) * 4);
+// 	if (temp)
+// 	{
+// 		y = 0;
+// 		while (y < 4)
+// 		{
+// 			x = 0;
+// 			while (x < 4)
+// 			{
+// 				temp[y][x] = a[x][y];
+// 				x++;
+// 			}
+// 			y++;
+// 		}
+// 	}
+// 	return (temp);
+// }
+
+t_mtx_4	transpose_matrix(t_mtx_4 *mtx)
 {
-	t_fl	**temp;
+	t_mtx_4	temp;
 	int		y;
 	int		x;
 
-	temp = (t_fl **)ft_memallocarray(sizeof(t_fl) * 4, sizeof(t_fl) * 4);
-	if (temp)
+	y = 0;
+	while (y < 4)
 	{
-		y = 0;
-		while (y < 4)
+		x = 0;
+		while (x < 4)
 		{
-			x = 0;
-			while (x < 4)
-			{
-				temp[y][x] = a[x][y];
-				x++;
-			}
-			y++;
+			temp.array[4 * y + x] = mtx->array[4 * x + y];
+			x++;
 		}
+		y++;
 	}
 	return (temp);
 }

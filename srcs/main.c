@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:02:35 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/17 16:27:00 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/18 12:46:21 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,9 +153,16 @@ int main(void)
 	transformation.tuple_rows[2] = (t_quad_tuple){1.0, 8.0, 1.0, 1.0};
 	transformation.tuple_rows[3] = (t_quad_tuple){1.0, 1.0, 1.0, 1.0};
 
+	printf("ORIGINAL mtx:\n");
 	ft_print_mtx_4 (&mtx);
-	printf("\n");
-	matrix_multi_square (&mtx, &transformation, 4);
+	// printf("\nTRANSFORMED mtx\n");
+	// matrix_multi_square (&mtx, &transformation, 4);
+	// ft_print_mtx_4 (&mtx);
+	printf("\nINVERTED mtx\n");
+	matrix_inversion (&mtx, 4);
+	ft_print_mtx_4 (&mtx);
+	printf("\nRE-INVERTED, ORIGINAL, mtx\n");
+	matrix_inversion (&mtx, 4);
 	ft_print_mtx_4 (&mtx);
 	return (0);
 }

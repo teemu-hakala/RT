@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrices.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 22:01:12 by thakala           #+#    #+#             */
-/*   Updated: 2022/10/12 22:02:12 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/18 12:18:19 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,18 @@ typedef union u_wrap_matrix_four_by_four
 	t_quad_tuple	tuple_rows[4];
 	t_fl			array[4 * sizeof(t_quad_tuple) / sizeof(t_fl)];
 }	t_mtx_4;
+
+typedef union u_wrap_matrices
+{
+	t_mtx_2		mtx_2;
+	t_mtx_3		mtx_3;
+	t_mtx_4		mtx_4;
+}	t_matrices;
+
+typedef union u_mtx_array
+{
+	t_matrices	matrices;
+	t_fl		array[16];
+}	t_mtx;
 
 #endif
