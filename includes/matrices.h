@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 22:01:12 by thakala           #+#    #+#             */
-/*   Updated: 2022/10/18 12:18:19 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/18 13:47:11 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 #ifndef MATRICES_H
 # define MATRICES_H
 # include "RTv1.h"
+
+typedef struct s_index
+{
+	uint32_t	size;
+	uint32_t	row;
+	uint32_t	col;
+}				t_index;
 
 enum e_matrix_two_by_two_coordinates
 {

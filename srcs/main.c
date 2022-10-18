@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:02:35 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/18 12:46:21 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/18 13:14:49 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ void	ft_print_mtx_4(t_mtx_4 *mtx)
 		j = 0;
 		while (j < 4)
 		{
-			printf("%f, ", mtx->array[4 * i + j]);
+			printf("%.1f, ", mtx->array[4 * i + j]);
 			j++;
 		}
 		printf("\n");

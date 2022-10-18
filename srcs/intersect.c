@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 16:14:00 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/17 16:41:36 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/18 13:00:21 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ diameter of sphere: 2 * r
 
 void	identify_hit(t_intersections *array)
 {
-	int i;
-	int hit;
+	int	i;
+	int	hit;
 
 	i = -1;
 	hit = -1;
@@ -39,17 +39,16 @@ void	identify_hit(t_intersections *array)
 
 void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array)
 {
-	t_fl discriminant;
-	t_fl a;
-	t_fl b;
-	t_fl c;
-	t_tuple sphere_to_ray;
+	t_fl	discriminant;
+	t_fl	a;
+	t_fl	b;
+	t_fl	c;
+	t_tuple	sphere_to_ray;
 
 	sphere_to_ray = tuple_sub(&ray->origin, &shape->object.sphere.origin);
 	a = dot_product(&ray->direction, &ray->direction);
 	b = 2 * dot_product(&ray->direction, &sphere_to_ray);
 	c = dot_product(&sphere_to_ray, &sphere_to_ray) - 1;
-
 	discriminant = (b * b) - 4 * a * c;
 	if (discriminant < 0.0)
 	{
