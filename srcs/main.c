@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:02:35 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/18 16:22:24 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/18 21:41:20 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,68 +137,85 @@ void	ft_print_mtx_4(t_mtx_4 *mtx)
 	}
 }
 
-// int main(void)
-// {
-// 	t_mtx_4 mtx;
-// 	t_mtx_4 transformation;
-
-
-// 	mtx.tuple_rows[0] = (t_quad_tuple){1.0, 2.0, 1.0, 1.0};
-// 	mtx.tuple_rows[1] = (t_quad_tuple){0.0, 1.0, 0.0, 1.0};
-// 	mtx.tuple_rows[2] = (t_quad_tuple){2.0, 3.0, 4.0, 1.0};
-// 	mtx.tuple_rows[3] = (t_quad_tuple){1.0, 1.0, 1.0, 1.0};
-
-// 	transformation.tuple_rows[0] = (t_quad_tuple){2.0, 5.0, 1.0, 1.0};
-// 	transformation.tuple_rows[1] = (t_quad_tuple){6.0, 7.0, 1.0, 1.0};
-// 	transformation.tuple_rows[2] = (t_quad_tuple){1.0, 8.0, 1.0, 1.0};
-// 	transformation.tuple_rows[3] = (t_quad_tuple){1.0, 1.0, 1.0, 1.0};
-
-// 	printf("ORIGINAL mtx:\n");
-// 	ft_print_mtx_4 (&mtx);
-// 	// printf("\nTRANSFORMED mtx\n");
-// 	// matrix_multi_square (&mtx, &transformation, 4);
-// 	// ft_print_mtx_4 (&mtx);
-// 	printf("\nINVERTED mtx\n");
-// 	matrix_inversion (&mtx, 4);
-// 	ft_print_mtx_4 (&mtx);
-// 	printf("\nRE-INVERTED, ORIGINAL, mtx\n");
-// 	matrix_inversion (&mtx, 4);
-// 	ft_print_mtx_4 (&mtx);
-// 	return (0);
-// }
-
-t_object sphere(t_tuple *origin, t_transform *transform, t_tuple *colour)
+void	test_matrix_inversion(void)
 {
-	return ((t_object)
-	{
-		.object.sphere = (t_sphere)
-		{
-			.origin = (t_tuple){.tuple.units = (t_units)
-				{origin->tuple.units.x,
-				origin->tuple.units.y,
-				origin->tuple.units.z,
-				origin->tuple.units.w}},
-			.transform = (t_transform){transform->translation,
-				transform->rotation,
-				transform->scale},
-			.colour = (t_tuple){.tuple.colour = (t_colour)
-				{colour->tuple.colour.a,
-				colour->tuple.colour.r,
-				colour->tuple.colour.g,
-				colour->tuple.colour.b}}
-		},
-		.type = OBJECT_SPHERE
-	});
+	t_mtx_4	mtx;
+	t_mtx_4	transformation;
+
+	mtx.tuple_rows[0] = (t_quad_tuple){1.0, 2.0, 1.0, 1.0};
+	mtx.tuple_rows[1] = (t_quad_tuple){0.0, 1.0, 0.0, 1.0};
+	mtx.tuple_rows[2] = (t_quad_tuple){2.0, 3.0, 4.0, 1.0};
+	mtx.tuple_rows[3] = (t_quad_tuple){1.0, 1.0, 1.0, 1.0};
+	
+	transformation.tuple_rows[0] = (t_quad_tuple){2.0, 5.0, 1.0, 1.0};
+	transformation.tuple_rows[1] = (t_quad_tuple){6.0, 7.0, 1.0, 1.0};
+	transformation.tuple_rows[2] = (t_quad_tuple){1.0, 8.0, 1.0, 1.0};
+	transformation.tuple_rows[3] = (t_quad_tuple){1.0, 1.0, 1.0, 1.0};
+
+	printf("ORIGINAL mtx:\n");
+	ft_print_mtx_4 (&mtx);
+	// printf("\nTRANSFORMED mtx\n");
+	// matrix_multi_square (&mtx, &transformation, 4);
+	// ft_print_mtx_4 (&mtx);
+	printf("\nINVERTED mtx\n");
+	matrix_inversion (&mtx, 4);
+	ft_print_mtx_4 (&mtx);
+	printf("\nRE-INVERTED, ORIGINAL, mtx\n");
+	matrix_inversion (&mtx, 4);
+	ft_print_mtx_4 (&mtx);
 }
 
-int main (void)
+t_object	sphere(t_tuple *origin, t_transform *transform, t_tuple *colour)
+{
+	return ((t_object)
+		{
+			.object.sphere = (t_sphere)
+			{
+				.origin = (t_tuple)
+				{
+					.tuple.units = (t_units)
+					{
+						origin->tuple.units.x,
+						origin->tuple.units.y,
+						origin->tuple.units.z,
+						origin->tuple.units.w
+					}
+				},
+				.transform = (t_transform)
+				{
+					.matrix = (t_tf_mtx)
+					{
+						.resultant = identity_matrix(),
+						.inverse = identity_matrix()
+					},
+					.translation = transform->translation,
+					.rotation = transform->rotation,
+					.scale = transform->scale
+				},
+				.colour = (t_tuple)
+				{
+					.tuple.colour = (t_colour)
+					{
+						colour->tuple.colour.a,
+						colour->tuple.colour.r,
+						colour->tuple.colour.g,
+						colour->tuple.colour.b
+					}
+				}
+			},
+			.type = OBJECT_SPHERE
+		}
+	);
+}
+
+void	test_red_disc(void)
 {
 	t_object	object_sphere;
 	t_tuple		red;
 	t_transform	transform;
-	t_win	win;
+	t_win		win;
 
-	transform =(t_transform)
+	transform = (t_transform)
 	{
 		.translation = (t_tuple)
 		{
@@ -220,7 +237,13 @@ int main (void)
 			&red
 		);
 	initialise_window(&win);
-	plot_points(&win, object_sphere);
-	mlx_init();
+	plot_points(&win, &object_sphere);
+	mlx_loop(win.mlx);
+}
+
+int	main(void)
+{
+	//test_matrix_inversion();
+	test_red_disc();
 	return (0);
 }

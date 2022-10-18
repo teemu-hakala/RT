@@ -55,10 +55,11 @@ typedef union u_tuple_default_check
 	t_scale			scale;
 }	t_tuple_default;*/
 
+	/*t_tf_acts	actions;*/
+	
 typedef struct s_transform
 {
 	t_tf_mtx	matrix;
-	/*t_tf_acts	actions;*/
 	t_tuple		translation;
 	t_tuple		rotation;
 	t_tuple		scale;

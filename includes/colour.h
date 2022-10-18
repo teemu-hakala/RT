@@ -3,25 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   colour.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 17:34:04 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/13 17:35:22 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/18 19:52:41 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COLOUR_H
 # define COLOUR_H
-# include "RTv1.h"
 
-
-typedef struct s_argb
+enum e_colour
 {
-	t_fl	a;
-	t_fl	r;
-	t_fl	g;
-	t_fl	b;
-}	t_argb;
-
+	COLOUR_RED = 0x00FF0000
+};
 
 #endif

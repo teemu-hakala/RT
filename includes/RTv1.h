@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RTv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/18 16:23:51 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/18 22:06:18 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "tuple.h"
 # include "matrices.h"
 # include "objects.h"
+# include "colour.h"
 
 # define WIDTH 100
 # define HEIGHT 100
@@ -50,12 +51,11 @@ typedef struct s_intersect
 	int			hit;
 }				t_intersect;
 
-
 // need new name here
 typedef struct s_intersections
 {
-	int num;
-	t_intersect *intersections;
+	int			num;
+	t_intersect	*intersections;
 
 }				t_intersections;
 
@@ -81,7 +81,7 @@ int		matrix_comparison(t_fl **a, t_fl **b, uint32_t size);
 t_tuple	matrix_tuple_multi(t_mtx_4 *mtx, t_tuple *tuple);
 void	matrix_multi_square(t_mtx_4 *mtx, t_mtx_4 *transformation, uint32_t size);
 t_mtx_4	transpose_matrix(t_mtx_4 *mtx);
-t_fl	**identity_matrix(void);
+t_mtx_4	identity_matrix(void);
 t_fl	determinant(t_mtx *mtx, uint32_t size);
 void	matrix_inversion(t_mtx_4 *mtx, uint32_t size);
 
@@ -104,8 +104,8 @@ void	rot_z(t_mtx_4 *mtx, t_fl angle);
 void	identity_matrix_set(t_mtx_4 *dst);
 
 /* ray transformations */
-t_ray ray_translation(t_ray ray, t_tuple transform);
-t_ray ray_scale(t_ray ray, t_tuple transform);
+t_ray	ray_translation(t_ray ray, t_tuple transform);
+t_ray	ray_scale(t_ray ray, t_tuple transform);
 
 /* error handle*/
 // void	handle_errors(char *str);
@@ -122,7 +122,7 @@ int		handle_input(int key, t_win *win);
 t_tuple	hex_to_argb(uint32_t colour);
 
 /* object intialisation */
-t_object sphere(t_tuple *origin, t_transform *transform, t_tuple *colour);
+t_object	sphere(t_tuple *origin, t_transform *transform, t_tuple *colour);
 
 /* object intersection */
 void	identify_hit(t_intersections *array);
@@ -130,7 +130,7 @@ void	identify_hit(t_intersections *array);
 void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array, t_win *win);
 
 /* plot pixels */
-void plot_points(t_win *win, t_object sphere);
+void	plot_points(t_win *win, t_object *sphere);
 void	img_pixel_put(t_win *win, int x, int y, unsigned int colour);
 /* testing */
 void	ft_print_num_array(t_fl **array, int y, int x);

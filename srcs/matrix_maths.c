@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_maths.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 17:21:03 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/18 12:42:48 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/18 21:23:21 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,7 +222,7 @@ t_mtx_4	*identity_matrix(t_mtx_4 *dst)
 	return (dst);
 }*/
 
-t_fl	**identity_matrix(void)
+/*t_fl	**identity_matrix(void)
 {
 	t_fl	**id_matrix;
 
@@ -235,7 +235,7 @@ t_fl	**identity_matrix(void)
 		id_matrix[3][3] = 1.0;
 	}
 	return (id_matrix);
-}
+}*/
 
 /* test function to print arrays*/
 
