@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:50:49 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/18 13:59:47 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/18 14:59:33 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,6 @@
 
 /* function to remove a specified row and col from a matrix.
 Returns a new matrix with 1 column and 1 row less*/
-
-void	submatrix_loop(t_mtx *mtx, t_index index, t_index old, t_index new, t_mtx new_matrix)
-{
-	old.col = 0;
-	new.col = 0;
-	while (old.col <= index.size - 1)
-	{
-		if (old.col == index.col)
-		{
-			old.col++;
-			continue ;
-		}
-		new_matrix.array[(index.size - 1) * new.row + new.col] = \
-		mtx->array[index.size * old.row + old.col];
-		old.col++;
-		new.col++;
-	}
-}
 
 t_mtx	submatrix(t_mtx *mtx, t_index index)
 {
@@ -45,15 +27,19 @@ t_mtx	submatrix(t_mtx *mtx, t_index index)
 	new.row = 0;
 	while (old.row <= index.size - 1)
 	{
-		if (old.row == index.row)
-		{
-			old.row++;
+		if (old.row++ == index.row)
 			continue ;
+		old.col = 0;
+		new.col = 0;
+		while (old.col <= index.size - 1)
+		{
+			if (old.col++ == index.col)
+				continue ;
+			new_matrix.array[(index.size - 1) * new.row + new.col++] = \
+				mtx->array[index.size * (old.row - 1) + (old.col - 1)];
 		}
-		submatrix_loop(mtx, index, old, new, new_matrix);
-		}
-		old.row++;
 		new.row++;
+	}
 	return (new_matrix);
 }
 
