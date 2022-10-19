@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:02:35 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/19 16:10:17 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/19 16:34:08 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,14 +99,21 @@ t_object	sphere(t_tuple *origin, t_transform *transform, t_tuple *colour)
 					.rotation = transform->rotation,
 					.scale = transform->scale
 				},
-				.colour = (t_tuple)
+				.material = (t_material)
 				{
-					.tuple.colour = (t_colour)
+					.ambient = 0.1,
+					.diffuse = 0.9,
+					.specular = 0.9,
+					.shininess = 200,
+					.colour = (t_tuple)
 					{
-						colour->tuple.colour.a,
-						colour->tuple.colour.r,
-						colour->tuple.colour.g,
-						colour->tuple.colour.b
+						.tuple.colour = (t_colour)
+						{
+							colour->tuple.colour.a,
+							colour->tuple.colour.r,
+							colour->tuple.colour.g,
+							colour->tuple.colour.b,
+						}
 					}
 				}
 			},
@@ -213,22 +220,11 @@ void test_reflect()
 	printf("result = %f, %f, %f, %f\n", results.tuple.units.x, results.tuple.units.y, results.tuple.units.z, results.tuple.units.w);
 }
 
-// void	initialize_objects(void)
-// {
-// 	t_objects	objects;
-// 	t_object	object_sphere;
-// 	t_transform	transform;
-
-// 	objects.list = (t_object *)malloc(sizeof(t_object) * 10);
-// 	if (objects.list == NULL)
-// 		exit(EXIT_FAILURE);
-// }
-
 int	main(void)
 {
 	//test_matrix_inversion();
-	// test_red_disc();
+	test_red_disc();
 	// test_normal_at_sphere();
-	test_reflect();
+	// test_reflect();
 	return (0);
 }
