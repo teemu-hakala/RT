@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_maths.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 17:21:03 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/18 21:23:21 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/19 10:38:35 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ int	matrix_comparison(t_fl **a, t_fl **b, uint32_t size)
 }*/
 
 
-void	matrix_multi_square(t_mtx_4 *mtx, t_mtx_4 *transformation, uint32_t size)
+void	matrix_multi_square(t_mtx *mtx, t_mtx *transformation, uint32_t size)
 {
-	t_mtx_4		temp;
+	t_mtx		temp;
 	uint8_t		row;
 	uint8_t		col;
 	uint8_t		i;
@@ -137,7 +137,7 @@ void	matrix_multi_square(t_mtx_4 *mtx, t_mtx_4 *transformation, uint32_t size)
 	return (new);
 }*/
 
-t_tuple	matrix_tuple_multi(t_mtx_4 *mtx, t_tuple *tuple)
+t_tuple	matrix_tuple_multi(t_mtx *mtx, t_tuple *tuple)
 {
 	int		y;
 	int		i;
@@ -192,9 +192,9 @@ t_tuple	matrix_tuple_multi(t_mtx_4 *mtx, t_tuple *tuple)
 // 	return (temp);
 // }
 
-t_mtx_4	transpose_matrix(t_mtx_4 *mtx)
+t_mtx	transpose_matrix(t_mtx *mtx)
 {
-	t_mtx_4	temp;
+	t_mtx	temp;
 	int		y;
 	int		x;
 
@@ -213,7 +213,7 @@ t_mtx_4	transpose_matrix(t_mtx_4 *mtx)
 }
 
 /*
-t_mtx_4	*identity_matrix(t_mtx_4 *dst)
+t_mtx	*identity_matrix(t_mtx *dst)
 {
 	dst->tuple_rows[0] = (t_quad_tuple){1.0, 0.0, 0.0, 0.0};
 	dst->tuple_rows[1] = (t_quad_tuple){0.0, 1.0, 0.0, 0.0};

@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:50:49 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/18 14:59:33 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/19 10:38:35 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,10 @@ t_fl	determinant(t_mtx *mtx, uint32_t size)
 
 /* matrix inversion - allows to reverse effects of matrix multiplication*/
 
-void	matrix_inversion(t_mtx_4 *mtx, uint32_t size)
+void	matrix_inversion(t_mtx *mtx, uint32_t size)
 {
 	t_fl		det;
-	t_mtx_4		temp;
+	t_mtx		temp;
 	t_index		i;
 
 	i.size = size;

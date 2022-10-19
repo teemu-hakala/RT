@@ -24,11 +24,11 @@ typedef struct s_field_of_view
 
 typedef struct s_transform_matricex
 {
-	t_mtx_4	resultant;
-	t_mtx_4	inverse;
+	t_mtx	resultant;
+	t_mtx	inverse;
 }	t_tf_mtx;
 
-/*typedef t_mtx_4	*(*t_transformation_fn)(t_mtx_4 *, t_tuple *);
+/*typedef t_mtx	*(*t_transformation_fn)(t_mtx *, t_tuple *);
 
 typedef enum e_transform_actions
 {
@@ -56,7 +56,7 @@ typedef union u_tuple_default_check
 }	t_tuple_default;*/
 
 	/*t_tf_acts	actions;*/
-	
+
 typedef struct s_transform
 {
 	t_tf_mtx	matrix;

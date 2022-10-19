@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_transformations.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 11:03:46 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/17 16:30:34 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/19 10:38:35 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 t_tuple	translate_tuple(t_tuple *tuple, t_tuple *transform)
 {
-	t_mtx_4	temp;
+	t_mtx	temp;
 
 	identity_matrix_set(&temp);
 	temp.array[4 * 0 + 3] = transform->array[X];
@@ -29,7 +29,7 @@ t_tuple	translate_tuple(t_tuple *tuple, t_tuple *transform)
 
 t_tuple	scale_tuple(t_tuple *tuple, t_tuple *transform)
 {
-	t_mtx_4	temp;
+	t_mtx	temp;
 
 	identity_matrix_set(&temp);
 	temp.array[4 * 0 + 0] = transform->array[X];
@@ -40,7 +40,7 @@ t_tuple	scale_tuple(t_tuple *tuple, t_tuple *transform)
 
 t_tuple	rot_x_tuple(t_tuple *tuple, t_fl angle)
 {
-	t_mtx_4	temp;
+	t_mtx	temp;
 
 	identity_matrix_set(&temp);
 	temp.array[4 * 1 + 1] = cos(angle);
@@ -52,7 +52,7 @@ t_tuple	rot_x_tuple(t_tuple *tuple, t_fl angle)
 
 t_tuple	rot_y_tuple(t_tuple *tuple, t_fl angle)
 {
-	t_mtx_4	temp;
+	t_mtx	temp;
 
 	identity_matrix_set(&temp);
 	temp.array[4 * 0 + 0] = cos(angle);
@@ -64,7 +64,7 @@ t_tuple	rot_y_tuple(t_tuple *tuple, t_fl angle)
 
 t_tuple	rot_z_tuple(t_tuple *tuple, t_fl angle)
 {
-	t_mtx_4	temp;
+	t_mtx	temp;
 
 	identity_matrix_set(&temp);
 	temp.array[4 * 0 + 0] = cos(angle);
@@ -78,9 +78,9 @@ t_tuple	rot_z_tuple(t_tuple *tuple, t_fl angle)
 	transformations that modify t_object directly (write via the mtx reference)
 */
 
-void	translate(t_mtx_4 *mtx, t_tuple *transform)
+void	translate(t_mtx *mtx, t_tuple *transform)
 {
-	t_mtx_4	translation;
+	t_mtx	translation;
 
 	identity_matrix_set(&translation);
 	translation.array[4 * 0 + 3] = transform->array[X];
@@ -89,9 +89,9 @@ void	translate(t_mtx_4 *mtx, t_tuple *transform)
 	matrix_multi_square(mtx, &translation, 4);
 }
 
-void	scale(t_mtx_4 *mtx, t_tuple *transform)
+void	scale(t_mtx *mtx, t_tuple *transform)
 {
-	t_mtx_4	scaling;
+	t_mtx	scaling;
 
 	identity_matrix_set(&scaling);
 	scaling.array[4 * 0 + 0] = transform->array[X];
@@ -100,16 +100,16 @@ void	scale(t_mtx_4 *mtx, t_tuple *transform)
 	matrix_multi_square(mtx, &scaling, 4);
 }
 
-void	rotate(t_mtx_4 *mtx, t_tuple *rotations)
+void	rotate(t_mtx *mtx, t_tuple *rotations)
 {
 	rot_x(mtx, rotations->tuple.rotation.x_wid_lat_pitch);
 	rot_y(mtx, rotations->tuple.rotation.y_hei_vert_yaw);
 	rot_z(mtx, rotations->tuple.rotation.z_dep_long_roll);
 }
 
-void	rot_x(t_mtx_4 *mtx, t_fl angle)
+void	rot_x(t_mtx *mtx, t_fl angle)
 {
-	t_mtx_4	rotate_x;
+	t_mtx	rotate_x;
 
 	identity_matrix_set(&rotate_x);
 	rotate_x.array[4 * 1 + 1] = cos(angle);
@@ -119,9 +119,9 @@ void	rot_x(t_mtx_4 *mtx, t_fl angle)
 	matrix_multi_square(mtx, &rotate_x, 4);
 }
 
-void	rot_y(t_mtx_4 *mtx, t_fl angle)
+void	rot_y(t_mtx *mtx, t_fl angle)
 {
-	t_mtx_4	rotate_y;
+	t_mtx	rotate_y;
 
 	identity_matrix_set(&rotate_y);
 	rotate_y.array[4 * 0 + 0] = cos(angle);
@@ -131,9 +131,9 @@ void	rot_y(t_mtx_4 *mtx, t_fl angle)
 	matrix_multi_square(mtx, &rotate_y, 4);
 }
 
-void	rot_z(t_mtx_4 *mtx, t_fl angle)
+void	rot_z(t_mtx *mtx, t_fl angle)
 {
-	t_mtx_4	rotate_y;
+	t_mtx	rotate_y;
 
 	identity_matrix_set(&rotate_y);
 	rotate_y.array[4 * 0 + 0] = cos(angle);
@@ -161,7 +161,7 @@ t_ray	ray_scale(t_ray ray, t_tuple transform)
 	return (new);
 }
 
-/*t_mtx_4	*translate(t_tuple tuple, t_mtx_4 *transform, t_tuple vector)
+/*t_mtx	*translate(t_tuple tuple, t_mtx *transform, t_tuple vector)
 {
 	transform->array[3] = vector.tuple.x_width;
 	transform->array[7] = vector.tuple.y_height;

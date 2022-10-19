@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RTv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/18 22:06:18 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/19 10:38:35 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include "objects.h"
 # include "colour.h"
 
-# define WIDTH 100
-# define HEIGHT 100
+# define WIDTH 400
+# define HEIGHT 400
 # define KEY_DOWN 2
 # define ESC 53
 # define EPSILON 0.00001
@@ -78,30 +78,30 @@ t_tuple	normalize(t_tuple *a);
 t_fl	dot_product(t_tuple *a, t_tuple *b);
 t_tuple	cross_product(t_tuple *a, t_tuple *b);
 int		matrix_comparison(t_fl **a, t_fl **b, uint32_t size);
-t_tuple	matrix_tuple_multi(t_mtx_4 *mtx, t_tuple *tuple);
-void	matrix_multi_square(t_mtx_4 *mtx, t_mtx_4 *transformation, uint32_t size);
-t_mtx_4	transpose_matrix(t_mtx_4 *mtx);
-t_mtx_4	identity_matrix(void);
+t_tuple	matrix_tuple_multi(t_mtx *mtx, t_tuple *tuple);
+void	matrix_multi_square(t_mtx *mtx, t_mtx *transformation, uint32_t size);
+t_mtx	transpose_matrix(t_mtx *mtx);
+t_mtx	identity_matrix(void);
 t_fl	determinant(t_mtx *mtx, uint32_t size);
-void	matrix_inversion(t_mtx_4 *mtx, uint32_t size);
+void	matrix_inversion(t_mtx *mtx, uint32_t size);
 
 
 /* matrix transformations */
 t_tuple	translate_tuple(t_tuple *tuple, t_tuple *transform);
 t_tuple	scale_tuple(t_tuple *tuple, t_tuple *transform);
-void	rotate(t_mtx_4 *mtx, t_tuple *rotations);
+void	rotate(t_mtx *mtx, t_tuple *rotations);
 t_tuple	rot_x_tuple(t_tuple *tuple, t_fl angle);
 t_tuple	rot_y_tuple(t_tuple *tuple, t_fl angle);
 t_tuple	rot_z_tuple(t_tuple *tuple, t_fl angle);
 
-void	translate(t_mtx_4 *mtx, t_tuple *transform);
-void	scale(t_mtx_4 *mtx, t_tuple *transform);
-void	rot_x(t_mtx_4 *mtx, t_fl angle);
-void	rot_y(t_mtx_4 *mtx, t_fl angle);
-void	rot_z(t_mtx_4 *mtx, t_fl angle);
+void	translate(t_mtx *mtx, t_tuple *transform);
+void	scale(t_mtx *mtx, t_tuple *transform);
+void	rot_x(t_mtx *mtx, t_fl angle);
+void	rot_y(t_mtx *mtx, t_fl angle);
+void	rot_z(t_mtx *mtx, t_fl angle);
 
 /* matrix support */
-void	identity_matrix_set(t_mtx_4 *dst);
+void	identity_matrix_set(t_mtx *dst);
 
 /* ray transformations */
 t_ray	ray_translation(t_ray ray, t_tuple transform);
