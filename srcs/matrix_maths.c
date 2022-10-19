@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 17:21:03 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/19 10:38:35 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/19 11:56:52 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,103 +39,38 @@ int	matrix_comparison(t_fl **a, t_fl **b, uint32_t size)
 	return (1);
 }
 
-/* matrix multiplication for two identical square matrices - eg. 4x4 * 4x4, or
+/* matrix multiplication for two identical 4 x 4 square matrices - eg. 4x4 * 4x4, or
 3 x 3 * 3 x 3*/
-
-/*t_fl	**matrix_multi_square(t_fl **a, t_fl **b, uint32_t size)
-{
-	t_fl	**temp;
-	uint32_t	x; //col
-	uint32_t	y; //row
-	uint32_t	i;
-	t_fl	res;
-
-	temp = (t_fl **)ft_memallocarray(sizeof(t_fl) * size, sizeof(t_fl) * size);
-	if (temp)
-	{
-		y = 0;
-		while (y < size)
-		{
-			x = 0;
-			while (x < size)
-			{
-				res = 0;
-				i = 0;
-				while (i < size)
-				{
-					res = res + a[y][i] * b[i][x];
-					i++;
-				}
-				temp[y][x] = res;
-				x++;
-			}
-			y++;
-		}
-	}
-	return (temp);
-}*/
-
 
 void	matrix_multi_square(t_mtx *mtx, t_mtx *transformation, uint32_t size)
 {
 	t_mtx		temp;
-	uint8_t		row;
-	uint8_t		col;
 	uint8_t		i;
 	t_fl		res;
+	t_index		j;
 
-	size = 4;
-	row = 0;
-	while (row < size)
+	j.row = 0;
+	while (j.row < size)
 	{
-		col = 0;
-		while (col < size)
+		j.col = 0;
+		while (j.col < size)
 		{
 			res = 0;
 			i = 0;
 			while (i < size)
 			{
-				res += mtx->array[size * row + i] * transformation->array[size * i + col];
+				res += mtx->array[size * j.row + i] * transformation->array[size * i + j.col];
 				i++;
 			}
-			temp.array[size * row + col] = res;
-			col++;
+			temp.array[size * j.row + j.col] = res;
+			j.col++;
 		}
-		row++;
+		j.row++;
 	}
 	*mtx = temp;
 }
 
 /* matrix multiplication for 4 x 4 matrix by a tuple */
-
-/*t_tuple	matrix_tuple_multi_array(t_fl **a, t_tuple *tuple)
-{
-	int		y;
-	int		i;
-	t_fl	res;
-	t_tuple	new;
-
-	y = 0;
-	while (y < 4)
-	{
-		res = 0;
-		i = 0;
-		while (i < 4)
-		{
-			res = res + a[y][i] * tuple->array[i];
-			i++;
-		}
-		new.array[y] = res;
-		y++;
-	}
-	i = 0;
-	while (i < 4)
-	{
-		printf("%f, ", new.array[i]);
-		i++;
-	}
-	return (new);
-}*/
 
 t_tuple	matrix_tuple_multi(t_mtx *mtx, t_tuple *tuple)
 {
@@ -157,12 +92,12 @@ t_tuple	matrix_tuple_multi(t_mtx *mtx, t_tuple *tuple)
 		new.array[y] = res;
 		y++;
 	}
-	i = 0;
-	while (i < 4)
-	{
-		printf("%f, ", new.array[i]);
-		i++;
-	}
+	// i = 0;
+	// while (i < 4)
+	// {
+	// 	printf("%f, ", new.array[i]);
+	// 	i++;
+	// }
 	return (new);
 }
 

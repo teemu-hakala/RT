@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:02:35 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/19 10:38:35 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/19 12:44:37 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,9 +152,55 @@ void	test_red_disc(void)
 	mlx_loop(win.mlx);
 }
 
+void	test_normal_at_sphere(void)
+{
+	t_object	object_sphere;
+	t_transform	transform;
+	t_tuple		red;
+	t_tuple		point_at;
+	t_tuple		normal_at;
+
+	transform = (t_transform)
+	{
+		.translation = (t_tuple)
+		{
+			.tuple.units = (t_units){ 0.0, 1.0, 0.0, POINT_1 }
+		},
+		.rotation = (t_tuple)
+		{
+			.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1 }
+		},
+		.scale = (t_tuple)
+		{
+			.tuple.units = (t_units){ 1.0, 1.0, 1.0, POINT_1 }
+		}
+	};
+	red = hex_to_argb(0xFF0000);
+	object_sphere = sphere(
+			&(t_tuple){.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1}},
+			&transform,
+			&red
+		);
+	translate(&object_sphere.object.sphere.transform.matrix.resultant, &object_sphere.object.sphere.transform.translation);
+	scale(&object_sphere.object.sphere.transform.matrix.resultant, &object_sphere.object.sphere.transform.scale);
+	object_sphere.object.sphere.transform.matrix.inverse = object_sphere.object.sphere.transform.matrix.resultant;
+	matrix_inversion(&object_sphere.object.sphere.transform.matrix.inverse, 4);
+	printf("transformation matrix:\n");
+	ft_print_mtx(&object_sphere.object.sphere.transform.matrix.resultant);
+	printf("\n\n");
+	printf("inverse matrix:\n");
+	ft_print_mtx(&object_sphere.object.sphere.transform.matrix.inverse);
+	printf("\n\n");
+	point_at.tuple.units = (t_units){ 0.0, 1.70711, -0.70711, POINT_1 };
+	printf("point: %f, %f, %f, %f\n\n", point_at.tuple.units.x, point_at.tuple.units.y, point_at.tuple.units.z, point_at.tuple.units.w);
+	normal_at = normal_at_sphere(&object_sphere.object.sphere, &point_at);
+	printf("point: %f, %f, %f, %f\n\n", normal_at.tuple.units.x, normal_at.tuple.units.y, normal_at.tuple.units.z, normal_at.tuple.units.w);
+}
+
 int	main(void)
 {
 	//test_matrix_inversion();
-	test_red_disc();
+	// test_red_disc();
+	test_normal_at_sphere();
 	return (0);
 }

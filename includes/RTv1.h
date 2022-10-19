@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/19 10:38:35 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/19 11:51:41 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,10 +129,13 @@ void	identify_hit(t_intersections *array);
 // void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array);
 void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array, t_win *win);
 
+/* normals */
+t_tuple	normal_at_sphere(t_sphere *sphere, t_tuple *point_at);
+
 /* plot pixels */
 void	plot_points(t_win *win, t_object *sphere);
 void	img_pixel_put(t_win *win, int x, int y, unsigned int colour);
 /* testing */
-void	ft_print_num_array(t_fl **array, int y, int x);
+void	ft_print_mtx(t_mtx *mtx);
 
 #endif
