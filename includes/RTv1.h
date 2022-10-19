@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/19 13:50:56 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/19 16:09:36 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,12 @@ void	matrix_inversion(t_mtx *mtx, uint32_t size);
 
 
 /* matrix transformations */
-t_tuple	translate_tuple(t_tuple *tuple, t_tuple *transform);
-t_tuple	scale_tuple(t_tuple *tuple, t_tuple *transform);
+// t_tuple	translate_tuple(t_tuple *tuple, t_tuple *transform);
+// t_tuple	scale_tuple(t_tuple *tuple, t_tuple *transform);
 void	rotate(t_mtx *mtx, t_tuple *rotations);
-t_tuple	rot_x_tuple(t_tuple *tuple, t_fl angle);
-t_tuple	rot_y_tuple(t_tuple *tuple, t_fl angle);
-t_tuple	rot_z_tuple(t_tuple *tuple, t_fl angle);
+// t_tuple	rot_x_tuple(t_tuple *tuple, t_fl angle);
+// t_tuple	rot_y_tuple(t_tuple *tuple, t_fl angle);
+// t_tuple	rot_z_tuple(t_tuple *tuple, t_fl angle);
 
 void	translate(t_mtx *mtx, t_tuple *transform);
 void	scale(t_mtx *mtx, t_tuple *transform);
@@ -128,6 +128,9 @@ t_object	sphere(t_tuple *origin, t_transform *transform, t_tuple *colour);
 void	identify_hit(t_intersections *array);
 // void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array);
 void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array, t_win *win);
+
+/* reflections*/
+t_tuple reflect(t_tuple *input, t_tuple *normal);
 
 /* object transformation */
 void	transform_objects(t_objects *objects);

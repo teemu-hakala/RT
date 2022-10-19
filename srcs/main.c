@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:02:35 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/19 14:08:12 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/19 16:10:17 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,10 +201,34 @@ void	test_normal_at_sphere(void)
 	printf("normal at point: %f, %f, %f, %f\n\n", normal_at.tuple.units.x, normal_at.tuple.units.y, normal_at.tuple.units.z, normal_at.tuple.units.w);
 }
 
+void test_reflect()
+{
+	t_tuple input;
+	t_tuple normal;
+	t_tuple results;
+
+	input.tuple.units = (t_units){1.0, -1.0, 0.0, 0.0};
+	normal.tuple.units = (t_units){0, 1, 0, 0};
+	results = reflect(&input, &normal);
+	printf("result = %f, %f, %f, %f\n", results.tuple.units.x, results.tuple.units.y, results.tuple.units.z, results.tuple.units.w);
+}
+
+// void	initialize_objects(void)
+// {
+// 	t_objects	objects;
+// 	t_object	object_sphere;
+// 	t_transform	transform;
+
+// 	objects.list = (t_object *)malloc(sizeof(t_object) * 10);
+// 	if (objects.list == NULL)
+// 		exit(EXIT_FAILURE);
+// }
+
 int	main(void)
 {
 	//test_matrix_inversion();
 	// test_red_disc();
-	test_normal_at_sphere();
+	// test_normal_at_sphere();
+	test_reflect();
 	return (0);
 }
