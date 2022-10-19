@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 10:25:29 by thakala           #+#    #+#             */
-/*   Updated: 2022/10/19 12:18:41 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/19 13:54:01 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ t_tuple	normal_at_sphere(t_sphere *sphere, t_tuple *point_at)
 	t_tuple world_normal;
 	t_mtx	transposed_inverse;
 
-	obj_point = matrix_tuple_multi(&sphere->transform.matrix.inverse, point_at);
+	obj_point = matrix_tuple_multi(&sphere->transform.inverse, point_at);
 	obj_normal = tuple_sub(&obj_point, &sphere->origin);
-	transposed_inverse = transpose_matrix(&sphere->transform.matrix.inverse);
+	transposed_inverse = transpose_matrix(&sphere->transform.inverse);
 	world_normal = matrix_tuple_multi(&transposed_inverse, &obj_normal);
 	world_normal.tuple.units.w = 0;
 	return (normalize(&world_normal));

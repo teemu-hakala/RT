@@ -6,7 +6,7 @@
 #    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2022/10/19 11:37:11 by deelliot         ###   ########.fr        #
+#    Updated: 2022/10/19 13:46:36 by deelliot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,8 @@ FILES = \
 	intersect \
 	matrix_transformations \
 	plot \
-	normals
+	normals \
+	transform_tuple
 
 SRCS = $(addprefix $(SRCS_DIR)/, $(addsuffix .c, $(FILES)))
 OBJS = $(addprefix $(OBJS_DIR)/, $(addsuffix .o, $(FILES)))

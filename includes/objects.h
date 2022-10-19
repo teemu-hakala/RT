@@ -22,47 +22,13 @@ typedef struct s_field_of_view
 	t_fl	vertical;
 }	t_fov2;
 
-typedef struct s_transform_matricex
-{
-	t_mtx	resultant;
-	t_mtx	inverse;
-}	t_tf_mtx;
-
-/*typedef t_mtx	*(*t_transformation_fn)(t_mtx *, t_tuple *);
-
-typedef enum e_transform_actions
-{
-	NONE = 0,
-	TRANSLATE = 0b1,
-	ROT_X = 0b10,
-	ROT_Y = 0b100,
-	ROT_Z = 0b1000,
-	SCALE = 0b10000
-}	t_tf_acts;*/
-
-// sizeof(enum_e_transform_actions);
-
-/*typedef struct s_translation
-{
-	t_tuple	translation_tuple;
-	uint8_t	default : 1;
-};
-
-typedef union u_tuple_default_check
-{
-	t_translation	translation;
-	t_rotation		rotation;
-	t_scale			scale;
-}	t_tuple_default;*/
-
-	/*t_tf_acts	actions;*/
-
 typedef struct s_transform
 {
-	t_tf_mtx	matrix;
-	t_tuple		translation;
-	t_tuple		rotation;
-	t_tuple		scale;
+	t_mtx	matrix;
+	t_mtx	inverse;
+	t_tuple	translation;
+	t_tuple	rotation;
+	t_tuple	scale;
 }	t_transform;
 
 // need to add a material struct such as one below to each of the object shapes
@@ -137,10 +103,10 @@ union	u_object
 {
 	t_plane		plane;
 	t_sphere	sphere;
-	t_cylinder	cylinder;
 	t_cone		cone;
-	t_light		light;
+	t_cylinder	cylinder;
 	t_camera	camera;
+	t_light		light;
 };
 
 typedef struct s_object
@@ -151,10 +117,12 @@ typedef struct s_object
 
 typedef t_tuple	(*t_normal_fn)(t_object *, t_tuple *);
 
+typedef void	(*t_object_transform)(t_object *);
+
 typedef struct s_objects
 {
 	t_object	*list;
-	uint64_t	len;
+	uint64_t	count;
 }	t_objects;
 
 #endif

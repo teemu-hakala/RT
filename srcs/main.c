@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:02:35 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/19 12:44:37 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/19 14:08:12 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,11 +93,8 @@ t_object	sphere(t_tuple *origin, t_transform *transform, t_tuple *colour)
 				},
 				.transform = (t_transform)
 				{
-					.matrix = (t_tf_mtx)
-					{
-						.resultant = identity_matrix(),
-						.inverse = identity_matrix()
-					},
+					.matrix = identity_matrix(),
+					.inverse = identity_matrix(),
 					.translation = transform->translation,
 					.rotation = transform->rotation,
 					.scale = transform->scale
@@ -154,6 +151,7 @@ void	test_red_disc(void)
 
 void	test_normal_at_sphere(void)
 {
+	t_objects	objects;
 	t_object	object_sphere;
 	t_transform	transform;
 	t_tuple		red;
@@ -181,20 +179,26 @@ void	test_normal_at_sphere(void)
 			&transform,
 			&red
 		);
-	translate(&object_sphere.object.sphere.transform.matrix.resultant, &object_sphere.object.sphere.transform.translation);
-	scale(&object_sphere.object.sphere.transform.matrix.resultant, &object_sphere.object.sphere.transform.scale);
-	object_sphere.object.sphere.transform.matrix.inverse = object_sphere.object.sphere.transform.matrix.resultant;
-	matrix_inversion(&object_sphere.object.sphere.transform.matrix.inverse, 4);
+	objects.list = (t_object *)malloc(sizeof(t_object) * 10);
+	if (objects.list == NULL)
+		exit(EXIT_FAILURE);
+	objects.list[0] = object_sphere;
+	objects.count = 1;
+	// translate(&object_sphere.object.sphere.transform.matrix, &object_sphere.object.sphere.transform.translation);
+	// scale(&object_sphere.object.sphere.transform.matrix, &object_sphere.object.sphere.transform.scale);
+	// object_sphere.object.sphere.transform.inverse = object_sphere.object.sphere.transform.matrix;
+	// matrix_inversion(&object_sphere.object.sphere.transform.inverse, 4);
+	transform_objects(&objects);
 	printf("transformation matrix:\n");
-	ft_print_mtx(&object_sphere.object.sphere.transform.matrix.resultant);
+	ft_print_mtx(&objects.list[0].object.sphere.transform.matrix);
 	printf("\n\n");
 	printf("inverse matrix:\n");
-	ft_print_mtx(&object_sphere.object.sphere.transform.matrix.inverse);
+	ft_print_mtx(&objects.list[0].object.sphere.transform.inverse);
 	printf("\n\n");
 	point_at.tuple.units = (t_units){ 0.0, 1.70711, -0.70711, POINT_1 };
 	printf("point: %f, %f, %f, %f\n\n", point_at.tuple.units.x, point_at.tuple.units.y, point_at.tuple.units.z, point_at.tuple.units.w);
-	normal_at = normal_at_sphere(&object_sphere.object.sphere, &point_at);
-	printf("point: %f, %f, %f, %f\n\n", normal_at.tuple.units.x, normal_at.tuple.units.y, normal_at.tuple.units.z, normal_at.tuple.units.w);
+	normal_at = normal_at_sphere(&objects.list[0].object.sphere, &point_at);
+	printf("normal at point: %f, %f, %f, %f\n\n", normal_at.tuple.units.x, normal_at.tuple.units.y, normal_at.tuple.units.z, normal_at.tuple.units.w);
 }
 
 int	main(void)
