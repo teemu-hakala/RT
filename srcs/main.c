@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:02:35 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/19 16:34:08 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/20 14:56:40 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,7 +208,7 @@ void	test_normal_at_sphere(void)
 	printf("normal at point: %f, %f, %f, %f\n\n", normal_at.tuple.units.x, normal_at.tuple.units.y, normal_at.tuple.units.z, normal_at.tuple.units.w);
 }
 
-void test_reflect()
+void	test_reflect()
 {
 	t_tuple input;
 	t_tuple normal;
@@ -220,11 +220,41 @@ void test_reflect()
 	printf("result = %f, %f, %f, %f\n", results.tuple.units.x, results.tuple.units.y, results.tuple.units.z, results.tuple.units.w);
 }
 
+void	test_lighting()
+{
+	t_material	material;
+	t_pt_light	light;
+	t_phong		vectors;
+	t_tuple		point;
+	t_tuple		red;
+
+	red = hex_to_argb(COLOUR_RED);
+
+	material.ambient = 0.1;
+	material.diffuse = 0.9;
+	material.specular = 0.9;
+	material.shininess = 200;
+	material.colour = red;
+
+	light.intensity.tuple.units = (t_units){ 1.0, 1.0, 1.0, POINT_1 };
+	light.position.tuple.units = (t_units){ 0.0, 0.0, -10, POINT_1 };
+
+	vectors.eye.tuple.units = (t_units){ 0.0, 0.0, -1.0, VECTOR_0 };
+	vectors.surface_normal.tuple.units = (t_units){ 0.0, 0.0, -1.0, VECTOR_0 };
+
+	point.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1 };
+	lighting(&material, &light, &vectors, &point);
+	printf("col: %.2f, %.2f, %.2f, %.2f\n", material.colour.tuple.colour.a, \
+	material.colour.tuple.colour.r, material.colour.tuple.colour.g, \
+	material.colour.tuple.colour.b);
+}
+
 int	main(void)
 {
 	//test_matrix_inversion();
-	test_red_disc();
+	// test_red_disc();
 	// test_normal_at_sphere();
 	// test_reflect();
+	test_lighting();
 	return (0);
 }

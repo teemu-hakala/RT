@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 15:27:24 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/20 12:34:19 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/20 14:58:16 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_tuple	reflect(t_tuple *input, t_tuple *normal)
 }
 /* l stands for angle. we can change that. */
 
-void	lighting_cont(t_material *material, t_light *light, t_phong *vectors,
+void	lighting_cont(t_material *material, t_pt_light *light, t_phong *vectors,
 	t_fl incidence_l)
 {
 	t_tuple	temp;
@@ -46,14 +46,14 @@ void	lighting_cont(t_material *material, t_light *light, t_phong *vectors,
 	}
 }
 
-void	lighting(t_material *material, t_light *light, t_phong *vectors,
+void	lighting(t_material *material, t_pt_light *light, t_phong *vectors,
 	t_tuple *point)
 {
 	t_fl	incidence_l;
 	t_tuple	temp;
 
 	material->col_mash = tuple_multi(&material->colour, &light->intensity);
-	temp = tuple_sub(&light->position, &point);
+	temp = tuple_sub(&light->position, point);
 	vectors->light = normalize(&temp);
 	material->amb_col = tuple_scale(&material->col_mash, material->ambient);
 	incidence_l = dot_product(&vectors->light, &vectors->surface_normal);

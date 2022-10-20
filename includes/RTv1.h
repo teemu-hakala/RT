@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/20 12:10:40 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/20 14:57:13 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,8 +119,10 @@ void	initialise_window(t_win *win);
 /* handle input*/
 int		handle_input(int key, t_win *win);
 
-/* colour */
+/* colour and lighting*/
 t_tuple	hex_to_argb(uint32_t colour);
+void	lighting(t_material *material, t_pt_light *light, t_phong *vectors,
+	t_tuple *point);
 
 /* object intialisation */
 t_object	sphere(t_tuple *origin, t_transform *transform, t_tuple *colour);
