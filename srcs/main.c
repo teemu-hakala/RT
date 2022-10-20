@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:02:35 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/20 14:56:40 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/20 15:25:16 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,7 +228,7 @@ void	test_lighting()
 	t_tuple		point;
 	t_tuple		red;
 
-	red = hex_to_argb(COLOUR_RED);
+	red = hex_to_argb(COLOUR_WHITE);
 
 	material.ambient = 0.1;
 	material.diffuse = 0.9;
@@ -236,15 +236,15 @@ void	test_lighting()
 	material.shininess = 200;
 	material.colour = red;
 
-	light.intensity.tuple.units = (t_units){ 1.0, 1.0, 1.0, POINT_1 };
-	light.position.tuple.units = (t_units){ 0.0, 0.0, -10, POINT_1 };
+	light.intensity.tuple.colour = (t_colour){ 1.0, 1.0, 1.0, 1.0 };
+	light.position.tuple.units = (t_units){ 0.0, 10.0, 0.0, POINT_1 };
 
 	vectors.eye.tuple.units = (t_units){ 0.0, 0.0, -1.0, VECTOR_0 };
 	vectors.surface_normal.tuple.units = (t_units){ 0.0, 0.0, -1.0, VECTOR_0 };
 
 	point.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1 };
 	lighting(&material, &light, &vectors, &point);
-	printf("col: %.2f, %.2f, %.2f, %.2f\n", material.colour.tuple.colour.a, \
+	printf("col: %.4f, %.4f, %.4f, %.4f\n", material.colour.tuple.colour.a, \
 	material.colour.tuple.colour.r, material.colour.tuple.colour.g, \
 	material.colour.tuple.colour.b);
 }

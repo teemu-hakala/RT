@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 17:34:04 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/20 14:56:30 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/20 15:16:47 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,11 @@
 
 enum e_colour
 {
-	COLOUR_RED = 0x00FF0000
+	COLOUR_RED = 0x00FF0000,
+	COLOUR_GREEN = 0x0000FF00,
+	COLOUR_BLUE = 0x000000FF,
+	COLOUR_BLACK = 0x00000000,
+	COLOUR_WHITE = 0x00FFFFFF
 };
 
 typedef struct s_pt_light
