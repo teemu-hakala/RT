@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:50:49 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/19 10:38:35 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/20 16:31:46 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,48 +17,48 @@
 /* function to remove a specified row and col from a matrix.
 Returns a new matrix with 1 column and 1 row less*/
 
-t_mtx	submatrix(t_mtx *mtx, t_index index)
+t_mtx	submatrix(t_mtx *mtx, t_coords index, uint32_t size)
 {
 	t_mtx		new_matrix;
-	t_index		old;
-	t_index		new;
+	t_coords		old;
+	t_coords		new;
 
 	old.row = 0;
 	new.row = 0;
-	while (old.row <= index.size - 1)
+	while (old.row <= size - 1)
 	{
 		if (old.row++ == index.row)
 			continue ;
 		old.col = 0;
 		new.col = 0;
-		while (old.col <= index.size - 1)
+		while (old.col <= size - 1)
 		{
 			if (old.col++ == index.col)
 				continue ;
-			new_matrix.array[(index.size - 1) * new.row + new.col++] = \
-				mtx->array[index.size * (old.row - 1) + (old.col - 1)];
+			new_matrix.array[(size - 1) * new.row + new.col++] = \
+				mtx->array[size * (old.row - 1) + (old.col - 1)];
 		}
 		new.row++;
 	}
 	return (new_matrix);
 }
 
-static t_fl	matrix_minors(t_mtx *mtx, t_index index)
+static t_fl	matrix_minors(t_mtx *mtx, t_coords index, uint32_t size)
 {
 	t_mtx	temp;
 	t_fl	minor;
 
-	temp = submatrix(mtx, index);
-	minor = determinant(&temp, index.size - 1);
+	temp = submatrix(mtx, index, size);
+	minor = determinant(&temp, size - 1);
 	return (minor);
 }
 
-static t_fl	matrix_cofactor(t_mtx *mtx, t_index index)
+static t_fl	matrix_cofactor(t_mtx *mtx, t_coords index, uint32_t size)
 {
 	t_fl	cofactor;
 	t_fl	minor;
 
-	minor = matrix_minors(mtx, index);
+	minor = matrix_minors(mtx, index, size);
 	if ((index.row + index.col) % 2 == 0)
 		cofactor = minor;
 	else
@@ -71,10 +71,9 @@ static t_fl	matrix_cofactor(t_mtx *mtx, t_index index)
 t_fl	determinant(t_mtx *mtx, uint32_t size)
 {
 	t_fl		det;
-	t_index		index;
+	t_coords		index;
 
 	index.col = 0;
-	index.size = size;
 	index.row = 0;
 	det = 0;
 	if (size == 2)
@@ -85,7 +84,7 @@ t_fl	determinant(t_mtx *mtx, uint32_t size)
 		while (index.col < size)
 		{
 			det = det + mtx->array[size * index.row + index.col] * \
-			matrix_cofactor(mtx, index);
+			matrix_cofactor(mtx, index, size);
 			index.col++;
 		}
 	}
@@ -98,10 +97,9 @@ void	matrix_inversion(t_mtx *mtx, uint32_t size)
 {
 	t_fl		det;
 	t_mtx		temp;
-	t_index		i;
+	t_coords		i;
 
-	i.size = size;
-	det = determinant((t_mtx *)mtx, i.size);
+	det = determinant((t_mtx *)mtx, size);
 	if (det == 0)
 	{
 		printf("det = %f\n", det);
@@ -110,12 +108,12 @@ void	matrix_inversion(t_mtx *mtx, uint32_t size)
 	else
 	{
 		i.row = (uint32_t)(-1);
-		while (++i.row < i.size)
+		while (++i.row < size)
 		{
 			i.col = (uint32_t)(-1);
 			while (++i.col < size)
-				temp.array[i.size * i.row + i.col] = \
-				matrix_cofactor((t_mtx *)mtx, i) / det;
+				temp.array[size * i.row + i.col] = \
+				matrix_cofactor((t_mtx *)mtx, i, size) / det;
 		}
 		*mtx = transpose_matrix(&temp);
 	}

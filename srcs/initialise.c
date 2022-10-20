@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:03:00 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/19 10:38:35 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/20 16:50:12 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,16 @@ void	background_colour(t_win *win)
 {
 	int		x;
 	int		y;
+	t_tuple	colour;
 
+	colour = hex_to_argb(COLOUR_TURQOUISE);
 	y = -1;
 	while (++y < HEIGHT)
 	{
 		x = -1;
 		while (++x < WIDTH)
 		{
-			img_pixel_put(win, x, y, 0x40E0D0U);
+			img_pixel_put(win, x, y, &colour);
 		}
 	}
 	mlx_put_image_to_window(win->mlx, win->win, win->img.img, 0, 0);

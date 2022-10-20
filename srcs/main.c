@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:02:35 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/20 15:25:16 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/20 16:53:25 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,39 +122,39 @@ t_object	sphere(t_tuple *origin, t_transform *transform, t_tuple *colour)
 	);
 }
 
-void	test_red_disc(void)
-{
-	t_object	object_sphere;
-	t_tuple		red;
-	t_transform	transform;
-	t_win		win;
+// void	test_red_disc(void)
+// {
+// 	t_object	object_sphere;
+// 	t_tuple		red;
+// 	t_transform	transform;
+// 	t_win		win;
 
-	transform = (t_transform)
-	{
-		.translation = (t_tuple)
-		{
-			.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1 }
-		},
-		.rotation = (t_tuple)
-		{
-			.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1 }
-		},
-		.scale = (t_tuple)
-		{
-			.tuple.units = (t_units){ 1.0, 1.0, 1.0, POINT_1 }
-		}
-	};
-	red = hex_to_argb(0xFF0000);
-	object_sphere = sphere(
-			&(t_tuple){.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1}},
-			&transform,
-			&red
-		);
-	initialise_window(&win);
-	plot_points(&win, &object_sphere);
-	mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
-	mlx_loop(win.mlx);
-}
+// 	transform = (t_transform)
+// 	{
+// 		.translation = (t_tuple)
+// 		{
+// 			.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1 }
+// 		},
+// 		.rotation = (t_tuple)
+// 		{
+// 			.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1 }
+// 		},
+// 		.scale = (t_tuple)
+// 		{
+// 			.tuple.units = (t_units){ 1.0, 1.0, 1.0, POINT_1 }
+// 		}
+// 	};
+// 	red = hex_to_argb(0xFF0000);
+// 	object_sphere = sphere(
+// 			&(t_tuple){.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1}},
+// 			&transform,
+// 			&red
+// 		);
+// 	initialise_window(&win);
+// 	plot_points(&win, &object_sphere);
+// 	mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
+// 	mlx_loop(win.mlx);
+// }
 
 void	test_normal_at_sphere(void)
 {
@@ -236,7 +236,7 @@ void	test_lighting()
 	material.shininess = 200;
 	material.colour = red;
 
-	light.intensity.tuple.colour = (t_colour){ 1.0, 1.0, 1.0, 1.0 };
+	light.intensity = (t_colour){ 1.0, 1.0, 1.0, 1.0 };
 	light.position.tuple.units = (t_units){ 0.0, 10.0, 0.0, POINT_1 };
 
 	vectors.eye.tuple.units = (t_units){ 0.0, 0.0, -1.0, VECTOR_0 };
@@ -249,12 +249,51 @@ void	test_lighting()
 	material.colour.tuple.colour.b);
 }
 
+void	test_3D_sphere(void)
+{
+	t_object	object_sphere;
+	t_tuple	colour;
+	t_transform	transform;
+	t_win		win;
+	t_pt_light	light_source;
+
+	transform = (t_transform)
+	{
+		.translation = (t_tuple)
+		{
+			.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1 }
+		},
+		.rotation = (t_tuple)
+		{
+			.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1 }
+		},
+		.scale = (t_tuple)
+		{
+			.tuple.units = (t_units){ 1.0, 1.0, 1.0, POINT_1 }
+		}
+	};
+	colour.tuple.units = (t_units){ 0.0, 1.0, 0.2, 1.0 };
+	object_sphere = sphere(
+			&(t_tuple){.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1}},
+			&transform,
+			&colour
+		);
+	light_source.intensity = (t_colour){ 0.0, 1.0, 1.0, 1.0 };
+	light_source.position.tuple.units = (t_units){ -10.0, 10.0, -10.0, POINT_1 };
+
+	initialise_window(&win);
+	plot_points(&win, &object_sphere, &light_source);
+	mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
+	mlx_loop(win.mlx);
+}
+
 int	main(void)
 {
 	//test_matrix_inversion();
 	// test_red_disc();
 	// test_normal_at_sphere();
 	// test_reflect();
-	test_lighting();
+	// test_lighting();
+	test_3D_sphere();
 	return (0);
 }

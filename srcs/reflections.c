@@ -6,11 +6,20 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 15:27:24 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/20 14:58:16 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/20 15:49:56 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RTv1.h"
+
+t_tuple	hit_position(t_ray *ray, t_fl distance)
+{
+	t_tuple temp;
+	temp = tuple_scale(&ray->origin, distance);
+	temp = tuple_add(&ray->origin, &temp);
+
+	return (temp);
+}
 
 t_tuple	reflect(t_tuple *input, t_tuple *normal)
 {
