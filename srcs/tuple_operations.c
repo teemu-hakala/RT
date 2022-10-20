@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:20:54 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/19 17:06:18 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/20 11:02:01 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,11 @@ t_tuple	normalize(t_tuple *a)
 		.tuple.units.w = VECTOR_0
 	});
 }
+
+/* the dot product calculates the cosine angle between two vectors
+the smaller the dot product, the larger the angle between vectors*/
+
+/* vector length = sqrt of the dot product of the vector itself */
 
 t_fl	dot_product(t_tuple *a, t_tuple *b)
 {
