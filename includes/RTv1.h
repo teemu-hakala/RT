@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/19 16:09:36 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/19 17:06:03 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "tuple.h"
 # include "matrices.h"
 # include "objects.h"
-# include "colour.h"
+# include "colour_and_light.h"
 
 # define WIDTH 400
 # define HEIGHT 400
@@ -71,7 +71,8 @@ t_tuple	point(t_fl x, t_fl y, t_fl z);
 t_tuple	vector(t_fl x, t_fl y, t_fl z);
 t_tuple	tuple_add(t_tuple *a, t_tuple *b);
 t_tuple	tuple_sub(t_tuple *a, t_tuple *b);
-t_tuple	tuple_multi(t_tuple *a, t_fl scalar);
+t_tuple	tuple_multi(t_tuple *a, t_tuple *b);
+t_tuple	tuple_scale(t_tuple *a, t_fl scalar);
 t_tuple	tuple_div(t_tuple *a, t_fl scalar);
 t_fl	magnitude(t_tuple *a);
 t_tuple	normalize(t_tuple *a);
