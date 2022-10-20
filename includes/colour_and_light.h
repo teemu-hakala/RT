@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 17:34:04 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/20 11:46:30 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/20 12:20:38 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ typedef struct s_light
 
 typedef struct s_phong
 {
-	t_tuple	eye_vector;
-	t_tuple	light_vector;
+	t_tuple	eye;
+	t_tuple	light;
 	t_tuple	surface_normal;
-	t_tuple	reflection_vector;
+	t_tuple	reflection;
 }				t_phong;
 
 

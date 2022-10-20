@@ -6,51 +6,64 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 15:27:24 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/20 12:00:26 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/20 12:34:19 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RTv1.h"
 
-t_tuple reflect(t_tuple *input, t_tuple *normal)
+t_tuple	reflect(t_tuple *input, t_tuple *normal)
 {
-	t_tuple result;
-	t_fl temp;
+	t_tuple	result;
+	t_fl	temp;
 
 	temp = 2 * dot_product(input, normal);
 	*normal = tuple_scale(normal, temp);
 	result = (tuple_sub(input, normal));
 	return (result);
 }
+/* l stands for angle. we can change that. */
 
-void lighting(t_material *material, t_light *light, t_phong *vectors, t_tuple *point)
+void	lighting_cont(t_material *material, t_light *light, t_phong *vectors,
+	t_fl incidence_l)
 {
-	t_fl	cos_incidence;
-	t_fl	cos_reflect_eye;
+	t_tuple	temp;
+	t_fl	reflect_l;
 	t_fl	factor;
 
-
-	material->effective_col = tuple_multi(&material->colour, &light->intensity);
-	vectors->light_vector = normalize(&(tuple_sub(&light->position, &point)));
-	material->amb_col = tuple_scale(&material->effective_col, material->ambient);
-	cos_incidence = dot_product(&vectors->light_vector, &vectors->surface_normal);
-	if (cos_incidence < 0.0)
-	{
-		material->diffuse = 0.0; // I assume this means black;
-		material->specular = 0.0; //same here;
-	}
+	temp = tuple_scale(&material->col_mash, material->diffuse);
+	material->dif_col = tuple_scale(&temp, incidence_l);
+	temp = tuple_scale (&vectors->light, -1.0);
+	vectors->reflection = reflect(&temp, &vectors->surface_normal);
+	reflect_l = dot_product(&vectors->reflection, &vectors->eye);
+	if (reflect_l <= 0.0)
+		material->specular = 0.0;
 	else
 	{
-		material->dif_col = tuple_scale(&(tuple_scale(&material->effective_col, material->diffuse)), cos_incidence);
-		vectors->reflection_vector = reflect(&vectors->light_vector, &vectors->surface_normal);
-		cos_reflect_eye = dot_product(&vectors->reflection_vector, &vectors->eye_vector);
-		if (cos_reflect_eye <= 0.0)
-			material->specular = 0.0;
-		else
-		{
-			factor = pow(cos_reflect_eye, material->shininess);
-			material->spec_col = tuple_scale(&(tuple_scale(&light->intensity, material->specular)), factor);
-		}
+		factor = pow(reflect_l, material->shininess);
+		temp = tuple_scale(&light->intensity, material->specular);
+		material->spec_col = tuple_scale(&temp, factor);
 	}
-	material->colour = tuple_add(&tuple_add(& material->amb_col, &material->dif_col), &material->spec_col);
+}
+
+void	lighting(t_material *material, t_light *light, t_phong *vectors,
+	t_tuple *point)
+{
+	t_fl	incidence_l;
+	t_tuple	temp;
+
+	material->col_mash = tuple_multi(&material->colour, &light->intensity);
+	temp = tuple_sub(&light->position, &point);
+	vectors->light = normalize(&temp);
+	material->amb_col = tuple_scale(&material->col_mash, material->ambient);
+	incidence_l = dot_product(&vectors->light, &vectors->surface_normal);
+	if (incidence_l < 0.0)
+	{
+		material->diffuse = 0.0;
+		material->specular = 0.0;
+	}
+	else
+		lighting_cont(material, light, vectors, incidence_l);
+	temp = tuple_add(& material->amb_col, &material->dif_col);
+	material->colour = tuple_add(&temp, &material->spec_col);
 }

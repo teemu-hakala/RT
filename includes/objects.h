@@ -41,7 +41,7 @@ typedef struct s_material
 	t_tuple	amb_col;
 	t_tuple	dif_col;
 	t_tuple	spec_col;
-	t_tuple	effective_col;
+	t_tuple	col_mash;
 }				t_material;
 
 typedef struct s_plane
