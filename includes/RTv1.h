@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/20 16:48:28 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/21 11:04:13 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ int		handle_input(int key, t_win *win);
 
 /* colour and lighting*/
 t_tuple	hex_to_argb(uint32_t colour);
+unsigned int	argb_to_hex(t_colour *colour);
 void	lighting(t_material *material, t_pt_light *light, t_phong *vectors,
 	t_tuple *point);
 
@@ -151,8 +152,8 @@ t_tuple	normal_at_sphere(t_sphere *sphere, t_tuple *point_at);
 /* plot pixels */
 // void	plot_points(t_win *win, t_object *sphere);
 void	plot_points(t_win *win, t_object *sphere, t_pt_light *light);
-void	img_pixel_put(t_win *win, int x, int y, t_tuple *colour);
-// void	img_pixel_put(t_win *win, int x, int y, unsigned int colour);
+// void	img_pixel_put(t_win *win, int x, int y, t_tuple *colour);
+void	img_pixel_put(t_win *win, int x, int y, unsigned int colour);
 
 /* testing */
 void	ft_print_mtx(t_mtx *mtx);

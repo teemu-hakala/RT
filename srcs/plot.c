@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:40:28 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/20 16:41:32 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/21 11:05:49 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ void	plot_points(t_win *win, t_object *sphere, t_pt_light *light)
 	t_tuple			temp;
 	t_tuple			lit_point;
 	t_phong			vectors;
+	unsigned int	final_colour;
+
+	// a lot of these variables I image will be in a struct,
+	// so it gets passed around instead of having to create them here.
 
 	obj_space.row = -1;
 	while (++obj_space.row < HEIGHT)
@@ -46,7 +50,8 @@ void	plot_points(t_win *win, t_object *sphere, t_pt_light *light)
 					vectors.surface_normal = normal_at_sphere(&sphere->object.sphere, &lit_point);
 					vectors.eye = ray.direction;
 					lighting(&sphere->object.sphere.material, light, &vectors, &lit_point);
-					img_pixel_put(win, obj_space.col, obj_space.row, &sphere->object.sphere.material.colour);
+					final_colour = argb_to_hex(&sphere->object.sphere.material.colour.tuple.colour);
+					img_pixel_put(win, obj_space.col, obj_space.row, final_colour);
 				}
 
 			}

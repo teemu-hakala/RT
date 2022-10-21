@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 17:21:03 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/19 11:56:52 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/21 10:43:38 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	matrix_multi_square(t_mtx *mtx, t_mtx *transformation, uint32_t size)
 	t_mtx		temp;
 	uint8_t		i;
 	t_fl		res;
-	t_index		j;
+	t_coords	j;
 
 	j.row = 0;
 	while (j.row < size)
