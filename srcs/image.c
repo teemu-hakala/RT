@@ -3,35 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:32:35 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/21 11:07:41 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/21 13:43:30 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RTv1.h"
 
-
-unsigned int argb_to_hex(t_colour *colour)
+static t_fl	clamp(t_fl min, t_fl clamped, t_fl max)
 {
-	unsigned int a;
-	unsigned int r;
-	unsigned int g;
-	unsigned int b;
-	unsigned int temp;
+	if (clamped > max)
+		return (max);
+	else if (clamped < min)
+		return (min);
+	return (clamped);
+}
 
-	a = 1;
-	r = 255 * colour->a;
-	g = 255 * colour->a;
-	b = 255 * colour->a;
+uint32_t	argb_to_hex(t_colour *colour)
+{
+	uint32_t	a;
+	uint32_t	r;
+	uint32_t	g;
+	uint32_t	b;
 
-	temp = b + (g << 8) + (r << 16) + (a << 24);
-	return (temp);
+	a = 0;
+	r = 255 * clamp(0, colour->r, 1);
+	g = 255 * clamp(0, colour->g, 1);
+	b = 255 * clamp(0, colour->b, 1);
+	return ((a << 24) | (r << 16) | (g << 8) | b);
 
 }
 
-void	img_pixel_put(t_win *win, int x, int y, unsigned int colour)
+t_tuple	hex_to_argb(uint32_t colour)
+{
+	return ((t_tuple){.tuple.colour.a = ((colour >> 24) & 0xFFu) / (t_fl)0xFFu,
+		.tuple.colour.r = ((colour >> 16) & 0xFFu) / (t_fl)0xFFu,
+		.tuple.colour.g = ((colour >> 8) & 0xFFu) / (t_fl)0xFFu,
+		.tuple.colour.b = (colour & 0xFFu) / (t_fl)0xFFu});
+}
+
+void	img_pixel_put(t_win *win, int x, int y, uint32_t colour)
 {
 	char	*pixel;
 

@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 16:14:00 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/18 22:30:40 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/21 11:26:43 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,14 +103,6 @@ void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array, t_
 		.type = OBJECT_SPHERE
 	});
 }*/
-
-t_tuple	hex_to_argb(uint32_t colour)
-{
-	return ((t_tuple){.tuple.colour.a = ((colour >> 24) & 0xFFu) / (t_fl)0xFFu,
-		.tuple.colour.r = ((colour >> 16) & 0xFFu) / (t_fl)0xFFu,
-		.tuple.colour.g = ((colour >> 8) & 0xFFu) / (t_fl)0xFFu,
-		.tuple.colour.b = (colour & 0xFFu) / (t_fl)0xFFu});
-}
 
 // int main(void)
 // {

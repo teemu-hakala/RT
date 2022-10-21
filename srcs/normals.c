@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   normals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 10:25:29 by thakala           #+#    #+#             */
-/*   Updated: 2022/10/19 13:54:01 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/21 13:39:58 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 t_tuple	normal_at_sphere(t_sphere *sphere, t_tuple *point_at)
 {
 	t_tuple	obj_point;
-	t_tuple obj_normal;
-	t_tuple world_normal;
+	t_tuple	obj_normal;
+	t_tuple	world_normal;
 	t_mtx	transposed_inverse;
 
 	obj_point = matrix_tuple_multi(&sphere->transform.inverse, point_at);

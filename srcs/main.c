@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:02:35 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/21 11:08:30 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/21 14:55:34 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,13 +220,44 @@ void	test_reflect()
 	printf("result = %f, %f, %f, %f\n", results.tuple.units.x, results.tuple.units.y, results.tuple.units.z, results.tuple.units.w);
 }
 
-void	test_lighting()
+void	test_lighting_angled()
 {
 	t_material	material;
 	t_pt_light	light;
 	t_phong		vectors;
 	t_tuple		point;
 	t_tuple		red;
+	t_tuple		result_colour;
+
+	red = hex_to_argb(COLOUR_WHITE);
+
+	material.ambient = 0.1;
+	material.diffuse = 0.9;
+	material.specular = 0.9;
+	material.shininess = 200;
+	material.colour = red;
+
+	light.intensity.tuple.colour = (t_colour){ 1.0, 1.0, 1.0, 1.0 };
+	light.position.tuple.units = (t_units){ 0.0, 10.0, -10.0, POINT_1 };
+
+	vectors.eye.tuple.units = (t_units){ 0.0, -0.7071, -0.7071, VECTOR_0 };
+	vectors.surface_normal.tuple.units = (t_units){ 0.0, 0.0, -1.0, VECTOR_0 };
+
+	point.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1 };
+	result_colour = lighting(material, &light, vectors, &point);
+	printf("col: %.4f, %.4f, %.4f, %.4f\n", result_colour.tuple.colour.a, \
+	result_colour.tuple.colour.r, result_colour.tuple.colour.g, \
+	result_colour.tuple.colour.b);
+}
+
+void	test_lighting_ambient()
+{
+	t_material	material;
+	t_pt_light	light;
+	t_phong		vectors;
+	t_tuple		point;
+	t_tuple		red;
+	t_tuple		result_colour;
 
 	red = hex_to_argb(COLOUR_WHITE);
 
@@ -243,10 +274,10 @@ void	test_lighting()
 	vectors.surface_normal.tuple.units = (t_units){ 0.0, 0.0, -1.0, VECTOR_0 };
 
 	point.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1 };
-	lighting(&material, &light, &vectors, &point);
-	printf("col: %.4f, %.4f, %.4f, %.4f\n", material.colour.tuple.colour.a, \
-	material.colour.tuple.colour.r, material.colour.tuple.colour.g, \
-	material.colour.tuple.colour.b);
+	result_colour = lighting(material, &light, vectors, &point);
+	printf("col: %.4f, %.4f, %.4f, %.4f\n", result_colour.tuple.colour.a, \
+	result_colour.tuple.colour.r, result_colour.tuple.colour.g, \
+	result_colour.tuple.colour.b);
 }
 
 void	test_3D_sphere(void)
@@ -293,7 +324,8 @@ int	main(void)
 	// test_red_disc();
 	// test_normal_at_sphere();
 	// test_reflect();
-	// test_lighting();
+	test_lighting_angled();
+	test_lighting_ambient();
 	test_3D_sphere();
 	return (0);
 }

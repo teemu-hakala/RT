@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reflections.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 15:27:24 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/20 15:49:56 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/21 14:50:32 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 t_tuple	hit_position(t_ray *ray, t_fl distance)
 {
-	t_tuple temp;
-	temp = tuple_scale(&ray->origin, distance);
+	t_tuple	temp;
+
+	temp = tuple_scale(&ray->direction, distance);
 	temp = tuple_add(&ray->origin, &temp);
 
 	return (temp);
@@ -25,10 +26,11 @@ t_tuple	reflect(t_tuple *input, t_tuple *normal)
 {
 	t_tuple	result;
 	t_fl	temp;
+	t_tuple	temp_normal;
 
 	temp = 2 * dot_product(input, normal);
-	*normal = tuple_scale(normal, temp);
-	result = (tuple_sub(input, normal));
+	temp_normal = tuple_scale(normal, temp);
+	result = (tuple_sub(input, &temp_normal));
 	return (result);
 }
 /* l stands for angle. we can change that. */
@@ -55,24 +57,25 @@ void	lighting_cont(t_material *material, t_pt_light *light, t_phong *vectors,
 	}
 }
 
-void	lighting(t_material *material, t_pt_light *light, t_phong *vectors,
+t_tuple	lighting(t_material material, t_pt_light *light, t_phong vectors,
 	t_tuple *point)
 {
 	t_fl	incidence_l;
 	t_tuple	temp;
 
-	material->col_mash = tuple_multi(&material->colour, &light->intensity);
+	material.col_mash = tuple_multi(&material.colour, &light->intensity);
 	temp = tuple_sub(&light->position, point);
-	vectors->light = normalize(&temp);
-	material->amb_col = tuple_scale(&material->col_mash, material->ambient);
-	incidence_l = dot_product(&vectors->light, &vectors->surface_normal);
+	vectors.light = normalize(&temp);
+	material.amb_col = tuple_scale(&material.col_mash, material.ambient);
+	incidence_l = dot_product(&vectors.light, &vectors.surface_normal);
 	if (incidence_l < 0.0)
 	{
-		material->diffuse = 0.0;
-		material->specular = 0.0;
+		material.diffuse = 0.0;
+		material.specular = 0.0;
 	}
 	else
-		lighting_cont(material, light, vectors, incidence_l);
-	temp = tuple_add(& material->amb_col, &material->dif_col);
-	material->colour = tuple_add(&temp, &material->spec_col);
+		lighting_cont(&material, light, &vectors, incidence_l);
+	temp = tuple_add(& material.amb_col, &material.dif_col);
+	temp = tuple_add(&temp, &material.spec_col);
+	return (temp);
 }

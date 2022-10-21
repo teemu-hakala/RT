@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RTv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/21 11:04:13 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/21 13:54:28 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,15 @@ typedef struct s_intersections
 
 typedef struct s_coords
 {
-	uint32_t	row; //yrow
-	uint32_t	col; //xcol
+	uint32_t	row;
+	uint32_t	col;
 }				t_coords;
+
+typedef struct s_pixel_index
+{
+	t_fl		row;
+	t_fl		col;
+}				t_index;
 
 typedef struct s_win
 {
@@ -128,8 +134,8 @@ int		handle_input(int key, t_win *win);
 
 /* colour and lighting*/
 t_tuple	hex_to_argb(uint32_t colour);
-unsigned int	argb_to_hex(t_colour *colour);
-void	lighting(t_material *material, t_pt_light *light, t_phong *vectors,
+uint32_t	argb_to_hex(t_colour *colour);
+t_tuple	lighting(t_material material, t_pt_light *light, t_phong vectors,
 	t_tuple *point);
 
 /* object intialisation */
@@ -141,7 +147,7 @@ void	identify_hit(t_intersections *array);
 void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array, t_win *win);
 
 /* reflections*/
-t_tuple reflect(t_tuple *input, t_tuple *normal);
+t_tuple	reflect(t_tuple *input, t_tuple *normal);
 
 /* object transformation */
 void	transform_objects(t_objects *objects);

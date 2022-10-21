@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plot.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:40:28 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/21 11:05:49 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/21 13:53:33 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	plot_points(t_win *win, t_object *sphere, t_pt_light *light)
 {
-	t_coords		obj_space;
-	t_coords		world;
+	t_index			obj_space;
+	t_index			world;
 	int				i;
 	t_tuple			position;
 	t_ray			ray;
@@ -23,7 +23,8 @@ void	plot_points(t_win *win, t_object *sphere, t_pt_light *light)
 	t_tuple			temp;
 	t_tuple			lit_point;
 	t_phong			vectors;
-	unsigned int	final_colour;
+	uint32_t		final_colour;
+	t_tuple			colour_argb;
 
 	// a lot of these variables I image will be in a struct,
 	// so it gets passed around instead of having to create them here.
@@ -49,11 +50,10 @@ void	plot_points(t_win *win, t_object *sphere, t_pt_light *light)
 					lit_point = hit_position(&ray, list.intersections[i].time);
 					vectors.surface_normal = normal_at_sphere(&sphere->object.sphere, &lit_point);
 					vectors.eye = ray.direction;
-					lighting(&sphere->object.sphere.material, light, &vectors, &lit_point);
-					final_colour = argb_to_hex(&sphere->object.sphere.material.colour.tuple.colour);
+					colour_argb = lighting(sphere->object.sphere.material, light, vectors, &lit_point);
+					final_colour = argb_to_hex(&colour_argb.tuple.colour);
 					img_pixel_put(win, obj_space.col, obj_space.row, final_colour);
 				}
-
 			}
 		}
 	}
