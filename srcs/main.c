@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:02:35 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/20 16:53:25 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/21 11:08:30 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,7 +236,7 @@ void	test_lighting()
 	material.shininess = 200;
 	material.colour = red;
 
-	light.intensity = (t_colour){ 1.0, 1.0, 1.0, 1.0 };
+	light.intensity.tuple.units = (t_units){ 1.0, 1.0, 1.0, 1.0 };
 	light.position.tuple.units = (t_units){ 0.0, 10.0, 0.0, POINT_1 };
 
 	vectors.eye.tuple.units = (t_units){ 0.0, 0.0, -1.0, VECTOR_0 };
@@ -278,7 +278,7 @@ void	test_3D_sphere(void)
 			&transform,
 			&colour
 		);
-	light_source.intensity = (t_colour){ 0.0, 1.0, 1.0, 1.0 };
+	light_source.intensity.tuple.units = (t_units){ 0.0, 1.0, 1.0, 1.0 };
 	light_source.position.tuple.units = (t_units){ -10.0, 10.0, -10.0, POINT_1 };
 
 	initialise_window(&win);

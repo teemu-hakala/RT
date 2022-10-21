@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:32:35 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/21 11:04:43 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/21 11:07:41 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ unsigned int argb_to_hex(t_colour *colour)
 	unsigned int b;
 	unsigned int temp;
 
-	a = 255 * colour->a;
+	a = 1;
 	r = 255 * colour->a;
 	g = 255 * colour->a;
 	b = 255 * colour->a;
