@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
+#    By: thakala <thakala@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2022/10/19 16:08:17 by deelliot         ###   ########.fr        #
+#    Updated: 2022/10/21 11:30:07 by thakala          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,11 @@ FLAGS = -Wall -Wextra -Werror -g
 SRCS_DIR = srcs
 OBJS_DIR = objs
 INCS = -I includes/ -I libft/includes/ -I minilibx/
+HDRS = includes/RTv1.h \
+	includes/colour_and_light.h \
+	includes/matrices.h \
+	includes/objects.h \
+	includes/tuple.h
 LIBFT_DIR = libft
 MINILIBX_DIR = minilibx
 
