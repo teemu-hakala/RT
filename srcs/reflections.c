@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 15:27:24 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/22 10:15:51 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/22 11:35:02 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ t_tuple	hit_position(t_ray *ray, t_fl distance)
 
 t_tuple	reflect(t_tuple input, t_tuple normal)
 {
-	return ((tuple_sub(input,
-				tuple_scale(normal, 2 * dot_product(input, normal)))));
+	return (tuple_sub(input,
+			tuple_scale(normal, 2 * dot_product(input, normal))));
 }
 /* l stands for angle. we can change that. */
 
@@ -36,8 +36,8 @@ void	lighting_cont(t_material *material, t_pt_light light, t_phong *vectors,
 	vectors->reflection = reflect(
 			tuple_scale(vectors->light, -1.0), vectors->surface_normal);
 	reflect_l = dot_product(vectors->reflection, vectors->eye);
-	if (reflect_l <= 0.0)
-		material->specular = 0.0;
+	if (reflect_l <= 0.0) // > gives the specular dot
+		material->spec_col = colour(1, 0, 0, 0);
 	else
 	{
 		factor = pow(reflect_l, material->shininess);
@@ -57,8 +57,8 @@ t_tuple	lighting(t_material material, t_pt_light light, t_phong vectors,
 	incidence_l = dot_product(vectors.light, vectors.surface_normal);
 	if (incidence_l < 0.0)
 	{
-		material.diffuse = 0.0;
-		material.specular = 0.0;
+		material.dif_col = colour(1, 0, 0, 0);
+		material.spec_col = colour(1, 0, 0, 0);
 	}
 	else
 		lighting_cont(&material, light, &vectors, incidence_l);

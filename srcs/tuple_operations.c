@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:20:54 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/22 09:52:16 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/22 10:45:36 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,16 @@ t_tuple	vector(t_fl x, t_fl y, t_fl z)
 		.tuple.units.y = y,
 		.tuple.units.z = z,
 		.tuple.units.w = VECTOR_0
+	});
+}
+
+t_tuple	colour(t_fl a, t_fl r, t_fl g, t_fl b)
+{
+	return ((t_tuple){
+		.tuple.colour.a = a,
+		.tuple.colour.r = r,
+		.tuple.colour.g = g,
+		.tuple.colour.b = b
 	});
 }
 
