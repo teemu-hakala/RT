@@ -18,8 +18,8 @@
 
 typedef struct s_field_of_view
 {
-	t_fl	horizontal;
 	t_fl	vertical;
+	t_fl	horizontal;
 }	t_fov2;
 
 typedef struct s_transform
@@ -78,7 +78,7 @@ typedef struct s_light
 {
 	t_tuple		origin;
 	t_transform	transform;
-	t_colour	intensity;
+	t_tuple		intensity;
 	t_fl		ambience;
 }	t_light;
 
@@ -86,6 +86,7 @@ typedef struct s_camera
 {
 	t_tuple		origin;
 	t_transform	transform;
+	t_tuple		center_of_interest;
 	t_fov2		field_of_view;
 }	t_camera;
 
@@ -126,5 +127,11 @@ typedef struct s_objects
 	t_object	*list;
 	uint64_t	count;
 }	t_objects;
+
+typedef struct s_lights
+{
+	t_light		*list;
+	uint64_t	count;
+}	t_lights;
 
 #endif

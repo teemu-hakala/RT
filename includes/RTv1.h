@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/22 14:59:33 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/22 16:03:48 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 
 # define WIDTH 400
 # define HEIGHT 400
+# define WALL_WIDTH 7
+# define WALL_HEIGHT 7
 # define KEY_DOWN 2
 # define ESC 53
 # define EPSILON 0.00001
@@ -71,11 +73,19 @@ typedef struct s_pixel_index
 	t_fl		col;
 }				t_index;
 
+typedef struct s_scene
+{
+	t_camera	camera;
+	t_lights	lights;
+	t_objects	objects;
+}	t_scene;
+
 typedef struct s_win
 {
 	t_img		img;
 	void		*mlx;
 	void		*win;
+	t_scene		scene;
 }	t_win;
 
 /*tuple operations & matrix maths*/
@@ -160,6 +170,7 @@ t_tuple	normal_at_sphere(t_sphere *sphere, t_tuple *point_at);
 /* plot pixels */
 // void	plot_points(t_win *win, t_object *sphere);
 void	plot_points(t_win *win, t_object *sphere, t_pt_light light);
+void	plot_points_params(t_win *win);
 // void	img_pixel_put(t_win *win, int x, int y, t_tuple *colour);
 void	img_pixel_put(t_win *win, int x, int y, unsigned int colour);
 

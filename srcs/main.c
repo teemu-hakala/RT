@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:02:35 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/22 13:28:32 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/22 16:24:11 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -319,6 +319,52 @@ void	test_3D_sphere(void)
 	mlx_loop(win.mlx);
 }
 
+void	test_3D_sphere_params(void)
+{
+	t_object	object_sphere;
+	t_win		win;
+	t_pt_light	light_source;
+
+	win.scene.objects = (t_objects){.list = (t_object *)malloc(sizeof(t_object) * 10), .count = 1};
+	if (win.scene.objects.list == NULL)
+		handle_errors(&win, "win.scene.objects.list malloc returned NULL");
+	win.scene.lights = (t_lights){.list = (t_light *)malloc(sizeof(t_light) * 1), .count = 1};
+	if (win.scene.lights.list == NULL)
+		handle_errors(&win, "win.scene.lights.list malloc returned NULL");
+	win.scene.camera = (t_camera)
+	{
+		.origin = point(0.0, 0.0, -5.0),
+		.transform = (t_transform)
+		{
+			.translation = point(0.0, 0.0, 0.0),
+			.rotation = point(0.0, 0.0, 0.0),
+			.scale = point(1.0, 1.0, 1.0)
+		},
+		.center_of_interest = point(0.0, 0.0, 0.0),
+		.field_of_view = (t_fov2){.vertical = M_PI / 3, .horizontal = (t_fl)M_PI / 3 * WIDTH / HEIGHT}
+	};
+	win.scene.objects.list[0] = sphere
+	(
+		&(t_tuple){.tuple.units = (t_units){0.0, 0.0, 0.0, POINT_1}},
+		&(t_transform)
+		{
+			.translation = point(0.0, 0.0, 0.0),
+			.rotation = point(0.0, 0.0, 0.0),
+			.scale = point(1.0, 1.0, 1.0)
+		},
+		&(t_tuple){.tuple.colour = (t_colour){0.0, 1.0, 0.2, 1.0}}
+	);
+	win.scene.lights.list[0] = (t_light)
+	{
+		.intensity = colour(0.0, 1.0, 1.0, 1.0),
+		.origin = point(-10.0, 10.0, -10.0)
+	};
+	initialise_window(&win);
+	plot_points_params(&win);
+	mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
+	mlx_loop(win.mlx);
+}
+
 int	main(void)
 {
 	//test_matrix_inversion();
@@ -327,6 +373,7 @@ int	main(void)
 	// test_reflect();
 	test_lighting_angled();
 	test_lighting_ambient();
-	test_3D_sphere();
+	// test_3D_sphere();
+	test_3D_sphere_params();
 	return (0);
 }

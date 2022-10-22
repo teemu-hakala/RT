@@ -13,6 +13,7 @@
 		"vector": "c",
 		"__tuple": "c",
 		"algorithm": "c",
-		"__locale": "c"
+		"__locale": "c",
+		"__node_handle": "c"
 	}
 }
