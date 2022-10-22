@@ -6,13 +6,13 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:40:28 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/21 13:53:33 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/22 10:14:19 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RTv1.h"
 
-void	plot_points(t_win *win, t_object *sphere, t_pt_light *light)
+void	plot_points(t_win *win, t_object *sphere, t_pt_light light)
 {
 	t_index			obj_space;
 	t_index			world;
@@ -20,7 +20,6 @@ void	plot_points(t_win *win, t_object *sphere, t_pt_light *light)
 	t_tuple			position;
 	t_ray			ray;
 	t_intersections list;
-	t_tuple			temp;
 	t_tuple			lit_point;
 	t_phong			vectors;
 	uint32_t		final_colour;
@@ -39,8 +38,7 @@ void	plot_points(t_win *win, t_object *sphere, t_pt_light *light)
 			world.col = ((t_fl)7 / (t_fl)2) - ((t_fl)7 / (t_fl)WIDTH) * (t_fl)obj_space.col;
 			position = point(world.col, world.row, 10);
 			ray.origin = (t_tuple){.tuple.units = (t_units){0.0, 0.0, -5.0, 1}};
-			temp = tuple_sub(&position, &ray.origin);
-			ray.direction = normalize(&temp);
+			ray.direction = normalize(tuple_sub(position, ray.origin));
 			sphere_intersection(&ray, sphere, &list, win);
 			i = -1;
 			while (++i < list.num)
@@ -50,7 +48,7 @@ void	plot_points(t_win *win, t_object *sphere, t_pt_light *light)
 					lit_point = hit_position(&ray, list.intersections[i].time);
 					vectors.surface_normal = normal_at_sphere(&sphere->object.sphere, &lit_point);
 					vectors.eye = ray.direction;
-					colour_argb = lighting(sphere->object.sphere.material, light, vectors, &lit_point);
+					colour_argb = lighting(sphere->object.sphere.material, light, vectors, lit_point);
 					final_colour = argb_to_hex(&colour_argb.tuple.colour);
 					img_pixel_put(win, obj_space.col, obj_space.row, final_colour);
 				}

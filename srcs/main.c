@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:02:35 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/21 14:55:34 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/22 10:13:35 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,7 +216,7 @@ void	test_reflect()
 
 	input.tuple.units = (t_units){1.0, -1.0, 0.0, 0.0};
 	normal.tuple.units = (t_units){0, 1, 0, 0};
-	results = reflect(&input, &normal);
+	results = reflect(input, normal);
 	printf("result = %f, %f, %f, %f\n", results.tuple.units.x, results.tuple.units.y, results.tuple.units.z, results.tuple.units.w);
 }
 
@@ -244,7 +244,7 @@ void	test_lighting_angled()
 	vectors.surface_normal.tuple.units = (t_units){ 0.0, 0.0, -1.0, VECTOR_0 };
 
 	point.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1 };
-	result_colour = lighting(material, &light, vectors, &point);
+	result_colour = lighting(material, light, vectors, point);
 	printf("col: %.4f, %.4f, %.4f, %.4f\n", result_colour.tuple.colour.a, \
 	result_colour.tuple.colour.r, result_colour.tuple.colour.g, \
 	result_colour.tuple.colour.b);
@@ -274,7 +274,7 @@ void	test_lighting_ambient()
 	vectors.surface_normal.tuple.units = (t_units){ 0.0, 0.0, -1.0, VECTOR_0 };
 
 	point.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1 };
-	result_colour = lighting(material, &light, vectors, &point);
+	result_colour = lighting(material, light, vectors, point);
 	printf("col: %.4f, %.4f, %.4f, %.4f\n", result_colour.tuple.colour.a, \
 	result_colour.tuple.colour.r, result_colour.tuple.colour.g, \
 	result_colour.tuple.colour.b);
@@ -313,7 +313,7 @@ void	test_3D_sphere(void)
 	light_source.position.tuple.units = (t_units){ -10.0, 10.0, -10.0, POINT_1 };
 
 	initialise_window(&win);
-	plot_points(&win, &object_sphere, &light_source);
+	plot_points(&win, &object_sphere, light_source);
 	mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
 	mlx_loop(win.mlx);
 }

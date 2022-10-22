@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/21 13:54:28 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/22 10:09:42 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,15 +81,15 @@ typedef struct s_win
 /*tuple operations & matrix maths*/
 t_tuple	point(t_fl x, t_fl y, t_fl z);
 t_tuple	vector(t_fl x, t_fl y, t_fl z);
-t_tuple	tuple_add(t_tuple *a, t_tuple *b);
-t_tuple	tuple_sub(t_tuple *a, t_tuple *b);
-t_tuple	tuple_multi(t_tuple *a, t_tuple *b);
-t_tuple	tuple_scale(t_tuple *a, t_fl scalar);
-t_tuple	tuple_div(t_tuple *a, t_fl scalar);
-t_fl	magnitude(t_tuple *a);
-t_tuple	normalize(t_tuple *a);
-t_fl	dot_product(t_tuple *a, t_tuple *b);
-t_tuple	cross_product(t_tuple *a, t_tuple *b);
+t_tuple	tuple_add(t_tuple a, t_tuple b);
+t_tuple	tuple_sub(t_tuple a, t_tuple b);
+t_tuple	tuple_multi(t_tuple a, t_tuple b);
+t_tuple	tuple_scale(t_tuple a, t_fl scalar);
+t_tuple	tuple_div(t_tuple a, t_fl scalar);
+t_fl	magnitude(t_tuple a);
+t_tuple	normalize(t_tuple a);
+t_fl	dot_product(t_tuple a, t_tuple b);
+t_tuple	cross_product(t_tuple a, t_tuple b);
 int		matrix_comparison(t_fl **a, t_fl **b, uint32_t size);
 t_tuple	matrix_tuple_multi(t_mtx *mtx, t_tuple *tuple);
 void	matrix_multi_square(t_mtx *mtx, t_mtx *transformation, uint32_t size);
@@ -135,8 +135,8 @@ int		handle_input(int key, t_win *win);
 /* colour and lighting*/
 t_tuple	hex_to_argb(uint32_t colour);
 uint32_t	argb_to_hex(t_colour *colour);
-t_tuple	lighting(t_material material, t_pt_light *light, t_phong vectors,
-	t_tuple *point);
+t_tuple	lighting(t_material material, t_pt_light light, t_phong vectors,
+	t_tuple point);
 
 /* object intialisation */
 t_object	sphere(t_tuple *origin, t_transform *transform, t_tuple *colour);
@@ -147,7 +147,7 @@ void	identify_hit(t_intersections *array);
 void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array, t_win *win);
 
 /* reflections*/
-t_tuple	reflect(t_tuple *input, t_tuple *normal);
+t_tuple	reflect(t_tuple input, t_tuple normal);
 
 /* object transformation */
 void	transform_objects(t_objects *objects);
@@ -157,7 +157,7 @@ t_tuple	normal_at_sphere(t_sphere *sphere, t_tuple *point_at);
 
 /* plot pixels */
 // void	plot_points(t_win *win, t_object *sphere);
-void	plot_points(t_win *win, t_object *sphere, t_pt_light *light);
+void	plot_points(t_win *win, t_object *sphere, t_pt_light light);
 // void	img_pixel_put(t_win *win, int x, int y, t_tuple *colour);
 void	img_pixel_put(t_win *win, int x, int y, unsigned int colour);
 

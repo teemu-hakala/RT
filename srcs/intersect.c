@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 16:14:00 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/21 11:26:43 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/22 09:58:44 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array, t_
 	t_fl	c;
 	t_tuple	sphere_to_ray;
 
-	sphere_to_ray = tuple_sub(&ray->origin, &shape->object.sphere.origin);
-	a = dot_product(&ray->direction, &ray->direction);
-	b = 2 * dot_product(&ray->direction, &sphere_to_ray);
-	c = dot_product(&sphere_to_ray, &sphere_to_ray) - 1;
+	sphere_to_ray = tuple_sub(ray->origin, shape->object.sphere.origin);
+	a = dot_product(ray->direction, ray->direction);
+	b = 2 * dot_product(ray->direction, sphere_to_ray);
+	c = dot_product(sphere_to_ray, sphere_to_ray) - 1;
 	discriminant = (b * b) - 4 * a * c;
 	if (discriminant < 0.0)
 	{
