@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:40:28 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/22 10:14:19 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/22 13:29:24 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,13 @@ void	plot_points(t_win *win, t_object *sphere, t_pt_light light)
 				{
 					lit_point = hit_position(&ray, list.intersections[i].time);
 					vectors.surface_normal = normal_at_sphere(&sphere->object.sphere, &lit_point);
-					vectors.eye = ray.direction;
+					vectors.eye = tuple_scale(ray.direction, -1.0);
 					colour_argb = lighting(sphere->object.sphere.material, light, vectors, lit_point);
 					final_colour = argb_to_hex(&colour_argb.tuple.colour);
 					img_pixel_put(win, obj_space.col, obj_space.row, final_colour);
 				}
 			}
+			free(list.intersections);
 		}
 	}
 	mlx_put_image_to_window(win->mlx, win->win, win->img.img, 0, 0);

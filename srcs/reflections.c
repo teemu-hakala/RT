@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 15:27:24 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/22 11:35:02 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/22 13:31:38 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	lighting_cont(t_material *material, t_pt_light light, t_phong *vectors,
 	vectors->reflection = reflect(
 			tuple_scale(vectors->light, -1.0), vectors->surface_normal);
 	reflect_l = dot_product(vectors->reflection, vectors->eye);
-	if (reflect_l <= 0.0) // > gives the specular dot
+	if (reflect_l <= 0.0)
 		material->spec_col = colour(1, 0, 0, 0);
 	else
 	{
