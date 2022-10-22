@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:20:54 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/22 10:45:36 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/22 14:58:49 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,16 @@ t_tuple	tuple_scale(t_tuple a, t_fl scalar)
 		.tuple.units.x = a.tuple.units.x * scalar,
 		.tuple.units.y = a.tuple.units.y * scalar,
 		.tuple.units.z = a.tuple.units.z * scalar
+	});
+}
+
+t_tuple	colour_scale(t_tuple a, t_fl scalar)
+{
+	return ((t_tuple){
+		.tuple.colour.a = a.tuple.colour.a * scalar,
+		.tuple.colour.r = a.tuple.colour.r * scalar,
+		.tuple.colour.g = a.tuple.colour.g * scalar,
+		.tuple.colour.b = a.tuple.colour.b * scalar
 	});
 }
 

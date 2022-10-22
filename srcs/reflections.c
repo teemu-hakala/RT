@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 15:27:24 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/22 13:31:38 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/22 15:00:53 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	lighting_cont(t_material *material, t_pt_light light, t_phong *vectors,
 	t_fl	reflect_l;
 	t_fl	factor;
 
-	material->dif_col = tuple_scale(
-			tuple_scale(material->col_mash, material->diffuse), incidence_l);
+	material->dif_col = colour_scale(
+			colour_scale(material->col_mash, material->diffuse), incidence_l);
 	vectors->reflection = reflect(
 			tuple_scale(vectors->light, -1.0), vectors->surface_normal);
 	reflect_l = dot_product(vectors->reflection, vectors->eye);
@@ -41,8 +41,8 @@ void	lighting_cont(t_material *material, t_pt_light light, t_phong *vectors,
 	else
 	{
 		factor = pow(reflect_l, material->shininess);
-		material->spec_col = tuple_scale(
-				tuple_scale(light.intensity, material->specular), factor);
+		material->spec_col = colour_scale(
+				colour_scale(light.intensity, material->specular), factor);
 	}
 }
 
@@ -53,7 +53,7 @@ t_tuple	lighting(t_material material, t_pt_light light, t_phong vectors,
 
 	material.col_mash = tuple_multi(material.colour, light.intensity);
 	vectors.light = normalize(tuple_sub(light.position, point));
-	material.amb_col = tuple_scale(material.col_mash, material.ambient);
+	material.amb_col = colour_scale(material.col_mash, material.ambient);
 	incidence_l = dot_product(vectors.light, vectors.surface_normal);
 	if (incidence_l < 0.0)
 	{

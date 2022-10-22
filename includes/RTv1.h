@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/22 10:45:52 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/22 14:59:33 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ t_tuple	tuple_add(t_tuple a, t_tuple b);
 t_tuple	tuple_sub(t_tuple a, t_tuple b);
 t_tuple	tuple_multi(t_tuple a, t_tuple b);
 t_tuple	tuple_scale(t_tuple a, t_fl scalar);
+t_tuple	colour_scale(t_tuple a, t_fl scalar);
 t_tuple	tuple_div(t_tuple a, t_fl scalar);
 t_fl	magnitude(t_tuple a);
 t_tuple	normalize(t_tuple a);
