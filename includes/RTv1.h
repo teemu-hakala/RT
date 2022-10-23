@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RTv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/22 16:03:48 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/23 10:40:42 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,19 +73,19 @@ typedef struct s_pixel_index
 	t_fl		col;
 }				t_index;
 
-typedef struct s_scene
+typedef struct s_world
 {
 	t_camera	camera;
 	t_lights	lights;
 	t_objects	objects;
-}	t_scene;
+}	t_world;
 
 typedef struct s_win
 {
 	t_img		img;
 	void		*mlx;
 	void		*win;
-	t_scene		scene;
+	t_world		world;
 }	t_win;
 
 /*tuple operations & matrix maths*/
@@ -151,7 +151,7 @@ t_tuple	lighting(t_material material, t_pt_light light, t_phong vectors,
 	t_tuple point);
 
 /* object intialisation */
-t_object	sphere(t_tuple *origin, t_transform *transform, t_tuple *colour);
+t_object	sphere(t_tuple origin, t_transform transform, t_material material);
 
 /* object intersection */
 void	identify_hit(t_intersections *array);
@@ -162,10 +162,11 @@ void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array, t_
 t_tuple	reflect(t_tuple input, t_tuple normal);
 
 /* object transformation */
+void	transform_object(t_transform *object);
 void	transform_objects(t_objects *objects);
 
 /* normals */
-t_tuple	normal_at_sphere(t_sphere *sphere, t_tuple *point_at);
+t_tuple	normal_at_sphere(t_object *sphere, t_tuple *point_at);
 
 /* plot pixels */
 // void	plot_points(t_win *win, t_object *sphere);

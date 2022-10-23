@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   transform_tuple.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 15:06:10 by thakala           #+#    #+#             */
-/*   Updated: 2022/10/19 13:54:41 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/23 06:28:38 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void	transform_objects(t_objects *objects)
 		transform_cylinder,
 		transform_camera,
 		transform_light};
-
 	uint64_t						i;
 
 	i = -1;

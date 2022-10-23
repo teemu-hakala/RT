@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plot.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:40:28 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/22 16:07:24 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/23 06:51:31 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	plot_points(t_win *win, t_object *sphere, t_pt_light light)
 			position = point(world.col, world.row, 10);
 			ray.origin = (t_tuple){.tuple.units = (t_units){0.0, 0.0, -5.0, 1}};
 			ray.direction = normalize(tuple_sub(position, ray.origin));
+			ray.direction = matrix_tuple_multi(&sphere->object.sphere.transform.inverse, &ray.direction);
 			sphere_intersection(&ray, sphere, &list, win);
 			i = -1;
 			while (++i < list.num)
@@ -46,7 +47,7 @@ void	plot_points(t_win *win, t_object *sphere, t_pt_light light)
 				if (list.intersections[i].hit == 1)
 				{
 					lit_point = hit_position(&ray, list.intersections[i].time);
-					vectors.surface_normal = normal_at_sphere(&sphere->object.sphere, &lit_point);
+					vectors.surface_normal = normal_at_sphere(sphere, &lit_point);
 					vectors.eye = tuple_scale(ray.direction, -1.0);
 					colour_argb = lighting(sphere->object.sphere.material, light, vectors, lit_point);
 					final_colour = argb_to_hex(&colour_argb.tuple.colour);
@@ -59,7 +60,7 @@ void	plot_points(t_win *win, t_object *sphere, t_pt_light light)
 	mlx_put_image_to_window(win->mlx, win->win, win->img.img, 0, 0);
 }
 
-void	plot_points_params(t_win *win)
+/*void	plot_points_params(t_win *win)
 {
 	t_index			obj_space;
 	t_index			world;
@@ -128,4 +129,4 @@ void	plot_points_params(t_win *win)
 			}
 		}
 	}
-}
+}*/

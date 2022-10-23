@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 16:14:00 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/22 09:58:44 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/23 11:31:46 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,14 @@ void	identify_hit(t_intersections *array)
 	}
 }
 
-void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array, t_win *win)
+void	plane_intersection(t_ray *ray, t_object *plane, t_intersections *array)
+{
+	(void)ray;
+	(void)plane;
+	(void)array;
+}
+
+void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array)
 {
 	t_fl	discriminant;
 	t_fl	a;
@@ -61,7 +68,7 @@ void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array, t_
 		array->num = 2;
 		array->intersections = (t_intersect *)malloc(sizeof(t_intersect) * 2);
 		if (!array->intersections)
-			handle_errors(win, "intersect malloc fail");
+			handle_errors("sphere_intersection array->intersections malloc fail");
 		if (discriminant <= 1)
 		{
 			array->intersections[0].time = (-b - sqrt(discriminant)) / (2 * a);
@@ -78,6 +85,20 @@ void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array, t_
 		}
 	}
 	identify_hit(array);
+}
+
+void	cone_intersection(t_ray *ray, t_object *cone, t_intersections *array)
+{
+	(void)ray;
+	(void)cone;
+	(void)array;
+}
+
+void	cylinder_intersection(t_ray *ray, t_object *cylinder, t_intersections *array)
+{
+	(void)ray;
+	(void)cylinder;
+	(void)array;
 }
 
 /*t_object sphere(t_tuple *origin, t_transform *transform, t_tuple *colour)
@@ -153,3 +174,24 @@ void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array, t_
 // 	}
 // 	return (0);
 // }
+
+t_intersections	intersect_world(t_world world, t_ray ray)
+{
+	static const t_intersect_function	\
+					intersect_object[] =
+	{
+		plane_intersection,
+		sphere_intersection,
+		cone_intersection,
+		cylinder_intersection
+	};
+	t_intersections	intersections;
+	uint64_t		object;
+
+	object = -1;
+	while (++object < world.objects.count)
+	{
+		intersect_object[world.objects.list[object].type] \
+			(&ray, &world.objects.list[object].object, &intersections);
+	}
+}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:02:35 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/22 16:24:11 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/23 11:11:37 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,53 +73,6 @@ void	test_matrix_inversion(void)
 	printf("\nRE-INVERTED, ORIGINAL, mtx\n");
 	matrix_inversion (&mtx, 4);
 	ft_print_mtx (&mtx);
-}
-
-t_object	sphere(t_tuple *origin, t_transform *transform, t_tuple *colour)
-{
-	return ((t_object)
-		{
-			.object.sphere = (t_sphere)
-			{
-				.origin = (t_tuple)
-				{
-					.tuple.units = (t_units)
-					{
-						origin->tuple.units.x,
-						origin->tuple.units.y,
-						origin->tuple.units.z,
-						origin->tuple.units.w
-					}
-				},
-				.transform = (t_transform)
-				{
-					.matrix = identity_matrix(),
-					.inverse = identity_matrix(),
-					.translation = transform->translation,
-					.rotation = transform->rotation,
-					.scale = transform->scale
-				},
-				.material = (t_material)
-				{
-					.ambient = 0.1,
-					.diffuse = 0.9,
-					.specular = 0.9,
-					.shininess = 200,
-					.colour = (t_tuple)
-					{
-						.tuple.colour = (t_colour)
-						{
-							colour->tuple.colour.a,
-							colour->tuple.colour.r,
-							colour->tuple.colour.g,
-							colour->tuple.colour.b,
-						}
-					}
-				}
-			},
-			.type = OBJECT_SPHERE
-		}
-	);
 }
 
 // void	test_red_disc(void)
@@ -204,7 +157,7 @@ void	test_normal_at_sphere(void)
 	printf("\n\n");
 	point_at.tuple.units = (t_units){ 0.0, 1.70711, -0.70711, POINT_1 };
 	printf("point: %f, %f, %f, %f\n\n", point_at.tuple.units.x, point_at.tuple.units.y, point_at.tuple.units.z, point_at.tuple.units.w);
-	normal_at = normal_at_sphere(&objects.list[0].object.sphere, &point_at);
+	normal_at = normal_at_sphere(&objects.list[0], &point_at);
 	printf("normal at point: %f, %f, %f, %f\n\n", normal_at.tuple.units.x, normal_at.tuple.units.y, normal_at.tuple.units.z, normal_at.tuple.units.w);
 	free(objects.list);
 }
@@ -284,29 +237,20 @@ void	test_lighting_ambient()
 void	test_3D_sphere(void)
 {
 	t_object	object_sphere;
-	t_tuple	colour;
+	t_tuple		colour;
 	t_transform	transform;
 	t_win		win;
 	t_pt_light	light_source;
 
 	transform = (t_transform)
 	{
-		.translation = (t_tuple)
-		{
-			.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1 }
-		},
-		.rotation = (t_tuple)
-		{
-			.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1 }
-		},
-		.scale = (t_tuple)
-		{
-			.tuple.units = (t_units){ 1.0, 1.0, 1.0, POINT_1 }
-		}
+		.translation = point(0.0, 0.0, 0.0),
+		.rotation = point(0.0, 0.0, 0.0),
+		.scale = point(1.0, 0.5, 1.0)
 	};
 	colour.tuple.units = (t_units){ 0.0, 1.0, 0.2, 1.0 };
 	object_sphere = sphere(
-			&(t_tuple){.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1}},
+			&(t_tuple){.tuple.units = {0.0, 0.0, 0.0, POINT_1}},
 			&transform,
 			&colour
 		);
@@ -319,11 +263,52 @@ void	test_3D_sphere(void)
 	mlx_loop(win.mlx);
 }
 
-void	test_3D_sphere_params(void)
+void	test_3D_sphere_transformed(void)
 {
-	t_object	object_sphere;
+	t_material	material;
+	t_transform	transform;
 	t_win		win;
 	t_pt_light	light_source;
+
+	win.world.objects = (t_objects){.list = (t_object *)malloc(sizeof(t_object) * 1), .count = 1};
+	if (win.world.objects.list == NULL)
+		handle_errors(&win, "test_3d_sphere_transformed win.world.objects.list malloc failed");
+	transform = (t_transform)
+	{
+		.translation = point(0.0, 0.0, 0.0),
+		.rotation = point(0.0, 0.0, 0.0),
+		.scale = point(0.5, 0.5, 1.0)
+	};
+	material = (t_material)
+	{
+		.colour = (t_tuple){0.0, 1.0, 0.2, 1.0},
+		.ambient = 0.1,
+		.diffuse = 0.9,
+		.specular = 0.9,
+		.shininess = 200.0,
+		.col_mash = point(0, 0, 0),
+		.amb_col = point(0, 0, 0),
+		.dif_col = point(0, 0, 0),
+		.spec_col = point(0, 0, 0)
+	};
+	win.world.objects.list[0] = sphere(
+			point(0, 0, 0),
+			transform,
+			material
+		);
+	transform_objects(&win.world.objects);
+	light_source.intensity.tuple.units = (t_units){ 0.0, 1.0, 1.0, 1.0 };
+	light_source.position.tuple.units = (t_units){ -10.0, 10.0, -10.0, POINT_1 };
+
+	initialise_window(&win);
+	plot_points(&win, &win.world.objects.list[0], light_source);
+	mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
+	mlx_loop(win.mlx);
+}
+
+/*void	test_3D_sphere_params(void)
+{
+	t_win		win;
 
 	win.scene.objects = (t_objects){.list = (t_object *)malloc(sizeof(t_object) * 10), .count = 1};
 	if (win.scene.objects.list == NULL)
@@ -363,7 +348,7 @@ void	test_3D_sphere_params(void)
 	plot_points_params(&win);
 	mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
 	mlx_loop(win.mlx);
-}
+}*/
 
 int	main(void)
 {
@@ -373,7 +358,8 @@ int	main(void)
 	// test_reflect();
 	test_lighting_angled();
 	test_lighting_ambient();
-	// test_3D_sphere();
-	test_3D_sphere_params();
+	test_3D_sphere();
+	//test_3D_sphere_transformed();
+	//test_3D_sphere_params();
 	return (0);
 }

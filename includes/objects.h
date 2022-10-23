@@ -122,6 +122,8 @@ typedef t_tuple	(*t_normal_fn)(t_object *, t_tuple *);
 
 typedef void	(*t_object_transform)(t_object *);
 
+typedef void	(*t_intersect_function)(t_ray *, t_object *, t_intersections *);
+
 typedef struct s_objects
 {
 	t_object	*list;

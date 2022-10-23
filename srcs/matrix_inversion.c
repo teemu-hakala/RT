@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_inversion.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:50:49 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/20 16:31:46 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/23 10:27:30 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void	matrix_inversion(t_mtx *mtx, uint32_t size)
 			i.col = (uint32_t)(-1);
 			while (++i.col < size)
 				temp.array[size * i.row + i.col] = \
-				matrix_cofactor((t_mtx *)mtx, i, size) / det;
+					matrix_cofactor((t_mtx *)mtx, i, size) / det;
 		}
 		*mtx = transpose_matrix(&temp);
 	}
