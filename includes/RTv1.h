@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RTv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/23 10:40:42 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/23 18:11:56 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ typedef struct s_win
 	t_world		world;
 }	t_win;
 
+typedef void	(*t_intersect_function)(t_ray *, t_object *, t_intersections *);
+
 /*tuple operations & matrix maths*/
 t_tuple	point(t_fl x, t_fl y, t_fl z);
 t_tuple	vector(t_fl x, t_fl y, t_fl z);
@@ -134,15 +136,16 @@ t_ray	ray_scale(t_ray ray, t_tuple transform);
 t_tuple	hit_position(t_ray *ray, t_fl distance);
 
 /* error handle*/
-// void	handle_errors(char *str);
-void	handle_errors(t_win *win, char *str);
-void	free_win(t_win *win);
+void	handle_errors(char *str);
+// void	handle_errors(t_win *win, char *str);
+// void	free_win(t_win *win);
 
 /* initialise */
 void	initialise_window(t_win *win);
 
 /* handle input*/
-int		handle_input(int key, t_win *win);
+// int		handle_input(int key, t_win *win);
+int		handle_input(int key);
 
 /* colour and lighting*/
 t_tuple	hex_to_argb(uint32_t colour);
@@ -154,9 +157,11 @@ t_tuple	lighting(t_material material, t_pt_light light, t_phong vectors,
 t_object	sphere(t_tuple origin, t_transform transform, t_material material);
 
 /* object intersection */
+t_intersections	intersect_world(t_world *world, t_ray ray);
 void	identify_hit(t_intersections *array);
 // void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array);
-void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array, t_win *win);
+//void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array, t_win *win);
+void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array);
 
 /* reflections*/
 t_tuple	reflect(t_tuple input, t_tuple normal);

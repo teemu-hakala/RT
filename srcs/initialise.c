@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialise.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:03:00 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/21 11:04:36 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/23 13:09:24 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	initialise_image(t_img *img, t_win *win)
 {
 	img->img = mlx_new_image(win->mlx, WIDTH, HEIGHT);
 	if (!img->img)
-		handle_errors(win, "error");
+		handle_errors("error");
 	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->length, \
 	&img->endian);
 }
@@ -44,10 +44,10 @@ void	initialise_window(t_win *win)
 {
 	win->mlx = mlx_init();
 	if (!win->mlx)
-		handle_errors(win, "error");
+		handle_errors("error");
 	win->win = mlx_new_window(win->mlx, WIDTH, HEIGHT, "RTV1");
 	if (!win->win)
-		handle_errors(win, "error");
+		handle_errors("error");
 	initialise_image(&win->img, win);
 	background_colour(win);
 }

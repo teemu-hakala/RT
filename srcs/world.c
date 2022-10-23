@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 10:18:04 by thakala           #+#    #+#             */
-/*   Updated: 2022/10/23 11:06:01 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/23 13:11:21 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static t_light	default_light(void)
 	});
 }
 
-t_world	default_world(t_win *win)
+t_world	default_world(void)
 {
 	t_world		world;
 	t_object	sphere_1;
@@ -88,7 +88,7 @@ t_world	default_world(t_win *win)
 	world.lights = (t_lights){.list = \
 		(t_light *)malloc(sizeof(t_light) * 1), .count = 1};
 	if (world.objects.list == NULL || world.lights.list == NULL)
-		handle_errors(win, "one of default_world mallocs returned NULL\n");
+		handle_errors("one of default_world mallocs returned NULL\n");
 	sphere_1 = sphere(default_origin(), default_transform_1(),
 			default_material_1());
 	sphere_2 = sphere(default_origin(), default_transform_2(),
@@ -96,4 +96,5 @@ t_world	default_world(t_win *win)
 	world.objects.list[0] = sphere_1;
 	world.objects.list[1] = sphere_2;
 	world.lights.list[0] = default_light();
+	return (world);
 }

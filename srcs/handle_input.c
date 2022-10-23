@@ -3,22 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   handle_input.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 17:02:14 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/18 15:02:07 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/23 13:09:57 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/RTv1.h"
 
-void	esc_program(t_win *win)
+void	esc_program(void)
 {
-	free_win(win);
-	exit(1);
+	exit(EXIT_SUCCESS);
 }
 
-int	handle_input(int key, t_win *win)
+int	handle_input(int key)
 {
 	// if (key == UP || key == DOWN || key == LEFT || key == RIGHT)
 	// 	handle_translation(key, win);
@@ -33,6 +32,6 @@ int	handle_input(int key, t_win *win)
 	// if (key == RESET)
 	// 	handle_reset(win);
 	if (key == ESC)
-		esc_program(win);
+		esc_program();
 	return (0);
 }

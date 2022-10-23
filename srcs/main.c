@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:02:35 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/23 11:11:37 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/23 18:04:27 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,9 +135,18 @@ void	test_normal_at_sphere(void)
 	};
 	red = hex_to_argb(0xFF0000);
 	object_sphere = sphere(
-			&(t_tuple){.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1}},
-			&transform,
-			&red
+			(t_tuple){.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1}},
+			transform,
+			(t_material){
+				.diffuse = 0.9,
+				.specular = 0.9,
+				.ambient = 0.1,
+				.shininess = 200.0,
+				.col_mash = point(0, 0, 0),
+				.dif_col = point(0, 0, 0),
+				.amb_col = point(0, 0, 0),
+				.spec_col = point(0, 0, 0)
+			}
 		);
 	objects.list = (t_object *)malloc(sizeof(t_object) * 10);
 	if (objects.list == NULL)
@@ -237,22 +246,32 @@ void	test_lighting_ambient()
 void	test_3D_sphere(void)
 {
 	t_object	object_sphere;
-	t_tuple		colour;
 	t_transform	transform;
 	t_win		win;
 	t_pt_light	light_source;
 
 	transform = (t_transform)
 	{
-		.translation = point(0.0, 0.0, 0.0),
-		.rotation = point(0.0, 0.0, 0.0),
-		.scale = point(1.0, 0.5, 1.0)
+		.translation = point(0, 0, 0),
+		.rotation = point(0, 0, 0),
+		.scale = point(0.25, 0.25, 0.25)
 	};
-	colour.tuple.units = (t_units){ 0.0, 1.0, 0.2, 1.0 };
+	transform_object(&transform);
 	object_sphere = sphere(
-			&(t_tuple){.tuple.units = {0.0, 0.0, 0.0, POINT_1}},
-			&transform,
-			&colour
+			point(0, 0, 0),
+			transform,
+			(t_material)
+			{
+				.colour = colour(0.0, 1.0, 0.2, 1.0),
+				.ambient = 0.1,
+				.diffuse = 0.9,
+				.specular = 0.9,
+				.shininess = 200.0,
+				.col_mash = vector(0, 0, 0),
+				.amb_col = vector(0, 0, 0),
+				.dif_col = vector(0, 0, 0),
+				.spec_col = vector(0, 0, 0)
+			}
 		);
 	light_source.intensity.tuple.units = (t_units){ 0.0, 1.0, 1.0, 1.0 };
 	light_source.position.tuple.units = (t_units){ -10.0, 10.0, -10.0, POINT_1 };
@@ -272,7 +291,7 @@ void	test_3D_sphere_transformed(void)
 
 	win.world.objects = (t_objects){.list = (t_object *)malloc(sizeof(t_object) * 1), .count = 1};
 	if (win.world.objects.list == NULL)
-		handle_errors(&win, "test_3d_sphere_transformed win.world.objects.list malloc failed");
+		handle_errors("test_3d_sphere_transformed win.world.objects.list malloc failed");
 	transform = (t_transform)
 	{
 		.translation = point(0.0, 0.0, 0.0),
@@ -281,7 +300,7 @@ void	test_3D_sphere_transformed(void)
 	};
 	material = (t_material)
 	{
-		.colour = (t_tuple){0.0, 1.0, 0.2, 1.0},
+		.colour = (t_tuple){.tuple.colour = {0.0, 1.0, 0.2, 1.0}},
 		.ambient = 0.1,
 		.diffuse = 0.9,
 		.specular = 0.9,
@@ -306,40 +325,54 @@ void	test_3D_sphere_transformed(void)
 	mlx_loop(win.mlx);
 }
 
-/*void	test_3D_sphere_params(void)
+void	test_3D_sphere_params(void)
 {
 	t_win		win;
 
-	win.scene.objects = (t_objects){.list = (t_object *)malloc(sizeof(t_object) * 10), .count = 1};
-	if (win.scene.objects.list == NULL)
-		handle_errors(&win, "win.scene.objects.list malloc returned NULL");
-	win.scene.lights = (t_lights){.list = (t_light *)malloc(sizeof(t_light) * 1), .count = 1};
-	if (win.scene.lights.list == NULL)
-		handle_errors(&win, "win.scene.lights.list malloc returned NULL");
-	win.scene.camera = (t_camera)
+	win.world.objects = (t_objects){.list = \
+		(t_object *)malloc(sizeof(t_object) * 10), .count = 1};
+	if (win.world.objects.list == NULL)
+		handle_errors("win.world.objects.list malloc returned NULL");
+	win.world.lights = (t_lights){.list = \
+		(t_light *)malloc(sizeof(t_light) * 1), .count = 1};
+	if (win.world.lights.list == NULL)
+		handle_errors("win.world.lights.list malloc returned NULL");
+	win.world.camera = (t_camera)
 	{
 		.origin = point(0.0, 0.0, -5.0),
-		.transform = (t_transform)
-		{
-			.translation = point(0.0, 0.0, 0.0),
-			.rotation = point(0.0, 0.0, 0.0),
-			.scale = point(1.0, 1.0, 1.0)
+		.transform = (t_transform) \
+		{\
+			.translation = point(0.0, 0.0, 0.0), \
+			.rotation = point(0.0, 0.0, 0.0), \
+			.scale = point(1.0, 1.0, 1.0) \
 		},
 		.center_of_interest = point(0.0, 0.0, 0.0),
-		.field_of_view = (t_fov2){.vertical = M_PI / 3, .horizontal = (t_fl)M_PI / 3 * WIDTH / HEIGHT}
+		.field_of_view = (t_fov2){.vertical = M_PI / 3, \
+			.horizontal = (t_fl)M_PI / 3 * WIDTH / HEIGHT}
 	};
-	win.scene.objects.list[0] = sphere
+	win.world.objects.list[0] = sphere
 	(
-		&(t_tuple){.tuple.units = (t_units){0.0, 0.0, 0.0, POINT_1}},
-		&(t_transform)
+		(t_tuple){.tuple.units = (t_units){0.0, 0.0, 0.0, POINT_1}},
+		(t_transform)
 		{
 			.translation = point(0.0, 0.0, 0.0),
 			.rotation = point(0.0, 0.0, 0.0),
 			.scale = point(1.0, 1.0, 1.0)
 		},
-		&(t_tuple){.tuple.colour = (t_colour){0.0, 1.0, 0.2, 1.0}}
+		(t_material)
+		{
+			.colour = (t_tuple){.tuple.colour = {0.0, 0.2, 1.0, 1.0}},
+			.ambient = 0.1,
+			.diffuse = 0.9,
+			.specular = 0.9,
+			.shininess = 200.0,
+			.col_mash = point(0, 0, 0),
+			.amb_col = point(0, 0, 0),
+			.dif_col = point(0, 0, 0),
+			.spec_col = point(0, 0, 0)
+		}
 	);
-	win.scene.lights.list[0] = (t_light)
+	win.world.lights.list[0] = (t_light)
 	{
 		.intensity = colour(0.0, 1.0, 1.0, 1.0),
 		.origin = point(-10.0, 10.0, -10.0)
@@ -348,7 +381,7 @@ void	test_3D_sphere_transformed(void)
 	plot_points_params(&win);
 	mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
 	mlx_loop(win.mlx);
-}*/
+}
 
 int	main(void)
 {
@@ -358,8 +391,8 @@ int	main(void)
 	// test_reflect();
 	test_lighting_angled();
 	test_lighting_ambient();
-	test_3D_sphere();
+	//test_3D_sphere();
 	//test_3D_sphere_transformed();
-	//test_3D_sphere_params();
+	test_3D_sphere_params();
 	return (0);
 }
