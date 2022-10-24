@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/24 16:10:55 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/24 16:29:08 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,7 @@ t_tuple	lighting(t_material material, t_light light, t_phong vectors,
 t_object	sphere(t_tuple origin, t_transform transform, t_material material);
 
 /* object intersection */
-t_intersections	intersect_world(t_world *world, t_ray ray);
+void	intersect_world(t_world *world, t_ray ray);
 void	identify_hit(t_intersections *array);
 // void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array);
 //void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array, t_win *win);

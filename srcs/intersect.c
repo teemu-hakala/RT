@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 16:14:00 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/24 16:12:34 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/24 17:08:41 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,99 +101,35 @@ void	cylinder_intersection(t_ray *ray, t_object *cylinder, t_intersections *arra
 	(void)array;
 }
 
-/*t_object sphere(t_tuple *origin, t_transform *transform, t_tuple *colour)
+void sort_intersections(void *xs_a, void *xs_b)
 {
-	return ((t_object)
+	t_intersect *a;
+	t_intersect *b;
+
+	a = (t_intersect *)xs_a;
+	b = (t_intersect *)xs_b;
+	return (a->time - b->time);
+
+}
+
+void	intersect_world(t_world *world, t_ray ray)
+{
+	uint64_t i;
+	static const t_intersect_function	\
+					intersect_object[] = \
 	{
-		.object.sphere = (t_sphere)
-		{
-			.origin = (t_tuple){.tuple.units = (t_units)
-				{origin->tuple.units.x,
-				origin->tuple.units.y,
-				origin->tuple.units.z,
-				origin->tuple.units.w}},
-			.transform = (t_transform){transform->translation,
-				transform->rotation,
-				transform->scale},
-			.colour = (t_tuple){.tuple.colour = (t_colour)
-				{colour->tuple.colour.a,
-				colour->tuple.colour.r,
-				colour->tuple.colour.g,
-				colour->tuple.colour.b}}
-		},
-		.type = OBJECT_SPHERE
-	});
-}*/
+		plane_intersection,
+		sphere_intersection,
+		cone_intersection,
+		cylinder_intersection
+	};
 
-// int main(void)
-// {
-// 	t_ray		ray;
-// 	t_objects	objects;
-// 	t_tuple		purple;
-// 	t_transform transform;
-// 	t_object	object_sphere;
-// 	t_intersections array;
-// 	int i;
-
-// 	purple = hex_to_argb(0x4c00b0);
-// 	ray.origin.tuple.units = (t_units){ 0.0, 2.0, -5.0, 1.0 };
-// 	ray.direction.tuple.units = (t_units){ 0.0, 0.0, 1.0, 0.0 };
-// 	transform =(t_transform)
-// 	{
-// 		.translation = (t_tuple)
-// 		{
-// 			.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1 }
-// 		},
-// 		.rotation = (t_tuple)
-// 		{
-// 			.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1 }
-// 		},
-// 		.scale = (t_tuple)
-// 		{
-// 			.tuple.units = (t_units){ 1.0, 1.0, 1.0, POINT_1 }
-// 		}
-// 	};
-// 	objects.list = (t_object *)malloc(sizeof(t_object) * 3);
-// 	if (objects.list == NULL)
-// 		exit(EXIT_FAILURE);
-// 	object_sphere = sphere(
-// 			&(t_tuple){.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1}},
-// 			&transform,
-// 			&purple
-// 		);
-// 	sphere_intersection(&ray, &object_sphere, &array);
-// 	if (array.num > 0)
-// 		printf("time at 1st: %f\ntime at 2nd: %f\n", array.intersections[0].time ,array.intersections[1].time);
-// 	else
-// 		printf("no hits\n");
-// 	i = -1;
-// 	while (++i < array.num)
-// 	{
-// 		if (array.intersections[i].hit == 1)
-// 			printf("time of hit = %f\n", array.intersections[i].time);
-// 	}
-// 	return (0);
-// }
-
-// t_intersections	intersect_world(t_world *world, t_ray ray)
-// {
-// 	static const t_intersect_function	\
-// 					intersect_object[] = \
-// 	{
-// 		plane_intersection,
-// 		sphere_intersection,
-// 		cone_intersection,
-// 		cylinder_intersection
-// 	};
-// 	t_intersections	intersections; // t_vec	intersections; // vec_sort(intersections, ...);
-// 	uint64_t		object;
-
-// 	object = -1;
-// 	while (++object < world->objects.count)
-// 	{
-// 		intersect_object[world->objects.list[object].type] \
-// 			(&ray, &world->objects.list[object], &intersections);
-// 	}
-// 	// sort_intersections(&intersections);
-// 	return (intersections);
-// }
+	i = -1;
+	while (++i < world->objects.len)
+	{
+		intersect_object[((t_object *)vec_get(&world->objects, i))->type] \
+			(&ray, ((t_object *)vec_get(&world->objects, i)), \
+			&world->intersections);
+	}
+	vec_sort(&world->intersections, sort_intersections);
+}

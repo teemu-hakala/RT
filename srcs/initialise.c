@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialise.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:03:00 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/24 16:20:30 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/24 16:24:44 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	initialise_world(t_world *world)
 		|| vec_new(&world->intersections, 1, sizeof(t_intersect))
 		!= VEC_SUCCESS)
 		handle_errors("initialise_world malloc returned NULL");
+	default_world(world);
 }
 
 void	initialise_window(t_win *win)
