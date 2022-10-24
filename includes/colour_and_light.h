@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 17:34:04 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/21 11:06:35 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/24 14:07:31 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,6 @@ enum e_colour
 	COLOUR_WHITE = 0x00FFFFFF,
 	COLOUR_TURQOUISE = 0x40E0D0U
 };
-
-typedef struct s_pt_light
-{
-	t_tuple		position;
-	t_tuple		intensity;
-}				t_pt_light;
 
 typedef struct s_phong
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 10:18:04 by thakala           #+#    #+#             */
-/*   Updated: 2022/10/23 13:11:21 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/24 14:10:57 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,9 @@ static t_material	default_material_2(void)
 static t_light	default_light(void)
 {
 	return ((t_light){
-		.origin = point(-10, 10, -10),
-		.transform = default_transform_1(),
+		.position = point(-10, 10, -10),
 		.intensity = colour(1, 1, 1, 1),
-		.ambience = 0.1
+		.transform = default_transform_1(),
 	});
 }
 

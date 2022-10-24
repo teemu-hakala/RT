@@ -76,10 +76,9 @@ typedef struct s_cone
 
 typedef struct s_light
 {
-	t_tuple		origin;
-	t_transform	transform;
+	t_tuple		position;
 	t_tuple		intensity;
-	t_fl		ambience;
+	t_transform	transform;
 }	t_light;
 
 typedef struct s_camera

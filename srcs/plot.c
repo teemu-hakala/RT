@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   plot.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:40:28 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/24 11:05:24 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/24 14:06:52 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RTv1.h"
 
-void	plot_points(t_win *win, t_object *sphere, t_pt_light light)
+void	plot_points(t_win *win, t_object *sphere, t_light light)
 {
 	t_index			obj_space;
 	t_index			world;

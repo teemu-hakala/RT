@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RTv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/23 18:11:56 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/24 14:06:32 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,7 @@ int		handle_input(int key);
 /* colour and lighting*/
 t_tuple	hex_to_argb(uint32_t colour);
 uint32_t	argb_to_hex(t_colour *colour);
-t_tuple	lighting(t_material material, t_pt_light light, t_phong vectors,
+t_tuple	lighting(t_material material, t_light light, t_phong vectors,
 	t_tuple point);
 
 /* object intialisation */
@@ -175,7 +175,7 @@ t_tuple	normal_at_sphere(t_object *sphere, t_tuple *point_at);
 
 /* plot pixels */
 // void	plot_points(t_win *win, t_object *sphere);
-void	plot_points(t_win *win, t_object *sphere, t_pt_light light);
+void	plot_points(t_win *win, t_object *sphere, t_light light);
 void	plot_points_params(t_win *win);
 // void	img_pixel_put(t_win *win, int x, int y, t_tuple *colour);
 void	img_pixel_put(t_win *win, int x, int y, unsigned int colour);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reflections.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 15:27:24 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/23 13:41:23 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/24 14:06:08 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_tuple	reflect(t_tuple input, t_tuple normal)
 }
 /* l stands for angle. we can change that. */
 
-void	lighting_cont(t_material *material, t_pt_light light, t_phong *vectors,
+void	lighting_cont(t_material *material, t_light light, t_phong *vectors,
 	t_fl incidence_l)
 {
 	t_fl	reflect_l;
@@ -46,7 +46,7 @@ void	lighting_cont(t_material *material, t_pt_light light, t_phong *vectors,
 	}
 }
 
-t_tuple	lighting(t_material material, t_pt_light light, t_phong vectors,
+t_tuple	lighting(t_material material, t_light light, t_phong vectors,
 	t_tuple point)
 {
 	t_fl	incidence_l;
