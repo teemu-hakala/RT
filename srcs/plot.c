@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:40:28 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/23 18:15:49 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/24 11:05:24 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,27 @@ void	plot_points(t_win *win, t_object *sphere, t_pt_light light)
 	uint32_t		final_colour;
 	t_tuple			colour_argb;
 
+	t_fl			wall_size;
+	t_fl			pixel_size;
+	t_fl			half;
+
+	wall_size = 7;
+	pixel_size = wall_size / HEIGHT;
+	half = wall_size / 2;
+
 	// a lot of these variables I image will be in a struct,
 	// so it gets passed around instead of having to create them here.
 
 	obj_space.row = -1;
 	while (++obj_space.row < HEIGHT)
 	{
-		world.row = ((t_fl)7 / (t_fl)2) - ((t_fl)7 / (t_fl)HEIGHT) * (t_fl)obj_space.row;
+		// world.row = ((t_fl)7 / (t_fl)2) - ((t_fl)7 / (t_fl)HEIGHT) * (t_fl)obj_space.row;
+		world.row = half - pixel_size * (t_fl)obj_space.row;
 		obj_space.col = -1;
 		while (++obj_space.col < WIDTH)
 		{
-			world.col = ((t_fl)7 / (t_fl)2) - ((t_fl)7 / (t_fl)WIDTH) * (t_fl)obj_space.col;
+			// world.col = ((t_fl)7 / (t_fl)2) - ((t_fl)7 / (t_fl)WIDTH) * (t_fl)obj_space.col;
+			world.col = -half + pixel_size * (t_fl)obj_space.col;
 			position = point(world.col, world.row, 10);
 			ray.origin = (t_tuple){.tuple.units = (t_units){0.0, 0.0, -5.0, 1}};
 			ray.direction = normalize(tuple_sub(position, ray.origin));
@@ -126,7 +136,7 @@ void	plot_points_params(t_win *win)
 		while (++object_space.col < WIDTH)
 		{
 			world_space.col = (t_fl)WALL_WIDTH / 2 - WALL_WIDTH / WIDTH * (t_fl)object_space.col;
-			
+
 			intersect_world(&win->world, ray);
 		}
 	}
