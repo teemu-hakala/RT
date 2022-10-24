@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RTv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/24 14:06:32 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/24 14:44:52 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include "objects.h"
 # include "colour_and_light.h"
 
+# define USAGE "<instructions>"
 # define WIDTH 400
 # define HEIGHT 400
 # define WALL_WIDTH 7
@@ -76,8 +77,9 @@ typedef struct s_pixel_index
 typedef struct s_world
 {
 	t_camera	camera;
-	t_lights	lights;
-	t_objects	objects;
+	t_vec		lights;
+	t_vec		objects;
+	t_vec		intersections;
 }	t_world;
 
 typedef struct s_win
@@ -141,6 +143,7 @@ void	handle_errors(char *str);
 // void	free_win(t_win *win);
 
 /* initialise */
+void	initialise_world(t_world *world);
 void	initialise_window(t_win *win);
 
 /* handle input*/

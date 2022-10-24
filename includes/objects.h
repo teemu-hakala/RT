@@ -121,16 +121,4 @@ typedef t_tuple	(*t_normal_fn)(t_object *, t_tuple *);
 
 typedef void	(*t_object_transform)(t_object *);
 
-typedef struct s_objects
-{
-	t_object	*list;
-	uint64_t	count;
-}	t_objects;
-
-typedef struct s_lights
-{
-	t_light		*list;
-	uint64_t	count;
-}	t_lights;
-
 #endif

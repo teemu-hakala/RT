@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:02:35 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/23 18:04:27 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/24 14:38:19 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -394,5 +394,20 @@ int	main(void)
 	//test_3D_sphere();
 	//test_3D_sphere_transformed();
 	test_3D_sphere_params();
+	return (0);
+}
+
+int	main(int argc, char **argv)
+{
+	t_win	win;
+
+	if (argc != 2)
+		handle_errors(USAGE);
+	initialise_world(&win.world);
+	parse(&win);
+	initialise_window(&win);
+	draw();
+	mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
+	mlx_loop(win.mlx);
 	return (0);
 }

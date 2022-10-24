@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:03:00 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/23 13:09:24 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/24 14:45:08 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,13 @@ void	initialise_image(t_img *img, t_win *win)
 		handle_errors("error");
 	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->length, \
 	&img->endian);
+}
+
+void	initialise_world(t_world *world)
+{
+	if (vec_new(&world->lights, 1, sizeof(t_light)) != VEC_SUCCESS
+		|| vec_new(&world->objects, 1, sizeof(t_object)) != VEC_SUCCESS)
+		handle_errors("initialise_world malloc returned NULL");
 }
 
 void	initialise_window(t_win *win)
