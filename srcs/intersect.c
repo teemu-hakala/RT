@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 16:14:00 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/23 18:07:50 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/24 16:12:34 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,25 +175,25 @@ void	cylinder_intersection(t_ray *ray, t_object *cylinder, t_intersections *arra
 // 	return (0);
 // }
 
-t_intersections	intersect_world(t_world *world, t_ray ray)
-{
-	static const t_intersect_function	\
-					intersect_object[] = \
-	{
-		plane_intersection,
-		sphere_intersection,
-		cone_intersection,
-		cylinder_intersection
-	};
-	t_intersections	intersections; // t_vec	intersections; // vec_sort(intersections, ...);
-	uint64_t		object;
+// t_intersections	intersect_world(t_world *world, t_ray ray)
+// {
+// 	static const t_intersect_function	\
+// 					intersect_object[] = \
+// 	{
+// 		plane_intersection,
+// 		sphere_intersection,
+// 		cone_intersection,
+// 		cylinder_intersection
+// 	};
+// 	t_intersections	intersections; // t_vec	intersections; // vec_sort(intersections, ...);
+// 	uint64_t		object;
 
-	object = -1;
-	while (++object < world->objects.count)
-	{
-		intersect_object[world->objects.list[object].type] \
-			(&ray, &world->objects.list[object], &intersections);
-	}
-	// sort_intersections(&intersections);
-	return (intersections);
-}
+// 	object = -1;
+// 	while (++object < world->objects.count)
+// 	{
+// 		intersect_object[world->objects.list[object].type] \
+// 			(&ray, &world->objects.list[object], &intersections);
+// 	}
+// 	// sort_intersections(&intersections);
+// 	return (intersections);
+// }

@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 10:18:04 by thakala           #+#    #+#             */
-/*   Updated: 2022/10/24 14:10:57 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/24 16:17:22 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,24 +76,21 @@ static t_light	default_light(void)
 	});
 }
 
-t_world	default_world(void)
+void	default_world(t_world *world)
 {
-	t_world		world;
 	t_object	sphere_1;
 	t_object	sphere_2;
+	t_light		light;
 
-	world.objects = (t_objects){.list = \
-		(t_object *)malloc(sizeof(t_object) * 2), .count = 2};
-	world.lights = (t_lights){.list = \
-		(t_light *)malloc(sizeof(t_light) * 1), .count = 1};
-	if (world.objects.list == NULL || world.lights.list == NULL)
-		handle_errors("one of default_world mallocs returned NULL\n");
+	light = default_light();
 	sphere_1 = sphere(default_origin(), default_transform_1(),
 			default_material_1());
 	sphere_2 = sphere(default_origin(), default_transform_2(),
 			default_material_2());
-	world.objects.list[0] = sphere_1;
-	world.objects.list[1] = sphere_2;
-	world.lights.list[0] = default_light();
-	return (world);
+	if (vec_push(&world->objects, &sphere_1) != VEC_SUCCESS)
+		handle_errors("unable to malloc for world object");
+	if (vec_push(&world->objects, &sphere_2) != VEC_SUCCESS)
+		handle_errors("unable to malloc for world object");
+	if (vec_push(&world->lights, &light) != VEC_SUCCESS)
+		handle_errors("unable to malloc for light");
 }
