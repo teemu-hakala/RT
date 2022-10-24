@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:02:35 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/24 14:38:19 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/24 16:18:12 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,67 +109,67 @@ void	test_matrix_inversion(void)
 // 	mlx_loop(win.mlx);
 // }
 
-void	test_normal_at_sphere(void)
-{
-	t_objects	objects;
-	t_object	object_sphere;
-	t_transform	transform;
-	t_tuple		red;
-	t_tuple		point_at;
-	t_tuple		normal_at;
+// void	test_normal_at_sphere(void)
+// {
+// 	t_objects	objects;
+// 	t_object	object_sphere;
+// 	t_transform	transform;
+// 	t_tuple		red;
+// 	t_tuple		point_at;
+// 	t_tuple		normal_at;
 
-	transform = (t_transform)
-	{
-		.translation = (t_tuple)
-		{
-			.tuple.units = (t_units){ 0.0, 1.0, 0.0, POINT_1 }
-		},
-		.rotation = (t_tuple)
-		{
-			.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1 }
-		},
-		.scale = (t_tuple)
-		{
-			.tuple.units = (t_units){ 1.0, 1.0, 1.0, POINT_1 }
-		}
-	};
-	red = hex_to_argb(0xFF0000);
-	object_sphere = sphere(
-			(t_tuple){.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1}},
-			transform,
-			(t_material){
-				.diffuse = 0.9,
-				.specular = 0.9,
-				.ambient = 0.1,
-				.shininess = 200.0,
-				.col_mash = point(0, 0, 0),
-				.dif_col = point(0, 0, 0),
-				.amb_col = point(0, 0, 0),
-				.spec_col = point(0, 0, 0)
-			}
-		);
-	objects.list = (t_object *)malloc(sizeof(t_object) * 10);
-	if (objects.list == NULL)
-		exit(EXIT_FAILURE);
-	objects.list[0] = object_sphere;
-	objects.count = 1;
-	// translate(&object_sphere.object.sphere.transform.matrix, &object_sphere.object.sphere.transform.translation);
-	// scale(&object_sphere.object.sphere.transform.matrix, &object_sphere.object.sphere.transform.scale);
-	// object_sphere.object.sphere.transform.inverse = object_sphere.object.sphere.transform.matrix;
-	// matrix_inversion(&object_sphere.object.sphere.transform.inverse, 4);
-	transform_objects(&objects);
-	printf("transformation matrix:\n");
-	ft_print_mtx(&objects.list[0].object.sphere.transform.matrix);
-	printf("\n\n");
-	printf("inverse matrix:\n");
-	ft_print_mtx(&objects.list[0].object.sphere.transform.inverse);
-	printf("\n\n");
-	point_at.tuple.units = (t_units){ 0.0, 1.70711, -0.70711, POINT_1 };
-	printf("point: %f, %f, %f, %f\n\n", point_at.tuple.units.x, point_at.tuple.units.y, point_at.tuple.units.z, point_at.tuple.units.w);
-	normal_at = normal_at_sphere(&objects.list[0], &point_at);
-	printf("normal at point: %f, %f, %f, %f\n\n", normal_at.tuple.units.x, normal_at.tuple.units.y, normal_at.tuple.units.z, normal_at.tuple.units.w);
-	free(objects.list);
-}
+// 	transform = (t_transform)
+// 	{
+// 		.translation = (t_tuple)
+// 		{
+// 			.tuple.units = (t_units){ 0.0, 1.0, 0.0, POINT_1 }
+// 		},
+// 		.rotation = (t_tuple)
+// 		{
+// 			.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1 }
+// 		},
+// 		.scale = (t_tuple)
+// 		{
+// 			.tuple.units = (t_units){ 1.0, 1.0, 1.0, POINT_1 }
+// 		}
+// 	};
+// 	red = hex_to_argb(0xFF0000);
+// 	object_sphere = sphere(
+// 			(t_tuple){.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1}},
+// 			transform,
+// 			(t_material){
+// 				.diffuse = 0.9,
+// 				.specular = 0.9,
+// 				.ambient = 0.1,
+// 				.shininess = 200.0,
+// 				.col_mash = point(0, 0, 0),
+// 				.dif_col = point(0, 0, 0),
+// 				.amb_col = point(0, 0, 0),
+// 				.spec_col = point(0, 0, 0)
+// 			}
+// 		);
+// 	objects.list = (t_object *)malloc(sizeof(t_object) * 10);
+// 	if (objects.list == NULL)
+// 		exit(EXIT_FAILURE);
+// 	objects.list[0] = object_sphere;
+// 	objects.count = 1;
+// 	// translate(&object_sphere.object.sphere.transform.matrix, &object_sphere.object.sphere.transform.translation);
+// 	// scale(&object_sphere.object.sphere.transform.matrix, &object_sphere.object.sphere.transform.scale);
+// 	// object_sphere.object.sphere.transform.inverse = object_sphere.object.sphere.transform.matrix;
+// 	// matrix_inversion(&object_sphere.object.sphere.transform.inverse, 4);
+// 	transform_objects(&objects);
+// 	printf("transformation matrix:\n");
+// 	ft_print_mtx(&objects.list[0].object.sphere.transform.matrix);
+// 	printf("\n\n");
+// 	printf("inverse matrix:\n");
+// 	ft_print_mtx(&objects.list[0].object.sphere.transform.inverse);
+// 	printf("\n\n");
+// 	point_at.tuple.units = (t_units){ 0.0, 1.70711, -0.70711, POINT_1 };
+// 	printf("point: %f, %f, %f, %f\n\n", point_at.tuple.units.x, point_at.tuple.units.y, point_at.tuple.units.z, point_at.tuple.units.w);
+// 	normal_at = normal_at_sphere(&objects.list[0], &point_at);
+// 	printf("normal at point: %f, %f, %f, %f\n\n", normal_at.tuple.units.x, normal_at.tuple.units.y, normal_at.tuple.units.z, normal_at.tuple.units.w);
+// 	free(objects.list);
+// }
 
 void	test_reflect()
 {
@@ -186,7 +186,7 @@ void	test_reflect()
 void	test_lighting_angled()
 {
 	t_material	material;
-	t_pt_light	light;
+	t_light	light;
 	t_phong		vectors;
 	t_tuple		point;
 	t_tuple		red;
@@ -216,7 +216,7 @@ void	test_lighting_angled()
 void	test_lighting_ambient()
 {
 	t_material	material;
-	t_pt_light	light;
+	t_light	light;
 	t_phong		vectors;
 	t_tuple		point;
 	t_tuple		red;
@@ -248,7 +248,7 @@ void	test_3D_sphere(void)
 	t_object	object_sphere;
 	t_transform	transform;
 	t_win		win;
-	t_pt_light	light_source;
+	t_light	light_source;
 
 	transform = (t_transform)
 	{
@@ -277,136 +277,136 @@ void	test_3D_sphere(void)
 	light_source.position.tuple.units = (t_units){ -10.0, 10.0, -10.0, POINT_1 };
 
 	initialise_window(&win);
-	plot_points(&win, &object_sphere, light_source);
+	plot_points(&win);
 	mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
 	mlx_loop(win.mlx);
 }
 
-void	test_3D_sphere_transformed(void)
-{
-	t_material	material;
-	t_transform	transform;
-	t_win		win;
-	t_pt_light	light_source;
+// void	test_3D_sphere_transformed(void)
+// {
+// 	t_material	material;
+// 	t_transform	transform;
+// 	t_win		win;
+// 	t_pt_light	light_source;
 
-	win.world.objects = (t_objects){.list = (t_object *)malloc(sizeof(t_object) * 1), .count = 1};
-	if (win.world.objects.list == NULL)
-		handle_errors("test_3d_sphere_transformed win.world.objects.list malloc failed");
-	transform = (t_transform)
-	{
-		.translation = point(0.0, 0.0, 0.0),
-		.rotation = point(0.0, 0.0, 0.0),
-		.scale = point(0.5, 0.5, 1.0)
-	};
-	material = (t_material)
-	{
-		.colour = (t_tuple){.tuple.colour = {0.0, 1.0, 0.2, 1.0}},
-		.ambient = 0.1,
-		.diffuse = 0.9,
-		.specular = 0.9,
-		.shininess = 200.0,
-		.col_mash = point(0, 0, 0),
-		.amb_col = point(0, 0, 0),
-		.dif_col = point(0, 0, 0),
-		.spec_col = point(0, 0, 0)
-	};
-	win.world.objects.list[0] = sphere(
-			point(0, 0, 0),
-			transform,
-			material
-		);
-	transform_objects(&win.world.objects);
-	light_source.intensity.tuple.units = (t_units){ 0.0, 1.0, 1.0, 1.0 };
-	light_source.position.tuple.units = (t_units){ -10.0, 10.0, -10.0, POINT_1 };
+// 	win.world.objects = (t_objects){.list = (t_object *)malloc(sizeof(t_object) * 1), .count = 1};
+// 	if (win.world.objects.list == NULL)
+// 		handle_errors("test_3d_sphere_transformed win.world.objects.list malloc failed");
+// 	transform = (t_transform)
+// 	{
+// 		.translation = point(0.0, 0.0, 0.0),
+// 		.rotation = point(0.0, 0.0, 0.0),
+// 		.scale = point(0.5, 0.5, 1.0)
+// 	};
+// 	material = (t_material)
+// 	{
+// 		.colour = (t_tuple){.tuple.colour = {0.0, 1.0, 0.2, 1.0}},
+// 		.ambient = 0.1,
+// 		.diffuse = 0.9,
+// 		.specular = 0.9,
+// 		.shininess = 200.0,
+// 		.col_mash = point(0, 0, 0),
+// 		.amb_col = point(0, 0, 0),
+// 		.dif_col = point(0, 0, 0),
+// 		.spec_col = point(0, 0, 0)
+// 	};
+// 	win.world.objects.list[0] = sphere(
+// 			point(0, 0, 0),
+// 			transform,
+// 			material
+// 		);
+// 	transform_objects(&win.world.objects);
+// 	light_source.intensity.tuple.units = (t_units){ 0.0, 1.0, 1.0, 1.0 };
+// 	light_source.position.tuple.units = (t_units){ -10.0, 10.0, -10.0, POINT_1 };
 
-	initialise_window(&win);
-	plot_points(&win, &win.world.objects.list[0], light_source);
-	mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
-	mlx_loop(win.mlx);
-}
+// 	initialise_window(&win);
+// 	plot_points(&win, &win.world.objects.list[0], light_source);
+// 	mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
+// 	mlx_loop(win.mlx);
+// }
 
-void	test_3D_sphere_params(void)
-{
-	t_win		win;
+// void	test_3D_sphere_params(void)
+// {
+// 	t_win		win;
 
-	win.world.objects = (t_objects){.list = \
-		(t_object *)malloc(sizeof(t_object) * 10), .count = 1};
-	if (win.world.objects.list == NULL)
-		handle_errors("win.world.objects.list malloc returned NULL");
-	win.world.lights = (t_lights){.list = \
-		(t_light *)malloc(sizeof(t_light) * 1), .count = 1};
-	if (win.world.lights.list == NULL)
-		handle_errors("win.world.lights.list malloc returned NULL");
-	win.world.camera = (t_camera)
-	{
-		.origin = point(0.0, 0.0, -5.0),
-		.transform = (t_transform) \
-		{\
-			.translation = point(0.0, 0.0, 0.0), \
-			.rotation = point(0.0, 0.0, 0.0), \
-			.scale = point(1.0, 1.0, 1.0) \
-		},
-		.center_of_interest = point(0.0, 0.0, 0.0),
-		.field_of_view = (t_fov2){.vertical = M_PI / 3, \
-			.horizontal = (t_fl)M_PI / 3 * WIDTH / HEIGHT}
-	};
-	win.world.objects.list[0] = sphere
-	(
-		(t_tuple){.tuple.units = (t_units){0.0, 0.0, 0.0, POINT_1}},
-		(t_transform)
-		{
-			.translation = point(0.0, 0.0, 0.0),
-			.rotation = point(0.0, 0.0, 0.0),
-			.scale = point(1.0, 1.0, 1.0)
-		},
-		(t_material)
-		{
-			.colour = (t_tuple){.tuple.colour = {0.0, 0.2, 1.0, 1.0}},
-			.ambient = 0.1,
-			.diffuse = 0.9,
-			.specular = 0.9,
-			.shininess = 200.0,
-			.col_mash = point(0, 0, 0),
-			.amb_col = point(0, 0, 0),
-			.dif_col = point(0, 0, 0),
-			.spec_col = point(0, 0, 0)
-		}
-	);
-	win.world.lights.list[0] = (t_light)
-	{
-		.intensity = colour(0.0, 1.0, 1.0, 1.0),
-		.origin = point(-10.0, 10.0, -10.0)
-	};
-	initialise_window(&win);
-	plot_points_params(&win);
-	mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
-	mlx_loop(win.mlx);
-}
+// 	win.world.objects = (t_objects){.list = \
+// 		(t_object *)malloc(sizeof(t_object) * 10), .count = 1};
+// 	if (win.world.objects.list == NULL)
+// 		handle_errors("win.world.objects.list malloc returned NULL");
+// 	win.world.lights = (t_lights){.list = \
+// 		(t_light *)malloc(sizeof(t_light) * 1), .count = 1};
+// 	if (win.world.lights.list == NULL)
+// 		handle_errors("win.world.lights.list malloc returned NULL");
+// 	win.world.camera = (t_camera)
+// 	{
+// 		.origin = point(0.0, 0.0, -5.0),
+// 		.transform = (t_transform) \
+// 		{\
+// 			.translation = point(0.0, 0.0, 0.0), \
+// 			.rotation = point(0.0, 0.0, 0.0), \
+// 			.scale = point(1.0, 1.0, 1.0) \
+// 		},
+// 		.center_of_interest = point(0.0, 0.0, 0.0),
+// 		.field_of_view = (t_fov2){.vertical = M_PI / 3, \
+// 			.horizontal = (t_fl)M_PI / 3 * WIDTH / HEIGHT}
+// 	};
+// 	win.world.objects.list[0] = sphere
+// 	(
+// 		(t_tuple){.tuple.units = (t_units){0.0, 0.0, 0.0, POINT_1}},
+// 		(t_transform)
+// 		{
+// 			.translation = point(0.0, 0.0, 0.0),
+// 			.rotation = point(0.0, 0.0, 0.0),
+// 			.scale = point(1.0, 1.0, 1.0)
+// 		},
+// 		(t_material)
+// 		{
+// 			.colour = (t_tuple){.tuple.colour = {0.0, 0.2, 1.0, 1.0}},
+// 			.ambient = 0.1,
+// 			.diffuse = 0.9,
+// 			.specular = 0.9,
+// 			.shininess = 200.0,
+// 			.col_mash = point(0, 0, 0),
+// 			.amb_col = point(0, 0, 0),
+// 			.dif_col = point(0, 0, 0),
+// 			.spec_col = point(0, 0, 0)
+// 		}
+// 	);
+// 	win.world.lights.list[0] = (t_light)
+// 	{
+// 		.intensity = colour(0.0, 1.0, 1.0, 1.0),
+// 		.origin = point(-10.0, 10.0, -10.0)
+// 	};
+// 	initialise_window(&win);
+// 	plot_points_params(&win);
+// 	mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
+// 	mlx_loop(win.mlx);
+// }
+
+// int	main(void)
+// {
+// 	//test_matrix_inversion();
+// 	// test_red_disc();
+// 	// test_normal_at_sphere();
+// 	// test_reflect();
+// 	test_lighting_angled();
+// 	test_lighting_ambient();
+// 	//test_3D_sphere();
+// 	//test_3D_sphere_transformed();
+// 	test_3D_sphere_params();
+// 	return (0);
+// }
 
 int	main(void)
 {
-	//test_matrix_inversion();
-	// test_red_disc();
-	// test_normal_at_sphere();
-	// test_reflect();
-	test_lighting_angled();
-	test_lighting_ambient();
-	//test_3D_sphere();
-	//test_3D_sphere_transformed();
-	test_3D_sphere_params();
-	return (0);
-}
-
-int	main(int argc, char **argv)
-{
 	t_win	win;
 
-	if (argc != 2)
-		handle_errors(USAGE);
+	// if (argc != 2)
+	// 	handle_errors(USAGE);
 	initialise_world(&win.world);
-	parse(&win);
+	// parse(&win);
 	initialise_window(&win);
-	draw();
+	plot_points(&win);
 	mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
 	mlx_loop(win.mlx);
 	return (0);

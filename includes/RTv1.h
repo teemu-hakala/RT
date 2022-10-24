@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RTv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/24 14:44:52 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/24 16:10:55 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,14 +171,14 @@ t_tuple	reflect(t_tuple input, t_tuple normal);
 
 /* object transformation */
 void	transform_object(t_transform *object);
-void	transform_objects(t_objects *objects);
+// void	transform_objects(t_objects *objects);
 
 /* normals */
 t_tuple	normal_at_sphere(t_object *sphere, t_tuple *point_at);
 
 /* plot pixels */
 // void	plot_points(t_win *win, t_object *sphere);
-void	plot_points(t_win *win, t_object *sphere, t_light light);
+void	plot_points(t_win *win);
 void	plot_points_params(t_win *win);
 // void	img_pixel_put(t_win *win, int x, int y, t_tuple *colour);
 void	img_pixel_put(t_win *win, int x, int y, unsigned int colour);
