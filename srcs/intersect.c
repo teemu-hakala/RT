@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 16:14:00 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/24 17:08:41 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/25 10:49:27 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,57 @@ void	plane_intersection(t_ray *ray, t_object *plane, t_intersections *array)
 	(void)array;
 }
 
-void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array)
+// void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array)
+// {
+// 	t_fl	discriminant;
+// 	t_fl	a;
+// 	t_fl	b;
+// 	t_fl	c;
+// 	t_tuple	sphere_to_ray;
+
+// 	sphere_to_ray = tuple_sub(ray->origin, shape->object.sphere.origin);
+// 	a = dot_product(ray->direction, ray->direction);
+// 	b = 2 * dot_product(ray->direction, sphere_to_ray);
+// 	c = dot_product(sphere_to_ray, sphere_to_ray) - 1;
+// 	discriminant = (b * b) - 4 * a * c;
+// 	if (discriminant < 0.0)
+// 	{
+// 		array->num = 0;
+// 		array->intersections = NULL;
+// 		return ;
+// 	}
+// 	else
+// 	{
+// 		array->num = 2;
+// 		array->intersections = (t_intersect *)malloc(sizeof(t_intersect) * 2);
+// 		if (!array->intersections)
+// 			handle_errors("sphere_intersection array->intersections malloc fail");
+// 		if (discriminant <= 1)
+// 		{
+// 			array->intersections[0].time = (-b - sqrt(discriminant)) / (2 * a);
+// 			array->intersections[0].shape = shape;
+// 			array->intersections[1].time = (-b + sqrt(discriminant)) / (2 * a);
+// 			array->intersections[1].shape = shape;
+// 		}
+// 		else
+// 		{
+// 			array->intersections[0].time = (-b - sqrt(discriminant)) / (2 * a);
+// 			array->intersections[0].shape = shape;
+// 			array->intersections[1].time = array->intersections[0].time + 2; // radius * 2
+// 			array->intersections[1].shape = shape;
+// 		}
+// 	}
+// 	identify_hit(array);
+// }
+
+void	sphere_intersection(t_ray *ray, t_object *shape, t_world *world)
 {
 	t_fl	discriminant;
 	t_fl	a;
 	t_fl	b;
 	t_fl	c;
 	t_tuple	sphere_to_ray;
+	t_intersect	intersect;
 
 	sphere_to_ray = tuple_sub(ray->origin, shape->object.sphere.origin);
 	a = dot_product(ray->direction, ray->direction);
@@ -59,32 +103,25 @@ void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array)
 	discriminant = (b * b) - 4 * a * c;
 	if (discriminant < 0.0)
 	{
-		array->num = 0;
-		array->intersections = NULL;
 		return ;
 	}
 	else
 	{
-		array->num = 2;
-		array->intersections = (t_intersect *)malloc(sizeof(t_intersect) * 2);
-		if (!array->intersections)
-			handle_errors("sphere_intersection array->intersections malloc fail");
+		intersect.time = (-b - sqrt(discriminant)) / (2 * a);
+		intersect.shape = shape;
+		vec_push(&world->intersections, &intersect);
 		if (discriminant <= 1)
 		{
-			array->intersections[0].time = (-b - sqrt(discriminant)) / (2 * a);
-			array->intersections[0].shape = shape;
-			array->intersections[1].time = (-b + sqrt(discriminant)) / (2 * a);
-			array->intersections[1].shape = shape;
+			intersect.time = (-b + sqrt(discriminant)) / (2 * a);
+			vec_push(&world->intersections, &intersect);
 		}
 		else
 		{
-			array->intersections[0].time = (-b - sqrt(discriminant)) / (2 * a);
-			array->intersections[0].shape = shape;
-			array->intersections[1].time = array->intersections[0].time + 2; // radius * 2
-			array->intersections[1].shape = shape;
+			intersect.time += 2; //radius * 2;
+			vec_push(&world->intersections, &intersect);
 		}
 	}
-	identify_hit(array);
+	// identify_hit(array);
 }
 
 void	cone_intersection(t_ray *ray, t_object *cone, t_intersections *array)

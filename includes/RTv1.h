@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/25 10:56:22 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/25 10:59:47 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ typedef struct s_win
 	t_world		world;
 }	t_win;
 
-typedef void	(*t_intersect_function)(t_ray *, t_object *, t_intersections *);
+typedef void	(*t_intersect_function)(t_ray *, t_object *, t_vec *);
 
 /*tuple operations & matrix maths*/
 t_tuple	point(t_fl x, t_fl y, t_fl z);
@@ -164,7 +164,8 @@ void	intersect_world(t_world *world, t_ray ray);
 void	identify_hit(t_intersections *array);
 // void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array);
 //void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array, t_win *win);
-void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array);
+// void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array);
+void	sphere_intersection(t_ray *ray, t_object *shape, t_world *world);
 
 /* reflections*/
 t_tuple	reflect(t_tuple input, t_tuple normal);
