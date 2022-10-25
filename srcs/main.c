@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:02:35 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/24 16:18:12 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/25 10:57:36 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -383,19 +383,79 @@ void	test_3D_sphere(void)
 // 	mlx_loop(win.mlx);
 // }
 
-// int	main(void)
-// {
-// 	//test_matrix_inversion();
-// 	// test_red_disc();
-// 	// test_normal_at_sphere();
-// 	// test_reflect();
-// 	test_lighting_angled();
-// 	test_lighting_ambient();
-// 	//test_3D_sphere();
-// 	//test_3D_sphere_transformed();
-// 	test_3D_sphere_params();
-// 	return (0);
-// }
+void	test_view_transform_default()
+{
+	t_mtx	mtx;
+	t_tuple	from;
+	t_tuple	to;
+	t_tuple	up;
+
+	from = point(0, 0, 0);
+	to = point(0, 0, -1);
+	up = vector(0, 1, 0);
+	mtx = view_transform(from, to, up);
+	ft_print_mtx(&mtx);
+}
+
+void	test_view_transform_positive_z()
+{
+	t_mtx	mtx;
+	t_tuple	from;
+	t_tuple	to;
+	t_tuple	up;
+
+	from = point(0, 0, 0);
+	to = point(0, 0, 1);
+	up = vector(0, 1, 0);
+	mtx = view_transform(from, to, up);
+	ft_print_mtx(&mtx);
+}
+
+void	test_view_transform_moves_the_world()
+{
+	t_mtx	mtx;
+	t_tuple	from;
+	t_tuple	to;
+	t_tuple	up;
+
+	from = point(0, 0, 8);
+	to = point(0, 0, 0);
+	up = vector(0, 1, 0);
+	mtx = view_transform(from, to, up);
+	ft_print_mtx(&mtx);
+}
+
+void	test_view_transform_arbitrary()
+{
+	t_mtx	mtx;
+	t_tuple	from;
+	t_tuple	to;
+	t_tuple	up;
+
+	from = point(1, 3, 2));
+	to = point(4, -2, 8);
+	up = vector(1, 1, 0);
+	mtx = view_transform(from, to, up);
+	ft_print_mtx(&mtx);
+}
+
+void	tests(void)
+{
+	//test_matrix_inversion();
+	// test_red_disc();
+	// test_normal_at_sphere();
+	// test_reflect();
+	// test_lighting_angled();
+	// test_lighting_ambient();
+	//test_3D_sphere();
+	//test_3D_sphere_transformed();
+	// test_3D_sphere_params();
+	test_view_transform_default();
+	test_view_transform_positive_z();
+	test_view_transform_moves_the_world();
+	test_view_transform_arbitrary();
+
+}
 
 int	main(void)
 {
@@ -403,6 +463,7 @@ int	main(void)
 
 	// if (argc != 2)
 	// 	handle_errors(USAGE);
+	tests();
 	initialise_world(&win.world);
 	// parse(&win);
 	initialise_window(&win);

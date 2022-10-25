@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RTv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/24 16:29:08 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/25 10:56:22 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,6 +172,9 @@ t_tuple	reflect(t_tuple input, t_tuple normal);
 /* object transformation */
 void	transform_object(t_transform *object);
 // void	transform_objects(t_objects *objects);
+
+/* view transfrom */
+t_mtx	view_transform(t_tuple from, t_tuple to, t_tuple up);
 
 /* normals */
 t_tuple	normal_at_sphere(t_object *sphere, t_tuple *point_at);
