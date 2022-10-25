@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:02:35 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/25 12:49:29 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/25 14:00:09 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -461,14 +461,14 @@ static void	vec_print(void *data_point)
 	t_intersect	*xs;
 
 	xs = (t_intersect *)data_point;
-	printf("time %f\n", xs->time);
+	printf("time %lf\n", xs->time);
 }
 
 void	test_world_intersection(t_win *win)
 {
 	t_ray	ray;
 
-	ray.origin.tuple.units = (t_units){ 0.0, 0.0, -5.0, POINT_1 };
+	ray.origin.tuple.units = (t_units){ 0.0, 0.0, -5.0, POINT_1};
 	ray.direction.tuple.units = (t_units){ 0.0, 0.0, 1.0, VECTOR_0 };
 	default_world(&win->world);
 	intersect_world(&win->world, ray);

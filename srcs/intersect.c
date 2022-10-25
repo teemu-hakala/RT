@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 16:14:00 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/25 12:50:20 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/25 14:15:22 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,28 +96,29 @@ void	sphere_intersection(t_ray *ray, t_object *shape, t_vec *intersections)
 	t_tuple	sphere_to_ray;
 	t_intersect	intersect;
 
+	*ray = ray_transform(ray, &shape->object.sphere.transform.inverse);
 	sphere_to_ray = tuple_sub(ray->origin, shape->object.sphere.origin);
 	a = dot_product(ray->direction, ray->direction);
-	b = 2 * dot_product(ray->direction, sphere_to_ray);
-	c = dot_product(sphere_to_ray, sphere_to_ray) - 1;
-	discriminant = (b * b) - 4 * a * c;
+	b = 2.0f * dot_product(ray->direction, sphere_to_ray);
+	c = dot_product(sphere_to_ray, sphere_to_ray) - 1.0f;
+	discriminant = (b * b) - 4.0f * a * c;
 	if (discriminant < 0.0)
 	{
 		return ; // do we want to record somewhere that the intersection number for this shape == 0?
 	}
 	else
 	{
-		intersect.time = (-b - sqrt(discriminant)) / (2 * a);
+		intersect.time = (-b - sqrt(discriminant)) / (2.0f * a);
 		intersect.shape = shape;
 		vec_push(intersections, &intersect);
 		if (discriminant <= 1)
 		{
-			intersect.time = (-b + sqrt(discriminant)) / (2 * a);
+			intersect.time = (-b + sqrt(discriminant)) / (2.0f * a);
 			vec_push(intersections, &intersect);
 		}
 		else
 		{
-			intersect.time += (2 * shape->object.sphere.transform.scale.tuple.units.x); //radius * 2;
+			intersect.time += (2.0f * shape->object.sphere.transform.scale.tuple.units.x); //radius * 2;
 			vec_push(intersections, &intersect);
 		}
 	}

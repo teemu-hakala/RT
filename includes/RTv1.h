@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RTv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/25 12:32:13 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/25 14:11:18 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ void	identity_matrix_set(t_mtx *dst);
 /* ray transformations */
 t_ray	ray_translation(t_ray ray, t_tuple transform);
 t_ray	ray_scale(t_ray ray, t_tuple transform);
+t_ray	ray_transform(t_ray *ray, t_mtx *transform);
 t_tuple	hit_position(t_ray *ray, t_fl distance);
 
 /* error handle*/
