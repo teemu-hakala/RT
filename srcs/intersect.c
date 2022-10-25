@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 16:14:00 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/25 14:15:22 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/25 15:24:26 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@ Assume for now all spheres are unit spheres, therefore radius of 1
 
 diameter of sphere: 2 * r
 */
+
+void	prepare_computations(t_world *world, t_ray *ray)
+{
+
+}
 
 void	identify_hit(t_intersections *array)
 {
@@ -43,49 +48,6 @@ void	plane_intersection(t_ray *ray, t_object *plane, t_vec *intersections)
 	(void)plane;
 	(void)intersections;
 }
-
-// void	sphere_intersection(t_ray *ray, t_object *shape, t_vec *intersection)
-// {
-// 	t_fl	discriminant;
-// 	t_fl	a;
-// 	t_fl	b;
-// 	t_fl	c;
-// 	t_tuple	sphere_to_ray;
-
-// 	sphere_to_ray = tuple_sub(ray->origin, shape->object.sphere.origin);
-// 	a = dot_product(ray->direction, ray->direction);
-// 	b = 2 * dot_product(ray->direction, sphere_to_ray);
-// 	c = dot_product(sphere_to_ray, sphere_to_ray) - 1;
-// 	discriminant = (b * b) - 4 * a * c;
-// 	if (discriminant < 0.0)
-// 	{
-// 		array->num = 0;
-// 		array->intersections = NULL;
-// 		return ;
-// 	}
-// 	else
-// 	{
-// 		array->num = 2;
-// 		array->intersections = (t_intersect *)malloc(sizeof(t_intersect) * 2);
-// 		if (!array->intersections)
-// 			handle_errors("sphere_intersection array->intersections malloc fail");
-// 		if (discriminant <= 1)
-// 		{
-// 			array->intersections[0].time = (-b - sqrt(discriminant)) / (2 * a);
-// 			array->intersections[0].shape = shape;
-// 			array->intersections[1].time = (-b + sqrt(discriminant)) / (2 * a);
-// 			array->intersections[1].shape = shape;
-// 		}
-// 		else
-// 		{
-// 			array->intersections[0].time = (-b - sqrt(discriminant)) / (2 * a);
-// 			array->intersections[0].shape = shape;
-// 			array->intersections[1].time = array->intersections[0].time + 2; // radius * 2
-// 			array->intersections[1].shape = shape;
-// 		}
-// 	}
-// 	identify_hit(array);
-// }
 
 void	sphere_intersection(t_ray *ray, t_object *shape, t_vec *intersections)
 {
