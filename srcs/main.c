@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:02:35 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/25 15:38:24 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/25 17:28:30 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -473,6 +473,7 @@ void	test_world_intersection(t_win *win)
 	default_world(&win->world);
 	intersect_world(&win->world);
 	vec_iter(&win->world.intersections, vec_print);
+	vec_iter(&win->world.hits, vec_print);
 
 }
 

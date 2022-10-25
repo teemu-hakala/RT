@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/25 15:38:18 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/25 17:23:21 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,15 @@ typedef struct s_ray
 	t_tuple	direction;
 }			t_ray;
 
+typedef struct s_comp
+{
+	t_tuple		point;
+	t_object	object;
+	t_tuple		eyev;
+	t_tuple		normalv;
+}				t_comp;
+
+
 typedef struct s_intersect
 {
 	t_fl		time;
@@ -80,6 +89,7 @@ typedef struct s_world
 	t_vec		lights;
 	t_vec		objects;
 	t_vec		intersections;
+	t_vec		hits;
 	t_ray		ray;
 }	t_world;
 
@@ -91,7 +101,7 @@ typedef struct s_win
 	t_world		world;
 }	t_win;
 
-typedef void	(*t_intersect_function)(t_ray, t_object *, t_vec *);
+typedef void	(*t_intersect_function)(t_ray, t_object *, t_world *);
 
 /*tuple operations & matrix maths*/
 t_tuple	point(t_fl x, t_fl y, t_fl z);
@@ -163,11 +173,11 @@ t_object	sphere(t_tuple origin, t_transform transform, t_material material);
 
 /* object intersection */
 void	intersect_world(t_world *world);
-void	identify_hit(t_intersections *array);
+void	identify_hit(t_world *world, uint64_t index, uint64_t num);
 // void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array);
 //void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array, t_win *win);
 // void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array);
-void	sphere_intersection(t_ray ray, t_object *shape, t_vec *intersections);
+void	sphere_intersection(t_ray ray, t_object *shape, t_world *world);
 
 /* reflections*/
 t_tuple	reflect(t_tuple input, t_tuple normal);

@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 10:28:30 by thakala           #+#    #+#             */
-/*   Updated: 2022/10/24 14:17:54 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/25 17:06:53 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,13 @@ int	vec_resize(t_vec *src, uint64_t	target_size)
 	return (src->memory != NULL);
 }
 
-int	vec_push(t_vec *dst, void *src)
+uint64_t	vec_push(t_vec *dst, void *src)
 {
 	if (dst->alloc_size <= dst->len)
 		if (vec_resize(dst, dst->alloc_size * 2) <= 0)
-			return (VEC_ERROR);
+			return ((uint64_t)VEC_ERROR);
 	ft_memcpy(&dst->memory[dst->len * dst->elem_size], src, dst->elem_size);
-	dst->len++;
-	return (VEC_SUCCESS);
+	return (dst->len++);
 }
 
 int	vec_pop(void *dst, t_vec *src)

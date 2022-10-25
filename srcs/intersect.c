@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 16:14:00 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/25 16:06:48 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/25 17:35:13 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,44 +18,67 @@ Assume for now all spheres are unit spheres, therefore radius of 1
 diameter of sphere: 2 * r
 */
 
-/*void	prepare_computations(t_world *world, t_ray *ray)
+/*void	prepare_computations(t_vec *intersections, t_ray *ray)
 {
-
+	h
 }*/
 
-void	identify_hit(t_intersections *array)
-{
-	int	i;
-	int	hit;
+// void	identify_hit(t_intersections *array)
+// {
+// 	int	i;
+// 	int	hit;
 
-	i = -1;
-	hit = -1;
-	while (++i < array->num)
+// 	i = -1;
+// 	hit = -1;
+// 	while (++i < array->num)
+// 	{
+// 		if (array->intersections[i].time >= 0 && hit == -1)
+// 		{
+// 			hit = i;
+// 			array->intersections[i].hit = 1;
+// 		}
+// 		else
+// 			array->intersections[i].hit = 0;
+// 	}
+// }
+
+void	identify_hit(t_world *world, uint64_t index, uint64_t num)
+{
+	t_intersect	*intersection;
+	uint64_t	hit_index;
+	uint64_t	i;
+
+	hit_index = (uint64_t)(-1);
+	i = 0;
+	while (i < num)
 	{
-		if (array->intersections[i].time >= 0 && hit == -1)
-		{
-			hit = i;
-			array->intersections[i].hit = 1;
-		}
-		else
-			array->intersections[i].hit = 0;
+		intersection = (t_intersect *)vec_get(&world->intersections, \
+			(index - num + i));
+		if (intersection->time >= 0 && hit_index == (uint64_t)(-1))
+			hit_index = i;
+		i++;
 	}
+	if (hit_index != (uint64_t)(-1))
+		if (vec_push(&world->hits, vec_get(&world->intersections, \
+			index - hit_index)) == (uint64_t)(-1))
+			handle_errors("vec_push malloc error sphere_intersection");
 }
 
-void	plane_intersection(t_ray ray, t_object *plane, t_vec *intersections)
+void	plane_intersection(t_ray ray, t_object *plane, t_world *world)
 {
 	(void)ray;
 	(void)plane;
-	(void)intersections;
+	(void)world;
 }
 
-void	sphere_intersection(t_ray ray, t_object *shape, t_vec *intersections)
+void	sphere_intersection(t_ray ray, t_object *shape, t_world *world)
 {
-	t_fl	discriminant;
-	t_fl	a;
-	t_fl	b;
-	t_fl	c;
-	t_tuple	sphere_to_ray;
+	t_fl		discriminant;
+	t_fl		a;
+	t_fl		b;
+	t_fl		c;
+	t_tuple		sphere_to_ray;
+	uint64_t	index;
 
 	ray = ray_transform(&ray, &shape->object.sphere.transform.inverse);
 	sphere_to_ray = tuple_sub(ray.origin, shape->object.sphere.origin);
@@ -65,29 +88,34 @@ void	sphere_intersection(t_ray ray, t_object *shape, t_vec *intersections)
 	discriminant = (b * b) - 4 * a * c;
 	if (discriminant >= 0.0)
 	{
-		vec_push(intersections, &(t_intersect){
+		index = vec_push(&world->intersections, &(t_intersect){
 			.time = (-b - sqrt(discriminant)) / (2 * a),
 			.shape = shape
 		});
-		vec_push(intersections, &(t_intersect){
+		if (index == (uint64_t)(-1))
+			handle_errors("vec_push malloc error sphere_intersection");
+		index = vec_push(&world->intersections, &(t_intersect){
 			.time = (-b + sqrt(discriminant)) / (2 * a),
 			.shape = shape
 		});
+		if (index == (uint64_t)(-1))
+			handle_errors("vec_push malloc error sphere_intersection");
+		identify_hit(world, index + 1, 2);
 	}
 }
 
-void	cone_intersection(t_ray ray, t_object *cone, t_vec *intersections)
+void	cone_intersection(t_ray ray, t_object *cone, t_world *world)
 {
 	(void)ray;
 	(void)cone;
-	(void)intersections;
+	(void)world;
 }
 
-void	cylinder_intersection(t_ray ray, t_object *cylinder, t_vec *intersections)
+void	cylinder_intersection(t_ray ray, t_object *cylinder, t_world *world)
 {
 	(void)ray;
 	(void)cylinder;
-	(void)intersections;
+	(void)world;
 }
 
 int sort_intersections(void *xs_a, void *xs_b)
@@ -126,7 +154,7 @@ void	intersect_world(t_world *world)
 	{
 		intersect_object[((t_object *)vec_get(&world->objects, i))->type] \
 			(world->ray, ((t_object *)vec_get(&world->objects, i)), \
-			&world->intersections);
+			world);
 	}
 	vec_sort(&world->intersections, sort_intersections);
 }

@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 10:18:04 by thakala           #+#    #+#             */
-/*   Updated: 2022/10/25 15:30:57 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/25 17:43:16 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,10 @@ void	default_world(t_world *world)
 			default_material_1());
 	sphere_2 = sphere(default_origin(), default_transform_2(),
 			default_material_2());
-	if (vec_push(&world->objects, &sphere_1) != VEC_SUCCESS)
+	if (vec_push(&world->objects, &sphere_1) == (uint64_t)VEC_ERROR)
 		handle_errors("unable to malloc for world object");
-	if (vec_push(&world->objects, &sphere_2) != VEC_SUCCESS)
+	if (vec_push(&world->objects, &sphere_2) == (uint64_t)VEC_ERROR)
 		handle_errors("unable to malloc for world object");
-	if (vec_push(&world->lights, &light) != VEC_SUCCESS)
+	if (vec_push(&world->lights, &light) == (uint64_t)VEC_ERROR)
 		handle_errors("unable to malloc for light");
 }

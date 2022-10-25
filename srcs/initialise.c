@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialise.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:03:00 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/25 12:48:10 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/25 17:22:45 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	initialise_world(t_world *world)
 {
 	if (vec_new(&world->lights, 1, sizeof(t_light)) != VEC_SUCCESS
 		|| vec_new(&world->objects, 1, sizeof(t_object)) != VEC_SUCCESS
+		|| vec_new(&world->hits, 1, sizeof(t_intersect)) != VEC_SUCCESS
 		|| vec_new(&world->intersections, 1, sizeof(t_intersect))
 		!= VEC_SUCCESS)
 		handle_errors("initialise_world malloc returned NULL");
