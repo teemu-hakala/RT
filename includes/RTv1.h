@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RTv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/25 10:59:47 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/25 12:32:13 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,7 @@ void	identify_hit(t_intersections *array);
 // void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array);
 //void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array, t_win *win);
 // void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array);
-void	sphere_intersection(t_ray *ray, t_object *shape, t_world *world);
+void	sphere_intersection(t_ray *ray, t_object *shape, t_vec *intersections);
 
 /* reflections*/
 t_tuple	reflect(t_tuple input, t_tuple normal);
@@ -189,5 +189,6 @@ void	img_pixel_put(t_win *win, int x, int y, unsigned int colour);
 
 /* testing */
 void	ft_print_mtx(t_mtx *mtx);
+void	default_world(t_world *world);
 
 #endif

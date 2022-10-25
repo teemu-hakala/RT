@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 16:14:00 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/25 10:49:27 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/25 12:50:20 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ void	identify_hit(t_intersections *array)
 	}
 }
 
-void	plane_intersection(t_ray *ray, t_object *plane, t_intersections *array)
+void	plane_intersection(t_ray *ray, t_object *plane, t_vec *intersections)
 {
 	(void)ray;
 	(void)plane;
-	(void)array;
+	(void)intersections;
 }
 
-// void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array)
+// void	sphere_intersection(t_ray *ray, t_object *shape, t_vec *intersection)
 // {
 // 	t_fl	discriminant;
 // 	t_fl	a;
@@ -87,7 +87,7 @@ void	plane_intersection(t_ray *ray, t_object *plane, t_intersections *array)
 // 	identify_hit(array);
 // }
 
-void	sphere_intersection(t_ray *ray, t_object *shape, t_world *world)
+void	sphere_intersection(t_ray *ray, t_object *shape, t_vec *intersections)
 {
 	t_fl	discriminant;
 	t_fl	a;
@@ -103,49 +103,55 @@ void	sphere_intersection(t_ray *ray, t_object *shape, t_world *world)
 	discriminant = (b * b) - 4 * a * c;
 	if (discriminant < 0.0)
 	{
-		return ;
+		return ; // do we want to record somewhere that the intersection number for this shape == 0?
 	}
 	else
 	{
 		intersect.time = (-b - sqrt(discriminant)) / (2 * a);
 		intersect.shape = shape;
-		vec_push(&world->intersections, &intersect);
+		vec_push(intersections, &intersect);
 		if (discriminant <= 1)
 		{
 			intersect.time = (-b + sqrt(discriminant)) / (2 * a);
-			vec_push(&world->intersections, &intersect);
+			vec_push(intersections, &intersect);
 		}
 		else
 		{
-			intersect.time += 2; //radius * 2;
-			vec_push(&world->intersections, &intersect);
+			intersect.time += (2 * shape->object.sphere.transform.scale.tuple.units.x); //radius * 2;
+			vec_push(intersections, &intersect);
 		}
 	}
-	// identify_hit(array);
 }
 
-void	cone_intersection(t_ray *ray, t_object *cone, t_intersections *array)
+void	cone_intersection(t_ray *ray, t_object *cone, t_vec *intersections)
 {
 	(void)ray;
 	(void)cone;
-	(void)array;
+	(void)intersections;
 }
 
-void	cylinder_intersection(t_ray *ray, t_object *cylinder, t_intersections *array)
+void	cylinder_intersection(t_ray *ray, t_object *cylinder, t_vec *intersections)
 {
 	(void)ray;
 	(void)cylinder;
-	(void)array;
+	(void)intersections;
 }
 
-void sort_intersections(void *xs_a, void *xs_b)
+int sort_intersections(void *xs_a, void *xs_b)
 {
 	t_intersect *a;
 	t_intersect *b;
+	t_fl diff;
 
 	a = (t_intersect *)xs_a;
 	b = (t_intersect *)xs_b;
-	return (a->time - b->time);
+	diff = a->time - b->time;
+	if (diff > 0)
+		return (1);
+	else if (diff == 0)
+		return (0);
+	else
+		return (-1);
 
 }
 

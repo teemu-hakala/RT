@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   view_transform.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 10:26:16 by thakala           #+#    #+#             */
-/*   Updated: 2022/10/25 10:59:10 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/25 12:35:08 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_mtx	view_transform(t_tuple from, t_tuple to, t_tuple up)
 	(t_quad_tuple){0.0, 0.0, 0.0, 1.0} \
 		}};
 
-	translate(&orientation, (t_tuple){-from.tuple.units.x, \
-		-from.tuple.units.y, -from.tuple.units.z, POINT_1});
+	translate(&orientation, &(t_tuple){.tuple.units = {-from.tuple.units.x, \
+		-from.tuple.units.y, -from.tuple.units.z, POINT_1}});
 	return (orientation);
 }

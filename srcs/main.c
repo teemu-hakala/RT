@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:02:35 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/25 10:57:36 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/25 12:49:29 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -242,7 +242,7 @@ void	test_lighting_ambient()
 	result_colour.tuple.colour.r, result_colour.tuple.colour.g, \
 	result_colour.tuple.colour.b);
 }
-
+/*
 void	test_3D_sphere(void)
 {
 	t_object	object_sphere;
@@ -281,7 +281,7 @@ void	test_3D_sphere(void)
 	mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
 	mlx_loop(win.mlx);
 }
-
+*/
 // void	test_3D_sphere_transformed(void)
 // {
 // 	t_material	material;
@@ -432,7 +432,7 @@ void	test_view_transform_arbitrary()
 	t_tuple	to;
 	t_tuple	up;
 
-	from = point(1, 3, 2));
+	from = point(1, 3, 2);
 	to = point(4, -2, 8);
 	up = vector(1, 1, 0);
 	mtx = view_transform(from, to, up);
@@ -454,6 +454,25 @@ void	tests(void)
 	test_view_transform_positive_z();
 	test_view_transform_moves_the_world();
 	test_view_transform_arbitrary();
+}
+
+static void	vec_print(void *data_point)
+{
+	t_intersect	*xs;
+
+	xs = (t_intersect *)data_point;
+	printf("time %f\n", xs->time);
+}
+
+void	test_world_intersection(t_win *win)
+{
+	t_ray	ray;
+
+	ray.origin.tuple.units = (t_units){ 0.0, 0.0, -5.0, POINT_1 };
+	ray.direction.tuple.units = (t_units){ 0.0, 0.0, 1.0, VECTOR_0 };
+	default_world(&win->world);
+	intersect_world(&win->world, ray);
+	vec_iter(&win->world.intersections, vec_print);
 
 }
 
@@ -463,12 +482,13 @@ int	main(void)
 
 	// if (argc != 2)
 	// 	handle_errors(USAGE);
-	tests();
+	// tests();
 	initialise_world(&win.world);
 	// parse(&win);
 	initialise_window(&win);
-	plot_points(&win);
-	mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
-	mlx_loop(win.mlx);
+	test_world_intersection(&win);
+	// plot_points(&win);
+	// mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
+	// mlx_loop(win.mlx);
 	return (0);
 }
