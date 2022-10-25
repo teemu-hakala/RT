@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 16:14:00 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/25 15:24:26 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/25 16:06:48 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ Assume for now all spheres are unit spheres, therefore radius of 1
 diameter of sphere: 2 * r
 */
 
-void	prepare_computations(t_world *world, t_ray *ray)
+/*void	prepare_computations(t_world *world, t_ray *ray)
 {
 
-}
+}*/
 
 void	identify_hit(t_intersections *array)
 {
@@ -42,58 +42,48 @@ void	identify_hit(t_intersections *array)
 	}
 }
 
-void	plane_intersection(t_ray *ray, t_object *plane, t_vec *intersections)
+void	plane_intersection(t_ray ray, t_object *plane, t_vec *intersections)
 {
 	(void)ray;
 	(void)plane;
 	(void)intersections;
 }
 
-void	sphere_intersection(t_ray *ray, t_object *shape, t_vec *intersections)
+void	sphere_intersection(t_ray ray, t_object *shape, t_vec *intersections)
 {
 	t_fl	discriminant;
 	t_fl	a;
 	t_fl	b;
 	t_fl	c;
 	t_tuple	sphere_to_ray;
-	t_intersect	intersect;
 
-	*ray = ray_transform(ray, &shape->object.sphere.transform.inverse);
-	sphere_to_ray = tuple_sub(ray->origin, shape->object.sphere.origin);
-	a = dot_product(ray->direction, ray->direction);
-	b = 2.0f * dot_product(ray->direction, sphere_to_ray);
-	c = dot_product(sphere_to_ray, sphere_to_ray) - 1.0f;
-	discriminant = (b * b) - 4.0f * a * c;
-	if (discriminant < 0.0)
+	ray = ray_transform(&ray, &shape->object.sphere.transform.inverse);
+	sphere_to_ray = tuple_sub(ray.origin, shape->object.sphere.origin);
+	a = dot_product(ray.direction, ray.direction);
+	b = 2 * dot_product(ray.direction, sphere_to_ray);
+	c = dot_product(sphere_to_ray, sphere_to_ray) - 1;
+	discriminant = (b * b) - 4 * a * c;
+	if (discriminant >= 0.0)
 	{
-		return ; // do we want to record somewhere that the intersection number for this shape == 0?
-	}
-	else
-	{
-		intersect.time = (-b - sqrt(discriminant)) / (2.0f * a);
-		intersect.shape = shape;
-		vec_push(intersections, &intersect);
-		if (discriminant <= 1)
-		{
-			intersect.time = (-b + sqrt(discriminant)) / (2.0f * a);
-			vec_push(intersections, &intersect);
-		}
-		else
-		{
-			intersect.time += (2.0f * shape->object.sphere.transform.scale.tuple.units.x); //radius * 2;
-			vec_push(intersections, &intersect);
-		}
+		vec_push(intersections, &(t_intersect){
+			.time = (-b - sqrt(discriminant)) / (2 * a),
+			.shape = shape
+		});
+		vec_push(intersections, &(t_intersect){
+			.time = (-b + sqrt(discriminant)) / (2 * a),
+			.shape = shape
+		});
 	}
 }
 
-void	cone_intersection(t_ray *ray, t_object *cone, t_vec *intersections)
+void	cone_intersection(t_ray ray, t_object *cone, t_vec *intersections)
 {
 	(void)ray;
 	(void)cone;
 	(void)intersections;
 }
 
-void	cylinder_intersection(t_ray *ray, t_object *cylinder, t_vec *intersections)
+void	cylinder_intersection(t_ray ray, t_object *cylinder, t_vec *intersections)
 {
 	(void)ray;
 	(void)cylinder;
@@ -118,7 +108,7 @@ int sort_intersections(void *xs_a, void *xs_b)
 
 }
 
-void	intersect_world(t_world *world, t_ray ray)
+void	intersect_world(t_world *world)
 {
 	uint64_t i;
 	static const t_intersect_function	\
@@ -130,11 +120,12 @@ void	intersect_world(t_world *world, t_ray ray)
 		cylinder_intersection
 	};
 
+	world->ray = (t_ray){.origin = point(0, 0, -5), .direction = vector(0, 0, 1)};
 	i = -1;
 	while (++i < world->objects.len)
 	{
 		intersect_object[((t_object *)vec_get(&world->objects, i))->type] \
-			(&ray, ((t_object *)vec_get(&world->objects, i)), \
+			(world->ray, ((t_object *)vec_get(&world->objects, i)), \
 			&world->intersections);
 	}
 	vec_sort(&world->intersections, sort_intersections);

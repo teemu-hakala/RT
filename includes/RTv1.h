@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RTv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/25 15:24:33 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/25 15:38:18 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct s_world
 	t_vec		lights;
 	t_vec		objects;
 	t_vec		intersections;
+	t_ray		ray;
 }	t_world;
 
 typedef struct s_win
@@ -90,7 +91,7 @@ typedef struct s_win
 	t_world		world;
 }	t_win;
 
-typedef void	(*t_intersect_function)(t_ray *, t_object *, t_vec *);
+typedef void	(*t_intersect_function)(t_ray, t_object *, t_vec *);
 
 /*tuple operations & matrix maths*/
 t_tuple	point(t_fl x, t_fl y, t_fl z);
@@ -161,12 +162,12 @@ t_tuple	lighting(t_material material, t_light light, t_phong vectors,
 t_object	sphere(t_tuple origin, t_transform transform, t_material material);
 
 /* object intersection */
-void	intersect_world(t_world *world, t_ray ray);
+void	intersect_world(t_world *world);
 void	identify_hit(t_intersections *array);
 // void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array);
 //void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array, t_win *win);
 // void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array);
-void	sphere_intersection(t_ray *ray, t_object *shape, t_vec *intersections);
+void	sphere_intersection(t_ray ray, t_object *shape, t_vec *intersections);
 
 /* reflections*/
 t_tuple	reflect(t_tuple input, t_tuple normal);

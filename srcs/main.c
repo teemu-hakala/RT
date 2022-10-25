@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:02:35 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/25 14:00:09 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/25 15:38:24 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -471,7 +471,7 @@ void	test_world_intersection(t_win *win)
 	ray.origin.tuple.units = (t_units){ 0.0, 0.0, -5.0, POINT_1};
 	ray.direction.tuple.units = (t_units){ 0.0, 0.0, 1.0, VECTOR_0 };
 	default_world(&win->world);
-	intersect_world(&win->world, ray);
+	intersect_world(&win->world);
 	vec_iter(&win->world.intersections, vec_print);
 
 }
