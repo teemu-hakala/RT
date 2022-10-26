@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 11:28:57 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/26 16:54:24 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/26 17:04:40 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,6 @@ typedef struct s_ray
 	t_tuple	origin;
 	t_tuple	direction;
 }			t_ray;
-
-typedef struct s_comp
-{
-	t_fl			time;
-	t_object_type	type;
-	t_tuple			point;
-	t_phong			vectors;
-	int				inside;
-}				t_comp;
 
 typedef struct s_world
 {

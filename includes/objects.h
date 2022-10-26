@@ -45,6 +45,15 @@ typedef struct s_material
 	t_tuple	col_mash;
 }				t_material;
 
+typedef struct s_comp
+{
+	t_fl			time;
+	t_object_type	type;
+	t_tuple			point;
+	t_phong			vectors;
+	int				inside;
+}				t_comp;
+
 typedef struct s_plane
 {
 	t_tuple		origin;
