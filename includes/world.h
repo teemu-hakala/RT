@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 11:28:57 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/26 12:21:45 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/26 13:11:51 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ typedef struct s_comp
 {
 	t_fl		time;
 	t_tuple		point;
-	t_object	object;
 	t_tuple		eyev;
 	t_tuple		normalv;
 }				t_comp;
