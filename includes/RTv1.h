@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RTv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/26 16:49:42 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/26 18:19:26 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ void	identify_hit(t_world *world, uint64_t index, t_comp *shape_comps);
 // void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array);
 //void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array, t_win *win);
 // void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array);
-void	sphere_intersection(t_ray ray, t_sphere *sphere, t_world *world);
+void	sphere_intersection(t_ray ray, void *sphere, t_world *world);
 
 /* reflections*/
 t_tuple	reflect(t_tuple input, t_tuple normal);
@@ -153,7 +153,7 @@ t_mtx	view_transform(t_tuple from, t_tuple to, t_tuple up);
 
 /* normals */
 t_tuple	normal_at(void *object, t_object_type type, t_tuple *point);
-t_tuple	normal_at_sphere(t_sphere *sphere, t_tuple *point_at);
+t_tuple	normal_at_sphere(void *sphere, t_tuple *point_at);
 
 /* plot pixels */
 // void	plot_points(t_win *win, t_object *sphere);

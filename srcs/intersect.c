@@ -50,14 +50,14 @@ void	identify_hit(t_world *world, uint64_t index, t_comp *shape_comps)
 		world, shape_comps);
 }
 
-void	plane_intersection(t_ray ray, t_object *plane, t_world *world)
+void	plane_intersection(t_ray ray, void *plane, t_world *world)
 {
 	(void)ray;
 	(void)plane;
 	(void)world;
 }
 
-void	sphere_intersection(t_ray ray, t_sphere *sphere, t_world *world)
+void	sphere_intersection(t_ray ray, void *sphere, t_world *world)
 {
 	t_fl		discriminant;
 	t_fl		a;
@@ -65,8 +65,8 @@ void	sphere_intersection(t_ray ray, t_sphere *sphere, t_world *world)
 	t_fl		c;
 	t_tuple		sphere_to_ray;
 
-	ray = ray_transform(&ray, &sphere->transform.inverse);
-	sphere_to_ray = tuple_sub(ray.origin, sphere->origin);
+	ray = ray_transform(&ray, &((t_sphere *)sphere)->transform.inverse);
+	sphere_to_ray = tuple_sub(ray.origin, ((t_sphere *)sphere)->origin);
 	a = dot_product(ray.direction, ray.direction);
 	b = 2 * dot_product(ray.direction, sphere_to_ray);
 	c = dot_product(sphere_to_ray, sphere_to_ray) - 1;
@@ -83,18 +83,19 @@ void	sphere_intersection(t_ray ray, t_sphere *sphere, t_world *world)
 				.shape = sphere
 			}) == VEC_ERROR)
 			handle_errors("vec_push malloc error sphere_intersection");
-		identify_hit(world, world->intersections.len - 2, &sphere->comp);
+		identify_hit(world, world->intersections.len - 2, \
+			&((t_sphere *)sphere)->comp);
 	}
 }
 
-void	cone_intersection(t_ray ray, t_object *cone, t_world *world)
+void	cone_intersection(t_ray ray, void *cone, t_world *world)
 {
 	(void)ray;
 	(void)cone;
 	(void)world;
 }
 
-void	cylinder_intersection(t_ray ray, t_object *cylinder, t_world *world)
+void	cylinder_intersection(t_ray ray, void *cylinder, t_world *world)
 {
 	(void)ray;
 	(void)cylinder;

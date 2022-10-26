@@ -9,6 +9,7 @@ t_tuple shade_hit(t_world *world, t_comp *shape_comps)
 	shape = (t_object *)vec_get(&world->objects, world->object_index);
 	shape->type = shape_comps->type;
 	colour.tuple.units = (t_units) {0.0, 0.0, 0.0, 0.0};
+	i = 0;
 	while (i < world->lights.len)
 	{
 		if (shape->type == OBJECT_PLANE)
@@ -37,7 +38,8 @@ t_tuple shade_hit(t_world *world, t_comp *shape_comps)
 		}
 		i++;
 	}
-	printf("colour: a: %f, r: %f, g: %f, b:%f\n");
+	printf("colour: a: %f, r: %f, g: %f, b:%f\n", colour.tuple.colour.a, \
+		colour.tuple.colour.r, colour.tuple.colour.g, colour.tuple.colour.b);
 	return (colour);
 }
 
