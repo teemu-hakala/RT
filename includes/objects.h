@@ -18,6 +18,7 @@
 
 typedef enum e_object_type
 {
+	OBJECT_INDEX_OFFSET = 42,
 	OBJECT_PLANE = 42,
 	OBJECT_SPHERE = 43,
 	OBJECT_CONE = 44,

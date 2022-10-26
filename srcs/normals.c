@@ -46,5 +46,5 @@ t_tuple	normal_at(void *object, t_object_type type, t_tuple *point)
 		normal_at_cone,
 		normal_at_cylinder};
 
-	return (normals[type](object, point));
+	return (normals[type - OBJECT_INDEX_OFFSET](object, point));
 }

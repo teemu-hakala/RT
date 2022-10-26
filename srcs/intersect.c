@@ -137,7 +137,7 @@ void	intersect_world(t_world *world)
 	while (++world->object_index < world->objects.len)
 	{
 		intersect_object[((t_object *)vec_get(&world->objects, \
-			world->object_index))->type] \
+			world->object_index))->type - OBJECT_INDEX_OFFSET] \
 			(world->ray, ((t_object *)vec_get(&world->objects, \
 			world->object_index)), world);
 	}
