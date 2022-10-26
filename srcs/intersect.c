@@ -25,6 +25,7 @@ void	prepare_computations(t_intersect *intersection, t_world *world, \
 	}
 	else
 		shape_comps->inside = 0;
+	shade_hit(world, shape_comps);
 }
 
 void	identify_hit(t_world *world, uint64_t index, t_comp *shape_comps)

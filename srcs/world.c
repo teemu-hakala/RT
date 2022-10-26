@@ -31,8 +31,8 @@ static t_material	default_material_1(void)
 {
 	return ((t_material){
 		.ambient = 0.1,
-		.diffuse = 0.9,
-		.specular = 0.9,
+		.diffuse = 0.7,
+		.specular = 0.2,
 		.shininess = 200,
 		.colour = (t_tuple)
 		{

@@ -8,7 +8,7 @@ t_tuple shade_hit(t_world *world, t_comp *shape_comps)
 
 	shape = (t_object *)vec_get(&world->objects, world->object_index);
 	shape->type = shape_comps->type;
-	colour.tuple.units = (t_units) {0.0, 0.0, 0.0, 0.0};
+	colour.tuple.units = (t_units) {1.0, 0.0, 0.0, 0.0};
 	i = 0;
 	while (i < world->lights.len)
 	{
