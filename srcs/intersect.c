@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 16:14:00 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/26 13:04:57 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/26 13:22:32 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,14 @@ void	sphere_intersection(t_ray ray, t_object *shape, t_world *world)
 	if (discriminant >= 0.0)
 	{
 		if (vec_push(&world->intersections, &(t_intersect){
-			.time = (-b - sqrt(discriminant)) / (2 * a),
-			.shape = shape
-		}) == VEC_ERROR)
+				.time = (-b - sqrt(discriminant)) / (2 * a),
+				.shape = shape
+			}) == VEC_ERROR)
 			handle_errors("vec_push malloc error sphere_intersection");
 		if (vec_push(&world->intersections, &(t_intersect){
-			.time = (-b + sqrt(discriminant)) / (2 * a),
-			.shape = shape
-		}) == VEC_ERROR)
+				.time = (-b + sqrt(discriminant)) / (2 * a),
+				.shape = shape
+			}) == VEC_ERROR)
 			handle_errors("vec_push malloc error sphere_intersection");
 		identify_hit(world, world->intersections.len, 2);
 	}
@@ -99,9 +99,9 @@ void	cylinder_intersection(t_ray ray, t_object *cylinder, t_world *world)
 
 int sort_intersections(void *xs_a, void *xs_b)
 {
-	t_intersect *a;
-	t_intersect *b;
-	t_fl diff;
+	t_intersect	*a;
+	t_intersect	*b;
+	t_fl		diff;
 
 	a = (t_intersect *)xs_a;
 	b = (t_intersect *)xs_b;
@@ -117,7 +117,6 @@ int sort_intersections(void *xs_a, void *xs_b)
 
 void	intersect_world(t_world *world)
 {
-	uint64_t i;
 	static const t_intersect_function	\
 					intersect_object[] = \
 	{
@@ -127,13 +126,15 @@ void	intersect_world(t_world *world)
 		cylinder_intersection
 	};
 
-	world->ray = (t_ray){.origin = point(0, 0, -5), .direction = vector(0, 0, 1)};
-	i = -1;
-	while (++i < world->objects.len)
+	world->ray = (t_ray){.origin = point(0, 0, -5), \
+		.direction = vector(0, 0, 1)};
+	world->object_index = (uint64_t)(-1);
+	while (++world->object_index < world->objects.len)
 	{
-		intersect_object[((t_object *)vec_get(&world->objects, i))->type] \
-			(world->ray, ((t_object *)vec_get(&world->objects, i)), \
-			world);
+		intersect_object[((t_object *)vec_get(&world->objects, \
+			world->object_index))->type] \
+			(world->ray, ((t_object *)vec_get(&world->objects, \
+			world->object_index)), world);
 	}
 	vec_sort(&world->intersections, sort_intersections);
 }
