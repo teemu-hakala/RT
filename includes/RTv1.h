@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RTv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/26 18:19:26 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/26 21:04:23 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,7 @@ void	default_world(t_world *world);
 t_transform	default_transform(void);
 
 /* camera */
-// t_camera	camera(t_size size, t_fl field_of_view);
+t_camera	camera(t_canvas size, t_fl field_of_view);
+t_ray	ray_for_pixel(t_camera camera, t_canvas position);
 
 #endif

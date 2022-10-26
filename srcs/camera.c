@@ -4,7 +4,6 @@ static t_fl	get_pixel_size(t_camera *camera, t_canvas size, t_fl field_of_view)
 {
 	t_fl		half_view;
 	t_fl		aspect;
-	t_fl		pixel_size;
 
 	half_view = (t_fl)tan(field_of_view / 2);
 	aspect = (t_fl)size.horizontal / (t_fl)size.vertical;

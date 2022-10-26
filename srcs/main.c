@@ -435,19 +435,33 @@ void	test_view_transform(void)
 	test_view_transform_arbitrary();
 }
 
-/*
+void	print_tuple(t_tuple *tuple)
+{
+	printf("(% lf, % lf, % lf, % lf)\n", tuple->array[X], tuple->array[Y], \
+		tuple->array[Z], tuple->array[W]);
+}
+
 void	print_camera(t_camera *camera)
 {
 	printf("camera->size.horizontal %hu\n", camera->size.horizontal);
 	printf("camera->size.vertical %hu\n", camera->size.vertical);
-	printf("");
+	printf("camera->field_of_view %lf\n", camera->field_of_view);
+	ft_print_mtx(&camera->transform.matrix);
+	printf("camera->pixel_size %lf\n", camera->pixel_size);
+}
+
+void	print_ray(t_ray *ray)
+{
+	printf("RAY:\n");
+	print_tuple(&ray->origin);
+	print_tuple(&ray->direction);
 }
 
 void test_camera_construction(void)
 {
 	t_camera	cam;
 
-	cam = camera((t_size){.vertical = 160, .horizontal = 120}, (t_fl)M_PI_2);
+	cam = camera((t_canvas){.vertical = 120, .horizontal = 160}, (t_fl)M_PI_2);
 	print_camera(&cam);
 }
 
@@ -455,7 +469,7 @@ void test_camera_pixel_size_horizontal_canvas(void)
 {
 	t_camera	cam;
 
-	cam = camera((t_size){.vertical = 200, .horizontal = 125}, (t_fl)M_PI_2);
+	cam = camera((t_canvas){.vertical = 125, .horizontal = 200}, (t_fl)M_PI_2);
 	print_camera(&cam);
 }
 
@@ -463,7 +477,7 @@ void test_camera_pixel_size_vertical_canvas(void)
 {
 	t_camera	cam;
 
-	cam = camera((t_size){.vertical = 125, .horizontal = 200}, (t_fl)M_PI_2);
+	cam = camera((t_canvas){.vertical = 125, .horizontal = 200}, (t_fl)M_PI_2);
 	print_camera(&cam);
 }
 
@@ -472,9 +486,10 @@ void test_camera_ray_centre_of_canvas(void)
 	t_camera	cam;
 	t_ray		ray;
 
-	cam = camera((t_size){.vertical = 201, .horizontal = 101}, (t_fl)M_PI_2);
+	cam = camera((t_canvas){.vertical = 101, .horizontal = 201}, (t_fl)M_PI_2);
 	print_camera(&cam);
-	ray = ray_for_pixel();
+	ray = ray_for_pixel(cam, (t_canvas){.vertical = 50, .horizontal = 100});
+	print_ray(&ray);
 }
 
 void test_camera_ray_corner_of_canvas(void)
@@ -482,9 +497,10 @@ void test_camera_ray_corner_of_canvas(void)
 	t_camera	cam;
 	t_ray		ray;
 
-	cam = camera((t_size){.vertical = 201, .horizontal = 101}, (t_fl)M_PI_2);
+	cam = camera((t_canvas){.vertical = 101, .horizontal = 201}, (t_fl)M_PI_2);
 	print_camera(&cam);
-	ray = ray_for_pixel();
+	ray = ray_for_pixel(cam, (t_canvas){.vertical = 0, .horizontal = 0});
+	print_ray(&ray);
 }
 
 void test_camera_ray_transformed(void)
@@ -492,9 +508,14 @@ void test_camera_ray_transformed(void)
 	t_camera	cam;
 	t_ray		ray;
 
-	cam = camera((t_size){.vertical = 201, .horizontal = 101}, (t_fl)M_PI_2);
+	cam = camera((t_canvas){.vertical = 101, .horizontal = 201}, (t_fl)M_PI_2);
+	rotate(&cam.transform.matrix, &(t_tuple){.tuple.rotation.y_hei_vert_yaw = M_PI_4});
+	translate(&cam.transform.matrix, &(t_tuple){.tuple.units = {.x = 0, .y = -2, .z = 5, .w = POINT_1}});
+	cam.transform.inverse = cam.transform.matrix;
+	matrix_inversion(&cam.transform.inverse, 4);
 	print_camera(&cam);
-	ray = ray_for_pixel();
+	ray = ray_for_pixel(cam, (t_canvas){.vertical = 50, .horizontal = 100});
+	print_ray(&ray);
 }
 
 void	test_camera(void)
@@ -509,19 +530,19 @@ void	test_camera(void)
 
 void	tests(void)
 {
-	test_matrix_inversion();
-	test_red_disc();
-	test_normal_at_sphere();
-	test_reflect();
-	test_lighting_angled();
-	test_lighting_ambient();
-	test_3D_sphere();
-	test_3D_sphere_transformed();
-	test_3D_sphere_params();
-	test_view_transform();
+	// test_matrix_inversion();
+	// test_red_disc();
+	// test_normal_at_sphere();
+	// test_reflect();
+	// test_lighting_angled();
+	// test_lighting_ambient();
+	// test_3D_sphere();
+	// test_3D_sphere_transformed();
+	// test_3D_sphere_params();
+	// test_view_transform();
 	test_camera();
 }
-*/
+
 static void	vec_print(void *data_point)
 {
 	t_intersect	*xs;
@@ -545,7 +566,7 @@ int	main(void)
 
 	// if (argc != 2)
 	// 	handle_errors(USAGE);
-	// tests();
+	tests();
 	initialise_world(&win.world);
 	// parse(&win);
 	initialise_window(&win);
