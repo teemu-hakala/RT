@@ -6,29 +6,44 @@ Assume for now all spheres are unit spheres, therefore radius of 1
 diameter of sphere: 2 * r
 */
 
+// void	prepare_computations(t_intersect *intersection, t_world *world, \
+// 	t_comp *shape_comps)
+// {
+// 	shape_comps->time = intersection->time;
+// 	shape_comps->point = hit_position(&world->ray, shape_comps->time);
+// 	shape_comps->eyev = tuple_scale(world->ray.direction, -1);
+// 	shape_comps->normalv = \
+// 	normal_at((t_object *)vec_get(&world->objects, world->object_index), \
+// 	shape_comps->type, &shape_comps->point);
+
+// 	if (dot_product(shape_comps->normalv, shape_comps->eyev) < 0)
+// 	{
+// 		shape_comps->inside = 1;
+// 		shape_comps->normalv = tuple_scale(shape_comps->normalv, -1);
+// 	}
+// 	else
+// 		shape_comps->inside = 0;
+// }
+
 void	prepare_computations(t_intersect *intersection, t_world *world, \
 	t_comp *shape_comps)
 {
 	shape_comps->time = intersection->time;
 	shape_comps->point = hit_position(&world->ray, shape_comps->time);
-	shape_comps->eyev = tuple_scale(world->ray.direction, -1);
-	shape_comps->normalv = \
+	shape_comps->vectors.eye = tuple_scale(world->ray.direction, -1);
+	shape_comps->vectors.surface_normal = \
 	normal_at((t_object *)vec_get(&world->objects, world->object_index), \
 	shape_comps->type, &shape_comps->point);
 
-	if (dot_product(shape_comps->normalv, shape_comps->eyev) < 0)
+	if (dot_product(shape_comps->vectors.surface_normal, \
+	shape_comps->vectors.eye) < 0)
 	{
 		shape_comps->inside = 1;
-		shape_comps->normalv = tuple_scale(shape_comps->normalv, -1);
+		shape_comps->vectors.surface_normal = \
+		tuple_scale(shape_comps->vectors.surface_normal, -1);
 	}
 	else
 		shape_comps->inside = 0;
-	/*t_comp temp;
-
-	temp.time = intersection->time;
-	temp.point = hit_position(&world->ray, temp.time);
-	temp.eyev = tuple_scale(world->ray.direction, -1);
-	temp.normalv = normal_at_sphere(object, &temp.point);*/
 }
 
 void	identify_hit(t_world *world, uint64_t index, t_comp *shape_comps)

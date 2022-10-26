@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 11:28:57 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/26 14:39:08 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/26 16:19:49 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ typedef struct s_comp
 	t_fl			time;
 	t_object_type	type;
 	t_tuple			point;
-	t_tuple			eyev;
-	t_tuple			normalv;
+	t_phong			vectors;
 	int				inside;
 }				t_comp;
 
