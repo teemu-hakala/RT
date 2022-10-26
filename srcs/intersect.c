@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 16:14:00 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/25 17:35:13 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/26 10:12:32 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	identify_hit(t_world *world, uint64_t index, uint64_t num)
 	}
 	if (hit_index != (uint64_t)(-1))
 		if (vec_push(&world->hits, vec_get(&world->intersections, \
-			index - hit_index)) == (uint64_t)(-1))
+			index - num + hit_index)) == (uint64_t)(-1))
 			handle_errors("vec_push malloc error sphere_intersection");
 }
 
