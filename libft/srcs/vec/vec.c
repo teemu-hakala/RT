@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 10:28:30 by thakala           #+#    #+#             */
-/*   Updated: 2022/10/25 17:06:53 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/26 12:32:33 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,23 @@ int	vec_resize(t_vec *src, uint64_t	target_size)
 	return (src->memory != NULL);
 }
 
-uint64_t	vec_push(t_vec *dst, void *src)
+// uint64_t	vec_push(t_vec *dst, void *src)
+// {
+// 	if (dst->alloc_size <= dst->len)
+// 		if (vec_resize(dst, dst->alloc_size * 2) <= 0)
+// 			return ((uint64_t)VEC_ERROR);
+// 	ft_memcpy(&dst->memory[dst->len * dst->elem_size], src, dst->elem_size);
+// 	return (dst->len++);
+// }
+
+int	vec_push(t_vec *dst, void *src)
 {
 	if (dst->alloc_size <= dst->len)
 		if (vec_resize(dst, dst->alloc_size * 2) <= 0)
-			return ((uint64_t)VEC_ERROR);
+			return (VEC_ERROR);
 	ft_memcpy(&dst->memory[dst->len * dst->elem_size], src, dst->elem_size);
-	return (dst->len++);
+	dst->len++;
+	return (VEC_SUCCESS);
 }
 
 int	vec_pop(void *dst, t_vec *src)

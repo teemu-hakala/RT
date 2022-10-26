@@ -57,6 +57,7 @@ typedef struct s_sphere
 	t_tuple		origin;
 	t_transform	transform;
 	t_material	material;
+	// t_comp		comp;
 }	t_sphere;
 
 typedef struct s_cylinder

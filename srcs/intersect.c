@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 16:14:00 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/26 10:12:32 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/26 12:43:46 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,33 +18,15 @@ Assume for now all spheres are unit spheres, therefore radius of 1
 diameter of sphere: 2 * r
 */
 
-/*void	prepare_computations(t_vec *intersections, t_ray *ray)
+void	prepare_computations(t_intersect *intersection, t_world *world)
 {
-	h
-}*/
-
-// void	identify_hit(t_intersections *array)
-// {
-// 	int	i;
-// 	int	hit;
-
-// 	i = -1;
-// 	hit = -1;
-// 	while (++i < array->num)
-// 	{
-// 		if (array->intersections[i].time >= 0 && hit == -1)
-// 		{
-// 			hit = i;
-// 			array->intersections[i].hit = 1;
-// 		}
-// 		else
-// 			array->intersections[i].hit = 0;
-// 	}
-// }
+	
+}
 
 void	identify_hit(t_world *world, uint64_t index, uint64_t num)
 {
 	t_intersect	*intersection;
+	t_intersect *temp;
 	uint64_t	hit_index;
 	uint64_t	i;
 
@@ -55,13 +37,16 @@ void	identify_hit(t_world *world, uint64_t index, uint64_t num)
 		intersection = (t_intersect *)vec_get(&world->intersections, \
 			(index - num + i));
 		if (intersection->time >= 0 && hit_index == (uint64_t)(-1))
+		{
 			hit_index = i;
+			temp = intersection;
+		}
 		i++;
 	}
 	if (hit_index != (uint64_t)(-1))
-		if (vec_push(&world->hits, vec_get(&world->intersections, \
-			index - num + hit_index)) == (uint64_t)(-1))
+		if (vec_push(&world->hits, temp) == VEC_ERROR)
 			handle_errors("vec_push malloc error sphere_intersection");
+	prepare_computations(temp, world);
 }
 
 void	plane_intersection(t_ray ray, t_object *plane, t_world *world)
@@ -78,7 +63,6 @@ void	sphere_intersection(t_ray ray, t_object *shape, t_world *world)
 	t_fl		b;
 	t_fl		c;
 	t_tuple		sphere_to_ray;
-	uint64_t	index;
 
 	ray = ray_transform(&ray, &shape->object.sphere.transform.inverse);
 	sphere_to_ray = tuple_sub(ray.origin, shape->object.sphere.origin);
@@ -88,19 +72,17 @@ void	sphere_intersection(t_ray ray, t_object *shape, t_world *world)
 	discriminant = (b * b) - 4 * a * c;
 	if (discriminant >= 0.0)
 	{
-		index = vec_push(&world->intersections, &(t_intersect){
+		if (vec_push(&world->intersections, &(t_intersect){
 			.time = (-b - sqrt(discriminant)) / (2 * a),
 			.shape = shape
-		});
-		if (index == (uint64_t)(-1))
+		}) == VEC_ERROR)
 			handle_errors("vec_push malloc error sphere_intersection");
-		index = vec_push(&world->intersections, &(t_intersect){
+		if (vec_push(&world->intersections, &(t_intersect){
 			.time = (-b + sqrt(discriminant)) / (2 * a),
 			.shape = shape
-		});
-		if (index == (uint64_t)(-1))
+		}) == VEC_ERROR)
 			handle_errors("vec_push malloc error sphere_intersection");
-		identify_hit(world, index + 1, 2);
+		identify_hit(world, world->intersections.len, 2);
 	}
 }
 

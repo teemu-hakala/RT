@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RTv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/25 17:23:21 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/26 11:43:04 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@
 # include <math.h>
 # include <mlx.h>
 # include <stdint.h>
-#include <stdio.h>
+# include <stdio.h>
 # include "libft.h"
 # include "tuple.h"
 # include "matrices.h"
 # include "objects.h"
+# include "world.h"
 # include "colour_and_light.h"
 
 # define USAGE "<instructions>"
@@ -41,35 +42,26 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
-typedef struct s_ray
-{
-	t_tuple	origin;
-	t_tuple	direction;
-}			t_ray;
+// typedef struct s_ray
+// {
+// 	t_tuple	origin;
+// 	t_tuple	direction;
+// }			t_ray;
 
-typedef struct s_comp
-{
-	t_tuple		point;
-	t_object	object;
-	t_tuple		eyev;
-	t_tuple		normalv;
-}				t_comp;
-
-
-typedef struct s_intersect
-{
-	t_fl		time;
-	t_object	*shape;
-	int			hit;
-}				t_intersect;
+// typedef struct s_intersect
+// {
+// 	t_fl		time;
+// 	t_object	*shape;
+// 	int			hit;
+// }				t_intersect;
 
 // need new name here
-typedef struct s_intersections
-{
-	int			num;
-	t_intersect	*intersections;
+// typedef struct s_intersections
+// {
+// 	int			num;
+// 	t_intersect	*intersections;
 
-}				t_intersections;
+// }				t_intersections;
 
 typedef struct s_coords
 {
@@ -83,15 +75,15 @@ typedef struct s_pixel_index
 	t_fl		col;
 }				t_index;
 
-typedef struct s_world
-{
-	t_camera	camera;
-	t_vec		lights;
-	t_vec		objects;
-	t_vec		intersections;
-	t_vec		hits;
-	t_ray		ray;
-}	t_world;
+// typedef struct s_world
+// {
+// 	t_camera	camera;
+// 	t_vec		lights;
+// 	t_vec		objects;
+// 	t_vec		intersections;
+// 	t_vec		hits;
+// 	t_ray		ray;
+// }	t_world;
 
 typedef struct s_win
 {

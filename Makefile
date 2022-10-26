@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: thakala <thakala@student.42.fr>            +#+  +:+       +#+         #
+#    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2022/10/25 10:44:54 by thakala          ###   ########.fr        #
+#    Updated: 2022/10/26 11:41:48 by deelliot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ HDRS = includes/RTv1.h \
 	includes/colour_and_light.h \
 	includes/matrices.h \
 	includes/objects.h \
-	includes/tuple.h
+	includes/tuple.h \
+	includes/world.h
 LIBFT_DIR = libft
 MINILIBX_DIR = minilibx
 
