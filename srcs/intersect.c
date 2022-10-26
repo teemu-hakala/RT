@@ -31,7 +31,6 @@ void	identify_hit(t_world *world, uint64_t index, t_comp *shape_comps)
 {
 	t_intersect	*intersection;
 	t_intersect	*closest;
-	uint64_t	hit_index;
 	uint64_t	i;
 
 	closest = NULL;

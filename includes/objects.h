@@ -13,9 +13,18 @@
 #ifndef OBJECTS_H
 # define OBJECTS_H
 # include "RTv1.h"
-# include "world.h"
 
 /* AN EXAMPLE: */
+
+typedef enum e_object_type
+{
+	OBJECT_PLANE = 42,
+	OBJECT_SPHERE = 43,
+	OBJECT_CONE = 44,
+	OBJECT_CYLINDER = 45,
+	OBJECT_ERROR,
+	OBJECT_NONE
+}	t_object_type;
 
 typedef struct s_field_of_view
 {
@@ -113,16 +122,6 @@ typedef struct s_camera
 	t_fl		half_height;
 	t_fl		aspect;
 }	t_camera;
-
-typedef enum e_object_type
-{
-	OBJECT_PLANE = 42,
-	OBJECT_SPHERE = 43,
-	OBJECT_CONE = 44,
-	OBJECT_CYLINDER = 45,
-	OBJECT_ERROR,
-	OBJECT_NONE
-}	t_object_type;
 
 union	u_object
 {
