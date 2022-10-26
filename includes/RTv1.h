@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/26 11:43:04 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/26 13:22:45 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,27 +42,6 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
-// typedef struct s_ray
-// {
-// 	t_tuple	origin;
-// 	t_tuple	direction;
-// }			t_ray;
-
-// typedef struct s_intersect
-// {
-// 	t_fl		time;
-// 	t_object	*shape;
-// 	int			hit;
-// }				t_intersect;
-
-// need new name here
-// typedef struct s_intersections
-// {
-// 	int			num;
-// 	t_intersect	*intersections;
-
-// }				t_intersections;
-
 typedef struct s_coords
 {
 	uint32_t	row;
@@ -74,16 +53,6 @@ typedef struct s_pixel_index
 	t_fl		row;
 	t_fl		col;
 }				t_index;
-
-// typedef struct s_world
-// {
-// 	t_camera	camera;
-// 	t_vec		lights;
-// 	t_vec		objects;
-// 	t_vec		intersections;
-// 	t_vec		hits;
-// 	t_ray		ray;
-// }	t_world;
 
 typedef struct s_win
 {
