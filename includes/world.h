@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 11:28:57 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/26 13:20:44 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/26 13:25:55 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ typedef struct s_comp
 {
 	t_fl		time;
 	t_tuple		point;
-	t_object	object;
 	t_tuple		eyev;
 	t_tuple		normalv;
 }				t_comp;
@@ -43,7 +42,7 @@ typedef struct s_world
 	t_vec		intersections;
 	t_vec		hits;
 	t_ray		ray;
-	uint64_t 	object_index;
+	uint64_t	object_index;
 }	t_world;
 
 # endif
