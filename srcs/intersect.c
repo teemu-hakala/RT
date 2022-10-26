@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 16:14:00 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/26 12:43:46 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/26 13:04:57 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,33 +20,30 @@ diameter of sphere: 2 * r
 
 void	prepare_computations(t_intersect *intersection, t_world *world)
 {
-	
+
 }
 
 void	identify_hit(t_world *world, uint64_t index, uint64_t num)
 {
 	t_intersect	*intersection;
-	t_intersect *temp;
+	t_intersect	*closest;
 	uint64_t	hit_index;
 	uint64_t	i;
 
-	hit_index = (uint64_t)(-1);
+	closest = NULL;
 	i = 0;
 	while (i < num)
 	{
 		intersection = (t_intersect *)vec_get(&world->intersections, \
 			(index - num + i));
-		if (intersection->time >= 0 && hit_index == (uint64_t)(-1))
-		{
-			hit_index = i;
-			temp = intersection;
-		}
+		if (intersection->time >= 0 && closest == NULL)
+			closest = intersection;
 		i++;
 	}
-	if (hit_index != (uint64_t)(-1))
-		if (vec_push(&world->hits, temp) == VEC_ERROR)
+	if (closest != NULL)
+		if (vec_push(&world->hits, closest) == VEC_ERROR)
 			handle_errors("vec_push malloc error sphere_intersection");
-	prepare_computations(temp, world);
+	prepare_computations(vec_get(&world->hits, world->hits.len - 1), world);
 }
 
 void	plane_intersection(t_ray ray, t_object *plane, t_world *world)
