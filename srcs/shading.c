@@ -37,6 +37,7 @@ t_tuple shade_hit(t_world *world, t_comp *shape_comps)
 		}
 		i++;
 	}
+	printf("colour: a: %f, r: %f, g: %f, b:%f\n");
 	return (colour);
 }
 

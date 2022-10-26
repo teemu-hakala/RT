@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 10:28:30 by thakala           #+#    #+#             */
-/*   Updated: 2022/10/26 13:08:11 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/26 16:45:19 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,10 @@ int	vec_resize(t_vec *src, uint64_t	target_size)
 	return (src->memory != NULL);
 }
 
-int	vec_clear(t_vec *src)
-{
-	src->len = 0;
-}
+// int	vec_clear(t_vec *src)
+// {
+// 	src->len = 0;
+// }
 
 // uint64_t	vec_push(t_vec *dst, void *src)
 // {

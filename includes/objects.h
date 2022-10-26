@@ -13,6 +13,7 @@
 #ifndef OBJECTS_H
 # define OBJECTS_H
 # include "RTv1.h"
+# include "world.h"
 
 /* AN EXAMPLE: */
 

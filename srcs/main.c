@@ -436,67 +436,67 @@ void	test_view_transform(void)
 }
 
 
-void test_camera_construction(void)
-{
-	t_camera	cam;
+// void test_camera_construction(void)
+// {
+// 	t_camera	cam;
 
-	cam = camera((t_size){.vertical = 160, .horizontal = 120}, (t_fl)M_PI_2);
-}
+// 	cam = camera((t_size){.vertical = 160, .horizontal = 120}, (t_fl)M_PI_2);
+// }
 
-void test_camera_pixel_size_horizontal_canvas(void)
-{
-	t_camera	cam;
+// void test_camera_pixel_size_horizontal_canvas(void)
+// {
+// 	t_camera	cam;
 
-	cam = camera((t_size){.vertical = 200, .horizontal = 125}, (t_fl)M_PI_2);
-}
+// 	cam = camera((t_size){.vertical = 200, .horizontal = 125}, (t_fl)M_PI_2);
+// }
 
-void test_camera_pixel_size_vertical_canvas(void)
-{
-	t_camera	cam;
+// void test_camera_pixel_size_vertical_canvas(void)
+// {
+// 	t_camera	cam;
 
-	cam = camera((t_size){.vertical = 125, .horizontal = 200}, (t_fl)M_PI_2);
-}
+// 	cam = camera((t_size){.vertical = 125, .horizontal = 200}, (t_fl)M_PI_2);
+// }
 
-void test_camera_ray_centre_of_canvas(void)
-{
-	t_camera	cam;
-	t_ray		ray;
+// void test_camera_ray_centre_of_canvas(void)
+// {
+// 	t_camera	cam;
+// 	t_ray		ray;
 
-	cam = camera((t_size){.vertical = 201, .horizontal = 101}, (t_fl)M_PI_2);
-	ray = ray_for_pixel();
-}
+// 	cam = camera((t_size){.vertical = 201, .horizontal = 101}, (t_fl)M_PI_2);
+// 	ray = ray_for_pixel();
+// }
 
-void test_camera_ray_corner_of_canvas(void)
-{
-	t_camera	cam;
-	t_ray		ray;
+// void test_camera_ray_corner_of_canvas(void)
+// {
+// 	t_camera	cam;
+// 	t_ray		ray;
 
-	cam = camera((t_size){.vertical = 201, .horizontal = 101}, (t_fl)M_PI_2);
-	ray = ray_for_pixel();
-}
+// 	cam = camera((t_size){.vertical = 201, .horizontal = 101}, (t_fl)M_PI_2);
+// 	ray = ray_for_pixel();
+// }
 
-void test_camera_ray_transformed(void)
-{
-	t_camera	cam;
-	t_ray		ray;
+// void test_camera_ray_transformed(void)
+// {
+// 	t_camera	cam;
+// 	t_ray		ray;
 
-	cam = camera((t_size){.vertical = 201, .horizontal = 101}, (t_fl)M_PI_2);
-	ray = ray_for_pixel();
-}
+// 	cam = camera((t_size){.vertical = 201, .horizontal = 101}, (t_fl)M_PI_2);
+// 	ray = ray_for_pixel();
+// }
 
 
-void	test_camera(void)
-{
-	test_camera_construction();
-	test_camera_pixel_size_horizontal_canvas();
-	test_camera_pixel_size_vertical_canvas();
-	test_camera_ray_centre_of_canvas();
-	test_camera_ray_corner_of_canvas();
-	test_camera_ray_transformed();
-}
+// void	test_camera(void)
+// {
+// 	test_camera_construction();
+// 	test_camera_pixel_size_horizontal_canvas();
+// 	test_camera_pixel_size_vertical_canvas();
+// 	test_camera_ray_centre_of_canvas();
+// 	test_camera_ray_corner_of_canvas();
+// 	test_camera_ray_transformed();
+// }
 
-void	tests(void)
-{
+// void	tests(void)
+// {
 	//test_matrix_inversion();
 	// test_red_disc();
 	// test_normal_at_sphere();
@@ -506,9 +506,9 @@ void	tests(void)
 	//test_3D_sphere();
 	//test_3D_sphere_transformed();
 	// test_3D_sphere_params();
-	test_view_transform();
-	test_camera();
-}
+// 	test_view_transform();
+// 	test_camera();
+// }
 
 static void	vec_print(void *data_point)
 {
@@ -520,10 +520,6 @@ static void	vec_print(void *data_point)
 
 void	test_world_intersection(t_win *win)
 {
-	t_ray	ray;
-
-	ray.origin.tuple.units = (t_units){ 0.0, 0.0, -5.0, POINT_1};
-	ray.direction.tuple.units = (t_units){ 0.0, 0.0, 1.0, VECTOR_0 };
 	default_world(&win->world);
 	intersect_world(&win->world);
 	vec_iter(&win->world.intersections, vec_print);

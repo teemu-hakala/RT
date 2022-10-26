@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RTv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/26 15:39:44 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/26 16:49:42 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 # include "libft.h"
 # include "tuple.h"
 # include "matrices.h"
+# include "colour_and_light.h"
 # include "objects.h"
 # include "world.h"
-# include "colour_and_light.h"
 
 # define USAGE "<instructions>"
 # define WIDTH 400
@@ -126,6 +126,7 @@ int		handle_input(int key);
 /* colour and lighting*/
 t_tuple	hex_to_argb(uint32_t colour);
 uint32_t	argb_to_hex(t_colour *colour);
+t_tuple shade_hit(t_world *world, t_comp *shape_comps);
 t_tuple	lighting(t_material material, t_light light, t_phong vectors,
 	t_tuple point);
 
@@ -167,6 +168,6 @@ void	default_world(t_world *world);
 t_transform	default_transform(void);
 
 /* camera */
-t_camera	camera(t_size size, t_fl field_of_view);
+// t_camera	camera(t_size size, t_fl field_of_view);
 
 #endif
