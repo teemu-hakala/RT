@@ -23,6 +23,12 @@ void	prepare_computations(t_intersect *intersection, t_world *world, \
 	}
 	else
 		shape_comps->inside = 0;
+	/*t_comp temp;
+
+	temp.time = intersection->time;
+	temp.point = hit_position(&world->ray, temp.time);
+	temp.eyev = tuple_scale(world->ray.direction, -1);
+	temp.normalv = normal_at_sphere(object, &temp.point);*/
 }
 
 void	identify_hit(t_world *world, uint64_t index, t_comp *shape_comps)
