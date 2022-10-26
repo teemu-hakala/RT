@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
+#    By: thakala <thakala@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/03 13:04:07 by deelliot          #+#    #+#              #
-#    Updated: 2022/10/24 13:53:07 by deelliot         ###   ########.fr        #
+#    Updated: 2022/10/26 10:58:42 by thakala          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,9 +78,9 @@ OBJ = $(addprefix $(OBJ_DIR)/,\
 	$(addprefix $(GRAPHICS_DIR)/,$(GRAPHICS_SRCS:.c=.o)))
 
 #Rules
-all: obj $(NAME)
+all: obj-rule $(NAME)
 
-obj:
+obj-rule:
 	@mkdir -p $(OBJ_DIR)/$(VEC_DIR)
 	@mkdir -p $(OBJ_DIR)/$(LIST_DIR)
 	@mkdir -p $(OBJ_DIR)/$(STRING_DIR)
@@ -110,4 +110,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re obj-rule
