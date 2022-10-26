@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 10:27:10 by thakala           #+#    #+#             */
-/*   Updated: 2022/10/26 12:32:53 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/26 13:07:36 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int			vec_from(t_vec *dst, void *src, uint64_t len, uint64_t elem_size);
 int			vec_resize(t_vec *src, uint64_t target_len);
 int			vec_clear(t_vec *src);
 // uint64_t	vec_push(t_vec *src, void *elem);
-int	vec_push(t_vec *dst, void *src);
+int			vec_push(t_vec *dst, void *src);
 int			vec_pop(void *dst, t_vec *src);
 int			vec_copy(t_vec *dst, t_vec *src);
 void		*vec_get(t_vec *src, uint64_t index);
