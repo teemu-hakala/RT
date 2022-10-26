@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   intersect.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 16:14:00 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/26 13:22:32 by thakala          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "RTv1.h"
 
 /* circumference of sphere: 2πr.
@@ -18,12 +6,26 @@ Assume for now all spheres are unit spheres, therefore radius of 1
 diameter of sphere: 2 * r
 */
 
-void	prepare_computations(t_intersect *intersection, t_world *world)
+void	prepare_computations(t_intersect *intersection, t_world *world, \
+	t_comp *shape_comps)
 {
+	shape_comps->time = intersection->time;
+	shape_comps->point = hit_position(&world->ray, shape_comps->time);
+	shape_comps->eyev = tuple_scale(world->ray.direction, -1);
+	shape_comps->normalv = \
+	normal_at((t_object *)vec_get(&world->objects, world->object_index), \
+	shape_comps->type, &shape_comps->point);
 
+	if (dot_product(shape_comps->normalv, shape_comps->eyev) < 0)
+	{
+		shape_comps->inside = 1;
+		shape_comps->normalv = tuple_scale(shape_comps->normalv, -1);
+	}
+	else
+		shape_comps->inside = 0;
 }
 
-void	identify_hit(t_world *world, uint64_t index, uint64_t num)
+void	identify_hit(t_world *world, uint64_t index, t_comp *shape_comps)
 {
 	t_intersect	*intersection;
 	t_intersect	*closest;
@@ -32,10 +34,10 @@ void	identify_hit(t_world *world, uint64_t index, uint64_t num)
 
 	closest = NULL;
 	i = 0;
-	while (i < num)
+	while (i < world->intersections.len)
 	{
 		intersection = (t_intersect *)vec_get(&world->intersections, \
-			(index - num + i));
+			(index + i));
 		if (intersection->time >= 0 && closest == NULL)
 			closest = intersection;
 		i++;
@@ -43,7 +45,8 @@ void	identify_hit(t_world *world, uint64_t index, uint64_t num)
 	if (closest != NULL)
 		if (vec_push(&world->hits, closest) == VEC_ERROR)
 			handle_errors("vec_push malloc error sphere_intersection");
-	prepare_computations(vec_get(&world->hits, world->hits.len - 1), world);
+	prepare_computations(vec_get(&world->hits, world->hits.len - 1), \
+		world, shape_comps);
 }
 
 void	plane_intersection(t_ray ray, t_object *plane, t_world *world)
@@ -53,7 +56,7 @@ void	plane_intersection(t_ray ray, t_object *plane, t_world *world)
 	(void)world;
 }
 
-void	sphere_intersection(t_ray ray, t_object *shape, t_world *world)
+void	sphere_intersection(t_ray ray, t_sphere *sphere, t_world *world)
 {
 	t_fl		discriminant;
 	t_fl		a;
@@ -61,8 +64,8 @@ void	sphere_intersection(t_ray ray, t_object *shape, t_world *world)
 	t_fl		c;
 	t_tuple		sphere_to_ray;
 
-	ray = ray_transform(&ray, &shape->object.sphere.transform.inverse);
-	sphere_to_ray = tuple_sub(ray.origin, shape->object.sphere.origin);
+	ray = ray_transform(&ray, &sphere->transform.inverse);
+	sphere_to_ray = tuple_sub(ray.origin, sphere->origin);
 	a = dot_product(ray.direction, ray.direction);
 	b = 2 * dot_product(ray.direction, sphere_to_ray);
 	c = dot_product(sphere_to_ray, sphere_to_ray) - 1;
@@ -71,15 +74,15 @@ void	sphere_intersection(t_ray ray, t_object *shape, t_world *world)
 	{
 		if (vec_push(&world->intersections, &(t_intersect){
 				.time = (-b - sqrt(discriminant)) / (2 * a),
-				.shape = shape
+				.shape = sphere
 			}) == VEC_ERROR)
 			handle_errors("vec_push malloc error sphere_intersection");
 		if (vec_push(&world->intersections, &(t_intersect){
 				.time = (-b + sqrt(discriminant)) / (2 * a),
-				.shape = shape
+				.shape = sphere
 			}) == VEC_ERROR)
 			handle_errors("vec_push malloc error sphere_intersection");
-		identify_hit(world, world->intersections.len, 2);
+		identify_hit(world, world->intersections.len - 2, &sphere->comp);
 	}
 }
 

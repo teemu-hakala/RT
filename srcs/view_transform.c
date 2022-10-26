@@ -1,16 +1,18 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   view_transform.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/25 10:26:16 by thakala           #+#    #+#             */
-/*   Updated: 2022/10/25 12:35:08 by deelliot         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "RTv1.h"
+
+t_transform	default_transform(void)
+{
+	return (
+		(t_transform)
+		{
+			.matrix = identity_matrix(),
+			.inverse = identity_matrix(),
+			.translation = vector(0, 0, 0),
+			.rotation = vector(0, 0, 0),
+			.scale = vector(1, 1, 1)
+		}
+	);
+}
 
 t_mtx	view_transform(t_tuple from, t_tuple to, t_tuple up)
 {

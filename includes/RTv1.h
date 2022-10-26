@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RTv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/26 11:43:04 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/26 15:18:35 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ typedef struct s_win
 	t_world		world;
 }	t_win;
 
-typedef void	(*t_intersect_function)(t_ray, t_object *, t_world *);
+typedef void	(*t_intersect_function)(t_ray, void *, t_world *);
 
 /*tuple operations & matrix maths*/
 t_tuple	point(t_fl x, t_fl y, t_fl z);
@@ -165,11 +165,11 @@ t_object	sphere(t_tuple origin, t_transform transform, t_material material);
 
 /* object intersection */
 void	intersect_world(t_world *world);
-void	identify_hit(t_world *world, uint64_t index, uint64_t num);
+void	identify_hit(t_world *world, uint64_t index, t_comp *shape_comps);
 // void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array);
 //void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array, t_win *win);
 // void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array);
-void	sphere_intersection(t_ray ray, t_object *shape, t_world *world);
+void	sphere_intersection(t_ray ray, t_sphere *sphere, t_world *world);
 
 /* reflections*/
 t_tuple	reflect(t_tuple input, t_tuple normal);
@@ -182,7 +182,8 @@ void	transform_object(t_transform *object);
 t_mtx	view_transform(t_tuple from, t_tuple to, t_tuple up);
 
 /* normals */
-t_tuple	normal_at_sphere(t_object *sphere, t_tuple *point_at);
+t_tuple	normal_at(void *object, t_object_type type, t_tuple *point);
+t_tuple	normal_at_sphere(t_sphere *sphere, t_tuple *point_at);
 
 /* plot pixels */
 // void	plot_points(t_win *win, t_object *sphere);
@@ -194,5 +195,9 @@ void	img_pixel_put(t_win *win, int x, int y, unsigned int colour);
 /* testing */
 void	ft_print_mtx(t_mtx *mtx);
 void	default_world(t_world *world);
+t_transform	default_transform(void);
+
+/* camera */
+t_camera	camera(t_size size, t_fl field_of_view);
 
 #endif

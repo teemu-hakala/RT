@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   sphere.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/23 10:20:50 by thakala           #+#    #+#             */
-/*   Updated: 2022/10/23 10:42:29 by thakala          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "RTv1.h"
 
 t_object	sphere(t_tuple origin, t_transform transform, t_material material)
@@ -20,7 +8,8 @@ t_object	sphere(t_tuple origin, t_transform transform, t_material material)
 			{
 				.origin = origin,
 				.transform = transform,
-				.material = material
+				.material = material,
+				.comp = (t_comp){.type = OBJECT_SPHERE}
 			},
 			.type = OBJECT_SPHERE
 		}

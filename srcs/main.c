@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/09 16:02:35 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/25 17:28:30 by thakala          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../includes/RTv1.h"
 
 void test_new_ray(void)
@@ -439,6 +427,74 @@ void	test_view_transform_arbitrary()
 	ft_print_mtx(&mtx);
 }
 
+void	test_view_transform(void)
+{
+	test_view_transform_default();
+	test_view_transform_positive_z();
+	test_view_transform_moves_the_world();
+	test_view_transform_arbitrary();
+}
+
+
+void test_camera_construction(void)
+{
+	t_camera	cam;
+
+	cam = camera((t_size){.vertical = 160, .horizontal = 120}, (t_fl)M_PI_2);
+}
+
+void test_camera_pixel_size_horizontal_canvas(void)
+{
+	t_camera	cam;
+
+	cam = camera((t_size){.vertical = 200, .horizontal = 125}, (t_fl)M_PI_2);
+}
+
+void test_camera_pixel_size_vertical_canvas(void)
+{
+	t_camera	cam;
+
+	cam = camera((t_size){.vertical = 125, .horizontal = 200}, (t_fl)M_PI_2);
+}
+
+void test_camera_ray_centre_of_canvas(void)
+{
+	t_camera	cam;
+	t_ray		ray;
+
+	cam = camera((t_size){.vertical = 201, .horizontal = 101}, (t_fl)M_PI_2);
+	ray = ray_for_pixel();
+}
+
+void test_camera_ray_corner_of_canvas(void)
+{
+	t_camera	cam;
+	t_ray		ray;
+
+	cam = camera((t_size){.vertical = 201, .horizontal = 101}, (t_fl)M_PI_2);
+	ray = ray_for_pixel();
+}
+
+void test_camera_ray_transformed(void)
+{
+	t_camera	cam;
+	t_ray		ray;
+
+	cam = camera((t_size){.vertical = 201, .horizontal = 101}, (t_fl)M_PI_2);
+	ray = ray_for_pixel();
+}
+
+
+void	test_camera(void)
+{
+	test_camera_construction();
+	test_camera_pixel_size_horizontal_canvas();
+	test_camera_pixel_size_vertical_canvas();
+	test_camera_ray_centre_of_canvas();
+	test_camera_ray_corner_of_canvas();
+	test_camera_ray_transformed();
+}
+
 void	tests(void)
 {
 	//test_matrix_inversion();
@@ -450,10 +506,8 @@ void	tests(void)
 	//test_3D_sphere();
 	//test_3D_sphere_transformed();
 	// test_3D_sphere_params();
-	test_view_transform_default();
-	test_view_transform_positive_z();
-	test_view_transform_moves_the_world();
-	test_view_transform_arbitrary();
+	test_view_transform();
+	test_camera();
 }
 
 static void	vec_print(void *data_point)

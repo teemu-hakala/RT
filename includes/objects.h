@@ -50,6 +50,7 @@ typedef struct s_plane
 	t_transform	transform;
 	t_tuple		normal;
 	t_material	material;
+	t_comp		comp;
 }	t_plane;
 
 typedef struct s_sphere
@@ -57,8 +58,16 @@ typedef struct s_sphere
 	t_tuple		origin;
 	t_transform	transform;
 	t_material	material;
-	// t_comp		comp;
+	t_comp		comp;
 }	t_sphere;
+
+typedef struct s_cone
+{
+	t_tuple		origin;
+	t_transform	transform;
+	t_material	material;
+	t_comp		comp;
+}	t_cone;
 
 typedef struct s_cylinder
 {
@@ -66,14 +75,8 @@ typedef struct s_cylinder
 	t_transform	transform;
 	t_fl		radius;
 	t_material	material;
+	t_comp		comp;
 }	t_cylinder;
-
-typedef struct s_cone
-{
-	t_tuple		origin;
-	t_transform	transform;
-	t_material	material;
-}	t_cone;
 
 typedef struct s_light
 {
@@ -82,23 +85,34 @@ typedef struct s_light
 	t_transform	transform;
 }	t_light;
 
+typedef struct s_canvas_size
+{
+	uint16_t	vertical;
+	uint16_t	horizontal;
+}	t_canvas;
+
 typedef struct s_camera
 {
 	t_tuple		origin;
 	t_transform	transform;
 	t_tuple		center_of_interest;
-	t_fov2		field_of_view;
+	t_canvas	size;
+	t_fl		field_of_view;
+	t_fl		pixel_size;
+	t_fl		half_width;
+	t_fl		half_height;
+	t_fl		aspect;
 }	t_camera;
 
-enum	e_object_type
+typedef enum e_object_type
 {
-	OBJECT_PLANE = 0,
-	OBJECT_SPHERE = 1,
-	OBJECT_CONE = 2,
-	OBJECT_CYLINDER = 3,
+	OBJECT_PLANE = 42,
+	OBJECT_SPHERE = 43,
+	OBJECT_CONE = 44,
+	OBJECT_CYLINDER = 45,
 	OBJECT_ERROR,
 	OBJECT_NONE
-};
+}	t_object_type;
 
 union	u_object
 {
@@ -116,7 +130,7 @@ typedef struct s_object
 	enum e_object_type	type;
 }	t_object;
 
-typedef t_tuple	(*t_normal_fn)(t_object *, t_tuple *);
+typedef t_tuple	(*t_normal_fn)(void *, t_tuple *);
 
 typedef void	(*t_object_transform)(t_object *);
 
