@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 16:14:00 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/26 13:31:53 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/26 13:32:20 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,12 @@ diameter of sphere: 2 * r
 
 void	prepare_computations(t_intersect *intersection, t_world *world)
 {
+	t_comp temp;
 
+	temp.time = intersection->time;
+	temp.point = hit_position(&world->ray, temp.time);
+	temp.eyev = tuple_scale(world->ray.direction, -1);
+	temp.normalv = normal_at_sphere(object, &temp.point);
 }
 
 void	identify_hit(t_world *world, uint64_t index, uint64_t num)
