@@ -4,7 +4,6 @@ void	render(t_win *win, t_camera *camera)
 {
 	t_canvas	canvas;
 	t_tuple		colour;
-	t_ray		ray;
 
 	canvas.vertical = 0;
 	while (canvas.vertical < camera->size.vertical)

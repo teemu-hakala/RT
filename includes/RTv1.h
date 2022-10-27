@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/27 10:37:59 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/27 11:01:43 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_pixel_index
 	t_fl		col;
 }				t_index;
 
+
 typedef struct s_win
 {
 	t_img		img;
@@ -63,6 +64,10 @@ typedef struct s_win
 }	t_win;
 
 typedef void	(*t_intersect_function)(t_ray, void *, t_world *);
+
+typedef void	(*t_shading_function)(t_world *, void *, t_tuple *, t_light *);
+
+typedef void	(*t_computation_fn)(t_world *);
 
 /*tuple operations & matrix maths*/
 t_tuple	point(t_fl x, t_fl y, t_fl z);
@@ -171,5 +176,6 @@ t_transform	default_transform(void);
 t_camera	camera(t_canvas size, t_fl field_of_view);
 t_ray	ray_for_pixel(t_camera camera, t_canvas position);
 void	prepare_computations(t_world *world);
+t_tuple	colour_at(t_world *world);
 
 #endif

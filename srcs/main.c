@@ -195,7 +195,7 @@ void	test_lighting_angled()
 	vectors.surface_normal.tuple.units = (t_units){ 0.0, 0.0, -1.0, VECTOR_0 };
 
 	point.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1 };
-	result_colour = lighting(material, light, vectors, point);
+	result_colour = lighting(material, &light, vectors, point);
 	printf("col: %.4f, %.4f, %.4f, %.4f\n", result_colour.tuple.colour.a, \
 	result_colour.tuple.colour.r, result_colour.tuple.colour.g, \
 	result_colour.tuple.colour.b);
@@ -225,7 +225,7 @@ void	test_lighting_ambient()
 	vectors.surface_normal.tuple.units = (t_units){ 0.0, 0.0, -1.0, VECTOR_0 };
 
 	point.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1 };
-	result_colour = lighting(material, light, vectors, point);
+	result_colour = lighting(material, &light, vectors, point);
 	printf("col: %.4f, %.4f, %.4f, %.4f\n", result_colour.tuple.colour.a, \
 	result_colour.tuple.colour.r, result_colour.tuple.colour.g, \
 	result_colour.tuple.colour.b);
@@ -556,8 +556,7 @@ void	test_world_intersection(t_win *win)
 	default_world(&win->world);
 	intersect_world(&win->world);
 	vec_iter(&win->world.intersections, vec_print);
-	vec_iter(&win->world.hits, vec_print);
-
+	//printf(world->hit);
 }
 
 int	main(void)

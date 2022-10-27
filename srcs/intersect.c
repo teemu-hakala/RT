@@ -21,8 +21,8 @@ void	identify_hit(t_world *world)
 		if (intersection->time < world->hit.intersection->time)
 			world->hit.intersection = intersection;
 	}
-	//prepare_computations(vec_get(&world->hits, world->hits.len - 1), \
-		world, shape_comps);
+	// prepare_computations(vec_get(&world->hits, world->hits.len - 1), \
+	// 	world, shape_comps);
 }
 
 void	plane_intersection(t_ray ray, void *plane, t_world *world)

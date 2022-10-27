@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 11:28:57 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/27 10:11:27 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/27 10:59:35 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@ typedef struct s_intersect
 	t_fl		time;
 	t_object	*shape;
 }				t_intersect;
+
+typedef struct s_hit
+{
+	t_intersect	*intersection;
+	t_comp		computations;
+}	t_hit;
 
 typedef struct s_ray
 {

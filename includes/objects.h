@@ -64,12 +64,6 @@ typedef struct s_comp
 	int				inside;
 }				t_comp;
 
-typedef struct s_hit
-{
-	t_intersect	*intersection;
-	t_comp		computations;
-}	t_hit;
-
 typedef struct s_plane
 {
 	t_tuple		origin;
@@ -149,7 +143,5 @@ typedef struct s_object
 typedef t_tuple	(*t_normal_fn)(void *, t_tuple *);
 
 typedef void	(*t_object_transform)(t_object *);
-
-typedef void	(*t_computation_fn)(t_world *);
 
 #endif

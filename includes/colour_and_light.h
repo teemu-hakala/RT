@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 17:34:04 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/27 10:34:54 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/27 10:57:40 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,5 @@ typedef struct s_phong
 	t_tuple	surface_normal;
 	t_tuple	reflection;
 }				t_phong;
-
-typedef t_tuple	(*t_shading_function)(t_world *, void *, t_tuple *, t_light *);
 
 #endif

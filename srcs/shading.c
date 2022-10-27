@@ -1,13 +1,13 @@
 #include "RTv1.h"
 
-t_tuple	shade_plane(t_world *world, void *plane, t_tuple *colour, t_light *light)
+void	shade_plane(t_world *world, void *plane, t_tuple *colour, t_light *light)
 {
 	*colour = tuple_add((lighting(((t_plane *)plane)->material, \
 		light, world->hit.computations.vectors, \
 		world->hit.computations.point)), *colour);
 }
 
-t_tuple	shade_sphere(t_world *world, void *sphere, t_tuple *colour, t_light *light)
+void	shade_sphere(t_world *world, void *sphere, t_tuple *colour, t_light *light)
 {
 
 	*colour = tuple_add((lighting(((t_sphere *)sphere)->material, \
@@ -15,7 +15,7 @@ t_tuple	shade_sphere(t_world *world, void *sphere, t_tuple *colour, t_light *lig
 		world->hit.computations.point)), *colour);
 }
 
-t_tuple	shade_cone(t_world *world, void *cone, t_tuple *colour, t_light *light)
+void	shade_cone(t_world *world, void *cone, t_tuple *colour, t_light *light)
 {
 
 	*colour = tuple_add((lighting(((t_cone *)cone)->material, \
@@ -23,7 +23,7 @@ t_tuple	shade_cone(t_world *world, void *cone, t_tuple *colour, t_light *light)
 		world->hit.computations.point)), *colour);
 }
 
-t_tuple	shade_cylinder(t_world *world, void *cylinder, t_tuple *colour, t_light *light)
+void	shade_cylinder(t_world *world, void *cylinder, t_tuple *colour, t_light *light)
 {
 	*colour = tuple_add((lighting(((t_cylinder *)cylinder)->material, \
 		light, world->hit.computations.vectors, \

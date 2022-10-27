@@ -20,25 +20,25 @@ void	prepare_object(t_world *world, t_object *object, t_comp *computations)
 
 void	prepare_plane(t_world *world)
 {
-	prepare_object(world, &world->hit.intersection->shape, \
+	prepare_object(world, world->hit.intersection->shape, \
 		&world->hit.intersection->shape->object.plane.comp);
 }
 
 void	prepare_sphere(t_world *world)
 {
-	prepare_object(world, &world->hit.intersection->shape, \
+	prepare_object(world, world->hit.intersection->shape, \
 		&world->hit.intersection->shape->object.sphere.comp);
 }
 
 void	prepare_cone(t_world *world)
 {
-	prepare_object(world, &world->hit.intersection->shape, \
+	prepare_object(world, world->hit.intersection->shape, \
 		&world->hit.intersection->shape->object.cone.comp);
 }
 
 void	prepare_cylinder(t_world *world)
 {
-	prepare_object(world, &world->hit.intersection->shape, \
+	prepare_object(world, world->hit.intersection->shape, \
 		&world->hit.intersection->shape->object.cylinder.comp);
 }
 
