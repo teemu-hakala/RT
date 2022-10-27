@@ -20,4 +20,5 @@ void	render(t_win *win, t_camera *camera)
 		}
 		canvas.vertical++;
 	}
+	mlx_put_image_to_window(win->mlx, win->win, win->img.img, 0, 0);
 }
