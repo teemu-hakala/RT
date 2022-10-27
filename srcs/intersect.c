@@ -12,18 +12,20 @@ void	identify_hit(t_world *world)
 	uint64_t	i;
 
 	i = 0;
-	world->hit.intersection = \
-		(t_intersect *)vec_get(&world->intersections, i++);
+
+	world->hit.intersection = NULL;
 	while (i < world->intersections.len)
 	{
 		intersection = \
 			(t_intersect *)vec_get(&world->intersections, i++);
-		if (intersection->time < world->hit.intersection->time)
-			world->hit.intersection = intersection;
+
+		if (intersection->time >= 0)
+			if (world->hit.intersection == NULL \
+				|| intersection->time < world->hit.intersection->time)
+				world->hit.intersection = intersection;
 	}
-	// prepare_computations(vec_get(&world->hits, world->hits.len - 1), \
-	// 	world, shape_comps);
 }
+
 
 void	plane_intersection(t_ray ray, void *plane, t_world *world)
 {

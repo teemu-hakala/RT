@@ -553,8 +553,11 @@ static void	vec_print(void *data_point)
 
 void	test_world_intersection(t_win *win)
 {
+	t_camera cam;
+	cam = camera((t_canvas){.vertical = 101, .horizontal = 201}, (t_fl)M_PI_2);
+	win->world.ray =  ray_for_pixel(cam, (t_canvas){.vertical = 50, .horizontal = 100});
 	default_world(&win->world);
-	intersect_world(&win->world);
+	colour_at(&win->world);
 	vec_iter(&win->world.intersections, vec_print);
 	//printf(world->hit);
 }
