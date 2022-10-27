@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RTv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/26 21:04:23 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/27 10:37:59 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,8 +126,8 @@ int		handle_input(int key);
 /* colour and lighting*/
 t_tuple	hex_to_argb(uint32_t colour);
 uint32_t	argb_to_hex(t_colour *colour);
-t_tuple shade_hit(t_world *world, t_comp *shape_comps);
-t_tuple	lighting(t_material material, t_light light, t_phong vectors,
+t_tuple shade_hit(t_world *world);
+t_tuple	lighting(t_material material, t_light *light, t_phong vectors,
 	t_tuple point);
 
 /* object intialisation */
@@ -135,7 +135,7 @@ t_object	sphere(t_tuple origin, t_transform transform, t_material material);
 
 /* object intersection */
 void	intersect_world(t_world *world);
-void	identify_hit(t_world *world, uint64_t index, t_comp *shape_comps);
+void	identify_hit(t_world *world);
 // void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array);
 //void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array, t_win *win);
 // void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array);
@@ -170,5 +170,6 @@ t_transform	default_transform(void);
 /* camera */
 t_camera	camera(t_canvas size, t_fl field_of_view);
 t_ray	ray_for_pixel(t_camera camera, t_canvas position);
+void	prepare_computations(t_world *world);
 
 #endif

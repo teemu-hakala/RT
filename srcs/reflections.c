@@ -13,7 +13,7 @@ t_tuple	reflect(t_tuple input, t_tuple normal)
 }
 /* l stands for angle. we can change that. */
 
-void	lighting_cont(t_material *material, t_light light, t_phong *vectors,
+void	lighting_cont(t_material *material, t_light *light, t_phong *vectors,
 	t_fl incidence_l)
 {
 	t_fl	reflect_l;
@@ -30,17 +30,17 @@ void	lighting_cont(t_material *material, t_light light, t_phong *vectors,
 	{
 		factor = pow(reflect_l, material->shininess);
 		material->spec_col = colour_scale(
-				colour_scale(light.intensity, material->specular), factor);
+				colour_scale(light->intensity, material->specular), factor);
 	}
 }
 
-t_tuple	lighting(t_material material, t_light light, t_phong vectors,
+t_tuple	lighting(t_material material, t_light *light, t_phong vectors,
 	t_tuple point)
 {
 	t_fl	incidence_l;
 
-	material.col_mash = tuple_multi(material.colour, light.intensity);
-	vectors.light = normalize(tuple_sub(light.position, point));
+	material.col_mash = tuple_multi(material.colour, light->intensity);
+	vectors.light = normalize(tuple_sub(light->position, point));
 	material.amb_col = colour_scale(material.col_mash, material.ambient);
 	incidence_l = dot_product(vectors.light, vectors.surface_normal);
 	if (incidence_l < 0.0)

@@ -32,10 +32,10 @@ void	initialise_world(t_world *world)
 {
 	if (vec_new(&world->lights, 1, sizeof(t_light)) != VEC_SUCCESS
 		|| vec_new(&world->objects, 1, sizeof(t_object)) != VEC_SUCCESS
-		|| vec_new(&world->hits, 1, sizeof(t_intersect)) != VEC_SUCCESS
 		|| vec_new(&world->intersections, 1, sizeof(t_intersect))
 		!= VEC_SUCCESS)
 		handle_errors("initialise_world malloc returned NULL");
+	world->hit.intersection = NULL;
 	//default_world(world);
 }
 

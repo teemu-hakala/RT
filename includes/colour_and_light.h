@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colour_and_light.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 17:34:04 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/24 14:07:31 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/27 10:34:54 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ typedef struct s_phong
 	t_tuple	reflection;
 }				t_phong;
 
+typedef t_tuple	(*t_shading_function)(t_world *, void *, t_tuple *, t_light *);
 
 #endif

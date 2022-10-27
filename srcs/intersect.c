@@ -6,48 +6,22 @@ Assume for now all spheres are unit spheres, therefore radius of 1
 diameter of sphere: 2 * r
 */
 
-void	prepare_computations(t_intersect *intersection, t_world *world, \
-	t_comp *shape_comps)
-{
-	shape_comps->time = intersection->time;
-	shape_comps->point = hit_position(&world->ray, shape_comps->time);
-	shape_comps->vectors.eye = tuple_scale(world->ray.direction, -1);
-	shape_comps->vectors.surface_normal = \
-	normal_at((t_object *)vec_get(&world->objects, world->object_index), \
-	shape_comps->type, &shape_comps->point);
-
-	if (dot_product(shape_comps->vectors.surface_normal, \
-	shape_comps->vectors.eye) < 0)
-	{
-		shape_comps->inside = 1;
-		shape_comps->vectors.surface_normal = \
-		tuple_scale(shape_comps->vectors.surface_normal, -1);
-	}
-	else
-		shape_comps->inside = 0;
-	shade_hit(world, shape_comps);
-}
-
-void	identify_hit(t_world *world, uint64_t index, t_comp *shape_comps)
+void	identify_hit(t_world *world)
 {
 	t_intersect	*intersection;
-	t_intersect	*closest;
 	uint64_t	i;
 
-	closest = NULL;
 	i = 0;
+	world->hit.intersection = \
+		(t_intersect *)vec_get(&world->intersections, i++);
 	while (i < world->intersections.len)
 	{
-		intersection = (t_intersect *)vec_get(&world->intersections, \
-			(index + i));
-		if (intersection->time >= 0 && closest == NULL)
-			closest = intersection;
-		i++;
+		intersection = \
+			(t_intersect *)vec_get(&world->intersections, i++);
+		if (intersection->time < world->hit.intersection->time)
+			world->hit.intersection = intersection;
 	}
-	if (closest != NULL)
-		if (vec_push(&world->hits, closest) == VEC_ERROR)
-			handle_errors("vec_push malloc error sphere_intersection");
-	prepare_computations(vec_get(&world->hits, world->hits.len - 1), \
+	//prepare_computations(vec_get(&world->hits, world->hits.len - 1), \
 		world, shape_comps);
 }
 
@@ -84,8 +58,6 @@ void	sphere_intersection(t_ray ray, void *sphere, t_world *world)
 				.shape = sphere
 			}) == VEC_ERROR)
 			handle_errors("vec_push malloc error sphere_intersection");
-		identify_hit(world, world->intersections.len - 2, \
-			&((t_sphere *)sphere)->comp);
 	}
 }
 
@@ -132,8 +104,6 @@ void	intersect_world(t_world *world)
 		cylinder_intersection
 	};
 
-	world->ray = (t_ray){.origin = point(0, 0, -5), \
-		.direction = vector(0, 0, 1)};
 	world->object_index = (uint64_t)(-1);
 	while (++world->object_index < world->objects.len)
 	{
