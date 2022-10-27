@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 10:28:30 by thakala           #+#    #+#             */
-/*   Updated: 2022/10/27 08:33:10 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/27 13:12:01 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,8 +246,8 @@ int	vec_sort(t_vec *src, int (*f)(void *, void *))
 {
 	uint64_t	c;
 
-	c = -1;
-	while (++c < src->len - 1)
+	c = (uint64_t)(-1);
+	while (++c + 1 < src->len)
 	{
 		if (f(&src->memory[src->elem_size * c],
 				&src->memory[src->elem_size * (c + 1)]) > 0)

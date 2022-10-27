@@ -40,16 +40,6 @@ void	img_pixel_put(t_win *win, int x, int y, uint32_t colour)
 	{
 		pixel = win->img.addr + (y * win->img.length + \
 			x * (win->img.bpp / 8));
-		*(unsigned int *)pixel = colour;
+		*(uint32_t *)pixel = colour;
 	}
-
-	// int	pix;
-
-	// pix = (y * win->img.length) + (x * win->img.bpp / 8);
-	// if ((x >= 0 && x < WIDTH) && (y >= 0 && y < HEIGHT))
-	// {
-	// 	win->img.addr[pix + 0] = colour->tuple.colour.r;
-	// 	win->img.addr[pix + 1] = colour->tuple.colour.g;
-	// 	win->img.addr[pix + 2] = colour->tuple.colour.b;
-	// }
 }

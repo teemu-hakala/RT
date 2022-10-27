@@ -6,13 +6,13 @@
 #    By: thakala <thakala@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2022/10/27 10:47:30 by thakala          ###   ########.fr        #
+#    Updated: 2022/10/27 12:58:33 by thakala          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = RTv1
 
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 # FLAGS += -fsanitize=address -Wconversion -Ofast -flto
 
 # Directories

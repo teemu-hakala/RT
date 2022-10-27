@@ -3,15 +3,13 @@
 t_tuple	colour_at(t_world *world)
 {
 	vec_clear(&world->intersections);
-	
 	intersect_world(world);
-	printf("test\n");
 	identify_hit(world);
-	prepare_computations(world);
-	if (world->hit.intersection->time >= 0)
+	if (world->hit.intersection != NULL)
 	{
+		prepare_computations(world);
 		return (shade_hit(world));
 	}
 	else
-		return (colour(0, 0, 0, 0));
+		return (colour(0, 0, 0.5, 0.7));
 }

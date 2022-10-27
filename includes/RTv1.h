@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RTv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/27 12:35:56 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/27 15:53:12 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # include "world.h"
 
 # define USAGE "<instructions>"
-# define WIDTH 400
-# define HEIGHT 400
+# define WIDTH 201
+# define HEIGHT 101
 # define WALL_WIDTH 7
 # define WALL_HEIGHT 7
 # define KEY_DOWN 2
@@ -177,5 +177,6 @@ t_camera	camera(t_canvas size, t_fl field_of_view);
 t_ray	ray_for_pixel(t_camera camera, t_canvas position);
 void	prepare_computations(t_world *world);
 t_tuple	colour_at(t_world *world);
+void	render(t_win *win, t_camera *camera);
 
 #endif

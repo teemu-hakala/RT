@@ -105,14 +105,15 @@ void	intersect_world(t_world *world)
 		cone_intersection,
 		cylinder_intersection
 	};
+	uint64_t		i;
 
-	world->object_index = (uint64_t)(-1);
-	while (++world->object_index < world->objects.len)
+	i = (uint64_t)(-1);
+	while (++i < world->objects.len)
 	{
 		intersect_object[((t_object *)vec_get(&world->objects, \
-			world->object_index))->type - OBJECT_INDEX_OFFSET] \
+			i))->type - OBJECT_INDEX_OFFSET] \
 			(world->ray, ((t_object *)vec_get(&world->objects, \
-			world->object_index)), world);
+			i)), world);
 	}
 	vec_sort(&world->intersections, sort_intersections);
 }

@@ -14,7 +14,7 @@ void	render(t_win *win, t_camera *camera)
 			win->world.ray = ray_for_pixel(*camera, (t_canvas){.vertical = \
 				canvas.vertical, .horizontal = canvas.horizontal});
 			colour = colour_at(&win->world);
-			img_pixel_put(win->win, canvas.horizontal, canvas.vertical,
+			img_pixel_put(win, canvas.horizontal, canvas.vertical,
 				argb_to_hex(&colour.tuple.colour));
 			canvas.horizontal++;
 		}

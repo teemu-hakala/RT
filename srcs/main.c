@@ -446,7 +446,15 @@ void	print_camera(t_camera *camera)
 	printf("camera->size.horizontal %hu\n", camera->size.horizontal);
 	printf("camera->size.vertical %hu\n", camera->size.vertical);
 	printf("camera->field_of_view %lf\n", camera->field_of_view);
+	printf("\n");
 	ft_print_mtx(&camera->transform.matrix);
+	printf("\n");
+	ft_print_mtx(&camera->transform.inverse);
+	printf("\n");
+	print_tuple(&camera->origin);
+	print_tuple(&camera->transform.translation);
+	print_tuple(&camera->transform.rotation);
+	print_tuple(&camera->transform.scale);
 	printf("camera->pixel_size %lf\n", camera->pixel_size);
 }
 
@@ -551,15 +559,28 @@ static void	vec_print(void *data_point)
 	printf("time %lf\n", xs->time);
 }
 
-void	test_world_intersection(t_win *win)
+void	test_colour_at(t_win *win)
 {
 	t_camera cam;
 	cam = camera((t_canvas){.vertical = 101, .horizontal = 201}, (t_fl)M_PI_2);
-	win->world.ray =  ray_for_pixel(cam, (t_canvas){.vertical = 50, .horizontal = 100});
+	win->world.ray = ray_for_pixel(cam, (t_canvas){.vertical = 50, .horizontal = 100});
 	default_world(&win->world);
 	colour_at(&win->world);
 	vec_iter(&win->world.intersections, vec_print);
 	//printf(world->hit);
+}
+
+void	test_render(t_win *win)
+{
+	t_camera cam;
+
+	cam = camera((t_canvas){.vertical = HEIGHT, .horizontal = WIDTH}, (t_fl)M_PI_2);
+	cam.origin = point(0, 0, -10.0);
+	cam.transform.matrix = view_transform(cam.origin, point(0, 0, 0), vector(0, 1, 0));
+	cam.transform.inverse = cam.transform.matrix;
+	matrix_inversion(&cam.transform.inverse, 4);
+	print_camera(&cam);
+	render(win, &cam);
 }
 
 int	main(void)
@@ -568,13 +589,14 @@ int	main(void)
 
 	// if (argc != 2)
 	// 	handle_errors(USAGE);
-	tests();
+	//tests();
 	initialise_world(&win.world);
 	// parse(&win);
 	initialise_window(&win);
-	test_world_intersection(&win);
+	// test_colour_at(&win);
+	test_render(&win);
 	// plot_points(&win);
-	// mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
-	// mlx_loop(win.mlx);
+	mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
+	mlx_loop(win.mlx);
 	return (0);
 }
