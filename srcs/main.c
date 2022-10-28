@@ -457,11 +457,13 @@ void	print_matrix(t_mtx *mtx, uint8_t indent_level)
 	int	j;
 
 	i = 0;
-	print_indented(indent_level, "------------------------------------------\n");
+	print_indented(indent_level, "MATRIX\n");
+	print_indented(indent_level, "{\n");
+	print_indented(indent_level + 1, "------------------------------------------\n");
 	while (i < 4)
 	{
 		j = 0;
-		print_indented(indent_level, "|");
+		print_indented(indent_level + 1, "|");
 		while (j < 4)
 		{
 			printf("% .5f, ", mtx->array[4 * i + j]);
@@ -470,7 +472,8 @@ void	print_matrix(t_mtx *mtx, uint8_t indent_level)
 		printf("|\n");
 		i++;
 	}
-	print_indented(indent_level, "------------------------------------------\n");
+	print_indented(indent_level + 1, "------------------------------------------\n");
+	print_indented(indent_level, "}\n");
 }
 
 
@@ -478,22 +481,24 @@ void	print_tuple(t_tuple *tuple, uint8_t indent_level)
 {
 	char	*str;
 
-	print_indented(indent_level, "TUPLE\n{\n");
+	print_indented(indent_level, "TUPLE\n");
+	print_indented(indent_level, "{\n");
 	asprintf(&str, "(% .5lf, % .5lf, % .5lf, % .5lf)\n", tuple->array[X], tuple->array[Y], \
 		tuple->array[Z], tuple->array[W]);
-	print_indented(indent_level, str);
+	print_indented(indent_level + 1, str);
 	free(str);
 	print_indented(indent_level, "}\n");
 }
 
 void	print_transform(t_transform *transform, uint8_t indent_level)
 {
-	print_indented(indent_level, "TRANSFORM\n{\n");
-	print_matrix(&transform->matrix, indent_level);
-	print_matrix(&transform->inverse, indent_level);
-	print_tuple(&transform->translation, indent_level);
-	print_tuple(&transform->rotation, indent_level);
-	print_tuple(&transform->scale, indent_level);
+	print_indented(indent_level, "TRANSFORM\n");
+	print_indented(indent_level, "{\n");
+	print_matrix(&transform->matrix, indent_level + 1);
+	print_matrix(&transform->inverse, indent_level + 1);
+	print_tuple(&transform->translation, indent_level + 1);
+	print_tuple(&transform->rotation, indent_level + 1);
+	print_tuple(&transform->scale, indent_level + 1);
 	print_indented(indent_level, "}\n");
 }
 
@@ -501,20 +506,21 @@ void	print_camera(t_camera *camera, uint8_t indent_level)
 {
 	char	*str;
 
-	print_indented(indent_level, "CAMERA\n{\n");
+	print_indented(indent_level, "CAMERA\n");
+	print_indented(indent_level, "{\n");
 	asprintf(&str, "camera->size.horizontal %hu\n", camera->size.horizontal);
-	print_indented(indent_level, str);
+	print_indented(indent_level + 1, str);
 	free(str);
 	asprintf(&str, "camera->size.vertical %hu\n", camera->size.vertical);
-	print_indented(indent_level, str);
+	print_indented(indent_level + 1, str);
 	free(str);
 	asprintf(&str, "camera->field_of_view %lf\n", camera->field_of_view);
-	print_indented(indent_level, str);
+	print_indented(indent_level + 1, str);
 	free(str);
-	print_tuple(&camera->origin, indent_level);
-	print_transform(&camera->transform, indent_level);
+	print_tuple(&camera->origin, indent_level + 1);
+	print_transform(&camera->transform, indent_level + 1);
 	asprintf(&str, "camera->pixel_size %lf\n", camera->pixel_size);
-	print_indented(indent_level, str);
+	print_indented(indent_level + 1, str);
 	free(str);
 	print_indented(indent_level, "}\n");
 }
@@ -634,7 +640,9 @@ void	test_colour_at(t_win *win)
 
 void	print_material(t_material *material, uint8_t indent_level)
 {
-	print_indented(indent_level, "COLOUR\n{\n(ambient, diffuse, specular, shininess):\n");
+	print_indented(indent_level, "COLOUR\n");
+	print_indented(indent_level, "{\n");
+	print_indented(indent_level + 1, "(ambient, diffuse, specular, shininess):\n");
 	print_tuple(
 		&(t_tuple)
 		{
@@ -644,14 +652,15 @@ void	print_material(t_material *material, uint8_t indent_level)
 				.z = material->specular,
 				.w = material->shininess
 			}
-		}, indent_level
+		}, indent_level + 1
 	);
 	print_indented(indent_level, "}\n");
 }
 
 void	print_phong(t_phong *phong, uint8_t indent_level)
 {
-	print_indented(indent_level, "PHONG\n{\n");
+	print_indented(indent_level, "PHONG\n");
+	print_indented(indent_level, "{\n");
 	print_tuple(&phong->eye, indent_level);
 	print_tuple(&phong->light, indent_level);
 	print_tuple(&phong->surface_normal, indent_level);
@@ -663,21 +672,23 @@ void	print_computations(t_comp *computations, uint8_t indent_level)
 {
 	char	*str;
 
-	print_indented(indent_level, "COMPUTATIONS\n{");
+	print_indented(indent_level, "COMPUTATIONS\n");
+	print_indented(indent_level, "{\n");
 	asprintf(&str, "% .5lf\n", computations->time);
-	print_indented(indent_level, str);
+	print_indented(indent_level + 1, str);
 	free(str);
 	asprintf(&str, "e_object_type: %d\n", computations->type);
-	print_indented(indent_level, str);
+	print_indented(indent_level + 1, str);
 	free(str);
-	print_tuple(&computations->point, indent_level);
-	print_phong(&computations->vectors, indent_level);
-	print_indented(indent_level, "\n");
+	print_tuple(&computations->point, indent_level + 1);
+	print_phong(&computations->vectors, indent_level + 1);
+	print_indented(indent_level, "}\n");
 }
 
 void	print_light(t_light *light, uint8_t indent_level)
 {
-	print_indented(indent_level, "LIGHT\n{\n");
+	print_indented(indent_level, "LIGHT\n");
+	print_indented(indent_level, "{\n");
 	print_tuple(&light->position, indent_level + 1);
 	print_tuple(&light->intensity, indent_level + 1);
 	print_transform(&light->transform, indent_level + 1);
@@ -694,7 +705,8 @@ void	print_plane(t_object *plane, uint8_t indent_level)
 
 void	print_sphere(t_object *sphere, uint8_t indent_level)
 {
-	print_indented(indent_level, "SPHERE\n{\n");
+	print_indented(indent_level, "SPHERE\n");
+	print_indented(indent_level, "{\n");
 	print_tuple(&sphere->object.sphere.origin, indent_level + 1);
 	print_transform(&sphere->object.sphere.transform, indent_level + 1);
 	print_material(&sphere->object.sphere.material, indent_level + 1);
