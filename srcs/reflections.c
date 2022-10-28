@@ -53,3 +53,4 @@ t_tuple	lighting(t_material material, t_light *light, t_phong vectors,
 	return (tuple_add(
 			tuple_add(material.amb_col, material.dif_col), material.spec_col));
 }
+//should move vector results

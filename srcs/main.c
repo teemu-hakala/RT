@@ -756,20 +756,51 @@ void	test_render(t_win *win)
 	render(win, &cam);
 }
 
+void	lighting_1(void)
+{
+	t_world	world;
+	t_tuple	point;
+	t_comp	comps;
+	t_light	light;
+	t_tuple	colour;
+
+	initialise_world(&world);
+	point.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1};
+	comps.vectors.eye.tuple.units = (t_units){ 0.0, 0.0, 0.0, VECTOR_0};
+	comps.vectors.surface_normal.tuple.units = (t_units){ 0.0, 0.0, -1.0, VECTOR_0};
+	light.position.tuple.units = (t_units){0.0, 0.0, -10, POINT_1};
+	light.intensity.tuple.units = (t_units){1.0, 1.0, 1.0, POINT_1};
+	colour = lighting(((t_object *)vec_get(&world.objects, 0))->object.sphere.material, &light, comps.vectors, point);
+	printf("colour: %f, %f, %f, %f\n", colour.tuple.units.x, colour.tuple.units.y, colour.tuple.units.z, colour.tuple.units.w);
+}
+
+void	test_lighting(void)
+{
+	t_world	world;
+	t_tuple colour;
+
+	initialise_world(&world);
+	world.ray.origin.tuple.units = (t_units){ 0.0, 0.0, -5.0, POINT_1};
+	world.ray.direction.tuple.units = (t_units){ 0.0, 0.0, 1.0, VECTOR_0 };
+	colour = colour_at(&world);
+	printf("colour(%f, %f, %f)\n", colour.tuple.units.y, colour.tuple.units.z, colour.tuple.units.w);
+}
+
 int	main(void)
 {
-	t_win	win;
+	// t_win	win;
 
 	// if (argc != 2)
 	// 	handle_errors(USAGE);
 	//tests();
-	initialise_world(&win.world);
+	// initialise_world(&win.world);
 	// parse(&win);
-	initialise_window(&win);
+	// initialise_window(&win);
 	// test_colour_at(&win);
-	test_render(&win);
+	// test_render(&win);
 	// plot_points(&win);
-	mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
-	mlx_loop(win.mlx);
+	// mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
+	// mlx_loop(win.mlx);
+	test_lighting();
 	return (0);
 }

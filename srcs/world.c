@@ -16,7 +16,7 @@ static t_transform	default_transform_1(void)
 	return (d);
 }
 
-static t_transform	default_transform_2(void)
+t_transform	default_transform_2(void)
 {
 	t_transform	d;
 
@@ -27,7 +27,7 @@ static t_transform	default_transform_2(void)
 	return (d);
 }
 
-static t_material	default_material_1(void)
+t_material	default_material_1(void)
 {
 	return ((t_material){
 		.ambient = 0.1,
@@ -67,18 +67,18 @@ static t_light	default_light(void)
 void	default_world(t_world *world)
 {
 	t_object	sphere_1;
-	t_object	sphere_2;
+	// t_object	sphere_2;
 	t_light		light;
 
 	light = default_light();
 	sphere_1 = sphere(default_origin(), default_transform_1(),
-			default_material_1());
-	sphere_2 = sphere(default_origin(), default_transform_2(),
 			default_material_2());
+	// sphere_2 = sphere(default_origin(), default_transform_2(),
+	// 		default_material_2());
 	if (vec_push(&world->objects, &sphere_1) == VEC_ERROR)
 		handle_errors("unable to malloc for world object");
-	if (vec_push(&world->objects, &sphere_2) == VEC_ERROR)
-		handle_errors("unable to malloc for world object");
+	// if (vec_push(&world->objects, &sphere_2) == VEC_ERROR)
+	// 	handle_errors("unable to malloc for world object");
 	if (vec_push(&world->lights, &light) == VEC_ERROR)
 		handle_errors("unable to malloc for light");
 }
