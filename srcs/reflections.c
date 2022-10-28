@@ -11,6 +11,7 @@ t_tuple	reflect(t_tuple input, t_tuple normal)
 	return (tuple_sub(input,
 			tuple_scale(normal, 2 * dot_product(input, normal))));
 }
+
 /* l stands for angle. we can change that. */
 
 void	lighting_cont(t_material *material, t_light *light, t_phong *vectors,

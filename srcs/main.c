@@ -802,32 +802,184 @@ void	test_render(t_win *win)
 
 void	lighting_1(void)
 {
-	t_world	world;
-	t_tuple	point;
+	// t_world	world;
+	t_tuple	pixel_point;
 	t_comp	comps;
 	t_light	light;
-	t_tuple	colour;
+	t_tuple	final_colour;
 
-	initialise_world(&world);
-	point.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1};
-	comps.vectors.eye.tuple.units = (t_units){ 0.0, 0.0, 0.0, VECTOR_0};
+	t_object	object_sphere;
+	t_transform	transform;
+
+	transform = (t_transform)
+	{
+		.translation = point(0, 0, 0),
+		.rotation = point(0, 0, 0),
+		.scale = point(0.25, 0.25, 0.25)
+	};
+	transform_object(&transform);
+	object_sphere = sphere(
+			point(0, 0, 0),
+			transform,
+			(t_material)
+			{
+				.colour = colour(1.0, 1.0, 1.0, 1.0),
+				.ambient = 0.1,
+				.diffuse = 0.9,
+				.specular = 0.9,
+				.shininess = 200.0,
+				.col_mash = vector(0, 0, 0),
+				.amb_col = vector(0, 0, 0),
+				.dif_col = vector(0, 0, 0),
+				.spec_col = vector(0, 0, 0)
+			}
+		);
+	pixel_point.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1};
+	comps.vectors.eye.tuple.units = (t_units){ 0.0, 0.0, -1.0, VECTOR_0};
 	comps.vectors.surface_normal.tuple.units = (t_units){ 0.0, 0.0, -1.0, VECTOR_0};
 	light.position.tuple.units = (t_units){0.0, 0.0, -10, POINT_1};
 	light.intensity.tuple.units = (t_units){1.0, 1.0, 1.0, POINT_1};
-	colour = lighting(((t_object *)vec_get(&world.objects, 0))->object.sphere.material, &light, comps.vectors, point);
-	printf("colour: %f, %f, %f, %f\n", colour.tuple.units.x, colour.tuple.units.y, colour.tuple.units.z, colour.tuple.units.w);
+	final_colour = lighting(object_sphere.object.sphere.material, &light, comps.vectors, pixel_point);
+	// colour = lighting(((t_object *)vec_get(&world.objects, 0))->object.sphere.material, &light, comps.vectors, point);
+	printf("colour: %f, %f, %f, %f\n", final_colour.tuple.units.x, final_colour.tuple.units.y, final_colour.tuple.units.z, final_colour.tuple.units.w);
+}
+
+void	lighting_2(void)
+{
+	// t_world	world;
+	t_tuple	pixel_point;
+	t_comp	comps;
+	t_light	light;
+	t_tuple	final_colour;
+
+	t_object	object_sphere;
+	t_transform	transform;
+
+	transform = (t_transform)
+	{
+		.translation = point(0, 0, 0),
+		.rotation = point(0, 0, 0),
+		.scale = point(0.25, 0.25, 0.25)
+	};
+	transform_object(&transform);
+	object_sphere = sphere(
+			point(0, 0, 0),
+			transform,
+			(t_material)
+			{
+				.colour = colour(1.0, 1.0, 1.0, 1.0),
+				.ambient = 0.1,
+				.diffuse = 0.9,
+				.specular = 0.9,
+				.shininess = 200.0,
+				.col_mash = vector(0, 0, 0),
+				.amb_col = vector(0, 0, 0),
+				.dif_col = vector(0, 0, 0),
+				.spec_col = vector(0, 0, 0)
+			}
+		);
+	pixel_point.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1};
+	comps.vectors.eye.tuple.units = (t_units){ 0.0, 0.7071, 0.7071, VECTOR_0};
+	comps.vectors.surface_normal.tuple.units = (t_units){ 0.0, 0.0, -1.0, VECTOR_0};
+	light.position.tuple.units = (t_units){0.0, 0.0, -10, POINT_1};
+	light.intensity.tuple.units = (t_units){1.0, 1.0, 1.0, POINT_1};
+	final_colour = lighting(object_sphere.object.sphere.material, &light, comps.vectors, pixel_point);
+	// colour = lighting(((t_object *)vec_get(&world.objects, 0))->object.sphere.material, &light, comps.vectors, point);
+	printf("colour: %f, %f, %f, %f\n", final_colour.tuple.units.x, final_colour.tuple.units.y, final_colour.tuple.units.z, final_colour.tuple.units.w);
+}
+
+void	lighting_3(void)
+{
+	// t_world	world;
+	t_tuple	pixel_point;
+	t_comp	comps;
+	t_light	light;
+	t_tuple	final_colour;
+
+	t_object	object_sphere;
+	t_transform	transform;
+
+	transform = (t_transform)
+	{
+		.translation = point(0, 0, 0),
+		.rotation = point(0, 0, 0),
+		.scale = point(0.25, 0.25, 0.25)
+	};
+	transform_object(&transform);
+	object_sphere = sphere(
+			point(0, 0, 0),
+			transform,
+			(t_material)
+			{
+				.colour = colour(1.0, 1.0, 1.0, 1.0),
+				.ambient = 0.1,
+				.diffuse = 0.9,
+				.specular = 0.9,
+				.shininess = 200.0,
+				.col_mash = vector(0, 0, 0),
+				.amb_col = vector(0, 0, 0),
+				.dif_col = vector(0, 0, 0),
+				.spec_col = vector(0, 0, 0)
+			}
+		);
+	pixel_point.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1};
+	comps.vectors.eye.tuple.units = (t_units){ 0.0, 0.0, -1.0, VECTOR_0};
+	comps.vectors.surface_normal.tuple.units = (t_units){ 0.0, 0.0, -1.0, VECTOR_0};
+	light.position.tuple.units = (t_units){0.0, 0.0, 10, POINT_1};
+	light.intensity.tuple.units = (t_units){1.0, 1.0, 1.0, POINT_1};
+	final_colour = lighting(object_sphere.object.sphere.material, &light, comps.vectors, pixel_point);
+	// colour = lighting(((t_object *)vec_get(&world.objects, 0))->object.sphere.material, &light, comps.vectors, point);
+	printf("colour: %f, %f, %f, %f\n", final_colour.tuple.units.x, final_colour.tuple.units.y, final_colour.tuple.units.z, final_colour.tuple.units.w);
 }
 
 void	test_lighting(void)
 {
-	t_world	world;
-	t_tuple colour;
+	lighting_1();
+	lighting_2();
+	lighting_3();
+}
 
-	initialise_world(&world);
-	world.ray.origin.tuple.units = (t_units){ 0.0, 0.0, -5.0, POINT_1};
-	world.ray.direction.tuple.units = (t_units){ 0.0, 0.0, 1.0, VECTOR_0 };
-	colour = colour_at(&world);
-	printf("colour(%f, %f, %f)\n", colour.tuple.units.y, colour.tuple.units.z, colour.tuple.units.w);
+test_shading()
+{
+	t_tuple	pixel_point;
+	t_comp	comps;
+	t_light	light;
+	t_tuple	final_colour;
+
+	t_object	object_sphere;
+	t_transform	transform;
+
+	transform = (t_transform)
+	{
+		.translation = point(0, 0, 0),
+		.rotation = point(0, 0, 0),
+		.scale = point(0.25, 0.25, 0.25)
+	};
+	transform_object(&transform);
+	object_sphere = sphere(
+			point(0, 0, 0),
+			transform,
+			(t_material)
+			{
+				.colour = colour(1.0, 1.0, 1.0, 1.0),
+				.ambient = 0.1,
+				.diffuse = 0.9,
+				.specular = 0.9,
+				.shininess = 200.0,
+				.col_mash = vector(0, 0, 0),
+				.amb_col = vector(0, 0, 0),
+				.dif_col = vector(0, 0, 0),
+				.spec_col = vector(0, 0, 0)
+			}
+		);
+	pixel_point.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1};
+	comps.vectors.eye.tuple.units = (t_units){ 0.0, 0.0, -1.0, VECTOR_0};
+	comps.vectors.surface_normal.tuple.units = (t_units){ 0.0, 0.0, -1.0, VECTOR_0};
+	light.position.tuple.units = (t_units){0.0, 0.0, -10, POINT_1};
+	light.intensity.tuple.units = (t_units){1.0, 1.0, 1.0, POINT_1};
+	final_colour = lighting(object_sphere.object.sphere.material, &light, comps.vectors, pixel_point);
+	// colour = lighting(((t_object *)vec_get(&world.objects, 0))->object.sphere.material, &light, comps.vectors, point);
+	printf("colour: %f, %f, %f, %f\n", final_colour.tuple.units.x, final_colour.tuple.units.y, final_colour.tuple.units.z, final_colour.tuple.units.w);
 }
 
 int	main(void)
