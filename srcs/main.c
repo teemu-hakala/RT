@@ -666,8 +666,9 @@ void	print_material(t_material *material, uint8_t indent_level, const char *desc
 				.w = material->shininess
 			}
 		}, indent_level + 1,
-		"(ambient, diffuse, specular, shininess)"
+		"ambient, diffuse, specular, shininess"
 	);
+	print_tuple(&material->colour, indent_level + 1,"object->initial_colour");
 	print_indented(indent_level, "}\n");
 }
 
@@ -679,10 +680,10 @@ void	print_phong(t_phong *phong, uint8_t indent_level, const char *description)
 	print_indented(indent_level, str);
 	free(str);
 	print_indented(indent_level, "{\n");
-	print_tuple(&phong->eye, indent_level, "phong->eye");
-	print_tuple(&phong->light, indent_level, "phong->light");
-	print_tuple(&phong->surface_normal, indent_level, "phong->surface_normal");
-	print_tuple(&phong->reflection, indent_level, "phong->reflection");
+	print_tuple(&phong->eye, indent_level + 1, "phong->eye");
+	print_tuple(&phong->light, indent_level + 1, "phong->light");
+	print_tuple(&phong->surface_normal, indent_level + 1, "phong->surface_normal");
+	print_tuple(&phong->reflection, indent_level + 1, "phong->reflection");
 	print_indented(indent_level, "}\n");
 }
 
