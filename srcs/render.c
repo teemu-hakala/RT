@@ -11,7 +11,7 @@ void	render(t_win *win, t_camera *camera)
 		canvas.horizontal = 0;
 		while (canvas.horizontal < camera->size.horizontal)
 		{
-			win->world.ray = ray_for_pixel(*camera, (t_canvas){.vertical = \
+			win->world.ray = ray_for_pixel(camera, (t_canvas){.vertical = \
 				canvas.vertical, .horizontal = canvas.horizontal});
 			colour = colour_at(&win->world);
 			img_pixel_put(win, canvas.horizontal, canvas.vertical,

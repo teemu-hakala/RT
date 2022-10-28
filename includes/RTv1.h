@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/27 15:53:12 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/28 11:05:10 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,7 +174,7 @@ t_transform	default_transform(void);
 
 /* camera */
 t_camera	camera(t_canvas size, t_fl field_of_view);
-t_ray	ray_for_pixel(t_camera camera, t_canvas position);
+t_ray	ray_for_pixel(t_camera *camera, t_canvas position);
 void	prepare_computations(t_world *world);
 t_tuple	colour_at(t_world *world);
 void	render(t_win *win, t_camera *camera);

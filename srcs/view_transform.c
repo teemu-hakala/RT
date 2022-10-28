@@ -7,9 +7,9 @@ t_transform	default_transform(void)
 		{
 			.matrix = identity_matrix(),
 			.inverse = identity_matrix(),
-			.translation = vector(0, 0, 0),
-			.rotation = vector(0, 0, 0),
-			.scale = vector(1, 1, 1)
+			.translation = point(0, 0, 0),
+			.rotation = point(0, 0, 0),
+			.scale = point(1, 1, 1)
 		}
 	);
 }

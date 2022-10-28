@@ -22,17 +22,20 @@ void	ft_print_mtx(t_mtx *mtx)
 	int	j;
 
 	i = 0;
+	printf("------------------------------------------\n");
 	while (i < 4)
 	{
 		j = 0;
+		printf("|");
 		while (j < 4)
 		{
-			printf("%.1f, ", mtx->array[4 * i + j]);
+			printf("% .5f, ", mtx->array[4 * i + j]);
 			j++;
 		}
-		printf("\n");
+		printf("|\n");
 		i++;
 	}
+	printf("------------------------------------------\n");
 }
 
 void	test_matrix_inversion(void)
@@ -435,34 +438,93 @@ void	test_view_transform(void)
 	test_view_transform_arbitrary();
 }
 
-void	print_tuple(t_tuple *tuple)
+void	print_indented(uint8_t indent_level, const char *string)
 {
-	printf("(% lf, % lf, % lf, % lf)\n", tuple->array[X], tuple->array[Y], \
+	uint8_t	uc;
+
+	uc = 0;
+	while (uc < indent_level)
+	{
+		printf("\t");
+		uc++;
+	}
+	printf("%s", string);
+}
+
+void	print_matrix(t_mtx *mtx, uint8_t indent_level)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	print_indented(indent_level, "------------------------------------------\n");
+	while (i < 4)
+	{
+		j = 0;
+		print_indented(indent_level, "|");
+		while (j < 4)
+		{
+			printf("% .5f, ", mtx->array[4 * i + j]);
+			j++;
+		}
+		printf("|\n");
+		i++;
+	}
+	print_indented(indent_level, "------------------------------------------\n");
+}
+
+
+void	print_tuple(t_tuple *tuple, uint8_t indent_level)
+{
+	char	*str;
+
+	print_indented(indent_level, "TUPLE\n{\n");
+	asprintf(&str, "(% .5lf, % .5lf, % .5lf, % .5lf)\n", tuple->array[X], tuple->array[Y], \
 		tuple->array[Z], tuple->array[W]);
+	print_indented(indent_level, str);
+	free(str);
+	print_indented(indent_level, "}\n");
 }
 
-void	print_camera(t_camera *camera)
+void	print_transform(t_transform *transform, uint8_t indent_level)
 {
-	printf("camera->size.horizontal %hu\n", camera->size.horizontal);
-	printf("camera->size.vertical %hu\n", camera->size.vertical);
-	printf("camera->field_of_view %lf\n", camera->field_of_view);
-	printf("\n");
-	ft_print_mtx(&camera->transform.matrix);
-	printf("\n");
-	ft_print_mtx(&camera->transform.inverse);
-	printf("\n");
-	print_tuple(&camera->origin);
-	print_tuple(&camera->transform.translation);
-	print_tuple(&camera->transform.rotation);
-	print_tuple(&camera->transform.scale);
-	printf("camera->pixel_size %lf\n", camera->pixel_size);
+	print_indented(indent_level, "TRANSFORM\n{\n");
+	print_matrix(&transform->matrix, indent_level);
+	print_matrix(&transform->inverse, indent_level);
+	print_tuple(&transform->translation, indent_level);
+	print_tuple(&transform->rotation, indent_level);
+	print_tuple(&transform->scale, indent_level);
+	print_indented(indent_level, "}\n");
 }
 
-void	print_ray(t_ray *ray)
+void	print_camera(t_camera *camera, uint8_t indent_level)
 {
-	printf("RAY:\n");
-	print_tuple(&ray->origin);
-	print_tuple(&ray->direction);
+	char	*str;
+
+	print_indented(indent_level, "CAMERA\n{\n");
+	asprintf(&str, "camera->size.horizontal %hu\n", camera->size.horizontal);
+	print_indented(indent_level, str);
+	free(str);
+	asprintf(&str, "camera->size.vertical %hu\n", camera->size.vertical);
+	print_indented(indent_level, str);
+	free(str);
+	asprintf(&str, "camera->field_of_view %lf\n", camera->field_of_view);
+	print_indented(indent_level, str);
+	free(str);
+	print_tuple(&camera->origin, indent_level);
+	print_transform(&camera->transform, indent_level);
+	asprintf(&str, "camera->pixel_size %lf\n", camera->pixel_size);
+	print_indented(indent_level, str);
+	free(str);
+	print_indented(indent_level, "}\n");
+}
+
+void	print_ray(t_ray *ray, uint8_t indent_level)
+{
+	print_indented(indent_level, "RAY\n{\n");
+	print_tuple(&ray->origin, indent_level);
+	print_tuple(&ray->direction, indent_level);
+	print_indented(indent_level, "}\n");
 }
 
 void test_camera_construction(void)
@@ -470,7 +532,7 @@ void test_camera_construction(void)
 	t_camera	cam;
 
 	cam = camera((t_canvas){.vertical = 120, .horizontal = 160}, (t_fl)M_PI_2);
-	print_camera(&cam);
+	print_camera(&cam, 0);
 }
 
 void test_camera_pixel_size_horizontal_canvas(void)
@@ -478,7 +540,7 @@ void test_camera_pixel_size_horizontal_canvas(void)
 	t_camera	cam;
 
 	cam = camera((t_canvas){.vertical = 125, .horizontal = 200}, (t_fl)M_PI_2);
-	print_camera(&cam);
+	print_camera(&cam, 0);
 }
 
 void test_camera_pixel_size_vertical_canvas(void)
@@ -486,7 +548,7 @@ void test_camera_pixel_size_vertical_canvas(void)
 	t_camera	cam;
 
 	cam = camera((t_canvas){.vertical = 125, .horizontal = 200}, (t_fl)M_PI_2);
-	print_camera(&cam);
+	print_camera(&cam, 0);
 }
 
 void test_camera_ray_centre_of_canvas(void)
@@ -495,9 +557,9 @@ void test_camera_ray_centre_of_canvas(void)
 	t_ray		ray;
 
 	cam = camera((t_canvas){.vertical = 101, .horizontal = 201}, (t_fl)M_PI_2);
-	print_camera(&cam);
-	ray = ray_for_pixel(cam, (t_canvas){.vertical = 50, .horizontal = 100});
-	print_ray(&ray);
+	print_camera(&cam, 0);
+	ray = ray_for_pixel(&cam, (t_canvas){.vertical = 50, .horizontal = 100});
+	print_ray(&ray, 0);
 }
 
 void test_camera_ray_corner_of_canvas(void)
@@ -506,9 +568,9 @@ void test_camera_ray_corner_of_canvas(void)
 	t_ray		ray;
 
 	cam = camera((t_canvas){.vertical = 101, .horizontal = 201}, (t_fl)M_PI_2);
-	print_camera(&cam);
-	ray = ray_for_pixel(cam, (t_canvas){.vertical = 0, .horizontal = 0});
-	print_ray(&ray);
+	print_camera(&cam, 0);
+	ray = ray_for_pixel(&cam, (t_canvas){.vertical = 0, .horizontal = 0});
+	print_ray(&ray, 0);
 }
 
 void test_camera_ray_transformed(void)
@@ -521,9 +583,9 @@ void test_camera_ray_transformed(void)
 	translate(&cam.transform.matrix, &(t_tuple){.tuple.units = {.x = 0, .y = -2, .z = 5, .w = POINT_1}});
 	cam.transform.inverse = cam.transform.matrix;
 	matrix_inversion(&cam.transform.inverse, 4);
-	print_camera(&cam);
-	ray = ray_for_pixel(cam, (t_canvas){.vertical = 50, .horizontal = 100});
-	print_ray(&ray);
+	print_camera(&cam, 0);
+	ray = ray_for_pixel(&cam, (t_canvas){.vertical = 50, .horizontal = 100});
+	print_ray(&ray, 0);
 }
 
 void	test_camera(void)
@@ -563,11 +625,122 @@ void	test_colour_at(t_win *win)
 {
 	t_camera cam;
 	cam = camera((t_canvas){.vertical = 101, .horizontal = 201}, (t_fl)M_PI_2);
-	win->world.ray = ray_for_pixel(cam, (t_canvas){.vertical = 50, .horizontal = 100});
+	win->world.ray = ray_for_pixel(&cam, (t_canvas){.vertical = 50, .horizontal = 100});
 	default_world(&win->world);
 	colour_at(&win->world);
 	vec_iter(&win->world.intersections, vec_print);
 	//printf(world->hit);
+}
+
+void	print_material(t_material *material, uint8_t indent_level)
+{
+	print_indented(indent_level, "COLOUR\n{\n(ambient, diffuse, specular, shininess):\n");
+	print_tuple(
+		&(t_tuple)
+		{
+			.tuple.units = {
+				.x = material->ambient,
+				.y = material->diffuse,
+				.z = material->specular,
+				.w = material->shininess
+			}
+		}, indent_level
+	);
+	print_indented(indent_level, "}\n");
+}
+
+void	print_phong(t_phong *phong, uint8_t indent_level)
+{
+	print_indented(indent_level, "PHONG\n{\n");
+	print_tuple(&phong->eye, indent_level);
+	print_tuple(&phong->light, indent_level);
+	print_tuple(&phong->surface_normal, indent_level);
+	print_tuple(&phong->reflection, indent_level);
+	print_indented(indent_level, "}\n");
+}
+
+void	print_computations(t_comp *computations, uint8_t indent_level)
+{
+	char	*str;
+
+	print_indented(indent_level, "COMPUTATIONS\n{");
+	asprintf(&str, "% .5lf\n", computations->time);
+	print_indented(indent_level, str);
+	free(str);
+	asprintf(&str, "e_object_type: %d\n", computations->type);
+	print_indented(indent_level, str);
+	free(str);
+	print_tuple(&computations->point, indent_level);
+	print_phong(&computations->vectors, indent_level);
+	print_indented(indent_level, "\n");
+}
+
+void	print_light(t_light *light, uint8_t indent_level)
+{
+	print_indented(indent_level, "LIGHT\n{\n");
+	print_tuple(&light->position, indent_level + 1);
+	print_tuple(&light->intensity, indent_level + 1);
+	print_transform(&light->transform, indent_level + 1);
+	print_indented(indent_level, "}\n");
+}
+
+typedef void	(*t_print_object)(t_object *, uint8_t);
+
+void	print_plane(t_object *plane, uint8_t indent_level)
+{
+	(void)plane;
+	(void)indent_level;
+}
+
+void	print_sphere(t_object *sphere, uint8_t indent_level)
+{
+	print_indented(indent_level, "SPHERE\n{\n");
+	print_tuple(&sphere->object.sphere.origin, indent_level + 1);
+	print_transform(&sphere->object.sphere.transform, indent_level + 1);
+	print_material(&sphere->object.sphere.material, indent_level + 1);
+	print_computations(&sphere->object.sphere.comp, indent_level + 1);
+	print_indented(indent_level, "}\n");
+}
+
+void	print_cone(t_object *cone, uint8_t indent_level)
+{
+	(void)cone;
+	(void)indent_level;
+}
+
+void	print_cylinder(t_object *cylinder, uint8_t indent_level)
+{
+	(void)cylinder;
+	(void)indent_level;
+}
+
+void	print_world(t_world *world, t_camera *camera)
+{
+	static t_print_object	printers[] = {
+		print_plane,
+		print_sphere,
+		print_cone,
+		print_cylinder
+	};
+	uint64_t	u;
+
+	print_indented(0, "THE WORLD\n{\n");
+	print_camera(camera, 1);
+	u = 0;
+	while (u < world->objects.len)
+	{
+		printers[((t_object *)vec_get(&world->objects, u))->type \
+			- OBJECT_INDEX_OFFSET]
+			((t_object *)vec_get(&world->objects, u), 1);
+		u++;
+	}
+	u = 0;
+	while (u < world->lights.len)
+	{
+		print_light((t_light *)vec_get(&world->lights, u), 1);
+		u++;
+	}
+	print_indented(0, "}\n");
 }
 
 void	test_render(t_win *win)
@@ -575,11 +748,11 @@ void	test_render(t_win *win)
 	t_camera cam;
 
 	cam = camera((t_canvas){.vertical = HEIGHT, .horizontal = WIDTH}, (t_fl)M_PI_2);
-	cam.origin = point(0, 0, -10.0);
+	cam.origin = point(0, 0, -1.0);
 	cam.transform.matrix = view_transform(cam.origin, point(0, 0, 0), vector(0, 1, 0));
 	cam.transform.inverse = cam.transform.matrix;
 	matrix_inversion(&cam.transform.inverse, 4);
-	print_camera(&cam);
+	print_world(&win->world, &cam);
 	render(win, &cam);
 }
 
