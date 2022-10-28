@@ -614,21 +614,6 @@ void	test_camera(void)
 	test_camera_ray_transformed();
 }
 
-void	tests(void)
-{
-	// test_matrix_inversion();
-	// test_red_disc();
-	// test_normal_at_sphere();
-	// test_reflect();
-	// test_lighting_angled();
-	// test_lighting_ambient();
-	// test_3D_sphere();
-	// test_3D_sphere_transformed();
-	// test_3D_sphere_params();
-	// test_view_transform();
-	// test_lighting();
-	test_camera();
-}
 
 static void	vec_print(void *data_point)
 {
@@ -790,18 +775,11 @@ void	print_world(t_world *world, t_camera *camera)
 
 void	test_render(t_win *win)
 {
-	t_camera cam;
-
-	cam = camera((t_canvas){.vertical = HEIGHT, .horizontal = WIDTH}, (t_fl)M_PI_2);
-	cam.origin = point(0, 0, -1.0);
-	cam.transform.matrix = view_transform(cam.origin, point(0, 0, 0), vector(0, 1, 0));
-	cam.transform.inverse = cam.transform.matrix;
-	matrix_inversion(&cam.transform.inverse, 4);
-	print_world(&win->world, &cam);
-	render(win, &cam);
+	print_world(&win->world, &win->world.camera);
+	render(win, &win->world.camera);
 }
 
-void	lighting_1(void)
+/*void	lighting_1(void)
 {
 	// t_world	world;
 	t_tuple	pixel_point;
@@ -816,7 +794,7 @@ void	lighting_1(void)
 	{
 		.translation = point(0, 0, 0),
 		.rotation = point(0, 0, 0),
-		.scale = point(0.25, 0.25, 0.25)
+		.scale = point(1, 1, 1)
 	};
 	transform_object(&transform);
 	object_sphere = sphere(
@@ -860,7 +838,7 @@ void	lighting_2(void)
 	{
 		.translation = point(0, 0, 0),
 		.rotation = point(0, 0, 0),
-		.scale = point(0.25, 0.25, 0.25)
+		.scale = point(1, 1, 1)
 	};
 	transform_object(&transform);
 	object_sphere = sphere(
@@ -904,7 +882,7 @@ void	lighting_3(void)
 	{
 		.translation = point(0, 0, 0),
 		.rotation = point(0, 0, 0),
-		.scale = point(0.25, 0.25, 0.25)
+		.scale = point(1, 1, 1)
 	};
 	transform_object(&transform);
 	object_sphere = sphere(
@@ -938,65 +916,54 @@ void	test_lighting(void)
 	lighting_1();
 	lighting_2();
 	lighting_3();
-}
+}*/
 
 void	test_shading(void)
 {
-	t_tuple	pixel_point;
-	t_comp	comps;
-	t_light	light;
 	t_tuple	final_colour;
+	t_world	world;
 
-	t_object	object_sphere;
-	t_transform	transform;
-
-	transform = (t_transform)
-	{
-		.translation = point(0, 0, 0),
-		.rotation = point(0, 0, 0),
-		.scale = point(0.25, 0.25, 0.25)
-	};
-	transform_object(&transform);
-	object_sphere = sphere(
-			point(0, 0, 0),
-			transform,
-			(t_material)
-			{
-				.colour = colour(1.0, 1.0, 1.0, 1.0),
-				.ambient = 0.1,
-				.diffuse = 0.9,
-				.specular = 0.9,
-				.shininess = 200.0,
-				.col_mash = vector(0, 0, 0),
-				.amb_col = vector(0, 0, 0),
-				.dif_col = vector(0, 0, 0),
-				.spec_col = vector(0, 0, 0)
-			}
-		);
-	pixel_point.tuple.units = (t_units){ 0.0, 0.0, 0.0, POINT_1};
-	comps.vectors.eye.tuple.units = (t_units){ 0.0, 0.0, -1.0, VECTOR_0};
-	comps.vectors.surface_normal.tuple.units = (t_units){ 0.0, 0.0, -1.0, VECTOR_0};
-	light.position.tuple.units = (t_units){0.0, 0.0, -10, POINT_1};
-	light.intensity.tuple.units = (t_units){1.0, 1.0, 1.0, POINT_1};
-	final_colour = lighting(object_sphere.object.sphere.material, &light, comps.vectors, pixel_point);
-	// colour = lighting(((t_object *)vec_get(&world.objects, 0))->object.sphere.material, &light, comps.vectors, point);
+	initialise_world(&world);
+	world.ray.origin.tuple.units = (t_units){ 0.0, 0.0, -5.0, POINT_1};
+	world.ray.direction.tuple.units = (t_units){ 0.0, 0.0, 1.0, VECTOR_0};
+	intersect_world(&world);
+	identify_hit(&world);
+	prepare_computations(&world);
+	final_colour = shade_hit(&world);
 	printf("colour: %f, %f, %f, %f\n", final_colour.tuple.units.x, final_colour.tuple.units.y, final_colour.tuple.units.z, final_colour.tuple.units.w);
+}
+
+void	tests(void)
+{
+	// test_matrix_inversion();
+	// test_red_disc();
+	// test_normal_at_sphere();
+	// test_reflect();
+	// test_lighting_angled();
+	// test_lighting_ambient();
+	// test_3D_sphere();
+	// test_3D_sphere_transformed();
+	// test_3D_sphere_params();
+	// test_view_transform();
+	// test_lighting();
+	test_shading();
+	// test_camera();
 }
 
 int	main(void)
 {
-	t_win	win;
+	// t_win	win;
 
 	// if (argc != 2)
 	//  	handle_errors(USAGE);
-	// tests();
-	initialise_world(&win.world);
+	tests();
+	// initialise_world(&win.world);
 	// parse(&win);
-	initialise_window(&win);
+	// initialise_window(&win);
 	// test_colour_at(&win);
-	test_render(&win);
+	// test_render(&win);
 	// plot_points(&win);
-	mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
-	mlx_loop(win.mlx);
+	// mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
+	// mlx_loop(win.mlx);
 	return (0);
 }

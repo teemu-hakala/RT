@@ -6,7 +6,7 @@ void	prepare_object(t_world *world, t_object *object, t_comp *computations)
 	computations->point = hit_position(&world->ray, computations->time);
 	computations->vectors.eye = tuple_scale(world->ray.direction, -1);
 	computations->vectors.surface_normal = \
-		normal_at(object, computations->type, &computations->point);
+		normal_at(object, &computations->point);
 	if (dot_product(computations->vectors.surface_normal, \
 		computations->vectors.eye) < 0)
 	{
@@ -21,25 +21,25 @@ void	prepare_object(t_world *world, t_object *object, t_comp *computations)
 void	prepare_plane(t_world *world)
 {
 	prepare_object(world, world->hit.intersection->shape, \
-		&world->hit.intersection->shape->object.plane.comp);
+		&world->hit.computations);
 }
 
 void	prepare_sphere(t_world *world)
 {
 	prepare_object(world, world->hit.intersection->shape, \
-		&world->hit.intersection->shape->object.sphere.comp);
+		&world->hit.computations);
 }
 
 void	prepare_cone(t_world *world)
 {
 	prepare_object(world, world->hit.intersection->shape, \
-		&world->hit.intersection->shape->object.cone.comp);
+		&world->hit.computations);
 }
 
 void	prepare_cylinder(t_world *world)
 {
 	prepare_object(world, world->hit.intersection->shape, \
-		&world->hit.intersection->shape->object.cylinder.comp);
+		&world->hit.computations);
 }
 
 void	prepare_computations(t_world *world)

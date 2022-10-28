@@ -39,24 +39,26 @@ t_material	default_material_1(void)
 		.diffuse = 0.7,
 		.specular = 0.2,
 		.shininess = 200,
-		.colour = (t_tuple)
-		{
-			.tuple.colour = {.a = 0.0, .r = 0.8, .g = 1.0, .b = 0.6}
-		}
+		.colour = colour(1.0, 0.8, 1.0, 0.6),
+		.col_mash = vector(0, 0, 0),
+		.amb_col = vector(0, 0, 0),
+		.dif_col = vector(0, 0, 0),
+		.spec_col = vector(0, 0, 0)
 	});
 }
 
-static t_material	default_material_2(void)
+t_material	default_material_2(void)
 {
 	return ((t_material){
 		.ambient = 0.1,
 		.diffuse = 0.9,
 		.specular = 0.9,
 		.shininess = 200,
-		.colour = (t_tuple)
-		{
-			.tuple.colour = {.a = 0.0, .r = 1.0, .g = 0.2, .b = 1.0}
-		}
+		.colour = colour(1.0, 0.8, 1.0, 0.6),
+		.col_mash = vector(0, 0, 0),
+		.amb_col = vector(0, 0, 0),
+		.dif_col = vector(0, 0, 0),
+		.spec_col = vector(0, 0, 0)
 	});
 }
 

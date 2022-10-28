@@ -44,6 +44,7 @@ t_tuple	lighting(t_material material, t_light *light, t_phong vectors,
 	vectors.light = normalize(tuple_sub(light->position, point));
 	material.amb_col = colour_scale(material.col_mash, material.ambient);
 	incidence_l = dot_product(vectors.light, vectors.surface_normal);
+	printf("incidence angle: %f\n", incidence_l);
 	if (incidence_l < 0.0)
 	{
 		material.dif_col = colour(1, 0, 0, 0);
@@ -51,6 +52,9 @@ t_tuple	lighting(t_material material, t_light *light, t_phong vectors,
 	}
 	else
 		lighting_cont(&material, light, &vectors, incidence_l);
+	printf("ambient col: %f, %f, %f, %f\n", material.amb_col.tuple.units.x, material.amb_col.tuple.units.y, material.amb_col.tuple.units.z, material.amb_col.tuple.units.w);
+	printf("diff col: %f, %f, %f, %f\n", material.dif_col.tuple.units.x, material.dif_col.tuple.units.y, material.dif_col.tuple.units.z, material.dif_col.tuple.units.w);
+	printf("spec col: %f, %f, %f, %f\n", material.spec_col.tuple.units.x, material.spec_col.tuple.units.y, material.spec_col.tuple.units.z, material.spec_col.tuple.units.w);
 	return (tuple_add(
 			tuple_add(material.amb_col, material.dif_col), material.spec_col));
 }

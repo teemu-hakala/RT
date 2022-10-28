@@ -17,6 +17,8 @@ t_tuple	normal_at_sphere(void *sphere, t_tuple *point_at)
 	obj_point = \
 		matrix_tuple_multi(&((t_sphere *)sphere)->transform.inverse, point_at);
 	obj_normal = tuple_sub(obj_point, ((t_sphere *)sphere)->origin);
+
+
 	transposed_inverse = \
 		transpose_matrix(&((t_sphere *)sphere)->transform.inverse);
 	world_normal = matrix_tuple_multi(&transposed_inverse, &obj_normal);
@@ -38,7 +40,7 @@ t_tuple	normal_at_cylinder(void *cylinder, t_tuple *point_at)
 	return (vector(1, 0, 0));
 }
 
-t_tuple	normal_at(void *object, t_object_type type, t_tuple *point)
+t_tuple	normal_at(void *object, t_tuple *point)
 {
 	static const t_normal_fn	normals[] = {
 		normal_at_plane,
@@ -46,5 +48,6 @@ t_tuple	normal_at(void *object, t_object_type type, t_tuple *point)
 		normal_at_cone,
 		normal_at_cylinder};
 
-	return (normals[type - OBJECT_INDEX_OFFSET](object, point));
+	return (normals[((t_object *)object)->type \
+		- OBJECT_INDEX_OFFSET](object, point));
 }
