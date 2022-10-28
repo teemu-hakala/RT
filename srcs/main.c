@@ -626,6 +626,7 @@ void	tests(void)
 	// test_3D_sphere_transformed();
 	// test_3D_sphere_params();
 	// test_view_transform();
+	// test_lighting();
 	test_camera();
 }
 
@@ -695,7 +696,7 @@ void	print_computations(t_comp *computations, uint8_t indent_level, const char *
 	print_indented(indent_level, str);
 	free(str);
 	print_indented(indent_level, "{\n");
-	asprintf(&str, "% .5lf\n", computations->time);
+	asprintf(&str, "computations->time % .5lf\n", computations->time);
 	print_indented(indent_level + 1, str);
 	free(str);
 	asprintf(&str, "e_object_type: %d\n", computations->type);
@@ -939,7 +940,7 @@ void	test_lighting(void)
 	lighting_3();
 }
 
-test_shading()
+void	test_shading(void)
 {
 	t_tuple	pixel_point;
 	t_comp	comps;
@@ -984,19 +985,18 @@ test_shading()
 
 int	main(void)
 {
-	// t_win	win;
+	t_win	win;
 
 	// if (argc != 2)
-	// 	handle_errors(USAGE);
-	//tests();
-	// initialise_world(&win.world);
+	//  	handle_errors(USAGE);
+	// tests();
+	initialise_world(&win.world);
 	// parse(&win);
-	// initialise_window(&win);
+	initialise_window(&win);
 	// test_colour_at(&win);
-	// test_render(&win);
+	test_render(&win);
 	// plot_points(&win);
-	// mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
-	// mlx_loop(win.mlx);
-	test_lighting();
+	mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
+	mlx_loop(win.mlx);
 	return (0);
 }
