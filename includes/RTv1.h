@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/28 17:31:03 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/29 19:17:53 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # include "world.h"
 
 # define USAGE "<instructions>"
-# define WIDTH 201
-# define HEIGHT 101
+# define WIDTH 400
+# define HEIGHT 200
 # define WALL_WIDTH 7
 # define WALL_HEIGHT 7
 # define KEY_DOWN 2
@@ -170,6 +170,7 @@ void	img_pixel_put(t_win *win, int x, int y, unsigned int colour);
 /* testing */
 void	ft_print_mtx(t_mtx *mtx);
 void	default_world(t_world *world);
+void	sphere_world(t_world *world);
 t_transform	default_transform(void);
 
 /* camera */

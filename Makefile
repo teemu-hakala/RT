@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: thakala <thakala@student.42.fr>            +#+  +:+       +#+         #
+#    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2022/10/27 12:58:33 by thakala          ###   ########.fr        #
+#    Updated: 2022/10/29 15:51:48 by deelliot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,8 @@ FILES = \
 	ray \
 	render \
 	colour \
-	computations
+	computations \
+	sphere_scene
 
 SRCS = $(addprefix $(SRCS_DIR)/, $(addsuffix .c, $(FILES)))
 OBJS = $(addprefix $(OBJS_DIR)/, $(addsuffix .o, $(FILES)))

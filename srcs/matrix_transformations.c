@@ -165,3 +165,4 @@ t_ray	ray_transform(t_ray *ray, t_mtx *transform)
 	transform->array[11] = vector.tuple.z_depth;
 	return (transform);
 }*/
+

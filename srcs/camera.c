@@ -26,7 +26,7 @@ t_camera	camera(t_canvas size, t_fl field_of_view)
 
 	cam.origin = point(0, 0, -5);
 	cam.transform = default_transform();
-	cam.transform.matrix = view_transform(cam.origin, point(0, 0, 0), vector(0, 1, 0));
+	cam.transform.matrix = view_transform(cam.origin, point(0, 0, -1), vector(0, 1, 0));
 	cam.transform.inverse = cam.transform.matrix;
 	matrix_inversion(&cam.transform.inverse, 4);
 	cam.center_of_interest = point(0, 0, 0);
