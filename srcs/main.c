@@ -946,24 +946,24 @@ void	tests(void)
 	// test_3D_sphere_params();
 	// test_view_transform();
 	// test_lighting();
-	test_shading();
+//	test_shading();
 	// test_camera();
 }
 
 int	main(void)
 {
-	// t_win	win;
+	t_win	win;
 
 	// if (argc != 2)
 	//  	handle_errors(USAGE);
 	tests();
-	// initialise_world(&win.world);
+	initialise_world(&win.world);
 	// parse(&win);
-	// initialise_window(&win);
+	initialise_window(&win);
 	// test_colour_at(&win);
-	// test_render(&win);
+	test_render(&win);
 	// plot_points(&win);
-	// mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
-	// mlx_loop(win.mlx);
+	mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
+	mlx_loop(win.mlx);
 	return (0);
 }
