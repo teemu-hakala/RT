@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colour_and_light.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 17:34:04 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/27 10:57:40 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/31 14:17:14 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_phong
 	t_tuple	light;
 	t_tuple	surface_normal;
 	t_tuple	reflection;
+	int		in_shadow;
 }				t_phong;
 
 #endif

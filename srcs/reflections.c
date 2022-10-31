@@ -52,10 +52,33 @@ t_tuple	lighting(t_material material, t_light *light, t_phong vectors,
 	}
 	else
 		lighting_cont(&material, light, &vectors, incidence_l);
-	// printf("ambient col: %f, %f, %f, %f\n", material.amb_col.tuple.units.x, material.amb_col.tuple.units.y, material.amb_col.tuple.units.z, material.amb_col.tuple.units.w);
-	// printf("diff col: %f, %f, %f, %f\n", material.dif_col.tuple.units.x, material.dif_col.tuple.units.y, material.dif_col.tuple.units.z, material.dif_col.tuple.units.w);
-	// printf("spec col: %f, %f, %f, %f\n", material.spec_col.tuple.units.x, material.spec_col.tuple.units.y, material.spec_col.tuple.units.z, material.spec_col.tuple.units.w);
+	if (vectors.in_shadow == 1)
+		return (material.amb_col);
 	return (tuple_add(
 			tuple_add(material.amb_col, material.dif_col), material.spec_col));
 }
 //should move vector results
+
+void	is_shadow(t_world *world, t_tuple point, t_light *light)
+{
+	t_tuple	temp;
+	t_tuple	direction;
+	t_fl	distance;
+	t_ray	ray;
+
+	temp = tuple_sub(light->position, point);
+	distance = magnitude(temp);
+	direction = normalize(temp);
+	ray = (t_ray){point, direction};
+	vec_clear(&world->intersections);
+	intersect_world(world, ray);
+	identify_hit(world, &world->shadow_hit);
+	world->hit.computations.vectors.in_shadow = 0;
+	if (world->shadow_hit.intersection != NULL)
+	{
+		if (world->shadow_hit.intersection->time < distance)
+		{
+			world->hit.computations.vectors.in_shadow = 1;
+		}
+	}
+}

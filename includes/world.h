@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 11:28:57 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/27 10:59:35 by thakala          ###   ########.fr       */
+/*   Updated: 2022/10/31 14:43:19 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_world
 	t_vec		objects;
 	t_vec		intersections;
 	t_hit		hit;
+	t_hit		shadow_hit;
 	t_ray		ray;
 	uint64_t	object_index;
 }	t_world;

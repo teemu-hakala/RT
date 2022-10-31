@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/29 19:17:53 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/10/31 15:24:23 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,13 +134,14 @@ uint32_t	argb_to_hex(t_colour *colour);
 t_tuple shade_hit(t_world *world);
 t_tuple	lighting(t_material material, t_light *light, t_phong vectors,
 	t_tuple point);
+void	is_shadow(t_world *world, t_tuple point, t_light *light);
 
 /* object intialisation */
 t_object	sphere(t_tuple origin, t_transform transform, t_material material);
 
 /* object intersection */
-void	intersect_world(t_world *world);
-void	identify_hit(t_world *world);
+void	intersect_world(t_world *world, t_ray ray);
+void	identify_hit(t_world *world, t_hit *hit);
 // void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array);
 //void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array, t_win *win);
 // void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array);

@@ -6,26 +6,28 @@ Assume for now all spheres are unit spheres, therefore radius of 1
 diameter of sphere: 2 * r
 */
 
-void	identify_hit(t_world *world)
+void	identify_hit(t_world *world, t_hit *hit)
 {
 	t_intersect	*intersection;
 	uint64_t	i;
 
 	i = 0;
 
-	world->hit.intersection = NULL;
+	hit->intersection = NULL;
 	while (i < world->intersections.len)
 	{
 		intersection = \
 			(t_intersect *)vec_get(&world->intersections, i++);
 
-		if (intersection->time >= 0)
-			if (world->hit.intersection == NULL \
-				|| intersection->time < world->hit.intersection->time)
-				world->hit.intersection = intersection;
+		if (intersection->time >= 0 && \
+			(hit->intersection == NULL \
+				|| intersection->time < hit->intersection->time))
+				{
+					hit->intersection = intersection;
+					break ;
+				}
 	}
 }
-
 
 void	plane_intersection(t_ray ray, void *plane, t_world *world)
 {
@@ -95,7 +97,7 @@ int sort_intersections(void *xs_a, void *xs_b)
 
 }
 
-void	intersect_world(t_world *world)
+void	intersect_world(t_world *world, t_ray ray)
 {
 	static const t_intersect_function	\
 					intersect_object[] = \
@@ -112,7 +114,7 @@ void	intersect_world(t_world *world)
 	{
 		intersect_object[((t_object *)vec_get(&world->objects, \
 			i))->type - OBJECT_INDEX_OFFSET] \
-			(world->ray, ((t_object *)vec_get(&world->objects, \
+			(ray, ((t_object *)vec_get(&world->objects, \
 			i)), world);
 	}
 	vec_sort(&world->intersections, sort_intersections);

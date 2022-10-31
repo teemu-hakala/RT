@@ -60,6 +60,7 @@ typedef struct s_comp
 	t_fl			time;
 	t_object_type	type;
 	t_tuple			point;
+	t_tuple			over_point;
 	t_phong			vectors;
 	int				inside;
 }				t_comp;

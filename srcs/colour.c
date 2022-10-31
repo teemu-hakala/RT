@@ -3,8 +3,8 @@
 t_tuple	colour_at(t_world *world)
 {
 	vec_clear(&world->intersections);
-	intersect_world(world);
-	identify_hit(world);
+	intersect_world(world, world->ray);
+	identify_hit(world, &world->hit);
 	if (world->hit.intersection != NULL)
 	{
 		prepare_computations(world);
