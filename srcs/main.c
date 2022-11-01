@@ -547,7 +547,7 @@ void test_camera_construction(void)
 {
 	t_camera	cam;
 
-	cam = camera((t_canvas){.vertical = 120, .horizontal = 160}, (t_fl)M_PI_2);
+	cam = camera(camera_origin(), camera_transform(), (t_fl)M_PI_2, (t_canvas){.vertical = 120, .horizontal = 160});
 	print_camera(&cam, 0);
 }
 
@@ -555,7 +555,7 @@ void test_camera_pixel_size_horizontal_canvas(void)
 {
 	t_camera	cam;
 
-	cam = camera((t_canvas){.vertical = 125, .horizontal = 200}, (t_fl)M_PI_2);
+	cam = camera(camera_origin(), camera_transform(), (t_fl)M_PI_2, (t_canvas){.vertical = 125, .horizontal = 200});
 	print_camera(&cam, 0);
 }
 
@@ -563,7 +563,7 @@ void test_camera_pixel_size_vertical_canvas(void)
 {
 	t_camera	cam;
 
-	cam = camera((t_canvas){.vertical = 125, .horizontal = 200}, (t_fl)M_PI_2);
+	cam = camera(camera_origin(), camera_transform(), (t_fl)M_PI_2, (t_canvas){.vertical = 125, .horizontal = 200});
 	print_camera(&cam, 0);
 }
 
@@ -572,7 +572,7 @@ void test_camera_ray_centre_of_canvas(void)
 	t_camera	cam;
 	t_ray		ray;
 
-	cam = camera((t_canvas){.vertical = 101, .horizontal = 201}, (t_fl)M_PI_2);
+	cam = camera(camera_origin(), camera_transform(), (t_fl)M_PI_2, (t_canvas){.vertical = 101, .horizontal = 201});
 	print_camera(&cam, 0);
 	ray = ray_for_pixel(&cam, (t_canvas){.vertical = 50, .horizontal = 100});
 	print_ray(&ray, 0);
@@ -583,7 +583,7 @@ void test_camera_ray_corner_of_canvas(void)
 	t_camera	cam;
 	t_ray		ray;
 
-	cam = camera((t_canvas){.vertical = 101, .horizontal = 201}, (t_fl)M_PI_2);
+	cam = camera(camera_origin(), camera_transform(), (t_fl)M_PI_2, (t_canvas){.vertical = 101, .horizontal = 201});
 	print_camera(&cam, 0);
 	ray = ray_for_pixel(&cam, (t_canvas){.vertical = 0, .horizontal = 0});
 	print_ray(&ray, 0);
@@ -594,7 +594,7 @@ void test_camera_ray_transformed(void)
 	t_camera	cam;
 	t_ray		ray;
 
-	cam = camera((t_canvas){.vertical = 101, .horizontal = 201}, (t_fl)M_PI_2);
+	cam = camera(camera_origin(), camera_transform(), (t_fl)M_PI_2, (t_canvas){.vertical = 101, .horizontal = 201});
 	rotate(&cam.transform.matrix, &(t_tuple){.tuple.rotation.y_hei_vert_yaw = M_PI_4});
 	translate(&cam.transform.matrix, &(t_tuple){.tuple.units = {.x = 0, .y = -2, .z = 5, .w = POINT_1}});
 	cam.transform.inverse = cam.transform.matrix;
@@ -626,7 +626,7 @@ static void	vec_print(void *data_point)
 void	test_colour_at(t_win *win)
 {
 	t_camera cam;
-	cam = camera((t_canvas){.vertical = 101, .horizontal = 201}, (t_fl)M_PI_2);
+	cam = camera(camera_origin(), camera_transform(), (t_fl)M_PI_2, (t_canvas){.vertical = 101, .horizontal = 201});
 	win->world.ray = ray_for_pixel(&cam, (t_canvas){.vertical = 50, .horizontal = 100});
 	default_world(&win->world);
 	colour_at(&win->world);

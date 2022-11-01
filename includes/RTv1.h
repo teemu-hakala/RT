@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RTv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/01 10:24:36 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/01 11:30:21 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,5 +181,6 @@ t_ray	ray_for_pixel(t_camera *camera, t_canvas position);
 void	prepare_computations(t_world *world);
 t_tuple	colour_at(t_world *world);
 void	render(t_win *win, t_camera *camera);
-
+t_transform	camera_transform(void);
+t_tuple		camera_origin(void);
 #endif
