@@ -964,25 +964,69 @@ void test_shadow(void)
 // 	printf("colour: %f, %f, %f, %f\n", final_colour.tuple.units.x, final_colour.tuple.units.y, final_colour.tuple.units.z, final_colour.tuple.units.w);
 // }
 
-void	test_plane_intersect_parallel_ray(void)
+static void	vec_print_intersection(void *xs)
 {
-	t_camera	camera_;
-	t_plane		plane_;
-	t_ray		ray_;
-
-	camera_ = camera(camera_origin(), camera_transform(), M_PI / 3, \
-		(t_canvas){.vertical = HEIGHT, .horizontal = WIDTH});
-	plane_ = plane();
-	ray_ = (t_ray){.origin = point(0, 10, 0), .direction = vector(0, 0, 1)};
+	printf("INTERSECTION:\n\tshape->type: %d\n",((t_intersect *)xs)->shape->type);
+	printf("\tintersection->time %lf\n", ((t_intersect *)xs)->time);
 }
 
-void	test_plane(void)
+void	test_plane_intersect_parallel_ray(t_win *win, t_object plane_test)
 {
+	t_ray		ray_test;
+
+	printf("TEST_PLANE_INTERSECT_PARALLEL_RAY\n");
+	ray_test = (t_ray){.origin = point(0, 10, 0), .direction = vector(0, 0, 1)};
+	plane_intersection(ray_test, &plane_test, &win->world);
+	vec_iter(&win->world.intersections, vec_print_intersection);
+	printf("\n");
+}
+
+void	test_plane_intersect_coplanar_ray(t_win *win, t_object plane_test)
+{
+	t_ray		ray_test;
+
+	printf("TEST_PLANE_INTERSECT_COPLANAR_RAY\n");
+	ray_test = (t_ray){.origin = point(0, 10, 0), .direction = vector(0, 0, 1)};
+	plane_intersection(ray_test, &plane_test, &win->world);
+	vec_iter(&win->world.intersections, vec_print_intersection);
+	printf("\n");
+}
+
+void	test_plane_intersect_from_above(t_win *win, t_object plane_test)
+{
+	t_ray		ray_test;
+
+	printf("TEST_PLANE_INTERSECT_FROM_ABOVE\n");
+	ray_test = (t_ray){.origin = point(0, 10, 0), .direction = vector(0, 0, 1)};
+	plane_intersection(ray_test, &plane_test, &win->world);
+	vec_iter(&win->world.intersections, vec_print_intersection);
+	printf("\n");
+}
+
+void	test_plane_intersect_from_below(t_win *win, t_object plane_test)
+{
+	t_ray		ray_test;
+
+	printf("TEST_PLANE_INTERSECT_FROM_BELOW\n");
+	ray_test = (t_ray){.origin = point(0, 10, 0), .direction = vector(0, 0, 1)};
+	plane_intersection(ray_test, &plane_test, &win->world);
+	vec_iter(&win->world.intersections, vec_print_intersection);
+	printf("\n");
+}
+
+void	test_plane(t_win *win)
+{
+	t_object	plane_b;
+
+	vec_clear(&win->world.objects);
+	plane_b = plane(plane_origin(), plane_transform(), plane_material());
+	if (vec_push(&win->world.objects, &plane_b) == VEC_ERROR)
+		handle_errors("unable to malloc for world object");
 	// test_plane_normal();
-	test_plane_intersect_parallel_ray();
-	test_plane_intersect_coplanar_ray();
-	test_plane_intersect_from_above();
-	test_plane_intersect_from_below();
+	test_plane_intersect_parallel_ray(win, plane_b);
+	test_plane_intersect_coplanar_ray(win, plane_b);
+	test_plane_intersect_from_above(win, plane_b);
+	test_plane_intersect_from_below(win, plane_b);
 }
 
 void	tests(void)
@@ -1014,7 +1058,8 @@ int	main(void)
 	// parse(&win);
 	initialise_window(&win);
 	// test_colour_at(&win);
-	test_render(&win);
+	// test_render(&win);
+	test_plane(&win);
 	// // plot_points(&win);
 	mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
 	mlx_loop(win.mlx);

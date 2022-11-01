@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/01 11:30:21 by thakala          ###   ########.fr       */
+/*   Updated: 2022/11/01 15:40:01 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define KEY_DOWN 2
 # define ESC 53
 # define EPSILON 0.00001
+# define PLANE_EPSILON 0.00001
 
 typedef struct s_img
 {
@@ -138,6 +139,10 @@ void	is_shadow(t_world *world, t_tuple point, t_light *light);
 
 /* object intialisation */
 t_object	sphere(t_tuple origin, t_transform transform, t_material material);
+t_object	plane(t_tuple origin, t_transform transform, t_material material);
+t_tuple		plane_origin(void);
+t_transform	plane_transform(void);
+t_material	plane_material(void);
 
 /* object intersection */
 void	intersect_world(t_world *world, t_ray ray);
@@ -146,6 +151,7 @@ void	identify_hit(t_world *world, t_hit *hit);
 //void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array, t_win *win);
 // void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array);
 void	sphere_intersection(t_ray ray, void *sphere, t_world *world);
+void	plane_intersection(t_ray ray, void *plane, t_world *world);
 
 /* reflections*/
 t_tuple	reflect(t_tuple input, t_tuple normal);
