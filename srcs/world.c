@@ -5,6 +5,11 @@ static t_tuple	default_origin(void)
 	return (point(0, 0, 0));
 }
 
+t_tuple	camera_origin(void)
+{
+	return (point(0, 0, -5));
+}
+
 static t_canvas	default_canvas(void)
 {
 	return ((t_canvas){.vertical = HEIGHT, .horizontal = WIDTH});
@@ -16,6 +21,17 @@ static t_transform	default_transform_1(void)
 
 	d.translation = point(0, 0, 0);
 	d.rotation = point(0, 0, 0);
+	d.scale = point(1, 1, 1);
+	transform_object(&d);
+	return (d);
+}
+
+static t_transform	camera_transform(void)
+{
+	t_transform	d;
+
+	d.translation = point(0, 0, 0);
+	d.rotation = point(0, M_PI_4, 0);
 	d.scale = point(1, 1, 1);
 	transform_object(&d);
 	return (d);
@@ -76,13 +92,19 @@ void	default_world(t_world *world)
 	t_object	sphere_1;
 	t_object	sphere_2;
 	t_light		light;
+	t_mtx		view_matrix;
 
 	light = default_light();
-	world->camera = camera(default_canvas(), M_PI_2);
+	// world->camera = camera(default_canvas(), M_PI_2);
 	sphere_1 = sphere(default_origin(), default_transform_1(),
 			default_material_1());
 	sphere_2 = sphere(default_origin(), default_transform_2(),
 			default_material_1());
+	world->camera = camera(camera_origin(), camera_transform(), M_PI_2, default_canvas());
+	view_matrix = view_transform(world->camera.origin, point(0, 0, 0), vector(0, 1, 0));
+	world->camera.transform.inverse = world->camera.transform.matrix;
+	matrix_inversion(&world->camera.transform.inverse, 4);
+	matrix_multi_square(&world->camera.transform.matrix, &view_matrix, 4);
 	if (vec_push(&world->objects, &sphere_1) == VEC_ERROR)
 		handle_errors("unable to malloc for world object");
 	if (vec_push(&world->objects, &sphere_2) == VEC_ERROR)

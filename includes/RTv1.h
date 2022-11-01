@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/31 15:24:23 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/01 10:24:36 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,8 @@ void	sphere_world(t_world *world);
 t_transform	default_transform(void);
 
 /* camera */
-t_camera	camera(t_canvas size, t_fl field_of_view);
+// t_camera	camera(t_canvas size, t_fl field_of_view);
+t_camera	camera(t_tuple origin, t_transform transform, t_fl field_of_view, t_canvas size);
 t_ray	ray_for_pixel(t_camera *camera, t_canvas position);
 void	prepare_computations(t_world *world);
 t_tuple	colour_at(t_world *world);
