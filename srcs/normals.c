@@ -35,14 +35,19 @@ t_tuple	normal_at_cone(void *cone, t_tuple *point_at)
 
 t_tuple	normal_at_cylinder(void *cylinder, t_tuple *point_at)
 {
-	t_tuple	world_normal;
+	t_fl	distance;
 
-	(void)cylinder;
-	world_normal.tuple.units.x = point_at->tuple.units.x;
-	world_normal.tuple.units.y = 0;
-	world_normal.tuple.units.z = point_at->tuple.units.z;
-	world_normal.tuple.units.w = 0;
-	return (normalize(world_normal));
+	distance = (point_at->tuple.units.x * point_at->tuple.units.x) + \
+		(point_at->tuple.units.z * point_at->tuple.units.z);
+	if (distance < 1 && (point_at->tuple.units.y >= \
+	((((t_object *)cylinder)->object.cylinder.max) - EPSILON)))
+		return (vector(0, 1, 0));
+	else if (distance < 1 && (point_at->tuple.units.y <= \
+	((((t_object *)cylinder)->object.cylinder.min) + EPSILON)))
+		return (vector(0, -1, 0));
+	else
+		return (
+		vector(point_at->tuple.units.x, 0, point_at->tuple.units.z));
 }
 
 t_tuple	normal_at(void *object, t_tuple *point)

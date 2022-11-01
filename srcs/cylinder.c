@@ -11,9 +11,9 @@ t_object	cylinder(t_tuple origin, t_transform transform, t_material material)
 				.radius = 1,
 				.material = material,
 				.comp = (t_comp){},
-				.min = -INFINITY,
-				.max = INFINITY,
-				.closed = false
+				.min = -5.0,
+				.max = 3.0,
+				.closed = true
 			},
 			.type = OBJECT_CYLINDER
 		}

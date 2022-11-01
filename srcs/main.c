@@ -1005,12 +1005,46 @@ void	test_cylinder_ends(void)
 		printf("no hits\n");
 }
 
+void	test_cyl_end_cap_normals(void)
+{
+	t_object cylinder_1;
+	t_tuple p1;
+	t_tuple p2;
+	t_tuple p3;
+	t_tuple p4;
+	t_tuple p5;
+	t_tuple p6;
+
+	t_tuple vec;
+
+	cylinder_1 = cylinder(default_origin(), default_transform(), default_phong_mat());
+	p1 = point(0, 1, 0);
+	p2 = point(0.5, 1, 0);
+	p3 =  point(0, 1, 0.5);
+	p4 =  point(0, 2, 0);
+	p5 = point(0.5, 2, 0);
+	p6 = point(0, 2, 0.5);
+	vec = normal_at_cylinder(&cylinder_1, &p1);
+	print_tuple(&vec, 0, "p1");
+	vec = normal_at_cylinder(&cylinder_1, &p2);
+	print_tuple(&vec, 0, "p2");
+	vec = normal_at_cylinder(&cylinder_1, &p3);
+	print_tuple(&vec, 0, "p3");
+	vec = normal_at_cylinder(&cylinder_1, &p4);
+	print_tuple(&vec, 0, "p4");
+	vec = normal_at_cylinder(&cylinder_1, &p5);
+	print_tuple(&vec, 0, "p5");
+	vec = normal_at_cylinder(&cylinder_1, &p6);
+	print_tuple(&vec, 0, "p6");
+}
+
 void	test_cylinder(void)
 {
 	// test_cylinder_intersection();
 	// test_cylinder_normal();
 	// test_truncated_cylinder();
-	test_cylinder_ends();
+	// test_cylinder_ends();
+	test_cyl_end_cap_normals();
 }
 
 void	tests(void)
@@ -1036,13 +1070,13 @@ int	main(void)
 {
 	// if (argc != 2)
 	//  	handle_errors(USAGE);
-	// t_win	win;
+	t_win	win;
 
-	// initialise_world(&win.world);
-	// initialise_window(&win);
-	// test_render(&win);
-	// mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
-	// mlx_loop(win.mlx);
-	tests();
+	initialise_world(&win.world);
+	initialise_window(&win);
+	test_render(&win);
+	mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
+	mlx_loop(win.mlx);
+	// tests();
 	return (0);
 }
