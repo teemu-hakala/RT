@@ -99,6 +99,7 @@ typedef struct s_cylinder
 	t_comp		comp;
 	t_fl		min;
 	t_fl		max;
+	int			closed;
 }	t_cylinder;
 
 typedef struct s_light

@@ -10,12 +10,12 @@ void	prepare_object(t_world *world, t_object *object, t_comp *computations)
 	if (dot_product(computations->vectors.surface_normal, \
 		computations->vectors.eye) < 0)
 	{
-		computations->inside = 1;
+		computations->inside = true;
 		computations->vectors.surface_normal = \
 			tuple_scale(computations->vectors.surface_normal, -1);
 	}
 	else
-		computations->inside = 0;
+		computations->inside = false;
 	computations->over_point = tuple_add(computations->point, tuple_scale(computations->vectors.surface_normal, EPSILON));
 }
 

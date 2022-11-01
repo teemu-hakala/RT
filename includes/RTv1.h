@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/01 15:00:16 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/01 16:11:22 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,12 @@
 # define ESC 53
 # define EPSILON 0.00001
 
+typedef enum e_bool
+{
+	false = 0,
+	true = 1
+}			t_bool;
+
 typedef struct s_img
 {
 	void	*img;
@@ -53,7 +59,6 @@ typedef struct s_pixel_index
 	t_fl		row;
 	t_fl		col;
 }				t_index;
-
 
 typedef struct s_win
 {

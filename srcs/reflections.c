@@ -52,7 +52,7 @@ t_tuple	lighting(t_material material, t_light *light, t_phong vectors,
 	}
 	else
 		lighting_cont(&material, light, &vectors, incidence_l);
-	if (vectors.in_shadow == 1)
+	if (vectors.in_shadow == true)
 		return (material.amb_col);
 	return (tuple_add(
 			tuple_add(material.amb_col, material.dif_col), material.spec_col));
@@ -73,12 +73,12 @@ void	is_shadow(t_world *world, t_tuple point, t_light *light)
 	vec_clear(&world->intersections);
 	intersect_world(world, ray);
 	identify_hit(world, &world->shadow_hit);
-	world->hit.computations.vectors.in_shadow = 0;
+	world->hit.computations.vectors.in_shadow = false;
 	if (world->shadow_hit.intersection != NULL)
 	{
 		if (world->shadow_hit.intersection->time < distance)
 		{
-			world->hit.computations.vectors.in_shadow = 1;
+			world->hit.computations.vectors.in_shadow = true;
 		}
 	}
 }
