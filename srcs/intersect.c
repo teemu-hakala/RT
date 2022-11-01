@@ -89,10 +89,36 @@ t_fl	max(t_fl a, t_fl b)
 	return (a > b ? a : b);
 }
 
+void	cylinder_intersection_cont(t_quadratic params, t_ray ray, \
+t_cylinder cylinder, t_world *world)
+{
+	t_fl y0;
+
+	y0 = ray.origin.tuple.units.y + min(params.res_1, params.res_2) \
+	* ray.direction.tuple.units.y;
+	if (cylinder.min < y0 && y0 < cylinder.max)
+	{
+		if (vec_push(&world->intersections, &(t_intersect){
+			.time = min(params.res_1, params.res_2),
+			.shape = cylinder
+		}) == VEC_ERROR)
+		handle_errors("vec_push malloc error cylinder_intersection");
+	}
+	y0 = ray.origin.tuple.units.y + max(params.res_1, params.res_2) \
+	* ray.direction.tuple.units.y;
+	if (cylinder.min < y0 && y0 < cylinder.max)
+	{
+		if (vec_push(&world->intersections, &(t_intersect){
+				.time = max(params.res_1, params.res_2),
+				.shape = cylinder
+			}) == VEC_ERROR)
+			handle_errors("vec_push malloc error cylinder_intersection");
+	}
+}
+
 void	cylinder_intersection(t_ray ray, void *cylinder, t_world *world)
 {
 	t_quadratic	params;
-	t_fl		y0;
 
 	params.a = (ray.direction.tuple.units.x * ray.direction.tuple.units.x) + \
 		(ray.direction.tuple.units.z * ray.direction.tuple.units.z);
@@ -100,30 +126,8 @@ void	cylinder_intersection(t_ray ray, void *cylinder, t_world *world)
 	{
 		cylinder_quadratic(&params, ray);
 		if (params.discriminant >= 0.0)
-		{
-			y0 = ray.origin.tuple.units.y + min(params.res_1, params.res_2) \
-			* ray.direction.tuple.units.y;
-			if ((((t_object *)cylinder)->object.cylinder.min) < y0 && y0 < \
-			(((t_object *)cylinder)->object.cylinder.max))
-			{
-				if (vec_push(&world->intersections, &(t_intersect){
-					.time = min(params.res_1, params.res_2),
-					.shape = cylinder
-				}) == VEC_ERROR)
-				handle_errors("vec_push malloc error cylinder_intersection");
-			}
-			y0 = ray.origin.tuple.units.y + max(params.res_1, params.res_2) \
-			* ray.direction.tuple.units.y;
-			if ((((t_object *)cylinder)->object.cylinder.min) < y0 && y0 < \
-			(((t_object *)cylinder)->object.cylinder.max))
-			{
-				if (vec_push(&world->intersections, &(t_intersect){
-						.time = max(params.res_1, params.res_2),
-						.shape = cylinder
-					}) == VEC_ERROR)
-					handle_errors("vec_push malloc error cylinder_intersection");
-			}
-		}
+			cylinder_intersection_cont(params, ray,\
+			((t_object*)cylinder)->object.cylinder, world);
 	}
 	intersect_caps(cylinder, &ray, world);
 }
