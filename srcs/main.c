@@ -830,13 +830,13 @@ void	test_cylinder_normal()
 	p2 = point(0, 5, -1);
 	p3 = point(0, -2, 1);
 	p4 = point(-1, 1, 0);
-	vec = normal_at_cylinder(cylinder, &p1);
+	vec = normal_at_cylinder(&cylinder_1, &p1);
 	print_tuple(&vec, 0, "p1");
-	vec = normal_at_cylinder(cylinder, &p2);
+	vec = normal_at_cylinder(&cylinder_1, &p2);
 	print_tuple(&vec, 0, "p2");
-	vec = normal_at_cylinder(cylinder, &p3);
+	vec = normal_at_cylinder(&cylinder_1, &p3);
 	print_tuple(&vec, 0, "p3");
-	vec = normal_at_cylinder(cylinder, &p4);
+	vec = normal_at_cylinder(&cylinder_1, &p4);
 	print_tuple(&vec, 0, "p4");
 }
 
@@ -1018,6 +1018,9 @@ void	test_cyl_end_cap_normals(void)
 	t_tuple vec;
 
 	cylinder_1 = cylinder(default_origin(), default_transform(), default_phong_mat());
+	cylinder_1.object.cylinder.min = 1;
+	cylinder_1.object.cylinder.max = 2;
+	cylinder_1.object.cylinder.closed = true;
 	p1 = point(0, 1, 0);
 	p2 = point(0.5, 1, 0);
 	p3 =  point(0, 1, 0.5);
