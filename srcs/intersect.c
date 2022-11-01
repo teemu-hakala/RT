@@ -83,44 +83,46 @@ void	cylinder_intersection(t_ray ray, void *cylinder, t_world *world)
 
 	a = (ray.direction.tuple.units.x * ray.direction.tuple.units.x) + \
 		(ray.direction.tuple.units.z * ray.direction.tuple.units.z);
-	if (a < EPSILON && a > -EPSILON)
-		return ;
-	b = (2 * ray.origin.tuple.units.x * ray.direction.tuple.units.x) + \
-		(2 * ray.origin.tuple.units.z * ray.direction.tuple.units.z);
-	c = (ray.origin.tuple.units.x * ray.origin.tuple.units.x) + \
-	(ray.origin.tuple.units.z * ray.origin.tuple.units.z) - 1;
-	discriminant = (b * b) - (4 * a * c);
-	if (discriminant >= 0.0)
+	if (a > EPSILON || a < -EPSILON)
 	{
-		if ((-b - sqrt(discriminant)) / (2 * a) > (-b + sqrt(discriminant)) / (2 * a))
+		b = (2 * ray.origin.tuple.units.x * ray.direction.tuple.units.x) + \
+		(2 * ray.origin.tuple.units.z * ray.direction.tuple.units.z);
+		c = (ray.origin.tuple.units.x * ray.origin.tuple.units.x) + \
+		(ray.origin.tuple.units.z * ray.origin.tuple.units.z) - 1;
+		discriminant = (b * b) - (4 * a * c);
+		if (discriminant >= 0.0)
 		{
-			temp0 =  (-b + sqrt(discriminant)) / (2 * a);
-			temp1 = (-b - sqrt(discriminant)) / (2 * a);
-		}
-		else
-		{
-			temp0 = (-b - sqrt(discriminant)) / (2 * a);
-			temp1 = (-b + sqrt(discriminant)) / (2 * a);
-		}
-		y0 = ray.origin.tuple.units.y + temp0 * ray.direction.tuple.units.y;
-		if ((((t_object *)cylinder)->object.cylinder.min) < y0 && y0 < (((t_object *)cylinder)->object.cylinder.max))
-		{
-			if (vec_push(&world->intersections, &(t_intersect){
-				.time = temp0,
-				.shape = cylinder
-			}) == VEC_ERROR)
-			handle_errors("vec_push malloc error cylinder_intersection");
-		}
-		y0 = ray.origin.tuple.units.y + temp1 * ray.direction.tuple.units.y;
-		if ((((t_object *)cylinder)->object.cylinder.min) < y0 && y0 < (((t_object *)cylinder)->object.cylinder.max))
-		{
-			if (vec_push(&world->intersections, &(t_intersect){
-					.time = temp1,
+			if ((-b - sqrt(discriminant)) / (2 * a) > (-b + sqrt(discriminant)) / (2 * a))
+			{
+				temp0 =  (-b + sqrt(discriminant)) / (2 * a);
+				temp1 = (-b - sqrt(discriminant)) / (2 * a);
+			}
+			else
+			{
+				temp0 = (-b - sqrt(discriminant)) / (2 * a);
+				temp1 = (-b + sqrt(discriminant)) / (2 * a);
+			}
+			y0 = ray.origin.tuple.units.y + temp0 * ray.direction.tuple.units.y;
+			if ((((t_object *)cylinder)->object.cylinder.min) < y0 && y0 < (((t_object *)cylinder)->object.cylinder.max))
+			{
+				if (vec_push(&world->intersections, &(t_intersect){
+					.time = temp0,
 					.shape = cylinder
 				}) == VEC_ERROR)
 				handle_errors("vec_push malloc error cylinder_intersection");
+			}
+			y0 = ray.origin.tuple.units.y + temp1 * ray.direction.tuple.units.y;
+			if ((((t_object *)cylinder)->object.cylinder.min) < y0 && y0 < (((t_object *)cylinder)->object.cylinder.max))
+			{
+				if (vec_push(&world->intersections, &(t_intersect){
+						.time = temp1,
+						.shape = cylinder
+					}) == VEC_ERROR)
+					handle_errors("vec_push malloc error cylinder_intersection");
+			}
 		}
 	}
+	intersect_caps(cylinder, &ray, world);
 }
 
 int sort_intersections(void *xs_a, void *xs_b)

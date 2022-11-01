@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/01 16:11:22 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/01 17:12:59 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,6 @@
 # define KEY_DOWN 2
 # define ESC 53
 # define EPSILON 0.00001
-
-typedef enum e_bool
-{
-	false = 0,
-	true = 1
-}			t_bool;
 
 typedef struct s_img
 {
@@ -140,6 +134,8 @@ t_object	cylinder(t_tuple origin, t_transform transform, t_material material);
 void	intersect_world(t_world *world, t_ray ray);
 void	identify_hit(t_world *world, t_hit *hit);
 void	sphere_intersection(t_ray ray, void *sphere, t_world *world);
+void	intersect_caps(t_object *cylinder, t_ray *ray, t_world *world);
+void	cylinder_intersection(t_ray ray, void *cylinder, t_world *world);
 
 /* reflections*/
 t_tuple	reflect(t_tuple input, t_tuple normal);

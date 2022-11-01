@@ -787,7 +787,7 @@ void	test_shading(void)
 	printf("colour: %f, %f, %f, %f\n", final_colour.tuple.units.x, final_colour.tuple.units.y, final_colour.tuple.units.z, final_colour.tuple.units.w);
 }
 
-void	test_sphere_intersection()
+void	test_cylinder_intersection()
 {
 	t_world world;
 	t_ray	ray;
@@ -815,7 +815,7 @@ void	test_sphere_intersection()
 		printf("hit time: %f\n", world.hit.intersection->time);
 }
 
-void	test_sphere_normal()
+void	test_cylinder_normal()
 {
 	t_object cylinder_1;
 	t_tuple p1;
@@ -840,7 +840,7 @@ void	test_sphere_normal()
 	print_tuple(&vec, 0, "p4");
 }
 
-void	test_truncated_sphere(void)
+void	test_truncated_cylinder(void)
 {
 	t_world world;
 	t_ray	ray1;
@@ -849,8 +849,11 @@ void	test_truncated_sphere(void)
 	t_ray	ray4;
 	t_ray	ray5;
 	t_ray	ray6;
-	//set cylinder min and max to 1 and 2 in cylinder function
+	t_object *cyl;
 	initialise_world(&world);
+	cyl = ((t_object*)vec_get(&world.objects, 0));
+	cyl->object.cylinder.min = 1;
+	cyl->object.cylinder.max = 2;
 	ray1.origin.tuple.units = (t_units){0, 1.5, 0, POINT_1};
 	ray1.direction.tuple.units = (t_units){0.1, 1, 0, VECTOR_0};
 	ray1.direction = normalize(ray1.direction);
@@ -926,11 +929,88 @@ void	test_truncated_sphere(void)
 		printf("hit time: %f\n", world.hit.intersection->time);
 }
 
+void	test_cylinder_ends(void)
+{
+	t_world world;
+	t_ray	ray1;
+	t_ray	ray2;
+	t_ray	ray3;
+	t_ray	ray4;
+	t_ray	ray5;
+	t_object *cyl;
+
+	initialise_world(&world);
+	cyl = ((t_object*)vec_get(&world.objects, 0));
+	cyl->object.cylinder.min = 1;
+	cyl->object.cylinder.max = 2;
+	cyl->object.cylinder.closed = true;
+	ray1.origin.tuple.units = (t_units){0, 3, 0, POINT_1};
+	ray1.direction.tuple.units = (t_units){0, -1, 0, VECTOR_0};
+	ray1.direction = normalize(ray1.direction);
+
+	ray2.origin.tuple.units = (t_units){0, 3, -2, POINT_1};
+	ray2.direction.tuple.units = (t_units){0, -1, 2, VECTOR_0};
+	ray2.direction = normalize(ray2.direction);
+
+	ray3.origin.tuple.units = (t_units){0, 4, -2, POINT_1};
+	ray3.direction.tuple.units = (t_units){0, -1, 1, VECTOR_0};
+	ray3.direction = normalize(ray3.direction);
+
+	ray4.origin.tuple.units = (t_units){0,0,-2, POINT_1};
+	ray4.direction.tuple.units = (t_units){0,1,2, VECTOR_0};
+	ray4.direction = normalize(ray4.direction);
+
+	ray5.origin.tuple.units = (t_units){0,-1,-2, POINT_1};
+	ray5.direction.tuple.units = (t_units){0,1,1, VECTOR_0};
+	ray5.direction = normalize(ray5.direction);
+
+	vec_clear(&world.intersections);
+	printf("ray 1\n");
+	intersect_world(&world, ray1);
+	printf("no of intersections: %llu\n", world.intersections.len);
+	identify_hit(&world, &world.hit);
+	if (world.hit.intersection == NULL)
+		printf("no hits\n");
+
+	vec_clear(&world.intersections);
+	printf("ray 2\n");
+	intersect_world(&world, ray2);
+	printf("no of intersections: %llu\n", world.intersections.len);
+	identify_hit(&world, &world.hit);
+	if (world.hit.intersection == NULL)
+		printf("no hits\n");
+
+	vec_clear(&world.intersections);
+	printf("ray 3\n");
+	intersect_world(&world, ray3);
+	printf("no of intersections: %llu\n", world.intersections.len);
+	identify_hit(&world, &world.hit);
+	if (world.hit.intersection == NULL)
+		printf("no hits\n");
+
+	vec_clear(&world.intersections);
+	printf("ray 4\n");
+	intersect_world(&world, ray4);
+	printf("no of intersections: %llu\n", world.intersections.len);
+	identify_hit(&world, &world.hit);
+	if (world.hit.intersection == NULL)
+		printf("no hits\n");
+
+	vec_clear(&world.intersections);
+	printf("ray 5\n");
+	intersect_world(&world, ray5);
+	printf("no of intersections: %llu\n", world.intersections.len);
+	identify_hit(&world, &world.hit);
+	if (world.hit.intersection == NULL)
+		printf("no hits\n");
+}
+
 void	test_cylinder(void)
 {
-	// test_sphere_intersection();
-	// test_sphere_normal();
-	test_truncated_sphere();
+	// test_cylinder_intersection();
+	// test_cylinder_normal();
+	// test_truncated_cylinder();
+	test_cylinder_ends();
 }
 
 void	tests(void)
@@ -956,13 +1036,13 @@ int	main(void)
 {
 	// if (argc != 2)
 	//  	handle_errors(USAGE);
-	t_win	win;
+	// t_win	win;
 
-	initialise_world(&win.world);
-	initialise_window(&win);
-	test_render(&win);
-	mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
-	mlx_loop(win.mlx);
-	// tests();
+	// initialise_world(&win.world);
+	// initialise_window(&win);
+	// test_render(&win);
+	// mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
+	// mlx_loop(win.mlx);
+	tests();
 	return (0);
 }
