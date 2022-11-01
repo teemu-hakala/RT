@@ -18,13 +18,12 @@ void	identify_hit(t_world *world, t_hit *hit)
 	{
 		intersection = \
 			(t_intersect *)vec_get(&world->intersections, i++);
-
 		if (intersection->time >= 0 && \
 			(hit->intersection == NULL \
 				|| intersection->time < hit->intersection->time))
 				{
 					hit->intersection = intersection;
-					break ;
+					// break ;
 				}
 	}
 }
@@ -74,9 +73,33 @@ void	cone_intersection(t_ray ray, void *cone, t_world *world)
 
 void	cylinder_intersection(t_ray ray, void *cylinder, t_world *world)
 {
-	(void)ray;
-	(void)cylinder;
-	(void)world;
+	t_fl		discriminant;
+	t_fl		a;
+	t_fl		b;
+	t_fl		c;
+
+	a = (ray.direction.tuple.units.x * ray.direction.tuple.units.x) + \
+		(ray.direction.tuple.units.z * ray.direction.tuple.units.z);
+	if (a < EPSILON && a > -EPSILON)
+		return ;
+	b = (2 * ray.origin.tuple.units.x * ray.direction.tuple.units.x) + \
+		(2 * ray.origin.tuple.units.z * ray.direction.tuple.units.z);
+	c = (ray.origin.tuple.units.x * ray.origin.tuple.units.x) + \
+	(ray.origin.tuple.units.z * ray.origin.tuple.units.z) - 1;
+	discriminant = (b * b) - (4 * a * c);
+	if (discriminant >= 0.0)
+	{
+		if (vec_push(&world->intersections, &(t_intersect){
+				.time = (-b - sqrt(discriminant)) / (2 * a),
+				.shape = cylinder
+			}) == VEC_ERROR)
+			handle_errors("vec_push malloc error cylinder_intersection");
+		if (vec_push(&world->intersections, &(t_intersect){
+				.time = (-b + sqrt(discriminant)) / (2 * a),
+				.shape = cylinder
+			}) == VEC_ERROR)
+			handle_errors("vec_push malloc error cylinder_intersection");
+	}
 }
 
 int sort_intersections(void *xs_a, void *xs_b)

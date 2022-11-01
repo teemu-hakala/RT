@@ -6,7 +6,7 @@
 #    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2022/10/29 15:51:48 by deelliot         ###   ########.fr        #
+#    Updated: 2022/11/01 13:30:32 by deelliot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ FILES = \
 	transform_tuple \
 	reflections \
 	sphere \
+	cylinder \
 	world \
 	view_transform \
 	shading \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RTv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/01 11:30:21 by thakala          ###   ########.fr       */
+/*   Updated: 2022/11/01 15:00:16 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,13 +93,7 @@ void	matrix_inversion(t_mtx *mtx, uint32_t size);
 
 
 /* matrix transformations */
-// t_tuple	translate_tuple(t_tuple *tuple, t_tuple *transform);
-// t_tuple	scale_tuple(t_tuple *tuple, t_tuple *transform);
 void	rotate(t_mtx *mtx, t_tuple *rotations);
-// t_tuple	rot_x_tuple(t_tuple *tuple, t_fl angle);
-// t_tuple	rot_y_tuple(t_tuple *tuple, t_fl angle);
-// t_tuple	rot_z_tuple(t_tuple *tuple, t_fl angle);
-
 void	translate(t_mtx *mtx, t_tuple *transform);
 void	scale(t_mtx *mtx, t_tuple *transform);
 void	rot_x(t_mtx *mtx, t_fl angle);
@@ -117,15 +111,12 @@ t_tuple	hit_position(t_ray *ray, t_fl distance);
 
 /* error handle*/
 void	handle_errors(char *str);
-// void	handle_errors(t_win *win, char *str);
-// void	free_win(t_win *win);
 
 /* initialise */
 void	initialise_world(t_world *world);
 void	initialise_window(t_win *win);
 
 /* handle input*/
-// int		handle_input(int key, t_win *win);
 int		handle_input(int key);
 
 /* colour and lighting*/
@@ -138,13 +129,11 @@ void	is_shadow(t_world *world, t_tuple point, t_light *light);
 
 /* object intialisation */
 t_object	sphere(t_tuple origin, t_transform transform, t_material material);
+t_object	cylinder(t_tuple origin, t_transform transform, t_material material);
 
 /* object intersection */
 void	intersect_world(t_world *world, t_ray ray);
 void	identify_hit(t_world *world, t_hit *hit);
-// void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array);
-//void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array, t_win *win);
-// void	sphere_intersection(t_ray *ray, t_object *shape, t_intersections *array);
 void	sphere_intersection(t_ray ray, void *sphere, t_world *world);
 
 /* reflections*/
@@ -152,7 +141,6 @@ t_tuple	reflect(t_tuple input, t_tuple normal);
 
 /* object transformation */
 void	transform_object(t_transform *object);
-// void	transform_objects(t_objects *objects);
 
 /* view transfrom */
 t_mtx	view_transform(t_tuple from, t_tuple to, t_tuple up);
@@ -160,12 +148,10 @@ t_mtx	view_transform(t_tuple from, t_tuple to, t_tuple up);
 /* normals */
 t_tuple	normal_at(void *object, t_tuple *point);
 t_tuple	normal_at_sphere(void *sphere, t_tuple *point_at);
+t_tuple	normal_at_cylinder(void *cylinder, t_tuple *point_at);
 
 /* plot pixels */
-// void	plot_points(t_win *win, t_object *sphere);
-void	plot_points(t_win *win);
-void	plot_points_params(t_win *win);
-// void	img_pixel_put(t_win *win, int x, int y, t_tuple *colour);
+void	render(t_win *win, t_camera *camera);
 void	img_pixel_put(t_win *win, int x, int y, unsigned int colour);
 
 /* testing */
@@ -175,12 +161,16 @@ void	sphere_world(t_world *world);
 t_transform	default_transform(void);
 
 /* camera */
-// t_camera	camera(t_canvas size, t_fl field_of_view);
 t_camera	camera(t_tuple origin, t_transform transform, t_fl field_of_view, t_canvas size);
 t_ray	ray_for_pixel(t_camera *camera, t_canvas position);
 void	prepare_computations(t_world *world);
 t_tuple	colour_at(t_world *world);
-void	render(t_win *win, t_camera *camera);
 t_transform	camera_transform(void);
 t_tuple		camera_origin(void);
+
+/* default functions*/
+t_tuple	default_origin(void);
+t_material	default_phong_mat(void);
+t_transform	default_transform(void);
+t_canvas	default_canvas(void);
 #endif

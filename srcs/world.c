@@ -1,6 +1,6 @@
 #include "RTv1.h"
 
-static t_tuple	default_origin(void)
+t_tuple	default_origin(void)
 {
 	return (point(0, 0, 0));
 }
@@ -12,10 +12,10 @@ t_tuple	origin_1(void)
 
 t_tuple	camera_origin(void)
 {
-	return (point(0, 0, -5));
+	return (point(0, 0, -10));
 }
 
-static t_canvas	default_canvas(void)
+t_canvas	default_canvas(void)
 {
 	return ((t_canvas){.vertical = HEIGHT, .horizontal = WIDTH});
 }
@@ -51,6 +51,21 @@ t_transform	default_transform_2(void)
 	d.scale = point(0.5, 0.5, 0.5);
 	transform_object(&d);
 	return (d);
+}
+
+t_material	default_phong_mat(void)
+{
+	return ((t_material){
+		.ambient = 0.1,
+		.diffuse = 0.9,
+		.specular = 0.9,
+		.shininess = 200,
+		.colour = colour(1.0, 1.0, 1.0, 1.0),
+		.col_mash = vector(0, 0, 0),
+		.amb_col = vector(0, 0, 0),
+		.dif_col = vector(0, 0, 0),
+		.spec_col = vector(0, 0, 0)
+	});
 }
 
 t_material	default_material_1(void)
@@ -96,15 +111,16 @@ void	default_world(t_world *world)
 {
 	t_object	sphere_1;
 	t_object	sphere_2;
-	t_light		light;
 	t_mtx		view_matrix;
+	t_light		light;
+	t_object	cylinder_1;
 
 	light = default_light();
-	// world->camera = camera(default_canvas(), M_PI_2);
 	sphere_1 = sphere(default_origin(), default_transform_1(),
 			default_material_1());
 	sphere_2 = sphere(origin_1(), default_transform_2(),
 			default_material_1());
+	cylinder_1 = cylinder(default_origin(), default_transform(), default_phong_mat());
 	world->camera = camera(camera_origin(), camera_transform(), M_PI_2, default_canvas());
 	view_matrix = view_transform(world->camera.origin, point(0, 0, 0), vector(0, 1, 0));
 	matrix_multi_square(&world->camera.transform.matrix, &view_matrix, 4);
@@ -113,6 +129,8 @@ void	default_world(t_world *world)
 	if (vec_push(&world->objects, &sphere_1) == VEC_ERROR)
 		handle_errors("unable to malloc for world object");
 	if (vec_push(&world->objects, &sphere_2) == VEC_ERROR)
+		handle_errors("unable to malloc for world object");
+	if (vec_push(&world->objects, &cylinder_1) == VEC_ERROR)
 		handle_errors("unable to malloc for world object");
 	if (vec_push(&world->lights, &light) == VEC_ERROR)
 		handle_errors("unable to malloc for light");

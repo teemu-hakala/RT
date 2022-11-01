@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 11:28:57 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/31 14:43:19 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/01 14:41:13 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct s_world
 	t_hit		hit;
 	t_hit		shadow_hit;
 	t_ray		ray;
-	uint64_t	object_index;
+	// uint64_t	object_index;
 }	t_world;
 
 #endif

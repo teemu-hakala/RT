@@ -35,9 +35,14 @@ t_tuple	normal_at_cone(void *cone, t_tuple *point_at)
 
 t_tuple	normal_at_cylinder(void *cylinder, t_tuple *point_at)
 {
+	t_tuple	world_normal;
+
 	(void)cylinder;
-	(void)point_at;
-	return (vector(1, 0, 0));
+	world_normal.tuple.units.x = point_at->tuple.units.x;
+	world_normal.tuple.units.y = 0;
+	world_normal.tuple.units.z = point_at->tuple.units.z;
+	world_normal.tuple.units.w = 0;
+	return (normalize(world_normal));
 }
 
 t_tuple	normal_at(void *object, t_tuple *point)

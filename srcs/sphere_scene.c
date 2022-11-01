@@ -5,16 +5,6 @@ t_canvas	scene_canvas(void)
 	return ((t_canvas){.vertical = HEIGHT, .horizontal = WIDTH});
 }
 
-t_canvas	default_canvas(void)
-{
-	return ((t_canvas){.vertical = HEIGHT, .horizontal = WIDTH});
-}
-
-t_tuple	default_origin(void)
-{
-	return (point(0, 0, 0));
-}
-
 t_tuple	camera_sphere_origin(void)
 {
 	return (point(0, 1.5, -5));

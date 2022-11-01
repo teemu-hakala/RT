@@ -26,7 +26,7 @@ void	shade_cone(t_world *world, void *cone, t_tuple *colour, t_light *light)
 
 void	shade_cylinder(t_world *world, void *cylinder, t_tuple *colour, t_light *light)
 {
-	//is_shadow(world, world->hit.computations.over_point, light);
+	is_shadow(world, world->hit.computations.over_point, light);
 	*colour = tuple_add((lighting(((t_cylinder *)cylinder)->material, \
 		light, world->hit.computations.vectors, \
 		world->hit.computations.point)), *colour);

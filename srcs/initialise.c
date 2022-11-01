@@ -38,8 +38,8 @@ void	initialise_world(t_world *world)
 		!= VEC_SUCCESS)
 		handle_errors("initialise_world malloc returned NULL");
 	world->hit.intersection = NULL;
-	// default_world(world);
-	sphere_world(world);
+	default_world(world);
+	// sphere_world(world);
 }
 
 void	initialise_window(t_win *win)
