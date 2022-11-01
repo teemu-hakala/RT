@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 11:28:57 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/01 14:41:13 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/01 23:45:50 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,16 @@
 # include "RTv1.h"
 /*inside == true if hit occurs inside object, false otherwise. If hit occurs
 iside object, normal vector is inverted*/
+
+typedef struct s_quadratic
+{
+	t_fl	a;
+	t_fl	b;
+	t_fl	c;
+	t_fl	discriminant;
+	t_fl	res_1;
+	t_fl	res_2;
+}				t_quadratic;
 
 typedef struct s_intersect
 {

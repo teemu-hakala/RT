@@ -1,5 +1,6 @@
 {
 	"files.associations": {
+		"*c.test": "c",
 		"__hash_table": "c",
 		"__split_buffer": "c",
 		"array": "c",
@@ -17,6 +18,8 @@
 		"__node_handle": "c",
 		"locale": "c",
 		"complex": "c",
-		"functional": "c"
+		"functional": "c",
+		"random": "c",
+		"queue": "c"
 	}
 }
