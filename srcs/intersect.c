@@ -31,14 +31,16 @@ void	identify_hit(t_world *world, t_hit *hit)
 
 void	plane_intersection(t_ray ray, void *plane, t_world *world)
 {
+	enum e_vec_status	result;
+
 	ray = ray_transform(&ray, &((t_sphere *)plane)->transform.inverse);
 	if (PLANE_EPSILON > ray.direction.tuple.units.y \
 		&& ray.direction.tuple.units.y < PLANE_EPSILON)
 		return ;
-	if (vec_push(&world->intersections, &(t_intersect){
+	result = vec_push(&world->intersections, &(t_intersect){
 			.time = -ray.origin.tuple.units.y / ray.direction.tuple.units.y,
-			.shape = plane
-		}) == VEC_ERROR)
+			.shape = plane});
+	if (result == VEC_ERROR)
 		handle_errors("vec_push malloc error sphere_intersection");
 	(void)world;
 

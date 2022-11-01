@@ -986,7 +986,7 @@ void	test_plane_intersect_coplanar_ray(t_win *win, t_object plane_test)
 	t_ray		ray_test;
 
 	printf("TEST_PLANE_INTERSECT_COPLANAR_RAY\n");
-	ray_test = (t_ray){.origin = point(0, 10, 0), .direction = vector(0, 0, 1)};
+	ray_test = (t_ray){.origin = point(0, 0, 0), .direction = vector(0, 0, 1)};
 	plane_intersection(ray_test, &plane_test, &win->world);
 	vec_iter(&win->world.intersections, vec_print_intersection);
 	printf("\n");
@@ -997,7 +997,7 @@ void	test_plane_intersect_from_above(t_win *win, t_object plane_test)
 	t_ray		ray_test;
 
 	printf("TEST_PLANE_INTERSECT_FROM_ABOVE\n");
-	ray_test = (t_ray){.origin = point(0, 10, 0), .direction = vector(0, 0, 1)};
+	ray_test = (t_ray){.origin = point(0, 1, 0), .direction = vector(0, -1, 0)};
 	plane_intersection(ray_test, &plane_test, &win->world);
 	vec_iter(&win->world.intersections, vec_print_intersection);
 	printf("\n");
@@ -1008,7 +1008,7 @@ void	test_plane_intersect_from_below(t_win *win, t_object plane_test)
 	t_ray		ray_test;
 
 	printf("TEST_PLANE_INTERSECT_FROM_BELOW\n");
-	ray_test = (t_ray){.origin = point(0, 10, 0), .direction = vector(0, 0, 1)};
+	ray_test = (t_ray){.origin = point(0, -1, 0), .direction = vector(0, 1, 0)};
 	plane_intersection(ray_test, &plane_test, &win->world);
 	vec_iter(&win->world.intersections, vec_print_intersection);
 	printf("\n");
