@@ -4,7 +4,7 @@ t_tuple	normal_at_plane(void *plane, t_tuple *point_at)
 {
 	(void)plane;
 	(void)point_at;
-	return (vector(1, 0, 0));
+	return (vector(0, 1, 0));
 }
 
 t_tuple	normal_at_sphere(void *sphere, t_tuple *point_at)

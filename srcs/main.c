@@ -964,6 +964,27 @@ void test_shadow(void)
 // 	printf("colour: %f, %f, %f, %f\n", final_colour.tuple.units.x, final_colour.tuple.units.y, final_colour.tuple.units.z, final_colour.tuple.units.w);
 // }
 
+void	test_plane_intersect_parallel_ray(void)
+{
+	t_camera	camera_;
+	t_plane		plane_;
+	t_ray		ray_;
+
+	camera_ = camera(camera_origin(), camera_transform(), M_PI / 3, \
+		(t_canvas){.vertical = HEIGHT, .horizontal = WIDTH});
+	plane_ = plane();
+	ray_ = (t_ray){.origin = point(0, 10, 0), .direction = vector(0, 0, 1)};
+}
+
+void	test_plane(void)
+{
+	// test_plane_normal();
+	test_plane_intersect_parallel_ray();
+	test_plane_intersect_coplanar_ray();
+	test_plane_intersect_from_above();
+	test_plane_intersect_from_below();
+}
+
 void	tests(void)
 {
 	// test_matrix_inversion();
