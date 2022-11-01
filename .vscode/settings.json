@@ -15,6 +15,7 @@
 		"algorithm": "c",
 		"__locale": "c",
 		"__node_handle": "c",
-		"locale": "c"
+		"locale": "c",
+		"complex": "c"
 	}
 }

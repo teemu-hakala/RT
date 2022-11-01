@@ -840,10 +840,97 @@ void	test_sphere_normal()
 	print_tuple(&vec, 0, "p4");
 }
 
+void	test_truncated_sphere(void)
+{
+	t_world world;
+	t_ray	ray1;
+	t_ray	ray2;
+	t_ray	ray3;
+	t_ray	ray4;
+	t_ray	ray5;
+	t_ray	ray6;
+	//set cylinder min and max to 1 and 2 in cylinder function
+	initialise_world(&world);
+	ray1.origin.tuple.units = (t_units){0, 1.5, 0, POINT_1};
+	ray1.direction.tuple.units = (t_units){0.1, 1, 0, VECTOR_0};
+	ray1.direction = normalize(ray1.direction);
+	ray2.origin.tuple.units = (t_units){0, 3, -5, POINT_1};
+	ray2.direction.tuple.units = (t_units){0, 0, 1, VECTOR_0};
+	ray2.direction = normalize(ray2.direction);
+	ray3.origin.tuple.units = (t_units){0.5, 0, -5, POINT_1};
+	ray3.direction.tuple.units = (t_units){0, 0, 1, VECTOR_0};
+	ray3.direction = normalize(ray3.direction);
+	ray4.origin.tuple.units = (t_units){0, 2, -5, POINT_1};
+	ray4.direction.tuple.units = (t_units){0, 0, 1, VECTOR_0};
+	ray4.direction = normalize(ray4.direction);
+	ray5.origin.tuple.units = (t_units){0, 1, -5, POINT_1};
+	ray5.direction.tuple.units = (t_units){0, 0, 1, VECTOR_0};
+	ray5.direction = normalize(ray5.direction);
+	ray6.origin.tuple.units = (t_units){0, 1.5, -2, POINT_1};
+	ray6.direction.tuple.units = (t_units){0, 0, 1, VECTOR_0};
+	ray6.direction = normalize(ray6.direction);
+
+	vec_clear(&world.intersections);
+	intersect_world(&world, ray1);
+	printf("ray 1\n");
+	printf("%llu intersections found\n", world.intersections.len);
+	identify_hit(&world, &world.hit);
+	if (world.hit.intersection == NULL)
+		printf("no hits\n");
+	else
+		printf("hit time: %f\n", world.hit.intersection->time);
+	vec_clear(&world.intersections);
+	intersect_world(&world, ray2);
+	printf("ray 2\n");
+	printf("%llu intersections found\n", world.intersections.len);
+	identify_hit(&world, &world.hit);
+	if (world.hit.intersection == NULL)
+		printf("no hits\n");
+	else
+		printf("hit time: %f\n", world.hit.intersection->time);
+	vec_clear(&world.intersections);
+	intersect_world(&world, ray3);
+	printf("ray 3\n");
+	printf("%llu intersections found\n", world.intersections.len);
+	identify_hit(&world, &world.hit);
+	if (world.hit.intersection == NULL)
+		printf("no hits\n");
+	else
+		printf("hit time: %f\n", world.hit.intersection->time);
+	vec_clear(&world.intersections);
+	intersect_world(&world, ray4);
+	printf("ray 4\n");
+	printf("%llu intersections found\n", world.intersections.len);
+	identify_hit(&world, &world.hit);
+	if (world.hit.intersection == NULL)
+		printf("no hits\n");
+	else
+		printf("hit time: %f\n", world.hit.intersection->time);
+	vec_clear(&world.intersections);
+	intersect_world(&world, ray5);
+	printf("ray 5\n");
+	printf("%llu intersections found\n", world.intersections.len);
+	identify_hit(&world, &world.hit);
+	if (world.hit.intersection == NULL)
+		printf("no hits\n");
+	else
+		printf("hit time: %f\n", world.hit.intersection->time);
+	vec_clear(&world.intersections);
+	intersect_world(&world, ray6);
+	printf("ray 6\n");
+	printf("%llu intersections found\n", world.intersections.len);
+	identify_hit(&world, &world.hit);
+	if (world.hit.intersection == NULL)
+		printf("no hits\n");
+	else
+		printf("hit time: %f\n", world.hit.intersection->time);
+}
+
 void	test_cylinder(void)
 {
 	// test_sphere_intersection();
-	test_sphere_normal();
+	// test_sphere_normal();
+	test_truncated_sphere();
 }
 
 void	tests(void)
@@ -867,10 +954,10 @@ void	tests(void)
 
 int	main(void)
 {
-	t_win	win;
-
 	// if (argc != 2)
 	//  	handle_errors(USAGE);
+	t_win	win;
+
 	initialise_world(&win.world);
 	initialise_window(&win);
 	test_render(&win);
