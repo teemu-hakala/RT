@@ -710,9 +710,21 @@ typedef void	(*t_print_object)(t_object *, uint8_t, uint64_t);
 
 void	print_plane(t_object *plane, uint8_t indent_level, uint64_t object_index)
 {
-	(void)plane;
-	(void)indent_level;
-	(void)object_index;
+	char	*str;
+
+	asprintf(&str, "%s #%04llu\n", "PLANE ", object_index);
+	print_indented(indent_level, str);
+	free(str);
+	print_indented(indent_level, "{\n");
+	print_tuple(&plane->object.plane.origin, indent_level + 1, \
+		"plane->object.plane.origin");
+	print_transform(&plane->object.plane.transform, indent_level + 1, \
+		"plane->object.plane.transform");
+	print_material(&plane->object.plane.material, indent_level + 1, \
+		"plane->object.plane.material");
+	print_computations(&plane->object.plane.comp, indent_level + 1, \
+		"plane->object.plane.comp");
+	print_indented(indent_level, "}\n");
 }
 
 void	print_sphere(t_object *sphere, uint8_t indent_level, uint64_t object_index)
@@ -1023,10 +1035,42 @@ void	test_plane(t_win *win)
 	if (vec_push(&win->world.objects, &plane_b) == VEC_ERROR)
 		handle_errors("unable to malloc for world object");
 	// test_plane_normal();
+	vec_clear(&win->world.intersections);
 	test_plane_intersect_parallel_ray(win, plane_b);
+	vec_clear(&win->world.intersections);
 	test_plane_intersect_coplanar_ray(win, plane_b);
+	vec_clear(&win->world.intersections);
 	test_plane_intersect_from_above(win, plane_b);
+	vec_clear(&win->world.intersections);
 	test_plane_intersect_from_below(win, plane_b);
+	vec_clear(&win->world.intersections);
+}
+
+void	vec_print_object(void *object)
+{
+	printf("OBJECT:\n\tshape->type: %d\n",((t_object *)object)->type);
+	if (((t_object *)object)->type == OBJECT_PLANE)
+		print_plane((t_object *)object, 1, -1);
+	else if (((t_object *)object)->type == OBJECT_SPHERE)
+		print_sphere((t_object *)object, 1, -1);
+	else if (((t_object *)object)->type == OBJECT_CONE)
+		print_cone((t_object *)object, 1, -1);
+	else if (((t_object *)object)->type == OBJECT_CYLINDER)
+		print_cylinder((t_object *)object, 1, -1);
+}
+
+void	test_sphere_scene_with_planar_floor(t_win *win)
+{
+	t_object	plane_b;
+
+	vec_remove(&win->world.objects, 0);
+	vec_remove(&win->world.objects, 0);
+	vec_remove(&win->world.objects, 0);
+	plane_b = plane(plane_origin(), plane_transform(), plane_material());
+	if (vec_push(&win->world.objects, &plane_b) == VEC_ERROR)
+		handle_errors("unable to malloc for world object");
+	//vec_iter(&win->world.objects, vec_print_object);
+	print_world(&win->world, &win->world.camera);
 }
 
 void	tests(void)
@@ -1059,8 +1103,9 @@ int	main(void)
 	initialise_window(&win);
 	// test_colour_at(&win);
 	// test_render(&win);
-	test_plane(&win);
+	// test_plane(&win);
 	// // plot_points(&win);
+	test_sphere_scene_with_planar_floor(&win);
 	mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
 	mlx_loop(win.mlx);
 	return (0);
