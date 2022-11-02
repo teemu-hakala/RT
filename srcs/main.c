@@ -1066,9 +1066,15 @@ void	test_sphere_scene_with_planar_floor(t_win *win)
 	vec_remove(&win->world.objects, 0);
 	vec_remove(&win->world.objects, 0);
 	vec_remove(&win->world.objects, 0);
-	plane_b = plane(plane_origin(), plane_transform(), plane_material());
+	plane_b = plane(plane_origin(), plane_transform_floor(), plane_material_floor());
 	if (vec_push(&win->world.objects, &plane_b) == VEC_ERROR)
-		handle_errors("unable to malloc for world object");
+		handle_errors("unable to malloc for plane floor");
+	plane_b = plane(plane_origin(), plane_transform_right_wall(), plane_material_right_wall());
+	if (vec_push(&win->world.objects, &plane_b) == VEC_ERROR)
+		handle_errors("unable to malloc for plane right wall");
+	plane_b = plane(plane_origin(), plane_transform_left_wall(), plane_material_left_wall());
+	if (vec_push(&win->world.objects, &plane_b) == VEC_ERROR)
+		handle_errors("unable to malloc for plane left wall");
 	//vec_iter(&win->world.objects, vec_print_object);
 	print_world(&win->world, &win->world.camera);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RTv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/01 15:40:01 by thakala          ###   ########.fr       */
+/*   Updated: 2022/11/02 19:23:58 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,13 @@ t_object	plane(t_tuple origin, t_transform transform, t_material material);
 t_tuple		plane_origin(void);
 t_transform	plane_transform(void);
 t_material	plane_material(void);
+
+t_transform	plane_transform_floor(void);
+t_transform	plane_transform_right_wall(void);
+t_transform	plane_transform_left_wall(void);
+t_material	plane_material_floor(void);
+t_material	plane_material_right_wall(void);
+t_material	plane_material_left_wall(void);
 
 /* object intersection */
 void	intersect_world(t_world *world, t_ray ray);
