@@ -2,7 +2,7 @@
 
 void	shade_plane(t_world *world, void *plane, t_tuple *colour, t_light *light)
 {
-	//is_shadow(world, world->hit.computations.over_point, light);
+	is_shadow(world, world->hit.computations.over_point, light);
 	*colour = tuple_add((lighting(((t_plane *)plane)->material, \
 		light, world->hit.computations.vectors, \
 		world->hit.computations.over_point)), *colour);

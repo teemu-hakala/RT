@@ -1102,10 +1102,10 @@ int	main(void)
 	// parse(&win);
 	initialise_window(&win);
 	// test_colour_at(&win);
-	// test_render(&win);
+	test_sphere_scene_with_planar_floor(&win);
+	test_render(&win);
 	// test_plane(&win);
 	// // plot_points(&win);
-	test_sphere_scene_with_planar_floor(&win);
 	mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
 	mlx_loop(win.mlx);
 	return (0);
