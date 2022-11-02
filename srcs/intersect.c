@@ -90,13 +90,13 @@ t_fl	max(t_fl a, t_fl b)
 }
 
 void	cylinder_intersection_cont(t_quadratic params, t_ray ray, \
-t_cylinder cylinder, t_world *world)
+t_object *cylinder, t_world *world)
 {
 	t_fl y0;
 
 	y0 = ray.origin.tuple.units.y + min(params.res_1, params.res_2) \
 	* ray.direction.tuple.units.y;
-	if (cylinder.min < y0 && y0 < cylinder.max)
+	if (cylinder->object.cylinder.min < y0 && y0 < cylinder->object.cylinder.max)
 	{
 		if (vec_push(&world->intersections, &(t_intersect){
 			.time = min(params.res_1, params.res_2),
@@ -106,7 +106,7 @@ t_cylinder cylinder, t_world *world)
 	}
 	y0 = ray.origin.tuple.units.y + max(params.res_1, params.res_2) \
 	* ray.direction.tuple.units.y;
-	if (cylinder.min < y0 && y0 < cylinder.max)
+	if (cylinder->object.cylinder.min < y0 && y0 < cylinder->object.cylinder.max)
 	{
 		if (vec_push(&world->intersections, &(t_intersect){
 				.time = max(params.res_1, params.res_2),
@@ -126,8 +126,7 @@ void	cylinder_intersection(t_ray ray, void *cylinder, t_world *world)
 	{
 		cylinder_quadratic(&params, ray);
 		if (params.discriminant >= 0.0)
-			cylinder_intersection_cont(params, ray,\
-			((t_object*)cylinder)->object.cylinder, world);
+			cylinder_intersection_cont(params, ray, cylinder, world);
 	}
 	intersect_caps(cylinder, &ray, world);
 }
