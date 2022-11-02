@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/01 17:12:59 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/02 22:52:39 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,12 +129,15 @@ void	is_shadow(t_world *world, t_tuple point, t_light *light);
 /* object intialisation */
 t_object	sphere(t_tuple origin, t_transform transform, t_material material);
 t_object	cylinder(t_tuple origin, t_transform transform, t_material material);
+t_object	cone(t_tuple origin, t_transform transform, t_material material);
 
 /* object intersection */
 void	intersect_world(t_world *world, t_ray ray);
 void	identify_hit(t_world *world, t_hit *hit);
 void	sphere_intersection(t_ray ray, void *sphere, t_world *world);
-void	intersect_caps(t_object *cylinder, t_ray *ray, t_world *world);
+int		check_cap(t_ray *ray, t_fl time, t_fl radius);
+void	intersect_cylinder_caps(t_object *cylinder, t_ray *ray, t_world *world);
+void	intersect_cone_caps(t_object *cone, t_ray *ray, t_world *world);
 void	cylinder_intersection(t_ray ray, void *cylinder, t_world *world);
 
 /* reflections*/

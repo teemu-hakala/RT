@@ -1043,11 +1043,80 @@ void	test_cyl_end_cap_normals(void)
 
 void	test_cylinder(void)
 {
-	// test_cylinder_intersection();
-	// test_cylinder_normal();
-	// test_truncated_cylinder();
-	// test_cylinder_ends();
+	test_cylinder_intersection();
+	test_cylinder_normal();
+	test_truncated_cylinder();
+	test_cylinder_ends();
 	test_cyl_end_cap_normals();
+}
+
+void	test_cone_intersection()
+{
+	t_world world;
+	t_ray	ray;
+	uint64_t i;
+
+	i = 0;
+	initialise_world(&world);
+	printf("%llu objects in world\n", world.objects.len);
+	while (i < world.objects.len)
+	{
+		printf("object: %d\n",((t_object*)vec_get(&world.objects, i))->type);
+		i++;
+	}
+	ray.origin.tuple.units = (t_units){0, 0, -1, POINT_1};
+	ray.direction.tuple.units = (t_units){0, 1, 1, VECTOR_0};
+	ray.direction = normalize(ray.direction);
+	vec_clear(&world.intersections);
+	intersect_world(&world, ray);
+	printf("%llu intersections found\n", world.intersections.len);
+	identify_hit(&world, &world.hit);
+	if (world.hit.intersection == NULL)
+		printf("no hits\n");
+	else
+		printf("hit time: %f\n", world.hit.intersection->time);
+}
+
+void	test_cone_caps()
+{
+	t_world world;
+	t_ray	ray1;
+	t_ray	ray2;
+	t_ray	ray3;
+	t_object *cone_1;
+
+	initialise_world(&world);
+	cone_1 = ((t_object*)vec_get(&world.objects, 0));
+	cone_1->object.cone.min = -0.5;
+	cone_1->object.cone.max = 0.5;
+	cone_1->object.cone.closed = true;
+	ray1.origin.tuple.units = (t_units){0, 0, 5, POINT_1};
+	ray1.direction.tuple.units = (t_units){0, 1, 0, VECTOR_0};
+	ray1.direction = normalize(ray1.direction);
+
+	ray2.origin.tuple.units = (t_units){0, 0, -0.25, POINT_1};
+	ray2.direction.tuple.units = (t_units){0, 1, 1, VECTOR_0};
+	ray2.direction = normalize(ray2.direction);
+
+	ray3.origin.tuple.units = (t_units){0, 0, -0.25, POINT_1};
+	ray3.direction.tuple.units = (t_units){0, 1, 0, VECTOR_0};
+	ray3.direction = normalize(ray3.direction);
+
+	vec_clear(&world.intersections);
+	printf("ray 1\n");
+	intersect_world(&world, ray1);
+	printf("no of intersections: %llu\n", world.intersections.len);
+	identify_hit(&world, &world.hit);
+	vec_clear(&world.intersections);
+	printf("ray 2\n");
+	intersect_world(&world, ray2);
+	printf("no of intersections: %llu\n", world.intersections.len);
+	identify_hit(&world, &world.hit);
+	vec_clear(&world.intersections);
+	printf("ray 3\n");
+	intersect_world(&world, ray3);
+	printf("no of intersections: %llu\n", world.intersections.len);
+	identify_hit(&world, &world.hit);
 }
 
 void	tests(void)
@@ -1066,20 +1135,22 @@ void	tests(void)
 	// test_shadow();
 	//	test_shading();
 	// test_camera();
-	test_cylinder();
+	// test_cylinder();
+	// test_cone_intersection();
+	test_cone_caps();
 }
 
 int	main(void)
 {
 	// if (argc != 2)
 	//  	handle_errors(USAGE);
-	t_win	win;
+	// t_win	win;
 
-	initialise_world(&win.world);
-	initialise_window(&win);
-	test_render(&win);
-	mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
-	mlx_loop(win.mlx);
-	// tests();
+	// initialise_world(&win.world);
+	// initialise_window(&win);
+	// test_render(&win);
+	// mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
+	// mlx_loop(win.mlx);
+	tests();
 	return (0);
 }

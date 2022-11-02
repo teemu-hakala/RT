@@ -61,11 +61,82 @@ void	sphere_intersection(t_ray ray, void *sphere, t_world *world)
 	}
 }
 
+t_fl	min(t_fl a, t_fl b)
+{
+	return (a < b ? a : b);
+}
+
+t_fl	max(t_fl a, t_fl b)
+{
+	return (a > b ? a : b);
+}
+
+void	cone_quadratic(t_quadratic *params, t_ray ray)
+{
+	params->a = (ray.direction.tuple.units.x * ray.direction.tuple.units.x) - \
+		(ray.direction.tuple.units.y * ray.direction.tuple.units.y) \
+		+ (ray.direction.tuple.units.z * ray.direction.tuple.units.z);
+	params->b = (2 * ray.origin.tuple.units.x * ray.direction.tuple.units.x) - \
+		(2 * ray.origin.tuple.units.y * ray.direction.tuple.units.y) + \
+		(2 * ray.origin.tuple.units.z * ray.direction.tuple.units.z);
+	params->c = (ray.origin.tuple.units.x * ray.origin.tuple.units.x) - \
+		(ray.origin.tuple.units.y * ray.origin.tuple.units.y) + \
+		(ray.origin.tuple.units.z * ray.origin.tuple.units.z);
+	params->discriminant = (params->b * params->b) - (4 * params->a * params->c);
+	params->res_1 = (-params->b - sqrt(params->discriminant)) / (2 * params->a);
+	params->res_2 = (-params->b + sqrt(params->discriminant)) / (2 * params->a);
+}
+
+void	cone_intersect_cont(t_quadratic params, t_ray ray, \
+t_object *cone, t_world *world)
+{
+	t_fl	y0;
+	y0 = ray.origin.tuple.units.y + min(params.res_1, params.res_2) \
+		* ray.direction.tuple.units.y;
+	if ((((t_object *)cone)->object.cone.min) < y0 && y0 < \
+	(((t_object *)cone)->object.cone.max))
+	{
+		if (vec_push(&world->intersections, &(t_intersect){
+			.time = min(params.res_1, params.res_2),
+			.shape = cone
+			}) == VEC_ERROR)
+		handle_errors("vec_push malloc error cone_intersection");
+	}
+	y0 = ray.origin.tuple.units.y + max(params.res_1, params.res_2) \
+	* ray.direction.tuple.units.y;
+	if ((((t_object *)cone)->object.cone.min) < y0 && y0 < \
+	(((t_object *)cone)->object.cone.max))
+	{
+		if (vec_push(&world->intersections, &(t_intersect){
+			.time = max(params.res_1, params.res_2),
+			.shape = cone
+			}) == VEC_ERROR)
+		handle_errors("vec_push malloc error cone_intersection");
+	}
+}
+
 void	cone_intersection(t_ray ray, void *cone, t_world *world)
 {
-	(void)ray;
-	(void)cone;
-	(void)world;
+	t_quadratic	params;
+
+	cone_quadratic(&params, ray);
+	if (params.a != 0 || params.b != 0)
+	{
+		if (params.a < EPSILON && params.a > -EPSILON)
+		{
+			if (vec_push(&world->intersections, &(t_intersect){
+				.time = - params.c / (2 * params.b),
+				.shape = cone
+			}) == VEC_ERROR)
+			handle_errors("vec_push malloc error cone_intersection");
+		}
+		else
+		{
+			if (params.discriminant >= 0.0)
+				cone_intersect_cont(params, ray, cone, world);
+		}
+		intersect_cone_caps(cone, &ray, world);
+	}
 }
 
 void	cylinder_quadratic(t_quadratic *params, t_ray ray)
@@ -77,16 +148,6 @@ void	cylinder_quadratic(t_quadratic *params, t_ray ray)
 	params->discriminant = (params->b * params->b) - (4 * params->a * params->c);
 	params->res_1 = (-params->b - sqrt(params->discriminant)) / (2 * params->a);
 	params->res_2 = (-params->b + sqrt(params->discriminant)) / (2 * params->a);
-}
-
-t_fl	min(t_fl a, t_fl b)
-{
-	return (a < b ? a : b);
-}
-
-t_fl	max(t_fl a, t_fl b)
-{
-	return (a > b ? a : b);
 }
 
 void	cylinder_intersection_cont(t_quadratic params, t_ray ray, \
@@ -128,7 +189,7 @@ void	cylinder_intersection(t_ray ray, void *cylinder, t_world *world)
 		if (params.discriminant >= 0.0)
 			cylinder_intersection_cont(params, ray, cylinder, world);
 	}
-	intersect_caps(cylinder, &ray, world);
+	intersect_cylinder_caps(cylinder, &ray, world);
 }
 
 int sort_intersections(void *xs_a, void *xs_b)

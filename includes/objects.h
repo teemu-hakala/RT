@@ -86,8 +86,12 @@ typedef struct s_cone
 {
 	t_tuple		origin;
 	t_transform	transform;
+	t_fl		radius;
 	t_material	material;
 	t_comp		comp;
+	t_fl		min;
+	t_fl		max;
+	int			closed;
 }	t_cone;
 
 typedef struct s_cylinder
