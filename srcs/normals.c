@@ -28,9 +28,23 @@ t_tuple	normal_at_sphere(void *sphere, t_tuple *point_at)
 
 t_tuple	normal_at_cone(void *cone, t_tuple *point_at)
 {
-	(void)cone;
-	(void)point_at;
-	return (vector(1, 0, 0));
+	t_fl	distance;
+	t_fl	y;
+
+	y = sqrt((point_at->tuple.units.x * point_at->tuple.units.x) + \
+		(point_at->tuple.units.z * point_at->tuple.units.z));
+	if (point_at->tuple.units.y > 0)
+		y *= -1;
+	distance = (point_at->tuple.units.x * point_at->tuple.units.x) + \
+		(point_at->tuple.units.z * point_at->tuple.units.z);
+	if (distance < 1 && (point_at->tuple.units.y >= \
+	((((t_object *)cone)->object.cone.max) - EPSILON)))
+		return (vector(0, 1, 0));
+	else if (distance < 1 && (point_at->tuple.units.y <= \
+	((((t_object *)cone)->object.cone.min) + EPSILON)))
+		return (vector(0, -1, 0));
+	else
+		return (vector(point_at->tuple.units.x, y, point_at->tuple.units.z));
 }
 
 t_tuple	normal_at_cylinder(void *cylinder, t_tuple *point_at)
@@ -46,8 +60,7 @@ t_tuple	normal_at_cylinder(void *cylinder, t_tuple *point_at)
 	((((t_object *)cylinder)->object.cylinder.min) + EPSILON)))
 		return (vector(0, -1, 0));
 	else
-		return (
-		vector(point_at->tuple.units.x, 0, point_at->tuple.units.z));
+		return (vector(point_at->tuple.units.x, 0, point_at->tuple.units.z));
 }
 
 t_tuple	normal_at(void *object, t_tuple *point)

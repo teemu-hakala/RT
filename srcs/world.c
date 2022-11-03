@@ -109,30 +109,30 @@ static t_light	default_light(void)
 
 void	default_world(t_world *world)
 {
-	// t_object	sphere_1;
-	// t_object	sphere_2;
-	// t_object	cylinder_1;
-	// t_mtx		view_matrix;
+	t_object	sphere_1;
+	t_object	sphere_2;
+	t_object	cylinder_1;
+	t_mtx		view_matrix;
 	t_object	cone_1;
 	t_light		light;
 
-	// sphere_1 = sphere(default_origin(), default_transform_1(),
-	// 		default_material_1());
-	// sphere_2 = sphere(origin_1(), default_transform_2(),
-	// 		default_material_1());
-	// cylinder_1 = cylinder(default_origin(), default_transform(),default_phong_mat());
+	sphere_1 = sphere(default_origin(), default_transform_1(),
+			default_material_1());
+	sphere_2 = sphere(origin_1(), default_transform_2(),
+			default_material_1());
+	cylinder_1 = cylinder(default_origin(), default_transform(),default_phong_mat());
 	cone_1 = cone(default_origin(), default_transform(), default_phong_mat());
-	// world->camera = camera(camera_origin(), camera_transform(), M_PI_2, default_canvas());
-	// view_matrix = view_transform(world->camera.origin, point(0, 0, 0), vector(0, 1, 0));
-	// matrix_multi_square(&world->camera.transform.matrix, &view_matrix, 4);
-	// world->camera.transform.inverse = world->camera.transform.matrix;
-	// matrix_inversion(&world->camera.transform.inverse, 4);
-	// if (vec_push(&world->objects, &sphere_1) == VEC_ERROR)
-	// 	handle_errors("unable to malloc for world object");
-	// if (vec_push(&world->objects, &sphere_2) == VEC_ERROR)
-	// 	handle_errors("unable to malloc for world object");
-	// if (vec_push(&world->objects, &cylinder_1) == VEC_ERROR)
-	// 	handle_errors("unable to malloc for world object");
+	world->camera = camera(camera_origin(), camera_transform(), M_PI_2, default_canvas());
+	view_matrix = view_transform(world->camera.origin, point(0, 0, 0), vector(0, 1, 0));
+	matrix_multi_square(&world->camera.transform.matrix, &view_matrix, 4);
+	world->camera.transform.inverse = world->camera.transform.matrix;
+	matrix_inversion(&world->camera.transform.inverse, 4);
+	if (vec_push(&world->objects, &sphere_1) == VEC_ERROR)
+		handle_errors("unable to malloc for world object");
+	if (vec_push(&world->objects, &sphere_2) == VEC_ERROR)
+		handle_errors("unable to malloc for world object");
+	if (vec_push(&world->objects, &cylinder_1) == VEC_ERROR)
+		handle_errors("unable to malloc for world object");
 	if (vec_push(&world->objects, &cone_1) == VEC_ERROR)
 		handle_errors("unable to malloc for world object");
 	light = default_light();

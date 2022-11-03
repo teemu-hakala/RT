@@ -119,6 +119,7 @@ void	cone_intersection(t_ray ray, void *cone, t_world *world)
 {
 	t_quadratic	params;
 
+	ray = ray_transform(&ray, &((t_cone *)cone)->transform.inverse);
 	cone_quadratic(&params, ray);
 	if (params.a != 0 || params.b != 0)
 	{
@@ -181,6 +182,7 @@ void	cylinder_intersection(t_ray ray, void *cylinder, t_world *world)
 {
 	t_quadratic	params;
 
+	ray = ray_transform(&ray, &((t_cylinder *)cylinder)->transform.inverse);
 	params.a = (ray.direction.tuple.units.x * ray.direction.tuple.units.x) + \
 		(ray.direction.tuple.units.z * ray.direction.tuple.units.z);
 	if (params.a > EPSILON || params.a < -EPSILON)

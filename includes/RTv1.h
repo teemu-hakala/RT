@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/02 22:52:39 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/03 15:10:59 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,7 @@ t_mtx	view_transform(t_tuple from, t_tuple to, t_tuple up);
 t_tuple	normal_at(void *object, t_tuple *point);
 t_tuple	normal_at_sphere(void *sphere, t_tuple *point_at);
 t_tuple	normal_at_cylinder(void *cylinder, t_tuple *point_at);
+t_tuple	normal_at_cone(void *cone, t_tuple *point_at);
 
 /* plot pixels */
 void	render(t_win *win, t_camera *camera);

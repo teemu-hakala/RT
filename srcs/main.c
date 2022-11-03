@@ -1119,6 +1119,38 @@ void	test_cone_caps()
 	identify_hit(&world, &world.hit);
 }
 
+void	test_cone_end_cap_normals(void)
+{
+	t_object cone_1;
+	t_tuple p1;
+	t_tuple p2;
+	t_tuple p3;
+
+	t_tuple vec;
+
+	cone_1 = cone(default_origin(), default_transform(), default_phong_mat());
+	// cone_1.object.cone.min = 1;
+	// cone_1.object.cone.max = 2;
+	// cone_1.object.cone.closed = true;
+	p1 = point(0, 0, 0);
+	p2 = point(1, 1, 1);
+	p3 = point(-1, -1, 0);
+
+	vec = normal_at_cone(&cone_1, &p1);
+	print_tuple(&vec, 0, "p1");
+	vec = normal_at_cone(&cone_1, &p2);
+	print_tuple(&vec, 0, "p2");
+	vec = normal_at_cone(&cone_1, &p3);
+	print_tuple(&vec, 0, "p3");
+}
+
+void	test_cone(void)
+{
+	// test_cone_caps();
+	// test_cone_intersection();
+	test_cone_end_cap_normals();
+}
+
 void	tests(void)
 {
 	// test_matrix_inversion();
@@ -1137,20 +1169,20 @@ void	tests(void)
 	// test_camera();
 	// test_cylinder();
 	// test_cone_intersection();
-	test_cone_caps();
+	// test_cone();
 }
 
 int	main(void)
 {
 	// if (argc != 2)
 	//  	handle_errors(USAGE);
-	// t_win	win;
+	t_win	win;
 
-	// initialise_world(&win.world);
-	// initialise_window(&win);
-	// test_render(&win);
-	// mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
-	// mlx_loop(win.mlx);
-	tests();
+	initialise_world(&win.world);
+	initialise_window(&win);
+	test_render(&win);
+	mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
+	mlx_loop(win.mlx);
+	// tests();
 	return (0);
 }
