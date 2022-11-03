@@ -547,24 +547,30 @@ void test_camera_construction(void)
 {
 	t_camera	cam;
 
+	printf("test_camera_construction:\n");
 	cam = camera(camera_origin(), camera_transform(), (t_fl)M_PI_2, (t_canvas){.vertical = 120, .horizontal = 160});
 	print_camera(&cam, 0);
+	printf(":test_camera_construction\n");
 }
 
 void test_camera_pixel_size_horizontal_canvas(void)
 {
 	t_camera	cam;
 
+	printf("test_camera_pixel_size_horizontal_canvas:\n");
 	cam = camera(camera_origin(), camera_transform(), (t_fl)M_PI_2, (t_canvas){.vertical = 125, .horizontal = 200});
 	print_camera(&cam, 0);
+	printf(":test_camera_pixel_size_horizontal_canvas\n");
 }
 
 void test_camera_pixel_size_vertical_canvas(void)
 {
 	t_camera	cam;
 
+	printf("test_camera_pixel_size_vertical_canvas:\n");
 	cam = camera(camera_origin(), camera_transform(), (t_fl)M_PI_2, (t_canvas){.vertical = 125, .horizontal = 200});
 	print_camera(&cam, 0);
+	printf(":test_camera_pixel_size_vertical_canvas\n");
 }
 
 void test_camera_ray_centre_of_canvas(void)
@@ -572,10 +578,12 @@ void test_camera_ray_centre_of_canvas(void)
 	t_camera	cam;
 	t_ray		ray;
 
+	printf("test_camera_ray_centre_of_canvas:\n");
 	cam = camera(camera_origin(), camera_transform(), (t_fl)M_PI_2, (t_canvas){.vertical = 101, .horizontal = 201});
 	print_camera(&cam, 0);
 	ray = ray_for_pixel(&cam, (t_canvas){.vertical = 50, .horizontal = 100});
 	print_ray(&ray, 0);
+	printf(":test_camera_ray_centre_of_canvas\n");
 }
 
 void test_camera_ray_corner_of_canvas(void)
@@ -583,10 +591,12 @@ void test_camera_ray_corner_of_canvas(void)
 	t_camera	cam;
 	t_ray		ray;
 
+	printf("test_camera_ray_corner_of_canvas:\n");
 	cam = camera(camera_origin(), camera_transform(), (t_fl)M_PI_2, (t_canvas){.vertical = 101, .horizontal = 201});
 	print_camera(&cam, 0);
 	ray = ray_for_pixel(&cam, (t_canvas){.vertical = 0, .horizontal = 0});
 	print_ray(&ray, 0);
+	printf(":test_camera_ray_corner_of_canvas\n");
 }
 
 void test_camera_ray_transformed(void)
@@ -594,6 +604,7 @@ void test_camera_ray_transformed(void)
 	t_camera	cam;
 	t_ray		ray;
 
+	printf("test_camera_ray_transformed:\n");
 	cam = camera(camera_origin(), camera_transform(), (t_fl)M_PI_2, (t_canvas){.vertical = 101, .horizontal = 201});
 	rotate(&cam.transform.matrix, &(t_tuple){.tuple.rotation.y_hei_vert_yaw = M_PI_4});
 	translate(&cam.transform.matrix, &(t_tuple){.tuple.units = {.x = 0, .y = -2, .z = 5, .w = POINT_1}});
@@ -602,16 +613,19 @@ void test_camera_ray_transformed(void)
 	print_camera(&cam, 0);
 	ray = ray_for_pixel(&cam, (t_canvas){.vertical = 50, .horizontal = 100});
 	print_ray(&ray, 0);
+	printf(":test_camera_ray_transformed\n");
 }
 
 void	test_camera(void)
 {
+	printf("test_camera:\n");
 	test_camera_construction();
 	test_camera_pixel_size_horizontal_canvas();
 	test_camera_pixel_size_vertical_canvas();
 	test_camera_ray_centre_of_canvas();
 	test_camera_ray_corner_of_canvas();
 	test_camera_ray_transformed();
+	printf(":test_camera\n");
 }
 
 
@@ -1106,7 +1120,7 @@ int	main(void)
 
 	// if (argc != 2)
 	//  	handle_errors(USAGE);
-	//tests();
+	// tests();
 	 initialise_world(&win.world);
 	// parse(&win);
 	initialise_window(&win);
