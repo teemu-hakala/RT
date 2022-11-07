@@ -14,8 +14,6 @@
 # define OBJECTS_H
 # include "RTv1.h"
 
-/* AN EXAMPLE: */
-
 typedef enum e_object_type
 {
 	OBJECT_INDEX_OFFSET = 42,
@@ -48,7 +46,7 @@ typedef struct s_material
 	t_fl		diffuse;
 	t_fl		specular;
 	t_fl		shininess;
-	t_patterns	pattern;
+	t_pattern	pattern;
 	t_tuple		colour;
 	t_tuple		amb_col;
 	t_tuple		dif_col;

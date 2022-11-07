@@ -20,6 +20,7 @@
 		"complex": "c",
 		"functional": "c",
 		"random": "c",
-		"queue": "c"
+		"queue": "c",
+		"rtv1.h": "c"
 	}
 }

@@ -6,7 +6,7 @@
 #    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2022/11/02 22:26:11 by deelliot         ###   ########.fr        #
+#    Updated: 2022/11/07 16:26:28 by deelliot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ HDRS = includes/RTv1.h \
 	includes/matrices.h \
 	includes/objects.h \
 	includes/tuple.h \
-	includes/world.h
+	includes/world.h \
+	includes/patterns.h
 LIBFT_DIR = libft
 MINILIBX_DIR = minilibx
 
@@ -55,7 +56,8 @@ FILES = \
 	render \
 	colour \
 	computations \
-	sphere_scene
+	sphere_scene \
+	patterns
 
 SRCS = $(addprefix $(SRCS_DIR)/, $(addsuffix .c, $(FILES)))
 OBJS = $(addprefix $(OBJS_DIR)/, $(addsuffix .o, $(FILES)))
