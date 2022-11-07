@@ -372,24 +372,30 @@ void test_camera_construction(void)
 {
 	t_camera	cam;
 
+	printf("test_camera_construction:\n");
 	cam = camera(camera_origin(), camera_transform(), (t_fl)M_PI_2, (t_canvas){.vertical = 120, .horizontal = 160});
 	print_camera(&cam, 0);
+	printf(":test_camera_construction\n");
 }
 
 void test_camera_pixel_size_horizontal_canvas(void)
 {
 	t_camera	cam;
 
+	printf("test_camera_pixel_size_horizontal_canvas:\n");
 	cam = camera(camera_origin(), camera_transform(), (t_fl)M_PI_2, (t_canvas){.vertical = 125, .horizontal = 200});
 	print_camera(&cam, 0);
+	printf(":test_camera_pixel_size_horizontal_canvas\n");
 }
 
 void test_camera_pixel_size_vertical_canvas(void)
 {
 	t_camera	cam;
 
+	printf("test_camera_pixel_size_vertical_canvas:\n");
 	cam = camera(camera_origin(), camera_transform(), (t_fl)M_PI_2, (t_canvas){.vertical = 125, .horizontal = 200});
 	print_camera(&cam, 0);
+	printf(":test_camera_pixel_size_vertical_canvas\n");
 }
 
 void test_camera_ray_centre_of_canvas(void)
@@ -397,10 +403,12 @@ void test_camera_ray_centre_of_canvas(void)
 	t_camera	cam;
 	t_ray		ray;
 
+	printf("test_camera_ray_centre_of_canvas:\n");
 	cam = camera(camera_origin(), camera_transform(), (t_fl)M_PI_2, (t_canvas){.vertical = 101, .horizontal = 201});
 	print_camera(&cam, 0);
 	ray = ray_for_pixel(&cam, (t_canvas){.vertical = 50, .horizontal = 100});
 	print_ray(&ray, 0);
+	printf(":test_camera_ray_centre_of_canvas\n");
 }
 
 void test_camera_ray_corner_of_canvas(void)
@@ -408,10 +416,12 @@ void test_camera_ray_corner_of_canvas(void)
 	t_camera	cam;
 	t_ray		ray;
 
+	printf("test_camera_ray_corner_of_canvas:\n");
 	cam = camera(camera_origin(), camera_transform(), (t_fl)M_PI_2, (t_canvas){.vertical = 101, .horizontal = 201});
 	print_camera(&cam, 0);
 	ray = ray_for_pixel(&cam, (t_canvas){.vertical = 0, .horizontal = 0});
 	print_ray(&ray, 0);
+	printf(":test_camera_ray_corner_of_canvas\n");
 }
 
 void test_camera_ray_transformed(void)
@@ -419,6 +429,7 @@ void test_camera_ray_transformed(void)
 	t_camera	cam;
 	t_ray		ray;
 
+	printf("test_camera_ray_transformed:\n");
 	cam = camera(camera_origin(), camera_transform(), (t_fl)M_PI_2, (t_canvas){.vertical = 101, .horizontal = 201});
 	rotate(&cam.transform.matrix, &(t_tuple){.tuple.rotation.y_hei_vert_yaw = M_PI_4});
 	translate(&cam.transform.matrix, &(t_tuple){.tuple.units = {.x = 0, .y = -2, .z = 5, .w = POINT_1}});
@@ -427,16 +438,19 @@ void test_camera_ray_transformed(void)
 	print_camera(&cam, 0);
 	ray = ray_for_pixel(&cam, (t_canvas){.vertical = 50, .horizontal = 100});
 	print_ray(&ray, 0);
+	printf(":test_camera_ray_transformed\n");
 }
 
 void	test_camera(void)
 {
+	printf("test_camera:\n");
 	test_camera_construction();
 	test_camera_pixel_size_horizontal_canvas();
 	test_camera_pixel_size_vertical_canvas();
 	test_camera_ray_centre_of_canvas();
 	test_camera_ray_corner_of_canvas();
 	test_camera_ray_transformed();
+	printf(":test_camera\n");
 }
 
 static void	vec_print(void *data_point)
@@ -534,9 +548,21 @@ typedef void	(*t_print_object)(t_object *, uint8_t, uint64_t);
 
 void	print_plane(t_object *plane, uint8_t indent_level, uint64_t object_index)
 {
-	(void)plane;
-	(void)indent_level;
-	(void)object_index;
+	char	*str;
+
+	asprintf(&str, "%s #%04llu\n", "PLANE ", object_index);
+	print_indented(indent_level, str);
+	free(str);
+	print_indented(indent_level, "{\n");
+	print_tuple(&plane->object.plane.origin, indent_level + 1, \
+		"plane->object.plane.origin");
+	print_transform(&plane->object.plane.transform, indent_level + 1, \
+		"plane->object.plane.transform");
+	print_material(&plane->object.plane.material, indent_level + 1, \
+		"plane->object.plane.material");
+	print_computations(&plane->object.plane.comp, indent_level + 1, \
+		"plane->object.plane.comp");
+	print_indented(indent_level, "}\n");
 }
 
 void	print_sphere(t_object *sphere, uint8_t indent_level, uint64_t object_index)
@@ -1151,6 +1177,113 @@ void	test_cone(void)
 	test_cone_end_cap_normals();
 }
 
+static void	vec_print_intersection(void *xs)
+{
+	printf("INTERSECTION:\n\tshape->type: %d\n",((t_intersect *)xs)->shape->type);
+	printf("\tintersection->time %lf\n", ((t_intersect *)xs)->time);
+}
+
+void	test_plane_intersect_parallel_ray(t_win *win, t_object plane_test)
+{
+	t_ray		ray_test;
+
+	printf("TEST_PLANE_INTERSECT_PARALLEL_RAY\n");
+	ray_test = (t_ray){.origin = point(0, 10, 0), .direction = vector(0, 0, 1)};
+	plane_intersection(ray_test, &plane_test, &win->world);
+	vec_iter(&win->world.intersections, vec_print_intersection);
+	printf("\n");
+}
+
+void	test_plane_intersect_coplanar_ray(t_win *win, t_object plane_test)
+{
+	t_ray		ray_test;
+
+	printf("TEST_PLANE_INTERSECT_COPLANAR_RAY\n");
+	ray_test = (t_ray){.origin = point(0, 0, 0), .direction = vector(0, 0, 1)};
+	plane_intersection(ray_test, &plane_test, &win->world);
+	vec_iter(&win->world.intersections, vec_print_intersection);
+	printf("\n");
+}
+
+void	test_plane_intersect_from_above(t_win *win, t_object plane_test)
+{
+	t_ray		ray_test;
+
+	printf("TEST_PLANE_INTERSECT_FROM_ABOVE\n");
+	ray_test = (t_ray){.origin = point(0, 1, 0), .direction = vector(0, -1, 0)};
+	plane_intersection(ray_test, &plane_test, &win->world);
+	vec_iter(&win->world.intersections, vec_print_intersection);
+	printf("\n");
+}
+
+void	test_plane_intersect_from_below(t_win *win, t_object plane_test)
+{
+	t_ray		ray_test;
+
+	printf("TEST_PLANE_INTERSECT_FROM_BELOW\n");
+	ray_test = (t_ray){.origin = point(0, -1, 0), .direction = vector(0, 1, 0)};
+	plane_intersection(ray_test, &plane_test, &win->world);
+	vec_iter(&win->world.intersections, vec_print_intersection);
+	printf("\n");
+}
+
+void	test_plane(t_win *win)
+{
+	t_object	plane_b;
+
+	vec_clear(&win->world.objects);
+	plane_b = plane(plane_origin(), plane_transform(), plane_material());
+	if (vec_push(&win->world.objects, &plane_b) == VEC_ERROR)
+		handle_errors("unable to malloc for world object");
+	// test_plane_normal();
+	vec_clear(&win->world.intersections);
+	test_plane_intersect_parallel_ray(win, plane_b);
+	vec_clear(&win->world.intersections);
+	test_plane_intersect_coplanar_ray(win, plane_b);
+	vec_clear(&win->world.intersections);
+	test_plane_intersect_from_above(win, plane_b);
+	vec_clear(&win->world.intersections);
+	test_plane_intersect_from_below(win, plane_b);
+	vec_clear(&win->world.intersections);
+}
+
+void	vec_print_object(void *object)
+{
+	printf("OBJECT:\n\tshape->type: %d\n",((t_object *)object)->type);
+	if (((t_object *)object)->type == OBJECT_PLANE)
+		print_plane((t_object *)object, 1, -1);
+	else if (((t_object *)object)->type == OBJECT_SPHERE)
+		print_sphere((t_object *)object, 1, -1);
+	else if (((t_object *)object)->type == OBJECT_CONE)
+		print_cone((t_object *)object, 1, -1);
+	else if (((t_object *)object)->type == OBJECT_CYLINDER)
+		print_cylinder((t_object *)object, 1, -1);
+}
+
+void	test_sphere_scene_with_planar_floor(t_win *win)
+{
+	t_object	plane_b;
+
+	vec_remove(&win->world.objects, 0);
+	vec_remove(&win->world.objects, 0);
+	vec_remove(&win->world.objects, 0);
+	/*plane_b = plane(plane_origin(), plane_transform(), plane_material());
+	if (vec_push(&win->world.objects, &plane_b) == VEC_ERROR)
+		handle_errors("unable to malloc for plane backdrop");*/
+	plane_b = plane(plane_origin(), plane_transform_floor(), plane_material_floor());
+	if (vec_push(&win->world.objects, &plane_b) == VEC_ERROR)
+		handle_errors("unable to malloc for plane floor");
+	plane_b = plane(plane_origin(), plane_transform_right_wall(), plane_material_right_wall());
+	if (vec_push(&win->world.objects, &plane_b) == VEC_ERROR)
+		handle_errors("unable to malloc for plane right wall");
+	plane_b = plane(plane_origin(), plane_transform_left_wall(), plane_material_left_wall());
+	if (vec_push(&win->world.objects, &plane_b) == VEC_ERROR)
+		handle_errors("unable to malloc for plane left wall");
+	//vec_iter(&win->world.objects, vec_print_object);
+	((t_light *)vec_get(&win->world.lights, 0))->position = point(-3, 5, -5);
+	print_world(&win->world, &win->world.camera);
+}
+
 void	tests(void)
 {
 	// test_matrix_inversion();
@@ -1180,7 +1313,13 @@ int	main(void)
 
 	initialise_world(&win.world);
 	initialise_window(&win);
+	// tests();
+	// parse(&win);
+	// test_colour_at(&win);
+	test_sphere_scene_with_planar_floor(&win);
 	test_render(&win);
+	// test_plane(&win);
+	// // plot_points(&win);
 	mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
 	mlx_loop(win.mlx);
 	// tests();

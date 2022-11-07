@@ -69,7 +69,6 @@ typedef struct s_plane
 {
 	t_tuple		origin;
 	t_transform	transform;
-	t_tuple		normal;
 	t_material	material;
 	t_comp		comp;
 }	t_plane;
