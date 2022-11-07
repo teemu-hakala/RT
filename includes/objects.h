@@ -44,15 +44,16 @@ typedef struct s_transform
 
 typedef struct s_material
 {
-	t_fl	ambient;
-	t_fl	diffuse;
-	t_fl	specular;
-	t_fl	shininess;
-	t_tuple	colour;
-	t_tuple	amb_col;
-	t_tuple	dif_col;
-	t_tuple	spec_col;
-	t_tuple	col_mash;
+	t_fl		ambient;
+	t_fl		diffuse;
+	t_fl		specular;
+	t_fl		shininess;
+	t_patterns	pattern;
+	t_tuple		colour;
+	t_tuple		amb_col;
+	t_tuple		dif_col;
+	t_tuple		spec_col;
+	t_tuple		col_mash;
 }				t_material;
 
 typedef struct s_comp

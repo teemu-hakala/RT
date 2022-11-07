@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/03 15:10:59 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/07 15:02:17 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include "colour_and_light.h"
 # include "objects.h"
 # include "world.h"
+# include "patterns.h"
 
 # define USAGE "<instructions>"
 # define WIDTH 400
