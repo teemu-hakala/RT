@@ -16,7 +16,7 @@ t_tuple	none_at(t_material *material, t_tuple *point)
 
 t_tuple	striped_at(t_material *material, t_tuple *point)
 {
-	if (fmod(point->tuple.units.x, 2) == 0)
+	if (fmod(floor(point->tuple.units.x), 2) == 0)
 		return (material->pattern.colour.a);
 	else
 		return (material->pattern.colour.b);

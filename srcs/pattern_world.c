@@ -4,12 +4,12 @@ static t_material	default_pattern_mat(void)
 {
 	return ((t_material){
 		.ambient = 0.1,
-		.diffuse = 0.0,
-		.specular = 0.0,
+		.diffuse = 0.9,
+		.specular = 0.9,
 		.shininess = 200,
 		.colour = colour(1.0, 1.0, 1.0, 1.0),
 		.pattern.type = PATTERN_STRIPE,
-		.pattern.colour = stripe_pattern(hex_to_argb(COLOUR_WHITE),hex_to_argb(COLOUR_BLACK)),
+		.pattern.colour = stripe_pattern(hex_to_argb(COLOUR_BLACK),hex_to_argb(COLOUR_WHITE)),
 		.col_mash = vector(0, 0, 0),
 		.amb_col = vector(0, 0, 0),
 		.dif_col = vector(0, 0, 0),

@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 17:34:04 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/31 14:17:14 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/08 13:58:44 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ enum e_colour
 	COLOUR_BLUE = 0x000000FF,
 	COLOUR_BLACK = 0x00000000,
 	COLOUR_WHITE = 0x00FFFFFF,
-	COLOUR_TURQOUISE = 0x40E0D0U
+	COLOUR_TURQOUISE = 0x40E0D0U,
+	COLOUR_YELLOW = 0xFFF200,
+	COLOUR_PURPLE = 0x8A00C2
 };
 
 typedef struct s_phong
