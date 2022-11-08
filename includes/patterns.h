@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 13:32:36 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/08 13:29:42 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/08 15:40:01 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,5 @@ typedef struct s_pattern_colours
 	t_tuple	a;
 	t_tuple	b;
 }				t_pattern_colours;
-
-typedef struct s_pattern
-{
-	t_pattern_colours	colour;
-	enum e_pattern_type	type;
-}	t_pattern;
 
 #endif

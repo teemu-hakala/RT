@@ -1,5 +1,14 @@
 #include "RTv1.h"
 
+t_pattern	default_stripe_pattern(void)
+{
+	return ((t_pattern){
+		.type = PATTERN_STRIPE,
+		.colour = stripe_pattern(hex_to_argb(COLOUR_BLACK),hex_to_argb(COLOUR_WHITE)),
+		.transform = default_transform_2()
+	});
+}
+
 static t_material	default_pattern_mat(void)
 {
 	return ((t_material){
@@ -7,9 +16,8 @@ static t_material	default_pattern_mat(void)
 		.diffuse = 0.9,
 		.specular = 0.9,
 		.shininess = 200,
-		.colour = colour(1.0, 1.0, 1.0, 1.0),
-		.pattern.type = PATTERN_STRIPE,
-		.pattern.colour = stripe_pattern(hex_to_argb(COLOUR_BLACK),hex_to_argb(COLOUR_WHITE)),
+		.init_colour = colour(1.0, 1.0, 1.0, 1.0),
+		.pattern = default_stripe_pattern(),
 		.col_mash = vector(0, 0, 0),
 		.amb_col = vector(0, 0, 0),
 		.dif_col = vector(0, 0, 0),

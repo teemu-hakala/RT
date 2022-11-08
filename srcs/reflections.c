@@ -40,8 +40,7 @@ t_tuple	lighting(t_material material, t_light *light, t_phong vectors,
 {
 	t_fl	incidence_l;
 
-	material.col_mash = tuple_multi(pattern_at(&material, &point), light->intensity);
-	// material.col_mash = tuple_multi(material.colour, light->intensity);
+	material.col_mash = tuple_multi(material.final_colour, light->intensity);
 	vectors.light = normalize(tuple_sub(light->position, point));
 	material.amb_col = colour_scale(material.col_mash, material.ambient);
 	incidence_l = dot_product(vectors.light, vectors.surface_normal);
