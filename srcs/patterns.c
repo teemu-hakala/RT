@@ -40,7 +40,6 @@ t_tuple	gradient_at(t_material *material, t_tuple *point)
 	return (material->colour);
 }
 
-
 t_tuple	pattern_at(t_material *material, t_tuple *point)
 {
 	static const t_pattern_at_fn	patterns[] = {

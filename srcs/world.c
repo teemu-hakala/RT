@@ -12,7 +12,7 @@ t_tuple	origin_1(void)
 
 t_tuple	camera_origin(void)
 {
-	return (point(0, 0, -10));
+	return (point(0, 0, -5));
 }
 
 t_canvas	default_canvas(void)
@@ -20,7 +20,7 @@ t_canvas	default_canvas(void)
 	return ((t_canvas){.vertical = HEIGHT, .horizontal = WIDTH});
 }
 
-static t_transform	default_transform_1(void)
+t_transform	default_transform_1(void)
 {
 	t_transform	d;
 

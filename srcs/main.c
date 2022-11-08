@@ -740,17 +740,6 @@ void	test_lighting(void)
 	lighting_3();
 }
 
-static t_transform	default_transform_1(void)
-{
-	t_transform	d;
-
-	d.translation = point(0, 0, 0);
-	d.rotation = point(0, 0, 0);
-	d.scale = point(1, 1, 1);
-	transform_object(&d);
-	return (d);
-}
-
 void test_shadow(void)
 {
 	t_world world;

@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 13:32:36 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/07 16:47:49 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/08 13:29:42 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,4 @@ typedef struct s_pattern
 	enum e_pattern_type	type;
 }	t_pattern;
 
-// typedef t_tuple	(*t_pattern_at_fn)(t_material *, t_tuple *);
-// t_tuple	pattern_at(t_material *material, t_tuple *point);
 #endif
