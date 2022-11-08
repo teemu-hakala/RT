@@ -21,6 +21,17 @@ static t_transform	default_transform_1(void)
 	return (d);
 }
 
+t_transform	light_2_transform(void)
+{
+	t_transform	d;
+
+	d.translation = point(-20, 0, 0);
+	d.rotation = point(0, 0, 0);
+	d.scale = point(1, 1, 1);
+	transform_object(&d);
+	return (d);
+}
+
 t_transform	floor_transform(void)
 {
 	t_transform	d;
@@ -181,8 +192,17 @@ t_light	default_light(void)
 {
 	return ((t_light){
 		.position = point(-10, 10, -10),
-		.intensity = colour(1, 1, 1, 1),
+		.intensity = colour(1, 0.5, 0.5, 0.5),
 		.transform = default_transform_1(),
+	});
+}
+
+t_light light_2(void)
+{
+	return ((t_light){
+		.position = point(-10, 10, -10),
+		.intensity = colour(1, 0.5, 0.5, 0.5),
+		.transform = default_transform_1()
 	});
 }
 
@@ -233,6 +253,9 @@ void	sphere_world(t_world *world)
 		handle_errors("unable to malloc for world object");
 	if (vec_push(&world->objects, &sphere_3) == VEC_ERROR)
 		handle_errors("unable to malloc for world object");
+	if (vec_push(&world->lights, &light) == VEC_ERROR)
+		handle_errors("unable to malloc for light");
+	light = light_2();
 	if (vec_push(&world->lights, &light) == VEC_ERROR)
 		handle_errors("unable to malloc for light");
 }

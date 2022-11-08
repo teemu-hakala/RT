@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RTv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/07 13:36:46 by thakala          ###   ########.fr       */
+/*   Updated: 2022/11/08 16:56:27 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,7 @@ void	img_pixel_put(t_win *win, int x, int y, unsigned int colour);
 void	ft_print_mtx(t_mtx *mtx);
 void	default_world(t_world *world);
 void	sphere_world(t_world *world);
+void	simple_world(t_world *world);
 t_transform	default_transform(void);
 
 /* camera */

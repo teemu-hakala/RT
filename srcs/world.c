@@ -2,7 +2,7 @@
 
 t_tuple	default_origin(void)
 {
-	return (point(0, 0, 0));
+	return (point(0, 1, 5));
 }
 
 t_tuple	origin_1(void)
@@ -12,7 +12,7 @@ t_tuple	origin_1(void)
 
 t_tuple	camera_origin(void)
 {
-	return (point(0, 0, -10));
+	return (point(0, 5, -10));
 }
 
 t_canvas	default_canvas(void)
@@ -136,6 +136,33 @@ void	default_world(t_world *world)
 	if (vec_push(&world->objects, &cone_1) == VEC_ERROR)
 		handle_errors("unable to malloc for world object");
 	light = default_light();
+	if (vec_push(&world->lights, &light) == VEC_ERROR)
+		handle_errors("unable to malloc for light");
+}
+
+void	simple_world(t_world *world)
+{
+	t_object	sphere_1;
+	t_object	floor;
+	t_mtx		view_matrix;
+	t_light		light;
+
+	sphere_1 = sphere(default_origin(), default_transform_1(),
+			default_material_1());
+	floor = plane(plane_origin(), plane_transform_floor(), plane_material_floor());
+	light = default_light();
+	world->camera = camera(camera_origin(), camera_transform(), M_PI_2, default_canvas());
+	view_matrix = view_transform(world->camera.origin, point(0, 0, 0), vector(0, 1, 0));
+	matrix_multi_square(&world->camera.transform.matrix, &view_matrix, 4);
+	world->camera.transform.inverse = world->camera.transform.matrix;
+	matrix_inversion(&world->camera.transform.inverse, 4);
+	if (vec_push(&world->objects, &sphere_1) == VEC_ERROR)
+		handle_errors("unable to malloc for world object");
+	if (vec_push(&world->objects, &floor) == VEC_ERROR)
+		handle_errors("unable to malloc for world object");
+	if (vec_push(&world->lights, &light) == VEC_ERROR)
+		handle_errors("unable to malloc for light");
+	light.position = point(0, 10, 2);
 	if (vec_push(&world->lights, &light) == VEC_ERROR)
 		handle_errors("unable to malloc for light");
 }

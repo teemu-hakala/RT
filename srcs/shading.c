@@ -18,10 +18,10 @@ void	shade_sphere(t_world *world, void *sphere, t_tuple *colour, t_light *light)
 
 void	shade_cone(t_world *world, void *cone, t_tuple *colour, t_light *light)
 {
-	//is_shadow(world, world->hit.computations.over_point, light);
+	is_shadow(world, world->hit.computations.over_point, light);
 	*colour = tuple_add((lighting(((t_cone *)cone)->material, \
 		light, world->hit.computations.vectors, \
-		world->hit.computations.point)), *colour);
+		world->hit.computations.over_point)), *colour);
 }
 
 void	shade_cylinder(t_world *world, void *cylinder, t_tuple *colour, t_light *light)
@@ -29,7 +29,7 @@ void	shade_cylinder(t_world *world, void *cylinder, t_tuple *colour, t_light *li
 	is_shadow(world, world->hit.computations.over_point, light);
 	*colour = tuple_add((lighting(((t_cylinder *)cylinder)->material, \
 		light, world->hit.computations.vectors, \
-		world->hit.computations.point)), *colour);
+		world->hit.computations.over_point)), *colour);
 }
 
 t_tuple	shade_hit(t_world *world)

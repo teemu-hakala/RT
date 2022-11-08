@@ -71,7 +71,7 @@ t_material	plane_material_floor(void)
 		.diffuse = 0.65,
 		.specular = 0.27,
 		.shininess = 210,
-		.colour = colour(1.0, 0.4, 0, 0.5),
+		.colour = colour(1.0, 0.0, 0.0, 0.5),
 		.col_mash = vector(0, 0, 0),
 		.amb_col = vector(0, 0, 0),
 		.dif_col = vector(0, 0, 0),

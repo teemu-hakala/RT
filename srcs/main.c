@@ -1316,7 +1316,7 @@ int	main(void)
 	// tests();
 	// parse(&win);
 	// test_colour_at(&win);
-	test_sphere_scene_with_planar_floor(&win);
+	//test_sphere_scene_with_planar_floor(&win);
 	test_render(&win);
 	// test_plane(&win);
 	// // plot_points(&win);
