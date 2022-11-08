@@ -4,8 +4,17 @@ t_pattern	default_stripe_pattern(void)
 {
 	return ((t_pattern){
 		.type = PATTERN_STRIPE,
-		.colour = stripe_pattern(hex_to_argb(COLOUR_BLACK),hex_to_argb(COLOUR_WHITE)),
+		.colour = set_pattern_colours(hex_to_argb(COLOUR_BLACK),hex_to_argb(COLOUR_WHITE)),
 		.transform = default_transform_2()
+	});
+}
+
+t_pattern	default_gradient_pattern(void)
+{
+	return ((t_pattern){
+		.type = PATTERN_GRADIENT,
+		.colour = set_pattern_colours(hex_to_argb(COLOUR_BLACK),hex_to_argb(COLOUR_WHITE)),
+		.transform = default_transform_1()
 	});
 }
 
@@ -17,7 +26,7 @@ static t_material	default_pattern_mat(void)
 		.specular = 0.9,
 		.shininess = 200,
 		.init_colour = colour(1.0, 1.0, 1.0, 1.0),
-		.pattern = default_stripe_pattern(),
+		.pattern = default_gradient_pattern(),
 		.col_mash = vector(0, 0, 0),
 		.amb_col = vector(0, 0, 0),
 		.dif_col = vector(0, 0, 0),

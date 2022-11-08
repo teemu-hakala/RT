@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/08 16:19:24 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/08 17:35:35 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,9 +183,10 @@ t_transform	default_transform_2(void);
 t_canvas	default_canvas(void);
 
 /* patterns*/
-typedef void	(*t_pattern_at_fn)(t_material *, t_tuple *, t_transform );
+typedef void	(*t_pattern_at_fn)(t_material *, t_tuple *);
 void	pattern_at(t_material *material, t_tuple *point, t_transform transform);
-t_pattern_colours	stripe_pattern(t_tuple a, t_tuple b);
+t_pattern_colours	set_pattern_colours(t_tuple a, t_tuple b);
 void	pattern_world(t_world *world);
+t_pattern	default_stripe_pattern(void);
 
 #endif

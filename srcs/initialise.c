@@ -39,7 +39,7 @@ void	initialise_world(t_world *world)
 		handle_errors("initialise_world malloc returned NULL");
 	world->hit.intersection = NULL;
 	//default_world(world);
-	// sphere_world(world);
+	//sphere_world(world);
 	pattern_world(world);
 }
 
