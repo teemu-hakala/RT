@@ -1,5 +1,4 @@
 #include "libft.h"
-#include <stdio.h>
 
 static int	ft_transfer_heap(const int fd, char **line, char **heap)
 {

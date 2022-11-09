@@ -6,25 +6,59 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 10:28:30 by thakala           #+#    #+#             */
-/*   Updated: 2022/11/09 15:54:06 by thakala          ###   ########.fr       */
+/*   Updated: 2022/11/09 17:55:44 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vec.h"
 
+uint64_t	check_addition_overflow(uint64_t a, uint64_t b)
+{
+	if ((a >> 1) + (b >> 1) >= (uint64_t)(-1 - (a & 0x1U) - (b & 0x1U)) >> 1)
+		return ((uint64_t)(-1));
+	return (a + b);
+}
+
+static uint64_t	check_multiplication_overflow(
+	uint64_t multiplicand,
+	uint64_t multiplier
+)
+{
+	uint64_t	product;
+
+	product = multiplicand * multiplier;
+	if (multiplier == 0 || product / multiplier != multiplicand)
+		return ((uint64_t)(-1));
+	return (product);
+}
+
+static uint64_t	stick_size(uint64_t size)
+{
+	unsigned char	c;
+
+	if (size == (uint64_t)(-1))
+		return (0);
+	c = 0;
+	while (size >> c != 0)
+		c++;
+	if (c < 64)
+		return (0x1U << c);
+	return ((uint64_t)(-1));
+}
+
 int	vec_new(t_vec *dst, uint64_t init_len, uint64_t elem_size)
 {
-	uint64_t	overflow_protection;
+	uint64_t	size;
 
 	dst->len = 0;
 	dst->elem_size = elem_size;
 	dst->alloc_size = init_len;
 	if (dst->alloc_size > 0 && elem_size > 0)
 	{
-		overflow_protection = dst->elem_size * dst->alloc_size;
-		if (overflow_protection / dst->alloc_size != dst->elem_size)
+		size = check_multiplication_overflow(dst->elem_size, dst->alloc_size);
+		if (size == (uint64_t)(-1))
 			return (VEC_ERROR);
-		dst->memory = (uint8_t *)malloc(dst->elem_size * dst->alloc_size);
+		dst->memory = (uint8_t *)malloc(size);
 	}
 	else
 		dst->memory = NULL;
@@ -40,9 +74,14 @@ void	vec_free(t_vec *src)
 
 int	vec_from(t_vec *dst, void *src, uint64_t len, uint64_t elem_size)
 {
-	if (vec_new(dst, len, elem_size) > 0)
+	uint64_t	size;
+
+	size = check_multiplication_overflow(len, elem_size);
+	if (size == (uint64_t)(-1))
+		return (VEC_ERROR);
+	if (vec_new(dst, len, elem_size) > VEC_NON_ACTION)
 	{
-		ft_memcpy(dst->memory, src, len * elem_size);
+		ft_memcpy(dst->memory, src, size);
 		dst->len = len;
 	}
 	return ((-(dst->memory == NULL)) | 0x1);
@@ -70,7 +109,7 @@ int	vec_resize(t_vec *src, uint64_t	target_size)
 	t_vec	data;
 
 	data = *src;
-	if (vec_new(src, target_size, src->elem_size) > 0)
+	if (vec_new(src, target_size, src->elem_size) > VEC_NON_ACTION)
 	{
 		vec_copy(src, &data);
 		free(data.memory);
@@ -86,11 +125,34 @@ int	vec_clear(t_vec *src)
 
 int	vec_push(t_vec *dst, void *src)
 {
+	uint64_t	size;
+
 	if (dst->alloc_size <= dst->len)
-		if (vec_resize(dst, dst->alloc_size * 2) <= 0)
+	{
+		size = check_multiplication_overflow(dst->alloc_size, 2);
+		if (size == (uint64_t)(-1) || vec_resize(dst, size) <= VEC_NON_ACTION)
 			return (VEC_ERROR);
+	}
 	ft_memcpy(&dst->memory[dst->len * dst->elem_size], src, dst->elem_size);
 	dst->len++;
+	return (VEC_SUCCESS);
+}
+
+int	vec_push_arr(t_vec *dst, void *src, uint64_t len)
+{
+	uint64_t	size;
+
+	if (dst->alloc_size <= dst->len)
+	{
+		size = stick_size(
+				check_multiplication_overflow(
+					check_addition_overflow(dst->alloc_size, len), 2));
+		if (size != (uint64_t)(-1) && size != 0)
+			if (vec_resize(dst, size) <= 0)
+				return (VEC_ERROR);
+	}
+	ft_memcpy(&dst->memory[dst->len * dst->elem_size], src, dst->elem_size);
+	dst->len += len;
 	return (VEC_SUCCESS);
 }
 
@@ -137,18 +199,6 @@ int	vec_remove(t_vec *src, uint64_t index)
 		src->elem_size * (src->len - index - 1));
 	src->len--;
 	return (VEC_SUCCESS);
-}
-
-static uint64_t	stick_size(uint64_t size)
-{
-	unsigned char	c;
-
-	c = 0;
-	while (size >> c != 0)
-		c++;
-	if (c > 0)
-		return (0x1U << c);
-	return ((uint64_t)(-1));
 }
 
 int	vec_append(t_vec *dst, t_vec *src)
