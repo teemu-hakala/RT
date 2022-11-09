@@ -1308,19 +1308,56 @@ void	unit_tests(t_win *win)
 	mlx_loop(win->mlx);
 }
 
+void test_gnl(char **argv)
+{
+	int			fd;
+	char		*line;
+	ssize_t		ret;
+	size_t		line_count;
+	int			read_bytes;
+
+	fd = 0;
+	line_count = 0;
+	read_bytes = 0;
+	fd = open(argv[1], O_RDONLY);
+	if (fd < 0)
+	{
+		printf("unable to open file\n");
+		return ;
+	}
+	printf("\033[0;35m\n[START] file name: %s\tfd:%d\n\033[m", argv[1], fd);
+	do{
+		line_count++;
+		ret = gnl_read_ret(fd, &line, &read_bytes);
+		if (ret == 1)
+		{
+		//printf("ret %zd\tline_nbr[%zu]: %s\n", ret, line_count, line);
+		free(line);
+		}
+	}while (ret == 1);
+	line = 0;
+	//printf("ret %zd\tline_nbr[%zu]: %s\n", ret, line_count, line);
+	printf("\033[0;32m[DONE] file: %s\n\033[m", argv[1]);
+	close(fd);
+	printf("read_bytes = %d\n", read_bytes);
+	return ;
+}
+
 int	main(int argc, char **argv)
 {
-	t_win	win;
+	// t_win	win;
 
-	if (argc != 2)
-	 	handle_errors(USAGE);
-	open_scene_into(&win, argv[1]);
-	initialise_world(&win.world);
-	//parse_into(&win);
-	initialise_window(&win);
+	// if (argc != 2)
+	//  	handle_errors(USAGE);
+	// open_scene_into(&win, argv[1]);
+	// initialise_world(&win.world);
+	// parse_into(&win);
+	// initialise_window(&win);
 
-	mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
-	mlx_loop(win.mlx);
+	// mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
+	// mlx_loop(win.mlx);
+	(void)argc;
+	test_gnl(argv);
 
 	return (0);
 }

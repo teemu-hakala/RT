@@ -15,7 +15,7 @@ void	parse_into(t_world *world, const int file_descriptor)
 	first = true;
 	while (1)
 	{
-		read_bytes = gnl_read_ret(file_descriptor, &line);
+		read_bytes = gnl_read_ret(file_descriptor, &line, &read_bytes);
 		if (read_bytes == 0)
 			break ;
 		if (read_bytes < 0)

@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 11:53:36 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/09 15:58:04 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/09 20:26:42 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	ft_check_file(const int fd, char **line, int ret, char **heap)
 		return (ft_transfer_heap(fd, line, heap));
 }
 
-int	ft_read_file(int ret, char **heap, char *buf, int fd)
+static int	ft_read_file(int ret, char **heap, char *buf, int fd)
 {
 	char	*temp;
 

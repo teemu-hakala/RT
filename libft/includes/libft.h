@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 15:25:23 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/09 18:19:43 by thakala          ###   ########.fr       */
+/*   Updated: 2022/11/09 20:41:23 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 void	ft_print_list(t_list *list);
 char	*ft_strndup(const char *s1, size_t n);
 int		get_next_line(const int fd, char **line);
-int		gnl_read_ret(const int fd, char **line);
+int		gnl_read_ret(const int fd, char **line, int *read_bytes);
 int		ft_abs(int i);
 void	**ft_memallocarray(size_t y, size_t x);
 int		ft_sqrt(int nb);
