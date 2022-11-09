@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 18:00:18 by thakala           #+#    #+#             */
-/*   Updated: 2022/11/09 18:18:01 by thakala          ###   ########.fr       */
+/*   Updated: 2022/11/09 18:34:20 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ double	ft_atof(const char *str)
 	decimal_digits = 1;
 	while (ft_isspace(*str))
 		str++;
+	sign = 1;
 	if (*str == '+' || *str == '-')
 		sign = 44 - *str++;
 	integral = 0;
