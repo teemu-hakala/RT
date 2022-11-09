@@ -24,14 +24,23 @@ void	striped_at(t_material *material, t_tuple *point)
 
 void	checkered_at(t_material *material, t_tuple *point)
 {
-	(void)point;
-	material->final_colour = material->init_colour;
+	if (fmod((floor(point->tuple.units.x) + floor(point->tuple.units.y) + \
+		floor(point->tuple.units.z)), 2) == 0)
+		material->final_colour = material->pattern.colour.a;
+	else
+		material->final_colour = material->pattern.colour.b;
 }
 
 void	circle_at(t_material *material, t_tuple *point)
 {
-	(void)point;
-	material->final_colour = material->init_colour;
+	t_fl	temp;
+
+	temp = sqrt((point->tuple.units.x * point->tuple.units.x) + \
+		(point->tuple.units.z * point->tuple.units.z));
+	if (fmod(floor(temp), 2) == 0)
+		material->final_colour = material->pattern.colour.a;
+	else
+		material->final_colour = material->pattern.colour.b;
 }
 
 void	gradient_at(t_material *material, t_tuple *point)

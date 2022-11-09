@@ -18,6 +18,24 @@ t_pattern	default_gradient_pattern(void)
 	});
 }
 
+t_pattern	default_ring_pattern(void)
+{
+	return ((t_pattern){
+		.type = PATTERN_CIRCLES,
+		.colour = set_pattern_colours(hex_to_argb(COLOUR_RED),hex_to_argb(COLOUR_BLACK)),
+		.transform = default_transform_1()
+	});
+}
+
+t_pattern	default_checkered_pattern(void)
+{
+	return ((t_pattern){
+		.type = PATTERN_CHECKERED,
+		.colour = set_pattern_colours(hex_to_argb(COLOUR_WHITE),hex_to_argb(COLOUR_BLACK)),
+		.transform = default_transform_1()
+	});
+}
+
 static t_material	default_pattern_mat(void)
 {
 	return ((t_material){
@@ -26,7 +44,7 @@ static t_material	default_pattern_mat(void)
 		.specular = 0.9,
 		.shininess = 200,
 		.init_colour = colour(1.0, 1.0, 1.0, 1.0),
-		.pattern = default_gradient_pattern(),
+		.pattern = default_checkered_pattern(),
 		.col_mash = vector(0, 0, 0),
 		.amb_col = vector(0, 0, 0),
 		.dif_col = vector(0, 0, 0),

@@ -21,6 +21,8 @@
 		"functional": "c",
 		"random": "c",
 		"queue": "c",
-		"rtv1.h": "c"
+		"rtv1.h": "c",
+		"cmath": "c",
+		"chrono": "c"
 	}
 }
