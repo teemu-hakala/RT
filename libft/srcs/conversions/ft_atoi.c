@@ -6,27 +6,14 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 14:16:53 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/09 11:49:37 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/09 15:40:10 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* The atoi() function converts the initial portion of the string pointed to
 by str to int representation.*/
 
-static int	ft_clear_whitespace(const char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if ((str[i] > 8 && str[i] < 14) || str[i] == 32)
-			i++;
-		else
-			break ;
-	}
-	return (i);
-}
+#include "libft.h"
 
 static int	ft_check_sign(const char *str, int i)
 {

@@ -1,40 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strspn.c                                        :+:      :+:    :+:   */
+/*   ft_clear_whitespace.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 11:27:15 by thakala           #+#    #+#             */
-/*   Updated: 2022/11/09 13:09:07 by deelliot         ###   ########.fr       */
+/*   Created: 2022/11/09 13:12:03 by deelliot          #+#    #+#             */
+/*   Updated: 2022/11/09 15:40:36 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strspn(const char *s, const char *charset)
+int	ft_clear_whitespace(const char *str)
 {
-	size_t	span;
-	size_t	c;
-	char	found;
+	int	i;
 
-	span = 0;
-	--s;
-	while (1)
+	i = 0;
+	while (str[i])
 	{
-		++s;
-		c = 0;
-		found = 0;
-		while (*s && charset[c])
-		{
-			if (charset[c++] == *s)
-			{
-				++span;
-				found = 1;
-				break ;
-			}
-		}
-		if (!found || !*s)
-			return (span);
+		if ((str[i] >= '\t' && str[i] <= '\r') || str[i] == ' ')
+			i++;
+		else
+			break ;
 	}
+	return (i);
 }

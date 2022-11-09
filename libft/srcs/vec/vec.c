@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 10:28:30 by thakala           #+#    #+#             */
-/*   Updated: 2022/10/27 13:12:01 by thakala          ###   ########.fr       */
+/*   Updated: 2022/11/09 15:07:40 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,14 @@
 
 int	vec_new(t_vec *dst, uint64_t init_len, uint64_t elem_size)
 {
+	uint64_t	overflow_protection;
+
 	dst->len = 0;
 	dst->elem_size = elem_size;
 	dst->alloc_size = init_len;
+	overflow_protection = dst->elem_size * dst->alloc_size;
+	if (overflow_protection / dst->alloc_size != dst->elem_size)
+		return (VEC_ERROR);
 	if (dst->alloc_size > 0 && elem_size > 0)
 		dst->memory = (uint8_t *)malloc(dst->elem_size * dst->alloc_size);
 	else
@@ -77,15 +82,6 @@ int	vec_clear(t_vec *src)
 	return (VEC_SUCCESS);
 }
 
-// uint64_t	vec_push(t_vec *dst, void *src)
-// {
-// 	if (dst->alloc_size <= dst->len)
-// 		if (vec_resize(dst, dst->alloc_size * 2) <= 0)
-// 			return ((uint64_t)VEC_ERROR);
-// 	ft_memcpy(&dst->memory[dst->len * dst->elem_size], src, dst->elem_size);
-// 	return (dst->len++);
-// }
-
 int	vec_push(t_vec *dst, void *src)
 {
 	if (dst->alloc_size <= dst->len)
@@ -141,28 +137,27 @@ int	vec_remove(t_vec *src, uint64_t index)
 	return (VEC_SUCCESS);
 }
 
+static uint64_t	stick_size(uint64_t size)
+{
+	unsigned char	c;
+
+	c = 0;
+	while (size >> c != 0)
+		c++;
+	if (c > 0)
+		return (0x1U << --c);
+	return ((uint64_t)(-1));
+}
+
 int	vec_append(t_vec *dst, t_vec *src)
 {
-	uint64_t	dst_prev_len;
-
-	if (dst->alloc_size - dst->len < src->len)
-	{
-		dst_prev_len = dst->len;
-		if (vec_resize(dst, dst->len + src->len) > 0)
-		{
-			ft_memcpy(&dst->memory[dst->elem_size * dst_prev_len],
-				src->memory,
-				dst->elem_size * src->len);
-			dst->len += src->len;
-		}
-	}
-	else
-	{
-		ft_memcpy(&dst->memory[dst->len],
-			&src->memory,
-			dst->elem_size * src->len);
-		dst->len += src->len;
-	}
+	if (dst->alloc_size - dst->len < src->len
+		&& vec_resize(dst, stick_size(dst->len + src->len)) < VEC_SUCCESS)
+		return (VEC_ERROR);
+	ft_memcpy(&dst->memory[dst->elem_size * dst->len],
+		src->memory,
+		dst->elem_size * src->len);
+	dst->len += src->len;
 	return ((-(dst->memory == NULL)) | 0x1);
 }
 
