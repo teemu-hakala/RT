@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 15:25:23 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/09 16:12:03 by thakala          ###   ########.fr       */
+/*   Updated: 2022/11/09 18:19:43 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,5 +128,5 @@ t_range	ft_create_range(double min, double max);
 size_t	ft_strcspn(const char *s, const char *charset);
 size_t	ft_strspn(const char *s, const char *charset);
 int		ft_clear_whitespace(const char *str);
-
+double	ft_atof(const char *str);
 #endif
