@@ -57,11 +57,10 @@ int	ft_read_file(int ret, char **heap, char *buf, int fd)
 			break ;
 		ret = read(fd, buf, BUFF_SIZE);
 	}
-	printf("ret = %d\n", ret);
 	return (1);
 }
 
-int	GNL_read_ret(const int fd, char **line)
+int	gnl_read_ret(const int fd, char **line)
 {
 	char		buf[BUFF_SIZE + 1];
 	static char	*heap[MAX_FD + 1];
@@ -71,7 +70,6 @@ int	GNL_read_ret(const int fd, char **line)
 		return (-1);
 	*line = NULL;
 	ret = read(fd, buf, BUFF_SIZE);
-	printf("ret in main = %d\n", ret);
 	if (ft_read_file(ret, heap, buf, fd) == -1)
 		return (-1);
 	return (ft_check_file (fd, line, ret, heap));
