@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/09 11:14:34 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/09 12:58:59 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include "objects.h"
 # include "patterns.h"
 # include "world.h"
+# include "parse.h"
 
 # define USAGE "<instructions>"
 # define WIDTH 400

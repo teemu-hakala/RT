@@ -1,10 +1,13 @@
 {
 	"lights" :
 	[
-		"transform" :
+		"light" :
 		{
-			"translate" : [2, 4, -10] ,
-		} ,
+			"transform" :
+			{
+				"translate" : [2, 4, -10] ,
+			} ,
+		}
 	],
 	"shapes" :
 	[
@@ -13,7 +16,7 @@
 			"origin" : [0, 0, 0] ,
 			"transform" :
 			{
-				"translation" : [0, 0, 0] ,
+				"translation" : [0, 0, 0] , 
 				"rotation" : [0, 0, 0] ,
 				"scale" : [0, 0, 0] ,
 			} ,
