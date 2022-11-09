@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/08 17:35:35 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/09 22:15:04 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,5 +188,6 @@ void	pattern_at(t_material *material, t_tuple *point, t_transform transform);
 t_pattern_colours	set_pattern_colours(t_tuple a, t_tuple b);
 void	pattern_world(t_world *world);
 t_pattern	default_stripe_pattern(void);
+t_pattern	default_gradient_pattern(void);
 
 #endif

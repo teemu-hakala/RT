@@ -1140,6 +1140,23 @@ void	test_cone(void)
 	test_cone_end_cap_normals();
 }
 
+void	test_patterns()
+{
+	t_material	material;
+	t_transform	transform;
+	t_tuple		point_1;
+
+	point_1 = point(0.75, 0, 0);
+
+	material = default_phong_mat();
+	material.pattern = default_gradient_pattern();
+	transform = default_transform();
+	pattern_at(&material, &point_1, transform);
+	printf("final colour = %f, %f, %f, %f\n", material.final_colour.tuple.colour.a, \
+	material.final_colour.tuple.colour.r, material.final_colour.tuple.colour.g,\
+	material.final_colour.tuple.colour.b);
+}
+
 void	tests(void)
 {
 	// test_matrix_inversion();
@@ -1159,6 +1176,7 @@ void	tests(void)
 	// test_cylinder();
 	// test_cone_intersection();
 	// test_cone();
+	test_patterns();
 }
 
 int	main(void)
@@ -1172,6 +1190,6 @@ int	main(void)
 	test_render(&win);
 	mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
 	mlx_loop(win.mlx);
-	// tests();
+	tests();
 	return (0);
 }

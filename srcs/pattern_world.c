@@ -13,7 +13,7 @@ t_pattern	default_gradient_pattern(void)
 {
 	return ((t_pattern){
 		.type = PATTERN_GRADIENT,
-		.colour = set_pattern_colours(hex_to_argb(COLOUR_BLACK),hex_to_argb(COLOUR_WHITE)),
+		.colour = set_pattern_colours(hex_to_argb(COLOUR_WHITE),hex_to_argb(COLOUR_RED)),
 		.transform = default_transform_1()
 	});
 }
