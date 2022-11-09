@@ -1,0 +1,47 @@
+{
+	"lights" :
+	[
+		"transform" :
+		{
+			"translate" : [2, 4, -10] ,
+		} ,
+	],
+	"shapes" :
+	[
+		"sphere" :
+		{
+			"origin" : [0, 0, 0] ,
+			"transform" :
+			{
+				"translation" : [0, 0, 0] ,
+				"rotation" : [0, 0, 0] ,
+				"scale" : [0, 0, 0] ,
+			} ,
+			"material" :
+			{
+				"preset" : "dark_blue_matt",
+				"ambient" : 0.42 ,
+				"diffuse" : 0.5 ,
+				"specular" : 0.1 ,
+				"shininess" : 200 ,
+				"init_colour" : [1, 0, 0] ,
+				"pattern" :
+				{
+					"preset" : "chessboard" ,
+					"type" : "checkered" ,
+					"colours" :
+					[
+						[1, 0, 0] ,
+						[0, 0, 0] ,
+					]
+					"transform" :
+					{
+						"translation" : [0, 0, 0] ,
+						"rotation" : [0, 0, 0] ,
+						"scale" : [0, 0, 0] ,
+					} ,
+				} ,
+			} ,
+		} ,
+	]
+}

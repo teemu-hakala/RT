@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 15:25:23 by deelliot          #+#    #+#             */
-/*   Updated: 2022/10/24 14:19:53 by thakala          ###   ########.fr       */
+/*   Updated: 2022/11/09 11:26:58 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,5 +124,7 @@ void	del(void *content, size_t content_size);
 void	ft_stderror(char const *s);
 double	ft_linear_conversion(t_range old, t_range new, double x);
 t_range	ft_create_range(double min, double max);
+size_t	ft_strcspn(const char *s, const char *charset);
+size_t	ft_strspn(const char *s, const char *charset);
 
 #endif

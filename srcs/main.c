@@ -1273,7 +1273,7 @@ void	test_sphere_scene_with_planar_floor(t_win *win)
 	print_world(&win->world, &win->world.camera);
 }
 
-void	tests(void)
+void	tests(t_win *win)
 {
 	// test_matrix_inversion();
 	// test_red_disc();
@@ -1292,25 +1292,34 @@ void	tests(void)
 	// test_cylinder();
 	// test_cone_intersection();
 	// test_cone();
+	// test_plane(win);
+	// test_colour_at(win);
+	//test_sphere_scene_with_planar_floor(win);
+	//test_render(win);
 }
 
-int	main(void)
+void	unit_tests(t_win *win)
 {
-	// if (argc != 2)
-	//  	handle_errors(USAGE);
+	initialise_world(&win->world);
+	initialise_window(win);
+	tests(win);
+	mlx_hook(win->win, KEY_DOWN, 0, handle_input, &win);
+	mlx_loop(win->mlx);
+}
+
+int	main(int argc, char **argv)
+{
 	t_win	win;
 
+	if (argc != 2)
+	 	handle_errors(USAGE);
+	open_scene_into(&win, argv[1]);
 	initialise_world(&win.world);
+	parse_into(&win);
 	initialise_window(&win);
-	// tests();
-	// parse(&win);
-	// test_colour_at(&win);
-	//test_sphere_scene_with_planar_floor(&win);
-	test_render(&win);
-	// test_plane(&win);
-	// // plot_points(&win);
+
 	mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
 	mlx_loop(win.mlx);
-	// tests();
+
 	return (0);
 }

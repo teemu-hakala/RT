@@ -54,8 +54,8 @@ typedef struct s_material
 	t_fl		diffuse;
 	t_fl		specular;
 	t_fl		shininess;
-	t_pattern	pattern;
 	t_tuple		init_colour;
+	t_pattern	pattern;
 	t_tuple		final_colour;
 	t_tuple		amb_col;
 	t_tuple		dif_col;

@@ -6,7 +6,7 @@
 #    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2022/11/09 10:19:59 by deelliot         ###   ########.fr        #
+#    Updated: 2022/11/09 11:32:37 by deelliot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,7 +81,7 @@ LINKS = \
 # 	OpenGL -framework AppKit
 
 #Rules
-all: $(NAME)
+all: libft $(NAME)
 
 $(NAME): .prerequisites $(LIBS) $(OBJS) Makefile
 	touch .prerequisites
@@ -96,7 +96,7 @@ $(OBJS): $(OBJS_DIR)%.o:$(SRCS_DIR)%.c $(HDRS) Makefile
 
 $(OBJS_DIR):
 	mkdir -p $(OBJS_DIR)
-$(LIBFT_A):
+libft:
 	make -C $(LIBFT_DIR)
 $(MINILIBX_A):
 	make -C $(MINILIBX_DIR)
@@ -113,4 +113,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re libft
