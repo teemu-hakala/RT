@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: thakala <thakala@student.42.fr>            +#+  +:+       +#+         #
+#    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2022/11/07 13:33:45 by thakala          ###   ########.fr        #
+#    Updated: 2022/11/09 10:19:59 by deelliot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ HDRS = includes/RTv1.h \
 	includes/matrices.h \
 	includes/objects.h \
 	includes/tuple.h \
-	includes/world.h
+	includes/world.h \
+	includes/patterns.h
 LIBFT_DIR = libft
 MINILIBX_DIR = minilibx
 
@@ -57,6 +58,8 @@ FILES = \
 	computations \
 	sphere_scene \
 	plane
+	patterns \
+	pattern_world
 
 SRCS = $(addprefix $(SRCS_DIR)/, $(addsuffix .c, $(FILES)))
 OBJS = $(addprefix $(OBJS_DIR)/, $(addsuffix .o, $(FILES)))

@@ -40,11 +40,10 @@ t_tuple	lighting(t_material material, t_light *light, t_phong vectors,
 {
 	t_fl	incidence_l;
 
-	material.col_mash = tuple_multi(material.colour, light->intensity);
+	material.col_mash = tuple_multi(material.final_colour, light->intensity);
 	vectors.light = normalize(tuple_sub(light->position, point));
 	material.amb_col = colour_scale(material.col_mash, material.ambient);
 	incidence_l = dot_product(vectors.light, vectors.surface_normal);
-	// printf("incidence angle: %f\n", incidence_l);
 	if (incidence_l < 0.0)
 	{
 		material.dif_col = colour(1, 0, 0, 0);

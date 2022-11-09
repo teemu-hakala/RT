@@ -121,14 +121,14 @@ void	rot_y(t_mtx *mtx, t_fl angle)
 
 void	rot_z(t_mtx *mtx, t_fl angle)
 {
-	t_mtx	rotate_y;
+	t_mtx	rotate_z;
 
-	identity_matrix_set(&rotate_y);
-	rotate_y.array[4 * 0 + 0] = cos(angle);
-	rotate_y.array[4 * 0 + 1] = -sin(angle);
-	rotate_y.array[4 * 1 + 0] = sin(angle);
-	rotate_y.array[4 * 1 + 1] = cos(angle);
-	matrix_multi_square(mtx, &rotate_y, 4);
+	identity_matrix_set(&rotate_z);
+	rotate_z.array[4 * 0 + 0] = cos(angle);
+	rotate_z.array[4 * 0 + 1] = -sin(angle);
+	rotate_z.array[4 * 1 + 0] = sin(angle);
+	rotate_z.array[4 * 1 + 1] = cos(angle);
+	matrix_multi_square(mtx, &rotate_z, 4);
 }
 
 t_ray	ray_translation(t_ray ray, t_tuple transform)

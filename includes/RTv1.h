@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/08 16:56:27 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/09 10:18:50 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include "matrices.h"
 # include "colour_and_light.h"
 # include "objects.h"
+# include "patterns.h"
 # include "world.h"
 
 # define USAGE "<instructions>"
@@ -192,5 +193,15 @@ t_tuple		camera_origin(void);
 t_tuple	default_origin(void);
 t_material	default_phong_mat(void);
 t_transform	default_transform(void);
+t_transform	default_transform_1(void);
+t_transform	default_transform_2(void);
 t_canvas	default_canvas(void);
+
+/* patterns*/
+typedef void	(*t_pattern_at_fn)(t_material *, t_tuple *);
+void	pattern_at(t_material *material, t_tuple *point, t_transform transform);
+t_pattern_colours	set_pattern_colours(t_tuple a, t_tuple b);
+void	pattern_world(t_world *world);
+t_pattern	default_stripe_pattern(void);
+
 #endif

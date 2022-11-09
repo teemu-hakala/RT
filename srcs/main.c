@@ -155,7 +155,7 @@ void	test_lighting_angled()
 	material.diffuse = 0.9;
 	material.specular = 0.9;
 	material.shininess = 200;
-	material.colour = red;
+	material.init_colour = red;
 
 	light.intensity.tuple.colour = (t_colour){ 1.0, 1.0, 1.0, 1.0 };
 	light.position.tuple.units = (t_units){ 0.0, 10.0, -10.0, POINT_1 };
@@ -185,7 +185,7 @@ void	test_lighting_ambient()
 	material.diffuse = 0.9;
 	material.specular = 0.9;
 	material.shininess = 200;
-	material.colour = red;
+	material.init_colour = red;
 
 	light.intensity.tuple.units = (t_units){ 1.0, 1.0, 1.0, 1.0 };
 	light.position.tuple.units = (t_units){ 0.0, 10.0, 0.0, POINT_1 };
@@ -492,7 +492,7 @@ void	print_material(t_material *material, uint8_t indent_level, const char *desc
 		}, indent_level + 1,
 		"ambient, diffuse, specular, shininess"
 	);
-	print_tuple(&material->colour, indent_level + 1,"object->initial_colour");
+	print_tuple(&material->init_colour, indent_level + 1,"object->initial_colour");
 	print_indented(indent_level, "}\n");
 }
 
@@ -652,7 +652,7 @@ void	lighting_1(void)
 			transform,
 			(t_material)
 			{
-				.colour = colour(1.0, 1.0, 1.0, 1.0),
+				.init_colour = colour(1.0, 1.0, 1.0, 1.0),
 				.ambient = 0.1,
 				.diffuse = 0.9,
 				.specular = 0.9,
@@ -695,7 +695,7 @@ void	lighting_2(void)
 			transform,
 			(t_material)
 			{
-				.colour = colour(1.0, 1.0, 1.0, 1.0),
+				.init_colour = colour(1.0, 1.0, 1.0, 1.0),
 				.ambient = 0.1,
 				.diffuse = 0.9,
 				.specular = 0.9,
@@ -739,7 +739,7 @@ void	lighting_3(void)
 			transform,
 			(t_material)
 			{
-				.colour = colour(1.0, 1.0, 1.0, 1.0),
+				.init_colour = colour(1.0, 1.0, 1.0, 1.0),
 				.ambient = 0.1,
 				.diffuse = 0.9,
 				.specular = 0.9,
@@ -764,17 +764,6 @@ void	test_lighting(void)
 	lighting_1();
 	lighting_2();
 	lighting_3();
-}
-
-static t_transform	default_transform_1(void)
-{
-	t_transform	d;
-
-	d.translation = point(0, 0, 0);
-	d.rotation = point(0, 0, 0);
-	d.scale = point(1, 1, 1);
-	transform_object(&d);
-	return (d);
 }
 
 void test_shadow(void)

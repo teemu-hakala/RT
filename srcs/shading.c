@@ -3,6 +3,8 @@
 void	shade_plane(t_world *world, void *plane, t_tuple *colour, t_light *light)
 {
 	is_shadow(world, world->hit.computations.over_point, light);
+	pattern_at(&((t_plane *)plane)->material, \
+		&world->hit.computations.over_point, ((t_plane *)plane)->transform);
 	*colour = tuple_add((lighting(((t_plane *)plane)->material, \
 		light, world->hit.computations.vectors, \
 		world->hit.computations.over_point)), *colour);
@@ -11,6 +13,8 @@ void	shade_plane(t_world *world, void *plane, t_tuple *colour, t_light *light)
 void	shade_sphere(t_world *world, void *sphere, t_tuple *colour, t_light *light)
 {
 	is_shadow(world, world->hit.computations.over_point, light);
+	pattern_at(&((t_sphere *)sphere)->material, \
+		&world->hit.computations.over_point, ((t_sphere *)sphere)->transform);
 	*colour = tuple_add((lighting(((t_sphere *)sphere)->material, \
 		light, world->hit.computations.vectors, \
 		world->hit.computations.over_point)), *colour);
@@ -19,6 +23,8 @@ void	shade_sphere(t_world *world, void *sphere, t_tuple *colour, t_light *light)
 void	shade_cone(t_world *world, void *cone, t_tuple *colour, t_light *light)
 {
 	is_shadow(world, world->hit.computations.over_point, light);
+	pattern_at(&((t_cone *)cone)->material, \
+		&world->hit.computations.over_point, ((t_cone *)cone)->transform);
 	*colour = tuple_add((lighting(((t_cone *)cone)->material, \
 		light, world->hit.computations.vectors, \
 		world->hit.computations.over_point)), *colour);
@@ -27,6 +33,8 @@ void	shade_cone(t_world *world, void *cone, t_tuple *colour, t_light *light)
 void	shade_cylinder(t_world *world, void *cylinder, t_tuple *colour, t_light *light)
 {
 	is_shadow(world, world->hit.computations.over_point, light);
+	pattern_at(&((t_cylinder *)cylinder)->material, \
+		&world->hit.computations.over_point, ((t_cylinder *)cylinder)->transform);
 	*colour = tuple_add((lighting(((t_cylinder *)cylinder)->material, \
 		light, world->hit.computations.vectors, \
 		world->hit.computations.over_point)), *colour);
@@ -56,8 +64,6 @@ t_tuple	shade_hit(t_world *world)
 			(world, &world->hit.intersection->shape->object, &colour, light);
 		i++;
 	}
-	// printf("colour: a: %f, r: %f, g: %f, b:%f\n", colour.tuple.colour.a, \
-	// 	colour.tuple.colour.r, colour.tuple.colour.g, colour.tuple.colour.b);
 	return (colour);
 }
 

@@ -1,39 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   colour_and_light.h                                 :+:      :+:    :+:   */
+/*   patterns.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 17:34:04 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/08 13:58:44 by deelliot         ###   ########.fr       */
+/*   Created: 2022/11/07 13:32:36 by deelliot          #+#    #+#             */
+/*   Updated: 2022/11/08 15:40:01 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COLOUR_AND_LIGHT_H
-# define COLOUR_AND_LIGHT_H
-
+#ifndef PATTERNS_H
+# define PATTERNS_H
 # include "RTv1.h"
 
-enum e_colour
+typedef enum e_pattern_type
 {
-	COLOUR_RED = 0x00FF0000,
-	COLOUR_GREEN = 0x0000FF00,
-	COLOUR_BLUE = 0x000000FF,
-	COLOUR_BLACK = 0x00000000,
-	COLOUR_WHITE = 0x00FFFFFF,
-	COLOUR_TURQOUISE = 0x40E0D0U,
-	COLOUR_YELLOW = 0xFFF200,
-	COLOUR_PURPLE = 0x8A00C2
-};
+	PATTERN_NONE = 0,
+	PATTERN_STRIPE = 1,
+	PATTERN_CHECKERED = 2,
+	PATTERN_CIRCLES = 3,
+	PATTERN_GRADIENT = 4
+}	t_pattern_type;
 
-typedef struct s_phong
+typedef struct s_pattern_colours
 {
-	t_tuple	eye;
-	t_tuple	light;
-	t_tuple	surface_normal;
-	t_tuple	reflection;
-	int		in_shadow;
-}				t_phong;
+	t_tuple	a;
+	t_tuple	b;
+}				t_pattern_colours;
 
 #endif

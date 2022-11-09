@@ -12,7 +12,7 @@ t_tuple	origin_1(void)
 
 t_tuple	camera_origin(void)
 {
-	return (point(0, 5, -10));
+	return (point(0, 0, -5));
 }
 
 t_canvas	default_canvas(void)
@@ -20,7 +20,7 @@ t_canvas	default_canvas(void)
 	return ((t_canvas){.vertical = HEIGHT, .horizontal = WIDTH});
 }
 
-static t_transform	default_transform_1(void)
+t_transform	default_transform_1(void)
 {
 	t_transform	d;
 
@@ -60,7 +60,7 @@ t_material	default_phong_mat(void)
 		.diffuse = 0.9,
 		.specular = 0.9,
 		.shininess = 200,
-		.colour = colour(1.0, 1.0, 1.0, 1.0),
+		.init_colour = colour(1.0, 1.0, 1.0, 1.0),
 		.col_mash = vector(0, 0, 0),
 		.amb_col = vector(0, 0, 0),
 		.dif_col = vector(0, 0, 0),
@@ -75,7 +75,7 @@ t_material	default_material_1(void)
 		.diffuse = 0.7,
 		.specular = 0.2,
 		.shininess = 200,
-		.colour = colour(1.0, 0.8, 1.0, 0.6),
+		.init_colour = colour(1.0, 0.8, 1.0, 0.6),
 		.col_mash = vector(0, 0, 0),
 		.amb_col = vector(0, 0, 0),
 		.dif_col = vector(0, 0, 0),
@@ -90,7 +90,7 @@ t_material	default_material_2(void)
 		.diffuse = 0.9,
 		.specular = 0.9,
 		.shininess = 200,
-		.colour = colour(1.0, 0.8, 1.0, 0.6),
+		.init_colour = colour(1.0, 0.8, 1.0, 0.6),
 		.col_mash = vector(0, 0, 0),
 		.amb_col = vector(0, 0, 0),
 		.dif_col = vector(0, 0, 0),
