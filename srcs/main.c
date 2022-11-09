@@ -1345,19 +1345,19 @@ void test_gnl(char **argv)
 
 int	main(int argc, char **argv)
 {
-	// t_win	win;
+	(void)argc;
+	(void)argv;
+	t_win	win;
 
 	// if (argc != 2)
 	//  	handle_errors(USAGE);
-	// open_scene_into(&win, argv[1]);
-	// initialise_world(&win.world);
-	// parse_into(&win);
-	// initialise_window(&win);
+	//open_scene_into(&win, argv[1]);
+	initialise_world(&win.world);
+	//parse_into(&win);
+	initialise_window(&win);
 
-	// mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
-	// mlx_loop(win.mlx);
-	(void)argc;
-	test_gnl(argv);
+	mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
+	mlx_loop(win.mlx);
 
 	return (0);
 }

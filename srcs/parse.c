@@ -7,6 +7,7 @@ void	parse_light()
 
 void	parse_into(t_world *world, const int file_descriptor)
 {
+	(void)world;
 	char	*line;
 	int		read_bytes;
 	t_vec	string;
