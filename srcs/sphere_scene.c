@@ -5,20 +5,9 @@ t_canvas	scene_canvas(void)
 	return ((t_canvas){.vertical = HEIGHT, .horizontal = WIDTH});
 }
 
-t_tuple	camera_sphere_origin(void)
+static t_tuple	camera_sphere_origin(void)
 {
 	return (point(0, 1.5, -5));
-}
-
-t_transform	light_2_transform(void)
-{
-	t_transform	d;
-
-	d.translation = point(-20, 0, 0);
-	d.rotation = point(0, 0, 0);
-	d.scale = point(1, 1, 1);
-	transform_object(&d);
-	return (d);
 }
 
 t_transform	floor_transform(void)
@@ -87,7 +76,6 @@ t_material	floor_mat(void)
 		.diffuse = 0.7,
 		.specular = 0.0,
 		.shininess = 200,
-		.pattern = default_stripe_pattern(),
 		.init_colour = colour(1.0, 1.0, 0.9, 0.9),
 		.col_mash = vector(0, 0, 0),
 		.amb_col = vector(0, 0, 0),
@@ -103,7 +91,6 @@ t_material	left_wall_mat(void)
 		.diffuse = 0.7,
 		.specular = 0.0,
 		.shininess = 200,
-
 		.init_colour = colour(1.0, 1.0, 0.0, 0.0),
 		.col_mash = vector(0, 0, 0),
 		.amb_col = vector(0, 0, 0),
@@ -183,21 +170,12 @@ t_light	default_light(void)
 {
 	return ((t_light){
 		.position = point(-10, 10, -10),
-		.intensity = colour(1, 0.5, 0.5, 0.5),
+		.intensity = colour(1, 1, 1, 1),
 		.transform = default_transform_1(),
 	});
 }
 
-t_light light_2(void)
-{
-	return ((t_light){
-		.position = point(-10, 10, -10),
-		.intensity = colour(1, 0.5, 0.5, 0.5),
-		.transform = default_transform_1()
-	});
-}
-
-t_transform	camera_sphere_transform(void)
+static t_transform	camera_sphere_transform(void)
 {
 	t_transform	d;
 
@@ -244,9 +222,6 @@ void	sphere_world(t_world *world)
 		handle_errors("unable to malloc for world object");
 	if (vec_push(&world->objects, &sphere_3) == VEC_ERROR)
 		handle_errors("unable to malloc for world object");
-	if (vec_push(&world->lights, &light) == VEC_ERROR)
-		handle_errors("unable to malloc for light");
-	light = light_2();
 	if (vec_push(&world->lights, &light) == VEC_ERROR)
 		handle_errors("unable to malloc for light");
 }

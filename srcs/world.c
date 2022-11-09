@@ -2,7 +2,7 @@
 
 t_tuple	default_origin(void)
 {
-	return (point(0, 1, 5));
+	return (point(0, 0, 0));
 }
 
 t_tuple	origin_1(void)
