@@ -1275,6 +1275,7 @@ void	test_sphere_scene_with_planar_floor(t_win *win)
 
 void	tests(t_win *win)
 {
+	(void)win;
 	// test_matrix_inversion();
 	// test_red_disc();
 	// test_normal_at_sphere();
@@ -1315,7 +1316,7 @@ int	main(int argc, char **argv)
 	 	handle_errors(USAGE);
 	open_scene_into(&win, argv[1]);
 	initialise_world(&win.world);
-	parse_into(&win);
+	//parse_into(&win);
 	initialise_window(&win);
 
 	mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);

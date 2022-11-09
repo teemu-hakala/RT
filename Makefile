@@ -6,13 +6,13 @@
 #    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2022/11/09 11:32:37 by deelliot         ###   ########.fr        #
+#    Updated: 2022/11/09 11:51:04 by deelliot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = RTv1
 
-FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+FLAGS = -Wall -Wextra -Werror -g -fsanitize=address 
 # FLAGS += -fsanitize=address -Wconversion -Ofast -flto
 
 # Directories
@@ -57,9 +57,10 @@ FILES = \
 	colour \
 	computations \
 	sphere_scene \
-	plane
+	plane \
 	patterns \
-	pattern_world
+	pattern_world \
+	parse
 
 SRCS = $(addprefix $(SRCS_DIR)/, $(addsuffix .c, $(FILES)))
 OBJS = $(addprefix $(OBJS_DIR)/, $(addsuffix .o, $(FILES)))

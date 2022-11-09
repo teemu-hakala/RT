@@ -4,6 +4,8 @@
 
 void	parse_into(t_world *world, const int file_descriptor)
 {
+	(void)world;
+	(void)file_descriptor;
 
 }
 

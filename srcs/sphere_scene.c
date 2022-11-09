@@ -10,17 +10,6 @@ t_tuple	camera_sphere_origin(void)
 	return (point(0, 1.5, -5));
 }
 
-static t_transform	default_transform_1(void)
-{
-	t_transform	d;
-
-	d.translation = point(0, 0, 0);
-	d.rotation = point(0, 0, 0);
-	d.scale = point(1, 1, 1);
-	transform_object(&d);
-	return (d);
-}
-
 t_transform	light_2_transform(void)
 {
 	t_transform	d;
