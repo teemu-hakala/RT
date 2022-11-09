@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 10:28:30 by thakala           #+#    #+#             */
-/*   Updated: 2022/11/09 15:07:40 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/09 15:54:06 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,13 @@ int	vec_new(t_vec *dst, uint64_t init_len, uint64_t elem_size)
 	dst->len = 0;
 	dst->elem_size = elem_size;
 	dst->alloc_size = init_len;
-	overflow_protection = dst->elem_size * dst->alloc_size;
-	if (overflow_protection / dst->alloc_size != dst->elem_size)
-		return (VEC_ERROR);
 	if (dst->alloc_size > 0 && elem_size > 0)
+	{
+		overflow_protection = dst->elem_size * dst->alloc_size;
+		if (overflow_protection / dst->alloc_size != dst->elem_size)
+			return (VEC_ERROR);
 		dst->memory = (uint8_t *)malloc(dst->elem_size * dst->alloc_size);
+	}
 	else
 		dst->memory = NULL;
 	return ((-(!dst->memory && ((!init_len && !elem_size) || !elem_size))) \
@@ -145,7 +147,7 @@ static uint64_t	stick_size(uint64_t size)
 	while (size >> c != 0)
 		c++;
 	if (c > 0)
-		return (0x1U << --c);
+		return (0x1U << c);
 	return ((uint64_t)(-1));
 }
 
