@@ -2,10 +2,8 @@
 
 void	parse_into(t_world *world, const int file_descriptor)
 {
-	while (1)
-	{
-
-	}
+	(void)world;
+	(void)file_descriptor;
 }
 
 void	open_scene_into(t_win *win, const char *str)
@@ -17,5 +15,5 @@ void	open_scene_into(t_win *win, const char *str)
 
 void	parse_light()
 {
-	
+
 }

@@ -6,7 +6,7 @@
 #    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/03 13:04:07 by deelliot          #+#    #+#              #
-#    Updated: 2022/11/09 15:39:30 by deelliot         ###   ########.fr        #
+#    Updated: 2022/11/09 16:02:11 by deelliot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,7 @@ CONVERSION_SRCS = ft_toupper.c ft_tolower.c ft_atoi.c ft_itoa.c
 MATHS_SRCS = ft_abs.c  ft_sqrt.c ft_find_next_sqrt.c ft_max.c \
 	ft_linear_conversion.c ft_create_range.c ft_normalise_data.c
 
-INPUT_SRCS = get_next_line.c
+INPUT_SRCS = get_next_line.c GNL_read_ret.c
 
 GRAPHICS_SRCS = rgb_to_hex.c hex_to_rgb.c
 

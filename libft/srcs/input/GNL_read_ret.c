@@ -1,16 +1,5 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/28 11:53:36 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/09 15:58:04 by deelliot         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "libft.h"
+#include <stdio.h>
 
 static int	ft_transfer_heap(const int fd, char **line, char **heap)
 {
@@ -69,10 +58,11 @@ int	ft_read_file(int ret, char **heap, char *buf, int fd)
 			break ;
 		ret = read(fd, buf, BUFF_SIZE);
 	}
+	printf("ret = %d\n", ret);
 	return (1);
 }
 
-int	get_next_line(const int fd, char **line)
+int	GNL_read_ret(const int fd, char **line)
 {
 	char		buf[BUFF_SIZE + 1];
 	static char	*heap[MAX_FD + 1];
@@ -82,6 +72,7 @@ int	get_next_line(const int fd, char **line)
 		return (-1);
 	*line = NULL;
 	ret = read(fd, buf, BUFF_SIZE);
+	printf("ret in main = %d\n", ret);
 	if (ft_read_file(ret, heap, buf, fd) == -1)
 		return (-1);
 	return (ft_check_file (fd, line, ret, heap));

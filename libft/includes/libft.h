@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 15:25:23 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/09 13:14:25 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/09 16:02:34 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 void	ft_print_list(t_list *list);
 char	*ft_strndup(const char *s1, size_t n);
 int		get_next_line(const int fd, char **line);
+int		GNL_read_ret(const int fd, char **line);
 int		ft_abs(int i);
 void	**ft_memallocarray(size_t y, size_t x);
 int		ft_sqrt(int nb);
