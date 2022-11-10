@@ -145,8 +145,8 @@ union	u_object
 	t_sphere	sphere;
 	t_cone		cone;
 	t_cylinder	cylinder;
-	t_camera	camera;
-	t_light		light;
+	// t_camera	camera;
+	// t_light		light;
 };
 
 typedef struct s_object

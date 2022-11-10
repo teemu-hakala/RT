@@ -9,66 +9,67 @@ t_light	default_light(void)
 	});
 }
 
-int	find_light_subobject_keyword(t_light *light, t_vec *brackets, \
-	char *string, uint64_t *c)
+int	find_light_subobject_keyword(t_light *light, t_parser *parser)
 {
-	find_double_quote(string, c);
-	if (ft_strncmp(&string[*c], "position\"", 9) == 0)
+	find_double_quote(parser);
+	if (ft_strncmp(&parser->string[*parser->c], "position\"", 9) == 0)
 	{
-		*c += 9;
-		parse_tuple(&light->position, string, c);
+		*parser->c += 9;
+		parse_tuple(&light->position, parser);
 		return (1);
 	}
-	else if (ft_strncmp(&string[*c], "transform\"", 10) == 0)
+	else if (ft_strncmp(&parser->string[*parser->c], "transform\"", 10) == 0)
 	{
-		parse_transform(&light->transform, brackets, string, c);
+		parse_transform(&light->transform, parser);
 		return (1);
 	}
-	else if (ft_strncmp(&string[*c], "intensity\"", 10) == 0)
+	else if (ft_strncmp(&parser->string[*parser->c], "intensity\"", 10) == 0)
 	{
-		*c += 10;
-		parse_tuple(&light->intensity, string, c);
+		*parser->c += 10;
+		parse_tuple(&light->intensity,parser);
 		return (1);
 	}
 	else
 		return (0);
 }
 
-void	parse_light(t_vec *brackets, char *string, uint64_t *c, t_light *light)
+void	parse_light(t_parser *parser, t_light *light)
 {
-	find_colon(string, c);
-	find_open_bracket(brackets, string, c);
-	if (find_matching_bracket(brackets, string, c))
+	find_colon(parser);
+	find_open_bracket(parser);
+	if (find_matching_bracket(parser))
 		return ;
 	else
 	{
-		while (find_light_subobject_keyword(&light, brackets, string, c))
-			parse_light(brackets, string, c, light);
-		if (!find_matching_bracket(brackets, string, c))
+		while (find_light_subobject_keyword(&light, parser))
+			parse_light(parser, light);
+		if (!find_matching_bracket(parser))
 			handle_errors("syntax error");
 	}
 }
 
-int	find_light(char *string, uint64_t *c)
+int	find_light(t_parser *parser)
 {
-	find_double_quote(string, c);
-	if (ft_strncmp(&string[*c], "light\"", 6) == 0)
+	find_double_quote(parser);
+	if (ft_strncmp(&parser->string[*parser->c], "light\"", 6) == 0)
 		return (true);
 	return (false);
 }
 
-void	parse_lights(t_world *world, t_vec *brackets, char *string, uint64_t *c)
+void	parse_lights(t_world *world, t_parser *parser)
 {
 	t_light	light;
 
-	find_colon(string, c);
-	find_open_bracket(brackets, string, c);
-	find_open_bracket(brackets, string, c);
-	while (find_light(string, c))
+	find_colon(parser);
+	find_open_bracket(parser);
+	find_open_bracket(parser);
+	while (find_light(parser))
 	{
 		light = default_light();
-		parse_light(brackets, string, c, &light);
+		parse_light(parser, &light);
 		if (vec_push(&world->lights, &light) == VEC_ERROR)
 			handle_errors("vec_push light error");
+		if (!find_matching_bracket(parser))
+			handle_errors("brackets syntax error");
 	}
 }

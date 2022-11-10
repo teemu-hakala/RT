@@ -35,30 +35,30 @@ void	read_file_contents(t_vec *string, const int file_descriptor)
 		handle_errors("vec_push_arr error");
 }
 
-void	find_object_keyword(t_world *world, t_vec *brackets, char *string, uint64_t *c)
+void	find_object_keyword(t_world *world, t_parser *parser)
 {
-	find_double_quote(string, c);
-	if (ft_strncmp(&string[*c], "camera\"", 7) == 0)
-		parse_camera(world, brackets, string, c);
-	else if (ft_strncmp(&string[*c], "lights\"", 7) == 0)
-		parse_lights(world, brackets, string, c);
-	else if (ft_strncmp(&string[*c], "shapes\"", 7) == 0)
-		parse_shapes(world, brackets, string, c);
+	find_double_quote(parser);
+	if (ft_strncmp(&parser->string[*parser->c], "camera\"", 7) == 0)
+		parse_camera(world, parser);
+	else if (ft_strncmp(&parser->string[*parser->c], "lights\"", 7) == 0)
+		parse_lights(world, parser);
+	else if (ft_strncmp(&parser->string[*parser->c], "shapes\"", 7) == 0)
+		parse_shapes(world, parser);
 	else
 		handle_errors("DENIED:object not recognised");
 }
 
 void	parse_into(t_world *world, const int file_descriptor)
 {
-	t_vec		string;
-	t_vec		brackets;
-	uint64_t	c;
+	t_parser	parser;
+	t_vec		string_vec;
 
-	read_file_contents_into(&string, file_descriptor);
-	vec_new(&brackets, 256, sizeof(char));
-	c = 0;
-	find_open_bracket(&brackets, (char *)string.memory, &c);
+	read_file_contents_into(&string_vec, file_descriptor);
+	parser.string = (char *)string_vec.memory;
+	vec_new(&parser.brackets, 256, sizeof(char));
+	parser.c = 0;
+	find_open_bracket(&parser);
 	while ()
-		find_object_keyword(world, &brackets, (char *)string.memory, &c);
+		find_object_keyword(world, &parser);
 }
 

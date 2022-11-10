@@ -22,6 +22,8 @@
 		"random": "c",
 		"queue": "c",
 		"rtv1.h": "c",
-		"libft.h": "c"
+		"libft.h": "c",
+		"iosfwd": "c",
+		"tuple": "c"
 	}
 }
