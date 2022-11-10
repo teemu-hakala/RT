@@ -71,8 +71,8 @@ int	gnl_read_ret(const int fd, char **line, int *read_bytes)
 		return (-1);
 	*line = NULL;
 	ret = read(fd, buf, BUFF_SIZE);
-	*read_bytes += ret;
-	if (ft_read_file(ret, heap, buf, fd) == -1)
+	*read_bytes = ret;
+	if (ret < 0 || ft_read_file(ret, heap, buf, fd) == -1)
 		return (-1);
 	return (ft_check_file (fd, line, ret, heap));
 }
