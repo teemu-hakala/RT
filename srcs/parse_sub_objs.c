@@ -20,7 +20,7 @@ void	parse_tuple(t_tuple *tuple, char *string, uint64_t *c)
 		}
 		if (string[++*c] == ']')
 		{
-			c++;
+			c++; //I think the c's are being added correctly..🤷
 			return ;
 		}
 	}
