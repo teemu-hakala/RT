@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: thakala <thakala@student.42.fr>            +#+  +:+       +#+         #
+#    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/03 13:04:07 by deelliot          #+#    #+#              #
-#    Updated: 2022/11/09 18:20:02 by thakala          ###   ########.fr        #
+#    Updated: 2022/11/10 20:42:13 by deelliot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,8 @@ PRINT_SRCS = ft_putchar.c ft_putstr.c ft_putendl.c ft_putnbr.c ft_putchar_fd.c \
 ASCII_SRCS = ft_isuppercase.c ft_islowercase.c ft_isalpha.c ft_isdigit.c \
 	ft_isalnum.c ft_isascii.c ft_isspace.c ft_isprint.c
 
-CONVERSION_SRCS = ft_toupper.c ft_tolower.c ft_atoi.c ft_itoa.c ft_atof.c
+CONVERSION_SRCS = ft_toupper.c ft_tolower.c ft_atoi.c ft_itoa.c ft_atof.c \
+	rt_atof.c
 
 MATHS_SRCS = ft_abs.c  ft_sqrt.c ft_find_next_sqrt.c ft_max.c \
 	ft_linear_conversion.c ft_create_range.c ft_normalise_data.c

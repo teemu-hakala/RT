@@ -12,20 +12,20 @@ t_light	default_light(void)
 int	find_light_subobject_keyword(t_light *light, t_parser *parser)
 {
 	find_double_quote(parser);
-	if (ft_strncmp(&parser->string[*parser->c], "position\"", 9) == 0)
+	if (ft_strncmp(&parser->string[parser->c], "position\"", 9) == 0)
 	{
-		*parser->c += 9;
+		parser->c += 9;
 		parse_tuple(&light->position, parser);
 		return (1);
 	}
-	else if (ft_strncmp(&parser->string[*parser->c], "transform\"", 10) == 0)
+	else if (ft_strncmp(&parser->string[parser->c], "transform\"", 10) == 0)
 	{
 		parse_transform(&light->transform, parser);
 		return (1);
 	}
-	else if (ft_strncmp(&parser->string[*parser->c], "intensity\"", 10) == 0)
+	else if (ft_strncmp(&parser->string[parser->c], "intensity\"", 10) == 0)
 	{
-		*parser->c += 10;
+		parser->c += 10;
 		parse_tuple(&light->intensity,parser);
 		return (1);
 	}
@@ -51,7 +51,7 @@ void	parse_light(t_parser *parser, t_light *light)
 int	find_light(t_parser *parser)
 {
 	find_double_quote(parser);
-	if (ft_strncmp(&parser->string[*parser->c], "light\"", 6) == 0)
+	if (ft_strncmp(&parser->string[parser->c], "light\"", 6) == 0)
 		return (true);
 	return (false);
 }

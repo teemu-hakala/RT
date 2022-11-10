@@ -78,7 +78,6 @@ typedef struct s_plane
 	t_tuple		origin;
 	t_transform	transform;
 	t_material	material;
-	t_comp		comp;
 }	t_plane;
 
 typedef struct s_sphere
@@ -86,7 +85,6 @@ typedef struct s_sphere
 	t_tuple		origin;
 	t_transform	transform;
 	t_material	material;
-	t_comp		comp;
 }	t_sphere;
 
 typedef struct s_cone
@@ -95,7 +93,6 @@ typedef struct s_cone
 	t_transform	transform;
 	t_fl		radius;
 	t_material	material;
-	t_comp		comp;
 	t_fl		min;
 	t_fl		max;
 	int			closed;
@@ -107,7 +104,6 @@ typedef struct s_cylinder
 	t_transform	transform;
 	t_fl		radius;
 	t_material	material;
-	t_comp		comp;
 	t_fl		min;
 	t_fl		max;
 	int			closed;

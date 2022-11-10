@@ -38,11 +38,11 @@ void	read_file_contents(t_vec *string, const int file_descriptor)
 void	find_object_keyword(t_world *world, t_parser *parser)
 {
 	find_double_quote(parser);
-	if (ft_strncmp(&parser->string[*parser->c], "camera\"", 7) == 0)
+	if (ft_strncmp(&parser->string[parser->c], "camera\"", 7) == 0)
 		parse_camera(world, parser);
-	else if (ft_strncmp(&parser->string[*parser->c], "lights\"", 7) == 0)
+	else if (ft_strncmp(&parser->string[parser->c], "lights\"", 7) == 0)
 		parse_lights(world, parser);
-	else if (ft_strncmp(&parser->string[*parser->c], "shapes\"", 7) == 0)
+	else if (ft_strncmp(&parser->string[parser->c], "shapes\"", 7) == 0)
 		parse_shapes(world, parser);
 	else
 		handle_errors("DENIED:object not recognised");
@@ -53,7 +53,7 @@ void	parse_into(t_world *world, const int file_descriptor)
 	t_parser	parser;
 	t_vec		string_vec;
 
-	read_file_contents_into(&string_vec, file_descriptor);
+	read_file_contents(&string_vec, file_descriptor);
 	parser.string = (char *)string_vec.memory;
 	vec_new(&parser.brackets, 256, sizeof(char));
 	parser.c = 0;

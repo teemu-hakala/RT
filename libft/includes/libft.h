@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 15:25:23 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/09 20:41:23 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/10 20:43:13 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,4 +129,5 @@ size_t	ft_strcspn(const char *s, const char *charset);
 size_t	ft_strspn(const char *s, const char *charset);
 int		ft_clear_whitespace(const char *str);
 double	ft_atof(const char *str);
+double	rt_atof(const char *str, uint64_t *c);
 #endif

@@ -14,13 +14,18 @@ int	find_subobject_keyword(t_parser *parser,
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "transform\"", 10) == 0)
 	{
+		parser->c += 10;
 		parse_transform(&transform, parser);
 		return (true);
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "material\"", 9) == 0)
 	{
-		parser->c += 10;
-		parse_tuple(&material, parser);
+		parser->c += 9;
+		find_colon(parser);
+		find_open_bracket(parser);
+		if (find_matching_bracket(parser))
+			return (true);
+		parse_material(&material, parser);
 		return (true);
 	}
 	return (false);
@@ -97,19 +102,19 @@ int	find_transform_keyword(t_transform *transform, t_parser *parser)
 	find_double_quote(parser);
 	if (ft_strncmp(&parser->string[parser->c], "translation\"", 12) == 0)
 	{
-		parser->c += 12;
+		parser->c += sizeof("transform\"") - 1;
 		parse_tuple(&transform->translation, parser);
 		return (true);
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "rotation\"", 9) == 0)
 	{
-		parser->c += 9;
+		parser->c += sizeof("rotation\"") - 1;
 		parse_tuple(&transform->rotation, parser);
 		return (true);
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "scale\"", 6) == 0)
 	{
-		parser->c += 6;
+		parser->c += sizeof("material\"") - 1;;
 		parse_tuple(&transform->scale, parser);
 		return (true);
 	}
@@ -118,7 +123,6 @@ int	find_transform_keyword(t_transform *transform, t_parser *parser)
 
 void	parse_transform(t_transform *transform, t_parser *parser)
 {
-	parser->c += 10;
 	find_colon(parser);
 	find_open_bracket(parser);
 	if (find_matching_bracket(parser))
@@ -132,8 +136,49 @@ void	parse_transform(t_transform *transform, t_parser *parser)
 	}
 }
 
-void	parse_material(t_material *material, t_parser *parser)
+void	find_material_keywords(t_material *material, t_parser *parser)
 {
-
+	find_double_quote(parser);
+	if (ft_strncmp(&parser->string[parser->c], "ambient\"", 8) == 0)
+	{
+		parser->c += 8;
+		material->ambient = rt_atof(parser->string, parser->c);
+	}
+	else if (ft_strncmp(&parser->string[parser->c], "diffuse\"", 8) == 0)
+	{
+		parser->c += 8;
+	}
+	else if (ft_strncmp(&parser->string[parser->c], "specular\"", 9) == 0)
+	{
+		parser->c += 9;
+	}
+	else if (ft_strncmp(&parser->string[parser->c], "init_colour\"", 12) == 0)
+	{
+		parser->c += 12;
+	}
+	else if (ft_strncmp(&parser->string[parser->c], "pattern\"", 8) == 0)
+	{
+		parser->c += 8;
+	}
+	else
+		ft_handle_errors("material syntax error");
 }
 
+void	parse_material(t_material *material, t_parser *parser)
+{
+	find_material_keywords(material, parser);
+	parser->c += ft_clear_whitespace(parser->string);
+	if (parser->string[++parser->c] == ',')
+		parse_material(material, parser);
+	else
+	{
+		if (find_matching_bracket(parser))
+			return ;
+		else
+			ft_handle_errors("material syntax error");
+	}
+}
+
+/* previous logic didn't work as would have been skipping the number of
+characters in material, as well as looking for a colon and bracket each time
+the recursive function was called */
