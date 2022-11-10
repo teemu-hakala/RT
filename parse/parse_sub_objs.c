@@ -15,6 +15,10 @@ int	find_subobject_keyword(t_parser *parser,
 	else if (ft_strncmp(&parser->string[parser->c], "transform\"", 10) == 0)
 	{
 		parser->c += 10;
+		find_colon(parser);
+		find_open_bracket(parser);
+		if (find_matching_bracket(parser))
+			return (true);
 		parse_transform(&transform, parser);
 		return (true);
 	}
@@ -121,18 +125,33 @@ int	find_transform_keyword(t_transform *transform, t_parser *parser)
 	return (false);
 }
 
+// void	parse_transform(t_transform *transform, t_parser *parser)
+// {
+// 	find_colon(parser);
+// 	find_open_bracket(parser);
+// 	if (find_matching_bracket(parser))
+// 		return ;
+// 	else
+// 	{
+// 		while (find_transform_keyword(&transform, parser))
+// 			parse_transform(transform, parser);
+// 		if (!find_matching_bracket(parser))
+// 			handle_errors("syntax error");
+// 	}
+// }
+
 void	parse_transform(t_transform *transform, t_parser *parser)
 {
-	find_colon(parser);
-	find_open_bracket(parser);
-	if (find_matching_bracket(parser))
-		return ;
+	find_transform_keywords(transform, parser);
+	parser->c += ft_clear_whitespace(parser->string);
+	if (parser->string[++parser->c] == ',')
+		parse_transform(transform, parser);
 	else
 	{
-		while (find_transform_keyword(&transform, parser))
-			parse_transform(transform, parser);
-		if (!find_matching_bracket(parser))
-			handle_errors("syntax error");
+		if (find_matching_bracket(parser))
+			return ;
+		else
+			ft_handle_errors("transform syntax error");
 	}
 }
 
