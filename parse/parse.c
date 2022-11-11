@@ -39,11 +39,20 @@ void	find_object_keyword(t_world *world, t_parser *parser)
 {
 	find_double_quote(parser);
 	if (ft_strncmp(&parser->string[parser->c], "camera\"", 7) == 0)
+	{
+		parser->c += sizeof("camera\"") - 1;
 		parse_camera(world, parser);
+	}
 	else if (ft_strncmp(&parser->string[parser->c], "lights\"", 7) == 0)
+	{
+		parser->c += sizeof("lights\"") - 1;
 		parse_lights(world, parser);
+	}
 	else if (ft_strncmp(&parser->string[parser->c], "shapes\"", 7) == 0)
+	{
+		parser->c += sizeof("shapes\"") - 1;
 		parse_shapes(world, parser);
+	}
 	else
 		handle_errors("DENIED:object not recognised");
 }
@@ -58,7 +67,12 @@ void	parse_into(t_world *world, const int file_descriptor)
 	vec_new(&parser.brackets, 256, sizeof(char));
 	parser.c = 0;
 	find_open_bracket(&parser);
-	while ()
+	find_object_keyword(world, &parser);
+	if (parser.string[++parser.c] == ',')
 		find_object_keyword(world, &parser);
+	else if (!find_matching_bracket(&parser))
+		ft_handle_errors("object syntax error");
+	if (find_matching_bracket(&parser) == false)
+		handle_errors("missing bracket mismatch");
+	
 }
-

@@ -162,26 +162,30 @@ void	find_material_keywords(t_material *material, t_parser *parser)
 	{
 		parser->c += sizeof("ambient\"") - 1;
 		find_colon(parser);
-
 		material->ambient = rt_atof(parser);
-
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "diffuse\"", 8) == 0)
 	{
 		parser->c += sizeof("diffuse\"") - 1;
+		find_colon(parser);
+		material->diffuse = rt_atof(parser);
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "specular\"", 9) == 0)
 	{
 		parser->c += sizeof("specular\"") - 1;
+		find_colon(parser);
+		material->specular = rt_atof(parser);
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "init_colour\"", 12) == 0)
 	{
 		parser->c += sizeof("init_colour\"") - 1;
+		find_colon(parser);
+		parse_tuple(&material->init_colour, parser);
 	}
-	else if (ft_strncmp(&parser->string[parser->c], "pattern\"", 8) == 0)
-	{
-		parser->c += sizeof("pattern\"") - 1;
-	}
+	// else if (ft_strncmp(&parser->string[parser->c], "pattern\"", 8) == 0)
+	// {
+	// 	parser->c += sizeof("pattern\"") - 1;
+	// }
 	else
 		ft_handle_errors("material syntax error");
 }
@@ -201,6 +205,3 @@ void	parse_material(t_material *material, t_parser *parser)
 	}
 }
 
-/* previous logic didn't work as would have been skipping the number of
-characters in material, as well as looking for a colon and bracket each time
-the recursive function was called */

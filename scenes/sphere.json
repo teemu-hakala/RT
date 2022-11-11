@@ -1,4 +1,19 @@
 {
+	"camera" :
+	{
+		"origin" : [0, 0, 0],
+		"transform" :
+		{
+			"translation": [0, 0, 0]
+		},
+		"center_of_interest" : [0, 0, 0],
+		"canvas" :
+		{
+			"vertical" : 201,
+			"horizontal" : 101
+		},
+		"field_of_view" : 1.0
+	},
 	"lights" :
 	[
 		{
@@ -6,7 +21,7 @@
 			{
 				"transform" :
 				{
-					"translate" : [2, 4, -10]
+					"translation" : [2, 4, -10]
 				}
 			}
 		}
@@ -48,6 +63,6 @@
 					}
 				}
 			}
-		}
+		},
 	]
 }

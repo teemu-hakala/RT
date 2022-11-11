@@ -127,7 +127,7 @@ typedef struct s_camera
 	t_tuple		origin;
 	t_transform	transform;
 	t_tuple		center_of_interest;
-	t_canvas	size;
+	t_canvas	size; //change to canvas
 	t_fl		field_of_view;
 	t_fl		pixel_size;
 	t_fl		half_width;
