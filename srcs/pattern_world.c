@@ -34,14 +34,14 @@ static t_material	default_pattern_mat(void)
 	});
 }
 
-static t_light	default_light(void)
-{
-	return ((t_light){
-		.position = point(-10, 10, -10),
-		.intensity = colour(1, 1, 1, 1),
-		.transform = default_transform_1(),
-	});
-}
+// static t_light	default_light(void)
+// {
+// 	return ((t_light){
+// 		.position = point(-10, 10, -10),
+// 		.intensity = colour(1, 1, 1, 1),
+// 		.transform = default_transform_1(),
+// 	});
+// }
 
 void	pattern_world(t_world *world)
 {

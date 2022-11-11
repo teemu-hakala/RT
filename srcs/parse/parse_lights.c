@@ -30,7 +30,7 @@ void	find_light_subobject_keyword(t_light *light, t_parser *parser)
 		parse_tuple(&light->intensity,parser);
 	}
 	else
-		handle_error("syntax error light object");
+		handle_errors("syntax error light object");
 }
 
 void	parse_light(t_parser *parser, t_light *light)
@@ -38,9 +38,9 @@ void	parse_light(t_parser *parser, t_light *light)
 	find_light_subobject_keyword(light, parser);
 	parser->c += ft_clear_whitespace(parser->string);
 	if (parser->string[++parser->c] == ',')
-		parse_light(light, parser);
+		parse_light(parser, light);
 	else if (!find_matching_bracket(parser))
-		ft_handle_errors("light syntax error");
+		handle_errors("light syntax error");
 }
 
 int	find_light(t_parser *parser)

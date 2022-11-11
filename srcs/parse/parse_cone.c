@@ -7,7 +7,7 @@ t_object	cone_prototype(void)
 		{
 			.origin = default_origin(),
 			.transform = default_transform(),
-			.material = default_material(),
+			.material = default_material_1(),
 			.min = -INFINITY,
 			.max = INFINITY,
 			.closed = false

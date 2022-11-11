@@ -6,7 +6,7 @@
 #    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2022/11/11 15:15:18 by deelliot         ###   ########.fr        #
+#    Updated: 2022/11/11 15:59:31 by deelliot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,12 +36,14 @@ MATHS_DIR = maths
 OBJECTS_DIR = objects
 
 # Source and object files
-PARSE_SRCS = default_files.c parse_camera.c parse_cone.c parse_cylinder \
+PARSE_SRCS = default_files.c parse_camera.c parse_cone.c parse_cylinder.c \
 	parse_lights.c parse_plane.c parse_shapes.c parse_sphere.c \
-	parse_sub_objs.c parse_utility.c parse.c
-OBJECTS_SRCS = camera.c plane.c cone.c cylinder.c
+	parse_sub_objs.c parse_utility.c parse.c \
+
+OBJECTS_SRCS = camera.c plane.c cone.c cylinder.c \
+
 MATHS_SRCS = matrix_inversion.c matrix_maths.c matrix_transformations.c \
-	transform_tuple.c, tuple_operations.c
+	transform_tuple.c tuple_operations.c \
 
 FILES = \
 	main.c \
@@ -52,20 +54,20 @@ FILES = \
 	intersect.c \
 	normals.c \
 	reflections.c \
-	world.c \
 	view_transform.c \
 	shading.c \
 	ray.c \
 	render.c \
 	colour.c \
 	computations.c \
-	sphere_scene.c \
 	patterns.c \
-	pattern_world.c
+#	sphere_scene.c \
+#	pattern_world.c \
+#	world.c \
 
-OBJS = $(addprefix $(OBJS_DIR)/, $(FILES:.c=.o), \
-	$(addprefix $(PARSE_DIR)/, $(PARSE_SRCS:.c=.o)), \
-	$(addprefix $(OBJECTS_DIR)/, $(PARSE_SRCS:.c=.o)),
+OBJS = $(addprefix $(OBJS_DIR)/, $(FILES:.c=.o) \
+	$(addprefix $(PARSE_DIR)/, $(PARSE_SRCS:.c=.o)) \
+	$(addprefix $(OBJECTS_DIR)/, $(OBJECTS_SRCS:.c=.o)) \
 	$(addprefix $(MATHS_DIR)/, $(MATHS_SRCS:.c=.o)))
 
 # Paths
@@ -93,7 +95,7 @@ $(NAME): .prerequisites $(LIBS) $(OBJS) Makefile
 	@echo "Usage: ./RTV1 + option"
 	@echo "options: >> ??"
 
-$(OBJS): $(OBJS_DIR)%.o:$(SRCS_DIR)%.c $(HDRS) Makefile
+$(OBJS): $(OBJS_DIR)/%.o:$(SRCS_DIR)/%.c $(HDRS) Makefile
 	gcc $(FLAGS) $(INCS) -o $@ -c $<
 
 .prerequisites: $(OBJS_DIR)

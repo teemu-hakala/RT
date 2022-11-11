@@ -10,7 +10,6 @@ t_object	cylinder(t_tuple origin, t_transform transform, t_material material)
 				.transform = transform,
 				.radius = 1,
 				.material = material,
-				.comp = (t_comp){},
 				.min = -INFINITY,
 				.max = INFINITY,
 				.closed = false

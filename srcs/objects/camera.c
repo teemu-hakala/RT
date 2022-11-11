@@ -1,6 +1,6 @@
 #include "RTv1.h"
 
-static t_fl	get_pixel_size(t_camera *camera, t_canvas size, t_fl field_of_view)
+t_fl	get_pixel_size(t_camera *camera, t_canvas size, t_fl field_of_view)
 {
 	t_fl		half_view;
 	t_fl		aspect;

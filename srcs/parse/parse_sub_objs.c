@@ -19,7 +19,7 @@ int	find_subobject_keyword(t_parser *parser,
 		find_open_bracket(parser);
 		if (find_matching_bracket(parser))
 			return (true);
-		parse_transform(&transform, parser);
+		parse_transform(transform, parser);
 		return (true);
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "material\"", 9) == 0)
@@ -29,7 +29,7 @@ int	find_subobject_keyword(t_parser *parser,
 		find_open_bracket(parser);
 		if (find_matching_bracket(parser))
 			return (true);
-		parse_material(&material, parser);
+		parse_material(material, parser);
 		return (true);
 	}
 	return (false);
@@ -101,7 +101,7 @@ void	parse_tuple(t_tuple *tuple, t_parser *parser)
 	handle_errors("DENIED: parse_tuple");
 }
 
-int	find_transform_keyword(t_transform *transform, t_parser *parser)
+int	find_transform_keywords(t_transform *transform, t_parser *parser)
 {
 	find_double_quote(parser);
 	if (ft_strncmp(&parser->string[parser->c], "translation\"", 12) == 0)
@@ -136,7 +136,7 @@ void	parse_transform(t_transform *transform, t_parser *parser)
 		if (find_matching_bracket(parser))
 			return ;
 		else
-			ft_handle_errors("transform syntax error");
+			handle_errors("transform syntax error");
 	}
 }
 
@@ -172,7 +172,7 @@ void	find_material_keywords(t_material *material, t_parser *parser)
 	// 	parser->c += sizeof("pattern\"") - 1;
 	// }
 	else
-		ft_handle_errors("material syntax error");
+		handle_errors("material syntax error");
 }
 
 void	parse_material(t_material *material, t_parser *parser)
@@ -186,7 +186,7 @@ void	parse_material(t_material *material, t_parser *parser)
 		if (find_matching_bracket(parser))
 			return ;
 		else
-			ft_handle_errors("material syntax error");
+			handle_errors("material syntax error");
 	}
 }
 

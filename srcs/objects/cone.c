@@ -9,7 +9,6 @@ t_object	cone(t_tuple origin, t_transform transform, t_material material)
 				.origin = origin,
 				.transform = transform,
 				.material = material,
-				.comp = (t_comp){},
 				.min = -INFINITY,
 				.max = INFINITY,
 				.closed = false

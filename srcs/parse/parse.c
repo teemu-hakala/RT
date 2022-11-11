@@ -75,7 +75,7 @@ void	parse_into(t_world *world, const int file_descriptor)
 		else if (find_matching_bracket(&parser) == true)
 			break ;
 		else
-			ft_handle_errors("object syntax error");
+			handle_errors("object syntax error");
 	}
 	if (find_matching_bracket(&parser) == false)
 		handle_errors("missing bracket mismatch");

@@ -5,8 +5,10 @@ void	find_open_bracket(t_parser *parser)
 {
 	parser->c += ft_clear_whitespace(parser->string);
 	if (parser->string[parser->c] == '{'|| parser->string[parser->c] == '[')
-	 	if (vec_push_arr(&parser->brackets, &parser->string[parser->c++], 1) == VEC_ERROR)
+	{
+		if (vec_push_arr(&parser->brackets, &parser->string[parser->c++], 1) == VEC_ERROR)
 			handle_errors("vec_push_arr error");
+	}
 	else
 		handle_errors("bracket format error");
 }
@@ -53,12 +55,12 @@ int	find_min_and_max(t_object *object, t_parser *parser)
 	{
 		parser->c += sizeof("min\"") - 1;
 		find_colon(parser);
-		min = rt_atof(&parser->string, parser->c);
+		min = rt_atof(parser);
 		if (object->type == OBJECT_CONE)
 			object->object.cone.min = min;
 		else
 			object->object.cylinder.min = min;
-		parser->c += ft_clear_whitespace(&parser->string);
+		parser->c += ft_clear_whitespace(parser->string);
 		if (parser->string[++parser->c] == ',')
 			find_min_and_max(object, parser);
 	}
@@ -66,12 +68,12 @@ int	find_min_and_max(t_object *object, t_parser *parser)
 	{
 		parser->c += sizeof("max\"") - 1;
 		find_colon(parser);
-		max = rt_atof(&parser->string, parser->c);
+		max = rt_atof(parser);
 		if (object->type == OBJECT_CONE)
 			object->object.cone.max = max;
 		else
 			object->object.cylinder.max = max;
-		parser->c += ft_clear_whitespace(&parser->string);
+		parser->c += ft_clear_whitespace(parser->string);
 		if (parser->string[++parser->c] == ',')
 			find_min_and_max(object, parser);
 	}
@@ -79,10 +81,10 @@ int	find_min_and_max(t_object *object, t_parser *parser)
 	{
 		parser->c += sizeof("closed\"") - 1;
 		find_colon(parser);
-		parser->c += ft_clear_whitespace(&parser->string);
-		if (&parser->string[parser->c] == '1')
+		parser->c += ft_clear_whitespace(parser->string);
+		if (parser->string[parser->c] == '1')
 			closed = true;
-		else if (&parser->string[parser->c] == '0')
+		else if (parser->string[parser->c] == '0')
 			closed = false;
 		else
 			handle_errors("cone/cylinder syntax error");

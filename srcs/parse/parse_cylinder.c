@@ -7,7 +7,7 @@ t_object	cylinder_prototype(void)
 		{
 			.origin = default_origin(),
 			.transform = default_transform_1(),
-			.material = default_material(),
+			.material = default_material_1(),
 			.min = -INFINITY,
 			.max = INFINITY,
 			.closed = false

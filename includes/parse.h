@@ -13,6 +13,7 @@ typedef struct s_parser
 
 typedef int	(*t_subobject_keyword_fn)(t_parser *, t_object *);
 void	parse_into(t_world *world, const int file_descriptor);
+double	rt_atof(t_parser *parser);
 /*parse objects*/
 void		parse_lights(t_world *world, t_parser *parser);
 void		parse_camera(t_world *world, t_parser *parser);
@@ -32,7 +33,6 @@ void		find_open_bracket(t_parser *parser);
 int			find_matching_bracket(t_parser *parser);
 void		find_double_quote(t_parser *parser);
 void		find_colon(t_parser *parser);
-double		rt_atof(t_parser *parser);
 
 /*default settings*/
 t_tuple		default_origin(void);

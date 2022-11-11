@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/11 15:33:20 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/11 16:32:16 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,7 +190,7 @@ t_ray	ray_for_pixel(t_camera *camera, t_canvas position);
 void	prepare_computations(t_world *world);
 t_tuple	colour_at(t_world *world);
 t_transform	camera_transform(void);
-t_tuple		camera_origin(void);
+t_fl	get_pixel_size(t_camera *camera, t_canvas size, t_fl field_of_view);
 
 /* default functions*/
 t_tuple	default_origin(void);
@@ -198,7 +198,6 @@ t_material	default_phong_mat(void);
 t_transform	default_transform(void);
 t_transform	default_transform_1(void);
 t_transform	default_transform_2(void);
-t_canvas	default_canvas(void);
 
 /* patterns*/
 typedef void	(*t_pattern_at_fn)(t_material *, t_tuple *);
@@ -209,5 +208,6 @@ t_pattern	default_stripe_pattern(void);
 
 /* parsing */
 void	open_scene_into(t_win *win, const char *str);
+double	rt_atof(t_parser *parser);
 
 #endif

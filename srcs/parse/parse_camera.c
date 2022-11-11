@@ -80,7 +80,7 @@ void parse_camera_subobjects(t_world *world, t_parser *parser)
 		if (parser->string[++parser->c] == ',')
 			find_canvas_keywords(world, parser);
 		else if (!find_matching_bracket(parser))
-			ft_handle_errors("light syntax error");
+			handle_errors("light syntax error");
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "field_of_view\"", 14) == 0)
 	{
@@ -100,5 +100,5 @@ void	parse_camera(t_world *world, t_parser *parser)
 	if (parser->string[++parser->c] == ',')
 		parse_camera_subobjects(world, parser);
 	else if (!find_matching_bracket(parser))
-		ft_handle_errors("light syntax error");
+		handle_errors("light syntax error");
 }
