@@ -87,7 +87,7 @@ void	parse_tuple(t_tuple *tuple, t_parser *parser)
 	{
 		while (i < 3)
 		{
-			tuple->array[i] = rt_atof(&parser->string, parser->c);
+			tuple->array[i] = rt_atof(parser);
 			if (i < 2 && ++parser->c != ',')
 				handle_errors("array syntax error");
 			i++;
@@ -163,7 +163,7 @@ void	find_material_keywords(t_material *material, t_parser *parser)
 		parser->c += sizeof("ambient\"") - 1;
 		find_colon(parser);
 
-		material->ambient = rt_atof(parser->string, parser->c);
+		material->ambient = rt_atof(parser);
 
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "diffuse\"", 8) == 0)
