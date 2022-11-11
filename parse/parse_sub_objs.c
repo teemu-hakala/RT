@@ -8,13 +8,13 @@ int	find_subobject_keyword(t_parser *parser,
 	find_double_quote(parser);
 	if (ft_strncmp(&parser->string[parser->c], "origin\"", 8) == 0)
 	{
-		parser->c += 8;
+		parser->c += sizeof("origin\"") - 1;
 		parse_tuple(origin, parser);
 		return (true);
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "transform\"", 10) == 0)
 	{
-		parser->c += 10;
+		parser->c += sizeof("transform\"") - 1;
 		find_colon(parser);
 		find_open_bracket(parser);
 		if (find_matching_bracket(parser))
@@ -24,7 +24,7 @@ int	find_subobject_keyword(t_parser *parser,
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "material\"", 9) == 0)
 	{
-		parser->c += 9;
+		parser->c += sizeof("material\"") - 1;
 		find_colon(parser);
 		find_open_bracket(parser);
 		if (find_matching_bracket(parser))
@@ -106,7 +106,7 @@ int	find_transform_keyword(t_transform *transform, t_parser *parser)
 	find_double_quote(parser);
 	if (ft_strncmp(&parser->string[parser->c], "translation\"", 12) == 0)
 	{
-		parser->c += sizeof("transform\"") - 1;
+		parser->c += sizeof("translation\"") - 1;
 		parse_tuple(&transform->translation, parser);
 		return (true);
 	}
@@ -118,7 +118,7 @@ int	find_transform_keyword(t_transform *transform, t_parser *parser)
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "scale\"", 6) == 0)
 	{
-		parser->c += sizeof("material\"") - 1;;
+		parser->c += sizeof("scale\"") - 1;
 		parse_tuple(&transform->scale, parser);
 		return (true);
 	}
@@ -160,24 +160,27 @@ void	find_material_keywords(t_material *material, t_parser *parser)
 	find_double_quote(parser);
 	if (ft_strncmp(&parser->string[parser->c], "ambient\"", 8) == 0)
 	{
-		parser->c += 8;
+		parser->c += sizeof("ambient\"") - 1;
+		find_colon(parser);
+
 		material->ambient = rt_atof(parser->string, parser->c);
+
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "diffuse\"", 8) == 0)
 	{
-		parser->c += 8;
+		parser->c += sizeof("diffuse\"") - 1;
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "specular\"", 9) == 0)
 	{
-		parser->c += 9;
+		parser->c += sizeof("specular\"") - 1;
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "init_colour\"", 12) == 0)
 	{
-		parser->c += 12;
+		parser->c += sizeof("init_colour\"") - 1;
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "pattern\"", 8) == 0)
 	{
-		parser->c += 8;
+		parser->c += sizeof("pattern\"") - 1;
 	}
 	else
 		ft_handle_errors("material syntax error");

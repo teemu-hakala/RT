@@ -14,18 +14,19 @@ int	find_light_subobject_keyword(t_light *light, t_parser *parser)
 	find_double_quote(parser);
 	if (ft_strncmp(&parser->string[parser->c], "position\"", 9) == 0)
 	{
-		parser->c += 9;
+		parser->c += sizeof("position\"") - 1;
 		parse_tuple(&light->position, parser);
 		return (1);
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "transform\"", 10) == 0)
 	{
+		parser->c += sizeof("transform\"") - 1;
 		parse_transform(&light->transform, parser);
 		return (1);
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "intensity\"", 10) == 0)
 	{
-		parser->c += 10;
+		parser->c += sizeof("intensity\"") - 1;
 		parse_tuple(&light->intensity,parser);
 		return (1);
 	}
@@ -52,7 +53,10 @@ int	find_light(t_parser *parser)
 {
 	find_double_quote(parser);
 	if (ft_strncmp(&parser->string[parser->c], "light\"", 6) == 0)
+	{
+		parser->c += sizeof("light\"") - 1;
 		return (true);
+	}
 	return (false);
 }
 
