@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt_atof.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 18:00:18 by thakala           #+#    #+#             */
-/*   Updated: 2022/11/10 12:03:56 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/11 09:25:01 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ double	rt_atof(const char *str, uint64_t *c)
 	d = 0;
 	decimal_digits = 1;
 	while (ft_isspace(str[d]))
-		str[d++];
+		d++;
 	sign = 1;
 	if (str[d] == '+' || str[d] == '-')
 		sign = 44 - str[d++];
