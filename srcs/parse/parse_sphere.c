@@ -1,6 +1,6 @@
 #include "RTv1.h"
 
-t_object sphere_prototype()
+t_object	sphere_prototype(void)
 {
 	return ((t_object){
 		.object.sphere = (t_sphere)

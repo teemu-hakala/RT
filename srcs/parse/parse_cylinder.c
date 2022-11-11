@@ -1,6 +1,6 @@
 #include "RTv1.h"
 
-t_object cylinder_prototype()
+t_object	cylinder_prototype(void)
 {
 	return ((t_object){
 		.object.cylinder = (t_cylinder)

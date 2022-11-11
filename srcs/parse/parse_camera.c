@@ -1,11 +1,11 @@
 #include "RTv1.h"
 
-t_tuple	camera_origin(void)
+static t_tuple	camera_origin(void)
 {
 	return (point(0, 0, -5));
 }
 
-t_canvas	default_canvas(void)
+static t_canvas	default_canvas(void)
 {
 	return ((t_canvas){.vertical = HEIGHT, .horizontal = WIDTH});
 }
@@ -21,10 +21,18 @@ t_transform	camera_transform(void)
 	return (d);
 }
 
-t_camera	camera_prototype()
+//dont need to transform object yet, as will have to update matrices
+
+t_camera	camera_prototype(void)
 {
 	t_camera	camera;
 
+	camera.origin = camera_origin();
+	camera.transform = camera_transform();
+	camera.center_of_interest =  point(0, 0, 0);
+	camera.field_of_view = M_2_PI,
+	camera.size = default_canvas();
+	camera.pixel_size = get_pixel_size(&camera, camera.size, camera.field_of_view);
 	return (camera);
 }
 
@@ -85,7 +93,6 @@ void	parse_camera(t_world *world, t_parser *parser)
 {
 	find_colon(parser);
 	find_open_bracket(parser);
-	world->camera = camera_prototype();
 	if (find_matching_bracket(parser) == true)
 		return ;
 	parse_camera_subobjects(world, parser);

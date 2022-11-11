@@ -6,13 +6,13 @@
 #    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2022/11/09 11:51:04 by deelliot         ###   ########.fr        #
+#    Updated: 2022/11/11 15:15:18 by deelliot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = RTv1
 
-FLAGS = -Wall -Wextra -Werror -g -fsanitize=address 
+FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 # FLAGS += -fsanitize=address -Wconversion -Ofast -flto
 
 # Directories
@@ -25,45 +25,48 @@ HDRS = includes/RTv1.h \
 	includes/objects.h \
 	includes/tuple.h \
 	includes/world.h \
-	includes/patterns.h
+	includes/patterns.h \
+	includes/parse.h
 LIBFT_DIR = libft
 MINILIBX_DIR = minilibx
 
-# Source and object files
-FILES = \
-	main \
-	initialise \
-	image \
-	error_handling \
-	tuple_operations \
-	matrix_maths \
-	matrix_inversion \
-	handle_input \
-	intersect \
-	matrix_transformations \
-	plot \
-	normals \
-	transform_tuple \
-	reflections \
-	sphere \
-	cylinder \
-	cone \
-	world \
-	view_transform \
-	shading \
-	camera \
-	ray \
-	render \
-	colour \
-	computations \
-	sphere_scene \
-	plane \
-	patterns \
-	pattern_world \
-	parse
+# folders
+PARSE_DIR = parse
+MATHS_DIR = maths
+OBJECTS_DIR = objects
 
-SRCS = $(addprefix $(SRCS_DIR)/, $(addsuffix .c, $(FILES)))
-OBJS = $(addprefix $(OBJS_DIR)/, $(addsuffix .o, $(FILES)))
+# Source and object files
+PARSE_SRCS = default_files.c parse_camera.c parse_cone.c parse_cylinder \
+	parse_lights.c parse_plane.c parse_shapes.c parse_sphere.c \
+	parse_sub_objs.c parse_utility.c parse.c
+OBJECTS_SRCS = camera.c plane.c cone.c cylinder.c
+MATHS_SRCS = matrix_inversion.c matrix_maths.c matrix_transformations.c \
+	transform_tuple.c, tuple_operations.c
+
+FILES = \
+	main.c \
+	initialise.c \
+	image.c \
+	error_handling.c \
+	handle_input.c \
+	intersect.c \
+	normals.c \
+	reflections.c \
+	world.c \
+	view_transform.c \
+	shading.c \
+	ray.c \
+	render.c \
+	colour.c \
+	computations.c \
+	sphere_scene.c \
+	patterns.c \
+	pattern_world.c
+
+OBJS = $(addprefix $(OBJS_DIR)/, $(FILES:.c=.o), \
+	$(addprefix $(PARSE_DIR)/, $(PARSE_SRCS:.c=.o)), \
+	$(addprefix $(OBJECTS_DIR)/, $(PARSE_SRCS:.c=.o)),
+	$(addprefix $(MATHS_DIR)/, $(MATHS_SRCS:.c=.o)))
 
 # Paths
 LIBFT_A = $(LIBFT_DIR)/libft.a
@@ -96,7 +99,10 @@ $(OBJS): $(OBJS_DIR)%.o:$(SRCS_DIR)%.c $(HDRS) Makefile
 .prerequisites: $(OBJS_DIR)
 
 $(OBJS_DIR):
-	mkdir -p $(OBJS_DIR)
+	@mkdir -p $(OBJS_DIR)/$(PARSE_DIR)
+	@mkdir -p $(OBJS_DIR)/$(MATHS_DIR)
+	@mkdir -p $(OBJS_DIR)/$(OBJECTS_DIR)
+
 libft:
 	make -C $(LIBFT_DIR)
 $(MINILIBX_A):

@@ -11,7 +11,7 @@ t_transform	plane_transform(void)
 	return (plane_transform);
 }
 
-t_object plane_prototype()
+t_object	plane_prototype(void)
 {
 	return ((t_object){
 		.object.plane = (t_plane)

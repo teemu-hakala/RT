@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/09 12:58:59 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/11 15:33:20 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ t_tuple	hit_position(t_ray *ray, t_fl distance);
 void	handle_errors(char *str);
 
 /* initialise */
+void	open_scene_into(t_win *win, const char *str);
 void	initialise_world(t_world *world);
 void	initialise_window(t_win *win);
 

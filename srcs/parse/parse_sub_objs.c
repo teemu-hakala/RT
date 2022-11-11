@@ -125,21 +125,6 @@ int	find_transform_keyword(t_transform *transform, t_parser *parser)
 	return (false);
 }
 
-// void	parse_transform(t_transform *transform, t_parser *parser)
-// {
-// 	find_colon(parser);
-// 	find_open_bracket(parser);
-// 	if (find_matching_bracket(parser))
-// 		return ;
-// 	else
-// 	{
-// 		while (find_transform_keyword(&transform, parser))
-// 			parse_transform(transform, parser);
-// 		if (!find_matching_bracket(parser))
-// 			handle_errors("syntax error");
-// 	}
-// }
-
 void	parse_transform(t_transform *transform, t_parser *parser)
 {
 	find_transform_keywords(transform, parser);

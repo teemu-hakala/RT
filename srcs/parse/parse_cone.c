@@ -1,6 +1,6 @@
 #include "RTv1.h"
 
-t_object cone_prototype()
+t_object	cone_prototype(void)
 {
 	return ((t_object){
 		.object.cone = (t_cone)
