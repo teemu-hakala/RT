@@ -15,17 +15,10 @@ t_object sphere_prototype()
 
 void	parse_sphere(t_parser *parser, t_object *shape)
 {
-	parser->c += 7;
-	find_colon(parser);
-	find_open_bracket(parser);
-	*shape = sphere_prototype();
-	if (find_matching_bracket(parser))
-		return ;
-	else
-	{
-		while (dispatch_find_subobject_keyword(parser, shape))
-			parse_sphere(parser, sphere);
-		if (!find_matching_bracket(parser))
-			handle_errors("syntax error");
-	}
+	dispatch_find_subobject_keyword(parser, shape);
+	parser->c += ft_clear_whitespace(parser->string);
+	if (parser->string[++parser->c] == ',')
+		parse_sphere(parser, shape);
+	else if (!find_matching_bracket(parser))
+		handle_errors("sphere syntax error");
 }

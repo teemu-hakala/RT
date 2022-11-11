@@ -18,18 +18,10 @@ t_object cone_prototype()
 
 void	parse_cone(t_parser *parser, t_object *shape)
 {
-	parser->c += 7;
-	find_colon(parser);
-	find_open_bracket(parser);
-	*shape = cone_prototype();
-	if (find_matching_bracket(parser))
-		return ;
-	else
-	{
-		while (dispatch_find_subobject_keyword(parser, shape))
-			parse_cone(parser, cone);
-
-		if (!find_matching_bracket(parser))
-			handle_errors("syntax error");
-	}
+	dispatch_find_subobject_keyword(parser, shape);
+	parser->c += ft_clear_whitespace(parser->string);
+	if (parser->string[++parser->c] == ',')
+		parse_cone(parser, shape);
+	else if (!find_matching_bracket(parser))
+		handle_errors("cone syntax error");
 }

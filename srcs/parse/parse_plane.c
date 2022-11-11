@@ -1,12 +1,23 @@
 #include "RTv1.h"
 
+t_transform	plane_transform(void)
+{
+	t_transform	plane_transform;
+
+	plane_transform.translation = point(0, 0, 0);
+	plane_transform.rotation = point(M_PI_2, 0, -M_PI_4);
+	plane_transform.scale = point(1, 1, 1);
+	transform_object(&plane_transform);
+	return (plane_transform);
+}
+
 t_object plane_prototype()
 {
 	return ((t_object){
 		.object.plane = (t_plane)
 		{
 			.origin = default_origin(),
-			.transform = default_transform(),
+			.transform = plane_transform(),
 			.material = default_material()
 		},
 		.type = OBJECT_PLANE
@@ -15,17 +26,10 @@ t_object plane_prototype()
 
 void	parse_plane(t_parser *parser, t_object *shape)
 {
-	parser->c += 7;
-	find_colon(parser);
-	find_open_bracket(parser);
-	*shape = plane_prototype();
-	if (find_matching_bracket(parser))
-		return ;
-	else
-	{
-		while (dispatch_find_subobject_keyword(parser, shape))
-			parse_plane(parser, plane);
-		if (!find_matching_bracket(parser))
-			handle_errors("syntax error");
-	}
+	dispatch_find_subobject_keyword(parser, shape);
+	parser->c += ft_clear_whitespace(parser->string);
+	if (parser->string[++parser->c] == ',')
+		parse_plane(parser, shape);
+	else if (!find_matching_bracket(parser))
+		handle_errors("plane syntax error");
 }

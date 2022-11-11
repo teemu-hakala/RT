@@ -6,7 +6,7 @@ t_object cylinder_prototype()
 		.object.cylinder = (t_cylinder)
 		{
 			.origin = default_origin(),
-			.transform = default_transform(),
+			.transform = default_transform_1(),
 			.material = default_material(),
 			.min = -INFINITY,
 			.max = INFINITY,
@@ -18,18 +18,10 @@ t_object cylinder_prototype()
 
 void	parse_cylinder(t_parser *parser, t_object *shape)
 {
-	parser->c += 7;
-	find_colon(parser);
-	find_open_bracket(parser);
-	*shape = cylinder_prototype();
-	if (find_matching_bracket(parser))
-		return ;
-	else
-	{
-		while (dispatch_find_subobject_keyword(parser, shape))
-			parse_cylinder(parser, cylinder);
-		if ()
-		if (!find_matching_bracket(parser))
-			handle_errors("syntax error");
-	}
+	dispatch_find_subobject_keyword(parser, shape);
+	parser->c += ft_clear_whitespace(parser->string);
+	if (parser->string[++parser->c] == ',')
+		parse_cylinder(parser, shape);
+	else if (!find_matching_bracket(parser))
+		handle_errors("cylinder syntax error");
 }
