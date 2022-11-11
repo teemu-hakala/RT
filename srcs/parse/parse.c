@@ -68,11 +68,15 @@ void	parse_into(t_world *world, const int file_descriptor)
 	parser.c = 0;
 	find_open_bracket(&parser);
 	find_object_keyword(world, &parser);
-	if (parser.string[++parser.c] == ',')
-		find_object_keyword(world, &parser);
-	else if (!find_matching_bracket(&parser))
-		ft_handle_errors("object syntax error");
+	while (1)
+	{
+		if (parser.string[++parser.c] == ',')
+			find_object_keyword(world, &parser);
+		else if (find_matching_bracket(&parser) == true)
+			break ;
+		else
+			ft_handle_errors("object syntax error");
+	}
 	if (find_matching_bracket(&parser) == false)
 		handle_errors("missing bracket mismatch");
-	
 }
