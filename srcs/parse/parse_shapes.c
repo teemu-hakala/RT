@@ -8,9 +8,9 @@ void	find_shape(t_object *shape, t_parser *parser)
 		parser->c += sizeof("plane\"") - 1;
 		find_colon(parser);
 		find_open_bracket(parser);
+		*shape = plane_prototype();
 		if (find_matching_bracket(parser))
 			return ;
-		*shape = plane_prototype();
 		parse_plane(parser, shape);
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "sphere\"", 7) == 0)
@@ -28,9 +28,9 @@ void	find_shape(t_object *shape, t_parser *parser)
 		parser->c += sizeof("cone\"") - 1;
 		find_colon(parser);
 		find_open_bracket(parser);
+		*shape = cone_prototype();
 		if (find_matching_bracket(parser))
 			return ;
-		*shape = cone_prototype();
 		parse_cone(parser, shape);
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "cylinder\"", 9) == 0)
@@ -38,9 +38,9 @@ void	find_shape(t_object *shape, t_parser *parser)
 		parser->c += sizeof("cylinder\"") - 1;
 		find_colon(parser);
 		find_open_bracket(parser);
+		*shape = cylinder_prototype();
 		if (find_matching_bracket(parser))
 			return ;
-		*shape = cylinder_prototype();
 		parse_cylinder(parser, shape);
 	}
 	else
@@ -75,3 +75,4 @@ void	parse_shapes(t_world *world, t_parser *parser)
 	if (find_matching_bracket(parser) == false)
 		handle_errors("shapes array syntax error");
 }
+// need to fix for last comma

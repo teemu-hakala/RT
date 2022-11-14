@@ -18,7 +18,7 @@ void	transform_camera(t_camera *camera)
 	translate(&camera->transform.matrix, &camera->transform.translation);
 	rotate(&camera->transform.matrix, &camera->transform.rotation);
 	scale(&camera->transform.matrix, &camera->transform.scale);
-	view_matrix = view_transform(camera->origin, point(0, 0, 0), vector(0, 1, 0));
+	view_matrix = view_transform(camera->origin, camera->center_of_interest, vector(0, 1, 0));
 	matrix_multi_square(&camera->transform.matrix, &view_matrix, 4);
 	camera->transform.inverse = camera->transform.matrix;
 	matrix_inversion(&camera->transform.inverse, 4);

@@ -1,0 +1,13 @@
+{
+	"camera" :
+	{
+		"origin" : [0, 1, -10],
+		"center_of_interest" : [0, 1, 0]
+	},
+	"shapes" :
+	[
+		{
+			"plane" :{}
+		}
+	]
+}

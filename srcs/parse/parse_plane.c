@@ -5,7 +5,7 @@ t_transform	plane_transform(void)
 	t_transform	plane_transform;
 
 	plane_transform.translation = point(0, 0, 0);
-	plane_transform.rotation = point(M_PI_2, 0, -M_PI_4);
+	plane_transform.rotation = point(0, 0, 0);
 	plane_transform.scale = point(1, 1, 1);
 	transform_object(&plane_transform);
 	return (plane_transform);
