@@ -8,6 +8,8 @@ void	find_shape(t_object *shape, t_parser *parser)
 		parser->c += sizeof("plane\"") - 1;
 		find_colon(parser);
 		find_open_bracket(parser);
+		if (find_matching_bracket(parser))
+			return ;
 		*shape = plane_prototype();
 		parse_plane(parser, shape);
 	}
@@ -17,6 +19,8 @@ void	find_shape(t_object *shape, t_parser *parser)
 		find_colon(parser);
 		find_open_bracket(parser);
 		*shape = sphere_prototype();
+		if (find_matching_bracket(parser))
+			return ;
 		parse_sphere(parser, shape);
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "cone\"", 5) == 0)
@@ -24,6 +28,8 @@ void	find_shape(t_object *shape, t_parser *parser)
 		parser->c += sizeof("cone\"") - 1;
 		find_colon(parser);
 		find_open_bracket(parser);
+		if (find_matching_bracket(parser))
+			return ;
 		*shape = cone_prototype();
 		parse_cone(parser, shape);
 	}
@@ -32,6 +38,8 @@ void	find_shape(t_object *shape, t_parser *parser)
 		parser->c += sizeof("cylinder\"") - 1;
 		find_colon(parser);
 		find_open_bracket(parser);
+		if (find_matching_bracket(parser))
+			return ;
 		*shape = cylinder_prototype();
 		parse_cylinder(parser, shape);
 	}
