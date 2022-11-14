@@ -6,7 +6,7 @@
 #    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2022/11/11 15:59:31 by deelliot         ###   ########.fr        #
+#    Updated: 2022/11/14 10:10:37 by deelliot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ OBJECTS_DIR = objects
 # Source and object files
 PARSE_SRCS = default_files.c parse_camera.c parse_cone.c parse_cylinder.c \
 	parse_lights.c parse_plane.c parse_shapes.c parse_sphere.c \
-	parse_sub_objs.c parse_utility.c parse.c \
+	parse_sub_objs.c parse_utility.c parse.c rt_atof.c rt_atoi.c \
 
 OBJECTS_SRCS = camera.c plane.c cone.c cylinder.c \
 
@@ -65,10 +65,11 @@ FILES = \
 #	pattern_world.c \
 #	world.c \
 
-OBJS = $(addprefix $(OBJS_DIR)/, $(FILES:.c=.o) \
+OBJS = $(addprefix $(OBJS_DIR)/, \
 	$(addprefix $(PARSE_DIR)/, $(PARSE_SRCS:.c=.o)) \
 	$(addprefix $(OBJECTS_DIR)/, $(OBJECTS_SRCS:.c=.o)) \
-	$(addprefix $(MATHS_DIR)/, $(MATHS_SRCS:.c=.o)))
+	$(addprefix $(MATHS_DIR)/, $(MATHS_SRCS:.c=.o))\
+	$(FILES:.c=.o))
 
 # Paths
 LIBFT_A = $(LIBFT_DIR)/libft.a

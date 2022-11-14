@@ -5,17 +5,6 @@ t_tuple	plane_origin(void)
 	return (point(0, 0, 0));
 }
 
-t_transform	plane_transform(void)
-{
-	t_transform	plane_transform;
-
-	plane_transform.translation = point(0, 0, 0);
-	plane_transform.rotation = point(0, 0, 0);
-	plane_transform.scale = point(1, 1, 1);
-	transform_object(&plane_transform);
-	return (plane_transform);
-}
-
 t_transform	plane_transform_floor(void)
 {
 	t_transform	plane_transform;
