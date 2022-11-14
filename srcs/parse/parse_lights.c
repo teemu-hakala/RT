@@ -75,7 +75,8 @@ void	parse_lights(t_world *world, t_parser *parser)
 		{
 			if (vec_push(&world->lights, &light) == VEC_ERROR)
 				handle_errors("vec_push light error");
-			//find_comma
+			if (parser->string[parser->c] == ',')
+				parser->c++;
 			continue;
 		}
 		parse_light(parser, &light);
@@ -83,6 +84,11 @@ void	parse_lights(t_world *world, t_parser *parser)
 			handle_errors("vec_push light error");
 		if (!find_matching_bracket(parser))
 			handle_errors("brackets syntax error");
+		else if (parser->string[parser->c] == ',')
+		{
+			parser->c++;
+			find_open_bracket(parser);
+		}
 	}
 	if (!find_matching_bracket(parser))
 			handle_errors("brackets syntax error");

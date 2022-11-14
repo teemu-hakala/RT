@@ -24,6 +24,15 @@
 					"translation" : [2, 4, -10]
 				}
 			}
+		},
+		{
+			"light" :
+			{
+				"transform" :
+				{
+					"rotation" : [2, 4, -10]
+				}
+			}
 		}
 	],
 	"shapes" :
