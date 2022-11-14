@@ -1,9 +1,8 @@
 {
 	"shapes" :
 	[
-		"sphere" :
 		{
-
+			"sphere" :{}
 		}
 	]
 }

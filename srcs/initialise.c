@@ -32,12 +32,17 @@ void	initialise_image(t_img *img, t_win *win)
 
 void	initialise_world(t_world *world)
 {
+	t_light	light;
+
+	light = light_prototype();
 	world->camera = camera_prototype();
 	if (vec_new(&world->lights, 1, sizeof(t_light)) != VEC_SUCCESS
 		|| vec_new(&world->objects, 1, sizeof(t_object)) != VEC_SUCCESS
 		|| vec_new(&world->intersections, 1, sizeof(t_intersect))
 		!= VEC_SUCCESS)
 		handle_errors("initialise_world malloc returned NULL");
+	if (vec_push(&world->lights, &light) != VEC_SUCCESS)
+		handle_errors("light initation failed");
 	world->hit.intersection = NULL;
 }
 
@@ -46,7 +51,8 @@ void	initialise_window(t_win *win)
 	win->mlx = mlx_init();
 	if (!win->mlx)
 		handle_errors("error");
-	win->win = mlx_new_window(win->mlx, WIDTH, HEIGHT, "RTV1");
+	win->win = mlx_new_window(win->mlx, win->world.camera.size.horizontal, \
+		win->world.camera.size.vertical, "RTV1");
 	if (!win->win)
 		handle_errors("error");
 	initialise_image(&win->img, win);

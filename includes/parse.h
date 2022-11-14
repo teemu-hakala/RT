@@ -37,9 +37,9 @@ void		find_colon(t_parser *parser);
 /*default settings*/
 t_tuple		default_origin(void);
 t_transform	default_transform_1(void);
+void		transform_camera(t_camera *camera);
 t_material	default_phong_mat(void);
 t_material	default_material_1(void);
-t_light		default_light(void);
 
 /*object prototypes*/
 t_camera	camera_prototype(void);
@@ -47,5 +47,6 @@ t_object	plane_prototype(void);
 t_object	sphere_prototype(void);
 t_object	cone_prototype(void);
 t_object	cylinder_prototype(void);
+t_light		light_prototype(void);
 
 #endif

@@ -6,7 +6,7 @@ t_object	sphere_prototype(void)
 		.object.sphere = (t_sphere)
 		{
 			.origin = default_origin(),
-			.transform = default_transform(),
+			.transform = default_transform_1(),
 			.material = default_material_1()
 		},
 		.type = OBJECT_SPHERE
@@ -24,4 +24,5 @@ void	parse_sphere(t_parser *parser, t_object *shape)
 	}
 	else if (!find_matching_bracket(parser))
 		handle_errors("sphere syntax error");
+	transform_object(&shape->object.sphere.transform);
 }

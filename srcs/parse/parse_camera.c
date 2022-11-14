@@ -10,29 +10,31 @@ static t_canvas	default_canvas(void)
 	return ((t_canvas){.vertical = HEIGHT, .horizontal = WIDTH});
 }
 
-t_transform	camera_transform(void)
+void	transform_camera(t_camera *camera)
 {
-	t_transform	d;
+	t_mtx	view_matrix;
 
-	d.translation = point(0, 0, 0);
-	d.rotation = point(0, 0, 0);
-	d.scale = point(1, 1, 1);
-	transform_object(&d);
-	return (d);
+	identity_matrix_set(&camera->transform.matrix);
+	translate(&camera->transform.matrix, &camera->transform.translation);
+	rotate(&camera->transform.matrix, &camera->transform.rotation);
+	scale(&camera->transform.matrix, &camera->transform.scale);
+	view_matrix = view_transform(camera->origin, point(0, 0, 0), vector(0, 1, 0));
+	matrix_multi_square(&camera->transform.matrix, &view_matrix, 4);
+	camera->transform.inverse = camera->transform.matrix;
+	matrix_inversion(&camera->transform.inverse, 4);
 }
-
-//dont need to transform object yet, as will have to update matrices
 
 t_camera	camera_prototype(void)
 {
 	t_camera	camera;
 
 	camera.origin = camera_origin();
-	camera.transform = camera_transform();
+	camera.transform = default_transform_1();
 	camera.center_of_interest =  point(0, 0, 0);
 	camera.field_of_view = M_2_PI,
 	camera.size = default_canvas();
 	camera.pixel_size = get_pixel_size(&camera, camera.size, camera.field_of_view);
+	transform_camera(&camera);
 	return (camera);
 }
 
@@ -113,4 +115,5 @@ void	parse_camera(t_world *world, t_parser *parser)
 	}
 	if (!find_matching_bracket(parser))
 		handle_errors("camera syntax error");
+	transform_camera(&world->camera);
 }
