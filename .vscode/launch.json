@@ -10,7 +10,7 @@
 			"request": "launch",
 			"program": "${workspaceFolder}/RTv1",
 			// "program": "/Users/deelliot/projects/RTv1/RTv1",
-			"args": [],
+			"args": ["${workspaceFolder}/scenes/sphere.json"],
 			"stopAtEntry": true,
 			"cwd": "${workspaceFolder}",
 			"environment": [],

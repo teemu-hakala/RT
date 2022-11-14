@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt_atof.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 18:00:18 by thakala           #+#    #+#             */
-/*   Updated: 2022/11/11 10:33:05 by thakala          ###   ########.fr       */
+/*   Updated: 2022/11/14 11:07:01 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,13 @@ static double	rt_atof_digits(t_parser *parser, uint64_t *d, char sign)
 	integral = 0;
 	fractional = 0;
 	while (ft_isdigit(parser->string[*d]) && ++parser->atof_index)
-		integral = 10 * integral + (parser->string[*d++] - '0');
-	if (parser->string[*d++] == '.')
+		integral = 10 * integral + (parser->string[(*d)++] - '0');
+	if (parser->string[*d] == '.')
 	{
+		(*d)++;
 		while (ft_isdigit(parser->string[*d]) && ++parser->atof_index)
 		{
-			fractional = 10 * fractional + (parser->string[*d++] - '0');
+			fractional = 10 * fractional + (parser->string[(*d)++] - '0');
 			decimal_digits *= 10;
 		}
 	}
@@ -41,7 +42,7 @@ double	rt_atof(t_parser *parser)
 	double		result;
 
 	parser->atof_index = 0;
-	d = 0;
+	d = parser->c;
 	while (ft_isspace(parser->string[d]))
 		d++;
 	sign = 1;
@@ -50,6 +51,6 @@ double	rt_atof(t_parser *parser)
 	result = rt_atof_digits(parser, &d, sign);
 	if (parser->atof_index == 0)
 		handle_errors("atof error");
-	parser->c += d;
+	parser->c = d;
 	return (result);
 }

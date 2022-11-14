@@ -16,7 +16,7 @@ t_object	sphere_prototype(void)
 void	parse_sphere(t_parser *parser, t_object *shape)
 {
 	dispatch_find_subobject_keyword(parser, shape);
-	parser->c += ft_clear_whitespace(parser->string);
+	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
 	if (parser->string[++parser->c] == ',')
 		parse_sphere(parser, shape);
 	else if (!find_matching_bracket(parser))

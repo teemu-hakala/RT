@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/11 16:32:16 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/14 11:26:54 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,5 +209,5 @@ t_pattern	default_stripe_pattern(void);
 /* parsing */
 void	open_scene_into(t_win *win, const char *str);
 double	rt_atof(t_parser *parser);
-
+int		rt_atoi(t_parser *parser);
 #endif

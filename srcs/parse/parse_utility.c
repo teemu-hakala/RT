@@ -3,14 +3,14 @@
 
 void	find_open_bracket(t_parser *parser)
 {
-	parser->c += ft_clear_whitespace(parser->string);
+	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
 	if (parser->string[parser->c] == '{'|| parser->string[parser->c] == '[')
 	{
 		if (vec_push_arr(&parser->brackets, &parser->string[parser->c++], 1) == VEC_ERROR)
 			handle_errors("vec_push_arr error");
 	}
 	else
-		handle_errors("bracket format error");
+		handle_errors("open bracket format error");
 }
 
 int	find_matching_bracket(t_parser *parser)
@@ -18,7 +18,7 @@ int	find_matching_bracket(t_parser *parser)
 	char	open_bracket;
 	char	close_bracket;
 
-	parser->c += ft_clear_whitespace(parser->string);
+	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
 	open_bracket = ((char *)parser->brackets.memory)[parser->brackets.len - 1];
 	close_bracket = open_bracket + (open_bracket & 0x1U) + 1;
 	if (parser->string[parser->c] != close_bracket)
@@ -30,17 +30,17 @@ int	find_matching_bracket(t_parser *parser)
 
 void	find_double_quote(t_parser *parser)
 {
-	parser->c += ft_clear_whitespace(parser->string);
+	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
 	if (parser->string[parser->c] != '"')
-		handle_errors("bracket format error");
+		handle_errors("quote format error");
 	parser->c++;
 }
 
 void	find_colon(t_parser *parser)
 {
-	parser->c += ft_clear_whitespace(parser->string);
+	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
 	if (parser->string[parser->c] != ':')
-		handle_errors("bracket format error");
+		handle_errors("colon format error");
 	parser->c++;
 }
 
@@ -60,7 +60,7 @@ int	find_min_and_max(t_object *object, t_parser *parser)
 			object->object.cone.min = min;
 		else
 			object->object.cylinder.min = min;
-		parser->c += ft_clear_whitespace(parser->string);
+		parser->c += ft_clear_whitespace(&parser->string[parser->c]);
 		if (parser->string[++parser->c] == ',')
 			find_min_and_max(object, parser);
 	}
@@ -73,7 +73,7 @@ int	find_min_and_max(t_object *object, t_parser *parser)
 			object->object.cone.max = max;
 		else
 			object->object.cylinder.max = max;
-		parser->c += ft_clear_whitespace(parser->string);
+		parser->c += ft_clear_whitespace(&parser->string[parser->c]);
 		if (parser->string[++parser->c] == ',')
 			find_min_and_max(object, parser);
 	}
@@ -81,7 +81,7 @@ int	find_min_and_max(t_object *object, t_parser *parser)
 	{
 		parser->c += sizeof("closed\"") - 1;
 		find_colon(parser);
-		parser->c += ft_clear_whitespace(parser->string);
+		parser->c += ft_clear_whitespace(&parser->string[parser->c]);
 		if (parser->string[parser->c] == '1')
 			closed = true;
 		else if (parser->string[parser->c] == '0')

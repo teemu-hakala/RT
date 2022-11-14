@@ -27,7 +27,7 @@ t_object	plane_prototype(void)
 void	parse_plane(t_parser *parser, t_object *shape)
 {
 	dispatch_find_subobject_keyword(parser, shape);
-	parser->c += ft_clear_whitespace(parser->string);
+	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
 	if (parser->string[++parser->c] == ',')
 		parse_plane(parser, shape);
 	else if (!find_matching_bracket(parser))

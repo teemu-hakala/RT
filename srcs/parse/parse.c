@@ -28,7 +28,7 @@ void	read_file_contents(t_vec *string, const int file_descriptor)
 				handle_errors("vec_new error");
 			first = false;
 		}
-		if (vec_push_arr(string, line, read_bytes) == VEC_ERROR)
+		if (vec_push_arr(string, line, ft_strlen(line)) == VEC_ERROR)
 			handle_errors("vec_push_arr error");
 	}
 	if (vec_push_arr(string, "\0", 1) == VEC_ERROR)
@@ -67,11 +67,14 @@ void	parse_into(t_world *world, const int file_descriptor)
 	vec_new(&parser.brackets, 256, sizeof(char));
 	parser.c = 0;
 	find_open_bracket(&parser);
-	find_object_keyword(world, &parser);
+  	find_object_keyword(world, &parser);
 	while (1)
 	{
-		if (parser.string[++parser.c] == ',')
+		if (parser.string[parser.c] == ',')
+		{
+			parser.c++;
 			find_object_keyword(world, &parser);
+		}
 		else if (find_matching_bracket(&parser) == true)
 			break ;
 		else

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 10:28:30 by thakala           #+#    #+#             */
-/*   Updated: 2022/11/09 17:55:44 by thakala          ###   ########.fr       */
+/*   Updated: 2022/11/14 10:45:28 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ int	vec_push_arr(t_vec *dst, void *src, uint64_t len)
 {
 	uint64_t	size;
 
-	if (dst->alloc_size <= dst->len)
+	if (dst->alloc_size - len <= dst->len)
 	{
 		size = stick_size(
 				check_multiplication_overflow(
@@ -151,7 +151,7 @@ int	vec_push_arr(t_vec *dst, void *src, uint64_t len)
 			if (vec_resize(dst, size) <= 0)
 				return (VEC_ERROR);
 	}
-	ft_memcpy(&dst->memory[dst->len * dst->elem_size], src, dst->elem_size);
+	ft_memcpy(&dst->memory[dst->len * dst->elem_size], src, len * dst->elem_size);
 	dst->len += len;
 	return (VEC_SUCCESS);
 }

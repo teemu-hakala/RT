@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 14:16:53 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/11 11:21:20 by thakala          ###   ########.fr       */
+/*   Updated: 2022/11/14 11:33:47 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@ by str to int representation.*/
 
 #include "RTv1.h"
 
-static int	ft_check_sign(const char *str, int i)
+static uint64_t	ft_check_sign(const char *str, uint64_t i)
 {
 	if (str[i] == '-')
 		return (-1);
@@ -23,7 +23,7 @@ static int	ft_check_sign(const char *str, int i)
 		return (1);
 }
 
-static int	ft_clear_sign(const char *str, int i)
+static uint64_t	ft_clear_sign(const char *str, uint64_t i)
 {
 	if (str[i] == '+' || str[i] == '-')
 		i++;
@@ -32,19 +32,19 @@ static int	ft_clear_sign(const char *str, int i)
 
 int	rt_atoi(t_parser *parser)
 {
-	int	i;
-	int	x;
-	int	sign;
+	uint64_t	i;
+	int			x;
+	int			sign;
 
-	i = ft_clear_whitespace(parser->string);
-	sign = ft_check_sign (parser->string, i);
-	i = ft_clear_sign(parser->string, i);
+	i = ft_clear_whitespace(&parser->string[parser->c]);
+	sign = ft_check_sign (&parser->string[parser->c], i);
+	i = ft_clear_sign(&parser->string[parser->c], i);
 	x = 0;
-	while (parser->string[i])
+	while (parser->string[parser->c + i])
 	{
-		if (parser->string[i] < '0' || parser->string[i] > '9')
+		if (parser->string[parser-> c + i] < '0' || parser->string[parser-> c + i] > '9')
 			break ;
-		x = (x * 10) + (parser->string[i] - '0');
+		x = (x * 10) + (parser->string[parser-> c + i] - '0');
 		i++;
 	}
 	parser->c += i;

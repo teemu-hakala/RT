@@ -38,20 +38,24 @@ t_camera	camera_prototype(void)
 
 void	find_canvas_keywords(t_world *world, t_parser *parser)
 {
+	find_double_quote(parser);
 	if (ft_strncmp(&parser->string[parser->c], "vertical\"", 9) == 0)
 	{
 		parser->c += sizeof("vertical\"") - 1;
-		parse_tuple(&world->camera.origin, parser);
+		find_colon(parser);
+		world->camera.size.vertical = rt_atoi(parser);
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "horizontal\"", 11) == 0)
 	{
 		parser->c += sizeof("horizontal\"") - 1;
-		parse_tuple(&world->camera.origin, parser);
+		find_colon(parser);
+		world->camera.size.horizontal = rt_atoi(parser);
 	}
 }
 
 void parse_camera_subobjects(t_world *world, t_parser *parser)
 {
+	find_double_quote(parser);
 	if (ft_strncmp(&parser->string[parser->c], "origin\"", 7) == 0)
 	{
 		parser->c += sizeof("origin\"") - 1;
@@ -77,14 +81,18 @@ void parse_camera_subobjects(t_world *world, t_parser *parser)
 		if (find_matching_bracket(parser) == true)
 			return ;
 		find_canvas_keywords(world, parser);
-		if (parser->string[++parser->c] == ',')
+		if (parser->string[parser->c] == ',')
+		{
+			parser->c++;
 			find_canvas_keywords(world, parser);
-		else if (!find_matching_bracket(parser))
-			handle_errors("light syntax error");
+		}
+		if (!find_matching_bracket(parser))
+			handle_errors("canvas syntax error");
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "field_of_view\"", 14) == 0)
 	{
 		parser->c += sizeof("field_of_view\"") - 1;
+		find_colon(parser);
 		world->camera.field_of_view = rt_atof(parser);
 	}
 }
@@ -96,9 +104,11 @@ void	parse_camera(t_world *world, t_parser *parser)
 	if (find_matching_bracket(parser) == true)
 		return ;
 	parse_camera_subobjects(world, parser);
-	find_canvas_keywords(world, parser);
-	if (parser->string[++parser->c] == ',')
+	while (parser->string[parser->c] == ',')
+	{
+		parser->c++;
 		parse_camera_subobjects(world, parser);
-	else if (!find_matching_bracket(parser))
-		handle_errors("light syntax error");
+	}
+	if (!find_matching_bracket(parser))
+		handle_errors("camera syntax error");
 }

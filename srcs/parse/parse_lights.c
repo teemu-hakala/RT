@@ -36,19 +36,22 @@ void	find_light_subobject_keyword(t_light *light, t_parser *parser)
 void	parse_light(t_parser *parser, t_light *light)
 {
 	find_light_subobject_keyword(light, parser);
-	parser->c += ft_clear_whitespace(parser->string);
-	if (parser->string[++parser->c] == ',')
+	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
+	if (parser->string[parser->c] == ',')
+	{
+		parser->c++;
 		parse_light(parser, light);
+	}
 	else if (!find_matching_bracket(parser))
 		handle_errors("light syntax error");
 }
 
 int	find_light(t_parser *parser)
 {
-	find_double_quote(parser);
-	if (ft_strncmp(&parser->string[parser->c], "light\"", 6) == 0)
+	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
+	if (ft_strncmp(&parser->string[parser->c], "\"light\"", 7) == 0)
 	{
-		parser->c += sizeof("light\"") - 1;
+		parser->c += sizeof("\"light\"") - 1;
 		return (true);
 	}
 	return (false);
@@ -70,6 +73,7 @@ void	parse_lights(t_world *world, t_parser *parser)
 		{
 			if (vec_push(&world->lights, &light) == VEC_ERROR)
 				handle_errors("vec_push light error");
+			//find_comma
 			continue;
 		}
 		parse_light(parser, &light);
@@ -78,4 +82,8 @@ void	parse_lights(t_world *world, t_parser *parser)
 		if (!find_matching_bracket(parser))
 			handle_errors("brackets syntax error");
 	}
+	if (!find_matching_bracket(parser))
+			handle_errors("brackets syntax error");
+	if (!find_matching_bracket(parser))
+			handle_errors("brackets syntax error");
 }

@@ -82,17 +82,17 @@ void	parse_tuple(t_tuple *tuple, t_parser *parser)
 
 	i = 0;
 	find_colon(parser);
-	parser->c += ft_clear_whitespace(parser->string);
-	if (parser->string[parser->c] == '[')
+	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
+	if (parser->string[parser->c++] == '[')
 	{
 		while (i < 3)
 		{
 			tuple->array[i] = rt_atof(parser);
-			if (i < 2 && ++parser->c != ',')
+			if (i < 2 && parser->string[parser->c++] != ',')
 				handle_errors("array syntax error");
 			i++;
 		}
-		if (parser->string[++parser->c] == ']')
+		if (parser->string[parser->c] == ']')
 		{
 			parser->c++;
 			return ;
@@ -128,9 +128,12 @@ int	find_transform_keywords(t_transform *transform, t_parser *parser)
 void	parse_transform(t_transform *transform, t_parser *parser)
 {
 	find_transform_keywords(transform, parser);
-	parser->c += ft_clear_whitespace(parser->string);
-	if (parser->string[++parser->c] == ',')
+	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
+	if (parser->string[parser->c] == ',')
+	{
+		parser->c++;
 		parse_transform(transform, parser);
+	}
 	else
 	{
 		if (find_matching_bracket(parser))
@@ -178,7 +181,7 @@ void	find_material_keywords(t_material *material, t_parser *parser)
 void	parse_material(t_material *material, t_parser *parser)
 {
 	find_material_keywords(material, parser);
-	parser->c += ft_clear_whitespace(parser->string);
+	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
 	if (parser->string[++parser->c] == ',')
 		parse_material(material, parser);
 	else
