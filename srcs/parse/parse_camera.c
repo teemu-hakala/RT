@@ -59,6 +59,7 @@ void parse_camera_subobjects(t_world *world, t_parser *parser)
 	if (ft_strncmp(&parser->string[parser->c], "origin\"", 7) == 0)
 	{
 		parser->c += sizeof("origin\"") - 1;
+		find_colon(parser);
 		parse_tuple(&world->camera.origin, parser);
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "transform\"", 10) == 0)
@@ -71,6 +72,7 @@ void parse_camera_subobjects(t_world *world, t_parser *parser)
 	else if (ft_strncmp(&parser->string[parser->c], "center_of_interest\"", 19) == 0)
 	{
 		parser->c += sizeof("center_of_interest\"") - 1;
+		find_colon(parser);
 		parse_tuple(&world->camera.center_of_interest, parser);
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "canvas\"", 5) == 0)

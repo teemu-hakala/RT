@@ -6,9 +6,10 @@ int	find_subobject_keyword(t_parser *parser,
 	t_material *material)
 {
 	find_double_quote(parser);
-	if (ft_strncmp(&parser->string[parser->c], "origin\"", 8) == 0)
+	if (ft_strncmp(&parser->string[parser->c], "origin\"", 7) == 0)
 	{
 		parser->c += sizeof("origin\"") - 1;
+		find_colon(parser);
 		parse_tuple(origin, parser);
 		return (true);
 	}
@@ -73,7 +74,7 @@ int	dispatch_find_subobject_keyword(t_parser *parser, t_object *shape)
 		cylinder_subobject_keywords
 	};
 
-	return (kw_fns[shape->type](parser, shape));
+	return (kw_fns[shape->type - OBJECT_INDEX_OFFSET](parser, shape));
 }
 
 void	parse_tuple(t_tuple *tuple, t_parser *parser)
@@ -81,7 +82,6 @@ void	parse_tuple(t_tuple *tuple, t_parser *parser)
 	int i;
 
 	i = 0;
-	find_colon(parser);
 	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
 	if (parser->string[parser->c++] == '[')
 	{
@@ -107,18 +107,21 @@ int	find_transform_keywords(t_transform *transform, t_parser *parser)
 	if (ft_strncmp(&parser->string[parser->c], "translation\"", 12) == 0)
 	{
 		parser->c += sizeof("translation\"") - 1;
+		find_colon(parser);
 		parse_tuple(&transform->translation, parser);
 		return (true);
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "rotation\"", 9) == 0)
 	{
 		parser->c += sizeof("rotation\"") - 1;
+		find_colon(parser);
 		parse_tuple(&transform->rotation, parser);
 		return (true);
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "scale\"", 6) == 0)
 	{
 		parser->c += sizeof("scale\"") - 1;
+		find_colon(parser);
 		parse_tuple(&transform->scale, parser);
 		return (true);
 	}
@@ -164,6 +167,12 @@ void	find_material_keywords(t_material *material, t_parser *parser)
 		find_colon(parser);
 		material->specular = rt_atof(parser);
 	}
+	else if (ft_strncmp(&parser->string[parser->c], "shininess\"", 10) == 0)
+	{
+		parser->c += sizeof("shininess\"") - 1;
+		find_colon(parser);
+		material->shininess = rt_atof(parser);
+	}
 	else if (ft_strncmp(&parser->string[parser->c], "init_colour\"", 12) == 0)
 	{
 		parser->c += sizeof("init_colour\"") - 1;
@@ -182,8 +191,11 @@ void	parse_material(t_material *material, t_parser *parser)
 {
 	find_material_keywords(material, parser);
 	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
-	if (parser->string[++parser->c] == ',')
+	if (parser->string[parser->c] == ',')
+	{
+		parser->c++;
 		parse_material(material, parser);
+	}
 	else
 	{
 		if (find_matching_bracket(parser))

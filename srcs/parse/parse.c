@@ -75,11 +75,10 @@ void	parse_into(t_world *world, const int file_descriptor)
 			parser.c++;
 			find_object_keyword(world, &parser);
 		}
-		else if (find_matching_bracket(&parser) == true)
+		else if (parser.brackets.len == 0 \
+			|| find_matching_bracket(&parser) == true)
 			break ;
 		else
 			handle_errors("object syntax error");
 	}
-	if (find_matching_bracket(&parser) == false)
-		handle_errors("missing bracket mismatch");
 }

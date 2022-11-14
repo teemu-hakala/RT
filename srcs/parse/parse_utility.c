@@ -61,8 +61,11 @@ int	find_min_and_max(t_object *object, t_parser *parser)
 		else
 			object->object.cylinder.min = min;
 		parser->c += ft_clear_whitespace(&parser->string[parser->c]);
-		if (parser->string[++parser->c] == ',')
-			find_min_and_max(object, parser);
+		if (parser->string[parser->c] == ',')
+			{
+				parser->c++;
+				find_min_and_max(object, parser);
+			}
 	}
 	else if (!ft_strncmp(&parser->string[parser->c], "max\"", 4))
 	{
@@ -74,8 +77,11 @@ int	find_min_and_max(t_object *object, t_parser *parser)
 		else
 			object->object.cylinder.max = max;
 		parser->c += ft_clear_whitespace(&parser->string[parser->c]);
-		if (parser->string[++parser->c] == ',')
+		if (parser->string[parser->c] == ',')
+		{
+			parser->c++;
 			find_min_and_max(object, parser);
+		}
 	}
 	else if (!ft_strncmp(&parser->string[parser->c], "closed\"", 7))
 	{

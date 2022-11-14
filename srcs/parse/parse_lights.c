@@ -15,6 +15,7 @@ void	find_light_subobject_keyword(t_light *light, t_parser *parser)
 	if (ft_strncmp(&parser->string[parser->c], "position\"", 9) == 0)
 	{
 		parser->c += sizeof("position\"") - 1;
+		find_colon(parser);
 		parse_tuple(&light->position, parser);
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "transform\"", 10) == 0)
@@ -27,7 +28,8 @@ void	find_light_subobject_keyword(t_light *light, t_parser *parser)
 	else if (ft_strncmp(&parser->string[parser->c], "intensity\"", 10) == 0)
 	{
 		parser->c += sizeof("intensity\"") - 1;
-		parse_tuple(&light->intensity,parser);
+		find_colon(parser);
+		parse_tuple(&light->intensity, parser);
 	}
 	else
 		handle_errors("syntax error light object");
@@ -84,6 +86,6 @@ void	parse_lights(t_world *world, t_parser *parser)
 	}
 	if (!find_matching_bracket(parser))
 			handle_errors("brackets syntax error");
-	if (!find_matching_bracket(parser))
-			handle_errors("brackets syntax error");
+	// if (!find_matching_bracket(parser))
+	// 		handle_errors("brackets syntax error");
 }

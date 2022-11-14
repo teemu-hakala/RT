@@ -3,7 +3,7 @@
 void	find_shape(t_object *shape, t_parser *parser)
 {
 	find_double_quote(parser);
-	if (ft_strncmp(&parser->string[parser->c], "plane\"", 9) == 0)
+	if (ft_strncmp(&parser->string[parser->c], "plane\"", 6) == 0)
 	{
 		parser->c += sizeof("plane\"") - 1;
 		find_colon(parser);
@@ -11,7 +11,7 @@ void	find_shape(t_object *shape, t_parser *parser)
 		*shape = plane_prototype();
 		parse_plane(parser, shape);
 	}
-	else if (ft_strncmp(&parser->string[parser->c], "sphere\"", 10) == 0)
+	else if (ft_strncmp(&parser->string[parser->c], "sphere\"", 7) == 0)
 	{
 		parser->c += sizeof("sphere\"") - 1;
 		find_colon(parser);
@@ -19,7 +19,7 @@ void	find_shape(t_object *shape, t_parser *parser)
 		*shape = sphere_prototype();
 		parse_sphere(parser, shape);
 	}
-	else if (ft_strncmp(&parser->string[parser->c], "cone\"", 10) == 0)
+	else if (ft_strncmp(&parser->string[parser->c], "cone\"", 5) == 0)
 	{
 		parser->c += sizeof("cone\"") - 1;
 		find_colon(parser);
@@ -27,7 +27,7 @@ void	find_shape(t_object *shape, t_parser *parser)
 		*shape = cone_prototype();
 		parse_cone(parser, shape);
 	}
-	else if (ft_strncmp(&parser->string[parser->c], "cylinder\"", 10) == 0)
+	else if (ft_strncmp(&parser->string[parser->c], "cylinder\"", 9) == 0)
 	{
 		parser->c += sizeof("cylinder\"") - 1;
 		find_colon(parser);
@@ -49,17 +49,21 @@ void	parse_shapes(t_world *world, t_parser *parser)
 	find_shape(&object, parser);
 	while (1)
 	{
+		if (find_matching_bracket(parser) == false)
+			handle_errors("shapes object syntax error");
 		if (vec_push(&world->objects, &object) == VEC_ERROR)
 			handle_errors("vec_push light error");
-		if (parser->string[++parser->c] == ',')
+		if (parser->string[parser->c] == ',')
+		{
+			parser->c++;
+			find_open_bracket(parser);
 			find_shape(&object, parser);
+		}
 		else if (find_matching_bracket(parser) == true)
 			break ;
 		else
 			handle_errors("shapes syntax error");
 	}
-	if (find_matching_bracket(parser) == false)
-		handle_errors("shapes object syntax error");
 	if (find_matching_bracket(parser) == false)
 		handle_errors("shapes array syntax error");
 }
