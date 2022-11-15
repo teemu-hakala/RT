@@ -1,10 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   intersect.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/15 10:09:54 by deelliot          #+#    #+#             */
+/*   Updated: 2022/11/15 10:10:03 by deelliot         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "RTv1.h"
-
-/* circumference of sphere: 2πr.
-Assume for now all spheres are unit spheres, therefore radius of 1
-
-diameter of sphere: 2 * r
-*/
 
 void	identify_hit(t_world *world, t_hit *hit)
 {
