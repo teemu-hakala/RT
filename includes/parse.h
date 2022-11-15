@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:01:57 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 11:27:36 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/15 12:23:15 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void		parse_into(t_world *world, const int file_descriptor);
 double		rt_atof(t_parser *parser);
 /*parse objects*/
 void		parse_lights(t_world *world, t_parser *parser);
+void		parse_single_light(t_parser *parser, t_light *light);
 void		parse_camera(t_world *world, t_parser *parser);
 void		parse_shapes(t_world *world, t_parser *parser);
 void		parse_plane(t_parser *parser, t_object *shape);

@@ -6,13 +6,31 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:47:33 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 10:47:46 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/15 12:17:34 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RTv1.h"
 
-void	find_material_keywords(t_material *material, t_parser *parser)
+static void	material_keywords_cont(t_material *material, t_parser *parser)
+{
+	if (ft_strncmp(&parser->string[parser->c], "shininess\"", 10) == 0)
+	{
+		parser->c += sizeof("shininess\"") - 1;
+		find_colon(parser);
+		material->shininess = rt_atof(parser);
+	}
+	else if (ft_strncmp(&parser->string[parser->c], "init_colour\"", 12) == 0)
+	{
+		parser->c += sizeof("init_colour\"") - 1;
+		find_colon(parser);
+		parse_tuple(&material->init_colour, parser);
+	}
+	else
+		handle_errors("material syntax error");
+}
+
+static void	find_material_keywords(t_material *material, t_parser *parser)
 {
 	find_double_quote(parser);
 	if (ft_strncmp(&parser->string[parser->c], "ambient\"", 8) == 0)
@@ -33,24 +51,8 @@ void	find_material_keywords(t_material *material, t_parser *parser)
 		find_colon(parser);
 		material->specular = rt_atof(parser);
 	}
-	else if (ft_strncmp(&parser->string[parser->c], "shininess\"", 10) == 0)
-	{
-		parser->c += sizeof("shininess\"") - 1;
-		find_colon(parser);
-		material->shininess = rt_atof(parser);
-	}
-	else if (ft_strncmp(&parser->string[parser->c], "init_colour\"", 12) == 0)
-	{
-		parser->c += sizeof("init_colour\"") - 1;
-		find_colon(parser);
-		parse_tuple(&material->init_colour, parser);
-	}
-	// else if (ft_strncmp(&parser->string[parser->c], "pattern\"", 8) == 0)
-	// {
-	// 	parser->c += sizeof("pattern\"") - 1;
-	// }
 	else
-		handle_errors("material syntax error");
+		material_keywords_cont(material, parser);
 }
 
 void	parse_material(t_material *material, t_parser *parser)
