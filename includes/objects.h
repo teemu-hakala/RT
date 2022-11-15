@@ -132,7 +132,6 @@ typedef struct s_camera
 	t_fl		pixel_size;
 	t_fl		half_width;
 	t_fl		half_height;
-	t_fl		aspect;
 }	t_camera;
 
 union	u_object
