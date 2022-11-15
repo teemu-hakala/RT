@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:01:57 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 12:50:26 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/15 13:05:46 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void		dispatch_find_subobject_keyword(t_parser *parser, t_object *shape);
 void		parse_tuple(t_tuple *tuple, t_parser *parser);
 void		parse_transform(t_transform *transform, t_parser *parser);
 void		parse_material(t_material *material, t_parser *parser);
-void		find_min_and_max(t_object *object, t_parser *parser);
+void		cone_and_cylinder_objects(t_object *object, t_parser *parser);
 
 /*utility parse functions*/
 void		find_open_bracket(t_parser *parser);

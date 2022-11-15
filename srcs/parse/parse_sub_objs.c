@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:07:04 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 12:48:03 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/15 13:09:26 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	find_max(t_object *object, t_parser *parser)
 	if (parser->string[parser->c] == ',')
 	{
 		parser->c++;
-		find_min_and_max(object, parser);
+		cone_and_cylinder_objects(object, parser);
 	}
 }
 
@@ -106,27 +106,30 @@ void	find_closed(t_object *object, t_parser *parser)
 		object->object.cylinder.closed = closed;
 }
 
-void	find_min_and_max(t_object *object, t_parser *parser)
+void	find_min(t_object *object, t_parser *parser)
 {
-	t_fl	min;
+	int	min;
 
+	parser->c += sizeof("min\"") - 1;
+	find_colon(parser);
+	min = rt_atof(parser);
+	if (object->type == OBJECT_CONE)
+		object->object.cone.min = min;
+	else
+		object->object.cylinder.min = min;
+	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
+	if (parser->string[parser->c] == ',')
+	{
+		parser->c++;
+		cone_and_cylinder_objects(object, parser);
+	}
+}
+
+void	cone_and_cylinder_objects(t_object *object, t_parser *parser)
+{
 	find_double_quote(parser);
 	if (!ft_strncmp(&parser->string[parser->c], "min\"", 4))
-	{
-		parser->c += sizeof("min\"") - 1;
-		find_colon(parser);
-		min = rt_atof(parser);
-		if (object->type == OBJECT_CONE)
-			object->object.cone.min = min;
-		else
-			object->object.cylinder.min = min;
-		parser->c += ft_clear_whitespace(&parser->string[parser->c]);
-		if (parser->string[parser->c] == ',')
-		{
-			parser->c++;
-			find_min_and_max(object, parser);
-		}
-	}
+		find_min(object, parser);
 	else if (!ft_strncmp(&parser->string[parser->c], "max\"", 4))
 		find_max(object, parser);
 	else if (!ft_strncmp(&parser->string[parser->c], "closed\"", 7))
