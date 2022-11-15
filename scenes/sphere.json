@@ -1,76 +1,54 @@
 {
-	"camera" :
-	{
-		"origin" : [0, 0, 0],
-		"transform" :
-		{
-			"translation": [0, 0, 0]
-		},
-		"center_of_interest" : [0, 0, 0],
-		"canvas" :
-		{
-			"vertical" : 101,
-			"horizontal" : 201
-		},
-		"field_of_view" : 1.0
-	},
-	"lights" :
-	[
-		{
-			"light" :
-			{
-				"transform" :
-				{
-					"translation" : [2, 4, -10]
-				}
-			}
-		},
-		{
-			"light" :
-			{
-				"transform" :
-				{
-					"rotation" : [2, 4, -10]
-				}
-			}
-		}
-	],
-	"shapes" :
-	[
-		{
-			"sphere" :
-			{
-				"origin" : [0, 0, 0] ,
-				"transform" :
-				{
-					"translation" : [0, 0, 0] ,
-					"rotation" : [0, 0, 0] ,
-					"scale" : [0, 0, 0]
-				} ,
-				"material" :
-				{
-					"ambient" : 0.42 ,
-					"diffuse" : 0.5 ,
-					"specular" : 0.1 ,
-					"shininess" : 200 ,
-					"init_colour" : [1, 0, 0]
-				}
-			}
-		},
-		{
-			"sphere" :
-			{
-				"origin" : [0, 0, 0] ,
-				"transform" :
-				{
-					"translation" : [0, 0, 0] ,
-					"rotation" : [0, 0, 0] ,
-					"scale" : [0, 0, 0]
-				}
-			}
-		},
-		{
-			"sphere" : {}
-		}
-	]
+    "camera" :
+    {
+        "origin" : [0, 0, -10],
+        "transform" :
+        {
+            "translation": [0, 0, 0]
+        },
+        "center_of_interest" : [0, 0, 0],
+        "canvas" :
+        {
+            "vertical" : 201,
+            "horizontal" : 201
+        },
+        "field_of_view" : 1.0
+    },
+    "lights" :
+    [
+        {
+            "light" :
+            {
+                "position" : [0, 0, 0],
+                "transform" :
+                {
+                    "translation" : [-10, 10, -10]
+                },
+                "intensity" : [1, 1, 1]
+            }
+        }
+    ],
+    "shapes" :
+    [
+        {
+            "sphere" :
+            {
+                "origin" : [0, 0, 0],
+                "transform" :
+                {
+                    "translation" : [0, 0, 0],
+                    "rotation" : [0, 0, 0],
+                    "scale" : [1, 1, 1]
+                },
+                "material" :
+                {
+                    "ambient" : 0.42,
+                    "diffuse" : 0.5,
+                    "specular" : 0.1,
+                    "shininess" : 200,
+                    "init_colour" : [1, 1, 1]
+                }
+            }
+        }
+    ]
 }

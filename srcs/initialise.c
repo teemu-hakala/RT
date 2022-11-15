@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:09:48 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 10:09:50 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/15 11:57:48 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@
 
 void	initialise_image(t_img *img, t_win *win)
 {
-	img->img = mlx_new_image(win->mlx, WIDTH, HEIGHT);
+	img->img = mlx_new_image(win->mlx, win->world.camera.size.horizontal\
+		, win->world.camera.size.vertical);
 	if (!img->img)
 		handle_errors("error");
 	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->length, \

@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:09:40 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 10:09:42 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/15 11:59:25 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ uint32_t	argb_to_hex(t_colour *colour)
 	g = 255 * clamp(0, colour->g, 1);
 	b = 255 * clamp(0, colour->b, 1);
 	return ((a << 24) | (r << 16) | (g << 8) | b);
-
 }
 
 t_tuple	hex_to_argb(uint32_t colour)
@@ -48,7 +47,8 @@ void	img_pixel_put(t_win *win, int x, int y, uint32_t colour)
 {
 	char	*pixel;
 
-	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
+	if (x >= 0 && x < win->world.camera.size.horizontal \
+		&& y >= 0 && y < win->world.camera.size.vertical)
 	{
 		pixel = win->img.addr + (y * win->img.length + \
 			x * (win->img.bpp / 8));

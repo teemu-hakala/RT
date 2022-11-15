@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:06:15 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 10:06:17 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/15 11:48:14 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int	find_light(t_parser *parser)
 	if (ft_strncmp(&parser->string[parser->c], "\"light\"", 7) == 0)
 	{
 		parser->c += sizeof("\"light\"") - 1;
+		find_colon(parser);
 		return (true);
 	}
 	return (false);
@@ -80,45 +81,6 @@ void	parse_lights(t_world *world, t_parser *parser)
 	find_open_bracket(parser);
 	while (find_light(parser))
 	{
-		find_colon(parser);
-		find_open_bracket(parser);
-		light = light_prototype();
-		if (find_matching_bracket(parser))
-		{
-			if (vec_push(&world->lights, &light) == VEC_ERROR)
-				handle_errors("vec_push light error");
-			if (parser->string[parser->c] == ',')
-				parser->c++;
-			transform_object(&light.transform);
-			continue;
-		}
-		parse_light(parser, &light);
-		if (vec_push(&world->lights, &light) == VEC_ERROR)
-			handle_errors("vec_push light error");
-		if (!find_matching_bracket(parser))
-			handle_errors("brackets syntax error");
-		else if (parser->string[parser->c] == ',')
-		{
-			parser->c++;
-			find_open_bracket(parser);
-		}
-	}
-	if (!find_matching_bracket(parser))
-			handle_errors("brackets syntax error");
-	// if (!find_matching_bracket(parser))
-	// 		handle_errors("brackets syntax error");
-}
-
-void	parse_lights_djjdk(t_world *world, t_parser *parser)
-{
-	t_light	light;
-
-	find_colon(parser);
-	find_open_bracket(parser);
-	find_open_bracket(parser);
-	while (find_light(parser))
-	{
-		find_colon(parser);
 		find_open_bracket(parser);
 		light = light_prototype();
 		if (find_matching_bracket(parser) && parser->string[parser->c] == ',')

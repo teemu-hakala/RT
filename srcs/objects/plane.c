@@ -6,16 +6,13 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:05:04 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 10:05:06 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/15 11:30:31 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RTv1.h"
 
-t_tuple	plane_origin(void)
-{
-	return (point(0, 0, 0));
-}
+/*
 
 t_transform	plane_transform_floor(void)
 {
@@ -122,3 +119,4 @@ t_object	plane(t_tuple origin, t_transform transform, t_material material)
 		.type = OBJECT_PLANE
 	});
 }
+*/

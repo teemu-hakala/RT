@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:01:57 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 10:53:09 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/15 11:27:36 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ typedef struct s_parser
 }				t_parser;
 
 typedef int	(*t_subobject_keyword_fn)(t_parser *, t_object *);
-void	parse_into(t_world *world, const int file_descriptor);
-double	rt_atof(t_parser *parser);
+void		parse_into(t_world *world, const int file_descriptor);
+double		rt_atof(t_parser *parser);
 /*parse objects*/
 void		parse_lights(t_world *world, t_parser *parser);
 void		parse_camera(t_world *world, t_parser *parser);
@@ -35,13 +35,13 @@ void		parse_sphere(t_parser *parser, t_object *shape);
 void		parse_cone(t_parser *parser, t_object *shape);
 void		parse_cylinder(t_parser *parser, t_object *shape);
 /*parse sub-objects*/
-int		find_subobject_keyword(t_parser *parser, t_tuple *origin, \
-		t_transform *transform, t_material *material);
+int			find_subobject_keyword(t_parser *parser, t_tuple *origin, \
+			t_transform *transform, t_material *material);
 int			dispatch_find_subobject_keyword(t_parser *parser, t_object *shape);
 void		parse_tuple(t_tuple *tuple, t_parser *parser);
 void		parse_transform(t_transform *transform, t_parser *parser);
 void		parse_material(t_material *material, t_parser *parser);
-int		find_min_and_max(t_object *object, t_parser *parser);
+int			find_min_and_max(t_object *object, t_parser *parser);
 
 /*utility parse functions*/
 void		find_open_bracket(t_parser *parser);

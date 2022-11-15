@@ -6,41 +6,41 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:04:45 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 10:04:47 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/15 11:28:41 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RTv1.h"
 
-t_object	cone(t_tuple origin, t_transform transform, t_material material)
-{
-	return ((t_object)
-		{
-			.object.cone = (t_cone)
-			{
-				.origin = origin,
-				.transform = transform,
-				.material = material,
-				.min = -INFINITY,
-				.max = INFINITY,
-				.closed = false
-			},
-			.type = OBJECT_CONE
-		}
-	);
-}
+// t_object	cone(t_tuple origin, t_transform transform, t_material material)
+// {
+// 	return ((t_object)
+// 		{
+// 			.object.cone = (t_cone)
+// 			{
+// 				.origin = origin,
+// 				.transform = transform,
+// 				.material = material,
+// 				.min = -INFINITY,
+// 				.max = INFINITY,
+// 				.closed = false
+// 			},
+// 			.type = OBJECT_CONE
+// 		}
+// 	);
+// }
 
 /* this function checks to see whether the ray intersects the end caps of the
 cone and if true adds the intersection to the world intersect list */
 void	intersect_cone_caps(t_object *cone, t_ray *ray, \
 t_world *world)
 {
-	t_intersect cap_intersect;
-	cap_intersect.shape = cone;
+	t_intersect	cap_intersect;
 
+	cap_intersect.shape = cone;
 	if (cone->object.cone.closed == false || \
 		(ray->direction.tuple.units.y < EPSILON && \
-		 ray->direction.tuple.units.y > -EPSILON))
+			ray->direction.tuple.units.y > -EPSILON))
 		return ;
 	cap_intersect.time = (cone->object.cone.min - \
 		ray->origin.tuple.units.y) / ray->direction.tuple.units.y;
