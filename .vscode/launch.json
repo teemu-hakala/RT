@@ -39,6 +39,18 @@
 			"environment": [],
 			"externalConsole": false,
 			"MIMode": "lldb"
+		},
+		{
+			"name": "a2_cone",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/RTv1",
+			"args": ["${workspaceFolder}/scenes/a2_cone.json"],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb"
 		}
 	]
 }
