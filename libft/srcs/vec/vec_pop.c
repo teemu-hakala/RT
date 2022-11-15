@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_clear_whitespace.c                              :+:      :+:    :+:   */
+/*   vec_pop.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 13:12:03 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 14:13:21 by deelliot         ###   ########.fr       */
+/*   Created: 2022/11/15 14:37:16 by deelliot          #+#    #+#             */
+/*   Updated: 2022/11/15 14:37:25 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "vec.h"
 
-int	ft_clear_whitespace(const char *str)
+int	vec_pop(void *dst, t_vec *src)
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
+	if (src->len >= 1ULL)
 	{
-		if ((str[i] >= '\t' && str[i] <= '\r') || str[i] == ' ')
-			i++;
-		else
-			break ;
+		ft_memcpy(dst,
+			&src->memory[--src->len * src->elem_size],
+			src->elem_size);
+		return (VEC_SUCCESS);
 	}
-	return (i);
+	return (VEC_ERROR);
 }

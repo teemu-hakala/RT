@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_clear_whitespace.c                              :+:      :+:    :+:   */
+/*   vec_resize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 13:12:03 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 14:13:21 by deelliot         ###   ########.fr       */
+/*   Created: 2022/11/15 14:35:33 by deelliot          #+#    #+#             */
+/*   Updated: 2022/11/15 14:35:44 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "vec.h"
 
-int	ft_clear_whitespace(const char *str)
+/*static*/
+int	vec_resize(t_vec *src, uint64_t	target_size)
 {
-	int	i;
+	t_vec	data;
 
-	i = 0;
-	while (str[i])
+	data = *src;
+	if (vec_new(src, target_size, src->elem_size) > VEC_NON_ACTION)
 	{
-		if ((str[i] >= '\t' && str[i] <= '\r') || str[i] == ' ')
-			i++;
-		else
-			break ;
+		vec_copy(src, &data);
+		free(data.memory);
 	}
-	return (i);
+	return (src->memory != NULL);
 }

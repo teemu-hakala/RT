@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_clear_whitespace.c                              :+:      :+:    :+:   */
+/*   vec_iter.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 13:12:03 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 14:13:21 by deelliot         ###   ########.fr       */
+/*   Created: 2022/11/15 14:41:02 by deelliot          #+#    #+#             */
+/*   Updated: 2022/11/15 14:41:10 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "vec.h"
 
-int	ft_clear_whitespace(const char *str)
+void	vec_iter(t_vec *src, void (*f) (void *))
 {
-	int	i;
+	uint64_t	c;
 
-	i = 0;
-	while (str[i])
-	{
-		if ((str[i] >= '\t' && str[i] <= '\r') || str[i] == ' ')
-			i++;
-		else
-			break ;
-	}
-	return (i);
+	c = 0;
+	while (c < src->len)
+		f(vec_get(src, c++));
 }

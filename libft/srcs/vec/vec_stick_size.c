@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_clear_whitespace.c                              :+:      :+:    :+:   */
+/*   vec_stick_size.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 13:12:03 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 14:13:21 by deelliot         ###   ########.fr       */
+/*   Created: 2022/11/15 14:43:47 by deelliot          #+#    #+#             */
+/*   Updated: 2022/11/15 14:43:56 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "vec.h"
 
-int	ft_clear_whitespace(const char *str)
+uint64_t	stick_size(uint64_t size)
 {
-	int	i;
+	unsigned char	c;
 
-	i = 0;
-	while (str[i])
-	{
-		if ((str[i] >= '\t' && str[i] <= '\r') || str[i] == ' ')
-			i++;
-		else
-			break ;
-	}
-	return (i);
+	if (size == (uint64_t)(-1))
+		return (0);
+	c = 0;
+	while (size >> c != 0)
+		c++;
+	if (c < 64)
+		return (0x1U << c);
+	return ((uint64_t)(-1));
 }

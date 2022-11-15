@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_clear_whitespace.c                              :+:      :+:    :+:   */
+/*   vec_from.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 13:12:03 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 14:13:21 by deelliot         ###   ########.fr       */
+/*   Created: 2022/11/15 14:16:06 by thakala          #+#    #+#             */
+/*   Updated: 2022/11/15 14:16:13 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "vec.h"
 
-int	ft_clear_whitespace(const char *str)
+int	vec_from(t_vec *dst, void *src, uint64_t len, uint64_t elem_size)
 {
-	int	i;
+	uint64_t	size;
 
-	i = 0;
-	while (str[i])
+	size = check_multiplication_overflow(len, elem_size);
+	if (size == (uint64_t)(-1))
+		return (VEC_ERROR);
+	if (vec_new(dst, len, elem_size) > VEC_NON_ACTION)
 	{
-		if ((str[i] >= '\t' && str[i] <= '\r') || str[i] == ' ')
-			i++;
-		else
-			break ;
+		ft_memcpy(dst->memory, src, size);
+		dst->len = len;
 	}
-	return (i);
+	return ((-(dst->memory == NULL)) | 0x1);
 }

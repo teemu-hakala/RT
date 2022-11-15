@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_clear_whitespace.c                              :+:      :+:    :+:   */
+/*   vec_copy.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 13:12:03 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 14:13:21 by deelliot         ###   ########.fr       */
+/*   Created: 2022/11/15 14:35:13 by deelliot          #+#    #+#             */
+/*   Updated: 2022/11/15 14:35:21 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "vec.h"
 
-int	ft_clear_whitespace(const char *str)
+int	vec_copy(t_vec *dst, t_vec *src)
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
+	if (src->len > dst->alloc_size)
 	{
-		if ((str[i] >= '\t' && str[i] <= '\r') || str[i] == ' ')
-			i++;
-		else
-			break ;
+		ft_memcpy(dst->memory, src->memory, src->elem_size * dst->alloc_size);
+		dst->len = dst->alloc_size;
+		return (VEC_COPY_PARTIAL);
 	}
-	return (i);
+	else
+	{
+		ft_memcpy(dst->memory, src->memory, src->elem_size * src->len);
+		dst->len = src->len;
+		return (VEC_COPY_FULL);
+	}
 }

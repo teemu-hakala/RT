@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_clear_whitespace.c                              :+:      :+:    :+:   */
+/*   vec_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 13:12:03 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 14:13:21 by deelliot         ###   ########.fr       */
+/*   Created: 2022/11/15 14:41:28 by deelliot          #+#    #+#             */
+/*   Updated: 2022/11/15 14:41:38 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "vec.h"
 
-int	ft_clear_whitespace(const char *str)
+int	vec_map(t_vec *dst, t_vec *src, void (*f) (void *))
 {
-	int	i;
+	uint64_t	c;
 
-	i = 0;
-	while (str[i])
-	{
-		if ((str[i] >= '\t' && str[i] <= '\r') || str[i] == ' ')
-			i++;
-		else
-			break ;
-	}
-	return (i);
+	vec_copy(dst, src);
+	c = -1;
+	while (++c < src->len)
+		f(&dst->memory[dst->elem_size * c]);
+	return (VEC_SUCCESS);
 }
