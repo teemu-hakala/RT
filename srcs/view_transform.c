@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   view_transform.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:13:46 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 10:13:48 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/15 14:16:07 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,16 @@ t_transform	default_transform(void)
 	);
 }
 
+static int	tuple_nearly_equals(t_tuple tuple_a, t_tuple tuple_b)
+{
+	t_tuple	diff;
+
+	diff = tuple_sub(tuple_a, tuple_b);
+	return (-TUPLE_EPSILON < diff.array[X] && diff.array[X] < TUPLE_EPSILON
+		&& - TUPLE_EPSILON < diff.array[Y] && diff.array[Y] < TUPLE_EPSILON
+		&& - TUPLE_EPSILON < diff.array[Z] && diff.array[Z] < TUPLE_EPSILON);
+}
+
 t_mtx	view_transform(t_tuple from, t_tuple to, t_tuple up)
 {
 	t_tuple	forward;
@@ -37,6 +47,8 @@ t_mtx	view_transform(t_tuple from, t_tuple to, t_tuple up)
 	forward = normalize(tuple_sub(to, from));
 	up_n = normalize(up);
 	left = cross_product(forward, up_n);
+	if (tuple_nearly_equals(left, vector(0, 0, 0)))
+		left = cross_product(forward, vector(0, 0, 1));
 	true_up = cross_product(left, forward);
 	orientation = (t_mtx){
 		.tuple_rows = {\
@@ -48,7 +60,6 @@ t_mtx	view_transform(t_tuple from, t_tuple to, t_tuple up)
 		-forward.tuple.units.z, 0.0}, \
 	(t_quad_tuple){0.0, 0.0, 0.0, 1.0} \
 		}};
-
 	translate(&orientation, &(t_tuple){.tuple.units = {-from.tuple.units.x, \
 		-from.tuple.units.y, -from.tuple.units.z, POINT_1}});
 	return (orientation);

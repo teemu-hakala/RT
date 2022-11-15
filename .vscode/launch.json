@@ -17,11 +17,23 @@
 			"MIMode": "lldb"
 		},
 		{
-			"name": "a0",
+			"name": "a0_sphere",
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/RTv1",
 			"args": ["${workspaceFolder}/scenes/a0_sphere.json"],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb"
+		},
+		{
+			"name": "a1_plane",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/RTv1",
+			"args": ["${workspaceFolder}/scenes/a1_plane.json"],
 			"stopAtEntry": true,
 			"cwd": "${workspaceFolder}",
 			"environment": [],
