@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:10:20 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 10:10:20 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/15 15:29:15 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ t_tuple	normal_at_cone(void *cone, t_tuple *point_at)
 	((((t_object *)cone)->object.cone.min) + EPSILON)))
 		return (vector(0, -1, 0));
 	else
-		return (vector(point_at->tuple.units.x, y, point_at->tuple.units.z));
+		return (normalize(vector \
+			(point_at->tuple.units.x, y, point_at->tuple.units.z)));
 }
 
 t_tuple	normal_at_cylinder(void *cylinder, t_tuple *point_at)
@@ -80,7 +81,8 @@ t_tuple	normal_at_cylinder(void *cylinder, t_tuple *point_at)
 	((((t_object *)cylinder)->object.cylinder.min) + EPSILON)))
 		return (vector(0, -1, 0));
 	else
-		return (vector(point_at->tuple.units.x, 0, point_at->tuple.units.z));
+		return (normalize(vector \
+			(point_at->tuple.units.x, 0, point_at->tuple.units.z)));
 }
 
 t_tuple	normal_at(void *object, t_tuple *point)
