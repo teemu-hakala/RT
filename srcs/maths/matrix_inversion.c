@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:02:29 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 10:02:32 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/15 13:01:38 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ Returns a new matrix with 1 column and 1 row less*/
 t_mtx	submatrix(t_mtx *mtx, t_coords index, uint32_t size)
 {
 	t_mtx		new_matrix;
-	t_coords		old;
-	t_coords		new;
+	t_coords	old;
+	t_coords	new;
 
 	old.row = 0;
 	new.row = 0;
@@ -73,7 +73,7 @@ static t_fl	matrix_cofactor(t_mtx *mtx, t_coords index, uint32_t size)
 t_fl	determinant(t_mtx *mtx, uint32_t size)
 {
 	t_fl		det;
-	t_coords		index;
+	t_coords	index;
 
 	index.col = 0;
 	index.row = 0;
@@ -99,7 +99,7 @@ void	matrix_inversion(t_mtx *mtx, uint32_t size)
 {
 	t_fl		det;
 	t_mtx		temp;
-	t_coords		i;
+	t_coords	i;
 
 	det = determinant((t_mtx *)mtx, size);
 	if (det == 0)

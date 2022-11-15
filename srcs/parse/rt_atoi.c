@@ -6,12 +6,9 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 14:16:53 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/14 11:33:47 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/15 13:44:25 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/* The atoi() function converts the initial portion of the string pointed to
-by str to int representation.*/
 
 #include "RTv1.h"
 
@@ -42,7 +39,8 @@ int	rt_atoi(t_parser *parser)
 	x = 0;
 	while (parser->string[parser->c + i])
 	{
-		if (parser->string[parser-> c + i] < '0' || parser->string[parser-> c + i] > '9')
+		if (parser->string[parser-> c + i] < '0' || \
+		parser->string[parser-> c + i] > '9')
 			break ;
 		x = (x * 10) + (parser->string[parser-> c + i] - '0');
 		i++;
