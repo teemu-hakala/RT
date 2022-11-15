@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:04:38 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 10:04:40 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/15 11:23:51 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,33 @@ t_fl	get_pixel_size(t_camera *camera, t_canvas size, t_fl field_of_view)
 	return (camera->half_width * 2 / size.horizontal);
 }
 
-t_camera	camera(t_tuple origin, t_transform transform, t_fl field_of_view, t_canvas size)
+t_camera	camera_prototype(void)
 {
-	t_camera camera;
+	t_camera	camera;
 
-	camera.origin = origin;
-	camera.transform = transform;
-	camera.center_of_interest =  point(0, 0, 0);
-	camera.field_of_view = field_of_view,
-	camera.size = (t_canvas){.vertical = size.vertical, .horizontal = size.horizontal};
-	camera.pixel_size = get_pixel_size(& camera, size, field_of_view);
+	camera.origin = point(0, 0, -5);
+	camera.transform = default_transform_1();
+	camera.center_of_interest = point(0, 0, 0);
+	camera.field_of_view = M_2_PI;
+	camera.size = default_canvas();
+	camera.pixel_size = get_pixel_size(&camera, camera.size, \
+		camera.field_of_view);
+	transform_camera(&camera);
 	return (camera);
 }
+
+// t_camera	camera(t_tuple origin, t_transform transform, t_fl field_of_view, t_canvas size)
+// {
+// 	t_camera camera;
+
+// 	camera.origin = origin;
+// 	camera.transform = transform;
+// 	camera.center_of_interest =  point(0, 0, 0);
+// 	camera.field_of_view = field_of_view,
+// 	camera.size = (t_canvas){.vertical = size.vertical, .horizontal = size.horizontal};
+// 	camera.pixel_size = get_pixel_size(& camera, size, field_of_view);
+// 	return (camera);
+// }
 
 /*support for matrix transformation, for now: rotation*/
 /*
