@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:05:21 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 10:05:23 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/15 10:20:36 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,6 @@ static t_tuple	camera_origin(void)
 static t_canvas	default_canvas(void)
 {
 	return ((t_canvas){.vertical = HEIGHT, .horizontal = WIDTH});
-}
-
-void	transform_camera(t_camera *camera)
-{
-	t_mtx	view_matrix;
-
-	identity_matrix_set(&camera->transform.matrix);
-	translate(&camera->transform.matrix, &camera->transform.translation);
-	rotate(&camera->transform.matrix, &camera->transform.rotation);
-	scale(&camera->transform.matrix, &camera->transform.scale);
-	view_matrix = view_transform(camera->origin, camera->center_of_interest, vector(0, 1, 0));
-	matrix_multi_square(&camera->transform.matrix, &view_matrix, 4);
-	camera->transform.inverse = camera->transform.matrix;
-	matrix_inversion(&camera->transform.inverse, 4);
 }
 
 t_camera	camera_prototype(void)

@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:07:33 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 10:07:35 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/15 10:18:39 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	open_scene_into(t_win *win, const char *str)
 		handle_errors("unable to open file");
 }
 
-void	read_file_contents(t_vec *string, const int file_descriptor)
+static void	read_file_contents(t_vec *string, const int file_descriptor)
 {
 	char	*line;
 	int		read_bytes;
@@ -47,7 +47,7 @@ void	read_file_contents(t_vec *string, const int file_descriptor)
 		handle_errors("vec_push_arr error");
 }
 
-void	find_object_keyword(t_world *world, t_parser *parser)
+static void	find_object_keyword(t_world *world, t_parser *parser)
 {
 	find_double_quote(parser);
 	if (ft_strncmp(&parser->string[parser->c], "camera\"", 7) == 0)

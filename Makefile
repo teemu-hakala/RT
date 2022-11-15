@@ -6,7 +6,7 @@
 #    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2022/11/14 10:10:37 by deelliot         ###   ########.fr        #
+#    Updated: 2022/11/15 10:21:43 by deelliot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,10 +40,10 @@ PARSE_SRCS = default_files.c parse_camera.c parse_cone.c parse_cylinder.c \
 	parse_lights.c parse_plane.c parse_shapes.c parse_sphere.c \
 	parse_sub_objs.c parse_utility.c parse.c rt_atof.c rt_atoi.c \
 
-OBJECTS_SRCS = camera.c plane.c cone.c cylinder.c \
+OBJECTS_SRCS = camera.c plane.c cone.c cylinder.c transform_objects.c\
 
 MATHS_SRCS = matrix_inversion.c matrix_maths.c matrix_transformations.c \
-	transform_tuple.c tuple_operations.c \
+	tuple_operations.c \
 
 FILES = \
 	main.c \

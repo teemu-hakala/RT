@@ -6,11 +6,11 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 16:12:10 by deelliot          #+#    #+#             */
-/*   Updated: 2022/08/30 14:46:29 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/15 10:15:13 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "libft.h"
 
 /* Outputs the string s to the standard error followed by a ’\n’.*/
 
