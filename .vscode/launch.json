@@ -5,18 +5,28 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"name": "RTv1",
+			"name": "minimum",
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/RTv1",
-			// "program": "/Users/deelliot/projects/RTv1/RTv1",
 			"args": ["${workspaceFolder}/scenes/minimum.json"],
 			"stopAtEntry": true,
 			"cwd": "${workspaceFolder}",
 			"environment": [],
 			"externalConsole": false,
 			"MIMode": "lldb"
+		},
+		{
+			"name": "a0",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/RTv1",
+			"args": ["${workspaceFolder}/scenes/a0_sphere.json"],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb"
 		}
-
 	]
 }
