@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+         #
+#    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/03 13:04:07 by deelliot          #+#    #+#              #
-#    Updated: 2022/11/11 10:05:20 by thakala          ###   ########.fr        #
+#    Updated: 2022/11/15 14:49:55 by deelliot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,10 @@ GRAPHICS_DIR = graphics
 
 # Source and object files
 
-VEC_SRCS = vec.c
+VEC_SRCS = check_overflow.c vec_append.c vec_clear.c vec_copy.c vec_filter.c \
+	vec_free.c vec_from.c vec_get.c vec_insert.c vec_iter.c vec_map.c \
+	vec_new.c vec_pop.c vec_prepend.c vec_push_array.c vec_push.c vec_reduce.c \
+	vec_remove.c vec_resize.c vec_sort.c vec_stick_size.c vec_swap.c
 
 LIST_SRCS = ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c ft_lstiter.c \
 	ft_lstadd_back.c ft_lstmap.c

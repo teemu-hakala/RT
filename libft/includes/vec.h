@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 10:27:10 by thakala           #+#    #+#             */
-/*   Updated: 2022/11/09 16:48:00 by thakala          ###   ########.fr       */
+/*   Updated: 2022/11/15 14:50:53 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,9 @@ int			vec_map(t_vec *dst, t_vec *src, void (*f) (void *));
 int			vec_filter(t_vec *dst, t_vec *src, bool (*f) (void *));
 int			vec_reduce(void *dst, t_vec *src, void (*f) (void *, void *));
 int			vec_sort(t_vec *src, int (*f)(void *, void *));
-
+uint64_t	stick_size(uint64_t size);
+uint64_t	check_addition_overflow(uint64_t a, uint64_t b);
+uint64_t	check_multiplication_overflow(uint64_t multiplicand, \
+			uint64_t multiplier);
+void		vec_swap(t_vec *a, t_vec *b);
 #endif

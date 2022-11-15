@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_clear_whitespace.c                              :+:      :+:    :+:   */
+/*   vec_filter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 13:12:03 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 14:13:21 by deelliot         ###   ########.fr       */
+/*   Created: 2022/11/15 14:41:50 by deelliot          #+#    #+#             */
+/*   Updated: 2022/11/15 14:41:58 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "vec.h"
 
-int	ft_clear_whitespace(const char *str)
+int	vec_filter(t_vec *dst, t_vec *src, bool (*f)(void *))
 {
-	int	i;
+	uint64_t	c;
+	void		*data;
 
-	i = 0;
-	while (str[i])
+	c = -1;
+	while (++c < src->len)
 	{
-		if ((str[i] >= '\t' && str[i] <= '\r') || str[i] == ' ')
-			i++;
-		else
-			break ;
+		data = &src->memory[src->elem_size * c];
+		if (f(data))
+			if (vec_push(dst, data) < VEC_NON_ACTION)
+				return (VEC_ERROR);
 	}
-	return (i);
+	return (VEC_SUCCESS);
 }
