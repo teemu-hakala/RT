@@ -6,11 +6,20 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:13:17 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 10:13:19 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/15 16:09:56 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RTv1.h"
+
+t_ray	ray_transform(t_ray *ray, t_mtx *transform)
+{
+	t_ray	result;
+
+	result.origin = matrix_tuple_multi(transform, &ray->origin);
+	result.direction = matrix_tuple_multi(transform, &ray->direction);
+	return (result);
+}
 
 t_ray	ray_for_pixel(t_camera *camera, t_canvas position)
 {

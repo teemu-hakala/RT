@@ -6,32 +6,15 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:04:45 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 11:28:41 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/15 16:15:03 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RTv1.h"
 
-// t_object	cone(t_tuple origin, t_transform transform, t_material material)
-// {
-// 	return ((t_object)
-// 		{
-// 			.object.cone = (t_cone)
-// 			{
-// 				.origin = origin,
-// 				.transform = transform,
-// 				.material = material,
-// 				.min = -INFINITY,
-// 				.max = INFINITY,
-// 				.closed = false
-// 			},
-// 			.type = OBJECT_CONE
-// 		}
-// 	);
-// }
-
-/* this function checks to see whether the ray intersects the end caps of the
+/* checks to see whether the ray intersects the end caps of the
 cone and if true adds the intersection to the world intersect list */
+
 void	intersect_cone_caps(t_object *cone, t_ray *ray, \
 t_world *world)
 {

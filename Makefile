@@ -6,7 +6,7 @@
 #    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2022/11/15 12:22:01 by deelliot         ###   ########.fr        #
+#    Updated: 2022/11/15 16:19:59 by deelliot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ PARSE_SRCS = default_files.c parse_camera.c parse_cone.c parse_cylinder.c \
 OBJECTS_SRCS = camera.c plane.c cone.c cylinder.c transform_objects.c\
 
 MATHS_SRCS = matrix_inversion.c matrix_maths.c matrix_transformations.c \
-	tuple_operations.c \
+	tuple_operations.c matrix_rotations.c \
 
 FILES = \
 	main.c \
@@ -60,6 +60,7 @@ FILES = \
 	ray.c \
 	render.c \
 	colour.c \
+	computation_dispatch.c \
 	computations.c \
 	patterns.c \
 #	sphere_scene.c \

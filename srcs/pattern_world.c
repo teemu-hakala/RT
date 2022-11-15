@@ -4,7 +4,8 @@ t_pattern	default_stripe_pattern(void)
 {
 	return ((t_pattern){
 		.type = PATTERN_STRIPE,
-		.colour = set_pattern_colours(hex_to_argb(COLOUR_BLACK),hex_to_argb(COLOUR_WHITE)),
+		.colour = set_pattern_colours(hex_to_argb(COLOUR_BLACK), \
+			hex_to_argb(COLOUR_WHITE)),
 		.transform = default_transform_2()
 	});
 }
@@ -13,7 +14,8 @@ t_pattern	default_gradient_pattern(void)
 {
 	return ((t_pattern){
 		.type = PATTERN_GRADIENT,
-		.colour = set_pattern_colours(hex_to_argb(COLOUR_WHITE),hex_to_argb(COLOUR_RED)),
+		.colour = set_pattern_colours(hex_to_argb(COLOUR_WHITE), \
+			hex_to_argb(COLOUR_RED)),
 		.transform = default_transform_1()
 	});
 }
@@ -22,7 +24,8 @@ t_pattern	default_ring_pattern(void)
 {
 	return ((t_pattern){
 		.type = PATTERN_CIRCLES,
-		.colour = set_pattern_colours(hex_to_argb(COLOUR_RED),hex_to_argb(COLOUR_BLACK)),
+		.colour = set_pattern_colours(hex_to_argb(COLOUR_RED),\
+			hex_to_argb(COLOUR_BLACK)),
 		.transform = default_transform_1()
 	});
 }
@@ -31,7 +34,8 @@ t_pattern	default_checkered_pattern(void)
 {
 	return ((t_pattern){
 		.type = PATTERN_CHECKERED,
-		.colour = set_pattern_colours(hex_to_argb(COLOUR_WHITE),hex_to_argb(COLOUR_BLACK)),
+		.colour = set_pattern_colours(hex_to_argb(COLOUR_WHITE),\
+			hex_to_argb(COLOUR_BLACK)),
 		.transform = default_transform_1()
 	});
 }

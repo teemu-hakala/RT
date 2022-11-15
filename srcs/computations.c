@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   computations.c                                     :+:      :+:    :+:   */
+/*   object_computation.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/15 10:07:56 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 10:07:58 by deelliot         ###   ########.fr       */
+/*   Created: 2022/11/15 16:17:48 by deelliot          #+#    #+#             */
+/*   Updated: 2022/11/15 16:18:13 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,44 +28,6 @@ void	prepare_object(t_world *world, t_object *object, t_comp *computations)
 	}
 	else
 		computations->inside = false;
-	computations->over_point = tuple_add(computations->point,\
+	computations->over_point = tuple_add(computations->point, \
 		tuple_scale(computations->vectors.surface_normal, EPSILON));
-}
-
-void	prepare_plane(t_world *world)
-{
-	prepare_object(world, world->hit.intersection->shape, \
-		&world->hit.computations);
-}
-
-void	prepare_sphere(t_world *world)
-{
-	prepare_object(world, world->hit.intersection->shape, \
-		&world->hit.computations);
-}
-
-void	prepare_cone(t_world *world)
-{
-	prepare_object(world, world->hit.intersection->shape, \
-		&world->hit.computations);
-}
-
-void	prepare_cylinder(t_world *world)
-{
-	prepare_object(world, world->hit.intersection->shape, \
-		&world->hit.computations);
-}
-
-void	prepare_computations(t_world *world)
-{
-	static const t_computation_fn	\
-			precompute_shape[] = {
-		prepare_plane,
-		prepare_sphere,
-		prepare_cone,
-		prepare_cylinder
-	};
-
-	precompute_shape[world->hit.intersection->shape->type - OBJECT_INDEX_OFFSET]
-		(world);
 }

@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:09:48 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 11:57:48 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/15 16:36:49 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 
 void	initialise_image(t_img *img, t_win *win)
 {
-	img->img = mlx_new_image(win->mlx, win->world.camera.size.horizontal\
+	img->img = mlx_new_image(win->mlx, win->world.camera.size.horizontal \
 		, win->world.camera.size.vertical);
 	if (!img->img)
 		handle_errors("error");
@@ -69,7 +69,6 @@ void	initialise_window(t_win *win)
 	if (!win->win)
 		handle_errors("error");
 	initialise_image(&win->img, win);
-	// background_colour(win);
 }
 
 void	identity_matrix_set(t_mtx *dst)

@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:09:54 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 10:10:03 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/15 16:48:24 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void	identify_hit(t_world *world, t_hit *hit)
 		if (intersection->time >= 0 && \
 			(hit->intersection == NULL \
 				|| intersection->time < hit->intersection->time))
-				{
-					hit->intersection = intersection;
-					break ;
-				}
+		{
+			hit->intersection = intersection;
+			break ;
+		}
 	}
 }
 
@@ -63,12 +63,14 @@ void	sphere_intersection(t_ray ray, void *sphere, t_world *world)
 	if (params.discriminant >= 0.0)
 	{
 		if (vec_push(&world->intersections, &(t_intersect){
-				.time = (-params.b - sqrt(params.discriminant)) / (2 * params.a),
+				.time = (-params.b - sqrt(params.discriminant)) / \
+				(2 * params.a),
 				.shape = sphere
 			}) == VEC_ERROR)
 			handle_errors("vec_push malloc error sphere_intersection");
 		if (vec_push(&world->intersections, &(t_intersect){
-				.time = (-params.b + sqrt(params.discriminant)) / (2 * params.a),
+				.time = (-params.b + sqrt(params.discriminant)) / \
+				(2 * params.a),
 				.shape = sphere
 			}) == VEC_ERROR)
 			handle_errors("vec_push malloc error sphere_intersection");

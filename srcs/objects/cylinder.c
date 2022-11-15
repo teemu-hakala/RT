@@ -6,30 +6,11 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:04:51 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 11:29:47 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/15 16:14:33 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RTv1.h"
-
-// t_object	cylinder(t_tuple origin, t_transform transform, t_material material)
-// {
-// 	return ((t_object)
-// 		{
-// 			.object.cylinder = (t_cylinder)
-// 			{
-// 				.origin = origin,
-// 				.transform = transform,
-// 				.radius = 1,
-// 				.material = material,
-// 				.min = -INFINITY,
-// 				.max = INFINITY,
-// 				.closed = false
-// 			},
-// 			.type = OBJECT_CYLINDER
-// 		}
-// 	);
-// }
 
 /*this function checks whether the intersection is within the cylinder's
 radius*/
@@ -47,8 +28,9 @@ int	check_cap(t_ray *ray, t_fl time, t_fl radius)
 		return (false);
 }
 
-/* this function checks to see whether the ray intersects the end caps of the
+/* checks to see whether the ray intersects the end caps of the
 cylinder and if true adds the intersection to the world intersect list */
+
 void	intersect_cylinder_caps(t_object *cylinder, t_ray *ray, \
 t_world *world)
 {
