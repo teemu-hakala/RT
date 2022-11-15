@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:07:11 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 10:07:14 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/15 10:49:56 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 void	find_open_bracket(t_parser *parser)
 {
 	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
-	if (parser->string[parser->c] == '{'|| parser->string[parser->c] == '[')
+	if (parser->string[parser->c] == '{' || parser->string[parser->c] == '[')
 	{
-		if (vec_push_arr(&parser->brackets, &parser->string[parser->c++], 1) == VEC_ERROR)
+		if (vec_push_arr(&parser->brackets, &parser->string[parser->c++], 1) \
+			== VEC_ERROR)
 			handle_errors("vec_push_arr error");
 	}
 	else
@@ -53,64 +54,4 @@ void	find_colon(t_parser *parser)
 	if (parser->string[parser->c] != ':')
 		handle_errors("colon format error");
 	parser->c++;
-}
-
-int	find_min_and_max(t_object *object, t_parser *parser)
-{
-	t_fl	min;
-	t_fl	max;
-	int		closed;
-
-	find_double_quote(parser);
-	if (!ft_strncmp(&parser->string[parser->c], "min\"", 4))
-	{
-		parser->c += sizeof("min\"") - 1;
-		find_colon(parser);
-		min = rt_atof(parser);
-		if (object->type == OBJECT_CONE)
-			object->object.cone.min = min;
-		else
-			object->object.cylinder.min = min;
-		parser->c += ft_clear_whitespace(&parser->string[parser->c]);
-		if (parser->string[parser->c] == ',')
-			{
-				parser->c++;
-				find_min_and_max(object, parser);
-			}
-	}
-	else if (!ft_strncmp(&parser->string[parser->c], "max\"", 4))
-	{
-		parser->c += sizeof("max\"") - 1;
-		find_colon(parser);
-		max = rt_atof(parser);
-		if (object->type == OBJECT_CONE)
-			object->object.cone.max = max;
-		else
-			object->object.cylinder.max = max;
-		parser->c += ft_clear_whitespace(&parser->string[parser->c]);
-		if (parser->string[parser->c] == ',')
-		{
-			parser->c++;
-			find_min_and_max(object, parser);
-		}
-	}
-	else if (!ft_strncmp(&parser->string[parser->c], "closed\"", 7))
-	{
-		parser->c += sizeof("closed\"") - 1;
-		find_colon(parser);
-		parser->c += ft_clear_whitespace(&parser->string[parser->c]);
-		if (parser->string[parser->c] == '1')
-			closed = true;
-		else if (parser->string[parser->c] == '0')
-			closed = false;
-		else
-			handle_errors("cone/cylinder syntax error");
-		if (object->type == OBJECT_CONE)
-			object->object.cone.closed = closed;
-		else
-			object->object.cylinder.closed = closed;
-	}
-	else
-		return (false);
-	return (true);
 }

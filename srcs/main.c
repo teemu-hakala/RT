@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:10:12 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 10:10:13 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/15 10:35:06 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(int argc, char **argv)
 	t_win	win;
 
 	if (argc != 2)
-	 	handle_errors(USAGE);
+		handle_errors(USAGE);
 	open_scene_into(&win, argv[1]);
 	initialise_world(&win.world);
 	parse_into(&win.world, win.fd);

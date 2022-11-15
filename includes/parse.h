@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:01:57 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 10:02:02 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/15 10:53:09 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,13 @@ void		parse_sphere(t_parser *parser, t_object *shape);
 void		parse_cone(t_parser *parser, t_object *shape);
 void		parse_cylinder(t_parser *parser, t_object *shape);
 /*parse sub-objects*/
+int		find_subobject_keyword(t_parser *parser, t_tuple *origin, \
+		t_transform *transform, t_material *material);
 int			dispatch_find_subobject_keyword(t_parser *parser, t_object *shape);
 void		parse_tuple(t_tuple *tuple, t_parser *parser);
 void		parse_transform(t_transform *transform, t_parser *parser);
 void		parse_material(t_material *material, t_parser *parser);
+int		find_min_and_max(t_object *object, t_parser *parser);
 
 /*utility parse functions*/
 void		find_open_bracket(t_parser *parser);
@@ -52,6 +55,7 @@ t_transform	default_transform_1(void);
 void		transform_camera(t_camera *camera);
 t_material	default_phong_mat(void);
 t_material	default_material_1(void);
+t_canvas	default_canvas(void);
 
 /*object prototypes*/
 t_camera	camera_prototype(void);

@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:07:33 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 10:18:39 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/15 10:35:45 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	parse_into(t_world *world, const int file_descriptor)
 	vec_new(&parser.brackets, 256, sizeof(char));
 	parser.c = 0;
 	find_open_bracket(&parser);
-  	find_object_keyword(world, &parser);
+	find_object_keyword(world, &parser);
 	while (1)
 	{
 		if (parser.string[parser.c] == ',')

@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:05:16 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 10:05:18 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/15 10:25:18 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,9 @@ t_material	default_material_1(void)
 		.dif_col = vector(0, 0, 0),
 		.spec_col = vector(0, 0, 0)
 	});
+}
+
+t_canvas	default_canvas(void)
+{
+	return ((t_canvas){.vertical = HEIGHT, .horizontal = WIDTH});
 }

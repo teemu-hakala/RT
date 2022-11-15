@@ -1,0 +1,58 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_transform.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/15 10:46:20 by deelliot          #+#    #+#             */
+/*   Updated: 2022/11/15 10:47:03 by deelliot         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "RTv1.h"
+
+int	find_transform_keywords(t_transform *transform, t_parser *parser)
+{
+	find_double_quote(parser);
+	if (ft_strncmp(&parser->string[parser->c], "translation\"", 12) == 0)
+	{
+		parser->c += sizeof("translation\"") - 1;
+		find_colon(parser);
+		parse_tuple(&transform->translation, parser);
+		return (true);
+	}
+	else if (ft_strncmp(&parser->string[parser->c], "rotation\"", 9) == 0)
+	{
+		parser->c += sizeof("rotation\"") - 1;
+		find_colon(parser);
+		parse_tuple(&transform->rotation, parser);
+		return (true);
+	}
+	else if (ft_strncmp(&parser->string[parser->c], "scale\"", 6) == 0)
+	{
+		parser->c += sizeof("scale\"") - 1;
+		find_colon(parser);
+		parse_tuple(&transform->scale, parser);
+		return (true);
+	}
+	return (false);
+}
+
+void	parse_transform(t_transform *transform, t_parser *parser)
+{
+	find_transform_keywords(transform, parser);
+	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
+	if (parser->string[parser->c] == ',')
+	{
+		parser->c++;
+		parse_transform(transform, parser);
+	}
+	else
+	{
+		if (find_matching_bracket(parser))
+			return ;
+		else
+			handle_errors("transform syntax error");
+	}
+}

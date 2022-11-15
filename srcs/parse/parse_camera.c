@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:05:21 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 10:20:36 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/15 10:26:53 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,6 @@
 static t_tuple	camera_origin(void)
 {
 	return (point(0, 0, -5));
-}
-
-static t_canvas	default_canvas(void)
-{
-	return ((t_canvas){.vertical = HEIGHT, .horizontal = WIDTH});
 }
 
 t_camera	camera_prototype(void)
@@ -53,7 +48,7 @@ void	find_canvas_keywords(t_world *world, t_parser *parser)
 	}
 }
 
-void parse_camera_subobjects(t_world *world, t_parser *parser)
+static void parse_camera_subobjects(t_world *world, t_parser *parser)
 {
 	find_double_quote(parser);
 	if (ft_strncmp(&parser->string[parser->c], "origin\"", 7) == 0)
