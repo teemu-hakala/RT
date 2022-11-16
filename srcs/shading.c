@@ -6,13 +6,14 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:13:36 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 10:13:38 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/16 10:32:57 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RTv1.h"
 
-void	shade_plane(t_world *world, void *plane, t_tuple *colour, t_light *light)
+void	shade_plane(t_world *world, void *plane, t_tuple *colour,
+	t_light *light)
 {
 	is_shadow(world, world->hit.computations.over_point, light);
 	pattern_at(&((t_plane *)plane)->material, \
@@ -22,7 +23,8 @@ void	shade_plane(t_world *world, void *plane, t_tuple *colour, t_light *light)
 		world->hit.computations.over_point)), *colour);
 }
 
-void	shade_sphere(t_world *world, void *sphere, t_tuple *colour, t_light *light)
+void	shade_sphere(t_world *world, void *sphere, t_tuple *colour,
+	t_light *light)
 {
 	is_shadow(world, world->hit.computations.over_point, light);
 	pattern_at(&((t_sphere *)sphere)->material, \
@@ -42,11 +44,13 @@ void	shade_cone(t_world *world, void *cone, t_tuple *colour, t_light *light)
 		world->hit.computations.over_point)), *colour);
 }
 
-void	shade_cylinder(t_world *world, void *cylinder, t_tuple *colour, t_light *light)
+void	shade_cylinder(t_world *world, void *cylinder, t_tuple *colour,
+	t_light *light)
 {
 	is_shadow(world, world->hit.computations.over_point, light);
 	pattern_at(&((t_cylinder *)cylinder)->material, \
-		&world->hit.computations.over_point, ((t_cylinder *)cylinder)->transform);
+		&world->hit.computations.over_point, \
+		((t_cylinder *)cylinder)->transform);
 	*colour = tuple_add((lighting(((t_cylinder *)cylinder)->material, \
 		light, world->hit.computations.vectors, \
 		world->hit.computations.over_point)), *colour);
@@ -65,7 +69,6 @@ t_tuple	shade_hit(t_world *world)
 	t_light		*light;
 	uint64_t	i;
 
-
 	colour.tuple.colour = (t_colour){0.0, 0.0, 0.0, 0.0};
 	i = 0;
 	while (i < world->lights.len)
@@ -78,6 +81,3 @@ t_tuple	shade_hit(t_world *world)
 	}
 	return (colour);
 }
-
-
-

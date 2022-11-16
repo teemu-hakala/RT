@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:13:23 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 15:03:47 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/16 10:31:42 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 t_tuple	hit_position(t_ray *ray, t_fl distance)
 {
 	return (tuple_add(ray->origin, tuple_scale(ray->direction, distance)));
-
 }
 
 t_tuple	reflect(t_tuple input, t_tuple normal)

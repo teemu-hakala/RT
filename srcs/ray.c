@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:13:17 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 16:09:56 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/16 10:31:35 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_ray	ray_for_pixel(t_camera *camera, t_canvas position)
 	pixel = matrix_tuple_multi(&camera->transform.inverse, &(t_tuple) \
 		{.tuple.units = {.x = world.col, .y = world.row, -1, POINT_1}});
 	origin = matrix_tuple_multi(&camera->transform.inverse, &(t_tuple) \
-		{.tuple.units = {.x = 0, .y = 0, .z = 0, .w = POINT_1}});//make it point(1,1,1)//&camera.origin);
+		{.tuple.units = {.x = 0, .y = 0, .z = 0, .w = POINT_1}});
 	direction = normalize(tuple_sub(pixel, origin));
 	return ((t_ray){.origin = origin, .direction = direction});
 }

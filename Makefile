@@ -6,7 +6,7 @@
 #    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2022/11/16 10:29:05 by deelliot         ###   ########.fr        #
+#    Updated: 2022/11/16 10:40:05 by deelliot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,16 +38,16 @@ PATTERNS_DIR = patterns
 
 # Source and object files
 PARSE_SRCS = default_files.c parse_camera.c parse_cone.c parse_cylinder.c \
-	parse_lights.c parse_single_light.c parse_plane.c parse_shapes.c parse_sphere.c \
-	parse_sub_objs.c parse_utility.c parse.c rt_atof.c rt_atoi.c \
-	dispatch_subobjects.c parse_material.c parse_transform.c
+	parse_lights.c parse_single_light.c parse_plane.c parse_shapes.c \
+	parse_sphere.c parse_sub_objs.c parse_utility.c parse.c rt_atof.c \
+	rt_atoi.c dispatch_subobjects.c parse_material.c parse_transform.c
 
 OBJECTS_SRCS = camera.c plane.c cone.c cylinder.c transform_objects.c\
 
 MATHS_SRCS = matrix_inversion.c matrix_maths.c matrix_transformations.c \
-	tuple_operations.c matrix_rotations.c \
+	tuple_operations.c matrix_rotations.c tuple_w.c tuple_basic_operations.c \
 
-PATTERNS_SRCS = pattern_dispatch.c patterns.c 
+PATTERNS_SRCS = pattern_dispatch.c patterns.c
 
 FILES = \
 	main.c \
@@ -65,9 +65,6 @@ FILES = \
 	colour.c \
 	computation_dispatch.c \
 	computations.c \
-#	sphere_scene.c \
-#	pattern_world.c \
-#	world.c \
 
 OBJS = $(addprefix $(OBJS_DIR)/, \
 	$(addprefix $(PARSE_DIR)/, $(PARSE_SRCS:.c=.o)) \

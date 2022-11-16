@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:04:38 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 16:13:50 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/16 10:34:48 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,3 @@ t_camera	camera_prototype(void)
 	transform_camera(&camera);
 	return (camera);
 }
-

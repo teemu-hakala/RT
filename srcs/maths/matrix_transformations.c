@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:02:46 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 16:09:43 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/16 10:35:31 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,3 @@ void	scale(t_mtx *mtx, t_tuple *transform)
 	scaling.array[4 * 2 + 2] = transform->array[Z];
 	matrix_multi_square(mtx, &scaling, 4);
 }
-
