@@ -6,21 +6,11 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:04:30 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/16 11:06:33 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/16 11:28:04 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RTv1.h"
-
-// t_tuple	colour(t_fl a, t_fl r, t_fl g, t_fl b)
-// {
-// 	return ((t_tuple){
-// 		.tuple.colour.a = a,
-// 		.tuple.colour.r = r,
-// 		.tuple.colour.g = g,
-// 		.tuple.colour.b = b
-// 	});
-// }
 
 t_tuple	tuple_scale(t_tuple a, t_fl scalar)
 {
@@ -30,16 +20,6 @@ t_tuple	tuple_scale(t_tuple a, t_fl scalar)
 		.tuple.units.z = a.tuple.units.z * scalar
 	});
 }
-
-// t_tuple	colour_scale(t_tuple a, t_fl scalar)
-// {
-// 	return ((t_tuple){
-// 		.tuple.colour.a = a.tuple.colour.a * scalar,
-// 		.tuple.colour.r = a.tuple.colour.r * scalar,
-// 		.tuple.colour.g = a.tuple.colour.g * scalar,
-// 		.tuple.colour.b = a.tuple.colour.b * scalar
-// 	});
-// }
 
 t_fl	magnitude(t_tuple a)
 {
