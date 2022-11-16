@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:07:04 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 13:09:26 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/16 11:10:50 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	parse_tuple(t_tuple *tuple, t_parser *parser)
 	int	i;
 
 	i = 0;
+	*tuple = point(0, 0, 0);
 	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
 	if (parser->string[parser->c++] == '[')
 	{

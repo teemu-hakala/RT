@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/16 10:58:55 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/16 11:21:18 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ typedef void	(*t_computation_fn)(t_world *);
 /*tuple operations & matrix maths*/
 t_tuple	point(t_fl x, t_fl y, t_fl z);
 t_tuple	vector(t_fl x, t_fl y, t_fl z);
-t_tuple	colour(t_fl a, t_fl r, t_fl g, t_fl b);
+// t_tuple	colour(t_fl a, t_fl r, t_fl g, t_fl b);
 t_tuple	tuple_add(t_tuple a, t_tuple b);
 t_tuple	tuple_sub(t_tuple a, t_tuple b);
 t_tuple	tuple_multi(t_tuple a, t_tuple b);
@@ -126,10 +126,10 @@ void	initialise_window(t_win *win);
 int		handle_input(int key);
 
 /* colour and lighting*/
-t_tuple	hex_to_argb(uint32_t colour);
-uint32_t	argb_to_hex(t_colour *colour);
-t_tuple shade_hit(t_world *world);
-t_tuple	lighting(t_material material, t_light *light, t_phong vectors,
+t_tuple		hex_to_tuple_colour(uint32_t colour);
+uint32_t	clamped_rgb_to_hex(t_colour *colour);
+t_tuple		 shade_hit(t_world *world);
+t_tuple		lighting(t_material material, t_light *light, t_phong vectors,
 	t_tuple point);
 void	is_shadow(t_world *world, t_tuple point, t_light *light);
 

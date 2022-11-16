@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:05:16 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 11:01:07 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/16 11:25:02 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_material	default_phong_mat(void)
 		.diffuse = 0.9,
 		.specular = 0.9,
 		.shininess = 200,
-		.init_colour = colour(1.0, 1.0, 1.0, 1.0),
+		.init_colour = vector(1.0, 1.0, 1.0),
 		.col_mash = vector(0, 0, 0),
 		.amb_col = vector(0, 0, 0),
 		.dif_col = vector(0, 0, 0),
@@ -50,7 +50,7 @@ t_material	default_material_1(void)
 		.diffuse = 0.7,
 		.specular = 0.2,
 		.shininess = 200,
-		.init_colour = colour(1.0, 0.8, 1.0, 0.6),
+		.init_colour = vector(0.8, 1.0, 0.6),
 		.col_mash = vector(0, 0, 0),
 		.amb_col = vector(0, 0, 0),
 		.dif_col = vector(0, 0, 0),

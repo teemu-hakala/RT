@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:07:10 by thakala           #+#    #+#             */
-/*   Updated: 2022/10/20 16:44:50 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/16 11:11:24 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ typedef struct s_units_of_axial_length
 
 typedef struct s_colour_channels
 {
-	t_fl	a;
 	t_fl	r;
 	t_fl	g;
 	t_fl	b;
+	t_fl	w;
 }	t_colour;
 
 typedef struct s_units_of_axial_rotation

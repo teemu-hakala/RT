@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:13:10 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/16 10:17:42 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/16 11:26:46 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,6 @@ void	gradient_at(t_material *material, t_tuple *point)
 
 	x_fraction = fabs(point->tuple.units.x) - floor(fabs(point->tuple.units.x));
 	material->final_colour = tuple_add(material->pattern.colour.a, \
-	colour_scale(tuple_sub(material->pattern.colour.b, \
+	tuple_scale(tuple_sub(material->pattern.colour.b, \
 	material->pattern.colour.a), x_fraction));
 }

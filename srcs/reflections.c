@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:13:23 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/16 10:31:42 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/16 11:24:11 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,18 @@ void	lighting_cont(t_material *material, t_light *light, t_phong *vectors,
 	t_fl	reflect_l;
 	t_fl	factor;
 
-	material->dif_col = colour_scale(
-			colour_scale(material->col_mash, material->diffuse), incidence_l);
+	material->dif_col = tuple_scale(
+			tuple_scale(material->col_mash, material->diffuse), incidence_l);
 	vectors->reflection = reflect(
 			tuple_scale(vectors->light, -1.0), vectors->surface_normal);
 	reflect_l = dot_product(vectors->reflection, vectors->eye);
 	if (reflect_l <= 0.0)
-		material->spec_col = colour(1, 0, 0, 0);
+		material->spec_col = vector(0, 0, 0);
 	else
 	{
 		factor = pow(reflect_l, material->shininess);
-		material->spec_col = colour_scale(
-				colour_scale(light->intensity, material->specular), factor);
+		material->spec_col = tuple_scale(
+				tuple_scale(light->intensity, material->specular), factor);
 	}
 }
 
@@ -53,12 +53,12 @@ t_tuple	lighting(t_material material, t_light *light, t_phong vectors,
 
 	material.col_mash = tuple_multi(material.final_colour, light->intensity);
 	vectors.light = normalize(tuple_sub(light->position, point));
-	material.amb_col = colour_scale(material.col_mash, material.ambient);
+	material.amb_col = tuple_scale(material.col_mash, material.ambient);
 	incidence_l = dot_product(vectors.light, vectors.surface_normal);
 	if (incidence_l < 0.0)
 	{
-		material.dif_col = colour(1, 0, 0, 0);
-		material.spec_col = colour(1, 0, 0, 0);
+		material.dif_col = vector(0, 0, 0);
+		material.spec_col = vector(0, 0, 0);
 	}
 	else
 		lighting_cont(&material, light, &vectors, incidence_l);

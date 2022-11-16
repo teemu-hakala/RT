@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:13:29 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 10:13:31 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/16 11:26:00 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	render(t_win *win, t_camera *camera)
 				canvas.vertical, .horizontal = canvas.horizontal});
 			colour = colour_at(&win->world);
 			img_pixel_put(win, canvas.horizontal, canvas.vertical,
-				argb_to_hex(&colour.tuple.colour));
+				clamped_rgb_to_hex(&colour.tuple.colour));
 			canvas.horizontal++;
 		}
 		canvas.vertical++;

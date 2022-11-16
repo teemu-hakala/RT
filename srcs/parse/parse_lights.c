@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:06:15 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 12:22:36 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/16 11:25:37 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_light	light_prototype(void)
 {
 	return ((t_light){
 		.position = point(-10, 10, -10),
-		.intensity = colour(1, 1, 1, 1),
+		.intensity = vector(1, 1, 1),
 		.transform = default_transform_1(),
 	});
 }

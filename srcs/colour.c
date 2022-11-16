@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:07:49 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 16:15:34 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/16 11:27:15 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ t_tuple	colour_at(t_world *world)
 		return (shade_hit(world));
 	}
 	else
-		return (colour(0, 0, 0.5, 0.7));
+		return (vector(0, 0.5, 0.7));
 }
