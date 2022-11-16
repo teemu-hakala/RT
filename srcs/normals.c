@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   normals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:10:20 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/16 10:44:43 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/16 14:43:56 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,16 @@ t_tuple	normal_at_sphere(void *sphere, t_tuple *point_at)
 	return (normalize(world_normal));
 }
 
+t_tuple	object_to_world_space(t_mtx *inverse, t_tuple obj_space)
+{
+	t_mtx	transposed_inverse;
+	t_tuple	world_space;
+
+	transposed_inverse = transpose_matrix(inverse);
+	world_space = matrix_tuple_multi(&transposed_inverse, &obj_space);
+	return (world_space);
+}
+
 t_tuple	normal_at_cone(void *cone, t_tuple *point_at)
 {
 	t_fl	distance;
@@ -56,14 +66,19 @@ t_tuple	normal_at_cone(void *cone, t_tuple *point_at)
 	distance = (point_at->tuple.units.x * point_at->tuple.units.x) + \
 		(point_at->tuple.units.z * point_at->tuple.units.z);
 	if (distance < 1 && (point_at->tuple.units.y >= \
-	((((t_object *)cone)->object.cone.max) - EPSILON)))
-		return (vector(0, 1, 0));
+		((((t_object *)cone)->object.cone.max) - EPSILON)))
+		return (normalize(object_to_world_space(\
+			&((t_object *)cone)->object.cone.transform.inverse, \
+			vector(0, 1, 0))));
 	else if (distance < 1 && (point_at->tuple.units.y <= \
-	((((t_object *)cone)->object.cone.min) + EPSILON)))
-		return (vector(0, -1, 0));
+		((((t_object *)cone)->object.cone.min) + EPSILON)))
+		return ((normalize(object_to_world_space(\
+			&((t_object *)cone)->object.cone.transform.inverse, \
+			vector(0, -1, 0)))));
 	else
-		return (normalize(vector \
-			(point_at->tuple.units.x, y, point_at->tuple.units.z)));
+		return (normalize(object_to_world_space(\
+			&((t_object *)cone)->object.cone.transform.inverse, \
+			vector(point_at->tuple.units.x, y, point_at->tuple.units.z))));
 }
 
 t_tuple	normal_at_cylinder(void *cylinder, t_tuple *point_at)
@@ -73,14 +88,19 @@ t_tuple	normal_at_cylinder(void *cylinder, t_tuple *point_at)
 	distance = (point_at->tuple.units.x * point_at->tuple.units.x) + \
 		(point_at->tuple.units.z * point_at->tuple.units.z);
 	if (distance < 1 && (point_at->tuple.units.y >= \
-	((((t_object *)cylinder)->object.cylinder.max) - EPSILON)))
-		return (vector(0, 1, 0));
+		((((t_object *)cylinder)->object.cylinder.max) - EPSILON)))
+		return (normalize(object_to_world_space(\
+			&((t_object *)cylinder)->object.cylinder.transform.inverse, \
+			vector(0, 1, 0))));
 	else if (distance < 1 && (point_at->tuple.units.y <= \
-	((((t_object *)cylinder)->object.cylinder.min) + EPSILON)))
-		return (vector(0, -1, 0));
+		((((t_object *)cylinder)->object.cylinder.min) + EPSILON)))
+		return (normalize(object_to_world_space(\
+			&((t_object *)cylinder)->object.cylinder.transform.inverse, \
+			vector(0, 1, 0))));
 	else
-		return (normalize(vector \
-			(point_at->tuple.units.x, 0, point_at->tuple.units.z)));
+		return (normalize(object_to_world_space(\
+			&((t_object *)cylinder)->object.cylinder.transform.inverse, \
+			vector(point_at->tuple.units.x, 0, point_at->tuple.units.z))));
 }
 
 t_tuple	normal_at(void *object, t_tuple *point)

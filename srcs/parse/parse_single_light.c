@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_single_light.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 12:19:20 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 12:22:24 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/16 14:14:58 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,6 @@ static void	find_light_subobject_keyword(t_light *light, t_parser *parser)
 		parser->c += sizeof("position\"") - 1;
 		find_colon(parser);
 		parse_tuple(&light->position, parser);
-	}
-	else if (ft_strncmp(&parser->string[parser->c], "transform\"", 10) == 0)
-	{
-		parser->c += sizeof("transform\"") - 1;
-		find_colon(parser);
-		find_open_bracket(parser);
-		parse_transform(&light->transform, parser);
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "intensity\"", 10) == 0)
 	{

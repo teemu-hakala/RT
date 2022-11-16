@@ -3,15 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   intersect.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:09:54 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 16:48:24 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/16 13:27:00 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RTv1.h"
 
+void	identify_hit(t_world *world, t_hit *hit)
+{
+	t_intersect	*intersection;
+	uint64_t	i;
+
+	i = 0;
+
+	hit->hit_check = false;
+	while (i < world->intersections.len)
+	{
+		intersection = \
+			(t_intersect *)vec_get(&world->intersections, i++);
+		if (intersection->time >= 0)
+		{
+			hit->intersection = *intersection;
+			hit->hit_check = true;
+			break ;
+		}
+	}
+}
+
+/*
 void	identify_hit(t_world *world, t_hit *hit)
 {
 	t_intersect	*intersection;
@@ -33,6 +55,7 @@ void	identify_hit(t_world *world, t_hit *hit)
 		}
 	}
 }
+*/
 
 void	plane_intersection(t_ray ray, void *plane, t_world *world)
 {

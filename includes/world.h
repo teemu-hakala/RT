@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 11:28:57 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/01 23:45:50 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/16 13:10:06 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,9 @@ typedef struct s_intersect
 
 typedef struct s_hit
 {
-	t_intersect	*intersection;
+	t_intersect	intersection;
 	t_comp		computations;
+	int			hit_check;
 }	t_hit;
 
 typedef struct s_ray

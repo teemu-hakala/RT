@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:13:23 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/16 11:37:56 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/16 14:55:47 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,9 @@ void	is_shadow(t_world *world, t_tuple point, t_light *light)
 	intersect_world(world, ray);
 	identify_hit(world, &world->shadow_hit);
 	world->hit.computations.vectors.in_shadow = false;
-	if (world->shadow_hit.intersection != NULL)
+	if (world->shadow_hit.hit_check == true)
 	{
-		if (world->shadow_hit.intersection->time < distance)
+		if (world->shadow_hit.intersection.time < distance)
 		{
 			world->hit.computations.vectors.in_shadow = true;
 		}

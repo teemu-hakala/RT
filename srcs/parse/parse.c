@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:07:33 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 10:35:45 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/16 14:14:55 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,18 @@ static void	find_object_keyword(t_world *world, t_parser *parser)
 		handle_errors("DENIED:object not recognised");
 }
 
+void	check_light(t_world *world)
+{
+	t_light		light;
+
+	if (world->lights.len == 0)
+	{
+		light = light_prototype();
+		if (vec_push(&world->lights, &light) == VEC_ERROR)
+			handle_errors("light vec_push error");
+	}
+}
+
 void	parse_into(t_world *world, const int file_descriptor)
 {
 	t_parser	parser;
@@ -93,4 +105,5 @@ void	parse_into(t_world *world, const int file_descriptor)
 		else
 			handle_errors("object syntax error");
 	}
+	check_light(world);
 }

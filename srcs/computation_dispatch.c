@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   computations.c                                     :+:      :+:    :+:   */
+/*   computation_dispatch.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:07:56 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 16:18:20 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/16 13:13:13 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 void	prepare_plane(t_world *world)
 {
-	prepare_object(world, world->hit.intersection->shape, \
+	prepare_object(world, world->hit.intersection.shape, \
 		&world->hit.computations);
 }
 
 void	prepare_sphere(t_world *world)
 {
-	prepare_object(world, world->hit.intersection->shape, \
+	prepare_object(world, world->hit.intersection.shape, \
 		&world->hit.computations);
 }
 
 void	prepare_cone(t_world *world)
 {
-	prepare_object(world, world->hit.intersection->shape, \
+	prepare_object(world, world->hit.intersection.shape, \
 		&world->hit.computations);
 }
 
 void	prepare_cylinder(t_world *world)
 {
-	prepare_object(world, world->hit.intersection->shape, \
+	prepare_object(world, world->hit.intersection.shape, \
 		&world->hit.computations);
 }
 
@@ -46,6 +46,6 @@ void	prepare_computations(t_world *world)
 		prepare_cylinder
 	};
 
-	precompute_shape[world->hit.intersection->shape->type - OBJECT_INDEX_OFFSET]
+	precompute_shape[world->hit.intersection.shape->type - OBJECT_INDEX_OFFSET]
 		(world);
 }

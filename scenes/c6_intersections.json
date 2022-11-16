@@ -21,11 +21,7 @@
 		{
 			"light" :
 			{
-				"position" : [0, 0, 0],
-				"transform" :
-				{
-					"translation" : [-10, 10, -10]
-				},
+				"position" : [10, 0, -10],
 				"intensity" : [1, 1, 1]
 			}
 		}
@@ -38,7 +34,27 @@
 				"origin" : [0, 0, 0],
 				"transform" :
 				{
-					"translation" : [0, 1, 0],
+					"translation" : [0, 0, 0],
+					"rotation" : [0, 0, 0.3],
+					"scale" : [0.5, 1, 0.5]
+				},
+				"material" :
+				{
+					"ambient" : 0.42,
+					"diffuse" : 0.5,
+					"specular" : 0.1,
+					"shininess" : 200,
+					"init_colour" : [0.42, 0.24, 0.10]
+				}
+			}
+		},
+		{
+			"sphere" :
+			{
+				"origin" : [0, 0, 0],
+				"transform" :
+				{
+					"translation" : [-2.5, 0, 0],
 					"rotation" : [0, 0, 0],
 					"scale" : [1, 1, 1]
 				},
@@ -48,7 +64,7 @@
 					"diffuse" : 0.5,
 					"specular" : 0.1,
 					"shininess" : 200,
-					"init_colour" : [0.8, 0.75, 0.02]
+					"init_colour" : [0.42, 0.42, 0.56]
 				}
 			}
 		}
