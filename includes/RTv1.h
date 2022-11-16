@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/16 10:25:49 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/16 10:58:55 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define WALL_HEIGHT 7
 # define KEY_DOWN 2
 # define ESC 53
+# define MOUSE_ESC 17
 # define EPSILON 0.00001
 # define PLANE_EPSILON 0.00001
 # define TUPLE_EPSILON 0.00001
