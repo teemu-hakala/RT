@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:09:54 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/16 13:10:35 by thakala          ###   ########.fr       */
+/*   Updated: 2022/11/16 13:27:00 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ void	identify_hit(t_world *world, t_hit *hit)
 	{
 		intersection = \
 			(t_intersect *)vec_get(&world->intersections, i++);
-		if (intersection->time >= 0 && \
-			(intersection->time < hit->intersection.time))
+		if (intersection->time >= 0)
 		{
 			hit->intersection = *intersection;
 			hit->hit_check = true;
@@ -33,6 +32,30 @@ void	identify_hit(t_world *world, t_hit *hit)
 		}
 	}
 }
+
+/*
+void	identify_hit(t_world *world, t_hit *hit)
+{
+	t_intersect	*intersection;
+	uint64_t	i;
+
+	i = 0;
+
+	hit->intersection = NULL;
+	while (i < world->intersections.len)
+	{
+		intersection = \
+			(t_intersect *)vec_get(&world->intersections, i++);
+		if (intersection->time >= 0 && \
+			(hit->intersection == NULL \
+				|| intersection->time < hit->intersection->time))
+		{
+			hit->intersection = intersection;
+			break ;
+		}
+	}
+}
+*/
 
 void	plane_intersection(t_ray ray, void *plane, t_world *world)
 {

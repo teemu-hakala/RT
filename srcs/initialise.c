@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:09:48 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/16 13:12:25 by thakala          ###   ########.fr       */
+/*   Updated: 2022/11/16 14:14:54 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,17 +45,12 @@ void	initialise_image(t_img *img, t_win *win)
 
 void	initialise_world(t_world *world)
 {
-	t_light	light;
-
-	light = light_prototype();
 	world->camera = camera_prototype();
 	if (vec_new(&world->lights, 1, sizeof(t_light)) != VEC_SUCCESS
 		|| vec_new(&world->objects, 1, sizeof(t_object)) != VEC_SUCCESS
 		|| vec_new(&world->intersections, 1, sizeof(t_intersect))
 		!= VEC_SUCCESS)
 		handle_errors("initialise_world malloc returned NULL");
-	if (vec_push(&world->lights, &light) != VEC_SUCCESS)
-		handle_errors("light initation failed");
 	world->hit.hit_check = false;
 }
 

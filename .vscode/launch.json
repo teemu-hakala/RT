@@ -99,6 +99,30 @@
 			"environment": [],
 			"externalConsole": false,
 			"MIMode": "lldb"
+		},
+		{
+			"name": "c6_intersections_sphere",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/RTv1",
+			"args": ["${workspaceFolder}/scenes/c6_intersections_sphere.json"],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb"
+		},
+		{
+			"name": "c6_intersections_cone",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/RTv1",
+			"args": ["${workspaceFolder}/scenes/c6_intersections_cone.json"],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb"
 		}
 	]
 }

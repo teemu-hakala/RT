@@ -113,7 +113,6 @@ typedef struct s_light
 {
 	t_tuple		position;
 	t_tuple		intensity;
-	t_transform	transform;
 }	t_light;
 
 typedef struct s_canvas_size

@@ -1,0 +1,56 @@
+{
+	"camera" :
+	{
+		"origin" : [0, 0, -5],
+		"transform" :
+		{
+			"translation": [0, 0, 0],
+			"rotation": [0, 0, 0],
+			"scale": [1, 1, 1]
+		},
+		"center_of_interest" : [0, 0, 0],
+		"canvas" :
+		{
+			"vertical" : 301,
+			"horizontal" : 301
+		},
+		"field_of_view" : 1.0
+	},
+	"lights" :
+	[
+		{
+			"light" :
+			{
+				"position" : [0, 0, 0],
+				"transform" :
+				{
+					"translation" : [-10, 10, -10]
+				},
+				"intensity" : [1, 1, 1]
+			}
+		}
+	],
+	"shapes" :
+	[
+		{
+			"cylinder" :
+			{
+				"origin" : [0, 0, 0],
+				"transform" :
+				{
+					"translation" : [0, 0, 0],
+					"rotation" : [0, 0, 0],
+					"scale" : [1, 1, 1]
+				},
+				"material" :
+				{
+					"ambient" : 0.42,
+					"diffuse" : 0.5,
+					"specular" : 0.1,
+					"shininess" : 200,
+					"init_colour" : [0.8, 0.75, 0.02]
+				}
+			}
+		}
+	]
+}

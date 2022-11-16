@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_lights.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:06:15 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/16 11:25:37 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/16 14:15:40 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ t_light	light_prototype(void)
 {
 	return ((t_light){
 		.position = point(-10, 10, -10),
-		.intensity = vector(1, 1, 1),
-		.transform = default_transform_1(),
+		.intensity = vector(1, 1, 1)
 	});
 }
 
@@ -45,7 +44,6 @@ void	parse_lights_while(t_world *world, t_parser *parser)
 		parse_single_light(parser, &light);
 	if (vec_push(&world->lights, &light) == VEC_ERROR)
 		handle_errors("vec_push light error");
-	transform_object(&light.transform);
 	if (!find_matching_bracket(parser))
 		handle_errors("brackets syntax error");
 	else if (parser->string[parser->c] == ',')
