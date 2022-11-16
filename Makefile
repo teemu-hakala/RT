@@ -6,7 +6,7 @@
 #    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2022/11/15 16:19:59 by deelliot         ###   ########.fr        #
+#    Updated: 2022/11/16 10:29:05 by deelliot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ MINILIBX_DIR = minilibx
 PARSE_DIR = parse
 MATHS_DIR = maths
 OBJECTS_DIR = objects
+PATTERNS_DIR = patterns
 
 # Source and object files
 PARSE_SRCS = default_files.c parse_camera.c parse_cone.c parse_cylinder.c \
@@ -45,6 +46,8 @@ OBJECTS_SRCS = camera.c plane.c cone.c cylinder.c transform_objects.c\
 
 MATHS_SRCS = matrix_inversion.c matrix_maths.c matrix_transformations.c \
 	tuple_operations.c matrix_rotations.c \
+
+PATTERNS_SRCS = pattern_dispatch.c patterns.c 
 
 FILES = \
 	main.c \
@@ -62,7 +65,6 @@ FILES = \
 	colour.c \
 	computation_dispatch.c \
 	computations.c \
-	patterns.c \
 #	sphere_scene.c \
 #	pattern_world.c \
 #	world.c \
@@ -71,6 +73,7 @@ OBJS = $(addprefix $(OBJS_DIR)/, \
 	$(addprefix $(PARSE_DIR)/, $(PARSE_SRCS:.c=.o)) \
 	$(addprefix $(OBJECTS_DIR)/, $(OBJECTS_SRCS:.c=.o)) \
 	$(addprefix $(MATHS_DIR)/, $(MATHS_SRCS:.c=.o))\
+	$(addprefix $(PATTERNS_DIR)/, $(PATTERNS_SRCS:.c=.o))\
 	$(FILES:.c=.o))
 
 # Paths
@@ -107,6 +110,8 @@ $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)/$(PARSE_DIR)
 	@mkdir -p $(OBJS_DIR)/$(MATHS_DIR)
 	@mkdir -p $(OBJS_DIR)/$(OBJECTS_DIR)
+	@mkdir -p $(OBJS_DIR)/$(PATTERNS_DIR)
+
 
 libft:
 	make -C $(LIBFT_DIR)

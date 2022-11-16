@@ -6,19 +6,11 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:13:10 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 17:02:38 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/16 10:17:42 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RTv1.h"
-
-t_pattern_colours	set_pattern_colours(t_tuple a, t_tuple b)
-{
-	return ((t_pattern_colours){
-		.a = a,
-		.b = b
-	});
-}
 
 void	none_at(t_material *material, t_tuple *point)
 {
@@ -63,22 +55,4 @@ void	gradient_at(t_material *material, t_tuple *point)
 	material->final_colour = tuple_add(material->pattern.colour.a, \
 	colour_scale(tuple_sub(material->pattern.colour.b, \
 	material->pattern.colour.a), x_fraction));
-}
-
-void	pattern_at(t_material *material, t_tuple *point, t_transform transform)
-{
-	t_tuple	object_space;
-	t_tuple	pattern_space;
-
-	object_space = matrix_tuple_multi(&transform.inverse, point);
-	pattern_space = matrix_tuple_multi(&material->pattern.transform.inverse, \
-		&object_space);
-	static const t_pattern_at_fn	patterns[] = { \
-		none_at,
-		striped_at,
-		checkered_at,
-		circle_at,
-		gradient_at};
-
-	return (patterns[material->pattern.type](material, &pattern_space));
 }

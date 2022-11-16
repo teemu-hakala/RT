@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 16:21:21 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/16 10:25:49 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,6 +209,11 @@ t_pattern	default_stripe_pattern(void);
 t_pattern	default_gradient_pattern(void);
 t_pattern	default_ring_pattern(void);
 t_pattern	default_checkered_pattern(void);
+void	none_at(t_material *material, t_tuple *point);
+void	striped_at(t_material *material, t_tuple *point);
+void	checkered_at(t_material *material, t_tuple *point);
+void	circle_at(t_material *material, t_tuple *point);
+void	gradient_at(t_material *material, t_tuple *point);
 
 /* parsing */
 void	open_scene_into(t_win *win, const char *str);
