@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:09:54 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/16 13:27:00 by thakala          ###   ########.fr       */
+/*   Updated: 2022/11/16 15:10:52 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,9 +182,9 @@ void	cone_intersection(t_ray ray, void *cone, t_world *world)
 void	cylinder_quadratic(t_quadratic *params, t_ray ray)
 {
 	params->b = (2 * ray.origin.tuple.units.x * ray.direction.tuple.units.x) + \
-	(2 * ray.origin.tuple.units.z * ray.direction.tuple.units.z);
+		(2 * ray.origin.tuple.units.z * ray.direction.tuple.units.z);
 	params->c = (ray.origin.tuple.units.x * ray.origin.tuple.units.x) + \
-	(ray.origin.tuple.units.z * ray.origin.tuple.units.z) - 1;
+		(ray.origin.tuple.units.z * ray.origin.tuple.units.z) - 1;
 	params->discriminant = (params->b * params->b) - (4 * params->a * params->c);
 	params->res_1 = (-params->b - sqrt(params->discriminant)) / (2 * params->a);
 	params->res_2 = (-params->b + sqrt(params->discriminant)) / (2 * params->a);
@@ -196,7 +196,7 @@ t_object *cylinder, t_world *world)
 	t_fl y0;
 
 	y0 = ray.origin.tuple.units.y + min(params.res_1, params.res_2) \
-	* ray.direction.tuple.units.y;
+		* ray.direction.tuple.units.y;
 	if (cylinder->object.cylinder.min < y0 && y0 < cylinder->object.cylinder.max)
 	{
 		if (vec_push(&world->intersections, &(t_intersect){
@@ -206,7 +206,7 @@ t_object *cylinder, t_world *world)
 		handle_errors("vec_push malloc error cylinder_intersection");
 	}
 	y0 = ray.origin.tuple.units.y + max(params.res_1, params.res_2) \
-	* ray.direction.tuple.units.y;
+		* ray.direction.tuple.units.y;
 	if (cylinder->object.cylinder.min < y0 && y0 < cylinder->object.cylinder.max)
 	{
 		if (vec_push(&world->intersections, &(t_intersect){

@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:10:20 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/16 14:43:56 by thakala          ###   ########.fr       */
+/*   Updated: 2022/11/16 15:14:49 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ t_tuple	normal_at_cylinder(void *cylinder, t_tuple *point_at)
 		((((t_object *)cylinder)->object.cylinder.min) + EPSILON)))
 		return (normalize(object_to_world_space(\
 			&((t_object *)cylinder)->object.cylinder.transform.inverse, \
-			vector(0, 1, 0))));
+			vector(0, -1, 0))));
 	else
 		return (normalize(object_to_world_space(\
 			&((t_object *)cylinder)->object.cylinder.transform.inverse, \
