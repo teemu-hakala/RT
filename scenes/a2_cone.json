@@ -1,7 +1,7 @@
 {
 	"camera" :
 	{
-		"origin" : [0, -0, -10],
+		"origin" : [0, 0, -10],
 		"transform" :
 		{
 			"translation": [0, 0, 0],
@@ -38,7 +38,7 @@
 				"origin" : [0, 0, 0],
 				"transform" :
 				{
-					"translation" : [0, 0, 0],
+					"translation" : [0, 1, 0],
 					"rotation" : [0, 0, 0],
 					"scale" : [1, 1, 1]
 				},

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shading.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:13:36 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/16 10:32:57 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/16 13:06:14 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,9 @@ t_tuple	shade_hit(t_world *world)
 	while (i < world->lights.len)
 	{
 		light = (t_light *)vec_get(&world->lights, i);
-		shape_shading[world->hit.intersection->shape->type \
+		shape_shading[world->hit.intersection.shape->type \
 			- OBJECT_INDEX_OFFSET] \
-			(world, &world->hit.intersection->shape->object, &colour, light);
+			(world, &world->hit.intersection.shape->object, &colour, light);
 		i++;
 	}
 	return (colour);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialise.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:09:48 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 16:36:49 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/16 13:12:25 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	initialise_world(t_world *world)
 		handle_errors("initialise_world malloc returned NULL");
 	if (vec_push(&world->lights, &light) != VEC_SUCCESS)
 		handle_errors("light initation failed");
-	world->hit.intersection = NULL;
+	world->hit.hit_check = false;
 }
 
 void	initialise_window(t_win *win)

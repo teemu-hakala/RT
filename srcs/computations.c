@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   object_computation.c                               :+:      :+:    :+:   */
+/*   computations.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 16:17:48 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 16:18:13 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/16 13:13:23 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	prepare_object(t_world *world, t_object *object, t_comp *computations)
 {
-	computations->time = world->hit.intersection->time;
+	computations->time = world->hit.intersection.time;
 	computations->point = hit_position(&world->ray, computations->time);
 	computations->vectors.eye = tuple_scale(world->ray.direction, -1);
 	computations->vectors.surface_normal = \

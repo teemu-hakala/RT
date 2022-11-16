@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:09:54 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 16:48:24 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/16 13:10:35 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ void	identify_hit(t_world *world, t_hit *hit)
 
 	i = 0;
 
-	hit->intersection = NULL;
+	hit->hit_check = false;
 	while (i < world->intersections.len)
 	{
 		intersection = \
 			(t_intersect *)vec_get(&world->intersections, i++);
 		if (intersection->time >= 0 && \
-			(hit->intersection == NULL \
-				|| intersection->time < hit->intersection->time))
+			(intersection->time < hit->intersection.time))
 		{
-			hit->intersection = intersection;
+			hit->intersection = *intersection;
+			hit->hit_check = true;
 			break ;
 		}
 	}
