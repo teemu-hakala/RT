@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:07:04 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/18 13:24:35 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/18 13:40:47 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	parse_tuple(t_tuple *tuple, t_parser *parser)
 		while (i < 3)
 		{
 			tuple->array[i] = rt_atof(parser);
+			parser->c += ft_clear_whitespace(&parser->string[parser->c]);
 			if (i < 2 && parser->string[parser->c++] != ',')
 				handle_errors("array syntax error");
 			i++;
