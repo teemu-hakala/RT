@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 22:01:12 by thakala           #+#    #+#             */
-/*   Updated: 2022/10/20 16:32:09 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/18 14:28:16 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,6 @@ enum e_matrix_four_by_four_coordinates
 	MATRIX_FOUR_BY_FOUR_ROW_3__COL_2,
 	MATRIX_FOUR_BY_FOUR_ROW_3__COL_3
 };
-
-
-/* leaving this in for now as it's nice to use in the mains.
- We can take it out before final submission :)*/
 
 typedef struct s_quad_tuple {
 	t_fl	col_0;

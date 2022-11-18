@@ -6,20 +6,13 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:38:38 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 15:57:03 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/18 14:37:12 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RTv1.h"
 
-void	rotate(t_mtx *mtx, t_tuple *rotations)
-{
-	rot_x(mtx, rotations->tuple.rotation.x_wid_lat_pitch);
-	rot_y(mtx, rotations->tuple.rotation.y_hei_vert_yaw);
-	rot_z(mtx, rotations->tuple.rotation.z_dep_long_roll);
-}
-
-void	rot_x(t_mtx *mtx, t_fl angle)
+static void	rot_x(t_mtx *mtx, t_fl angle)
 {
 	t_mtx	rotate_x;
 
@@ -31,7 +24,7 @@ void	rot_x(t_mtx *mtx, t_fl angle)
 	matrix_multi_square(mtx, &rotate_x, 4);
 }
 
-void	rot_y(t_mtx *mtx, t_fl angle)
+static void	rot_y(t_mtx *mtx, t_fl angle)
 {
 	t_mtx	rotate_y;
 
@@ -43,7 +36,7 @@ void	rot_y(t_mtx *mtx, t_fl angle)
 	matrix_multi_square(mtx, &rotate_y, 4);
 }
 
-void	rot_z(t_mtx *mtx, t_fl angle)
+static void	rot_z(t_mtx *mtx, t_fl angle)
 {
 	t_mtx	rotate_z;
 
@@ -54,3 +47,11 @@ void	rot_z(t_mtx *mtx, t_fl angle)
 	rotate_z.array[4 * 1 + 1] = cos(angle);
 	matrix_multi_square(mtx, &rotate_z, 4);
 }
+
+void	rotate(t_mtx *mtx, t_tuple *rotations)
+{
+	rot_x(mtx, rotations->tuple.rotation.x_wid_lat_pitch);
+	rot_y(mtx, rotations->tuple.rotation.y_hei_vert_yaw);
+	rot_z(mtx, rotations->tuple.rotation.z_dep_long_roll);
+}
+

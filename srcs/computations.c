@@ -3,14 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   computations.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 16:17:48 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/16 13:13:23 by thakala          ###   ########.fr       */
+/*   Updated: 2022/11/18 14:39:08 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RTv1.h"
+
+static t_tuple	hit_position(t_ray *ray, t_fl distance)
+{
+	return (tuple_add(ray->origin, tuple_scale(ray->direction, distance)));
+}
 
 void	prepare_object(t_world *world, t_object *object, t_comp *computations)
 {

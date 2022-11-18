@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:06:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/18 13:08:28 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/18 14:30:25 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_object	cylinder_prototype(void)
 			.origin = default_origin(),
 			.transform = default_transform_1(),
 			.material = default_material_1(),
+			.radius = 1,
 			.min = -INFINITY,
 			.max = INFINITY,
 			.closed = false

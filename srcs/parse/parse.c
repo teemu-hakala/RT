@@ -6,18 +6,11 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:07:33 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/18 12:29:06 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/18 14:39:44 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RTv1.h"
-
-void	open_scene_into(t_win *win, const char *str)
-{
-	win->fd = open(str, O_RDONLY);
-	if (win->fd < 0)
-		handle_errors("unable to open file");
-}
 
 static void	read_file_contents(t_vec *string, const int file_descriptor)
 {
