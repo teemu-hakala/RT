@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:04:38 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/16 10:34:48 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/18 14:24:41 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ t_camera	camera_prototype(void)
 	camera.transform = default_transform_1();
 	camera.center_of_interest = point(0, 0, 0);
 	camera.field_of_view = M_2_PI;
-	camera.size = default_canvas();
-	camera.pixel_size = get_pixel_size(&camera, camera.size, \
+	camera.canvas = default_canvas();
+	camera.pixel_size = get_pixel_size(&camera, camera.canvas, \
 		camera.field_of_view);
 	transform_camera(&camera);
 	return (camera);

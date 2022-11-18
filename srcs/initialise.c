@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialise.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:09:48 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/16 14:14:54 by thakala          ###   ########.fr       */
+/*   Updated: 2022/11/18 14:26:32 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@
 
 void	initialise_image(t_img *img, t_win *win)
 {
-	img->img = mlx_new_image(win->mlx, win->world.camera.size.horizontal \
-		, win->world.camera.size.vertical);
+	img->img = mlx_new_image(win->mlx, win->world.camera.canvas.horizontal \
+		, win->world.camera.canvas.vertical);
 	if (!img->img)
 		handle_errors("error");
 	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->length, \
@@ -59,8 +59,8 @@ void	initialise_window(t_win *win)
 	win->mlx = mlx_init();
 	if (!win->mlx)
 		handle_errors("error");
-	win->win = mlx_new_window(win->mlx, win->world.camera.size.horizontal, \
-		win->world.camera.size.vertical, "RTV1");
+	win->win = mlx_new_window(win->mlx, win->world.camera.canvas.horizontal, \
+		win->world.camera.canvas.vertical, "RTV1");
 	if (!win->win)
 		handle_errors("error");
 	initialise_image(&win->img, win);

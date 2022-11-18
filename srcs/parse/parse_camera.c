@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:05:21 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/18 13:21:51 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/18 14:24:20 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void	find_canvas_keywords(t_world *world, t_parser *parser)
 	{
 		parser->c += sizeof("\"vertical\"") - 1;
 		find_colon(parser);
-		world->camera.size.vertical = rt_atoi(parser);
+		world->camera.canvas.vertical = rt_atoi(parser);
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "\"horizontal\"", 12) == 0)
 	{
 		parser->c += sizeof("\"horizontal\"") - 1;
 		find_colon(parser);
-		world->camera.size.horizontal = rt_atoi(parser);
+		world->camera.canvas.horizontal = rt_atoi(parser);
 	}
 }
 

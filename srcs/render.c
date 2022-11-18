@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:13:29 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/16 11:26:00 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/18 14:26:53 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	render(t_win *win, t_camera *camera)
 	t_tuple		colour;
 
 	canvas.vertical = 0;
-	while (canvas.vertical < camera->size.vertical)
+	while (canvas.vertical < camera->canvas.vertical)
 	{
 		canvas.horizontal = 0;
-		while (canvas.horizontal < camera->size.horizontal)
+		while (canvas.horizontal < camera->canvas.horizontal)
 		{
 			win->world.ray = ray_for_pixel(camera, (t_canvas){.vertical = \
 				canvas.vertical, .horizontal = canvas.horizontal});

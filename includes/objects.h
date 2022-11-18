@@ -126,7 +126,7 @@ typedef struct s_camera
 	t_tuple		origin;
 	t_transform	transform;
 	t_tuple		center_of_interest;
-	t_canvas	size; //change to canvas
+	t_canvas	canvas;
 	t_fl		field_of_view;
 	t_fl		pixel_size;
 	t_fl		half_width;
@@ -139,8 +139,6 @@ union	u_object
 	t_sphere	sphere;
 	t_cone		cone;
 	t_cylinder	cylinder;
-	// t_camera	camera;
-	// t_light		light;
 };
 
 typedef struct s_object

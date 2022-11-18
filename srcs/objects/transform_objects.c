@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:02:57 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 12:29:10 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/18 14:26:11 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ void	transform_camera(t_camera *camera)
 	matrix_multi_square(&camera->transform.matrix, &view_matrix, 4);
 	camera->transform.inverse = camera->transform.matrix;
 	matrix_inversion(&camera->transform.inverse, 4);
-	camera->pixel_size = get_pixel_size(camera, camera->size, \
+	camera->pixel_size = get_pixel_size(camera, camera->canvas, \
 		camera->field_of_view);
 }

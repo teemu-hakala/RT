@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/16 11:21:18 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/18 14:15:24 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,10 @@ typedef void	(*t_computation_fn)(t_world *);
 /*tuple operations & matrix maths*/
 t_tuple	point(t_fl x, t_fl y, t_fl z);
 t_tuple	vector(t_fl x, t_fl y, t_fl z);
-// t_tuple	colour(t_fl a, t_fl r, t_fl g, t_fl b);
 t_tuple	tuple_add(t_tuple a, t_tuple b);
 t_tuple	tuple_sub(t_tuple a, t_tuple b);
 t_tuple	tuple_multi(t_tuple a, t_tuple b);
 t_tuple	tuple_scale(t_tuple a, t_fl scalar);
-t_tuple	colour_scale(t_tuple a, t_fl scalar);
 t_tuple	tuple_div(t_tuple a, t_fl scalar);
 t_fl	magnitude(t_tuple a);
 t_tuple	normalize(t_tuple a);
