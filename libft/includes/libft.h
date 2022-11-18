@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 15:25:23 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/11 10:05:47 by thakala          ###   ########.fr       */
+/*   Updated: 2022/11/18 15:46:40 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,5 +129,7 @@ size_t	ft_strcspn(const char *s, const char *charset);
 size_t	ft_strspn(const char *s, const char *charset);
 int		ft_clear_whitespace(const char *str);
 double	ft_atof(const char *str);
+double	double_min(double a, double b);
+double	double_max(double a, double b);
 
 #endif

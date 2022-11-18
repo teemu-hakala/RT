@@ -6,15 +6,15 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 10:13:28 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/16 10:17:34 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/18 17:05:20 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RTv1.h"
 
-t_pattern_colours	set_pattern_colours(t_tuple a, t_tuple b)
+t_pattern_col	set_pattern_colours(t_tuple a, t_tuple b)
 {
-	return ((t_pattern_colours){
+	return ((t_pattern_col){
 		.a = a,
 		.b = b
 	});

@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:38:38 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/18 14:37:12 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/18 14:51:25 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,3 @@ void	rotate(t_mtx *mtx, t_tuple *rotations)
 	rot_y(mtx, rotations->tuple.rotation.y_hei_vert_yaw);
 	rot_z(mtx, rotations->tuple.rotation.z_dep_long_roll);
 }
-

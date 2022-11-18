@@ -6,10 +6,9 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 22:01:12 by thakala           #+#    #+#             */
-/*   Updated: 2022/11/18 14:28:16 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/18 17:06:42 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef MATRICES_H
 # define MATRICES_H

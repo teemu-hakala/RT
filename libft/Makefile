@@ -6,7 +6,7 @@
 #    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/03 13:04:07 by deelliot          #+#    #+#              #
-#    Updated: 2022/11/15 14:49:55 by deelliot         ###   ########.fr        #
+#    Updated: 2022/11/18 15:47:24 by deelliot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,8 @@ ASCII_SRCS = ft_isuppercase.c ft_islowercase.c ft_isalpha.c ft_isdigit.c \
 CONVERSION_SRCS = ft_toupper.c ft_tolower.c ft_atoi.c ft_itoa.c ft_atof.c
 
 MATHS_SRCS = ft_abs.c  ft_sqrt.c ft_find_next_sqrt.c ft_max.c \
-	ft_linear_conversion.c ft_create_range.c ft_normalise_data.c
+	ft_linear_conversion.c ft_create_range.c ft_normalise_data.c double_min.c \
+	double_max.c
 
 INPUT_SRCS = get_next_line.c gnl_read_ret.c
 
