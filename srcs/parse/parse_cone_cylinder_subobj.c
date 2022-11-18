@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 16:12:31 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/18 10:15:53 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/18 13:22:16 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ void	find_closed(t_parser *parser, t_object *object)
 
 int	cone_and_cylinder_objects(t_parser *parser, t_object *object)
 {
-	//find_double_quote(parser);
 	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
 	if (!ft_strncmp(&parser->string[parser->c], "\"min\"", 5))
 		find_min(parser, object);

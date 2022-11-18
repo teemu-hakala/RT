@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:07:04 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/18 10:15:12 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/18 13:24:35 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	parse_transform_subobject(t_parser *parser, t_transform *transform)
 int	find_subobject_keyword(t_parser *parser, t_tuple *origin, \
 	t_transform *transform, t_material *material)
 {
-	//find_double_quote(parser);
 	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
 	if (ft_strncmp(&parser->string[parser->c], "\"origin\"", 8) == 0)
 	{

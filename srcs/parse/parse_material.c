@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:47:33 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 12:17:34 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/18 13:31:16 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 static void	material_keywords_cont(t_material *material, t_parser *parser)
 {
-	if (ft_strncmp(&parser->string[parser->c], "shininess\"", 10) == 0)
+	if (ft_strncmp(&parser->string[parser->c], "\"shininess\"", 11) == 0)
 	{
-		parser->c += sizeof("shininess\"") - 1;
+		parser->c += sizeof("\"shininess\"") - 1;
 		find_colon(parser);
 		material->shininess = rt_atof(parser);
 	}
-	else if (ft_strncmp(&parser->string[parser->c], "init_colour\"", 12) == 0)
+	else if (ft_strncmp(&parser->string[parser->c], "\"init_colour\"", 13) == 0)
 	{
-		parser->c += sizeof("init_colour\"") - 1;
+		parser->c += sizeof("\"init_colour\"") - 1;
 		find_colon(parser);
 		parse_tuple(&material->init_colour, parser);
 	}
@@ -32,22 +32,22 @@ static void	material_keywords_cont(t_material *material, t_parser *parser)
 
 static void	find_material_keywords(t_material *material, t_parser *parser)
 {
-	find_double_quote(parser);
-	if (ft_strncmp(&parser->string[parser->c], "ambient\"", 8) == 0)
+	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
+	if (ft_strncmp(&parser->string[parser->c], "\"ambient\"", 9) == 0)
 	{
-		parser->c += sizeof("ambient\"") - 1;
+		parser->c += sizeof("\"ambient\"") - 1;
 		find_colon(parser);
 		material->ambient = rt_atof(parser);
 	}
-	else if (ft_strncmp(&parser->string[parser->c], "diffuse\"", 8) == 0)
+	else if (ft_strncmp(&parser->string[parser->c], "\"diffuse\"", 9) == 0)
 	{
-		parser->c += sizeof("diffuse\"") - 1;
+		parser->c += sizeof("\"diffuse\"") - 1;
 		find_colon(parser);
 		material->diffuse = rt_atof(parser);
 	}
-	else if (ft_strncmp(&parser->string[parser->c], "specular\"", 9) == 0)
+	else if (ft_strncmp(&parser->string[parser->c], "\"specular\"", 10) == 0)
 	{
-		parser->c += sizeof("specular\"") - 1;
+		parser->c += sizeof("\"specular\"") - 1;
 		find_colon(parser);
 		material->specular = rt_atof(parser);
 	}

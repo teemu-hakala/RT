@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:01:57 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/16 16:44:40 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/18 13:27:02 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int			cone_and_cylinder_objects(t_parser *parser, t_object *object);
 /*utility parse functions*/
 void		find_open_bracket(t_parser *parser);
 int			find_matching_bracket(t_parser *parser);
-void		find_double_quote(t_parser *parser);
 void		find_colon(t_parser *parser);
 
 /*default settings*/
