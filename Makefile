@@ -6,7 +6,7 @@
 #    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2022/11/16 10:40:05 by deelliot         ###   ########.fr        #
+#    Updated: 2022/11/16 16:47:17 by deelliot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,8 @@ PATTERNS_DIR = patterns
 PARSE_SRCS = default_files.c parse_camera.c parse_cone.c parse_cylinder.c \
 	parse_lights.c parse_single_light.c parse_plane.c parse_shapes.c \
 	parse_sphere.c parse_sub_objs.c parse_utility.c parse.c rt_atof.c \
-	rt_atoi.c dispatch_subobjects.c parse_material.c parse_transform.c
+	rt_atoi.c dispatch_subobjects.c parse_material.c parse_transform.c \
+	parse_cone_cylinder_subobj.c
 
 OBJECTS_SRCS = camera.c plane.c cone.c cylinder.c transform_objects.c\
 

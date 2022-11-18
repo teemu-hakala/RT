@@ -6,42 +6,47 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:07:04 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/16 11:10:50 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/18 10:15:12 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RTv1.h"
 
-void	find_subobject_keyword(t_parser *parser, t_tuple *origin, \
+void	parse_transform_subobject(t_parser *parser, t_transform *transform)
+{
+	parser->c += sizeof("\"transform\"") - 1;
+	find_colon(parser);
+	find_open_bracket(parser);
+	if (find_matching_bracket(parser))
+		return ;
+	parse_transform(transform, parser);
+}
+
+int	find_subobject_keyword(t_parser *parser, t_tuple *origin, \
 	t_transform *transform, t_material *material)
 {
-	find_double_quote(parser);
-	if (ft_strncmp(&parser->string[parser->c], "origin\"", 7) == 0)
+	//find_double_quote(parser);
+	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
+	if (ft_strncmp(&parser->string[parser->c], "\"origin\"", 8) == 0)
 	{
-		parser->c += sizeof("origin\"") - 1;
+		parser->c += sizeof("\"origin\"") - 1;
 		find_colon(parser);
 		parse_tuple(origin, parser);
 	}
-	else if (ft_strncmp(&parser->string[parser->c], "transform\"", 10) == 0)
+	else if (ft_strncmp(&parser->string[parser->c], "\"transform\"", 11) == 0)
+		parse_transform_subobject(parser, transform);
+	else if (ft_strncmp(&parser->string[parser->c], "\"material\"", 10) == 0)
 	{
-		parser->c += sizeof("transform\"") - 1;
+		parser->c += sizeof("\"material\"") - 1;
 		find_colon(parser);
 		find_open_bracket(parser);
 		if (find_matching_bracket(parser))
-			return ;
-		parse_transform(transform, parser);
-	}
-	else if (ft_strncmp(&parser->string[parser->c], "material\"", 9) == 0)
-	{
-		parser->c += sizeof("material\"") - 1;
-		find_colon(parser);
-		find_open_bracket(parser);
-		if (find_matching_bracket(parser))
-			return ;
+			return (true);
 		parse_material(material, parser);
 	}
 	else
-		handle_errors("subobject keyword syntax error");
+		return (false);
+	return (true);
 }
 
 void	parse_tuple(t_tuple *tuple, t_parser *parser)
@@ -67,74 +72,4 @@ void	parse_tuple(t_tuple *tuple, t_parser *parser)
 		}
 	}
 	handle_errors("DENIED: parse_tuple");
-}
-
-void	find_max(t_object *object, t_parser *parser)
-{
-	int	max;
-
-	parser->c += sizeof("max\"") - 1;
-	find_colon(parser);
-	max = rt_atof(parser);
-	if (object->type == OBJECT_CONE)
-		object->object.cone.max = max;
-	else
-		object->object.cylinder.max = max;
-	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
-	if (parser->string[parser->c] == ',')
-	{
-		parser->c++;
-		cone_and_cylinder_objects(object, parser);
-	}
-}
-
-void	find_closed(t_object *object, t_parser *parser)
-{
-	int		closed;
-
-	parser->c += sizeof("closed\"") - 1;
-	find_colon(parser);
-	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
-	if (parser->string[parser->c] == '1')
-		closed = true;
-	else if (parser->string[parser->c] == '0')
-		closed = false;
-	else
-		handle_errors("cone/cylinder syntax error");
-	if (object->type == OBJECT_CONE)
-		object->object.cone.closed = closed;
-	else
-		object->object.cylinder.closed = closed;
-}
-
-void	find_min(t_object *object, t_parser *parser)
-{
-	int	min;
-
-	parser->c += sizeof("min\"") - 1;
-	find_colon(parser);
-	min = rt_atof(parser);
-	if (object->type == OBJECT_CONE)
-		object->object.cone.min = min;
-	else
-		object->object.cylinder.min = min;
-	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
-	if (parser->string[parser->c] == ',')
-	{
-		parser->c++;
-		cone_and_cylinder_objects(object, parser);
-	}
-}
-
-void	cone_and_cylinder_objects(t_object *object, t_parser *parser)
-{
-	find_double_quote(parser);
-	if (!ft_strncmp(&parser->string[parser->c], "min\"", 4))
-		find_min(object, parser);
-	else if (!ft_strncmp(&parser->string[parser->c], "max\"", 4))
-		find_max(object, parser);
-	else if (!ft_strncmp(&parser->string[parser->c], "closed\"", 7))
-		find_closed(object, parser);
-	else
-		handle_errors("min & max syntax errors");
 }

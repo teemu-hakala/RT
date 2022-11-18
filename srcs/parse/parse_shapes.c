@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:06:52 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 12:26:18 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/18 10:37:09 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static void	find_shape_cont(t_object *shape, t_parser *parser)
 {
-	if (ft_strncmp(&parser->string[parser->c], "cone\"", 5) == 0)
+	if (ft_strncmp(&parser->string[parser->c], "\"cone\"", 6) == 0)
 	{
-		parser->c += sizeof("cone\"") - 1;
+		parser->c += sizeof("\"cone\"") - 1;
 		find_colon(parser);
 		find_open_bracket(parser);
 		*shape = cone_prototype();
@@ -24,9 +24,9 @@ static void	find_shape_cont(t_object *shape, t_parser *parser)
 			return ;
 		parse_cone(parser, shape);
 	}
-	else if (ft_strncmp(&parser->string[parser->c], "cylinder\"", 9) == 0)
+	else if (ft_strncmp(&parser->string[parser->c], "\"cylinder\"", 10) == 0)
 	{
-		parser->c += sizeof("cylinder\"") - 1;
+		parser->c += sizeof("\"cylinder\"") - 1;
 		find_colon(parser);
 		find_open_bracket(parser);
 		*shape = cylinder_prototype();
@@ -40,10 +40,10 @@ static void	find_shape_cont(t_object *shape, t_parser *parser)
 
 static void	find_shape(t_object *shape, t_parser *parser)
 {
-	find_double_quote(parser);
-	if (ft_strncmp(&parser->string[parser->c], "plane\"", 6) == 0)
+	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
+	if (ft_strncmp(&parser->string[parser->c], "\"plane\"", 7) == 0)
 	{
-		parser->c += sizeof("plane\"") - 1;
+		parser->c += sizeof("\"plane\"") - 1;
 		find_colon(parser);
 		find_open_bracket(parser);
 		*shape = plane_prototype();
@@ -51,9 +51,9 @@ static void	find_shape(t_object *shape, t_parser *parser)
 			return ;
 		parse_plane(parser, shape);
 	}
-	else if (ft_strncmp(&parser->string[parser->c], "sphere\"", 7) == 0)
+	else if (ft_strncmp(&parser->string[parser->c], "\"sphere\"", 8) == 0)
 	{
-		parser->c += sizeof("sphere\"") - 1;
+		parser->c += sizeof("\"sphere\"") - 1;
 		find_colon(parser);
 		find_open_bracket(parser);
 		*shape = sphere_prototype();
