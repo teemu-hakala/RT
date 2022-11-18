@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:07:33 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/16 14:14:55 by thakala          ###   ########.fr       */
+/*   Updated: 2022/11/18 12:29:06 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,20 +49,20 @@ static void	read_file_contents(t_vec *string, const int file_descriptor)
 
 static void	find_object_keyword(t_world *world, t_parser *parser)
 {
-	find_double_quote(parser);
-	if (ft_strncmp(&parser->string[parser->c], "camera\"", 7) == 0)
+	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
+	if (ft_strncmp(&parser->string[parser->c], "\"camera\"", 8) == 0)
 	{
-		parser->c += sizeof("camera\"") - 1;
+		parser->c += sizeof("\"camera\"") - 1;
 		parse_camera(world, parser);
 	}
-	else if (ft_strncmp(&parser->string[parser->c], "lights\"", 7) == 0)
+	else if (ft_strncmp(&parser->string[parser->c], "\"lights\"", 8) == 0)
 	{
-		parser->c += sizeof("lights\"") - 1;
+		parser->c += sizeof("\"lights\"") - 1;
 		parse_lights(world, parser);
 	}
-	else if (ft_strncmp(&parser->string[parser->c], "shapes\"", 7) == 0)
+	else if (ft_strncmp(&parser->string[parser->c], "\"shapes\"", 8) == 0)
 	{
-		parser->c += sizeof("shapes\"") - 1;
+		parser->c += sizeof("\"shapes\"") - 1;
 		parse_shapes(world, parser);
 	}
 	else

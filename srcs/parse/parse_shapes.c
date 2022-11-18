@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:06:52 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/18 10:37:09 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/18 12:09:39 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,21 +75,20 @@ void	parse_shapes(t_world *world, t_parser *parser)
 	find_shape(&object, parser);
 	while (1)
 	{
+		if (vec_push(&world->objects, &object) == VEC_ERROR)
+			handle_errors("vec_push shape error");
 		if (find_matching_bracket(parser) == false)
 			handle_errors("shapes object syntax error");
-		if (vec_push(&world->objects, &object) == VEC_ERROR)
-			handle_errors("vec_push light error");
-		if (parser->string[parser->c] == ',')
+		else if (parser->string[parser->c] == ',')
 		{
 			parser->c++;
 			find_open_bracket(parser);
 			find_shape(&object, parser);
 		}
-		else if (find_matching_bracket(parser) == true)
-			break ;
 		else
-			handle_errors("shapes syntax error");
+			break ;
 	}
+	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
 	if (find_matching_bracket(parser) == false)
 		handle_errors("shapes array syntax error");
 }
