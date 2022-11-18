@@ -18,12 +18,7 @@
 	[
 		{
 			"light" :
-			{
-				"transform" :
-				{
-					"translation" : [2, 4, -10]
-				}
-			}
+			{}
 		}
 	],
 	"shapes" :
