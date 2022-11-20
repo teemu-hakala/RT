@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:01:57 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 13:05:46 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/18 13:27:02 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_parser
 	uint64_t	atof_index;
 }				t_parser;
 
-typedef void	(*t_subobject_keyword_fn)(t_parser *, t_object *);
+typedef int	(*t_subobject_keyword_fn)(t_parser *, t_object *);
 void		parse_into(t_world *world, const int file_descriptor);
 double		rt_atof(t_parser *parser);
 /*parse objects*/
@@ -36,18 +36,17 @@ void		parse_sphere(t_parser *parser, t_object *shape);
 void		parse_cone(t_parser *parser, t_object *shape);
 void		parse_cylinder(t_parser *parser, t_object *shape);
 /*parse sub-objects*/
-void		find_subobject_keyword(t_parser *parser, t_tuple *origin, \
+int			find_subobject_keyword(t_parser *parser, t_tuple *origin, \
 			t_transform *transform, t_material *material);
-void		dispatch_find_subobject_keyword(t_parser *parser, t_object *shape);
+int			dispatch_find_subobject_keyword(t_parser *parser, t_object *shape);
 void		parse_tuple(t_tuple *tuple, t_parser *parser);
 void		parse_transform(t_transform *transform, t_parser *parser);
 void		parse_material(t_material *material, t_parser *parser);
-void		cone_and_cylinder_objects(t_object *object, t_parser *parser);
+int			cone_and_cylinder_objects(t_parser *parser, t_object *object);
 
 /*utility parse functions*/
 void		find_open_bracket(t_parser *parser);
 int			find_matching_bracket(t_parser *parser);
-void		find_double_quote(t_parser *parser);
 void		find_colon(t_parser *parser);
 
 /*default settings*/

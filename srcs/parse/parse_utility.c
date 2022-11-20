@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:07:11 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 10:49:56 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/18 13:26:57 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,6 @@ int	find_matching_bracket(t_parser *parser)
 	parser->brackets.len--;
 	parser->c++;
 	return (true);
-}
-
-void	find_double_quote(t_parser *parser)
-{
-	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
-	if (parser->string[parser->c] != '"')
-		handle_errors("quote format error");
-	parser->c++;
 }
 
 void	find_colon(t_parser *parser)

@@ -6,7 +6,7 @@
 #    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2022/11/16 10:40:05 by deelliot         ###   ########.fr        #
+#    Updated: 2022/11/18 15:44:09 by deelliot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,19 +35,24 @@ PARSE_DIR = parse
 MATHS_DIR = maths
 OBJECTS_DIR = objects
 PATTERNS_DIR = patterns
+INTERSECT_DIR = intersect
 
 # Source and object files
 PARSE_SRCS = default_files.c parse_camera.c parse_cone.c parse_cylinder.c \
 	parse_lights.c parse_single_light.c parse_plane.c parse_shapes.c \
 	parse_sphere.c parse_sub_objs.c parse_utility.c parse.c rt_atof.c \
-	rt_atoi.c dispatch_subobjects.c parse_material.c parse_transform.c
+	rt_atoi.c dispatch_subobjects.c parse_material.c parse_transform.c \
+	parse_cone_cylinder_subobj.c
 
-OBJECTS_SRCS = camera.c plane.c cone.c cylinder.c transform_objects.c\
+OBJECTS_SRCS = camera.c plane.c transform_objects.c\
 
 MATHS_SRCS = matrix_inversion.c matrix_maths.c matrix_transformations.c \
 	tuple_operations.c matrix_rotations.c tuple_w.c tuple_basic_operations.c \
 
 PATTERNS_SRCS = pattern_dispatch.c patterns.c
+
+INTERSECT_SRCS = intersect_plane.c intersect_sphere.c intersect_cone.c \
+	intersect_cylinder.c intersect_dispatch.c
 
 FILES = \
 	main.c \
@@ -55,8 +60,8 @@ FILES = \
 	image.c \
 	error_handling.c \
 	handle_input.c \
-	intersect.c \
-	normals.c \
+	normal_utility.c \
+	normal_dispatch.c \
 	reflections.c \
 	view_transform.c \
 	shading.c \
@@ -71,6 +76,7 @@ OBJS = $(addprefix $(OBJS_DIR)/, \
 	$(addprefix $(OBJECTS_DIR)/, $(OBJECTS_SRCS:.c=.o)) \
 	$(addprefix $(MATHS_DIR)/, $(MATHS_SRCS:.c=.o))\
 	$(addprefix $(PATTERNS_DIR)/, $(PATTERNS_SRCS:.c=.o))\
+	$(addprefix $(INTERSECT_DIR)/, $(INTERSECT_SRCS:.c=.o))\
 	$(FILES:.c=.o))
 
 # Paths
@@ -108,6 +114,7 @@ $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)/$(MATHS_DIR)
 	@mkdir -p $(OBJS_DIR)/$(OBJECTS_DIR)
 	@mkdir -p $(OBJS_DIR)/$(PATTERNS_DIR)
+	@mkdir -p $(OBJS_DIR)/$(INTERSECT_DIR)
 
 
 libft:

@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   patterns.h                                         :+:      :+:    :+:   */
+/*   double_max.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/07 13:32:36 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/18 17:05:00 by deelliot         ###   ########.fr       */
+/*   Created: 2022/11/18 15:28:22 by deelliot          #+#    #+#             */
+/*   Updated: 2022/11/18 17:01:43 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PATTERNS_H
-# define PATTERNS_H
-# include "RTv1.h"
+#include "libft.h"
 
-typedef enum e_pattern_type
+double	double_max(double a, double b)
 {
-	PATTERN_NONE = 0,
-	PATTERN_STRIPE = 1,
-	PATTERN_CHECKERED = 2,
-	PATTERN_CIRCLES = 3,
-	PATTERN_GRADIENT = 4
-}	t_pattern_type;
-
-typedef struct s_pattern_col
-{
-	t_tuple	a;
-	t_tuple	b;
-}				t_pattern_col;
-
-#endif
+	if (a > b)
+		return (a);
+	else
+		return (b);
+}

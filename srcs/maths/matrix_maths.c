@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:02:38 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 16:13:21 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/18 14:34:49 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,26 @@
 /* compares two matrices to see if they are the same. Returns 0 if different, 1
 if equal */
 
-int	matrix_comparison(t_fl **a, t_fl **b, uint32_t size)
-{
-	uint32_t	x;
-	uint32_t	y;
+// int	matrix_comparison(t_fl **a, t_fl **b, uint32_t size)
+// {
+// 	uint32_t	x;
+// 	uint32_t	y;
 
-	y = 0;
-	while (y < size)
-	{
-		x = 0;
-		while (x < size)
-		{
-			if (a[y][x] - b[y][x] < EPSILON)
-				x++;
-			else
-				return (0);
-		}
-		y++;
-	}
-	return (1);
-}
+// 	y = 0;
+// 	while (y < size)
+// 	{
+// 		x = 0;
+// 		while (x < size)
+// 		{
+// 			if (a[y][x] - b[y][x] < EPSILON)
+// 				x++;
+// 			else
+// 				return (0);
+// 		}
+// 		y++;
+// 	}
+// 	return (1);
+// }
 
 /* matrix multiplication for two identical square matrices */
 

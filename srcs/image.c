@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:09:40 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/16 11:19:09 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/18 14:26:42 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void	img_pixel_put(t_win *win, int x, int y, uint32_t colour)
 {
 	char	*pixel;
 
-	if (x >= 0 && x < win->world.camera.size.horizontal \
-		&& y >= 0 && y < win->world.camera.size.vertical)
+	if (x >= 0 && x < win->world.camera.canvas.horizontal \
+		&& y >= 0 && y < win->world.camera.canvas.vertical)
 	{
 		pixel = win->img.addr + (y * win->img.length + \
 			x * (win->img.bpp / 8));

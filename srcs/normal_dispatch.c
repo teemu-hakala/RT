@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   normals.c                                          :+:      :+:    :+:   */
+/*   normal_dispatch.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/15 10:10:20 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/16 15:55:36 by deelliot         ###   ########.fr       */
+/*   Created: 2022/11/18 14:54:41 by deelliot          #+#    #+#             */
+/*   Updated: 2022/11/18 14:59:10 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,6 @@ t_tuple	normal_at_sphere(void *sphere, t_tuple *point_at)
 	world_normal = matrix_tuple_multi(&transposed_inverse, &obj_normal);
 	world_normal.tuple.units.w = 0;
 	return (normalize(world_normal));
-}
-
-t_tuple	object_to_world_space(t_mtx *inverse, t_tuple obj_space)
-{
-	t_mtx	transposed_inverse;
-	t_tuple	world_space;
-
-	transposed_inverse = transpose_matrix(inverse);
-	world_space = matrix_tuple_multi(&transposed_inverse, &obj_space);
-	world_space.tuple.units.w = 0;
-	return (world_space);
 }
 
 t_tuple	normal_at_cone(void *cone, t_tuple *point_at)
@@ -91,7 +80,6 @@ t_tuple	normal_at_cylinder(void *cylinder, t_tuple *point_at)
 
 	obj_point = matrix_tuple_multi(&((t_cylinder *)cylinder)->transform.inverse,
 			point_at);
-
 	distance = (obj_point.tuple.units.x * obj_point.tuple.units.x) + \
 		(obj_point.tuple.units.z * obj_point.tuple.units.z);
 	if (distance < 1 && (obj_point.tuple.units.y >= \
