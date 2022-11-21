@@ -43,7 +43,7 @@ typedef struct s_transform
 
 typedef struct s_pattern
 {
-	t_pattern_colours	colour;
+	t_pattern_col		colour;
 	t_transform			transform;
 	enum e_pattern_type	type;
 }	t_pattern;
