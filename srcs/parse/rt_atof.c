@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 18:00:18 by thakala           #+#    #+#             */
-/*   Updated: 2022/11/14 11:07:01 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/21 13:43:35 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ static double	rt_atof_digits(t_parser *parser, uint64_t *d, char sign)
 			fractional = 10 * fractional + (parser->string[(*d)++] - '0');
 			decimal_digits *= 10;
 		}
+		if (decimal_digits == 0)
+			handle_errors("user error, number too long");
 	}
 	return (sign * ((double)integral + (double)fractional / decimal_digits));
 }

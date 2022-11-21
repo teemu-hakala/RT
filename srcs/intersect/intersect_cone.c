@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 15:07:25 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/18 16:58:18 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/21 14:19:00 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	cone_intersection(t_ray ray, void *cone, t_world *world)
 		{
 			temp.time = -params.c / (2 * params.b);
 			temp.shape = cone;
-			if (vec_push(&world->intersections, &cone) == VEC_ERROR)
+			if (vec_push(&world->intersections, &temp) == VEC_ERROR)
 				handle_errors("vec_push malloc error cone_intersection");
 		}
 		else

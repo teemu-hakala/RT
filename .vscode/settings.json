@@ -24,6 +24,8 @@
 		"rtv1.h": "c",
 		"libft.h": "c",
 		"iosfwd": "c",
-		"tuple": "c"
+		"tuple": "c",
+		"__bit_reference": "c",
+		"chrono": "c"
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:02:29 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/15 13:01:38 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/21 14:26:11 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,7 @@ void	matrix_inversion(t_mtx *mtx, uint32_t size)
 
 	det = determinant((t_mtx *)mtx, size);
 	if (det == 0)
-	{
-		printf("det = %f\n", det);
 		return ;
-	}
 	else
 	{
 		i.row = (uint32_t)(-1);
