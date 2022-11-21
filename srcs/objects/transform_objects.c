@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:02:57 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/21 14:05:19 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/21 14:29:00 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void	transform_camera(t_camera *camera)
 	translate(&camera->transform.matrix, &camera->transform.translation);
 	rotate(&camera->transform.matrix, &camera->transform.rotation);
 	scale(&camera->transform.matrix, &camera->transform.scale);
-	camera->origin = matrix_tuple_multi(&camera->transform.matrix, &camera->origin);
+	camera->origin = matrix_tuple_multi(&camera->transform.matrix, \
+		&camera->origin);
 	view_matrix = view_transform(camera->origin, camera->center_of_interest, \
 		vector(0, 1, 0));
 	camera->transform.inverse = view_matrix;

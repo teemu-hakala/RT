@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:04:38 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/18 14:24:41 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/21 14:48:53 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_fl	get_pixel_size(t_camera *camera, t_canvas size, t_fl field_of_view)
 		camera->half_width = half_view * aspect;
 		camera->half_height = half_view;
 	}
-	return (camera->half_width * 2 / size.horizontal);
+	return ((camera->half_width * 2) / size.horizontal);
 }
 
 t_camera	camera_prototype(void)
