@@ -25,8 +25,8 @@
 # include "parse.h"
 
 # define USAGE "./RTv1 ./scenes/[.json file]"
-# define WIDTH 801
-# define HEIGHT 700
+# define WIDTH 501
+# define HEIGHT 400
 # define WALL_WIDTH 7
 # define WALL_HEIGHT 7
 # define KEY_DOWN 2
