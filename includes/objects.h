@@ -13,7 +13,6 @@
 #ifndef OBJECTS_H
 # define OBJECTS_H
 # include "RTv1.h"
-# include "patterns.h"
 
 typedef enum e_object_type
 {
@@ -33,13 +32,6 @@ typedef struct s_transform
 	t_tuple	scale;
 }	t_transform;
 
-typedef struct s_pattern
-{
-	t_pattern_col		colour;
-	t_transform			transform;
-	enum e_pattern_type	type;
-}	t_pattern;
-
 typedef struct s_material
 {
 	t_fl		ambient;
@@ -47,8 +39,6 @@ typedef struct s_material
 	t_fl		specular;
 	t_fl		shininess;
 	t_tuple		init_colour;
-	t_pattern	pattern;
-	t_tuple		final_colour;
 	t_tuple		amb_col;
 	t_tuple		dif_col;
 	t_tuple		spec_col;

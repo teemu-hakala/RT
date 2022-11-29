@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:13:23 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/18 14:44:14 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/29 13:40:24 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_tuple	lighting(t_material material, t_light *light, t_phong vectors,
 {
 	t_fl	incidence_l;
 
-	material.col_mash = tuple_multi(material.final_colour, light->intensity);
+	material.col_mash = tuple_multi(material.init_colour, light->intensity);
 	vectors.light = normalize(tuple_sub(light->position, point));
 	material.amb_col = tuple_scale(material.col_mash, material.ambient);
 	incidence_l = dot_product(vectors.light, vectors.surface_normal);

@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/29 13:25:43 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/29 13:36:11 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,10 @@
 # include "matrices.h"
 # include "colour_and_light.h"
 # include "objects.h"
-# include "patterns.h"
 # include "world.h"
 # include "parse.h"
 
-# define USAGE "<instructions>"
+# define USAGE "./RTv1 ./scenes/[.json file]"
 # define WIDTH 800
 # define HEIGHT 600
 # define WALL_WIDTH 7
@@ -155,21 +154,6 @@ t_ray		ray_for_pixel(t_camera *camera, t_canvas position);
 void		prepare_computations(t_world *world);
 t_tuple		colour_at(t_world *world);
 t_fl		get_pixel_size(t_camera *camera, t_canvas size, t_fl field_of_view);
-
-/* patterns*/
-typedef void	(*t_pattern_at_fn)(t_material *, t_tuple *);
-void		pattern_at(t_material *material, t_tuple *point, \
-				t_transform transform);
-t_pattern_col	set_pattern_colours(t_tuple a, t_tuple b);
-t_pattern	default_stripe_pattern(void);
-t_pattern	default_gradient_pattern(void);
-t_pattern	default_ring_pattern(void);
-t_pattern	default_checkered_pattern(void);
-void		none_at(t_material *material, t_tuple *point);
-void		striped_at(t_material *material, t_tuple *point);
-void		checkered_at(t_material *material, t_tuple *point);
-void		circle_at(t_material *material, t_tuple *point);
-void		gradient_at(t_material *material, t_tuple *point);
 
 /* parsing */
 double		rt_atof(t_parser *parser);

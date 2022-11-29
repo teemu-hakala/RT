@@ -6,7 +6,7 @@
 #    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2022/11/21 14:59:26 by deelliot         ###   ########.fr        #
+#    Updated: 2022/11/29 13:34:28 by deelliot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,6 @@ HDRS = includes/RTv1.h \
 	includes/objects.h \
 	includes/tuple.h \
 	includes/world.h \
-	includes/patterns.h \
 	includes/parse.h
 LIBFT_DIR = libft
 MINILIBX_DIR = minilibx
@@ -34,7 +33,6 @@ MINILIBX_DIR = minilibx
 PARSE_DIR = parse
 MATHS_DIR = maths
 OBJECTS_DIR = objects
-PATTERNS_DIR = patterns
 INTERSECT_DIR = intersect
 
 # Source and object files
@@ -48,8 +46,6 @@ OBJECTS_SRCS = camera.c transform_objects.c\
 
 MATHS_SRCS = matrix_inversion.c matrix_maths.c matrix_transformations.c \
 	tuple_operations.c matrix_rotations.c tuple_w.c tuple_basic_operations.c \
-
-PATTERNS_SRCS = pattern_dispatch.c patterns.c
 
 INTERSECT_SRCS = intersect_plane.c intersect_sphere.c intersect_cone.c \
 	intersect_cylinder.c intersect_dispatch.c
@@ -75,7 +71,6 @@ OBJS = $(addprefix $(OBJS_DIR)/, \
 	$(addprefix $(PARSE_DIR)/, $(PARSE_SRCS:.c=.o)) \
 	$(addprefix $(OBJECTS_DIR)/, $(OBJECTS_SRCS:.c=.o)) \
 	$(addprefix $(MATHS_DIR)/, $(MATHS_SRCS:.c=.o))\
-	$(addprefix $(PATTERNS_DIR)/, $(PATTERNS_SRCS:.c=.o))\
 	$(addprefix $(INTERSECT_DIR)/, $(INTERSECT_SRCS:.c=.o))\
 	$(FILES:.c=.o))
 
@@ -113,7 +108,6 @@ $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)/$(PARSE_DIR)
 	@mkdir -p $(OBJS_DIR)/$(MATHS_DIR)
 	@mkdir -p $(OBJS_DIR)/$(OBJECTS_DIR)
-	@mkdir -p $(OBJS_DIR)/$(PATTERNS_DIR)
 	@mkdir -p $(OBJS_DIR)/$(INTERSECT_DIR)
 
 
