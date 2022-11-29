@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/18 17:06:13 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/29 13:25:43 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 # include "parse.h"
 
 # define USAGE "<instructions>"
-# define WIDTH 401
-# define HEIGHT 401
+# define WIDTH 800
+# define HEIGHT 600
 # define WALL_WIDTH 7
 # define WALL_HEIGHT 7
 # define KEY_DOWN 2

@@ -22,15 +22,7 @@ typedef enum e_object_type
 	OBJECT_SPHERE = 43,
 	OBJECT_CONE = 44,
 	OBJECT_CYLINDER = 45,
-	OBJECT_ERROR,
-	OBJECT_NONE
 }	t_object_type;
-
-typedef struct s_field_of_view
-{
-	t_fl	vertical;
-	t_fl	horizontal;
-}	t_fov2;
 
 typedef struct s_transform
 {

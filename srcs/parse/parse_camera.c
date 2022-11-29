@@ -6,45 +6,11 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:05:21 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/18 14:24:20 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/29 13:29:10 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RTv1.h"
-
-void	find_canvas_keywords(t_world *world, t_parser *parser)
-{
-	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
-	if (ft_strncmp(&parser->string[parser->c], "\"vertical\"", 10) == 0)
-	{
-		parser->c += sizeof("\"vertical\"") - 1;
-		find_colon(parser);
-		world->camera.canvas.vertical = rt_atoi(parser);
-	}
-	else if (ft_strncmp(&parser->string[parser->c], "\"horizontal\"", 12) == 0)
-	{
-		parser->c += sizeof("\"horizontal\"") - 1;
-		find_colon(parser);
-		world->camera.canvas.horizontal = rt_atoi(parser);
-	}
-}
-
-void	parse_canvas(t_world *world, t_parser *parser)
-{
-	parser->c += sizeof("\"canvas\"") - 1;
-	find_colon(parser);
-	find_open_bracket(parser);
-	if (find_matching_bracket(parser) == true)
-		return ;
-	find_canvas_keywords(world, parser);
-	if (parser->string[parser->c] == ',')
-	{
-		parser->c++;
-		find_canvas_keywords(world, parser);
-	}
-	if (!find_matching_bracket(parser))
-		handle_errors("canvas syntax error");
-}
 
 static void	camera_subobjects_cont(t_world *world, t_parser *parser)
 {
@@ -54,10 +20,6 @@ static void	camera_subobjects_cont(t_world *world, t_parser *parser)
 		parser->c += sizeof("\"center_of_interest\"") - 1;
 		find_colon(parser);
 		parse_tuple(&world->camera.center_of_interest, parser);
-	}
-	else if (ft_strncmp(&parser->string[parser->c], "\"canvas\"", 8) == 0)
-	{
-		parse_canvas(world, parser);
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "\"field_of_view\"", 15) == 0)
 	{
