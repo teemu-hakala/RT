@@ -6,7 +6,7 @@
 #    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2022/11/29 13:34:28 by deelliot         ###   ########.fr        #
+#    Updated: 2022/11/29 13:47:39 by deelliot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,6 @@ HDRS = includes/RTv1.h \
 	includes/world.h \
 	includes/parse.h
 LIBFT_DIR = libft
-MINILIBX_DIR = minilibx
 
 # folders
 PARSE_DIR = parse
@@ -76,19 +75,15 @@ OBJS = $(addprefix $(OBJS_DIR)/, \
 
 # Paths
 LIBFT_A = $(LIBFT_DIR)/libft.a
-MINILIBX_A = $(MINILIBX_DIR)/libmlx.a
-LIBS = $(LIBFT_A) $(MINILIBX_A)
+LIBS = $(LIBFT_A)
 
 # Libraries
 LINKS = \
 	-lm \
-	-L $(LIBFT_DIR) -lft \
-	-L $(MINILIBX_DIR) -lmlx \
-	-framework OpenGL -framework Appkit
+	-L $(LIBFT_DIR) -lft
 
-# iMac minilibx:
-# LINKS = -L /usr/local/lib -lmlx -I /usr/local/include -framework \
-# 	OpenGL -framework AppKit
+LINKS += -L /usr/local/lib -lmlx -I /usr/local/include -framework \
+	OpenGL -framework AppKit
 
 #Rules
 all: libft $(NAME)
@@ -113,8 +108,6 @@ $(OBJS_DIR):
 
 libft:
 	make -C $(LIBFT_DIR)
-$(MINILIBX_A):
-	make -C $(MINILIBX_DIR)
 
 clean:
 	/bin/rm -Rf $(OBJS_DIR)

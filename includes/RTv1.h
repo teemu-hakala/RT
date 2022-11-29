@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 14:17:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/29 13:36:11 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/29 14:03:41 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <math.h>
 # include <mlx.h>
 # include <stdint.h>
-# include <stdio.h>
 # include "libft.h"
 # include "tuple.h"
 # include "matrices.h"
@@ -26,8 +25,8 @@
 # include "parse.h"
 
 # define USAGE "./RTv1 ./scenes/[.json file]"
-# define WIDTH 800
-# define HEIGHT 600
+# define WIDTH 801
+# define HEIGHT 700
 # define WALL_WIDTH 7
 # define WALL_HEIGHT 7
 # define KEY_DOWN 2
