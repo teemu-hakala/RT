@@ -5,8 +5,6 @@
 	"version": "0.2.0",
 	"configurations": [
 
-
-
 		{
 			"name": "minimum",
 			"type": "cppdbg",
@@ -164,7 +162,7 @@
 			"MIMode": "lldb"
 		},
 		{
-			"name": "christmastree.json",
+			"name": "christmastree",
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/RTv1",

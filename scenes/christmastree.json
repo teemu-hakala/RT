@@ -131,20 +131,32 @@
 				"transform" :
 				{
 					"translation" : [0, 0, 0],
-					"rotation" : [0, 0, 0],
-					"scale" : [0.5, 0.5, 0.5]
+					"scale" : [0.5, 0.5, 0.5],
+					"rotation" : [1.57, 0, 0]
 				},
 				"material" :
 				{
 					"init_colour" : [0.1333, 0.298, 0.235]
 				},
-				"min" : 0,
-				"max" : 2
+				"max" : 2,
+				"min" : 1
 			}
 		},
 		{
 			"cone" :
 			{
+				"origin" : [0, 0, 0],
+				"transform" :
+				{
+					"translation" : [2, 0, 0],
+					"scale" : [0.1, 0.1, 0.1]
+				},
+				"material" :
+				{
+					"init_colour" : [0.572, 0.482, 0.321]
+				},
+				"max" : 2,
+				"min" : 1
 			}
 		}
 	]

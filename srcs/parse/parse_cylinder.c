@@ -50,6 +50,8 @@ void	parse_cylinder(t_parser *parser, t_object *shape)
 			parser->c++;
 			parse_cylinder(parser, shape);
 		}
+		else if (!find_matching_bracket(parser))
+			handle_errors("cylinder syntax error");
 	}
 	else if (!find_matching_bracket(parser))
 		handle_errors("cylinder syntax error");
