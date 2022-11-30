@@ -49,8 +49,11 @@ void	parse_cone(t_parser *parser, t_object *shape)
 			parser->c++;
 			parse_cone(parser, shape);
 		}
+		else if (!find_matching_bracket(parser))
+			handle_errors("cone syntax error");
 	}
 	else if (!find_matching_bracket(parser))
 		handle_errors("cone syntax error");
-	transform_object(&shape->object.cone.transform);
+	else
+		transform_object(&shape->object.cone.transform);
 }
