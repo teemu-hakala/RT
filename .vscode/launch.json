@@ -172,6 +172,18 @@
 			"environment": [],
 			"externalConsole": false,
 			"MIMode": "lldb"
+		},
+		{
+			"name": "d9_y_axis.json",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/RTv1",
+			"args": ["${workspaceFolder}/scenes/d9_y_axis.json"],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb"
 		}
 	]
 }
