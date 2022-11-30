@@ -162,6 +162,18 @@
 			"environment": [],
 			"externalConsole": false,
 			"MIMode": "lldb"
+		},
+		{
+			"name": "christmastree.json",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/RTv1",
+			"args": ["${workspaceFolder}/scenes/christmastree.json"],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb"
 		}
 	]
 }
