@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cone_cylinder_subobj.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 16:12:31 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/18 13:22:16 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/30 14:23:33 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,6 @@ void	find_min(t_parser *parser, t_object *object)
 		object->object.cone.min = min;
 	else
 		object->object.cylinder.min = min;
-	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
-	if (parser->string[parser->c] == ',')
-	{
-		parser->c++;
-		cone_and_cylinder_objects(parser, object);
-	}
 }
 
 void	find_max(t_parser *parser, t_object *object)
@@ -42,12 +36,6 @@ void	find_max(t_parser *parser, t_object *object)
 		object->object.cone.max = max;
 	else
 		object->object.cylinder.max = max;
-	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
-	if (parser->string[parser->c] == ',')
-	{
-		parser->c++;
-		cone_and_cylinder_objects(parser, object);
-	}
 }
 
 void	find_closed(t_parser *parser, t_object *object)
@@ -67,11 +55,6 @@ void	find_closed(t_parser *parser, t_object *object)
 		object->object.cone.closed = closed;
 	else
 		object->object.cylinder.closed = closed;
-	if (parser->string[parser->c] == ',')
-	{
-		parser->c++;
-		cone_and_cylinder_objects(parser, object);
-	}
 }
 
 int	cone_and_cylinder_objects(t_parser *parser, t_object *object)
