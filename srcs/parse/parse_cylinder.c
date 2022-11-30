@@ -55,6 +55,5 @@ void	parse_cylinder(t_parser *parser, t_object *shape)
 	}
 	else if (!find_matching_bracket(parser))
 		handle_errors("cylinder syntax error");
-	else
-		transform_object(&shape->object.cylinder.transform);
+	transform_object(&shape->object.cylinder.transform);
 }
