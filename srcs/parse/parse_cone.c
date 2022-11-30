@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cone.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:05:28 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/18 13:07:51 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/30 13:45:12 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ void	parse_cone(t_parser *parser, t_object *shape)
 		else if (!find_matching_bracket(parser))
 			handle_errors("cone syntax error");
 	}
-	else if (!find_matching_bracket(parser) == true)
+	else if (find_matching_bracket(parser))
+		transform_object(&shape->object.cone.transform);
+	else
 		handle_errors("cone syntax error");
-	transform_object(&shape->object.cone.transform);
 }
