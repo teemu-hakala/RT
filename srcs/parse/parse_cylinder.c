@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cylinder.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:06:08 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/18 14:30:25 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/30 14:09:40 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,4 @@ void	parse_cylinder(t_parser *parser, t_object *shape)
 	}
 	else if (!find_matching_bracket(parser))
 		handle_errors("cylinder syntax error");
-	transform_object(&shape->object.cylinder.transform);
 }

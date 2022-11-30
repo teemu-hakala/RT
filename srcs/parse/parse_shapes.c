@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_shapes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:06:52 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/18 12:09:39 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/11/30 14:09:43 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void	find_shape_cont(t_object *shape, t_parser *parser)
 		if (find_matching_bracket(parser))
 			return ;
 		parse_cone(parser, shape);
+		transform_object(&shape->object.cone.transform);
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "\"cylinder\"", 10) == 0)
 	{
@@ -33,6 +34,7 @@ static void	find_shape_cont(t_object *shape, t_parser *parser)
 		if (find_matching_bracket(parser))
 			return ;
 		parse_cylinder(parser, shape);
+		transform_object(&shape->object.cylinder.transform);
 	}
 	else
 		handle_errors("shape syntax error");

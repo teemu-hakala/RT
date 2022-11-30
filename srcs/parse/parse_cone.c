@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:05:28 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/30 14:03:58 by thakala          ###   ########.fr       */
+/*   Updated: 2022/11/30 14:08:43 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,4 @@ void	parse_cone(t_parser *parser, t_object *shape)
 	}
 	else if (!find_matching_bracket(parser))
 		handle_errors("cone syntax error");
-	transform_object(&shape->object.cone.transform);
 }
