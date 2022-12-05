@@ -55,6 +55,7 @@ void	find_closed(t_parser *parser, t_object *object)
 		object->object.cone.closed = closed;
 	else
 		object->object.cylinder.closed = closed;
+	parser->c++;
 }
 
 int	cone_and_cylinder_objects(t_parser *parser, t_object *object)
