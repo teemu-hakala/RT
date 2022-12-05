@@ -35,6 +35,7 @@ static void	read_file_contents(t_vec *string, const int file_descriptor)
 		}
 		if (vec_push_arr(string, line, ft_strlen(line)) == VEC_ERROR)
 			handle_errors("vec_push_arr error");
+		free (line);
 	}
 	if (vec_push_arr(string, "\0", 1) == VEC_ERROR)
 		handle_errors("vec_push_arr error");
@@ -99,4 +100,6 @@ void	parse_into(t_world *world, const int file_descriptor)
 			handle_errors("object syntax error");
 	}
 	check_light(world);
+	vec_free(&string_vec);
+	vec_free(&parser.brackets);
 }

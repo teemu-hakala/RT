@@ -12,7 +12,7 @@
 
 NAME = libft.a
 
-FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+FLAGS = -Wall -Wextra -Werror
 
 # Directories
 SRC_DIR = srcs

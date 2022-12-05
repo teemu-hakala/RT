@@ -30,7 +30,7 @@
 				"transform" :
 				{
 					"translation" : [0, 0, 0],
-					"rotation" : [0, 0, 0],
+					"rotation" : [0.7, 0, 0],
 					"scale" : [1, 1, 1]
 				},
 				"material" :
@@ -40,7 +40,10 @@
 					"specular" : 0.1,
 					"shininess" : 200,
 					"init_colour" : [0.3, 0.5, 0.7]
-				}
+				},
+				"min" : -1,
+				"max" : 1,
+				"closed" : 0
 			}
 		}
 	]

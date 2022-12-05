@@ -16,9 +16,7 @@
 
 /* function to remove a specified row and col from a matrix.
 Returns a new matrix with 1 column and 1 row less*/
-/*
-	t_coords	padding; // (tm) - jsaarine CC0
-*/
+
 t_mtx	submatrix(t_mtx *mtx, t_coords index, uint32_t size)
 {
 	t_mtx		new_matrix;
