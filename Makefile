@@ -125,7 +125,7 @@
 
 NAME = RTv1
 
-FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+FLAGS = -Wall -Wextra -Werror
 # FLAGS += -fsanitize=address -Wconversion -Ofast -flto
 
 # Directories
