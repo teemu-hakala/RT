@@ -12,25 +12,6 @@
 
 #include "RTv1.h"
 
-/*void	background_colour(t_win *win)
-{
-	int		x;
-	int		y;
-	// t_tuple	colour;
-
-	// colour = hex_to_argb(COLOUR_TURQOUISE);
-	y = -1;
-	while (++y < HEIGHT)
-	{
-		x = -1;
-		while (++x < WIDTH)
-		{
-			img_pixel_put(win, x, y, COLOUR_TURQOUISE);
-		}
-	}
-	mlx_put_image_to_window(win->mlx, win->win, win->img.img, 0, 0);
-}*/
-
 void	initialise_image(t_img *img, t_win *win)
 {
 	img->img = mlx_new_image(win->mlx, win->world.camera.canvas.horizontal \

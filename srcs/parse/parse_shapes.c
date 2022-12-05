@@ -94,4 +94,4 @@ void	parse_shapes(t_world *world, t_parser *parser)
 	if (find_matching_bracket(parser) == false)
 		handle_errors("shapes array syntax error");
 }
-// need to fix for last comma
+
