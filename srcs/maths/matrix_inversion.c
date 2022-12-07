@@ -1,18 +1,18 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   matrix_inversion.c                                 :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/15 10:02:29 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/21 14:26:11 by deelliot         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+
+
+
+
+
+
+
+
+
+
+
 
 #include "../includes/RTv1.h"
 
-/* the following functions are needed to invert a matrix.*/
+
 
 /* function to remove a specified row and col from a matrix.
 Returns a new matrix with 1 column and 1 row less*/
@@ -66,7 +66,7 @@ static t_fl	matrix_cofactor(t_mtx *mtx, t_coords index, uint32_t size)
 	return (cofactor);
 }
 
-/* calculates the determinant of any sized matrix*/
+
 
 t_fl	determinant(t_mtx *mtx, uint32_t size)
 {
@@ -91,7 +91,7 @@ t_fl	determinant(t_mtx *mtx, uint32_t size)
 	return (det);
 }
 
-/* matrix inversion - allows to reverse effects of matrix multiplication*/
+
 
 void	matrix_inversion(t_mtx *mtx, uint32_t size)
 {

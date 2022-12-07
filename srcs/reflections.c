@@ -1,14 +1,14 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   reflections.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/15 10:13:23 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/29 13:40:24 by deelliot         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+
+
+
+
+
+
+
+
+
+
+
 
 #include "RTv1.h"
 
@@ -18,7 +18,7 @@ static t_tuple	reflect(t_tuple input, t_tuple normal)
 			tuple_scale(normal, 2 * dot_product(input, normal))));
 }
 
-/* l stands for angle. we can change that. */
+
 
 void	lighting_cont(t_material *material, t_light *light, t_phong *vectors,
 	t_fl incidence_l)

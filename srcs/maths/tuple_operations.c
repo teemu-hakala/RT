@@ -1,14 +1,14 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   tuple_operations.c                                 :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/15 10:04:30 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/16 11:28:04 by deelliot         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+
+
+
+
+
+
+
+
+
+
+
 
 #include "RTv1.h"
 
@@ -46,7 +46,7 @@ t_tuple	normalize(t_tuple a)
 /* the dot product calculates the cosine angle between two vectors
 the smaller the dot product, the larger the angle between vectors*/
 
-/* vector length = sqrt of the dot product of the vector itself */
+
 
 t_fl	dot_product(t_tuple a, t_tuple b)
 {

@@ -1,14 +1,14 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse_shapes.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/15 10:06:52 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/30 14:09:43 by thakala          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+
+
+
+
+
+
+
+
+
+
+
 
 #include "RTv1.h"
 
@@ -94,4 +94,3 @@ void	parse_shapes(t_world *world, t_parser *parser)
 	if (find_matching_bracket(parser) == false)
 		handle_errors("shapes array syntax error");
 }
-

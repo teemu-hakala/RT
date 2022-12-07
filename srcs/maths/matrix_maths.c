@@ -1,14 +1,14 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   matrix_maths.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/15 10:02:38 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/18 14:34:49 by deelliot         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+
+
+
+
+
+
+
+
+
+
+
 
 #include "../includes/RTv1.h"
 
@@ -36,7 +36,7 @@ int	matrix_comparison(t_fl **a, t_fl **b, uint32_t size)
 	return (1);
 }
 
-/* matrix multiplication for two identical square matrices */
+
 
 void	matrix_multi_square(t_mtx *mtx, t_mtx *transformation, uint32_t size)
 {
@@ -67,7 +67,7 @@ void	matrix_multi_square(t_mtx *mtx, t_mtx *transformation, uint32_t size)
 	*mtx = temp;
 }
 
-/* matrix multiplication for 4 x 4 matrix by a tuple */
+
 
 t_tuple	matrix_tuple_multi(t_mtx *mtx, t_tuple *tuple)
 {
@@ -92,7 +92,7 @@ t_tuple	matrix_tuple_multi(t_mtx *mtx, t_tuple *tuple)
 	return (new);
 }
 
-/* swops rows and columns of the matrix */
+
 
 t_mtx	transpose_matrix(t_mtx *mtx)
 {
