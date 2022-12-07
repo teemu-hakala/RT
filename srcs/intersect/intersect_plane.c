@@ -10,7 +10,7 @@
 
 
 
-#include "RTv1.h"
+#include "RT.h"
 
 void	plane_intersection(t_ray ray, void *plane, t_world *world)
 {

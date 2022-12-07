@@ -10,7 +10,7 @@
 
 
 
-#include "RTv1.h"
+#include "RT.h"
 
 void	render(t_win *win, t_camera *camera)
 {

@@ -6,7 +6,7 @@
 #    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2022/11/29 13:47:39 by deelliot         ###   ########.fr        #
+#    Updated: 2022/12/07 13:17:01 by deelliot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -123,16 +123,16 @@
 
 # .PHONY: all clean fclean re libft
 
-NAME = RTv1
+NAME = RT
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 # FLAGS += -fsanitize=address -Wconversion -Ofast -flto
 
 # Directories
 SRCS_DIR = srcs
 OBJS_DIR = objs
 INCS = -I includes/ -I libft/includes/ -I minilibx/
-HDRS = includes/RTv1.h \
+HDRS = includes/RT.h \
 	includes/colour_and_light.h \
 	includes/matrices.h \
 	includes/objects.h \
@@ -171,6 +171,7 @@ FILES = \
 	handle_input.c \
 	normal_utility.c \
 	normal_dispatch.c \
+	lighting.c \
 	reflections.c \
 	view_transform.c \
 	shading.c \

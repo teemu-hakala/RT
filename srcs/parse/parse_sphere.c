@@ -10,7 +10,7 @@
 
 
 
-#include "RTv1.h"
+#include "RT.h"
 
 t_object	sphere_prototype(void)
 {

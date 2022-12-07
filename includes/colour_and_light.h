@@ -13,7 +13,7 @@
 #ifndef COLOUR_AND_LIGHT_H
 # define COLOUR_AND_LIGHT_H
 
-# include "RTv1.h"
+# include "RT.h"
 
 enum e_colour
 {

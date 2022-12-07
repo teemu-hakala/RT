@@ -10,7 +10,7 @@
 
 
 
-#include "RTv1.h"
+#include "RT.h"
 
 void	sphere_intersection(t_ray ray, void *sphere, t_world *world)
 {

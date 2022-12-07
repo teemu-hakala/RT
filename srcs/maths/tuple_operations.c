@@ -10,7 +10,7 @@
 
 
 
-#include "RTv1.h"
+#include "RT.h"
 
 t_tuple	tuple_scale(t_tuple a, t_fl scalar)
 {

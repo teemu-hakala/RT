@@ -10,7 +10,7 @@
 
 
 
-#include "RTv1.h"
+#include "RT.h"
 
 t_tuple	colour_at(t_world *world)
 {

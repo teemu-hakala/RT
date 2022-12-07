@@ -10,7 +10,7 @@
 
 
 
-#include "RTv1.h"
+#include "RT.h"
 
 static t_tuple	hit_position(t_ray *ray, t_fl distance)
 {

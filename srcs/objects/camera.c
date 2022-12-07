@@ -10,7 +10,7 @@
 
 
 
-#include "RTv1.h"
+#include "RT.h"
 
 t_fl	get_pixel_size(t_camera *camera, t_canvas size, t_fl field_of_view)
 {

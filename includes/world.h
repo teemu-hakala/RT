@@ -12,7 +12,7 @@
 
 #ifndef WORLD_H
 # define WORLD_H
-# include "RTv1.h"
+# include "RT.h"
 /*inside == true if hit occurs inside object, false otherwise. If hit occurs
 iside object, normal vector is inverted*/
 

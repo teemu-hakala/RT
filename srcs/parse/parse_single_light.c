@@ -10,7 +10,7 @@
 
 
 
-#include "RTv1.h"
+#include "RT.h"
 
 static void	find_light_subobject_keyword(t_light *light, t_parser *parser)
 {
