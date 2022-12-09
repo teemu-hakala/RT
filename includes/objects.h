@@ -13,6 +13,7 @@
 #ifndef OBJECTS_H
 # define OBJECTS_H
 # include "RT.h"
+# include "patterns.h"
 
 typedef enum e_object_type
 {
@@ -39,6 +40,13 @@ typedef struct s_transform
 	t_tuple	scale;
 }	t_transform;
 
+typedef struct s_pattern
+{
+	t_pat_col				colour;
+	t_transform				transform;
+	enum e_pattern_type		type;
+}	t_pattern;
+
 typedef struct s_material
 {
 	t_fl		ambient;
@@ -46,6 +54,7 @@ typedef struct s_material
 	t_fl		specular;
 	t_fl		shininess;
 	t_tuple		init_colour;
+	t_tuple		final_colour;
 	t_tuple		col_mash;
 }				t_material;
 
@@ -63,6 +72,7 @@ typedef struct s_info
 {
 	t_material	material;
 	t_const		channels;
+	t_pattern	pattern;
 }				t_info;
 
 typedef struct s_plane
@@ -70,6 +80,7 @@ typedef struct s_plane
 	t_tuple		origin;
 	t_transform	transform;
 	t_material	material;
+	t_pattern	pattern;
 }	t_plane;
 
 typedef struct s_sphere
@@ -77,6 +88,7 @@ typedef struct s_sphere
 	t_tuple		origin;
 	t_transform	transform;
 	t_material	material;
+	t_pattern	pattern;
 }	t_sphere;
 
 typedef struct s_cone
@@ -84,6 +96,7 @@ typedef struct s_cone
 	t_tuple		origin;
 	t_transform	transform;
 	t_material	material;
+	t_pattern	pattern;
 	t_fl		radius;
 	t_fl		min;
 	t_fl		max;
@@ -95,6 +108,7 @@ typedef struct s_cylinder
 	t_tuple		origin;
 	t_transform	transform;
 	t_material	material;
+	t_pattern	pattern;
 	t_fl		radius;
 	t_fl		min;
 	t_fl		max;

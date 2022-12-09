@@ -1,15 +1,16 @@
 
 #include "RT.h"
 
-t_pattern_col	set_pattern_colours(t_tuple a, t_tuple b)
+t_pat_col	set_pattern_colours(t_tuple a, t_tuple b)
 {
-	return ((t_pattern_col){
+	return ((t_pat_col){
 		.a = a,
 		.b = b
 	});
 }
 
-void	pattern_at(t_material *material, t_tuple *point, t_transform transform)
+void	pattern_at(t_pattern *pattern, t_material *material, t_tuple *point,
+	t_transform transform)
 {
 	t_tuple							object_space;
 	t_tuple							pattern_space;
@@ -21,7 +22,7 @@ void	pattern_at(t_material *material, t_tuple *point, t_transform transform)
 		gradient_at};
 
 	object_space = matrix_tuple_multi(&transform.inverse, point);
-	pattern_space = matrix_tuple_multi(&material->pattern.transform.inverse, \
+	pattern_space = matrix_tuple_multi(&pattern->transform.inverse, \
 		&object_space);
-	return (patterns[material->pattern.type](material, &pattern_space));
+	return (patterns[pattern->type](pattern, material, &pattern_space));
 }

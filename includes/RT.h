@@ -21,6 +21,7 @@
 # include "matrices.h"
 # include "colour_and_light.h"
 # include "objects.h"
+# include "patterns.h"
 # include "world.h"
 # include "parse.h"
 
@@ -122,7 +123,6 @@ t_tuple		lighting(t_info *lighting_info, t_light *light, t_phong vectors,
 void		is_shadow(t_world *world, t_tuple point, t_light *light);
 t_tuple		reflect(t_tuple input, t_tuple normal);
 
-
 /* object intersection */
 void		intersect_world(t_world *world, t_ray ray);
 void		plane_intersection(t_ray ray, void *plane, t_world *world);
@@ -155,6 +155,21 @@ t_ray		ray_for_pixel(t_camera *camera, t_canvas position);
 void		prepare_computations(t_world *world);
 t_tuple		colour_at(t_world *world);
 t_fl		get_pixel_size(t_camera *camera, t_canvas size, t_fl field_of_view);
+
+/* patterns*/
+typedef void	(*t_pattern_at_fn)(t_pattern *, t_material *, t_tuple *);
+void		pattern_at(t_pattern *pattern, t_material *material, t_tuple *point, \
+				t_transform transform);
+t_pat_col	set_pattern_colours(t_tuple a, t_tuple b);
+t_pattern	default_stripe_pattern(void);
+t_pattern	default_gradient_pattern(void);
+t_pattern	default_ring_pattern(void);
+t_pattern	default_checkered_pattern(void);
+void		none_at(t_pattern *pattern, t_material *material, t_tuple *point);
+void		striped_at(t_pattern *pattern, t_material *material, t_tuple *point);
+void		checkered_at(t_pattern *pattern, t_material *material, t_tuple *point);
+void		circle_at(t_pattern *pattern, t_material *material, t_tuple *point);
+void		gradient_at(t_pattern *pattern, t_material *material, t_tuple *point);
 
 /* parsing */
 double		rt_atof(t_parser *parser);
