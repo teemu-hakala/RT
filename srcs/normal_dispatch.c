@@ -10,7 +10,7 @@
 
 
 
-#include "RTv1.h"
+#include "RT.h"
 
 t_tuple	normal_at_plane(void *plane, t_tuple *point_at)
 {

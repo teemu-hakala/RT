@@ -10,7 +10,7 @@
 
 
 
-#include "RTv1.h"
+#include "RT.h"
 
 void	cone_quadratic(t_quadratic *params, t_ray ray)
 {

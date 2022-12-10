@@ -12,7 +12,7 @@
 
 #ifndef OBJECTS_H
 # define OBJECTS_H
-# include "RTv1.h"
+# include "RT.h"
 
 typedef enum e_object_type
 {
@@ -22,6 +22,13 @@ typedef enum e_object_type
 	OBJECT_CONE = 44,
 	OBJECT_CYLINDER = 45,
 }	t_object_type;
+
+typedef struct s_phong_colour_constituents
+{
+	t_tuple		amb;
+	t_tuple		diff;
+	t_tuple		spec;
+}				t_const;
 
 typedef struct s_transform
 {
@@ -39,9 +46,6 @@ typedef struct s_material
 	t_fl		specular;
 	t_fl		shininess;
 	t_tuple		init_colour;
-	t_tuple		amb_col;
-	t_tuple		dif_col;
-	t_tuple		spec_col;
 	t_tuple		col_mash;
 }				t_material;
 
@@ -54,6 +58,12 @@ typedef struct s_comp
 	t_phong			vectors;
 	int				inside;
 }				t_comp;
+
+typedef struct s_info
+{
+	t_material	material;
+	t_const		channels;
+}				t_info;
 
 typedef struct s_plane
 {

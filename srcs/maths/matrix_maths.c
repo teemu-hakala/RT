@@ -10,7 +10,7 @@
 
 
 
-#include "../includes/RTv1.h"
+#include "RT.h"
 
 /* compares two matrices to see if they are the same. Returns 0 if different, 1
 if equal */

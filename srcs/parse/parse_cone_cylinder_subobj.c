@@ -10,7 +10,7 @@
 
 
 
-#include "RTv1.h"
+#include "RT.h"
 
 void	find_min(t_parser *parser, t_object *object)
 {

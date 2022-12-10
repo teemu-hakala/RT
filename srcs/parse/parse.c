@@ -10,7 +10,7 @@
 
 
 
-#include "RTv1.h"
+#include "RT.h"
 
 static void	read_file_contents(t_vec *string, const int file_descriptor)
 {

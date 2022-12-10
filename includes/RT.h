@@ -10,8 +10,8 @@
 
 
 
-#ifndef RTV1_H
-# define RTV1_H
+#ifndef RT_H
+# define RT_H
 
 # include <math.h>
 # include <mlx.h>
@@ -117,9 +117,11 @@ int			handle_input(int key);
 t_tuple		hex_to_tuple_colour(uint32_t colour);
 uint32_t	clamped_rgb_to_hex(t_colour *colour);
 t_tuple		shade_hit(t_world *world);
-t_tuple		lighting(t_material material, t_light *light, t_phong vectors,
-				t_tuple point);
+t_tuple		lighting(t_info *lighting_info, t_light *light, t_phong vectors,
+	t_tuple point);
 void		is_shadow(t_world *world, t_tuple point, t_light *light);
+t_tuple		reflect(t_tuple input, t_tuple normal);
+
 
 /* object intersection */
 void		intersect_world(t_world *world, t_ray ray);
