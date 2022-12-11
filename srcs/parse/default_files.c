@@ -28,6 +28,17 @@ t_transform	default_transform_1(void)
 	return (d);
 }
 
+t_transform	default_transform_2(void)
+{
+	t_transform	d;
+
+	d.translation = point(0, 0, 0);
+	d.rotation = point(0, 0, 0);
+	d.scale = point(0.1, 0.1, 0.1);
+	transform_object(&d);
+	return (d);
+}
+
 t_material	default_phong_mat(void)
 {
 	return ((t_material){

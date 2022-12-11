@@ -164,6 +164,7 @@ t_pattern	default_stripe_pattern(void);
 t_pattern	default_gradient_pattern(void);
 t_pattern	default_ring_pattern(void);
 t_pattern	default_checkered_pattern(void);
+t_pattern	default_pattern(void);
 void		none_at(t_pattern *pattern, t_material *material, t_tuple *point);
 void		striped_at(t_pattern *pattern, t_material *material, t_tuple *point);
 void		checkered_at(t_pattern *pattern, t_material *material, t_tuple *point);

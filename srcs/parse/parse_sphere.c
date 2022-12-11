@@ -19,7 +19,8 @@ t_object	sphere_prototype(void)
 		{
 			.origin = default_origin(),
 			.transform = default_transform_1(),
-			.material = default_material_1()
+			.material = default_material_1(),
+			.pattern = default_pattern()
 		},
 		.type = OBJECT_SPHERE
 	});

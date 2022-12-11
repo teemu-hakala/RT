@@ -20,6 +20,7 @@ t_object	cylinder_prototype(void)
 			.origin = default_origin(),
 			.transform = default_transform_1(),
 			.material = default_material_1(),
+			.pattern = default_pattern(),
 			.radius = 1,
 			.min = -INFINITY,
 			.max = INFINITY,
