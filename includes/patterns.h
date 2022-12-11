@@ -12,10 +12,4 @@ typedef enum e_pattern_type
 	PATTERN_GRADIENT = 4
 }	t_type;
 
-typedef struct s_pat_col
-{
-	t_tuple	a;
-	t_tuple	b;
-}				t_pat_col;
-
 #endif

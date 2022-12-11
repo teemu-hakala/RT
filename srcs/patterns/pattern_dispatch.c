@@ -1,14 +1,6 @@
 
 #include "RT.h"
 
-t_pat_col	set_pattern_colours(t_tuple a, t_tuple b)
-{
-	return ((t_pat_col){
-		.a = a,
-		.b = b
-	});
-}
-
 void	pattern_at(t_pattern *pattern, t_material *material, t_tuple *point,
 	t_transform transform)
 {

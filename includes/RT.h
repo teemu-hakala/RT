@@ -160,7 +160,6 @@ t_fl		get_pixel_size(t_camera *camera, t_canvas size, t_fl field_of_view);
 typedef void	(*t_pattern_at_fn)(t_pattern *, t_material *, t_tuple *);
 void		pattern_at(t_pattern *pattern, t_material *material, t_tuple *point, \
 				t_transform transform);
-t_pat_col	set_pattern_colours(t_tuple a, t_tuple b);
 t_pattern	default_stripe_pattern(void);
 t_pattern	default_gradient_pattern(void);
 t_pattern	default_ring_pattern(void);

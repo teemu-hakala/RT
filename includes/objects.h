@@ -42,9 +42,10 @@ typedef struct s_transform
 
 typedef struct s_pattern
 {
-	t_pat_col				colour;
-	t_transform				transform;
-	enum e_pattern_type		type;
+	enum e_pattern_type	type;
+	t_tuple				colour_a;
+	t_tuple				colour_b;
+	t_transform			transform;
 }	t_pattern;
 
 typedef struct s_material
@@ -72,7 +73,6 @@ typedef struct s_info
 {
 	t_material	material;
 	t_const		channels;
-	t_pattern	pattern;
 }				t_info;
 
 typedef struct s_plane
