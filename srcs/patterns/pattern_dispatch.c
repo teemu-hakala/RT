@@ -8,7 +8,8 @@ void	pattern_at(t_pattern *pattern, t_material *material, t_tuple *point,
 	t_tuple							pattern_space;
 	static const t_pattern_at_fn	patterns[] = {\
 		none_at,
-		striped_at,
+		vertical_striped_at,
+		horizontal_striped_at,
 		checkered_at,
 		circle_at,
 		gradient_at};

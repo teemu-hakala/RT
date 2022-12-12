@@ -4,11 +4,18 @@
 void	parse_pattern_type(t_pattern *pattern, t_parser *parser)
 {
 	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
-	if (ft_strncmp(&parser->string[parser->c], "\"striped\"", 9) == 0)
+	if (ft_strncmp(&parser->string[parser->c], "\"vertical_stripes\"", 18) == 0)
 	{
-		parser->c += sizeof("\"striped\"") - 1;
-		pattern->type = PATTERN_STRIPE;
-		*pattern = default_stripe_pattern();
+		parser->c += sizeof("\"vertical_stripes\"") - 1;
+		pattern->type = PATTERN_VERTICAL_STRIPES;
+		*pattern = default_vertical_stripe_pattern();
+	}
+	else if (ft_strncmp(&parser->string[parser->c], \
+		"\"horizontal_stripes\"", 20) == 0)
+	{
+		parser->c += sizeof("\"horizontal_stripes\"") - 1;
+		pattern->type = PATTERN_HORIZONTAL_STRIPES;
+		*pattern = default_horizontal_stripe_pattern();
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "\"checkered\"", 11) == 0)
 	{

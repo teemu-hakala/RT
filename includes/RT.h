@@ -160,13 +160,16 @@ t_fl		get_pixel_size(t_camera *camera, t_canvas size, t_fl field_of_view);
 typedef void	(*t_pattern_at_fn)(t_pattern *, t_material *, t_tuple *);
 void		pattern_at(t_pattern *pattern, t_material *material, \
 			t_tuple *point, t_transform transform);
-t_pattern	default_stripe_pattern(void);
+t_pattern	default_vertical_stripe_pattern(void);
+t_pattern	default_horizontal_stripe_pattern(void);
 t_pattern	default_gradient_pattern(void);
 t_pattern	default_ring_pattern(void);
 t_pattern	default_checkered_pattern(void);
 t_pattern	default_pattern(void);
 void		none_at(t_pattern *pattern, t_material *material, t_tuple *point);
-void		striped_at(t_pattern *pattern, t_material *material, \
+void		vertical_striped_at(t_pattern *pattern, t_material *material, \
+			t_tuple *point);
+void		horizontal_striped_at(t_pattern *pattern, t_material *material, \
 			t_tuple *point);
 void		checkered_at(t_pattern *pattern, t_material *material, \
 			t_tuple *point);

@@ -42,7 +42,7 @@
 				},
 				"pattern" :
 				{
-					"type" : "circle",
+					"type" : "horizontal_stripes",
 					"colour_a" : [0.42, 0.01, 0.09],
 					"colour_b" : [0.01, 0.55, 0.09],
 					"transform" :

@@ -6,16 +6,26 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 16:49:47 by deelliot          #+#    #+#             */
-/*   Updated: 2022/12/12 12:54:11 by deelliot         ###   ########.fr       */
+/*   Updated: 2022/12/12 15:36:08 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RT.h"
 
-t_pattern	default_stripe_pattern(void)
+t_pattern	default_vertical_stripe_pattern(void)
 {
 	return ((t_pattern){
-		.type = PATTERN_STRIPE,
+		.type = PATTERN_VERTICAL_STRIPES,
+		.colour_a = hex_to_tuple_colour(COLOUR_YELLOW),
+		.colour_b = hex_to_tuple_colour(COLOUR_WHITE),
+		.transform = default_transform_2()
+	});
+}
+
+t_pattern	default_horizontal_stripe_pattern(void)
+{
+	return ((t_pattern){
+		.type = PATTERN_HORIZONTAL_STRIPES,
 		.colour_a = hex_to_tuple_colour(COLOUR_YELLOW),
 		.colour_b = hex_to_tuple_colour(COLOUR_WHITE),
 		.transform = default_transform_2()

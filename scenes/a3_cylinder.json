@@ -40,6 +40,18 @@
 					"shininess" : 200,
 					"init_colour" : [0.3, 0.5, 0.7]
 				},
+				"pattern" :
+				{
+					"type" : "circle",
+					"colour_a" : [0.42, 0.01, 0.09],
+					"colour_b" : [0.01, 0.55, 0.09],
+					"transform" :
+					{
+						"translation" : [0, 0, 0],
+						"rotation" : [0, 0, 0],
+						"scale" : [1, 1, 1]
+					}
+				},
 				"min" : -1,
 				"max" : 1,
 				"closed" : 0
