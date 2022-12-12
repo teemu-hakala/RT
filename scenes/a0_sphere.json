@@ -44,7 +44,13 @@
 				{
 					"type" : "circle",
 					"colour_a" : [0.42, 0.01, 0.09],
-					"colour_b" : [0.01, 0.55, 0.09]
+					"colour_b" : [0.01, 0.55, 0.09],
+					"transform" :
+					{
+						"translation" : [0, 0, 0],
+						"rotation" : [0, 0, 0],
+						"scale" : [0.1, 0.1, 0.1]
+					}
 				}
 			}
 		}
