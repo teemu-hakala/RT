@@ -34,7 +34,7 @@ t_transform	default_transform_2(void)
 
 	d.translation = point(0, 0, 0);
 	d.rotation = point(0, 0, 0);
-	d.scale = point(0.1, 0.1, 0.1);
+	d.scale = point(0.3, 0.3, 0.3);
 	transform_object(&d);
 	return (d);
 }

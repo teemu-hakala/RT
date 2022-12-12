@@ -16,13 +16,13 @@ void	parse_pattern_type(t_pattern *pattern, t_parser *parser)
 		pattern->type = PATTERN_CHECKERED;
 		*pattern = default_checkered_pattern();
 	}
-	else if (ft_strncmp(&parser->string[parser->c], "\"gradient\"", 11) == 0)
+	else if (ft_strncmp(&parser->string[parser->c], "\"gradient\"", 10) == 0)
 	{
 		parser->c += sizeof("\"gradient\"") - 1;
 		pattern->type = PATTERN_GRADIENT;
 		*pattern = default_gradient_pattern();
 	}
-	else if (ft_strncmp(&parser->string[parser->c], "\"circle\"", 11) == 0)
+	else if (ft_strncmp(&parser->string[parser->c], "\"circle\"", 8) == 0)
 	{
 		parser->c += sizeof("\"circle\"") - 1;
 		pattern->type = PATTERN_CIRCLES;
