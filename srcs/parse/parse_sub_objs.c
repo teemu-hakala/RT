@@ -22,17 +22,11 @@ void	parse_transform_subobject(t_parser *parser, t_transform *transform)
 	parse_transform(transform, parser);
 }
 
-int	find_subobject_keyword(t_parser *parser, t_tuple *origin, \
-	t_transform *transform, t_material *material)
+int	find_subobject_keyword(t_parser *parser, t_transform *transform, \
+	t_material *material, t_pattern *pattern)
 {
 	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
-	if (ft_strncmp(&parser->string[parser->c], "\"origin\"", 8) == 0)
-	{
-		parser->c += sizeof("\"origin\"") - 1;
-		find_colon(parser);
-		parse_tuple(origin, parser);
-	}
-	else if (ft_strncmp(&parser->string[parser->c], "\"transform\"", 11) == 0)
+	if (ft_strncmp(&parser->string[parser->c], "\"transform\"", 11) == 0)
 		parse_transform_subobject(parser, transform);
 	else if (ft_strncmp(&parser->string[parser->c], "\"material\"", 10) == 0)
 	{
@@ -42,6 +36,15 @@ int	find_subobject_keyword(t_parser *parser, t_tuple *origin, \
 		if (find_matching_bracket(parser))
 			return (true);
 		parse_material(material, parser);
+	}
+	else if (ft_strncmp(&parser->string[parser->c], "\"pattern\"", 9) == 0)
+	{
+		parser->c += sizeof("\"pattern\"") - 1;
+		find_colon(parser);
+		find_open_bracket(parser);
+		if (find_matching_bracket(parser))
+			return (true);
+		parse_pattern(pattern, parser);
 	}
 	else
 		return (false);

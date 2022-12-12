@@ -25,7 +25,7 @@
 # include "world.h"
 # include "parse.h"
 
-# define USAGE "./RTv1 ./scenes/[.json file]"
+# define USAGE "./RT ./scenes/[.json file]"
 # define WIDTH 501
 # define HEIGHT 400
 # define WALL_WIDTH 7
@@ -118,8 +118,8 @@ int			handle_input(int key);
 t_tuple		hex_to_tuple_colour(uint32_t colour);
 uint32_t	clamped_rgb_to_hex(t_colour *colour);
 t_tuple		shade_hit(t_world *world);
-t_tuple		lighting(t_info *lighting_info, t_light *light, t_phong vectors,
-	t_tuple point);
+t_tuple		lighting(t_info *lighting_info, t_light *light, t_phong vectors, \
+			t_tuple point);
 void		is_shadow(t_world *world, t_tuple point, t_light *light);
 t_tuple		reflect(t_tuple input, t_tuple normal);
 
@@ -158,18 +158,22 @@ t_fl		get_pixel_size(t_camera *camera, t_canvas size, t_fl field_of_view);
 
 /* patterns*/
 typedef void	(*t_pattern_at_fn)(t_pattern *, t_material *, t_tuple *);
-void		pattern_at(t_pattern *pattern, t_material *material, t_tuple *point, \
-				t_transform transform);
+void		pattern_at(t_pattern *pattern, t_material *material, \
+			t_tuple *point, t_transform transform);
 t_pattern	default_stripe_pattern(void);
 t_pattern	default_gradient_pattern(void);
 t_pattern	default_ring_pattern(void);
 t_pattern	default_checkered_pattern(void);
 t_pattern	default_pattern(void);
 void		none_at(t_pattern *pattern, t_material *material, t_tuple *point);
-void		striped_at(t_pattern *pattern, t_material *material, t_tuple *point);
-void		checkered_at(t_pattern *pattern, t_material *material, t_tuple *point);
-void		circle_at(t_pattern *pattern, t_material *material, t_tuple *point);
-void		gradient_at(t_pattern *pattern, t_material *material, t_tuple *point);
+void		striped_at(t_pattern *pattern, t_material *material, \
+			t_tuple *point);
+void		checkered_at(t_pattern *pattern, t_material *material, \
+			t_tuple *point);
+void		circle_at(t_pattern *pattern, t_material *material, \
+			t_tuple *point);
+void		gradient_at(t_pattern *pattern, t_material *material, \
+			t_tuple *point);
 
 /* parsing */
 double		rt_atof(t_parser *parser);
