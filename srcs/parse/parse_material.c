@@ -26,6 +26,13 @@ static void	material_keywords_cont(t_material *material, t_parser *parser)
 		find_colon(parser);
 		parse_tuple(&material->init_colour, parser);
 	}
+	else if (ft_strncmp(&parser->string[parser->c], "\"reflectiveness\"", 16) \
+		== 0)
+	{
+		parser->c += sizeof("\"reflectiveness\"") - 1;
+		find_colon(parser);
+		material->reflectiveness = rt_atof(parser);
+	}
 	else
 		handle_errors("material syntax error");
 }

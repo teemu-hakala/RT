@@ -32,7 +32,7 @@ typedef struct s_phong
 	t_tuple	eye;
 	t_tuple	light;
 	t_tuple	surface_normal;
-	t_tuple	reflection;
+	t_tuple	light_reflection;
 	int		in_shadow;
 }				t_phong;
 

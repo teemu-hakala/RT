@@ -47,6 +47,7 @@ typedef struct s_material
 	t_fl		shininess;
 	t_tuple		init_colour;
 	t_tuple		col_mash;
+	t_fl		reflectiveness;
 }				t_material;
 
 typedef struct s_comp
@@ -57,6 +58,7 @@ typedef struct s_comp
 	t_tuple			over_point;
 	t_phong			vectors;
 	int				inside;
+	t_tuple			reflectv;
 }				t_comp;
 
 typedef struct s_info
