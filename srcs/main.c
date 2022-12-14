@@ -86,8 +86,8 @@ int	main(void)
 		printf("object: %d\n", ((t_object *)vec_get(&world.objects, i))->type);
 		i++;
 	}
-	ray.origin.tuple.units = (t_units){0, 0.5, 0, POINT_1};
-	ray.direction.tuple.units = (t_units){0, 0, 1, VECTOR_0};
+	ray.origin.tuple.units = (t_units){2, 2, 0, POINT_1};
+	ray.direction.tuple.units = (t_units){-1, 0, 0, VECTOR_0};
 	ray.direction = normalize(ray.direction);
 	vec_clear(&world.intersections);
 	intersect_world(&world, ray);

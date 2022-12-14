@@ -28,7 +28,7 @@ static t_fl	min_double(t_fl x, t_fl y, t_fl z)
 t_range	check_axis(t_fl origin, t_fl direction)
 {
 	t_range	numerator;
-	// t_range	result;
+	t_range	result;
 	double	temp;
 
 	numerator.min = (-1 - origin);
@@ -36,21 +36,21 @@ t_range	check_axis(t_fl origin, t_fl direction)
 
 	if (fabs(direction) >= EPSILON)
 	{
-		numerator.min /= direction;
-		numerator.max /= direction;
+		result.min = numerator.min / direction;
+		result.max = numerator.max / direction;
 	}
 	else
 	{
-		numerator.min *= INFINITY;
-		numerator.max *= INFINITY;
+		result.min = numerator.min * INFINITY;
+		result.max = numerator.max * INFINITY;
 	}
-	if (numerator.min > numerator.max)
+	if (result.min > result.max)
 	{
-		temp = numerator.min;
-		numerator.min = numerator.max;
-		numerator.max = temp;
+		temp = result.min;
+		result.min = result.max;
+		result.max = temp;
 	}
-	return (numerator);
+	return (result);
 }
 
 void	cube_intersection(t_ray ray, void *cube, t_world *world)
@@ -66,6 +66,8 @@ void	cube_intersection(t_ray ray, void *cube, t_world *world)
 	y = check_axis(ray.origin.tuple.units.y, ray.direction.tuple.units.y);
 	z = check_axis(ray.origin.tuple.units.z, ray.direction.tuple.units.z);
 
+	if (max_double(x.min, y.min, z.min) > min_double(x.max, y.max, z.max))
+		return ;
 	temp.time = max_double(x.min, y.min, z.min);
 	printf("time = %f\n", temp.time);
 	if (vec_push(&world->intersections, &temp) == VEC_ERROR)
