@@ -9,7 +9,6 @@
 
 
 
-
 #include "RT.h"
 
 void	initialise_image(t_img *img, t_win *win)
@@ -33,6 +32,7 @@ void	initialise_world(t_world *world)
 		!= VEC_SUCCESS)
 		handle_errors("initialise_world malloc returned NULL");
 	world->hit.hit_check = false;
+	default_world(world);
 }
 
 void	initialise_window(t_win *win)

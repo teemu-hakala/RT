@@ -23,6 +23,7 @@
 # include "objects.h"
 # include "world.h"
 # include "parse.h"
+# include <stdio.h>
 
 # define USAGE "./RTv1 ./scenes/[.json file]"
 # define WIDTH 501
@@ -118,7 +119,7 @@ t_tuple		hex_to_tuple_colour(uint32_t colour);
 uint32_t	clamped_rgb_to_hex(t_colour *colour);
 t_tuple		shade_hit(t_world *world);
 t_tuple		lighting(t_info *lighting_info, t_light *light, t_phong vectors,
-	t_tuple point);
+				t_tuple point);
 void		is_shadow(t_world *world, t_tuple point, t_light *light);
 t_tuple		reflect(t_tuple input, t_tuple normal);
 
@@ -130,6 +131,7 @@ void		sphere_intersection(t_ray ray, void *sphere, t_world *world);
 void		cone_intersection(t_ray ray, void *cone, t_world *world);
 void		cylinder_intersection(t_ray ray, void *cylinder, t_world *world);
 int			check_cap(t_ray *ray, t_fl time, t_fl radius);
+void		cube_intersection(t_ray ray, void *cube, t_world *world);
 void		identify_hit(t_world *world, t_hit *hit);
 void		prepare_object(t_world *world, t_object *object, \
 			t_comp *computations);
@@ -159,4 +161,8 @@ t_fl		get_pixel_size(t_camera *camera, t_canvas size, t_fl field_of_view);
 /* parsing */
 double		rt_atof(t_parser *parser);
 int			rt_atoi(t_parser *parser);
+
+/* testing */
+void		default_world(t_world *world);
+
 #endif

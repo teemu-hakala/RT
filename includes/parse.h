@@ -64,5 +64,6 @@ t_object	sphere_prototype(void);
 t_object	cone_prototype(void);
 t_object	cylinder_prototype(void);
 t_light		light_prototype(void);
+t_object	cube_prototype(void);
 
 #endif
