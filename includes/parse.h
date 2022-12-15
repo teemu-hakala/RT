@@ -40,6 +40,11 @@ void		parse_cube(t_parser *parser, t_object *shape);
 int			find_subobject_keyword(t_parser *parser, t_tuple *origin, \
 			t_transform *transform, t_material *material);
 int			dispatch_find_subobject_keyword(t_parser *parser, t_object *shape);
+int			plane_subobject_keywords(t_parser *parser, t_object *shape);
+int			sphere_subobject_keywords(t_parser *parser, t_object *shape);
+int			cone_subobject_keywords(t_parser *parser, t_object *shape);
+int			cylinder_subobject_keywords(t_parser *parser, t_object *shape);
+int			cube_subobject_keywords(t_parser *parser, t_object *shape);
 void		parse_tuple(t_tuple *tuple, t_parser *parser);
 void		parse_transform(t_transform *transform, t_parser *parser);
 void		parse_material(t_material *material, t_parser *parser);

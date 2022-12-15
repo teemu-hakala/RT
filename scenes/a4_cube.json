@@ -16,7 +16,14 @@
 		{
 			"light" :
 			{
-				"position" : [-10, 10, -10],
+				"position" : [-5, 10, -10],
+				"intensity" : [1, 1, 1]
+			}
+		},
+		{
+			"light" :
+			{
+				"position" : [5, 10, -10],
 				"intensity" : [1, 1, 1]
 			}
 		}
@@ -30,8 +37,8 @@
 				"transform" :
 				{
 					"translation" : [0, 0, 0],
-					"rotation" : [2.5, 0, 0.85],
-					"scale" : [1, 1, 1]
+					"rotation" : [2.1, 0, 1.5],
+					"scale" : [2, 1.5, 1]
 				},
 				"material" :
 				{

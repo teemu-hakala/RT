@@ -33,7 +33,6 @@ t_range	check_axis(t_fl origin, t_fl direction)
 
 	numerator.min = (-1 - origin);
 	numerator.max = (1 - origin);
-
 	if (fabs(direction) >= EPSILON)
 	{
 		result.min = numerator.min / direction;
@@ -65,13 +64,11 @@ void	cube_intersection(t_ray ray, void *cube, t_world *world)
 	x = check_axis(ray.origin.tuple.units.x, ray.direction.tuple.units.x);
 	y = check_axis(ray.origin.tuple.units.y, ray.direction.tuple.units.y);
 	z = check_axis(ray.origin.tuple.units.z, ray.direction.tuple.units.z);
-
 	if (max_double(x.min, y.min, z.min) > min_double(x.max, y.max, z.max))
 		return ;
 	temp.time = max_double(x.min, y.min, z.min);
 	if (vec_push(&world->intersections, &temp) == VEC_ERROR)
 		handle_errors("vec_push malloc error cube_intersection");
-
 	temp.time = min_double(x.max, y.max, z.max);
 	if (vec_push(&world->intersections, &temp) == VEC_ERROR)
 		handle_errors("vec_push malloc error cube_intersection");

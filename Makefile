@@ -6,7 +6,7 @@
 #    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2022/12/15 13:07:52 by deelliot         ###   ########.fr        #
+#    Updated: 2022/12/15 14:15:07 by deelliot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -154,8 +154,8 @@ COMPUTATIONS_DIR = computations
 PARSE_SRCS = default_files.c parse_camera.c parse_cone.c parse_cylinder.c \
 	parse_lights.c parse_single_light.c parse_plane.c parse_shapes.c \
 	parse_sphere.c parse_sub_objs.c parse_utility.c parse.c rt_atof.c \
-	rt_atoi.c dispatch_subobjects.c parse_material.c parse_transform.c \
-	parse_cone_cylinder_subobj.c parse_cube.c
+	rt_atoi.c dispatch_shape_subobjects.c parse_material.c parse_transform.c \
+	parse_cone_cylinder_subobj.c parse_cube.c shape_subobject_utility.c
 
 OBJECTS_SRCS = camera.c transform_objects.c\
 
