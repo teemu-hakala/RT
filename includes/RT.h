@@ -123,7 +123,6 @@ t_tuple		lighting(t_info *lighting_info, t_light *light, t_phong vectors,
 void		is_shadow(t_world *world, t_tuple point, t_light *light);
 t_tuple		reflect(t_tuple input, t_tuple normal);
 
-
 /* object intersection */
 void		intersect_world(t_world *world, t_ray ray);
 void		plane_intersection(t_ray ray, void *plane, t_world *world);
@@ -134,8 +133,15 @@ int			check_cap(t_ray *ray, t_fl time, t_fl radius);
 void		cube_intersection(t_ray ray, void *cube, t_world *world);
 t_fl		max_double(t_fl x, t_fl y, t_fl z);
 void		identify_hit(t_world *world, t_hit *hit);
+
+/*computations*/
 void		prepare_object(t_world *world, t_object *object, \
 			t_comp *computations);
+void		prepare_plane(t_world *world);
+void		prepare_sphere(t_world *world);
+void		prepare_cone(t_world *world);
+void		prepare_cylinder(t_world *world);
+void		prepare_cube(t_world *world);
 
 /* reflections*/
 

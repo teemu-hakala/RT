@@ -6,7 +6,7 @@
 #    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2022/12/14 16:47:30 by deelliot         ###   ########.fr        #
+#    Updated: 2022/12/15 12:58:20 by deelliot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -148,6 +148,7 @@ MATHS_DIR = maths
 OBJECTS_DIR = objects
 INTERSECT_DIR = intersect
 NORMAL_DIR = normal
+COMPUTATIONS_DIR = computations
 
 # Source and object files
 PARSE_SRCS = default_files.c parse_camera.c parse_cone.c parse_cylinder.c \
@@ -167,6 +168,9 @@ INTERSECT_SRCS = intersect_plane.c intersect_sphere.c intersect_cone.c \
 NORMAL_SRCS = normal_at_cone.c normal_at_cube.c normal_at_cylinder.c \
 	normal_at_plane.c normal_at_sphere.c normal_dispatch.c
 
+COMPUTATION_SRCS = computation_dispatch.c computations_calculations.c \
+	computations_utility.c
+
 FILES = \
 	main.c \
 	initialise.c \
@@ -180,8 +184,6 @@ FILES = \
 	ray.c \
 	render.c \
 	colour.c \
-	computation_dispatch.c \
-	computations.c \
 
 OBJS = $(addprefix $(OBJS_DIR)/, \
 	$(addprefix $(PARSE_DIR)/, $(PARSE_SRCS:.c=.o)) \
@@ -189,6 +191,7 @@ OBJS = $(addprefix $(OBJS_DIR)/, \
 	$(addprefix $(MATHS_DIR)/, $(MATHS_SRCS:.c=.o))\
 	$(addprefix $(INTERSECT_DIR)/, $(INTERSECT_SRCS:.c=.o))\
 	$(addprefix $(NORMAL_DIR)/, $(NORMAL_SRCS:.c=.o))\
+	$(addprefix $(COMPUTATIONS_DIR)/, $(COMPUTATION_SRCS:.c=.o))\
 	$(FILES:.c=.o))
 
 # Paths
@@ -227,7 +230,7 @@ $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)/$(OBJECTS_DIR)
 	@mkdir -p $(OBJS_DIR)/$(INTERSECT_DIR)
 	@mkdir -p $(OBJS_DIR)/$(NORMAL_DIR)
-
+	@mkdir -p $(OBJS_DIR)/$(COMPUTATIONS_DIR)
 
 libft:
 	make -C $(LIBFT_DIR)
