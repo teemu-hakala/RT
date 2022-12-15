@@ -6,7 +6,7 @@
 #    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2022/12/15 12:58:20 by deelliot         ###   ########.fr        #
+#    Updated: 2022/12/15 13:07:52 by deelliot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -181,6 +181,7 @@ FILES = \
 	reflections.c \
 	view_transform.c \
 	shading.c \
+	shading_dispatch.c \
 	ray.c \
 	render.c \
 	colour.c \

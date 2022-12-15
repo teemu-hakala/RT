@@ -117,11 +117,23 @@ int			handle_input(int key);
 /* colour and lighting*/
 t_tuple		hex_to_tuple_colour(uint32_t colour);
 uint32_t	clamped_rgb_to_hex(t_colour *colour);
-t_tuple		shade_hit(t_world *world);
 t_tuple		lighting(t_info *lighting_info, t_light *light, t_phong vectors,
 				t_tuple point);
 void		is_shadow(t_world *world, t_tuple point, t_light *light);
 t_tuple		reflect(t_tuple input, t_tuple normal);
+
+/* shading */
+t_tuple		shade_hit(t_world *world);
+void		shade_plane(t_world *world, void *plane, t_tuple *colour,
+				t_light *light);
+void		shade_sphere(t_world *world, void *sphere, t_tuple *colour,
+				t_light *light);
+void		shade_cone(t_world *world, void *cone, t_tuple *colour,
+				t_light *light);
+void		shade_cylinder(t_world *world, void *cylinder, t_tuple *colour,
+				t_light *light);
+void		shade_cube(t_world *world, void *cube, t_tuple *colour,
+				t_light *light);
 
 /* object intersection */
 void		intersect_world(t_world *world, t_ray ray);
