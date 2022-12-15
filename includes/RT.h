@@ -168,7 +168,4 @@ t_fl		get_pixel_size(t_camera *camera, t_canvas size, t_fl field_of_view);
 double		rt_atof(t_parser *parser);
 int			rt_atoi(t_parser *parser);
 
-/* testing */
-void		default_world(t_world *world);
-
 #endif

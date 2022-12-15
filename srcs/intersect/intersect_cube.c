@@ -69,12 +69,10 @@ void	cube_intersection(t_ray ray, void *cube, t_world *world)
 	if (max_double(x.min, y.min, z.min) > min_double(x.max, y.max, z.max))
 		return ;
 	temp.time = max_double(x.min, y.min, z.min);
-	printf("time = %f\n", temp.time);
 	if (vec_push(&world->intersections, &temp) == VEC_ERROR)
 		handle_errors("vec_push malloc error cube_intersection");
 
 	temp.time = min_double(x.max, y.max, z.max);
-	printf("time = %f\n", temp.time);
 	if (vec_push(&world->intersections, &temp) == VEC_ERROR)
 		handle_errors("vec_push malloc error cube_intersection");
 }

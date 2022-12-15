@@ -36,6 +36,16 @@ static void	find_shape_cont(t_object *shape, t_parser *parser)
 		parse_cylinder(parser, shape);
 		transform_object(&shape->object.cylinder.transform);
 	}
+	else if (ft_strncmp(&parser->string[parser->c], "\"cube\"", 6) == 0)
+	{
+		parser->c += sizeof("\"cube\"") - 1;
+		find_colon(parser);
+		find_open_bracket(parser);
+		*shape = cube_prototype();
+		if (find_matching_bracket(parser))
+			return ;
+		parse_cube(parser, shape);
+	}
 	else
 		handle_errors("shape syntax error");
 }

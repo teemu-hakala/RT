@@ -35,6 +35,7 @@ void		parse_plane(t_parser *parser, t_object *shape);
 void		parse_sphere(t_parser *parser, t_object *shape);
 void		parse_cone(t_parser *parser, t_object *shape);
 void		parse_cylinder(t_parser *parser, t_object *shape);
+void		parse_cube(t_parser *parser, t_object *shape);
 /*parse sub-objects*/
 int			find_subobject_keyword(t_parser *parser, t_tuple *origin, \
 			t_transform *transform, t_material *material);
