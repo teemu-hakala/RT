@@ -22,3 +22,16 @@ t_tuple	object_to_world_space(t_mtx *inverse, t_tuple obj_space)
 	world_space.tuple.units.w = 0;
 	return (world_space);
 }
+
+t_tuple	normal_at(void *object, t_tuple *point)
+{
+	static const t_normal_fn	normals[] = {
+		normal_at_plane,
+		normal_at_sphere,
+		normal_at_cone,
+		normal_at_cylinder,
+		normal_at_cube};
+
+	return (normals[((t_object *)object)->type \
+		- OBJECT_INDEX_OFFSET](object, point));
+}

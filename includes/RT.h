@@ -132,6 +132,7 @@ void		cone_intersection(t_ray ray, void *cone, t_world *world);
 void		cylinder_intersection(t_ray ray, void *cylinder, t_world *world);
 int			check_cap(t_ray *ray, t_fl time, t_fl radius);
 void		cube_intersection(t_ray ray, void *cube, t_world *world);
+t_fl		max_double(t_fl x, t_fl y, t_fl z);
 void		identify_hit(t_world *world, t_hit *hit);
 void		prepare_object(t_world *world, t_object *object, \
 			t_comp *computations);
@@ -147,6 +148,11 @@ t_mtx		view_transform(t_tuple from, t_tuple to, t_tuple up);
 /* normals */
 t_tuple		object_to_world_space(t_mtx *inverse, t_tuple obj_space);
 t_tuple		normal_at(void *object, t_tuple *point);
+t_tuple		normal_at_plane(void *plane, t_tuple *point_at);
+t_tuple		normal_at_sphere(void *sphere, t_tuple *point_at);
+t_tuple		normal_at_cone(void *cone, t_tuple *point_at);
+t_tuple		normal_at_cylinder(void *cylinder, t_tuple *point_at);
+t_tuple		normal_at_cube(void *cube, t_tuple *point_at);
 
 /* plot pixels */
 void		render(t_win *win, t_camera *camera);

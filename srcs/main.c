@@ -73,29 +73,29 @@ void	default_world(t_world *world)
 
 int	main(void)
 {
-	t_world		world;
-	t_ray		ray;
-	uint16_t	i;
+	t_object	cube_1;
+	t_tuple		p1;
+	t_tuple		p2;
+	t_tuple		p3;
+	t_tuple		p4;
 
+	t_tuple		vec;
 
-	i = 0;
-	initialise_world(&world);
-	printf("%llu objects in world\n", world.objects.len);
-	while (i < world.objects.len)
-	{
-		printf("object: %d\n", ((t_object *)vec_get(&world.objects, i))->type);
-		i++;
-	}
-	ray.origin.tuple.units = (t_units){2, 2, 0, POINT_1};
-	ray.direction.tuple.units = (t_units){-1, 0, 0, VECTOR_0};
-	ray.direction = normalize(ray.direction);
-	vec_clear(&world.intersections);
-	intersect_world(&world, ray);
-	printf("%llu intersections found\n", world.intersections.len);
-	identify_hit(&world, &world.hit);
-	if (world.hit.hit_check == true)
-		printf("no hits\n");
-	else
-		printf("hit time: %f\n", world.hit.intersection.time);
-
+	cube_1 = cube(default_origin(), default_transform_1(), default_phong_mat());
+	p1 = point(1, 0.5, -0.8);
+	p2 = point(-1, -0.2, 0.9);
+	p3 = point(-0.4, 1, -0.1);
+	p4 = point(0.3, -1, -0.7);
+	vec = normal_at_cube(&cube_1, &p1);
+	printf("(%0.2f, %0.2f, %0.2f)\n", vec.tuple.units.x, vec.tuple.units.y, \
+		vec.tuple.units.z);
+	vec = normal_at_cube(&cube_1, &p2);
+	printf("(%0.2f, %0.2f, %0.2f)\n", vec.tuple.units.x, vec.tuple.units.y, \
+		vec.tuple.units.z);
+	vec = normal_at_cube(&cube_1, &p3);
+	printf("(%0.2f, %0.2f, %0.2f)\n", vec.tuple.units.x, vec.tuple.units.y, \
+		vec.tuple.units.z);
+	vec = normal_at_cube(&cube_1, &p4);
+	printf("(%0.2f, %0.2f, %0.2f)\n", vec.tuple.units.x, vec.tuple.units.y, \
+		vec.tuple.units.z);
 }

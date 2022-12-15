@@ -5,7 +5,7 @@
 
 	/* cubes are composed of 6 planes */
 
-static t_fl	max_double(t_fl x, t_fl y, t_fl z)
+t_fl	max_double(t_fl x, t_fl y, t_fl z)
 {
 	if (x >= y && x >= z)
 		return (x);
