@@ -82,10 +82,10 @@ int	main(void)
 	t_tuple		vec;
 
 	cube_1 = cube(default_origin(), default_transform_1(), default_phong_mat());
-	p1 = point(1, 0.5, -0.8);
-	p2 = point(-1, -0.2, 0.9);
-	p3 = point(-0.4, 1, -0.1);
-	p4 = point(0.3, -1, -0.7);
+	p1 = point(-0.6, 0.3, 1);
+	p2 = point(0.4, 0.4, -1);
+	p3 = point(1, 1, 1);
+	p4 = point(-1, -1, -1);
 	vec = normal_at_cube(&cube_1, &p1);
 	printf("(%0.2f, %0.2f, %0.2f)\n", vec.tuple.units.x, vec.tuple.units.y, \
 		vec.tuple.units.z);
