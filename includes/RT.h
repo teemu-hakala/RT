@@ -121,7 +121,7 @@ t_tuple		lighting(t_info *lighting_info, t_light *light, t_phong vectors,
 	t_tuple point);
 void		is_shadow(t_world *world, t_tuple point, t_light *light);
 t_tuple		reflect(t_tuple input, t_tuple normal);
-
+t_tuple		reflected_colour(t_world *world, t_info *lighting_info);
 
 /* object intersection */
 void		intersect_world(t_world *world, t_ray ray);
