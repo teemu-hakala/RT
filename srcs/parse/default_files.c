@@ -49,7 +49,7 @@ t_material	default_material_1(void)
 		.shininess = 200,
 		.init_colour = vector(0.8, 1.0, 0.6),
 		.col_mash = vector(0, 0, 0),
-		.reflectiveness = 0.42
+		.reflectiveness = 0
 	});
 }
 

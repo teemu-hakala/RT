@@ -41,8 +41,9 @@ typedef struct s_hit
 
 typedef struct s_ray
 {
-	t_tuple	origin;
-	t_tuple	direction;
+	t_tuple		origin;
+	t_tuple		direction;
+	int64_t		lifetime;
 }			t_ray;
 
 typedef struct s_world
