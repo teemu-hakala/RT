@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
+#    By: thakala <thakala@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2022/12/07 13:17:01 by deelliot         ###   ########.fr        #
+#    Updated: 2022/12/16 09:06:02 by thakala          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -180,6 +180,7 @@ FILES = \
 	colour.c \
 	computation_dispatch.c \
 	computations.c \
+	reflection.c \
 
 OBJS = $(addprefix $(OBJS_DIR)/, \
 	$(addprefix $(PARSE_DIR)/, $(PARSE_SRCS:.c=.o)) \

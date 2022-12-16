@@ -13,7 +13,7 @@
 	- FXAA, subsampling + supersampling -> configurable from .json
 - object IDs?
 - remove 42 headers
--
+- SIGSEGV on empty file
 
 ---
 ## future
