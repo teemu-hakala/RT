@@ -12,6 +12,29 @@
 
 #include "RT.h"
 
+void	prepare_object(t_world *world, t_object *object, t_comp *computations);
+t_ray	ray(t_tuple origin, t_tuple reflectv, int64_t lt);
+
+static void	precomputing_reflection_vector(void)
+{
+	t_world		world_prototype_for_prepare_computations;
+	t_object	plane_object;
+	t_ray		ray_for_reflection;
+
+	plane_object = plane_prototype();
+	ray_for_reflection = ray(point(0, 1, -1), vector(0, -0.7071, 0.7071), 5);
+	world_prototype_for_prepare_computations = (t_world){
+		.hit = {.intersection = {.shape = &plane_object, .time = 1}},
+		.ray = ray_for_reflection
+	};
+	prepare_computations(&world_prototype_for_prepare_computations);
+}
+
+static void	reflection_tests(void)
+{
+	precomputing_reflection_vector();
+}
+
 static void	open_scene_into(t_win *win, const char *str)
 {
 	win->fd = open(str, O_RDONLY);
@@ -29,6 +52,8 @@ int	main(int argc, char **argv)
 {
 	t_win	win;
 
+	reflection_tests();
+	return (0);
 	if (argc != 2)
 		handle_errors(USAGE);
 	open_scene_into(&win, argv[1]);
