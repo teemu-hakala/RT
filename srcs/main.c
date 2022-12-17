@@ -34,12 +34,10 @@ static void	precomputing_reflection_vector(void)
 	world_prototype.hit.computations.reflectv.tuple.units.y, world_prototype.hit.computations.reflectv.tuple.units.z);
 }
 
-static void	nonreflective_material(void)
+static t_world	default_world_generator(void)
 {
 	t_world		default_world;
 	t_object	sphere;
-	t_info		lighting_info;
-	t_tuple		colour;
 
 
 	default_world.camera = camera_prototype();
@@ -60,28 +58,85 @@ static void	nonreflective_material(void)
 		.type = OBJECT_SPHERE
 	};
 	sphere.object.sphere.material.reflectiveness = 1;
-	vec_push(&default_world.objects, &sphere);
+	if (vec_push(&default_world.objects, &sphere) == VEC_ERROR)
+		handle_errors("default_world vec_push malloc error");
 	sphere.object.sphere.transform.scale = point(0.5, 0.5, 0.5);
 	sphere.object.sphere.material.ambient = 1;
 	sphere.object.sphere.material.reflectiveness = 0;
-	vec_push(&default_world.objects, &sphere);
+	transform_object(&sphere.object.sphere.transform);
+	if (vec_push(&default_world.objects, &sphere) == VEC_ERROR)
+		handle_errors("default_world vec_push malloc error");
+	return (default_world);
+}
+
+static void	nonreflective_material(void)
+{
+	t_world		default_world;
+	t_info		lighting_info;
+	t_tuple		colour;
+
+
+	default_world = default_world_generator();
+	default_world.ray = (t_ray){.origin = point(0, 0, 0), .direction = vector(0, 0, 1), .lifetime = 5};
 	default_world.hit.intersection = (t_intersect){
 		.shape = vec_get(&default_world.objects, 1),
 		.time = 1
 	};
-	default_world.ray = ray(point(0, 0, 0), vector(0, 0, 1), 5);
 	prepare_object(&default_world, default_world.hit.intersection.shape, &default_world.hit.computations);
 	lighting_info = (t_info){
 		.material =	default_world.hit.intersection.shape->object.sphere.material
 	};
 	colour = reflected_colour(&default_world, &lighting_info);
 	(void)colour;
+	free(default_world.lights.memory);
+	free(default_world.objects.memory);
+	free(default_world.intersections.memory);
+}
+
+static void	reflective_material()
+{
+	t_world		default_world;
+	t_object	plane;
+	t_info		lighting_info;
+	t_tuple		colour;
+
+	default_world = default_world_generator();
+	plane = (t_object){
+		.object = {
+			.plane = {
+				.origin = {.tuple.units = {0, 0, 0, 0}},
+				.transform = default_transform_1(),
+				.material = default_material_1()
+			}
+		},
+		.type = OBJECT_PLANE
+	};
+	plane.object.plane.material.reflectiveness = 0.5;
+	plane.object.plane.transform.translation.tuple.units.y = -1;
+	transform_object(&plane.object.plane.transform);
+	if (vec_push(&default_world.objects, &plane) == VEC_ERROR)
+		handle_errors("reflective_material world vec_push malloc error");
+	default_world.ray = (t_ray){.origin = point(0, 0, -3), .direction = vector(0, -0.7071, 0.7071), .lifetime = 5};
+	default_world.hit.intersection = (t_intersect){
+		.shape = vec_get(&default_world.objects, 2),
+		.time = 1.414
+	};
+	prepare_object(&default_world, default_world.hit.intersection.shape, &default_world.hit.computations);
+	lighting_info = (t_info){
+		.material =	default_world.hit.intersection.shape->object.sphere.material
+	};
+	colour = reflected_colour(&default_world, &lighting_info);
+	(void)colour;
+	free(default_world.lights.memory);
+	free(default_world.objects.memory);
+	free(default_world.intersections.memory);
 }
 
 void	reflection_tests(void)
 {
 	precomputing_reflection_vector();
 	nonreflective_material();
+	reflective_material();
 }
 
 static void	open_scene_into(t_win *win, const char *str)
