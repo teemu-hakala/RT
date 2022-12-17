@@ -10,15 +10,8 @@
 		{
 			"light" :
 			{
-				"position" : [0, 2.3, -7],
+				"position" : [0, 3, 12.5],
 				"intensity" : [1, 1, 1]
-			}
-		},
-		{
-			"light" :
-			{
-				"position" : [-5, 6, -7],
-				"intensity" : [0, 0, 0]
 			}
 		}
 	],
@@ -36,7 +29,7 @@
 				},
 				"material" :
 				{
-					"ambient" : 0.42,
+					"ambient" : 0.05,
 					"diffuse" : 0.5,
 					"specular" : 0.1,
 					"shininess" : 200,
@@ -57,12 +50,12 @@
 				},
 				"material" :
 				{
-					"ambient" : 0.42,
+					"ambient" : 0.05,
 					"diffuse" : 0.5,
 					"specular" : 0.1,
 					"shininess" : 200,
 					"init_colour" : [0.592, 0.639, 0.588],
-					"reflectiveness": 0.7
+					"reflectiveness": 0
 				}
 			}
 		},
@@ -78,12 +71,12 @@
 				},
 				"material" :
 				{
-					"ambient" : 0.42,
+					"ambient" : 0.05,
 					"diffuse" : 0.5,
 					"specular" : 0.1,
 					"shininess" : 200,
 					"init_colour" : [0.592, 0.639, 0.588],
-					"reflectiveness": 0.7
+					"reflectiveness": 0
 				}
 			}
 		},
@@ -99,7 +92,7 @@
 				},
 				"material" :
 				{
-					"ambient" : 0.42,
+					"ambient" : 0.05,
 					"diffuse" : 0.5,
 					"specular" : 0.1,
 					"shininess" : 200,
@@ -120,7 +113,7 @@
 				},
 				"material" :
 				{
-					"ambient" : 0.42,
+					"ambient" : 0.05,
 					"diffuse" : 0.5,
 					"specular" : 0.1,
 					"shininess" : 200,
