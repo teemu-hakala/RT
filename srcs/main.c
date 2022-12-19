@@ -84,7 +84,7 @@ static void	nonreflective_material(void)
 
 
 	default_world = default_world_generator();
-	default_world.ray = (t_ray){.origin = point(0, 0, 0), .direction = vector(0, 0, 1), .lifetime = 5};
+	default_world.ray = (t_ray){.origin = point(0, 0, 0), .direction = vector(0, 0, 1), .lifetime = 1};
 	default_world.hit.intersection = (t_intersect){
 		.shape = vec_get(&default_world.objects, 1),
 		.time = 1
@@ -123,7 +123,7 @@ static void	reflective_material()
 	transform_object(&plane.object.plane.transform);
 	if (vec_push(&default_world.objects, &plane) == VEC_ERROR)
 		handle_errors("reflective_material world vec_push malloc error");
-	default_world.ray = (t_ray){.origin = point(0, 0, -3), .direction = vector(0, -0.7071, 0.7071), .lifetime = 5};
+	default_world.ray = (t_ray){.origin = point(0, 0, -3), .direction = vector(0, -0.7071, 0.7071), .lifetime = 1};
 	default_world.hit.intersection = (t_intersect){
 		.shape = vec_get(&default_world.objects, 2),
 		.time = 1.414
