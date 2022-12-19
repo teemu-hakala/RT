@@ -47,6 +47,13 @@ static t_world	default_world_generator(void)
 		!= VEC_SUCCESS)
 		handle_errors("initialise_default_world malloc returned NULL");
 	default_world.hit.hit_check = false;
+	if (vec_push(&default_world.lights, &(t_light){
+		.intensity = point(1, 1, 1),
+		.position = point(-10, 10, -10)
+	}) == VEC_ERROR)
+	{
+		handle_errors("initialise_default_world lights malloc returned NULL");
+	}
 	sphere = (t_object){
 		.object = {
 			.sphere = {
