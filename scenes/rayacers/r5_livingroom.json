@@ -34,7 +34,7 @@
 					"specular" : 0.1,
 					"shininess" : 200,
 					"init_colour" : [1, 0, 0],
-					"reflectiveness": 0.7
+					"reflectiveness": 0
 				}
 			}
 		},
@@ -97,7 +97,7 @@
 					"specular" : 0.1,
 					"shininess" : 200,
 					"init_colour" : [0, 1, 0],
-					"reflectiveness": 0.7
+					"reflectiveness": 1
 				}
 			}
 		},
@@ -118,7 +118,7 @@
 					"specular" : 0.1,
 					"shininess" : 200,
 					"init_colour" : [0,0,1],
-					"reflectiveness": 0.7
+					"reflectiveness": 0
 				}
 			}
 		}
