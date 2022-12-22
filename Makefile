@@ -160,7 +160,7 @@ PARSE_SRCS = default_files.c parse_camera.c parse_cone.c parse_cylinder.c \
 OBJECTS_SRCS = camera.c transform_objects.c\
 
 MATHS_SRCS = matrix_inversion.c matrix_maths.c matrix_transformations.c \
-	tuple_operations.c matrix_rotations.c tuple_w.c tuple_basic_operations.c \
+	tuple_operations.c matrix_rotations.c tuple_w.c tuple_basic_operations.c 
 
 INTERSECT_SRCS = intersect_plane.c intersect_sphere.c intersect_cone.c \
 	intersect_cylinder.c intersect_cube.c intersect_dispatch.c

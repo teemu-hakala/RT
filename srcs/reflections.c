@@ -18,6 +18,14 @@ t_tuple	reflect(t_tuple input, t_tuple normal)
 			tuple_scale(normal, 2 * dot_product(input, normal))));
 }
 
+t_ray	ray(t_tuple origin, t_tuple reflectv)
+{
+	t_tuple		direction;
+
+	direction = normalize(tuple_sub(origin, reflectv));
+	return ((t_ray){.origin = origin, .direction = direction});
+}
+
 void	is_shadow(t_world *world, t_tuple point, t_light *light)
 {
 	t_tuple	temp;
@@ -40,4 +48,18 @@ void	is_shadow(t_world *world, t_tuple point, t_light *light)
 			world->hit.computations.vectors.in_shadow = true;
 		}
 	}
+}
+
+t_tuple reflected_colour(t_world *world, t_comp *computations)
+{
+	t_tuple	reflected_colour;
+
+	reflected_colour = point(0, 0 ,0);
+	if (world->lifetime-- <= 0)
+		return (reflected_colour);
+	if (computations->reflective < EPSILON && computations->reflective > -EPSILON)
+		return (reflected_colour);
+	world->reflected_ray = ray(computations->over_point, computations->reflectv);
+	reflected_colour = colour_at(world, world->reflected_ray);
+	return (tuple_scale(reflected_colour, computations->reflective));
 }

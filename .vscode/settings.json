@@ -26,6 +26,7 @@
 		"iosfwd": "c",
 		"tuple": "c",
 		"__bit_reference": "c",
-		"chrono": "c"
+		"chrono": "c",
+		"*.tcc": "c"
 	}
 }

@@ -156,6 +156,7 @@ void		prepare_cylinder(t_world *world);
 void		prepare_cube(t_world *world);
 
 /* reflections*/
+t_tuple reflected_colour(t_world *world, t_comp *computations);
 
 /* object transformation */
 void		transform_object(t_transform *object);
@@ -179,7 +180,7 @@ void		img_pixel_put(t_win *win, int x, int y, unsigned int colour);
 /* camera */
 t_ray		ray_for_pixel(t_camera *camera, t_canvas position);
 void		prepare_computations(t_world *world);
-t_tuple		colour_at(t_world *world);
+t_tuple		colour_at(t_world *world, t_ray ray);
 t_fl		get_pixel_size(t_camera *camera, t_canvas size, t_fl field_of_view);
 
 /* parsing */
