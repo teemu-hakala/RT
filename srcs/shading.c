@@ -16,8 +16,8 @@ void	shade_plane(t_world *world, void *plane, t_tuple *colour,
 	t_light *light)
 {
 	t_info	lighting_info;
-	t_tuple	surface_col;
-	t_tuple	reflected_col;
+	t_tuple	surface_col = point(0, 0, 0);
+	t_tuple	reflected_col= point(0, 0, 0);
 
 	is_shadow(world, world->hit.computations.over_point, light);
 	lighting_info = (t_info){
@@ -33,8 +33,8 @@ void	shade_sphere(t_world *world, void *sphere, t_tuple *colour,
 	t_light *light)
 {
 	t_info	lighting_info;
-	t_tuple	surface_col;
-	t_tuple	reflected_col;
+	t_tuple	surface_col= point(0, 0, 0);
+	t_tuple	reflected_col = point(0, 0, 0);
 
 	is_shadow(world, world->hit.computations.over_point, light);
 	lighting_info = (t_info){
@@ -49,8 +49,8 @@ void	shade_sphere(t_world *world, void *sphere, t_tuple *colour,
 void	shade_cone(t_world *world, void *cone, t_tuple *colour, t_light *light)
 {
 	t_info	lighting_info;
-	t_tuple	surface_col;
-	t_tuple	reflected_col;
+	t_tuple	surface_col = point(0, 0, 0);
+	t_tuple	reflected_col = point(0, 0, 0);
 
 	is_shadow(world, world->hit.computations.over_point, light);
 	lighting_info = (t_info){
@@ -66,8 +66,8 @@ void	shade_cylinder(t_world *world, void *cylinder, t_tuple *colour,
 	t_light *light)
 {
 	t_info	lighting_info;
-	t_tuple	surface_col;
-	t_tuple	reflected_col;
+	t_tuple	surface_col = point(0, 0, 0);
+	t_tuple	reflected_col = point(0, 0, 0);
 
 	is_shadow(world, world->hit.computations.over_point, light);
 	lighting_info = (t_info){
@@ -83,8 +83,8 @@ void	shade_cube(t_world *world, void *cube, t_tuple *colour,
 	t_light *light)
 {
 	t_info	lighting_info;
-	t_tuple	surface_col;
-	t_tuple	reflected_col;
+	t_tuple	surface_col = point(0, 0, 0);
+	t_tuple	reflected_col = point(0, 0, 0);
 
 	is_shadow(world, world->hit.computations.over_point, light);
 	lighting_info = (t_info){

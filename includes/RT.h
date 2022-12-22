@@ -71,7 +71,7 @@ typedef void	(*t_intersect_function)(t_ray, void *, t_world *);
 
 typedef void	(*t_shading_function)(t_world *, void *, t_tuple *, t_light *);
 
-typedef void	(*t_computation_fn)(t_world *);
+typedef void	(*t_computation_fn)(t_world *, t_ray);
 
 /*tuple operations & matrix maths*/
 t_tuple		point(t_fl x, t_fl y, t_fl z);
@@ -148,12 +148,13 @@ void		identify_hit(t_world *world, t_hit *hit);
 
 /*computations*/
 void		prepare_object(t_world *world, t_object *object, \
-			t_comp *computations);
-void		prepare_plane(t_world *world);
-void		prepare_sphere(t_world *world);
-void		prepare_cone(t_world *world);
-void		prepare_cylinder(t_world *world);
-void		prepare_cube(t_world *world);
+			t_comp *computations, t_ray ray);
+void		prepare_computations(t_world *world, t_ray ray);
+void		prepare_plane(t_world *world, t_ray ray);
+void		prepare_sphere(t_world *world, t_ray ray);
+void		prepare_cone(t_world *world, t_ray ray);
+void		prepare_cylinder(t_world *world, t_ray ray);
+void		prepare_cube(t_world *world, t_ray ray);
 
 /* reflections*/
 t_tuple reflected_colour(t_world *world, t_comp *computations);
@@ -179,7 +180,6 @@ void		img_pixel_put(t_win *win, int x, int y, unsigned int colour);
 
 /* camera */
 t_ray		ray_for_pixel(t_camera *camera, t_canvas position);
-void		prepare_computations(t_world *world);
 t_tuple		colour_at(t_world *world, t_ray ray);
 t_fl		get_pixel_size(t_camera *camera, t_canvas size, t_fl field_of_view);
 

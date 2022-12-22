@@ -21,7 +21,7 @@ t_tuple	colour_at(t_world *world, t_ray ray)
 		printf("lifetime over\n");
 	if (world->hit.hit_check == true)
 	{
-		prepare_computations(world);
+		prepare_computations(world, ray);
 		return (shade_hit(world));
 	}
 	else
