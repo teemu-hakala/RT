@@ -12,6 +12,8 @@
 
 #include "RT.h"
 
+int midasdsaasddsaadsasd;
+
 void	shade_plane(t_world *world, void *plane, t_tuple *colour,
 	t_light *light)
 {
@@ -26,7 +28,15 @@ void	shade_plane(t_world *world, void *plane, t_tuple *colour,
 	surface_col = lighting(&lighting_info, light, \
 		world->hit.computations.vectors,world->hit.computations.over_point);
 	reflected_col = reflected_colour(world, &world->hit.computations);
+	if (midasdsaasddsaadsasd)
+	{
+		printf("reflected_col: %f, %f, %f, %f\n", reflected_col.array[0], reflected_col.array[1], reflected_col.array[2], reflected_col.array[3]);
+		printf("intersection shape type: %i\n", world->hit.intersection.shape->type);
+		printf("over_point: %f, %f, %f, %f\n", world->hit.computations.over_point.array[0], world->hit.computations.over_point.array[1], world->hit.computations.over_point.array[2], world->hit.computations.over_point.array[3]);
+
+	}
 	*colour = tuple_add(tuple_add(surface_col, reflected_col), *colour);
+
 }
 
 void	shade_sphere(t_world *world, void *sphere, t_tuple *colour,
@@ -43,6 +53,13 @@ void	shade_sphere(t_world *world, void *sphere, t_tuple *colour,
 	surface_col = lighting(&lighting_info, light, \
 		world->hit.computations.vectors,world->hit.computations.over_point);
 	reflected_col = reflected_colour(world, &world->hit.computations);
+	if (midasdsaasddsaadsasd)
+	{
+		printf("reflected_col: %f, %f, %f, %f\n", reflected_col.array[0], reflected_col.array[1], reflected_col.array[2], reflected_col.array[3]);
+		printf("intersection shape type: %i\n", world->hit.intersection.shape->type);
+		printf("over_point: %f, %f, %f, %f\n", world->hit.computations.over_point.array[0], world->hit.computations.over_point.array[1], world->hit.computations.over_point.array[2], world->hit.computations.over_point.array[3]);
+
+	}
 	*colour = tuple_add(tuple_add(surface_col, reflected_col), *colour);
 }
 

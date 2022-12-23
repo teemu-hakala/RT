@@ -20,10 +20,15 @@ t_tuple	reflect(t_tuple input, t_tuple normal)
 
 t_ray	ray(t_tuple origin, t_tuple reflectv)
 {
-	t_tuple		direction;
 
-	direction = normalize(tuple_sub(origin, reflectv));
-	return ((t_ray){.origin = origin, .direction = direction});
+	t_ray ray;
+	ray.origin = origin;
+	ray.direction = reflectv;
+	return (ray);
+	// t_tuple		direction;
+
+	// direction = normalize(tuple_sub(origin, reflectv));
+	// return ((t_ray){.origin = origin, .direction = direction});
 }
 
 void	is_shadow(t_world *world, t_tuple point, t_light *light)
@@ -49,7 +54,7 @@ void	is_shadow(t_world *world, t_tuple point, t_light *light)
 		}
 	}
 }
-
+int midasdsaasddsaadsasd;
 t_tuple reflected_colour(t_world *world, t_comp *computations)
 {
 	t_tuple	reflected_colour;
@@ -60,6 +65,12 @@ t_tuple reflected_colour(t_world *world, t_comp *computations)
 	if (computations->reflective < EPSILON && computations->reflective > -EPSILON)
 		return (reflected_colour);
 	world->reflected_ray = ray(computations->over_point, computations->reflectv);
+	if (0 && midasdsaasddsaadsasd)
+	{
+		printf("computations->reflectv: %f, %f, %f\n", computations->reflectv.array[0], computations->reflectv.array[1], computations->reflectv.array[2]);
+		// printf("intersection shape type: %i\n", world->hit.intersection.shape->type);
+		// printf("over_point: %f, %f, %f, %f\n", world->hit.computations.over_point.array[0], world->hit.computations.over_point.array[1], world->hit.computations.over_point.array[2], world->hit.computations.over_point.array[3]);
+	}
 	reflected_colour = colour_at(world, world->reflected_ray);
 	return (tuple_scale(reflected_colour, computations->reflective));
 }

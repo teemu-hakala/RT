@@ -12,6 +12,9 @@
 
 #include "RT.h"
 
+
+int midasdsaasddsaadsasd;
+
 void	render(t_win *win, t_camera *camera)
 {
 	t_canvas	canvas;
@@ -23,8 +26,12 @@ void	render(t_win *win, t_camera *camera)
 		canvas.horizontal = 0;
 		while (canvas.horizontal < camera->canvas.horizontal)
 		{
+			if (canvas.horizontal == 225 && canvas.vertical == 246)
+				midasdsaasddsaadsasd = 1;
+			else
+				midasdsaasddsaadsasd = 0;
 			win->world.ray = ray_for_pixel(camera, canvas);
-			win->world.lifetime = 5;
+			win->world.lifetime = 1;
 			colour = colour_at(&win->world, win->world.ray);
 			img_pixel_put(win, canvas.horizontal, canvas.vertical,
 				clamped_rgb_to_hex(&colour.tuple.colour));

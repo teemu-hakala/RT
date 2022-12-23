@@ -27,6 +27,7 @@
 		"tuple": "c",
 		"__bit_reference": "c",
 		"chrono": "c",
-		"*.tcc": "c"
+		"*.tcc": "c",
+		"rt.h": "c"
 	}
 }
