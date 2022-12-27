@@ -23,8 +23,9 @@
 # include "objects.h"
 # include "world.h"
 # include "parse.h"
+# include "input.h"
 
-# define USAGE "./RTv1 ./scenes/[.json file]"
+# define USAGE "./RT ./scenes/[.json file]"
 # define WIDTH 501
 # define HEIGHT 400
 # define WALL_WIDTH 7
@@ -35,6 +36,7 @@
 # define EPSILON 0.00001
 # define PLANE_EPSILON 0.00001
 # define TUPLE_EPSILON 0.00001
+# define ROTATION_STEP (M_PI / 448)
 
 typedef struct s_img
 {
@@ -64,6 +66,7 @@ typedef struct s_win
 	void		*win;
 	int			fd;
 	t_world		world;
+	t_input		input;
 }	t_win;
 
 typedef void	(*t_intersect_function)(t_ray, void *, t_world *);
