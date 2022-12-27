@@ -20,10 +20,15 @@ t_tuple	reflect(t_tuple input, t_tuple normal)
 
 t_ray	ray(t_tuple origin, t_tuple reflectv)
 {
-	t_tuple		direction;
+	t_ray	ray;
 
-	direction = normalize(tuple_sub(origin, reflectv));
-	return ((t_ray){.origin = origin, .direction = direction});
+	ray.origin = origin;
+	ray.direction = normalize(reflectv);
+	return (ray);
+	// t_tuple		direction;
+
+	// direction = normalize(tuple_sub(origin, reflectv));
+	// return ((t_ray){.origin = origin, .direction = direction});
 }
 
 void	is_shadow(t_world *world, t_tuple point, t_light *light)
