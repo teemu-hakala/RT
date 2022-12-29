@@ -30,7 +30,7 @@ int	cylinder_subobject_keywords(t_parser *parser, t_object *shape)
 
 int	cube_subobject_keywords(t_parser *parser, t_object *shape)
 {
-	return (find_subobject_keyword(parser, &shape->object.cube.origin,
+	return (find_subobject_keyword(parser,
 			&shape->object.cube.transform,
-			&shape->object.cube.material));
+			&shape->object.cube.material, &shape->object.cylinder.pattern));
 }
