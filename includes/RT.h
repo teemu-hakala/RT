@@ -158,6 +158,7 @@ t_ray		ray_for_pixel(t_camera *camera, t_canvas position);
 void		prepare_computations(t_world *world);
 t_tuple		colour_at(t_world *world);
 t_fl		get_pixel_size(t_camera *camera, t_canvas size, t_fl field_of_view);
+void		transform_camera_for_rotations(t_camera *camera);
 
 /* parsing */
 double		rt_atof(t_parser *parser);

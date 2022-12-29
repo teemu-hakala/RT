@@ -62,7 +62,6 @@ typedef struct s_user_inputs
 	t_keyboard	keyboard;
 }	t_input;
 
-int		key_handler(int key, t_win *win);
 int		mouse_handler_down(int button, int x, int y, t_win *win);
 int		mouse_handler_move(int x, int y, t_win *win);
 int		mouse_handler_up(int button, int x, int y, t_win *win);

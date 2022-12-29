@@ -12,14 +12,6 @@
 
 #include "RT.h"
 
-int	key_handler(int key, t_win *win)
-{
-	(void)key;
-	(void)win;
-	// printf("key: %i\n", key);
-	return (0);
-}
-
 void	mouse_register_click_down(int button, t_point mouse_pointer, t_win *win)
 {
 	(void)button;
@@ -36,21 +28,6 @@ void	mouse_register_click_up(int button, t_point mouse_pointer, t_win *win)
 	if (button == RIGHT_CLICK)
 		win->input.mouse.rmb_is_down = false;
 }
-
-int	mouse_handler_scroll_up(t_point *mouse_pointer, t_win *win)
-{
-	(void)mouse_pointer;
-	(void)win;
-	return (EXIT_SUCCESS);
-}
-
-int	mouse_handler_scroll_down(t_point *mouse_pointer, t_win *win)
-{
-	(void)mouse_pointer;
-	(void)win;
-	return (EXIT_SUCCESS);
-}
-
 
 int	mouse_handler_down(int button, int x, int y, t_win *win)
 {
