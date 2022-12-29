@@ -34,7 +34,7 @@
 					"specular" : 0.1,
 					"shininess" : 200,
 					"init_colour" : [1,1,1],
-					"reflectiveness": 1
+					"reflectiveness": 0
 				}
 			}
 		},
