@@ -57,7 +57,8 @@ void	intersect_world(t_world *world, t_ray ray)
 		plane_intersection,
 		sphere_intersection,
 		cone_intersection,
-		cylinder_intersection
+		cylinder_intersection,
+		cube_intersection
 	};
 	uint64_t		i;
 

@@ -9,7 +9,6 @@
 
 
 
-
 #include "RT.h"
 
 void	initialise_image(t_img *img, t_win *win)

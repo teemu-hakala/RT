@@ -6,7 +6,7 @@
 #    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2022/12/12 12:49:46 by deelliot         ###   ########.fr        #
+#    Updated: 2022/12/15 14:15:07 by deelliot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,13 +36,15 @@ MATHS_DIR = maths
 OBJECTS_DIR = objects
 PATTERNS_DIR = patterns
 INTERSECT_DIR = intersect
+NORMAL_DIR = normal
+COMPUTATIONS_DIR = computations
 
 # Source and object files
 PARSE_SRCS = default_files.c default_patterns.c parse_camera.c parse_cone.c parse_cylinder.c \
 	parse_lights.c parse_single_light.c parse_plane.c parse_shapes.c \
 	parse_sphere.c parse_sub_objs.c parse_utility.c parse.c rt_atof.c \
-	rt_atoi.c dispatch_subobjects.c parse_material.c parse_transform.c \
-	parse_cone_cylinder_subobj.c parse_patterns.c
+	rt_atoi.c dispatch_shape_subobjects.c parse_material.c parse_transform.c \
+	parse_cone_cylinder_subobj.c parse_cube.c shape_subobject_utility.c
 
 OBJECTS_SRCS = camera.c transform_objects.c\
 
@@ -52,7 +54,13 @@ MATHS_SRCS = matrix_inversion.c matrix_maths.c matrix_transformations.c \
 PATTERNS_SRCS = pattern_dispatch.c patterns.c
 
 INTERSECT_SRCS = intersect_plane.c intersect_sphere.c intersect_cone.c \
-	intersect_cylinder.c intersect_dispatch.c
+	intersect_cylinder.c intersect_cube.c intersect_dispatch.c
+
+NORMAL_SRCS = normal_at_cone.c normal_at_cube.c normal_at_cylinder.c \
+	normal_at_plane.c normal_at_sphere.c normal_dispatch.c
+
+COMPUTATION_SRCS = computation_dispatch.c computations_calculations.c \
+	computations_utility.c
 
 FILES = \
 	main.c \
@@ -60,17 +68,14 @@ FILES = \
 	image.c \
 	error_handling.c \
 	handle_input.c \
-	normal_utility.c \
-	normal_dispatch.c \
 	lighting.c \
 	reflections.c \
 	view_transform.c \
 	shading.c \
+	shading_dispatch.c \
 	ray.c \
 	render.c \
 	colour.c \
-	computation_dispatch.c \
-	computations.c \
 
 OBJS = $(addprefix $(OBJS_DIR)/, \
 	$(addprefix $(PARSE_DIR)/, $(PARSE_SRCS:.c=.o)) \
@@ -78,6 +83,8 @@ OBJS = $(addprefix $(OBJS_DIR)/, \
 	$(addprefix $(MATHS_DIR)/, $(MATHS_SRCS:.c=.o))\
 	$(addprefix $(PATTERNS_DIR)/, $(PATTERNS_SRCS:.c=.o))\
 	$(addprefix $(INTERSECT_DIR)/, $(INTERSECT_SRCS:.c=.o))\
+	$(addprefix $(NORMAL_DIR)/, $(NORMAL_SRCS:.c=.o))\
+	$(addprefix $(COMPUTATIONS_DIR)/, $(COMPUTATION_SRCS:.c=.o))\
 	$(FILES:.c=.o))
 
 # Paths
@@ -116,7 +123,8 @@ $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)/$(OBJECTS_DIR)
 	@mkdir -p $(OBJS_DIR)/$(PATTERNS_DIR)
 	@mkdir -p $(OBJS_DIR)/$(INTERSECT_DIR)
-
+	@mkdir -p $(OBJS_DIR)/$(NORMAL_DIR)
+	@mkdir -p $(OBJS_DIR)/$(COMPUTATIONS_DIR)
 
 libft:
 	make -C $(LIBFT_DIR)

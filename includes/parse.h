@@ -35,10 +35,16 @@ void		parse_plane(t_parser *parser, t_object *shape);
 void		parse_sphere(t_parser *parser, t_object *shape);
 void		parse_cone(t_parser *parser, t_object *shape);
 void		parse_cylinder(t_parser *parser, t_object *shape);
+void		parse_cube(t_parser *parser, t_object *shape);
 /*parse sub-objects*/
 int			find_subobject_keyword(t_parser *parser, t_transform *transform, \
 			t_material *material, t_pattern *pattern);
 int			dispatch_find_subobject_keyword(t_parser *parser, t_object *shape);
+int			plane_subobject_keywords(t_parser *parser, t_object *shape);
+int			sphere_subobject_keywords(t_parser *parser, t_object *shape);
+int			cone_subobject_keywords(t_parser *parser, t_object *shape);
+int			cylinder_subobject_keywords(t_parser *parser, t_object *shape);
+int			cube_subobject_keywords(t_parser *parser, t_object *shape);
 void		parse_tuple(t_tuple *tuple, t_parser *parser);
 void		parse_transform(t_transform *transform, t_parser *parser);
 void		parse_transform_subobject(t_parser *parser, t_transform *transform);
@@ -67,5 +73,6 @@ t_object	sphere_prototype(void);
 t_object	cone_prototype(void);
 t_object	cylinder_prototype(void);
 t_light		light_prototype(void);
+t_object	cube_prototype(void);
 
 #endif

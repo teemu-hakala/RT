@@ -24,6 +24,7 @@
 # include "patterns.h"
 # include "world.h"
 # include "parse.h"
+# include <stdio.h>
 
 # define USAGE "./RT ./scenes/[.json file]"
 # define WIDTH 501
@@ -117,11 +118,23 @@ int			handle_input(int key);
 /* colour and lighting*/
 t_tuple		hex_to_tuple_colour(uint32_t colour);
 uint32_t	clamped_rgb_to_hex(t_colour *colour);
-t_tuple		shade_hit(t_world *world);
-t_tuple		lighting(t_info *lighting_info, t_light *light, t_phong vectors, \
-			t_tuple point);
+t_tuple		lighting(t_info *lighting_info, t_light *light, t_phong vectors,
+				t_tuple point);
 void		is_shadow(t_world *world, t_tuple point, t_light *light);
 t_tuple		reflect(t_tuple input, t_tuple normal);
+
+/* shading */
+t_tuple		shade_hit(t_world *world);
+void		shade_plane(t_world *world, void *plane, t_tuple *colour,
+				t_light *light);
+void		shade_sphere(t_world *world, void *sphere, t_tuple *colour,
+				t_light *light);
+void		shade_cone(t_world *world, void *cone, t_tuple *colour,
+				t_light *light);
+void		shade_cylinder(t_world *world, void *cylinder, t_tuple *colour,
+				t_light *light);
+void		shade_cube(t_world *world, void *cube, t_tuple *colour,
+				t_light *light);
 
 /* object intersection */
 void		intersect_world(t_world *world, t_ray ray);
@@ -130,9 +143,18 @@ void		sphere_intersection(t_ray ray, void *sphere, t_world *world);
 void		cone_intersection(t_ray ray, void *cone, t_world *world);
 void		cylinder_intersection(t_ray ray, void *cylinder, t_world *world);
 int			check_cap(t_ray *ray, t_fl time, t_fl radius);
+void		cube_intersection(t_ray ray, void *cube, t_world *world);
+t_fl		max_double(t_fl x, t_fl y, t_fl z);
 void		identify_hit(t_world *world, t_hit *hit);
+
+/*computations*/
 void		prepare_object(t_world *world, t_object *object, \
 			t_comp *computations);
+void		prepare_plane(t_world *world);
+void		prepare_sphere(t_world *world);
+void		prepare_cone(t_world *world);
+void		prepare_cylinder(t_world *world);
+void		prepare_cube(t_world *world);
 
 /* reflections*/
 
@@ -145,6 +167,11 @@ t_mtx		view_transform(t_tuple from, t_tuple to, t_tuple up);
 /* normals */
 t_tuple		object_to_world_space(t_mtx *inverse, t_tuple obj_space);
 t_tuple		normal_at(void *object, t_tuple *point);
+t_tuple		normal_at_plane(void *plane, t_tuple *point_at);
+t_tuple		normal_at_sphere(void *sphere, t_tuple *point_at);
+t_tuple		normal_at_cone(void *cone, t_tuple *point_at);
+t_tuple		normal_at_cylinder(void *cylinder, t_tuple *point_at);
+t_tuple		normal_at_cube(void *cube, t_tuple *point_at);
 
 /* plot pixels */
 void		render(t_win *win, t_camera *camera);
@@ -181,4 +208,5 @@ void		gradient_at(t_pattern *pattern, t_material *material, \
 /* parsing */
 double		rt_atof(t_parser *parser);
 int			rt_atoi(t_parser *parser);
+
 #endif

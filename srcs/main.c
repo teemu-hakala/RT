@@ -9,7 +9,7 @@
 
 
 
-
+#include <stdio.h>
 #include "RT.h"
 
 static void	open_scene_into(t_win *win, const char *str)

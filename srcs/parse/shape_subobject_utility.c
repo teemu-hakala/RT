@@ -1,15 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
 #include "RT.h"
 
 int	plane_subobject_keywords(t_parser *parser, t_object *shape)
@@ -40,15 +28,9 @@ int	cylinder_subobject_keywords(t_parser *parser, t_object *shape)
 			&shape->object.cylinder.material, &shape->object.cylinder.pattern));
 }
 
-int	dispatch_find_subobject_keyword(t_parser *parser, t_object *shape)
+int	cube_subobject_keywords(t_parser *parser, t_object *shape)
 {
-	static const t_subobject_keyword_fn	kw_fns[] = \
-	{
-		plane_subobject_keywords,
-		sphere_subobject_keywords,
-		cone_subobject_keywords,
-		cylinder_subobject_keywords
-	};
-
-	return (kw_fns[shape->type - OBJECT_INDEX_OFFSET](parser, shape));
+	return (find_subobject_keyword(parser, &shape->object.cube.origin,
+			&shape->object.cube.transform,
+			&shape->object.cube.material));
 }

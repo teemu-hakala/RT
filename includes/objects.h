@@ -22,6 +22,7 @@ typedef enum e_object_type
 	OBJECT_SPHERE = 43,
 	OBJECT_CONE = 44,
 	OBJECT_CYLINDER = 45,
+	OBJECT_CUBE = 46,
 }	t_object_type;
 
 typedef struct s_phong_colour_constituents
@@ -115,6 +116,14 @@ typedef struct s_cylinder
 	int			closed;
 }	t_cylinder;
 
+typedef struct s_cube
+{
+	t_tuple		origin;
+	t_transform	transform;
+	t_material	material;
+	t_fl		length;
+}	t_cube;
+
 typedef struct s_light
 {
 	t_tuple		position;
@@ -145,6 +154,7 @@ union	u_object
 	t_sphere	sphere;
 	t_cone		cone;
 	t_cylinder	cylinder;
+	t_cube		cube;
 };
 
 typedef struct s_object
