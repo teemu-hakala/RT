@@ -33,7 +33,6 @@
 		{
 			"cube" :
 			{
-				"origin" : [0, 0, 0],
 				"transform" :
 				{
 					"translation" : [0, 0, 0],
