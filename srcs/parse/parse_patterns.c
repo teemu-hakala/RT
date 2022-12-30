@@ -48,6 +48,18 @@ static void	find_pattern_keywords(t_pattern *pattern, t_parser *parser)
 		find_colon(parser);
 		parse_pattern_type(pattern, parser);
 	}
+	else if (ft_strncmp(&parser->string[parser->c], "\"width\"", 7) == 0)
+	{
+		parser->c += sizeof("\"width\"") - 1;
+		find_colon(parser);
+		pattern->width = rt_atoi(parser);
+	}
+	else if (ft_strncmp(&parser->string[parser->c], "\"height\"", 8) == 0)
+	{
+		parser->c += sizeof("\"height\"") - 1;
+		find_colon(parser);
+		pattern->height = rt_atoi(parser);
+	}
 	else if (ft_strncmp(&parser->string[parser->c], "\"colour_a\"", 10) == 0)
 	{
 		parser->c += sizeof("\"colour_a\"") - 1;

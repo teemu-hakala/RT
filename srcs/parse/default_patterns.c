@@ -56,8 +56,8 @@ t_pattern	default_checkered_pattern(void)
 {
 	return ((t_pattern){
 		.type = PATTERN_CHECKERED,
-		.width = 20,
-		.height = 10,
+		.width = 4,
+		.height = 4,
 		.colour_a = hex_to_tuple_colour(COLOUR_BLACK),
 		.colour_b = hex_to_tuple_colour(COLOUR_WHITE),
 		.transform = default_transform_2()
