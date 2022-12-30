@@ -56,4 +56,8 @@ void	parse_cylinder(t_parser *parser, t_object *shape)
 	}
 	else if (!find_matching_bracket(parser))
 		handle_errors("cylinder syntax error");
+	transform_object(&shape->object.cylinder.transform);
+	if (shape->object.cylinder.pattern.type == PATTERN_CHECKERED)
+		shape->object.cylinder.pattern.width = \
+			2 * shape->object.cylinder.pattern.height;
 }

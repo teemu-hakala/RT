@@ -48,6 +48,8 @@ typedef struct s_pattern
 	t_fl				height;
 	t_tuple				colour_a;
 	t_tuple				colour_b;
+	t_tuple				colour_c;
+	t_tuple				colour_d;
 	t_transform			transform;
 	t_uv_map			map;
 }	t_pattern;
@@ -124,6 +126,7 @@ typedef struct s_cube
 	t_tuple		origin;
 	t_transform	transform;
 	t_material	material;
+	t_pattern	pattern;
 	t_fl		length;
 }	t_cube;
 

@@ -21,7 +21,8 @@ void	pattern_at(t_pattern *pattern, t_material *material, t_uv_map *map)
 		horizontal_striped_at,
 		checkered_at,
 		circle_at,
-		gradient_at};
+		gradient_at,
+		align_check_at};
 	// pattern_space = transform_point(point, &transform, &pattern->transform);
 	return (patterns[pattern->type](pattern, material, map));
 }

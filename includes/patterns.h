@@ -10,7 +10,8 @@ typedef enum e_pattern_type
 	PATTERN_HORIZONTAL_STRIPES = 2,
 	PATTERN_CHECKERED = 3,
 	PATTERN_CIRCLES = 4,
-	PATTERN_GRADIENT = 5
+	PATTERN_GRADIENT = 5,
+	PATTERN_ALIGN_CHECK = 6
 }	t_type;
 
 // typedef struct s_uv_pattern

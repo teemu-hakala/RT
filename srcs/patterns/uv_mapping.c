@@ -17,6 +17,10 @@ t_uv_map	spherical_map(t_tuple *p)
 	raw_u = theta / (2 * M_PI);
 	map.u = 1 - (raw_u + 0.5);
 	map.v = 1 - phi / M_PI;
+	if (map.v > 1 || map.v < 0)
+		printf("v = %f\n", map.v);
+	if (map.u > 1 || map.u < 0)
+		printf("u = %f\n", map.u);
 	return (map);
 }
 
@@ -29,6 +33,10 @@ t_uv_map	planar_map(t_tuple *p)
 	map.v = fmod(p->tuple.units.z, 1);
 	if (map.v < 0)
 		map.v += 1;
+	if (map.v > 1 || map.v < 0)
+		printf("v = %f\n", map.v);
+	if (map.u > 1 || map.u < 0)
+		printf("u = %f\n", map.u);
 	return (map);
 }
 
@@ -44,7 +52,10 @@ t_uv_map	cylindrical_map(t_tuple *p)
 	map.v = fmod(p->tuple.units.y, 1);
 	if (map.v < 0)
 		map.v += 1;
-	//if map.v > 1 - do something;
+	if (map.v > 1 || map.v < 0)
+		printf("v = %f\n", map.v);
+	if (map.u > 1 || map.u < 0)
+		printf("u = %f\n", map.u);
 	return (map);
 }
 
@@ -60,6 +71,21 @@ t_uv_map	conical_map(t_tuple *p)
 	map.v = fmod((2 * p->tuple.units.y + 1), 1); //no idea if this is correct
 	if (map.v < 0)
 		map.v += 1;
-	//if map.v > 1 - do something;
+	if (map.v > 1 || map.v < 0)
+		printf("v = %f\n", map.v);
+	if (map.u > 1 || map.u < 0)
+		printf("u = %f\n", map.u);
+	return (map);
+}
+
+t_uv_map	cubic_map(t_tuple *p)
+{
+	t_uv_map	map;
+	(void)p;
+
+	if (map.v > 1 || map.v < 0)
+		printf("v = %f\n", map.v);
+	if (map.u > 1 || map.u < 0)
+		printf("u = %f\n", map.u);
 	return (map);
 }

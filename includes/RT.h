@@ -27,7 +27,7 @@
 # include <stdio.h>
 
 # define USAGE "./RT ./scenes/[.json file]"
-# define WIDTH 501
+# define WIDTH 400
 # define HEIGHT 400
 # define WALL_WIDTH 7
 # define WALL_HEIGHT 7
@@ -192,6 +192,7 @@ t_pattern	default_horizontal_stripe_pattern(void);
 t_pattern	default_gradient_pattern(void);
 t_pattern	default_ring_pattern(void);
 t_pattern	default_checkered_pattern(void);
+t_pattern	default_align_check(void);
 t_pattern	default_pattern(void);
 void		none_at(t_pattern *pattern, t_material *material, t_uv_map *map);
 void		vertical_striped_at(t_pattern *pattern, t_material *material, \
@@ -200,16 +201,16 @@ void		horizontal_striped_at(t_pattern *pattern, t_material *material, \
 			t_uv_map *map);
 void		checkered_at(t_pattern *pattern, t_material *material, \
 			t_uv_map *map);
-void		circle_at(t_pattern *pattern, t_material *material, \
-			t_uv_map *map);
-void		gradient_at(t_pattern *pattern, t_material *material, \
-			t_uv_map *map);
-t_tuple	transform_point(t_tuple *point, t_transform *shape_transform, \
-	t_transform *pattern_transform);
+void		circle_at(t_pattern *pattern, t_material *material,t_uv_map *map);
+void		gradient_at(t_pattern *pattern, t_material *material,t_uv_map *map);
+void		align_check_at(t_pattern *pattern, t_material *material, t_uv_map *map);
+t_tuple		transform_point(t_tuple *point, t_transform *shape_transform, \
+			t_transform *pattern_transform);
 t_uv_map	spherical_map(t_tuple *p);
 t_uv_map	planar_map(t_tuple *p);
 t_uv_map	cylindrical_map(t_tuple *p);
 t_uv_map	conical_map(t_tuple *p);
+t_uv_map	cubic_map(t_tuple *p);
 
 /* parsing */
 double		rt_atof(t_parser *parser);
