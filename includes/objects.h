@@ -44,9 +44,12 @@ typedef struct s_transform
 typedef struct s_pattern
 {
 	enum e_pattern_type	type;
+	t_fl				width;
+	t_fl				height;
 	t_tuple				colour_a;
 	t_tuple				colour_b;
 	t_transform			transform;
+	t_uv_map			map;
 }	t_pattern;
 
 typedef struct s_material

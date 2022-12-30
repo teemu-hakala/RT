@@ -34,22 +34,22 @@
 				},
 				"material" :
 				{
-					"ambient" : 0.42,
-					"diffuse" : 0.5,
-					"specular" : 0.1,
-					"shininess" : 200,
+					"ambient" : 0.1,
+					"specular" : 0.4,
+					"shininess" : 10,
+					"diffuse" : 0.6,
 					"init_colour" : [0.42, 0.55, 0.09]
 				},
 				"pattern" :
 				{
-					"type" : "horizontal_stripes",
-					"colour_a" : [0.42, 0.01, 0.09],
-					"colour_b" : [0.01, 0.55, 0.09],
+					"type" : "checkered",
+					"colour_a" : [0, 0.5, 0],
+					"colour_b" : [1, 1, 1],
 					"transform" :
 					{
 						"translation" : [0, 0, 0],
 						"rotation" : [0, 0, 0],
-						"scale" : [0.1, 0.1, 0.1]
+						"scale" : [1, 1, 1]
 					}
 				}
 			}
