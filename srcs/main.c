@@ -25,6 +25,15 @@ int	close_success(void)
 	return (0);
 }
 
+void	hooks(t_win *win)
+{
+	mlx_hook(win->win, KEY_DOWN, 0, handle_input, win);
+	mlx_hook(win->win, MOUSE_ESC, 0, close_success, win);
+	mlx_hook(win->win, ON_MOUSE_DOWN, 0, mouse_handler_down, win);
+	mlx_hook(win->win, ON_MOUSE_MOVE, 0, mouse_handler_move, win);
+	mlx_hook(win->win, ON_MOUSE_UP, 0, mouse_handler_up, win);
+}
+
 int	main(int argc, char **argv)
 {
 	t_win	win;
@@ -36,8 +45,7 @@ int	main(int argc, char **argv)
 	parse_into(&win.world, win.fd);
 	initialise_window(&win);
 	render(&win, &win.world.camera);
-	mlx_hook(win.win, KEY_DOWN, 0, handle_input, &win);
-	mlx_hook(win.win, MOUSE_ESC, 0, close_success, &win);
+	hooks(&win);
 	mlx_loop(win.mlx);
 	return (0);
 }
