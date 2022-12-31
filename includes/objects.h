@@ -14,6 +14,13 @@
 # define OBJECTS_H
 # include "RT.h"
 
+typedef enum e_light_type
+{
+	LIGHT_NOT_FOUND = 0,
+	LIGHT_SPOT = 52,
+	LIGHT_PARALLEL = 53
+}	t_light_type;
+
 typedef enum e_object_type
 {
 	OBJECT_INDEX_OFFSET = 42,
@@ -112,8 +119,10 @@ typedef struct s_cube
 
 typedef struct s_light
 {
-	t_tuple		position;
-	t_tuple		intensity;
+	t_tuple			position;
+	t_tuple			intensity;
+	t_tuple			direction;
+	t_light_type	type;
 }	t_light;
 
 typedef struct s_canvas_size

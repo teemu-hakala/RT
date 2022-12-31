@@ -27,6 +27,12 @@ static void	find_light_subobject_keyword(t_light *light, t_parser *parser)
 		find_colon(parser);
 		parse_tuple(&light->intensity, parser);
 	}
+	else if (ft_strncmp(&parser->string[parser->c], "\"direction\"", 11) == 0)
+	{
+		parser->c += sizeof("\"direction\"") - 1;
+		find_colon(parser);
+		parse_tuple(&light->direction, parser);
+	}
 	else
 		handle_errors("syntax error light object");
 }
