@@ -73,6 +73,7 @@ void	parse_lights(t_world *world, t_parser *parser)
 	while (light_type != LIGHT_NOT_FOUND)
 	{
 		parse_lights_while(world, parser, light_type);
+		light_type = find_light(parser);
 	}
 	if (!find_matching_bracket(parser))
 		handle_errors("brackets syntax error");

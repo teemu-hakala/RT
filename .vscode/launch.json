@@ -184,6 +184,30 @@
 			"environment": [],
 			"externalConsole": false,
 			"MIMode": "lldb"
+		},
+		{
+			"name": "light_parallel.json",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/RT",
+			"args": ["${workspaceFolder}/scenes/light_parallel.json"],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb"
+		},
+		{
+			"name": "light_spot.json",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/RT",
+			"args": ["${workspaceFolder}/scenes/light_spot.json"],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb"
 		}
 	]
 }

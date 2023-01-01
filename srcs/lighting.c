@@ -30,7 +30,10 @@ t_tuple	lighting(t_info *info, t_light *light, t_phong vectors,
 
 	info->material.col_mash = tuple_multi(info->material.init_colour, \
 		light->intensity);
-	vectors.light = normalize(tuple_sub(light->position, point));
+	if (light->type == LIGHT_SPOT)
+		vectors.light = normalize(tuple_sub(light->position, point));
+	else
+		vectors.light = normalize(light->direction);
 	info->channels.amb = tuple_scale(info->material.col_mash, \
 		info->material.ambient);
 	incidence_l = dot_product(vectors.light, vectors.surface_normal);
