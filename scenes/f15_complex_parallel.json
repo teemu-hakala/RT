@@ -16,14 +16,14 @@
 		{
 			"parallel" :
 			{
-				"direction" : [-0.7071, 0, 0.7071],
+				"direction" : [0.7071, 0, -0.7071],
 				"intensity" : [1, 1, 1]
 			}
 		},
 		{
 			"parallel" :
 			{
-				"direction" : [0.7071, 0, 0.7071],
+				"direction" : [-0.7071, 0, -0.7071],
 				"intensity" : [1, 1, 1]
 			}
 		}

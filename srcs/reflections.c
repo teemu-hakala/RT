@@ -26,10 +26,15 @@ void	is_shadow(t_world *world, t_tuple point, t_light *light)
 	t_ray	ray;
 
 	if (light->type == LIGHT_SPOT)
+	{
 		temp = tuple_sub(light->position, point);
+		distance = magnitude(temp);
+	}
 	else
+	{
 		temp = normalize(light->direction);
-	distance = magnitude(temp);
+		distance = -INFINITY;
+	}
 	direction = normalize(temp);
 	ray = (t_ray){point, direction};
 	vec_clear(&world->intersections);
