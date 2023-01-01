@@ -1,0 +1,354 @@
+{
+	"camera" :
+	{
+		"origin" : [0, 1.74, -10],
+		"transform" :
+		{
+			"translation": [0, 0, 0],
+			"rotation": [0, 0, 0],
+			"scale": [1, 1, 1]
+		},
+		"center_of_interest" : [0, 1.74, 0],
+		"field_of_view" : 1.4
+	},
+	"lights" :
+	[
+		{
+			"parallel" :
+			{
+				"direction" : [-0.7071, 0, 0.7071],
+				"intensity" : [1, 1, 1]
+			}
+		},
+		{
+			"parallel" :
+			{
+				"direction" : [0.7071, 0, 0.7071],
+				"intensity" : [1, 1, 1]
+			}
+		}
+	],
+	"shapes" :
+	[
+		{
+			"sphere" :
+			{
+				"origin" : [0, 0, 0],
+				"transform" :
+				{
+					"translation" : [-2.7, 0, 0],
+					"rotation" : [0, 0, 0],
+					"scale" : [0.89, 0.89, 0.89]
+				},
+				"material" :
+				{
+					"ambient" : 0.05,
+					"diffuse" : 0.5,
+					"specular" : 0.1,
+					"shininess" : 200,
+					"init_colour" : [0.42, 0.42, 0.56]
+				}
+			}
+		},
+		{
+			"cylinder" :
+			{
+				"origin" : [0, 0, 0],
+				"transform" :
+				{
+					"translation" : [-2.7, 0, 0],
+					"rotation" : [0, 0, 0],
+					"scale" : [0.58, 1, 0.58]
+				},
+				"material" :
+				{
+					"ambient" : 0.05,
+					"diffuse" : 0.5,
+					"specular" : 0.1,
+					"shininess" : 200,
+					"init_colour" : [0.42, 0.24, 0.10]
+				}
+			}
+		},
+		{
+			"sphere" :
+			{
+				"origin" : [0, 0, 0],
+				"transform" :
+				{
+					"translation" : [-2.7, 4, 0],
+					"rotation" : [0, 0, 0],
+					"scale" : [0.89, 0.89, 0.89]
+				},
+				"material" :
+				{
+					"ambient" : 0.05,
+					"diffuse" : 0.5,
+					"specular" : 0.1,
+					"shininess" : 200,
+					"init_colour" : [0.42, 0.42, 0.56]
+				}
+			}
+		},
+		{
+			"sphere" :
+			{
+				"origin" : [0, 0, 0],
+				"transform" :
+				{
+					"translation" : [2.7, 4, 0],
+					"rotation" : [0, 0, 0],
+					"scale" : [0.89, 0.89, 0.89]
+				},
+				"material" :
+				{
+					"ambient" : 0.05,
+					"diffuse" : 0.5,
+					"specular" : 0.1,
+					"shininess" : 200,
+					"init_colour" : [0.42, 0.42, 0.56]
+				}
+			}
+		},
+		{
+			"cylinder" :
+			{
+				"origin" : [0, 0, 0],
+				"transform" :
+				{
+					"translation" : [2.7, 0, 0],
+					"rotation" : [0, 0, 0],
+					"scale" : [0.58, 1, 0.58]
+				},
+				"material" :
+				{
+					"ambient" : 0.05,
+					"diffuse" : 0.5,
+					"specular" : 0.1,
+					"shininess" : 200,
+					"init_colour" : [0.42, 0.24, 0.10]
+				}
+			}
+		},
+		{
+			"sphere" :
+			{
+				"origin" : [0, 0, 0],
+				"transform" :
+				{
+					"translation" : [2.7, 0, 0],
+					"rotation" : [0, 0, 0],
+					"scale" : [0.89, 0.89, 0.89]
+				},
+				"material" :
+				{
+					"ambient" : 0.05,
+					"diffuse" : 0.5,
+					"specular" : 0.1,
+					"shininess" : 200,
+					"init_colour" : [0.42, 0.42, 0.56]
+				}
+			}
+		},
+		{
+			"sphere" :
+			{
+				"origin" : [0, 0, 0],
+				"transform" :
+				{
+					"translation" : [2.7, 4, -5],
+					"rotation" : [0, 0, 0],
+					"scale" : [0.89, 0.89, 0.89]
+				},
+				"material" :
+				{
+					"ambient" : 0.05,
+					"diffuse" : 0.5,
+					"specular" : 0.1,
+					"shininess" : 200,
+					"init_colour" : [0.42, 0.42, 0.56]
+				}
+			}
+		},
+		{
+			"cylinder" :
+			{
+				"origin" : [0, 0, 0],
+				"transform" :
+				{
+					"translation" : [2.7, 0, -5],
+					"rotation" : [0, 0, 0],
+					"scale" : [0.58, 1, 0.58]
+				},
+				"material" :
+				{
+					"ambient" : 0.05,
+					"diffuse" : 0.5,
+					"specular" : 0.1,
+					"shininess" : 200,
+					"init_colour" : [0.42, 0.24, 0.10]
+				}
+			}
+		},
+		{
+			"sphere" :
+			{
+				"origin" : [0, 0, 0],
+				"transform" :
+				{
+					"translation" : [2.7, 0, -5],
+					"rotation" : [0, 0, 0],
+					"scale" : [0.89, 0.89, 0.89]
+				},
+				"material" :
+				{
+					"ambient" : 0.05,
+					"diffuse" : 0.5,
+					"specular" : 0.1,
+					"shininess" : 200,
+					"init_colour" : [0.42, 0.42, 0.56]
+				}
+			}
+		},
+		{
+			"sphere" :
+			{
+				"origin" : [0, 0, 0],
+				"transform" :
+				{
+					"translation" : [-2.7, 4, -5],
+					"rotation" : [0, 0, 0],
+					"scale" : [0.89, 0.89, 0.89]
+				},
+				"material" :
+				{
+					"ambient" : 0.05,
+					"diffuse" : 0.5,
+					"specular" : 0.1,
+					"shininess" : 200,
+					"init_colour" : [0.42, 0.42, 0.56]
+				}
+			}
+		},
+		{
+			"cylinder" :
+			{
+				"origin" : [0, 0, 0],
+				"transform" :
+				{
+					"translation" : [-2.7, 0, -5],
+					"rotation" : [0, 0, 0],
+					"scale" : [0.58, 1, 0.58]
+				},
+				"material" :
+				{
+					"ambient" : 0.05,
+					"diffuse" : 0.5,
+					"specular" : 0.1,
+					"shininess" : 200,
+					"init_colour" : [0.42, 0.24, 0.10]
+				}
+			}
+		},
+		{
+			"sphere" :
+			{
+				"origin" : [0, 0, 0],
+				"transform" :
+				{
+					"translation" : [-2.7, 0, -5],
+					"rotation" : [0, 0, 0],
+					"scale" : [0.89, 0.89, 0.89]
+				},
+				"material" :
+				{
+					"ambient" : 0.05,
+					"diffuse" : 0.5,
+					"specular" : 0.1,
+					"shininess" : 200,
+					"init_colour" : [0.42, 0.42, 0.56]
+				}
+			}
+		},
+		{
+			"plane" :
+			{
+				"origin" : [0, 0, 0],
+				"transform" :
+				{
+					"translation" : [0, 0, 0],
+					"rotation" : [0, 0, 0],
+					"scale" : [1, 1, 1]
+				},
+				"material" :
+				{
+					"ambient" : 0.05,
+					"diffuse" : 0.5,
+					"specular" : 0.1,
+					"shininess" : 200,
+					"init_colour" : [1, 0.9, 0]
+				}
+			}
+		},
+		{
+			"plane" :
+			{
+				"origin" : [0, 0, 0],
+				"transform" :
+				{
+					"translation" : [0, 0, 6],
+					"rotation" : [1.570796326794897, 0, 0],
+					"scale" : [1, 1, 1]
+				},
+				"material" :
+				{
+					"ambient" : 0.05,
+					"diffuse" : 0.5,
+					"specular" : 0.1,
+					"shininess" : 200,
+					"init_colour" : [0, 0.4, 0.6]
+				}
+			}
+		},
+		{
+			"plane" :
+			{
+				"origin" : [0, 0, 0],
+				"transform" :
+				{
+					"translation" : [0, 4, 0],
+					"rotation" : [0, 0, 0],
+					"scale" : [1, 1, 1]
+				},
+				"material" :
+				{
+					"ambient" : 0.05,
+					"diffuse" : 0.5,
+					"specular" : 0.1,
+					"shininess" : 200,
+					"init_colour" : [0.3, 0.3, 0.3]
+				}
+			}
+		},
+		{
+			"sphere" :
+			{
+				"origin" : [0, 0, 0],
+				"transform" :
+				{
+					"translation" : [0, 0.9, -4.2],
+					"rotation" : [0, 0, 0],
+					"scale" : [0.7, 0.7, 0.7]
+				},
+				"material" :
+				{
+					"ambient" : 0.05,
+					"diffuse" : 0.5,
+					"specular" : 0.1,
+					"shininess" : 200,
+					"init_colour" : [0.42, 0.42, 0.56]
+				}
+			}
+		}
+	]
+}

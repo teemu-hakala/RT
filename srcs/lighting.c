@@ -13,7 +13,7 @@ void	lighting_cont(t_info *info, t_light *light, t_phong *vectors,
 	vectors->reflection = reflect(
 			tuple_scale(vectors->light, -1.0), vectors->surface_normal);
 	reflect_l = dot_product(vectors->reflection, vectors->eye);
-	if (reflect_l <= 0.0)
+	if (light->type == LIGHT_PARALLEL || reflect_l <= 0.0)
 		info->channels.spec = vector(0, 0, 0);
 	else
 	{

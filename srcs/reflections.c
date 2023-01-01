@@ -25,7 +25,10 @@ void	is_shadow(t_world *world, t_tuple point, t_light *light)
 	t_fl	distance;
 	t_ray	ray;
 
-	temp = tuple_sub(light->position, point);
+	if (light->type == LIGHT_SPOT)
+		temp = tuple_sub(light->position, point);
+	else
+		temp = normalize(light->direction);
 	distance = magnitude(temp);
 	direction = normalize(temp);
 	ray = (t_ray){point, direction};
