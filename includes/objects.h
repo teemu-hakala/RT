@@ -48,8 +48,11 @@ typedef struct s_pattern
 	t_fl				height;
 	t_tuple				colour_a;
 	t_tuple				colour_b;
-	t_tuple				colour_c;
-	t_tuple				colour_d;
+	t_tuple				main[6];
+	t_tuple				ul[6];
+	t_tuple				ur[6];
+	t_tuple				br[6];
+	t_tuple				bl[6];
 	t_transform			transform;
 	t_uv_map			map;
 }	t_pattern;

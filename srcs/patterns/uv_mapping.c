@@ -77,15 +77,3 @@ t_uv_map	conical_map(t_tuple *p)
 		printf("u = %f\n", map.u);
 	return (map);
 }
-
-t_uv_map	cubic_map(t_tuple *p)
-{
-	t_uv_map	map;
-	(void)p;
-
-	if (map.v > 1 || map.v < 0)
-		printf("v = %f\n", map.v);
-	if (map.u > 1 || map.u < 0)
-		printf("u = %f\n", map.u);
-	return (map);
-}

@@ -80,6 +80,12 @@ static void	find_pattern_keywords(t_pattern *pattern, t_parser *parser)
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "\"transform\"", 10) == 0)
 		parse_transform_subobject(parser, &pattern->transform);
+	else if (ft_strncmp(&parser->string[parser->c], "\"face\"", 6) == 0)
+	{
+		parser->c += sizeof("\"face\"") - 1;
+		find_colon(parser);
+		parse_face(pattern, parser);
+	}
 	else
 		handle_errors("pattern syntax error");
 }

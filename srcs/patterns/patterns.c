@@ -88,13 +88,13 @@ void	align_check_at(t_pattern *pattern, t_material *material, t_uv_map *map)
 		if (map->u > 0.8)
 			material->final_colour = pattern->colour_b;
 	}
-	else if (map->v < 0.2)
-	{
-		if (map->u < 0.2)
-			material->final_colour = pattern->colour_c;
-		if (map->u > 0.8)
-			material->final_colour = pattern->colour_d;
-	}
+	// else if (map->v < 0.2)
+	// {
+	// 	if (map->u < 0.2)
+	// 		material->final_colour = pattern->colour_c;
+	// 	if (map->u > 0.8)
+	// 		material->final_colour = pattern->colour_d;
+	// }
 	else
 		material->final_colour = material->init_colour;
 }

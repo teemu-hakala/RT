@@ -50,6 +50,7 @@ void		parse_transform(t_transform *transform, t_parser *parser);
 void		parse_transform_subobject(t_parser *parser, t_transform *transform);
 void		parse_material(t_material *material, t_parser *parser);
 void		parse_pattern(t_pattern *pattern, t_parser *parser);
+void		parse_face(t_pattern *pattern, t_parser *parser);
 int			cone_and_cylinder_objects(t_parser *parser, t_object *object);
 
 /*utility parse functions*/

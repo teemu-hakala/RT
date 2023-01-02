@@ -300,6 +300,70 @@ void	test_align_check(void)
 	printf("%0.f, %0.f, %0.f\n", colour.array[0], colour.array[1], colour.array[2]);
 }
 
+void	test_face_from(void)
+{
+	t_tuple p_1 = point(-1, 0.5, -0.25);
+	t_tuple p_2 = point(1.1, -0.75, 0.8);
+	t_tuple p_3 = point(0.1, 0.6, 0.9);
+	t_tuple p_4 = point(-0.7, 0, -2);
+	t_tuple p_5 = point(0.5, 1, 0.9);
+	t_tuple p_6 = point(-0.2, -1.3, 1.1);
+	char c;
+
+	c = face_from_point(p_1);
+	printf("%c\n", c);
+	c = face_from_point(p_2);
+	printf("%c\n", c);
+	c = face_from_point(p_3);
+	printf("%c\n", c);
+	c = face_from_point(p_4);
+	printf("%c\n", c);
+	c = face_from_point(p_5);
+	printf("%c\n", c);
+	c = face_from_point(p_6);
+	printf("%c\n", c);
+}
+
+void test_cube_uv_side(void)
+{
+	t_uv_map map;
+	map = cube_uv_front(point(-0.5, 0.5, 1));
+	printf("front 1: u: %0.2f, v: %0.2f\n", map.u, map.v);
+	map = cube_uv_front(point(0.5, -0.5, 1));
+	printf("front 2: u: %0.2f, v: %0.2f\n", map.u, map.v);
+	printf("\n");
+
+	map = cube_uv_back(point(0.5, 0.5, -1));
+	printf("back 1: u: %0.2f, v: %0.2f\n", map.u, map.v);
+	map = cube_uv_back(point(-0.5, -0.5, -1));
+	printf("back 2: u: %0.2f, v: %0.2f\n", map.u, map.v);
+	printf("\n");
+
+	map = cube_uv_left(point(-1, 0.5, -0.5));
+	printf("left 1: u: %0.2f, v: %0.2f\n", map.u, map.v);
+	map = cube_uv_left(point(-1, -0.5, 0.5));
+	printf("left 2: u: %0.2f, v: %0.2f\n", map.u, map.v);
+	printf("\n");
+
+	map = cube_uv_right(point(1, 0.5, 0.5));
+	printf("right 1: u: %0.2f, v: %0.2f\n", map.u, map.v);
+	map = cube_uv_right(point(1, -0.5, -0.5));
+	printf("right 2: u: %0.2f, v: %0.2f\n", map.u, map.v);
+	printf("\n");
+
+	map = cube_uv_up(point(-0.5, 1, -0.5));
+	printf("up 1: u: %0.2f, v: %0.2f\n", map.u, map.v);
+	map = cube_uv_up(point(0.5, 1, 0.5));
+	printf("up 2: u: %0.2f, v: %0.2f\n", map.u, map.v);
+	printf("\n");
+
+	map = cube_uv_down(point(-0.5, -1, 0.5));
+	printf("down 1: u: %0.2f, v: %0.2f\n", map.u, map.v);
+	map = cube_uv_down(point(0.5, -1, -0.5));
+	printf("down 2: u: %0.2f, v: %0.2f\n", map.u, map.v);
+	return (0);
+}
+
 void	test_uv_mapping(void)
 {
 	// test_pattern_at();
@@ -308,6 +372,8 @@ void	test_uv_mapping(void)
 	//test_planar_mapping();
 	//test_cylindrical_mapping();
 	//test_align_check();
+	//test_face_from();
+	//void test_cube_uv_side(void)
 }
 
 int main(void)

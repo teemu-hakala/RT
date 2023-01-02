@@ -70,8 +70,8 @@ t_pattern	default_align_check(void)
 		.type = PATTERN_ALIGN_CHECK,
 		.colour_a = hex_to_tuple_colour(COLOUR_RED),
 		.colour_b = hex_to_tuple_colour(COLOUR_YELLOW),
-		.colour_c = hex_to_tuple_colour(COLOUR_GREEN),
-		.colour_d = hex_to_tuple_colour(COLOUR_BLUE),
+		// .colour_c = hex_to_tuple_colour(COLOUR_GREEN),
+		// .colour_d = hex_to_tuple_colour(COLOUR_BLUE),
 		.transform = default_transform_2()
 	});
 }

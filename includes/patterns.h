@@ -14,6 +14,16 @@ typedef enum e_pattern_type
 	PATTERN_ALIGN_CHECK = 6
 }	t_type;
 
+typedef enum e_cube_face
+{
+	FACE_FRONT = 0,
+	FACE_BACK = 1,
+	FACE_LEFT = 2,
+	FACE_RIGHT = 3,
+	FACE_UP = 4,
+	FACE_DOWN = 5,
+}	t_face;
+
 // typedef struct s_uv_pattern
 // {
 // 	t_fl	width;
