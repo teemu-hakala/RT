@@ -53,6 +53,7 @@ typedef struct s_pattern
 	t_tuple				ur[6];
 	t_tuple				br[6];
 	t_tuple				bl[6];
+	int					face;
 	t_transform			transform;
 	t_uv_map			map;
 }	t_pattern;

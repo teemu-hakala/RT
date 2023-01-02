@@ -210,7 +210,7 @@ t_uv_map	spherical_map(t_tuple *p);
 t_uv_map	planar_map(t_tuple *p);
 t_uv_map	cylindrical_map(t_tuple *p);
 t_uv_map	conical_map(t_tuple *p);
-t_uv_map	cubic_map(t_tuple *p);
+t_uv_map	cubic_map(t_tuple *p, t_pattern *pattern);
 
 /* parsing */
 double		rt_atof(t_parser *parser);

@@ -96,12 +96,18 @@ void	shade_cube(t_world *world, void *cube, t_tuple *colour,
 	t_light *light)
 {
 	t_info	lighting_info;
+	t_tuple	temp;
 
 	is_shadow(world, world->hit.computations.over_point, light);
 	lighting_info = (t_info){
 		.material = ((t_cube *)cube)->material
 	};
-	((t_cube *)cube)->material.final_colour = ((t_cube *)cube)->material.init_colour;
+	temp = transform_point(&world->hit.computations.over_point, \
+		&((t_cube *)cube)->transform, &((t_cube *)cube)->pattern.transform);
+	((t_cube *)cube)->pattern.map = cubic_map(&temp, &((t_cube *)cube)->pattern);
+	pattern_at(&((t_cube *)cube)->pattern,
+		&((t_cube *)cube)->material,
+		&((t_cube *)cube)->pattern.map);
 	*colour = tuple_add(lighting(&lighting_info, \
 		light, world->hit.computations.vectors, \
 		world->hit.computations.over_point), *colour);
