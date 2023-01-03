@@ -73,22 +73,23 @@ void	print_pixels(t_ppm_image *image)
 		y = 0;
 		while (y < image->width)
 		{
-			printf("x: %d, y: %d || %f %f %f\n", y, x, image->pixels[x][y].array[0],image->pixels[x][y].array[1], image->pixels[x][y].array[2]);
+			printf("x: %d, y: %d || %f %f %f\n", y, x, \
+			image->pixels[x][y].array[0],image->pixels[x][y].array[1], image->pixels[x][y].array[2]);
 			y++;
 		}
 		x++;
 	}
 }
 
-void	parse_ppm(t_world *world, t_parser *parser)
+void	parse_ppm(t_world *world, char *str)
 {
 	t_ppm_image	image;
 	char	**array;
 	int	length;
 
 	(void)world;
-	array = ft_strsplit(parser->string, ' ');
-	length = ft_count_words(parser->string, ' ');
+	array = ft_strsplit(str, ' ');
+	length = ft_count_words(str, ' ');
 	printf("length = %d\n", length);
 	if ((length - 4) % 3 != 0)
 		handle_errors("ppm parser error");

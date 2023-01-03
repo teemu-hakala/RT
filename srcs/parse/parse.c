@@ -87,7 +87,7 @@ void	parse_into(t_world *world, const int file_descriptor)
 	//check if first character is bracket or p
 	if(parser.string[0] == 'P')
 	{
-		parse_ppm(world, &parser);
+		parse_ppm(world, parser.string);
 		return ;
 	}
 	find_open_bracket(&parser);

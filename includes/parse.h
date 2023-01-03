@@ -77,6 +77,6 @@ t_light		light_prototype(void);
 t_object	cube_prototype(void);
 
 /* parse ppm*/
-void	parse_ppm(t_world *world, t_parser *parser);
+void	parse_ppm(t_world *world, char *str);
 
 #endif
