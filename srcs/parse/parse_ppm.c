@@ -3,12 +3,6 @@
 /*
 
 The PPM file is built in 9 sections separated by white-spaces.
-
-Open the file
-
-read the max-val
-read line by line and fill the array
-
 */
 
 typedef struct s_ppm_image
@@ -55,11 +49,11 @@ void	parse_pixels(char **array, t_ppm_image *image, int length)
 		while (w < image->width)
 		{
 			i = 0;
+			image->pixels[h][w] = point(0, 0, 0);
 			while (i < 3)
 			{
-				image->pixels[h][w] = point(0, 0, 0);
 				image->pixels[h][w].array[i] = \
-				normalise_data(0, image->max_value, ft_atof(array[j++]));
+					ft_atof(array[j++]) / image->max_value;
 				i++;
 			}
 			w++;
@@ -68,7 +62,6 @@ void	parse_pixels(char **array, t_ppm_image *image, int length)
 
 	}
 }
-
 
 void	print_pixels(t_ppm_image *image)
 {
@@ -80,32 +73,12 @@ void	print_pixels(t_ppm_image *image)
 		y = 0;
 		while (y < image->width)
 		{
-			printf("%0.f %0.f %0.f\t", image->pixels[x][y].array[0],image->pixels[x][y].array[1], image->pixels[x][y].array[2]);
+			printf("x: %d, y: %d || %f %f %f\n", y, x, image->pixels[x][y].array[0],image->pixels[x][y].array[1], image->pixels[x][y].array[2]);
 			y++;
 		}
-		printf("\n");
 		x++;
 	}
 }
-
-// void	parse_ppm(t_world *world, t_parser *parser)
-// {
-// 	t_ppm_image	image;
-// 	(void)world;
-
-// 	if (ft_strncmp(&parser->string[parser->c], "P3", 2) == 0)
-// 		parser->c += sizeof("P3") - 1;
-// 	else
-// 		handle_errors("incorrect PPM format <need P3>");
-// 	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
-// 	image.width = rt_atoi(parser);
-// 	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
-// 	image.height = rt_atoi(parser);
-// 	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
-// 	image.max_value = rt_atoi(parser);
-// 	parse_pixels(parser, &image);
-// 	print_pixels(&image);
-// }
 
 void	parse_ppm(t_world *world, t_parser *parser)
 {
