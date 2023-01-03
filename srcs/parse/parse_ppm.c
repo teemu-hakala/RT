@@ -39,15 +39,17 @@ void	allocate_pixel_array(t_ppm_image *image)
 	}
 }
 
-void	parse_pixels(t_parser *parser, t_ppm_image *image)
+void	parse_pixels(char **array, t_ppm_image *image, int length)
 {
 	int	h;
 	int	w;
 	int	i;
+	int	j;
 
 	h = 0;
+	j = 4;
 	allocate_pixel_array(image);
-	while (h < image->height)
+	while (h < image->height && j < length)
 	{
 		w = 0;
 		while (w < image->width)
@@ -55,13 +57,15 @@ void	parse_pixels(t_parser *parser, t_ppm_image *image)
 			i = 0;
 			while (i < 3)
 			{
+				image->pixels[h][w] = point(0, 0, 0);
 				image->pixels[h][w].array[i] = \
-				normalise_data(0, image->max_value, rt_atof(parser));
+				normalise_data(0, image->max_value, ft_atof(array[j++]));
 				i++;
 			}
 			w++;
 		}
 		h++;
+
 	}
 }
 
@@ -84,21 +88,43 @@ void	print_pixels(t_ppm_image *image)
 	}
 }
 
+// void	parse_ppm(t_world *world, t_parser *parser)
+// {
+// 	t_ppm_image	image;
+// 	(void)world;
+
+// 	if (ft_strncmp(&parser->string[parser->c], "P3", 2) == 0)
+// 		parser->c += sizeof("P3") - 1;
+// 	else
+// 		handle_errors("incorrect PPM format <need P3>");
+// 	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
+// 	image.width = rt_atoi(parser);
+// 	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
+// 	image.height = rt_atoi(parser);
+// 	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
+// 	image.max_value = rt_atoi(parser);
+// 	parse_pixels(parser, &image);
+// 	print_pixels(&image);
+// }
+
 void	parse_ppm(t_world *world, t_parser *parser)
 {
 	t_ppm_image	image;
-	(void)world;
+	char	**array;
+	int	length;
 
-	if (ft_strncmp(&parser->string[parser->c], "P3", 2) == 0)
-		parser->c += sizeof("P3") - 1;
-	else
-		handle_errors("incorrect PPM format <need P3>");
-	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
-	image.width = rt_atoi(parser);
-	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
-	image.height = rt_atoi(parser);
-	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
-	image.max_value = rt_atoi(parser);
-	parse_pixels(parser, &image);
+	(void)world;
+	array = ft_strsplit(parser->string, ' ');
+	length = ft_count_words(parser->string, ' ');
+	printf("length = %d\n", length);
+	if ((length - 4) % 3 != 0)
+		handle_errors("ppm parser error");
+	if (strcmp("P3", array[0]) != 0)
+		handle_errors("incorrect ppm type");
+	image.width = ft_atoi(array[1]);
+	image.height = ft_atoi(array[2]);
+	image.max_value = ft_atoi(array[3]);
+	allocate_pixel_array(&image);
+	parse_pixels(array, &image, length);
 	print_pixels(&image);
 }
