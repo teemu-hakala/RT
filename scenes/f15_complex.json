@@ -14,14 +14,14 @@
 	"lights" :
 	[
 		{
-			"light" :
+			"spot" :
 			{
 				"position" : [2.95, 2.3, -7],
 				"intensity" : [1, 1, 1]
 			}
 		},
 		{
-			"light" :
+			"spot" :
 			{
 				"position" : [-2.95, 2.3, -7],
 				"intensity" : [1, 1, 1]

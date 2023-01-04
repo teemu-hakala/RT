@@ -25,6 +25,12 @@ int	close_success(void)
 	return (0);
 }
 
+int	expose_handler(t_win *win)
+{
+	mlx_put_image_to_window(win->mlx, win->win, win->img.img, 0, 0);
+	return (0);
+}
+
 void	hooks(t_win *win)
 {
 	mlx_hook(win->win, KEY_DOWN, 0, handle_input, win);
@@ -32,6 +38,7 @@ void	hooks(t_win *win)
 	mlx_hook(win->win, ON_MOUSE_DOWN, 0, mouse_handler_down, win);
 	mlx_hook(win->win, ON_MOUSE_MOVE, 0, mouse_handler_move, win);
 	mlx_hook(win->win, ON_MOUSE_UP, 0, mouse_handler_up, win);
+	mlx_expose_hook(win->win, expose_handler, win);
 }
 
 int	main(int argc, char **argv)
