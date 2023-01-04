@@ -12,6 +12,8 @@
 
 #include "RT.h"
 
+void	render_y_x(t_win *win, t_camera *camera, uint16_t y, uint16_t x);
+
 void	mouse_register_click_down(int button, t_point mouse_pointer, t_win *win)
 {
 	(void)button;
@@ -37,6 +39,10 @@ int	mouse_handler_down(int button, int x, int y, t_win *win)
 	(void)win;
 	if (button == RIGHT_CLICK)
 		mouse_register_click_down(button, (t_point){.row = y, .col = x}, win);
+	else if (button == LEFT_CLICK)
+	{
+		render_y_x(win, &win->world.camera, y, x);
+	}
 	return (EXIT_SUCCESS);
 }
 

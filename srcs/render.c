@@ -12,6 +12,17 @@
 
 #include "RT.h"
 
+void	render_y_x(t_win *win, t_camera *camera, uint16_t y, uint16_t x)
+{
+	t_canvas	canvas;
+	t_tuple		colour;
+
+	canvas.vertical = y;
+	canvas.horizontal = x;
+	win->world.ray = ray_for_pixel(camera, canvas);
+	colour = colour_at(&win->world);
+}
+
 void	render(t_win *win, t_camera *camera)
 {
 	t_canvas	canvas;

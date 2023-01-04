@@ -24,7 +24,7 @@ static void	precomputing_reflection_vector(void)
 	t_ray		ray_for_reflection;
 
 	plane_object = plane_prototype();
-	ray_for_reflection = ray(point(0, 1, -1), vector(0, -0.7071, 0.7071), 5);
+	ray_for_reflection = ray(point(0, 1, -1), vector(0, -0.7071, 0.7071), 1);
 	world_prototype = (t_world){
 		.hit = {.intersection = {.shape = &plane_object, .time = 0.7071}},
 		.ray = ray_for_reflection
