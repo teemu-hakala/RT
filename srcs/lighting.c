@@ -10,9 +10,9 @@ void	lighting_cont(t_info *info, t_light *light, t_phong *vectors,
 	material = info->material;
 	info->channels.diff = tuple_scale(
 			tuple_scale(material.col_mash, material.diffuse), incidence_l);
-	vectors->reflection = reflect(
+	vectors->light_reflection = reflect(
 			tuple_scale(vectors->light, -1.0), vectors->surface_normal);
-	reflect_l = dot_product(vectors->reflection, vectors->eye);
+	reflect_l = dot_product(vectors->light_reflection, vectors->eye);
 	if (light->type == LIGHT_PARALLEL || reflect_l <= 0.0)
 		info->channels.spec = vector(0, 0, 0);
 	else

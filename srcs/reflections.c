@@ -43,7 +43,7 @@ void	is_shadow(t_world *world, t_tuple point, t_light *light)
 	t_ray	ray;
 
 	direction_and_distance(light, &direction, point, &distance);
-	ray = (t_ray){point, direction};
+	ray = (t_ray){.origin = point, .direction = direction, .lifetime = 0};
 	vec_clear(&world->intersections);
 	intersect_world(world, ray);
 	identify_hit(world, &world->shadow_hit);

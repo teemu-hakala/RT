@@ -136,6 +136,7 @@ void		shade_cylinder(t_world *world, void *cylinder, t_tuple *colour,
 				t_light *light);
 void		shade_cube(t_world *world, void *cube, t_tuple *colour,
 				t_light *light);
+t_tuple		reflected_colour(t_world *world, t_info *lighting_info);
 
 /* object intersection */
 void		intersect_world(t_world *world, t_ray ray);

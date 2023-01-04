@@ -24,6 +24,7 @@ void	shade_plane(t_world *world, void *plane, t_tuple *colour,
 	*colour = tuple_add(lighting(&lighting_info, \
 		light, world->hit.computations.vectors, \
 		world->hit.computations.over_point), *colour);
+	*colour = tuple_add(reflected_colour(world, &lighting_info), *colour);
 }
 
 void	shade_sphere(t_world *world, void *sphere, t_tuple *colour,
@@ -38,6 +39,7 @@ void	shade_sphere(t_world *world, void *sphere, t_tuple *colour,
 	*colour = tuple_add(lighting(&lighting_info, \
 		light, world->hit.computations.vectors, \
 		world->hit.computations.over_point), *colour);
+	*colour = tuple_add(reflected_colour(world, &lighting_info), *colour);
 }
 
 void	shade_cone(t_world *world, void *cone, t_tuple *colour, t_light *light)
@@ -51,6 +53,7 @@ void	shade_cone(t_world *world, void *cone, t_tuple *colour, t_light *light)
 	*colour = tuple_add(lighting(&lighting_info, \
 		light, world->hit.computations.vectors, \
 		world->hit.computations.over_point), *colour);
+	*colour = tuple_add(reflected_colour(world, &lighting_info), *colour);
 }
 
 void	shade_cylinder(t_world *world, void *cylinder, t_tuple *colour,
@@ -65,6 +68,7 @@ void	shade_cylinder(t_world *world, void *cylinder, t_tuple *colour,
 	*colour = tuple_add(lighting(&lighting_info, \
 		light, world->hit.computations.vectors, \
 		world->hit.computations.over_point), *colour);
+	*colour = tuple_add(reflected_colour(world, &lighting_info), *colour);
 }
 
 void	shade_cube(t_world *world, void *cube, t_tuple *colour,

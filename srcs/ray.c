@@ -38,5 +38,5 @@ t_ray	ray_for_pixel(t_camera *camera, t_canvas position)
 	origin = point(0, 0, 0);
 	origin = matrix_tuple_multi(&camera->transform.inverse, &origin);
 	direction = normalize(tuple_sub(pixel, origin));
-	return ((t_ray){.origin = origin, .direction = direction});
+	return ((t_ray){.origin = origin, .direction = direction, .lifetime = 5});
 }
