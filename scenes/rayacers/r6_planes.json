@@ -1,0 +1,63 @@
+{
+	"camera" :
+	{
+		"origin" : [0, 1.64, 0],
+		"center_of_interest" : [0, 1.64, 1],
+		"field_of_view" : 1.785
+	},
+	"lights" :
+	[
+		{
+			"light" :
+			{
+				"position" : [0, 1.5, 20],
+				"intensity" : [1, 1, 1]
+			}
+		}
+	],
+	"shapes" :
+	[
+		{
+			"plane" :
+			{
+				"origin" : [0, 0, 0],
+				"transform" :
+				{
+					"translation" : [0, 0, 0],
+					"rotation" : [0, 0, 0],
+					"scale" : [1, 1, 1]
+				},
+				"material" :
+				{
+					"ambient" : 0.05,
+					"diffuse" : 0.5,
+					"specular" : 0.1,
+					"shininess" : 200,
+					"init_colour" : [1, 0, 0],
+					"reflectiveness": 1
+				}
+			}
+		},
+		{
+			"plane" :
+			{
+				"origin" : [0, 0, 0],
+				"transform" :
+				{
+					"translation" : [0, 3, 0],
+					"rotation" : [0, 0, 0],
+					"scale" : [1, 1, 1]
+				},
+				"material" :
+				{
+					"ambient" : 0.05,
+					"diffuse" : 0.5,
+					"specular" : 0.1,
+					"shininess" : 200,
+					"init_colour" : [0,0,1],
+					"reflectiveness": 1
+				}
+			}
+		}
+	]
+}
