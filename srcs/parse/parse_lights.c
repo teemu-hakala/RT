@@ -17,7 +17,8 @@ t_light	light_prototype(void)
 	return ((t_light){
 		.position = point(-10, 10, -10),
 		.intensity = vector(1, 1, 1),
-		.direction = vector(1, 0, 0)
+		.direction = vector(1, 0, 0),
+		.type = LIGHT_SPOT
 	});
 }
 

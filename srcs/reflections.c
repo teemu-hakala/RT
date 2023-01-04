@@ -18,24 +18,31 @@ t_tuple	reflect(t_tuple input, t_tuple normal)
 			tuple_scale(normal, 2 * dot_product(input, normal))));
 }
 
-void	is_shadow(t_world *world, t_tuple point, t_light *light)
+static void	direction_and_distance(t_light *light, t_tuple *direction,
+	t_tuple point, t_fl *distance)
 {
 	t_tuple	temp;
-	t_tuple	direction;
-	t_fl	distance;
-	t_ray	ray;
 
 	if (light->type == LIGHT_SPOT)
 	{
 		temp = tuple_sub(light->position, point);
-		distance = magnitude(temp);
+		*distance = magnitude(temp);
 	}
 	else
 	{
 		temp = normalize(light->direction);
-		distance = -INFINITY;
+		*distance = -INFINITY;
 	}
-	direction = normalize(temp);
+	*direction = normalize(temp);
+}
+
+void	is_shadow(t_world *world, t_tuple point, t_light *light)
+{
+	t_tuple	direction;
+	t_fl	distance;
+	t_ray	ray;
+
+	direction_and_distance(light, &direction, point, &distance);
 	ray = (t_ray){point, direction};
 	vec_clear(&world->intersections);
 	intersect_world(world, ray);
