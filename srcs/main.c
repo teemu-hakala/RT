@@ -26,11 +26,11 @@ static void	precomputing_reflection_vector(void)
 	plane_object = plane_prototype();
 	ray_for_reflection = ray(point(0, 1, -1), vector(0, -0.7071, 0.7071), 5);
 	world_prototype = (t_world){
-		.hit = {.intersection = {.shape = &plane_object, .time = 1}},
+		.hit = {.intersection = {.shape = &plane_object, .time = 0.7071}},
 		.ray = ray_for_reflection
 	};
 	prepare_computations(&world_prototype);
-	printf("%0.2f, %0.2f, %0.2f\n", world_prototype.hit.computations.reflectv.tuple.units.x,\
+	printf("[precomputing_reflection_vector]: %0.2f, %0.2f, %0.2f\n", world_prototype.hit.computations.reflectv.tuple.units.x,\
 	world_prototype.hit.computations.reflectv.tuple.units.y, world_prototype.hit.computations.reflectv.tuple.units.z);
 }
 
