@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+         #
+#    By: thakala <thakala@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2022/12/31 12:47:53 by thakala          ###   ########.fr        #
+#    Updated: 2023/01/05 15:53:45 by thakala          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -186,6 +186,7 @@ FILES = \
 	ray.c \
 	render.c \
 	colour.c \
+	loop.c \
 
 OBJS = $(addprefix $(OBJS_DIR)/, \
 	$(addprefix $(PARSE_DIR)/, $(PARSE_SRCS:.c=.o)) \

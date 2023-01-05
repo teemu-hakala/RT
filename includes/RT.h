@@ -189,4 +189,7 @@ void		transform_camera_for_rotations(t_camera *camera);
 double		rt_atof(t_parser *parser);
 int			rt_atoi(t_parser *parser);
 
+/* loops */
+int			incremental_loop(t_win *win);
+
 #endif
