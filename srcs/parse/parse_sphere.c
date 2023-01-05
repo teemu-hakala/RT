@@ -20,7 +20,7 @@ t_object	sphere_prototype(void)
 			.origin = default_origin(),
 			.transform = default_transform_1(),
 			.material = default_material_1(),
-			.pattern = default_pattern()
+			.appearance.pattern = default_pattern(),
 		},
 		.type = OBJECT_SPHERE
 	});
@@ -38,7 +38,7 @@ void	parse_sphere(t_parser *parser, t_object *shape)
 	else if (!find_matching_bracket(parser))
 		handle_errors("sphere syntax error");
 	transform_object(&shape->object.sphere.transform);
-	if (shape->object.sphere.pattern.type == PATTERN_CHECKERED)
-		shape->object.sphere.pattern.width = \
-			2 * shape->object.sphere.pattern.height;
+	if (shape->object.sphere.appearance.pattern.type == PATTERN_CHECKERED)
+		shape->object.sphere.appearance.pattern.width = \
+			2 * shape->object.sphere.appearance.pattern.height;
 }

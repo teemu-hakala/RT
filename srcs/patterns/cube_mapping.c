@@ -27,49 +27,55 @@ int	face_from_point(t_tuple *p)
 		return (FACE_BACK);
 }
 
-t_uv_map cube_uv_front(t_tuple *p)
+t_uv_map	cube_uv_front(t_tuple *p)
 {
 	t_uv_map	map;
+
 	map.u = fmod((p->tuple.units.x + 1), 2) / 2;
 	map.v = fmod((p->tuple.units.y + 1), 2) / 2;
 	return (map);
 }
 
-t_uv_map cube_uv_back(t_tuple *p)
+t_uv_map	cube_uv_back(t_tuple *p)
 {
 	t_uv_map	map;
+
 	map.u = fmod((1 - p->tuple.units.x), 2) / 2;
 	map.v = fmod((p->tuple.units.y + 1), 2) / 2;
 	return (map);
 }
 
-t_uv_map cube_uv_left(t_tuple *p)
+t_uv_map	cube_uv_left(t_tuple *p)
 {
 	t_uv_map	map;
+
 	map.u = fmod((p->tuple.units.z + 1), 2) / 2;
 	map.v = fmod((p->tuple.units.y + 1), 2) / 2;
 	return (map);
 }
 
-t_uv_map cube_uv_right(t_tuple *p)
+t_uv_map	cube_uv_right(t_tuple *p)
 {
 	t_uv_map	map;
+
 	map.u = fmod((1 - p->tuple.units.z), 2) / 2;
 	map.v = fmod((p->tuple.units.y + 1), 2) / 2;
 	return (map);
 }
 
-t_uv_map cube_uv_up(t_tuple *p)
+t_uv_map	cube_uv_up(t_tuple *p)
 {
 	t_uv_map	map;
+
 	map.u = fmod((p->tuple.units.x + 1), 2) / 2;
 	map.v = fmod((1 - p->tuple.units.z), 2) / 2;
 	return (map);
 }
 
-t_uv_map cube_uv_down(t_tuple *p)
+t_uv_map	cube_uv_down(t_tuple *p)
 {
 	t_uv_map	map;
+
 	map.u = fmod((p->tuple.units.x + 1), 2) / 2;
 	map.v = fmod((p->tuple.units.z + 1), 2) / 2;
 	return (map);

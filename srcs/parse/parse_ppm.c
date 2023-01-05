@@ -5,20 +5,6 @@
 The PPM file is built in 9 sections separated by white-spaces.
 */
 
-typedef struct s_ppm_image
-{
-	int		height;
-	int		width;
-	int		max_value;
-	t_tuple	**pixels;
-}				t_ppm_image;
-
-typedef struct s_texture
-{
-	int			fd;
-	t_ppm_image	image;
-}				t_texture;
-
 void	allocate_pixel_array(t_ppm_image *image)
 {
 	int	i;
@@ -80,7 +66,8 @@ void	print_pixels(t_ppm_image *image)
 		while (y < image->width)
 		{
 			printf("x: %d, y: %d || %f %f %f\n", y, x, \
-			image->pixels[x][y].array[0],image->pixels[x][y].array[1], image->pixels[x][y].array[2]);
+			image->pixels[x][y].array[0],image->pixels[x][y].array[1],\
+				image->pixels[x][y].array[2]);
 			y++;
 		}
 		x++;
@@ -89,22 +76,19 @@ void	print_pixels(t_ppm_image *image)
 
 void	parse_ppm(t_texture *texture, char *str)
 {
-	t_ppm_image	image;
-	char	**array;
-	int	length;
+	char		**array;
+	int			length;
 
-	(void)world;
 	array = ft_strsplit(str, ' ');
 	length = ft_count_words(str, ' ');
-	printf("length = %d\n", length);
 	if ((length - 4) % 3 != 0)
 		handle_errors("ppm parser error");
 	if (strcmp("P3", array[0]) != 0)
 		handle_errors("incorrect ppm type");
-	image.width = ft_atoi(array[1]);
-	image.height = ft_atoi(array[2]);
-	image.max_value = ft_atoi(array[3]);
-	allocate_pixel_array(&image);
-	parse_pixels(array, &image, length);
-	print_pixels(&image);
+	texture->image.width = ft_atoi(array[1]);
+	texture->image.height = ft_atoi(array[2]);
+	texture->image.max_value = ft_atoi(array[3]);
+	allocate_pixel_array(&texture->image);
+	parse_pixels(array, &texture->image, length);
+	print_pixels(&texture->image);
 }

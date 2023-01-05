@@ -38,7 +38,7 @@ void		parse_cylinder(t_parser *parser, t_object *shape);
 void		parse_cube(t_parser *parser, t_object *shape);
 /*parse sub-objects*/
 int			find_subobject_keyword(t_parser *parser, t_transform *transform, \
-			t_material *material, t_pattern *pattern);
+			t_material *material, t_appearance *appearance);
 int			dispatch_find_subobject_keyword(t_parser *parser, t_object *shape);
 int			plane_subobject_keywords(t_parser *parser, t_object *shape);
 int			sphere_subobject_keywords(t_parser *parser, t_object *shape);
@@ -77,6 +77,6 @@ t_light		light_prototype(void);
 t_object	cube_prototype(void);
 
 /* parse ppm*/
-void	parse_ppm(t_world *world, char *str);
+void	parse_ppm(t_texture *texture, char *str);
 
 #endif

@@ -20,7 +20,7 @@ t_object	cone_prototype(void)
 			.origin = default_origin(),
 			.transform = default_transform_1(),
 			.material = default_material_1(),
-			.pattern = default_pattern(),
+			.appearance.pattern = default_pattern(),
 			.min = -INFINITY,
 			.max = INFINITY,
 			.closed = false
@@ -56,7 +56,7 @@ void	parse_cone(t_parser *parser, t_object *shape)
 	else if (!find_matching_bracket(parser))
 		handle_errors("cone syntax error");
 	transform_object(&shape->object.cone.transform);
-	if (shape->object.cone.pattern.type == PATTERN_CHECKERED)
-		shape->object.cone.pattern.width = \
-			2 * shape->object.cone.pattern.height;
+	if (shape->object.cone.appearance.pattern.type == PATTERN_CHECKERED)
+		shape->object.cone.appearance.pattern.width = \
+			2 * shape->object.cone.appearance.pattern.height;
 }

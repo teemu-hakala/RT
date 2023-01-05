@@ -85,11 +85,11 @@ void	parse_into(t_world *world, const int file_descriptor)
 	vec_new(&parser.brackets, 256, sizeof(char));
 	parser.c = 0;
 	//check if first character is bracket or p
-	if(parser.string[0] == 'P')
-	{
-		parse_ppm(world, parser.string);
-		return ;
-	}
+	// if(parser.string[0] == 'P')
+	// {
+	// 	parse_ppm(world, parser.string);
+	// 	return ;
+	// }
 	find_open_bracket(&parser);
 	find_object_keyword(world, &parser);
 	while (1)
