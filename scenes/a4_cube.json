@@ -46,6 +46,14 @@
 					"specular" : 0.1,
 					"shininess" : 200,
 					"init_colour" : [0.42, 0.55, 0.59]
+				},
+				"appearance" :
+				{
+					"pattern" :
+					{
+
+					},
+					"texture" : "test.ppm"
 				}
 			}
 		}

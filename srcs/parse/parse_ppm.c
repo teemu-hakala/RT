@@ -66,7 +66,7 @@ void	print_pixels(t_ppm_image *image)
 		while (y < image->width)
 		{
 			printf("x: %d, y: %d || %f %f %f\n", y, x, \
-			image->pixels[x][y].array[0],image->pixels[x][y].array[1],\
+			image->pixels[x][y].array[0], image->pixels[x][y].array[1], \
 				image->pixels[x][y].array[2]);
 			y++;
 		}

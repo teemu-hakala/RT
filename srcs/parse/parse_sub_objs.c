@@ -22,6 +22,29 @@ void	parse_transform_subobject(t_parser *parser, t_transform *transform)
 	parse_transform(transform, parser);
 }
 
+void	parse_appearance(t_appearance *appearance, t_parser *parser)
+{
+	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
+	if (ft_strncmp(&parser->string[parser->c], "\"pattern\"", 9) == 0)
+	{
+		parser->c += sizeof("\"pattern\"") - 1;
+		find_colon(parser);
+		find_open_bracket(parser);
+		if (find_matching_bracket(parser))
+			return (true);
+		parse_pattern(&appearance->pattern, parser);
+	}
+	else if (ft_strncmp(&parser->string[parser->c], "\"texture\"", 9) == 0)
+	{
+		parser->c += sizeof("\"texture\"") - 1;
+		find_colon(parser);
+		parse_texture(&appearance->texture, parser);
+	}
+	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
+	if (parser->string[parser->c] == ',')
+		parse_appearance(appearance, parser);
+}
+
 int	find_subobject_keyword(t_parser *parser, t_transform *transform, \
 	t_material *material, t_appearance *appearance)
 {
@@ -37,24 +60,15 @@ int	find_subobject_keyword(t_parser *parser, t_transform *transform, \
 			return (true);
 		parse_material(material, parser);
 	}
-	else if (ft_strncmp(&parser->string[parser->c], "\"pattern\"", 9) == 0)
+	else if (ft_strncmp(&parser->string[parser->c], "\"appearance\"", 12) == 0)
 	{
-		parser->c += sizeof("\"pattern\"") - 1;
+		parser->c += sizeof("\"appearance\"") - 1;
 		find_colon(parser);
 		find_open_bracket(parser);
 		if (find_matching_bracket(parser))
 			return (true);
-		parse_pattern(&appearance->pattern, parser);
+		parse_appearance(&appearance->pattern, parser);
 	}
-	// else if (ft_strncmp(&parser->string[parser->c], "\"texture\"", 9) == 0)
-	// {
-	// 	parser->c += sizeof("\"texture\"") - 1;
-	// 	find_colon(parser);
-	// 	find_open_bracket(parser);
-	// 	if (find_matching_bracket(parser))
-	// 		return (true);
-	// 	parse_texture(&appearance->texture, parser);
-	// }
 	else
 		return (false);
 	return (true);
