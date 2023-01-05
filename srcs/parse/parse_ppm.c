@@ -13,11 +13,17 @@ typedef struct s_ppm_image
 	t_tuple	**pixels;
 }				t_ppm_image;
 
+typedef struct s_texture
+{
+	int			fd;
+	t_ppm_image	image;
+}				t_texture;
+
 void	allocate_pixel_array(t_ppm_image *image)
 {
-	int i;
-	i = 0;
+	int	i;
 
+	i = 0;
 	image->pixels = (t_tuple **)malloc(sizeof(t_tuple) * image->height);
 	if (!image->pixels)
 		handle_errors("unable to malloc for image pixels");
@@ -26,7 +32,7 @@ void	allocate_pixel_array(t_ppm_image *image)
 		image->pixels[i] = (t_tuple *)malloc(sizeof(t_tuple) * image->width);
 		if (!image->pixels[i])
 		{
-			ft_memdelarray((void**)image->pixels, i - 1);
+			ft_memdelarray((void **)image->pixels, i - 1);
 			return ;
 		}
 		i++;
@@ -59,15 +65,15 @@ void	parse_pixels(char **array, t_ppm_image *image, int length)
 			w++;
 		}
 		h++;
-
 	}
 }
 
 void	print_pixels(t_ppm_image *image)
 {
-	int x = 0;
-	int y;
+	int	x;
+	int	y;
 
+	x = 0;
 	while (x < image->height)
 	{
 		y = 0;
@@ -81,7 +87,7 @@ void	print_pixels(t_ppm_image *image)
 	}
 }
 
-void	parse_ppm(t_world *world, char *str)
+void	parse_ppm(t_texture *texture, char *str)
 {
 	t_ppm_image	image;
 	char	**array;
