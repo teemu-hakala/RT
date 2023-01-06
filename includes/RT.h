@@ -26,7 +26,7 @@
 # include <stdio.h>
 
 # define USAGE "./RTv1 ./scenes/[.json file]"
-# define WIDTH 501
+# define WIDTH 400
 # define HEIGHT 400
 # define WALL_WIDTH 7
 # define WALL_HEIGHT 7

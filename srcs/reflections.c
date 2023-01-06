@@ -66,6 +66,5 @@ t_tuple reflected_colour(t_world *world, t_comp *computations)
 		return (reflected_colour);
 	world->reflected_ray = ray(computations->over_point, computations->reflectv);
 	reflected_colour = colour_at(world, world->reflected_ray);
-	//return (tuple_scale(reflected_colour, computations->reflective));
-	return (reflected_colour);
+	return (tuple_scale(reflected_colour, computations->reflective));
 }

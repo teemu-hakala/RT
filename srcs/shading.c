@@ -24,11 +24,7 @@ void	shade_plane(t_world *world, void *plane, t_tuple *colour,
 	surface_col = lighting(&lighting_info, light, \
 		world->hit.computations.vectors, world->hit.computations.over_point);
 	reflected_col = reflected_colour(world, &world->hit.computations);
-	if (lighting_info.material.reflectiveness > 0.0)
-		*colour = tuple_add(*colour, tuple_add(tuple_scale(reflected_col, lighting_info.material.reflectiveness), \
-			tuple_scale(surface_col, 1 - lighting_info.material.reflectiveness)));
-	else
-		*colour = tuple_add(surface_col, *colour);
+	*colour = tuple_add(*colour, tuple_add(surface_col, reflected_col));
 }
 
 void	shade_sphere(t_world *world, void *sphere, t_tuple *colour,
@@ -45,11 +41,7 @@ void	shade_sphere(t_world *world, void *sphere, t_tuple *colour,
 	surface_col = lighting(&lighting_info, light, \
 		world->hit.computations.vectors,world->hit.computations.over_point);
 	reflected_col = reflected_colour(world, &world->hit.computations);
-	if (lighting_info.material.reflectiveness > 0.0)
-		*colour = tuple_add(*colour, tuple_add(tuple_scale(reflected_col, lighting_info.material.reflectiveness), \
-			tuple_scale(surface_col, 1 - lighting_info.material.reflectiveness)));
-	else
-		*colour = tuple_add(surface_col, *colour);
+	*colour = tuple_add(*colour, tuple_add(surface_col, reflected_col));
 }
 
 void	shade_cone(t_world *world, void *cone, t_tuple *colour, t_light *light)
@@ -65,11 +57,7 @@ void	shade_cone(t_world *world, void *cone, t_tuple *colour, t_light *light)
 	surface_col = lighting(&lighting_info, light, \
 		world->hit.computations.vectors,world->hit.computations.over_point);
 	reflected_col = reflected_colour(world, &world->hit.computations);
-	if (lighting_info.material.reflectiveness > 0.0)
-		*colour = tuple_add(*colour, tuple_add(reflected_col, \
-			tuple_scale(surface_col, 1 - lighting_info.material.reflectiveness)));
-	else
-		*colour = tuple_add(surface_col, *colour);
+	*colour = tuple_add(*colour, tuple_add(surface_col, reflected_col));
 }
 
 void	shade_cylinder(t_world *world, void *cylinder, t_tuple *colour,
@@ -86,11 +74,7 @@ void	shade_cylinder(t_world *world, void *cylinder, t_tuple *colour,
 	surface_col = lighting(&lighting_info, light, \
 		world->hit.computations.vectors,world->hit.computations.over_point);
 	reflected_col = reflected_colour(world, &world->hit.computations);
-	if (lighting_info.material.reflectiveness > 0.0)
-		*colour = tuple_add(*colour, tuple_add(reflected_col, \
-			tuple_scale(surface_col, 1 - lighting_info.material.reflectiveness)));
-	else
-		*colour = tuple_add(surface_col, *colour);
+	*colour = tuple_add(*colour, tuple_add(surface_col, reflected_col));
 }
 
 void	shade_cube(t_world *world, void *cube, t_tuple *colour,
@@ -107,9 +91,5 @@ void	shade_cube(t_world *world, void *cube, t_tuple *colour,
 	surface_col = lighting(&lighting_info, light, \
 		world->hit.computations.vectors,world->hit.computations.over_point);
 	reflected_col = reflected_colour(world, &world->hit.computations);
-	if (lighting_info.material.reflectiveness > 0.0)
-		*colour = tuple_add(*colour, tuple_add(reflected_col, \
-			tuple_scale(surface_col, 1 - lighting_info.material.reflectiveness)));
-	else
-		*colour = tuple_add(surface_col, *colour);
+	*colour = tuple_add(*colour, tuple_add(surface_col, reflected_col));
 }
