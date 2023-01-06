@@ -1,0 +1,320 @@
+{
+	"camera" :
+	{
+		"origin" : [0, 0, -20],
+		"transform" :
+		{
+			"translation": [0, 0, 0],
+			"rotation": [0, 0, 0],
+			"scale": [1, 1, 1]
+		},
+		"center_of_interest" : [0, 0, 0],
+		"field_of_view" : 0.8
+	},
+	"lights" :
+	[
+		{
+			"light" :
+			{
+				"position" : [0, 100, -100],
+				"intensity" : [0.25, 0.25, 0.25]
+			}
+		},
+		{
+			"light" :
+			{
+				"position" : [0, -100, -100],
+				"intensity" : [0.25, 0.25, 0.25]
+			}
+		},
+		{
+			"light" :
+			{
+				"position" : [-100, 0, -100],
+				"intensity" : [0.25, 0.25, 0.25]
+			}
+		},
+		{
+			"light" :
+			{
+				"position" : [100, 0, -100],
+				"intensity" : [0.25, 0.25, 0.25]
+			}
+		}
+	],
+	"shapes" :
+	[
+		{
+			"cube" :
+			{
+				"transform" :
+				{
+					"translation" : [-6, 2, 0],
+					"rotation" : [0.7854, 0.7854, 0],
+					"scale" : [1, 1, 1]
+				},
+				"material" :
+				{
+					"ambient" : 0.2,
+					"diffuse" : 0.8,
+					"specular" : 0,
+					"shininess" : 200,
+					"init_colour" : [0.42, 0.55, 0.59]
+				},
+				"appearance" :
+				{
+					"pattern" :
+					{
+						"type" : "checkered",
+						"transform" :
+						{
+							"translation" : [0, 0, 0],
+							"rotation" : [0, 0, 0],
+							"scale" : [1, 1, 1]
+						},
+						"colour_a" : [0.564, 0.93, 0.564],
+						"colour_b" : [0.466, 0.027, 0.216]
+					}
+				}
+			}
+		},
+		{
+			"cube" :
+			{
+				"transform" :
+				{
+					"translation" : [-2, 2, 0],
+					"rotation" : [0.7854, 2.3562, 0],
+					"scale" : [1, 1, 1]
+				},
+				"material" :
+				{
+					"ambient" : 0.2,
+					"diffuse" : 0.8,
+					"specular" : 0,
+					"shininess" : 200,
+					"init_colour" : [0.42, 0.55, 0.59]
+				},
+				"appearance" :
+				{
+					"pattern" :
+					{
+						"type" : "checkered",
+						"transform" :
+						{
+							"translation" : [0, 0, 0],
+							"rotation" : [0, 0, 0],
+							"scale" : [1, 1, 1]
+						},
+						"colour_a" : [0.564, 0.93, 0.564],
+						"colour_b" : [0.466, 0.027, 0.216]
+					}
+				}
+			}
+		},
+		{
+			"cube" :
+			{
+				"transform" :
+				{
+					"translation" : [2, 2, 0],
+					"rotation" : [0.7854, 3.927, 0],
+					"scale" : [1, 1, 1]
+				},
+				"material" :
+				{
+					"ambient" : 0.2,
+					"diffuse" : 0.8,
+					"specular" : 0,
+					"shininess" : 200,
+					"init_colour" : [0.42, 0.55, 0.59]
+				},
+				"appearance" :
+				{
+					"pattern" :
+					{
+						"type" : "checkered",
+						"transform" :
+						{
+							"translation" : [0, 0, 0],
+							"rotation" : [0, 0, 0],
+							"scale" : [1, 1, 1]
+						},
+						"colour_a" : [0.564, 0.93, 0.564],
+						"colour_b" : [0.466, 0.027, 0.216]
+					}
+				}
+			}
+		},
+		{
+			"cube" :
+			{
+				"transform" :
+				{
+					"translation" : [6, 2, 0],
+					"rotation" : [0.7854, 5.4978, 0],
+					"scale" : [1, 1, 1]
+				},
+				"material" :
+				{
+					"ambient" : 0.2,
+					"diffuse" : 0.8,
+					"specular" : 0,
+					"shininess" : 200,
+					"init_colour" : [0.42, 0.55, 0.59]
+				},
+				"appearance" :
+				{
+					"pattern" :
+					{
+						"type" : "checkered",
+						"transform" :
+						{
+							"translation" : [0, 0, 0],
+							"rotation" : [0, 0, 0],
+							"scale" : [1, 1, 1]
+						},
+						"colour_a" : [0.564, 0.93, 0.564],
+						"colour_b" : [0.466, 0.027, 0.216]
+					}
+				}
+			}
+		},
+		{
+			"cube" :
+			{
+				"transform" :
+				{
+					"translation" : [-6, -2, 0],
+					"rotation" : [-0.7854, 0.7854, 0],
+					"scale" : [1, 1, 1]
+				},
+				"material" :
+				{
+					"ambient" : 0.2,
+					"diffuse" : 0.8,
+					"specular" : 0,
+					"shininess" : 200,
+					"init_colour" : [0.42, 0.55, 0.59]
+				},
+				"appearance" :
+				{
+					"pattern" :
+					{
+						"type" : "checkered",
+						"transform" :
+						{
+							"translation" : [0, 0, 0],
+							"rotation" : [0, 0, 0],
+							"scale" : [1, 1, 1]
+						},
+						"colour_a" : [0.564, 0.93, 0.564],
+						"colour_b" : [0.466, 0.027, 0.216]
+					}
+				}
+			}
+		},
+		{
+			"cube" :
+			{
+				"transform" :
+				{
+					"translation" : [-2, -2, 0],
+					"rotation" : [-0.7854, 2.3562, 0],
+					"scale" : [1, 1, 1]
+				},
+				"material" :
+				{
+					"ambient" : 0.2,
+					"diffuse" : 0.8,
+					"specular" : 0,
+					"shininess" : 200,
+					"init_colour" : [0.42, 0.55, 0.59]
+				},
+				"appearance" :
+				{
+					"pattern" :
+					{
+						"type" : "checkered",
+						"transform" :
+						{
+							"translation" : [0, 0, 0],
+							"rotation" : [0, 0, 0],
+							"scale" : [1, 1, 1]
+						},
+						"colour_a" : [0.564, 0.93, 0.564],
+						"colour_b" : [0.466, 0.027, 0.216]
+					}
+				}
+			}
+		},
+		{
+			"cube" :
+			{
+				"transform" :
+				{
+					"translation" : [2, -2, 0],
+					"rotation" : [-0.7854, 3.927, 0],
+					"scale" : [1, 1, 1]
+				},
+				"material" :
+				{
+					"ambient" : 0.2,
+					"diffuse" : 0.8,
+					"specular" : 0,
+					"shininess" : 200,
+					"init_colour" : [0.42, 0.55, 0.59]
+				},
+				"appearance" :
+				{
+					"pattern" :
+					{
+						"type" : "checkered",
+						"transform" :
+						{
+							"translation" : [0, 0, 0],
+							"rotation" : [0, 0, 0],
+							"scale" : [1, 1, 1]
+						},
+						"colour_a" : [0.564, 0.93, 0.564],
+						"colour_b" : [0.466, 0.027, 0.216]
+					}
+				}
+			}
+		},
+		{
+			"cube" :
+			{
+				"transform" :
+				{
+					"translation" : [6, -2, 0],
+					"rotation" : [-0.7854, 5.4978, 0],
+					"scale" : [1, 1, 1]
+				},
+				"material" :
+				{
+					"ambient" : 0.2,
+					"diffuse" : 0.8,
+					"specular" : 0,
+					"shininess" : 200,
+					"init_colour" : [0.42, 0.55, 0.59]
+				},
+				"appearance" :
+				{
+				"pattern" :
+					{
+						"type" : "checkered",
+						"transform" :
+						{
+							"translation" : [0, 0, 0],
+							"rotation" : [0, 0, 0],
+							"scale" : [1, 1, 1]
+						},
+						"colour_a" : [0.564, 0.93, 0.564],
+						"colour_b" : [0.466, 0.027, 0.216]
+					}
+				}
+			}
+		}
+	]
+}

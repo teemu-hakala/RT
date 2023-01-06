@@ -38,7 +38,7 @@ void	parse_sphere(t_parser *parser, t_object *shape)
 	else if (!find_matching_bracket(parser))
 		handle_errors("sphere syntax error");
 	transform_object(&shape->object.sphere.transform);
-	if (shape->object.sphere.appearance.pattern.type == PATTERN_CHECKERED)
-		shape->object.sphere.appearance.pattern.width = \
-			2 * shape->object.sphere.appearance.pattern.height;
+	if (shape->object.sphere.appearance.texture.type == TEXTURE_CHECKERED)
+		shape->object.sphere.appearance.texture.width = \
+			2 * shape->object.sphere.appearance.texture.height;
 }

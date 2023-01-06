@@ -17,12 +17,12 @@ void	parse_pattern_type(t_pattern *pattern, t_parser *parser)
 		pattern->type = PATTERN_HORIZONTAL_STRIPES;
 		*pattern = default_horizontal_stripe_pattern();
 	}
-	else if (ft_strncmp(&parser->string[parser->c], "\"checkered\"", 11) == 0)
-	{
-		parser->c += sizeof("\"checkered\"") - 1;
-		pattern->type = PATTERN_CHECKERED;
-		*pattern = default_checkered_pattern();
-	}
+	// else if (ft_strncmp(&parser->string[parser->c], "\"checkered\"", 11) == 0)
+	// {
+	// 	parser->c += sizeof("\"checkered\"") - 1;
+	// 	pattern->type = PATTERN_CHECKERED;
+	// 	*pattern = default_checkered_pattern();
+	// }
 	else if (ft_strncmp(&parser->string[parser->c], "\"gradient\"", 10) == 0)
 	{
 		parser->c += sizeof("\"gradient\"") - 1;
@@ -35,12 +35,12 @@ void	parse_pattern_type(t_pattern *pattern, t_parser *parser)
 		pattern->type = PATTERN_CIRCLES;
 		*pattern = default_ring_pattern();
 	}
-	else if (ft_strncmp(&parser->string[parser->c], "\"align_check\"", 13) == 0)
-	{
-		parser->c += sizeof("\"align_check\"") - 1;
-		pattern->type = PATTERN_ALIGN_CHECK;
-		*pattern = default_align_check();
-	}
+	// else if (ft_strncmp(&parser->string[parser->c], "\"align_check\"", 13) == 0)
+	// {
+	// 	parser->c += sizeof("\"align_check\"") - 1;
+	// 	pattern->type = PATTERN_ALIGN_CHECK;
+	// 	*pattern = default_align_check();
+	// }
 	else
 		handle_errors("not a pattern type");
 }

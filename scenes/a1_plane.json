@@ -40,14 +40,17 @@
 					"diffuse" : 0.6,
 					"init_colour" : [1, 1, 1]
 				},
-				"pattern" :
+				"appearance" :
 				{
-					"type" : "align_check",
-					"transform" :
+					"pattern" :
 					{
-						"translation" : [0, 0, 0],
-						"rotation" : [0, 0, 0],
-						"scale" : [1, 1, 1]
+						"type" : "gradient",
+						"transform" :
+						{
+							"translation" : [0, 0, 0],
+							"rotation" : [0, 0, 0],
+							"scale" : [1, 1, 1]
+						}
 					}
 				}
 			}

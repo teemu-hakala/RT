@@ -40,18 +40,19 @@
 					"diffuse" : 0.6,
 					"init_colour" : [0.42, 0.55, 0.09]
 				},
-				"pattern" :
+				"appearance" :
 				{
-					"type" : "checkered",
-					"width" : 10,
-					"height" : 5,
-					"colour_a" : [0, 0.5, 0],
-					"colour_b" : [1, 1, 1],
-					"transform" :
+					"pattern" :
 					{
-						"translation" : [0, 0, 0],
-						"rotation" : [0, 0, 0],
-						"scale" : [1, 1, 1]
+						"type" : "gradient",
+						"colour_a" : [0, 0.5, 0.3],
+						"colour_b" : [1, 0.1, 0.3],
+						"transform" :
+						{
+							"translation" : [0, 0, 0],
+							"rotation" : [-0.785, 0, -0.5],
+							"scale" : [1, 1, 1]
+						}
 					}
 				}
 			}

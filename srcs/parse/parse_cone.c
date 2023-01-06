@@ -56,7 +56,7 @@ void	parse_cone(t_parser *parser, t_object *shape)
 	else if (!find_matching_bracket(parser))
 		handle_errors("cone syntax error");
 	transform_object(&shape->object.cone.transform);
-	if (shape->object.cone.appearance.pattern.type == PATTERN_CHECKERED)
-		shape->object.cone.appearance.pattern.width = \
-			2 * shape->object.cone.appearance.pattern.height;
+	if (shape->object.cone.appearance.texture.type == TEXTURE_CHECKERED)
+		shape->object.cone.appearance.texture.width = \
+			2 * shape->object.cone.appearance.texture.height;
 }

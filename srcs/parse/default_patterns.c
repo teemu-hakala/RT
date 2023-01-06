@@ -52,31 +52,31 @@ t_pattern	default_ring_pattern(void)
 	});
 }
 
-t_pattern	default_checkered_pattern(void)
-{
-	return ((t_pattern){
-		.type = PATTERN_CHECKERED,
-		.width = 4,
-		.height = 4,
-		.colour_a = hex_to_tuple_colour(COLOUR_BLUE),
-		.colour_b = hex_to_tuple_colour(COLOUR_WHITE),
-		.transform = default_transform_2()
-	});
-}
+// t_pattern	default_checkered_pattern(void)
+// {
+// 	return ((t_pattern){
+// 		.type = PATTERN_CHECKERED,
+// 		.width = 4,
+// 		.height = 4,
+// 		.colour_a = hex_to_tuple_colour(COLOUR_BLUE),
+// 		.colour_b = hex_to_tuple_colour(COLOUR_WHITE),
+// 		.transform = default_transform_2()
+// 	});
+// }
 
-t_pattern	default_align_check(void)
-{
-	return ((t_pattern){
-		.type = PATTERN_ALIGN_CHECK,
-		.face = 0,
-		.main[0] = hex_to_tuple_colour(COLOUR_WHITE),
-		.ul[0] = hex_to_tuple_colour(COLOUR_WHITE),
-		.ur[0] = hex_to_tuple_colour(COLOUR_WHITE),
-		.bl[0] = hex_to_tuple_colour(COLOUR_WHITE),
-		.br[0] = hex_to_tuple_colour(COLOUR_WHITE),
-		.transform = default_transform_2()
-	});
-}
+// t_pattern	default_align_check(void)
+// {
+// 	return ((t_pattern){
+// 		.type = PATTERN_ALIGN_CHECK,
+// 		.face = 0,
+// 		.main[0] = hex_to_tuple_colour(COLOUR_WHITE),
+// 		.ul[0] = hex_to_tuple_colour(COLOUR_WHITE),
+// 		.ur[0] = hex_to_tuple_colour(COLOUR_WHITE),
+// 		.bl[0] = hex_to_tuple_colour(COLOUR_WHITE),
+// 		.br[0] = hex_to_tuple_colour(COLOUR_WHITE),
+// 		.transform = default_transform_2()
+// 	});
+// }
 
 t_pattern	default_pattern(void)
 {
