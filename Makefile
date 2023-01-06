@@ -6,7 +6,7 @@
 #    By: thakala <thakala@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2023/01/05 15:53:45 by thakala          ###   ########.fr        #
+#    Updated: 2023/01/06 16:08:33 by thakala          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -187,6 +187,7 @@ FILES = \
 	render.c \
 	colour.c \
 	loop.c \
+	progress_bar.c \
 
 OBJS = $(addprefix $(OBJS_DIR)/, \
 	$(addprefix $(PARSE_DIR)/, $(PARSE_SRCS:.c=.o)) \

@@ -24,6 +24,7 @@
 # include "world.h"
 # include "parse.h"
 # include "input.h"
+# include "user_interface.h"
 
 # define USAGE "./RT ./scenes/[.json file]"
 # define WIDTH 501
@@ -119,6 +120,7 @@ int			handle_input(int key);
 /* colour and lighting*/
 t_tuple		hex_to_tuple_colour(uint32_t colour);
 uint32_t	clamped_rgb_to_hex(t_colour *colour);
+uint32_t	clamped_rgba_to_hex(t_colour *colour);
 t_tuple		lighting(t_info *lighting_info, t_light *light, t_phong vectors,
 				t_tuple point);
 void		is_shadow(t_world *world, t_tuple point, t_light *light);
