@@ -31,6 +31,13 @@ int	incremental_loop(t_win *win)
 	static t_canvas	canvas = (t_canvas){.horizontal = 0, .vertical = 0};
 	static uint64_t	pixel = 0;
 
+	progress_bar(&win->img, (t_fl)canvas.vertical / \
+		win->world.camera.canvas.vertical);
+	if (canvas.vertical > win->world.camera.canvas.vertical)
+	{
+		mlx_loop_hook(win->mlx, NULL, NULL);
+		return (0);
+	}
 	render_y_x(win, &win->world.camera, canvas.vertical, canvas.horizontal++);
 	if (++pixel > win->world.camera.canvas.horizontal)
 	{

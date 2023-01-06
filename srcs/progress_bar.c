@@ -64,8 +64,8 @@ void	progress_bar(t_img *img, t_fl progress_percentage)
 		.end = {.horizontal = WIDTH, .vertical = HEIGHT}};
 	rectangle = (t_rectangle){.start = {.horizontal = 10, \
 		.vertical = HEIGHT / 2 - 10}, \
-		.end = {.horizontal = WIDTH - 10, .vertical = HEIGHT / 2 + 10}};
-	(void)progress_percentage;
+		.end = {.horizontal = (WIDTH - 10) * progress_percentage + 10, \
+		.vertical = HEIGHT / 2 + 10}};
 	colour = (t_tuple){.tuple.colour = {.r = 0, .g = 0, .b = 1, .a = 0}};
 	put_rectangle_to_image(img, image_bounds, rectangle, colour);
 }
