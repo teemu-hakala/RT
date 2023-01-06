@@ -30,7 +30,8 @@ t_object	plane_prototype(void)
 		{
 			.origin = default_origin(),
 			.transform = plane_transform(),
-			.material = default_material_1()
+			.material = default_material_1(),
+			.pattern = default_pattern()
 		},
 		.type = OBJECT_PLANE
 	});

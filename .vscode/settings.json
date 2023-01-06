@@ -27,9 +27,6 @@
 		"tuple": "c",
 		"__bit_reference": "c",
 		"chrono": "c",
-		"*.tcc": "c",
-		"stdexcept": "c",
-		"condition_variable": "c",
-		"sstream": "c"
+		"ios": "c"
 	}
 }

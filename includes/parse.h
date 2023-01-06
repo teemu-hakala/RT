@@ -37,8 +37,8 @@ void		parse_cone(t_parser *parser, t_object *shape);
 void		parse_cylinder(t_parser *parser, t_object *shape);
 void		parse_cube(t_parser *parser, t_object *shape);
 /*parse sub-objects*/
-int			find_subobject_keyword(t_parser *parser, t_tuple *origin, \
-			t_transform *transform, t_material *material);
+int			find_subobject_keyword(t_parser *parser, t_transform *transform, \
+			t_material *material, t_pattern *pattern);
 int			dispatch_find_subobject_keyword(t_parser *parser, t_object *shape);
 int			plane_subobject_keywords(t_parser *parser, t_object *shape);
 int			sphere_subobject_keywords(t_parser *parser, t_object *shape);
@@ -47,7 +47,10 @@ int			cylinder_subobject_keywords(t_parser *parser, t_object *shape);
 int			cube_subobject_keywords(t_parser *parser, t_object *shape);
 void		parse_tuple(t_tuple *tuple, t_parser *parser);
 void		parse_transform(t_transform *transform, t_parser *parser);
+void		parse_transform_subobject(t_parser *parser, t_transform *transform);
 void		parse_material(t_material *material, t_parser *parser);
+void		parse_pattern(t_pattern *pattern, t_parser *parser);
+void		parse_face(t_pattern *pattern, t_parser *parser);
 int			cone_and_cylinder_objects(t_parser *parser, t_object *object);
 
 /*utility parse functions*/
@@ -58,6 +61,7 @@ void		find_colon(t_parser *parser);
 /*default settings*/
 t_tuple		default_origin(void);
 t_transform	default_transform_1(void);
+t_transform	default_transform_2(void);
 void		transform_camera(t_camera *camera);
 t_material	default_phong_mat(void);
 t_material	default_material_1(void);

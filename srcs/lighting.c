@@ -28,7 +28,7 @@ t_tuple	lighting(t_info *info, t_light *light, t_phong vectors,
 {
 	t_fl		incidence_l;
 
-	info->material.col_mash = tuple_multi(info->material.init_colour, \
+	info->material.col_mash = tuple_multi(info->material.final_colour, \
 		light->intensity);
 	vectors.light = normalize(tuple_sub(light->position, point));
 	info->channels.amb = tuple_scale(info->material.col_mash, \

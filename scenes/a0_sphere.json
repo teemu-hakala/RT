@@ -26,7 +26,6 @@
 		{
 			"sphere" :
 			{
-				"origin" : [0, 0, 0],
 				"transform" :
 				{
 					"translation" : [0, 0, 0],
@@ -35,11 +34,25 @@
 				},
 				"material" :
 				{
-					"ambient" : 0.42,
-					"diffuse" : 0.5,
-					"specular" : 0.1,
-					"shininess" : 200,
+					"ambient" : 0.1,
+					"specular" : 0.4,
+					"shininess" : 10,
+					"diffuse" : 0.6,
 					"init_colour" : [0.42, 0.55, 0.09]
+				},
+				"pattern" :
+				{
+					"type" : "checkered",
+					"width" : 10,
+					"height" : 5,
+					"colour_a" : [0, 0.5, 0],
+					"colour_b" : [1, 1, 1],
+					"transform" :
+					{
+						"translation" : [0, 0, 0],
+						"rotation" : [0, 0, 0],
+						"scale" : [1, 1, 1]
+					}
 				}
 			}
 		}

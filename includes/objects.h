@@ -13,6 +13,7 @@
 #ifndef OBJECTS_H
 # define OBJECTS_H
 # include "RT.h"
+# include "patterns.h"
 
 typedef enum e_object_type
 {
@@ -40,6 +41,23 @@ typedef struct s_transform
 	t_tuple	scale;
 }	t_transform;
 
+typedef struct s_pattern
+{
+	enum e_pattern_type	type;
+	t_fl				width;
+	t_fl				height;
+	t_tuple				colour_a;
+	t_tuple				colour_b;
+	t_tuple				main[6];
+	t_tuple				ul[6];
+	t_tuple				ur[6];
+	t_tuple				br[6];
+	t_tuple				bl[6];
+	int					face;
+	t_transform			transform;
+	t_uv_map			map;
+}	t_pattern;
+
 typedef struct s_material
 {
 	t_fl		ambient;
@@ -47,6 +65,7 @@ typedef struct s_material
 	t_fl		specular;
 	t_fl		shininess;
 	t_tuple		init_colour;
+	t_tuple		final_colour;
 	t_tuple		col_mash;
 	t_fl		reflectiveness;
 }				t_material;
@@ -74,6 +93,7 @@ typedef struct s_plane
 	t_tuple		origin;
 	t_transform	transform;
 	t_material	material;
+	t_pattern	pattern;
 }	t_plane;
 
 typedef struct s_sphere
@@ -81,6 +101,7 @@ typedef struct s_sphere
 	t_tuple		origin;
 	t_transform	transform;
 	t_material	material;
+	t_pattern	pattern;
 }	t_sphere;
 
 typedef struct s_cone
@@ -88,6 +109,7 @@ typedef struct s_cone
 	t_tuple		origin;
 	t_transform	transform;
 	t_material	material;
+	t_pattern	pattern;
 	t_fl		radius;
 	t_fl		min;
 	t_fl		max;
@@ -99,6 +121,7 @@ typedef struct s_cylinder
 	t_tuple		origin;
 	t_transform	transform;
 	t_material	material;
+	t_pattern	pattern;
 	t_fl		radius;
 	t_fl		min;
 	t_fl		max;
@@ -110,6 +133,7 @@ typedef struct s_cube
 	t_tuple		origin;
 	t_transform	transform;
 	t_material	material;
+	t_pattern	pattern;
 	t_fl		length;
 }	t_cube;
 

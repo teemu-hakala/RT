@@ -21,12 +21,13 @@
 # include "matrices.h"
 # include "colour_and_light.h"
 # include "objects.h"
+# include "patterns.h"
 # include "world.h"
 # include "parse.h"
 # include <stdio.h>
 
-# define USAGE "./RTv1 ./scenes/[.json file]"
-# define WIDTH 400
+# define USAGE "./RT ./scenes/[.json file]"
+# define WIDTH 800
 # define HEIGHT 400
 # define WALL_WIDTH 7
 # define WALL_HEIGHT 7
@@ -182,6 +183,35 @@ void		img_pixel_put(t_win *win, int x, int y, unsigned int colour);
 t_ray		ray_for_pixel(t_camera *camera, t_canvas position);
 t_tuple		colour_at(t_world *world, t_ray ray);
 t_fl		get_pixel_size(t_camera *camera, t_canvas size, t_fl field_of_view);
+
+/* patterns*/
+typedef void	(*t_pattern_at_fn)(t_pattern *, t_material *, t_uv_map *);
+void		pattern_at(t_pattern *pattern, t_material *material, \
+			t_uv_map *map);
+t_pattern	default_vertical_stripe_pattern(void);
+t_pattern	default_horizontal_stripe_pattern(void);
+t_pattern	default_gradient_pattern(void);
+t_pattern	default_ring_pattern(void);
+t_pattern	default_checkered_pattern(void);
+t_pattern	default_align_check(void);
+t_pattern	default_pattern(void);
+void		none_at(t_pattern *pattern, t_material *material, t_uv_map *map);
+void		vertical_striped_at(t_pattern *pattern, t_material *material, \
+			t_uv_map *map);
+void		horizontal_striped_at(t_pattern *pattern, t_material *material, \
+			t_uv_map *map);
+void		checkered_at(t_pattern *pattern, t_material *material, \
+			t_uv_map *map);
+void		circle_at(t_pattern *pattern, t_material *material,t_uv_map *map);
+void		gradient_at(t_pattern *pattern, t_material *material,t_uv_map *map);
+void		align_check_at(t_pattern *pattern, t_material *material, t_uv_map *map);
+t_tuple		transform_point(t_tuple *point, t_transform *shape_transform, \
+			t_transform *pattern_transform);
+t_uv_map	spherical_map(t_tuple *p);
+t_uv_map	planar_map(t_tuple *p);
+t_uv_map	cylindrical_map(t_tuple *p);
+t_uv_map	conical_map(t_tuple *p);
+t_uv_map	cubic_map(t_tuple *p, t_pattern *pattern);
 
 /* parsing */
 double		rt_atof(t_parser *parser);
