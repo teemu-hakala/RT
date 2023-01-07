@@ -91,7 +91,7 @@ static void	find_texture_keywords(t_texture *texture, t_parser *parser)
 		find_colon(parser);
 		find_name(texture, parser);
 		printf("texture name : %s\n", texture->name);
-		//parse_ppm(texture, parser);
+		open_ppm(texture);
 	}
 	else
 		handle_errors("texture keyword syntax error");

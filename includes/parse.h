@@ -78,6 +78,6 @@ t_light		light_prototype(void);
 t_object	cube_prototype(void);
 
 /* parse ppm*/
-void	parse_ppm(t_texture *texture, char *str);
+void	open_ppm(t_texture *texture);
 
 #endif

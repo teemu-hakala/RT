@@ -44,7 +44,7 @@
 				{
 					"texture" :
 					{
-						"name" : "test_ppm"
+						"name" : "test.ppm"
 					}
 				}
 			}
