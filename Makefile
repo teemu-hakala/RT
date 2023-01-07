@@ -48,12 +48,13 @@ PARSE_SRCS = default_files.c default_patterns.c parse_camera.c parse_cone.c \
 	shape_subobject_utility.c parse_patterns.c parse_faces.c parse_ppm.c \
 	parse_textures.c default_textures.c
 
-OBJECTS_SRCS = camera.c transform_objects.c\
+OBJECTS_SRCS = camera.c transform_objects.c \
 
 MATHS_SRCS = matrix_inversion.c matrix_maths.c matrix_transformations.c \
 	tuple_operations.c matrix_rotations.c tuple_w.c tuple_basic_operations.c \
 
-PATTERNS_SRCS = pattern_dispatch.c patterns.c uv_mapping.c cube_mapping.c
+PATTERNS_SRCS = pattern_dispatch.c patterns.c textures.c texture_dispatch.c \
+	uv_mapping.c cube_mapping.c
 
 INTERSECT_SRCS = intersect_plane.c intersect_sphere.c intersect_cone.c \
 	intersect_cylinder.c intersect_cube.c intersect_dispatch.c

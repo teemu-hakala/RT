@@ -63,7 +63,7 @@
 				},
 				"appearance" :
 				{
-					"pattern" :
+					"texture" :
 					{
 						"type" : "align_check",
 						"transform" :
@@ -158,7 +158,7 @@
 				},
 				"appearance" :
 				{
-					"pattern" :
+					"texture" :
 					{
 						"type" : "align_check",
 						"transform" :
@@ -253,7 +253,7 @@
 				},
 				"appearance" :
 				{
-					"pattern" :
+					"texture" :
 					{
 						"type" : "align_check",
 						"transform" :
@@ -348,7 +348,7 @@
 				},
 				"appearance" :
 				{
-					"pattern" :
+					"texture" :
 					{
 						"type" : "align_check",
 						"transform" :
@@ -443,7 +443,7 @@
 				},
 				"appearance" :
 				{
-					"pattern" :
+					"texture" :
 					{
 						"type" : "align_check",
 						"transform" :
@@ -538,7 +538,7 @@
 				},
 				"appearance" :
 				{
-					"pattern" :
+					"texture" :
 					{
 						"type" : "align_check",
 						"transform" :
@@ -633,7 +633,7 @@
 				},
 				"appearance" :
 				{
-					"pattern" :
+					"texture" :
 					{
 						"type" : "align_check",
 						"transform" :
@@ -728,7 +728,7 @@
 				},
 				"appearance" :
 				{
-				"pattern" :
+				"texture" :
 					{
 						"type" : "align_check",
 						"transform" :
