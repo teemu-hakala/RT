@@ -52,6 +52,16 @@ t_pattern	default_ring_pattern(void)
 	});
 }
 
+t_pattern	default_simple_checkered_pattern(void)
+{
+	return ((t_pattern){
+		.type = PATTERN_SIMPLE_CHECKERED,
+		.colour_a = hex_to_tuple_colour(COLOUR_BLUE),
+		.colour_b = hex_to_tuple_colour(COLOUR_WHITE),
+		.transform = default_transform_2()
+	});
+}
+
 // t_pattern	default_checkered_pattern(void)
 // {
 // 	return ((t_pattern){

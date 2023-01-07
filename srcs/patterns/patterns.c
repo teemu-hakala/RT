@@ -50,3 +50,13 @@ void	gradient_at(t_pattern *pattern, t_material *material, t_tuple *point)
 		tuple_scale(tuple_sub(pattern->colour_a, \
 		pattern->colour_b), x_fraction));
 }
+
+void	simple_checkered_at(t_pattern *pattern, t_material *material, \
+	t_tuple *point)
+{
+	if (fmod((floor(point->tuple.units.x) + floor(point->tuple.units.y) + \
+		floor(point->tuple.units.z)), 2) == 0)
+		material->final_colour = pattern->colour_a;
+	else
+		material->final_colour = pattern->colour_b;
+}

@@ -193,6 +193,7 @@ t_pattern	default_vertical_stripe_pattern(void);
 t_pattern	default_horizontal_stripe_pattern(void);
 t_pattern	default_gradient_pattern(void);
 t_pattern	default_ring_pattern(void);
+t_pattern	default_simple_checkered_pattern(void);
 t_pattern	default_checkered_pattern(void);
 t_pattern	default_align_check(void);
 t_pattern	default_pattern(void);
@@ -201,6 +202,8 @@ void		vertical_striped_at(t_pattern *pattern, t_material *material, \
 			t_tuple *point);
 void		horizontal_striped_at(t_pattern *pattern, t_material *material, \
 			t_tuple *point);
+void		simple_checkered_at(t_pattern *pattern, t_material *material, \
+	t_tuple *point);
 void		checkered_at(t_pattern *pattern, t_material *material, \
 			t_uv_map *map);
 void		circle_at(t_pattern *pattern, t_material *material, t_tuple *point);

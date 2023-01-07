@@ -18,6 +18,7 @@ typedef enum e_pattern_type
 	PATTERN_HORIZONTAL_STRIPES = 2,
 	PATTERN_CIRCLES = 3,
 	PATTERN_GRADIENT = 4,
+	PATTERN_SIMPLE_CHECKERED = 5
 }	t_type;
 
 typedef enum e_cube_face

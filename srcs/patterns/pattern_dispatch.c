@@ -13,22 +13,6 @@ t_tuple	transform_point(t_tuple *point, t_transform *shape_transform, \
 	return (pattern_space);
 }
 
-// void	pattern_at(t_pattern *pattern, t_material *material, \
-// 	t_transform *transform, t_tuple *point)
-// {
-// 	t_tuple	pattern_space;
-
-// 	pattern_space = transform_point(point, transform, &pattern->transform);
-
-// 	static const t_pattern_at_fn	patterns[] = {\
-// 		none_at,
-// 		vertical_striped_at,
-// 		horizontal_striped_at,
-// 		circle_at,
-// 		gradient_at};
-
-// 	return (patterns[pattern->type](pattern, material, &pattern_space));
-// }
 
 void	pattern_at(t_pattern *pattern, t_material *material, \
 	t_transform transform, t_tuple *point)
@@ -40,7 +24,8 @@ void	pattern_at(t_pattern *pattern, t_material *material, \
 		vertical_striped_at,
 		horizontal_striped_at,
 		circle_at,
-		gradient_at};
+		gradient_at,
+		simple_checkered_at};
 
 	object_space = matrix_tuple_multi(&transform.inverse, point);
 	pattern_space = matrix_tuple_multi(&pattern->transform.inverse, \

@@ -17,12 +17,12 @@ void	parse_pattern_type(t_pattern *pattern, t_parser *parser)
 		pattern->type = PATTERN_HORIZONTAL_STRIPES;
 		*pattern = default_horizontal_stripe_pattern();
 	}
-	// else if (ft_strncmp(&parser->string[parser->c], "\"checkered\"", 11) == 0)
-	// {
-	// 	parser->c += sizeof("\"checkered\"") - 1;
-	// 	pattern->type = PATTERN_CHECKERED;
-	// 	*pattern = default_checkered_pattern();
-	// }
+	else if (ft_strncmp(&parser->string[parser->c], "\"simple_checkered\"", 18) == 0)
+	{
+		parser->c += sizeof("\"simple_checkered\"") - 1;
+		pattern->type = PATTERN_SIMPLE_CHECKERED;
+		*pattern = default_simple_checkered_pattern();
+	}
 	else if (ft_strncmp(&parser->string[parser->c], "\"gradient\"", 10) == 0)
 	{
 		parser->c += sizeof("\"gradient\"") - 1;
