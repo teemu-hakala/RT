@@ -10,12 +10,13 @@
 
 
 #include "RT.h"
+#include <stdio.h>
 
-static void	rect_pixel_put(t_img *img, int y, int x, uint32_t colour)
+static void	rect_pixel_put(t_img img, int y, int x, uint32_t colour)
 {
 	char	*pixel;
 
-	pixel = img->addr + (y * img->length + x * (img->bpp / 8));
+	pixel = img.addr + (y * img.length + x * (img.bpp / 8));
 	*(uint32_t *)pixel = colour;
 }
 
@@ -33,13 +34,13 @@ static t_rectangle	fit_rectangle_to_image_bounds(t_rectangle rect,
 	return (rect);
 }
 
-void	put_rectangle_to_image(t_img *img, t_rectangle image,
+void	put_rectangle_to_image(t_img img, t_rectangle image,
 	t_rectangle rect, t_tuple colour)
 {
 	uint32_t	colour_hex;
 	t_canvas	point;
 
-	colour_hex = clamped_rgb_to_hex(&colour.tuple.colour);
+	colour_hex = clamped_rgba_to_hex(&colour.tuple.colour);
 	rect = fit_rectangle_to_image_bounds(rect, image);
 	point.vertical = rect.start.vertical;
 	while (point.vertical < rect.end.vertical)
@@ -54,18 +55,18 @@ void	put_rectangle_to_image(t_img *img, t_rectangle image,
 	}
 }
 
-void	progress_bar(t_img *img, t_fl progress_percentage)
+void	progress_bar(t_img img, t_fl progress_percentage)
 {
 	t_rectangle	image_bounds;
 	t_rectangle	rectangle;
 	t_tuple		colour;
 
 	image_bounds = (t_rectangle){.start = {.horizontal = 0, .vertical = 0}, \
-		.end = {.horizontal = WIDTH, .vertical = HEIGHT}};
-	rectangle = (t_rectangle){.start = {.horizontal = 10, \
-		.vertical = HEIGHT / 2 - 10}, \
-		.end = {.horizontal = (WIDTH - 10) * progress_percentage + 10, \
+		.end = {.horizontal = WIDTH - 20, .vertical = 20}};
+	rectangle = (t_rectangle){.start = {.horizontal = 0, \
+		.vertical = 0}, \
+		.end = {.horizontal = (WIDTH - 20) * progress_percentage + 10, \
 		.vertical = HEIGHT / 2 + 10}};
-	colour = (t_tuple){.tuple.colour = {.r = 0, .g = 0, .b = 1, .a = 0}};
+	colour = (t_tuple){.tuple.colour = {.r = 0.2, .g = 0.4, .b = 1, .a = 0}};
 	put_rectangle_to_image(img, image_bounds, rectangle, colour);
 }
