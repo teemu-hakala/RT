@@ -102,26 +102,6 @@ void	parse_pixels(char **array, t_ppm_image *image, int length)
 	}
 }
 
-void	print_pixels(t_ppm_image *image)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	while (x < image->height)
-	{
-		y = 0;
-		while (y < image->width)
-		{
-			printf("x: %d, y: %d || %f %f %f\n", y, x, \
-			image->pixels[x][y].array[0], image->pixels[x][y].array[1], \
-				image->pixels[x][y].array[2]);
-			y++;
-		}
-		x++;
-	}
-}
-
 void	parse_ppm(t_texture *texture, char *str)
 {
 	char		**array;
@@ -138,7 +118,6 @@ void	parse_ppm(t_texture *texture, char *str)
 	texture->image.max_value = ft_atoi(array[3]);
 	allocate_pixel_array(&texture->image);
 	parse_pixels(array, &texture->image, length);
-	print_pixels(&texture->image);
 }
 
 void	open_ppm(t_texture *texture)

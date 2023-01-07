@@ -45,13 +45,11 @@ void	align_check_at(t_texture *texture, t_material *material, t_uv_map *map)
 
 void	external_at(t_texture *texture, t_material *material, t_uv_map *map)
 {
-	uint32_t u2;
-	uint32_t v2;
+	t_fl	x;
+	t_fl	y;
 
-	u2 = floor(map->u * texture->width);
-	v2 = floor(map->v * texture->height);
-	if ((u2 + v2) % 2 == 0)
-		material->final_colour = texture->colour_a;
-	else
-		material->final_colour = texture->colour_b;
+	map->v = 1 - map->v;
+	x = map->u * (texture->image.width - 1);
+	y = map->v * (texture->image.height - 1);
+	material->final_colour = texture->image.pixels[(int)y][(int)x];
 }
