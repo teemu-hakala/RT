@@ -72,6 +72,5 @@ void	progress_bar(t_img img, t_fl progress_percentage)
 		rectangle.start.horizontal = 0;
 	colour = (t_tuple){.tuple.colour = {.r = progress_percentage, .g = progress_percentage, .b = 1, .a = 0}};
 	put_rectangle_to_image(img, image_bounds, rectangle, colour);
-	printf("prev_perc: %lf : %lf prog_perc\n", prev_perc, progress_percentage);
 	prev_perc = progress_percentage;
 }
