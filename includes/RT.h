@@ -183,20 +183,26 @@ void		prepare_computations(t_world *world);
 t_tuple		colour_at(t_world *world);
 t_fl		get_pixel_size(t_camera *camera, t_canvas size, t_fl field_of_view);
 
+/* default patterns*/
+t_pattern	default_vertical_stripe_pattern(void);
+t_pattern	default_horizontal_stripe_pattern(void);
+t_pattern	default_gradient_pattern(void);
+t_pattern	default_ring_pattern(void);
+t_pattern	default_simple_checkered_pattern(void);
+t_pattern	default_pattern(void);
+
+/* default textures*/
+t_texture	default_texture(void);
+t_texture	default_checkered_texture(void);
+t_texture	default_align_check(void);
+t_texture	default_external(void);
+
 /* patterns*/
 typedef void	(*t_pattern_at_fn)(t_pattern *, t_material *, t_tuple *);
 void		pattern_at(t_pattern *pattern, t_material *material, \
 			t_transform transform, t_tuple *point);
 //void		texture_at(t_pattern *pattern, t_material *material, \
 //			t_uv_map *map);
-t_pattern	default_vertical_stripe_pattern(void);
-t_pattern	default_horizontal_stripe_pattern(void);
-t_pattern	default_gradient_pattern(void);
-t_pattern	default_ring_pattern(void);
-t_pattern	default_simple_checkered_pattern(void);
-t_pattern	default_checkered_pattern(void);
-t_pattern	default_align_check(void);
-t_pattern	default_pattern(void);
 void		none_at(t_pattern *pattern, t_material *material, t_tuple *point);
 void		vertical_striped_at(t_pattern *pattern, t_material *material, \
 			t_tuple *point);
@@ -217,7 +223,7 @@ t_uv_map	spherical_map(t_tuple *p);
 t_uv_map	planar_map(t_tuple *p);
 t_uv_map	cylindrical_map(t_tuple *p);
 t_uv_map	conical_map(t_tuple *p);
-t_uv_map	cubic_map(t_tuple *p, t_pattern *pattern);
+t_uv_map	cubic_map(t_tuple *p, t_texture *texture);
 
 /* parsing */
 double		rt_atof(t_parser *parser);

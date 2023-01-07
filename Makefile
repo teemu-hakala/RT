@@ -45,7 +45,8 @@ PARSE_SRCS = default_files.c default_patterns.c parse_camera.c parse_cone.c \
 	parse_shapes.c parse_sphere.c parse_sub_objs.c parse_utility.c parse.c \
 	rt_atof.c rt_atoi.c dispatch_shape_subobjects.c parse_material.c \
 	parse_transform.c parse_cone_cylinder_subobj.c parse_cube.c \
-	shape_subobject_utility.c parse_patterns.c parse_faces.c parse_ppm.c
+	shape_subobject_utility.c parse_patterns.c parse_faces.c parse_ppm.c \
+	parse_textures.c default_textures.c
 
 OBJECTS_SRCS = camera.c transform_objects.c\
 

@@ -51,14 +51,22 @@ typedef struct s_ppm_image
 
 typedef struct s_texture
 {
-	int					fd;
 	enum e_text_type	type;
-	t_ppm_image			image;
+	char				*name;
 	t_fl				width;
 	t_fl				height;
 	t_tuple				colour_a;
 	t_tuple				colour_b;
+	int					face;
+	t_tuple				main[6];
+	t_tuple				ul[6];
+	t_tuple				ur[6];
+	t_tuple				br[6];
+	t_tuple				bl[6];
 	t_uv_map			map;
+	t_transform			transform; //maybe
+	int					fd;
+	t_ppm_image			image;
 }				t_texture;
 
 typedef struct s_pattern
@@ -68,14 +76,7 @@ typedef struct s_pattern
 	t_fl				height;
 	t_tuple				colour_a;
 	t_tuple				colour_b;
-	t_tuple				main[6];
-	t_tuple				ul[6];
-	t_tuple				ur[6];
-	t_tuple				br[6];
-	t_tuple				bl[6];
-	int					face;
 	t_transform			transform;
-	t_uv_map			map;
 }	t_pattern;
 
 typedef struct s_appearance

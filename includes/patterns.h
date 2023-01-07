@@ -2,6 +2,7 @@
 #ifndef PATTERNS_H
 # define PATTERNS_H
 # include "RT.h"
+# include "objects.h"
 
 typedef enum e_text_type
 {
@@ -50,7 +51,5 @@ typedef struct s_uv_map
 // 	t_uv_pattern pattern;
 // 	t_uv_map	map;
 // }				t_texture_map;
-
-
 
 #endif

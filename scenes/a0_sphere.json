@@ -42,17 +42,9 @@
 				},
 				"appearance" :
 				{
-					"pattern" :
+					"texture" :
 					{
-						"type" : "simple_checkered",
-						"colour_a" : [0, 0.5, 0.3],
-						"colour_b" : [1, 0.1, 0.3],
-						"transform" :
-						{
-							"translation" : [0, 0, 0],
-							"rotation" : [0, 0, 0],
-							"scale" : [0.2, 0.2, 0.2]
-						}
+						"name" : "test_ppm"
 					}
 				}
 			}

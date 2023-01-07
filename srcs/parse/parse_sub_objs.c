@@ -34,12 +34,15 @@ void	parse_appearance(t_appearance *appearance, t_parser *parser)
 			return ;
 		parse_pattern(&appearance->pattern, parser);
 	}
-	// else if (ft_strncmp(&parser->string[parser->c], "\"texture\"", 9) == 0)
-	// {
-	// 	parser->c += sizeof("\"texture\"") - 1;
-	// 	find_colon(parser);
-	// 	parse_texture(&appearance->texture, parser);
-	// }
+	else if (ft_strncmp(&parser->string[parser->c], "\"texture\"", 9) == 0)
+	{
+		parser->c += sizeof("\"texture\"") - 1;
+		find_colon(parser);
+		find_open_bracket(parser);
+		if (find_matching_bracket(parser))
+			return ;
+		parse_texture(&appearance->texture, parser);
+	}
 	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
 	if (parser->string[parser->c] == ',')
 		parse_appearance(appearance, parser);
