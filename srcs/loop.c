@@ -65,8 +65,7 @@ int	incremental_loop(t_win *win)
 
 	if (canvas.vertical > win->world.camera.canvas.vertical)
 	{
-		//mlx_put_image_to_window(win->mlx, win->win, win->img.img, 0, 0);
-		printf("asd\n");
+		mlx_put_image_to_window(win->mlx, win->win, win->img.img, 0, 0);
 		mlx_loop_hook(win->mlx, NULL, NULL);
 		return (0);
 	}
