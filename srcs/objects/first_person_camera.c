@@ -26,5 +26,6 @@ win->input.mouse.diff.col * ROTATION_STEP, \
 void	navigate_camera(t_win *win)
 {
 	first_person_camera(win);
-	render(win, &win->world.camera);
+	threaded_loop(win);
+	//render(win, &win->world.camera);
 }
