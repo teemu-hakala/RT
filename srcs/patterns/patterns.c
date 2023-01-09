@@ -15,7 +15,6 @@ void	vertical_striped_at(t_pattern *pattern, t_material *material, \
 		material->final_colour = pattern->colour_a;
 	else
 		material->final_colour = pattern->colour_b;
-
 }
 
 void	horizontal_striped_at(t_pattern *pattern, t_material *material, \
@@ -49,14 +48,4 @@ void	gradient_at(t_pattern *pattern, t_material *material, t_tuple *point)
 		material->final_colour = tuple_add(pattern->colour_b, \
 		tuple_scale(tuple_sub(pattern->colour_a, \
 		pattern->colour_b), x_fraction));
-}
-
-void	simple_checkered_at(t_pattern *pattern, t_material *material, \
-	t_tuple *point)
-{
-	if (fmod((floor(point->tuple.units.x) + floor(point->tuple.units.y) + \
-		floor(point->tuple.units.z)), 2) == 0)
-		material->final_colour = pattern->colour_a;
-	else
-		material->final_colour = pattern->colour_b;
 }

@@ -54,3 +54,15 @@ void	external_at(t_texture *texture, t_material *material, t_uv_map *map)
 	material->final_colour = \
 		texture->image[texture->face].pixels[(int)y][(int)x];
 }
+
+/* this is a pattern - but here because of the 5 functions per rule page*/
+
+void	simple_checkered_at(t_pattern *pattern, t_material *material, \
+	t_tuple *point)
+{
+	if (fmod((floor(point->tuple.units.x) + floor(point->tuple.units.y) + \
+		floor(point->tuple.units.z)), 2) == 0)
+		material->final_colour = pattern->colour_a;
+	else
+		material->final_colour = pattern->colour_b;
+}
