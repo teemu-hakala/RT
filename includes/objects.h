@@ -43,6 +43,8 @@ typedef struct s_transform
 
 typedef struct s_ppm_image
 {
+int			fd;
+	char	*name;
 	int		height;
 	int		width;
 	int		max_value;
@@ -52,7 +54,6 @@ typedef struct s_ppm_image
 typedef struct s_texture
 {
 	enum e_text_type	type;
-	char				*name;
 	t_fl				width;
 	t_fl				height;
 	t_tuple				colour_a;
@@ -65,7 +66,6 @@ typedef struct s_texture
 	t_tuple				bl[6];
 	t_uv_map			map;
 	t_transform			transform; //maybe
-	int					fd;
 	t_ppm_image			image;
 }				t_texture;
 

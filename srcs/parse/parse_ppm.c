@@ -102,7 +102,7 @@ void	parse_pixels(char **array, t_ppm_image *image, int length)
 	}
 }
 
-void	parse_ppm(t_texture *texture, char *str)
+void	parse_ppm(t_ppm_image *image, char *str)
 {
 	char		**array;
 	int			length;
@@ -113,23 +113,23 @@ void	parse_ppm(t_texture *texture, char *str)
 		handle_errors("ppm parser error");
 	if (strcmp("P3", array[0]) != 0)
 		handle_errors("incorrect ppm type");
-	texture->image.width = ft_atoi(array[1]);
-	texture->image.height = ft_atoi(array[2]);
-	texture->image.max_value = ft_atoi(array[3]);
-	allocate_pixel_array(&texture->image);
-	parse_pixels(array, &texture->image, length);
+	image->width = ft_atoi(array[1]);
+	image->height = ft_atoi(array[2]);
+	image->max_value = ft_atoi(array[3]);
+	allocate_pixel_array(image);
+	parse_pixels(array, image, length);
 }
 
-void	open_ppm(t_texture *texture)
+void	open_ppm(t_ppm_image *image)
 {
 	t_vec ppm_string_vec;
 	char *str;
 
-	texture->fd = open(texture->name, O_RDONLY);
-	if (texture->fd < 0)
+	image->fd = open(image->name, O_RDONLY);
+	if (image->fd < 0)
 		handle_errors("unable to open ppm");
-	read_ppm_contents(&ppm_string_vec, texture->fd);
+	read_ppm_contents(&ppm_string_vec, image->fd);
 	str = (char *)ppm_string_vec.memory;
-	parse_ppm(texture, str);
+	parse_ppm(image, str);
 	free(str);
 }

@@ -219,9 +219,10 @@ void		no_texture_at(t_texture *texture, t_material *material, \
 			t_uv_map *map);
 void		checkered_at(t_texture *texture, t_material *material, \
 			t_uv_map *map);
-void		align_check_at(t_texture *texture, t_material *material,\
+void		align_check_at(t_texture *texture, t_material *material, \
 			t_uv_map *map);
-void		external_at(t_texture *texture, t_material *material, t_uv_map *map);
+void		external_at(t_texture *texture, t_material *material, \
+			t_uv_map *map);
 t_tuple		transform_point(t_tuple *point, t_transform *shape_transform, \
 			t_transform *pattern_transform);
 t_uv_map	spherical_map(t_tuple *p);

@@ -4,7 +4,7 @@
 void	parse_texture_type(t_texture *texture, t_parser *parser)
 {
 	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
-	if (ft_strncmp(&parser->string[parser->c], "\"checkered\"", 18) == 0)
+	if (ft_strncmp(&parser->string[parser->c], "\"checkered\"", 11) == 0)
 	{
 		parser->c += sizeof("\"checkered\"") - 1;
 		texture->type = TEXTURE_CHECKERED;
@@ -26,7 +26,7 @@ void	parse_texture_type(t_texture *texture, t_parser *parser)
 		handle_errors("not a texture type");
 }
 
-void	find_name(t_texture *texture, t_parser *parser)
+void	find_name(t_ppm_image *image, t_parser *parser)
 {
 	uint64_t	length;
 	uint64_t	i;
@@ -40,7 +40,7 @@ void	find_name(t_texture *texture, t_parser *parser)
 	while (parser->string[i] && parser->string[i] != '"')
 		i++;
 	length = i - parser->c;
-	texture->name = ft_strsub(parser->string, parser->c, length);
+	image->name = ft_strsub(parser->string, parser->c, length);
 	parser->c += length + 1;
 }
 
@@ -89,9 +89,9 @@ static void	find_texture_keywords(t_texture *texture, t_parser *parser)
 	{
 		parser->c += sizeof("\"name\"") - 1;
 		find_colon(parser);
-		find_name(texture, parser);
-		printf("texture name : %s\n", texture->name);
-		open_ppm(texture);
+		find_name(&texture->image, parser);
+		printf("texture name : %s\n", texture->image.name);
+		open_ppm(&texture->image);
 	}
 	else
 		handle_errors("texture keyword syntax error");

@@ -49,9 +49,9 @@
 				},
 				"appearance" :
 				{
-					"pattern" :
+					"texture" :
 					{
-						"type" : "simple_checkered",
+						"type" : "align_check",
 						"colour_a" : [0, 0.5, 0.3],
 						"colour_b" : [1, 0.1, 0.3],
 						"transform" :
