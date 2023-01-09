@@ -18,6 +18,7 @@ int	put_image(t_win *win)
 
 	if (first)
 	{
+		// threaded_loop_mid(win);
 		threaded_loop(win);
 		first = 0;
 	}

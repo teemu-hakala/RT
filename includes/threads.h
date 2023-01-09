@@ -37,5 +37,7 @@ typedef enum e_frame_check
 
 int		put_image(t_win *win);
 void	threaded_loop(t_win *win);
-
+void	*world_end(t_world *ending_world);
+t_world	world_selectively_shallow_copy(t_world *original);
+void	threaded_loop_mid(t_win *win);
 #endif

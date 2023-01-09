@@ -6,7 +6,7 @@
 #    By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2023/01/09 17:28:18 by thakala          ###   ########.fr        #
+#    Updated: 2023/01/09 21:57:42 by thakala          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -190,6 +190,7 @@ FILES = \
 	colour.c \
 	threads.c \
 	put_image.c \
+	threads_mid.c \
 
 OBJS = $(addprefix $(OBJS_DIR)/, \
 	$(addprefix $(PARSE_DIR)/, $(PARSE_SRCS:.c=.o)) \
