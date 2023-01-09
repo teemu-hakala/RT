@@ -39,6 +39,7 @@ void	hooks(t_win *win)
 	mlx_hook(win->win, ON_MOUSE_MOVE, 0, mouse_handler_move, win);
 	mlx_hook(win->win, ON_MOUSE_UP, 0, mouse_handler_up, win);
 	mlx_expose_hook(win->win, expose_handler, win);
+	mlx_loop_hook(win->mlx, put_image, win);
 }
 
 int	main(int argc, char **argv)
@@ -51,7 +52,8 @@ int	main(int argc, char **argv)
 	initialise_world(&win.world);
 	parse_into(&win.world, win.fd);
 	initialise_window(&win);
-	render(&win, &win.world.camera);
+	//render(&win, &win.world.camera);
+	threaded_loop(&win);
 	hooks(&win);
 	mlx_loop(win.mlx);
 	return (0);

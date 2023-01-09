@@ -6,7 +6,7 @@
 #    By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2022/12/31 12:47:53 by thakala          ###   ########.fr        #
+#    Updated: 2023/01/09 17:28:18 by thakala          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -138,7 +138,9 @@ HDRS = includes/RT.h \
 	includes/objects.h \
 	includes/tuple.h \
 	includes/world.h \
-	includes/parse.h
+	includes/parse.h \
+	includes/threads.h \
+
 LIBFT_DIR = libft
 MINILIBX_DIR = minilibx
 
@@ -186,6 +188,8 @@ FILES = \
 	ray.c \
 	render.c \
 	colour.c \
+	threads.c \
+	put_image.c \
 
 OBJS = $(addprefix $(OBJS_DIR)/, \
 	$(addprefix $(PARSE_DIR)/, $(PARSE_SRCS:.c=.o)) \

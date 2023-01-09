@@ -24,6 +24,7 @@
 # include "world.h"
 # include "parse.h"
 # include "input.h"
+# include "threads.h"
 
 # define USAGE "./RT ./scenes/[.json file]"
 # define WIDTH 501
