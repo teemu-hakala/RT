@@ -53,7 +53,7 @@ int	main(int argc, char **argv)
 	parse_into(&win.world, win.fd);
 	initialise_window(&win);
 	//render(&win, &win.world.camera);
-	threaded_loop(&win);
+	//threaded_loop(&win);
 	hooks(&win);
 	mlx_loop(win.mlx);
 	return (0);
