@@ -30,6 +30,25 @@ void	*world_end(t_world *ending_world)
 	return (NULL);
 }
 
+void	darken_n_pixels(t_renderer_info info, t_canvas to)
+{
+	t_canvas	canvas;
+
+	canvas.vertical = info.from.vertical;
+	canvas.horizontal = info.from.horizontal;
+	while (canvas.vertical < to.vertical)
+	{
+		while (canvas.horizontal < to.horizontal)
+		{
+			img_pixel_put(info.win, canvas.horizontal, canvas.vertical,
+				0xffff0000);
+			canvas.horizontal++;
+		}
+		canvas.horizontal = 0;
+		canvas.vertical++;
+	}
+}
+
 void	*render_n_pixels(void *param)
 {
 	t_canvas		canvas;
@@ -49,6 +68,7 @@ void	*render_n_pixels(void *param)
 			colour = colour_at(&world_safe);
 			if (info.frame != *info.current_frame)
 			{
+				//darken_n_pixels(info, canvas);
 				world_end(&world_safe);
 				pthread_exit(NULL);
 				return (NULL);
