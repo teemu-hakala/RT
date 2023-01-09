@@ -35,15 +35,15 @@
 			{
 				"transform" :
 				{
-					"translation" : [0, 0, 0],
-					"rotation" : [2.1, 0, 1.5],
-					"scale" : [2, 1.5, 1]
+					"translation" : [0, 2, 0],
+					"rotation" : [0.7854, 0.7854, 0],
+					"scale" : [2, 2, 2]
 				},
 				"material" :
 				{
-					"ambient" : 0.42,
-					"diffuse" : 0.5,
-					"specular" : 0.1,
+					"ambient" : 0.2,
+					"diffuse" : 0.8,
+					"specular" : 0,
 					"shininess" : 200,
 					"init_colour" : [0.42, 0.55, 0.59]
 				},
@@ -51,15 +51,47 @@
 				{
 					"texture" :
 					{
-						"type" : "align_check",
-						"colour_a" : [0, 0.5, 0.3],
-						"colour_b" : [1, 0.1, 0.3],
-						"transform" :
-						{
-							"translation" : [0, 0, 0],
-							"rotation" : [0, 0, 0],
-							"scale" : [0.125, 0.125, 0.125]
-						}
+						"type" : "external",
+						"name" : "textures/earthmap.ppm",
+						"face" :
+						[
+							{
+								"left" :
+								{
+									"name" : "textures/earthmap.ppm"
+								}
+							},
+							{
+								"front" :
+								{
+									"name" : "textures/earthmap.ppm"
+								}
+							},
+							{
+								"right" :
+								{
+									"name" : "textures/earthmap.ppm"
+								}
+							},
+							{
+								"back" :
+								{
+									"name" : "textures/earthmap.ppm"
+								}
+							},
+							{
+								"up" :
+								{
+									"name" : "textures/earthmap.ppm"
+								}
+							},
+							{
+								"down" :
+								{
+									"name" : "textures/earthmap.ppm"
+								}
+							}
+						]
 					}
 				}
 			}

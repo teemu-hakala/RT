@@ -52,8 +52,14 @@ void		parse_material(t_material *material, t_parser *parser);
 void		parse_pattern(t_pattern *pattern, t_parser *parser);
 void		parse_texture(t_texture *texture, t_parser *parser);
 void		find_name(t_ppm_image *image, t_parser *parser);
-void		parse_face(t_texture *texture, t_parser *parser);
 int			cone_and_cylinder_objects(t_parser *parser, t_object *object);
+
+/* cube specific parser*/
+void		parse_face(t_texture *texture, t_parser *parser);
+void		set_face(t_texture *texture, t_parser *parser, int face);
+void		set_default_face(t_texture *texture, int face);
+
+
 
 /*utility parse functions*/
 void		find_open_bracket(t_parser *parser);
@@ -79,6 +85,8 @@ t_light		light_prototype(void);
 t_object	cube_prototype(void);
 
 /* parse ppm*/
+void		parse_name(t_ppm_image *image, t_parser *parser);
 void		open_ppm(t_ppm_image *image);
+void		read_ppm_contents(t_vec *string, const int file_descriptor);
 
 #endif

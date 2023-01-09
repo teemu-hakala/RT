@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 16:49:47 by deelliot          #+#    #+#             */
-/*   Updated: 2023/01/09 14:03:25 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/01/09 16:18:36 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,15 @@ t_texture	default_external(void)
 		.image[0].height = 0,
 		.image[0].width = 0,
 		.image[0].max_value = 0
+	});
+}
+
+t_pattern	default_pattern(void)
+{
+	return ((t_pattern){
+		.type = PATTERN_NONE,
+		.colour_a = hex_to_tuple_colour(COLOUR_BLACK),
+		.colour_b = hex_to_tuple_colour(COLOUR_WHITE),
+		.transform = default_transform_1()
 	});
 }

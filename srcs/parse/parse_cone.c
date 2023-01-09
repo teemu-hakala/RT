@@ -29,6 +29,14 @@ t_object	cone_prototype(void)
 	});
 }
 
+void	cone_continued(t_object *shape)
+{
+	transform_object(&shape->object.cone.transform);
+	if (shape->object.cone.appearance.texture.type == TEXTURE_CHECKERED)
+		shape->object.cone.appearance.texture.width = \
+			2 * shape->object.cone.appearance.texture.height;
+}
+
 void	parse_cone(t_parser *parser, t_object *shape)
 {
 	if (dispatch_find_subobject_keyword(parser, shape))
@@ -55,8 +63,5 @@ void	parse_cone(t_parser *parser, t_object *shape)
 	}
 	else if (!find_matching_bracket(parser))
 		handle_errors("cone syntax error");
-	transform_object(&shape->object.cone.transform);
-	if (shape->object.cone.appearance.texture.type == TEXTURE_CHECKERED)
-		shape->object.cone.appearance.texture.width = \
-			2 * shape->object.cone.appearance.texture.height;
+	cone_continued(shape);
 }

@@ -1,7 +1,25 @@
 
 #include "RT.h"
 
-void	parse_pattern_type(t_pattern *pattern, t_parser *parser)
+static void	pattern_type_continued(t_pattern *pattern, t_parser *parser)
+{
+	if (ft_strncmp(&parser->string[parser->c], "\"gradient\"", 10) == 0)
+	{
+		parser->c += sizeof("\"gradient\"") - 1;
+		pattern->type = PATTERN_GRADIENT;
+		*pattern = default_gradient_pattern();
+	}
+	else if (ft_strncmp(&parser->string[parser->c], "\"circle\"", 8) == 0)
+	{
+		parser->c += sizeof("\"circle\"") - 1;
+		pattern->type = PATTERN_CIRCLES;
+		*pattern = default_ring_pattern();
+	}
+	else
+		handle_errors("not a pattern type");
+}
+
+static void	parse_pattern_type(t_pattern *pattern, t_parser *parser)
 {
 	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
 	if (ft_strncmp(&parser->string[parser->c], "\"vertical_stripes\"", 18) == 0)
@@ -17,32 +35,15 @@ void	parse_pattern_type(t_pattern *pattern, t_parser *parser)
 		pattern->type = PATTERN_HORIZONTAL_STRIPES;
 		*pattern = default_horizontal_stripe_pattern();
 	}
-	else if (ft_strncmp(&parser->string[parser->c], "\"simple_checkered\"", 18) == 0)
+	else if (ft_strncmp(&parser->string[parser->c], \
+		"\"simple_checkered\"", 18) == 0)
 	{
 		parser->c += sizeof("\"simple_checkered\"") - 1;
 		pattern->type = PATTERN_SIMPLE_CHECKERED;
 		*pattern = default_simple_checkered_pattern();
 	}
-	else if (ft_strncmp(&parser->string[parser->c], "\"gradient\"", 10) == 0)
-	{
-		parser->c += sizeof("\"gradient\"") - 1;
-		pattern->type = PATTERN_GRADIENT;
-		*pattern = default_gradient_pattern();
-	}
-	else if (ft_strncmp(&parser->string[parser->c], "\"circle\"", 8) == 0)
-	{
-		parser->c += sizeof("\"circle\"") - 1;
-		pattern->type = PATTERN_CIRCLES;
-		*pattern = default_ring_pattern();
-	}
-	// else if (ft_strncmp(&parser->string[parser->c], "\"align_check\"", 13) == 0)
-	// {
-	// 	parser->c += sizeof("\"align_check\"") - 1;
-	// 	pattern->type = PATTERN_ALIGN_CHECK;
-	// 	*pattern = default_align_check();
-	// }
 	else
-		handle_errors("not a pattern type");
+		pattern_type_continued(pattern, parser);
 }
 
 static void	find_pattern_keywords(t_pattern *pattern, t_parser *parser)
@@ -68,12 +69,6 @@ static void	find_pattern_keywords(t_pattern *pattern, t_parser *parser)
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "\"transform\"", 10) == 0)
 		parse_transform_subobject(parser, &pattern->transform);
-	// else if (ft_strncmp(&parser->string[parser->c], "\"face\"", 6) == 0)
-	// {
-	// 	parser->c += sizeof("\"face\"") - 1;
-	// 	find_colon(parser);
-	// 	parse_face(pattern, parser);
-	// }
 	else
 		handle_errors("pattern syntax error");
 }

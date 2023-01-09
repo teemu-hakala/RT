@@ -5,53 +5,6 @@
 The PPM file is built in 9 sections separated by white-spaces.
 */
 
-int	check_for_comments(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '#')
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-static void	read_ppm_contents(t_vec *string, const int file_descriptor)
-{
-	char	*line;
-	int		read_bytes;
-	int		gnl_status;
-	char	first;
-
-	first = true;
-	while (1)
-	{
-		gnl_status = gnl_read_ret(file_descriptor, &line, &read_bytes);
-		if (gnl_status == 0)
-			break ;
-		if (gnl_status < 0)
-			handle_errors("DENIED: get_next_line error");
-		if (first)
-		{
-			if (vec_new(string, read_bytes * 4, sizeof(char)) == VEC_ERROR)
-				handle_errors("vec_new error");
-			first = false;
-		}
-		if (check_for_comments(line) == true)
-		{
-			free (line);
-			continue;
-		}
-		if (vec_push_arr(string, line, ft_strlen(line)) == VEC_ERROR)
-			handle_errors("vec_push_arr error");
-		free (line);
-	}
-	if (vec_push_arr(string, "\0", 1) == VEC_ERROR)
-		handle_errors("vec_push_arr error");
-}
 
 void	allocate_pixel_array(t_ppm_image *image)
 {
@@ -122,8 +75,8 @@ void	parse_ppm(t_ppm_image *image, char *str)
 
 void	open_ppm(t_ppm_image *image)
 {
-	t_vec ppm_string_vec;
-	char *str;
+	t_vec	ppm_string_vec;
+	char	*str;
 
 	image->fd = open(image->name, O_RDONLY);
 	if (image->fd < 0)

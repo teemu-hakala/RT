@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 16:49:47 by deelliot          #+#    #+#             */
-/*   Updated: 2022/12/12 15:36:08 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/01/09 16:17:53 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,38 +62,3 @@ t_pattern	default_simple_checkered_pattern(void)
 	});
 }
 
-// t_pattern	default_checkered_pattern(void)
-// {
-// 	return ((t_pattern){
-// 		.type = PATTERN_CHECKERED,
-// 		.width = 4,
-// 		.height = 4,
-// 		.colour_a = hex_to_tuple_colour(COLOUR_BLUE),
-// 		.colour_b = hex_to_tuple_colour(COLOUR_WHITE),
-// 		.transform = default_transform_2()
-// 	});
-// }
-
-// t_pattern	default_align_check(void)
-// {
-// 	return ((t_pattern){
-// 		.type = PATTERN_ALIGN_CHECK,
-// 		.face = 0,
-// 		.main[0] = hex_to_tuple_colour(COLOUR_WHITE),
-// 		.ul[0] = hex_to_tuple_colour(COLOUR_WHITE),
-// 		.ur[0] = hex_to_tuple_colour(COLOUR_WHITE),
-// 		.bl[0] = hex_to_tuple_colour(COLOUR_WHITE),
-// 		.br[0] = hex_to_tuple_colour(COLOUR_WHITE),
-// 		.transform = default_transform_2()
-// 	});
-// }
-
-t_pattern	default_pattern(void)
-{
-	return ((t_pattern){
-		.type = PATTERN_NONE,
-		.colour_a = hex_to_tuple_colour(COLOUR_BLACK),
-		.colour_b = hex_to_tuple_colour(COLOUR_WHITE),
-		.transform = default_transform_1()
-	});
-}

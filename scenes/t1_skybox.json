@@ -1,773 +1,99 @@
 {
 	"camera" :
 	{
-		"origin" : [0, 0, -20],
+		"origin" : [0, 0, 0],
 		"transform" :
 		{
 			"translation": [0, 0, 0],
 			"rotation": [0, 0, 0],
 			"scale": [1, 1, 1]
 		},
-		"center_of_interest" : [0, 0, 0],
-		"field_of_view" : 0.8
+		"center_of_interest" : [0, 0, 5],
+		"field_of_view" : 1.2
 	},
 	"lights" :
 	[
 		{
 			"light" :
 			{
-				"position" : [0, 100, -100],
-				"intensity" : [0.25, 0.25, 0.25]
-			}
-		},
-		{
-			"light" :
-			{
-				"position" : [0, -100, -100],
-				"intensity" : [0.25, 0.25, 0.25]
-			}
-		},
-		{
-			"light" :
-			{
-				"position" : [-100, 0, -100],
-				"intensity" : [0.25, 0.25, 0.25]
-			}
-		},
-		{
-			"light" :
-			{
-				"position" : [100, 0, -100],
-				"intensity" : [0.25, 0.25, 0.25]
+				"position" : [0, 100, 0],
+				"intensity" : [1, 1, 1]
 			}
 		}
 	],
 	"shapes" :
 	[
 		{
+			"sphere" :
+			{
+				"transform" :
+				{
+					"scale" : [0.75, 0.75, 0.75],
+					"translation" : [0, 0, 5]
+				},
+				"material" :
+				{
+					"diffuse" : 0.4,
+					"specular" : 0.6,
+					"shininess" : 20,
+					"ambient" : 0.6
+				}
+			}
+		},
+		{
 			"cube" :
 			{
 				"transform" :
 				{
-					"translation" : [-6, 2, 0],
-					"rotation" : [0.7854, 0.7854, 0],
-					"scale" : [1, 1, 1]
+					"scale" : [1000, 1000, 1000]
 				},
 				"material" :
 				{
-					"ambient" : 0.2,
-					"diffuse" : 0.8,
-					"specular" : 0,
-					"shininess" : 200,
-					"init_colour" : [0.42, 0.55, 0.59]
+					"ambient" :1,
+					"diffuse" : 0,
+					"specular" : 0
 				},
 				"appearance" :
 				{
 					"texture" :
 					{
 						"type" : "external",
-						"name" : "textures/earthmap.ppm",
 						"face" :
 						[
 							{
 								"left" :
 								{
-									"name" : "textures/earthmap.ppm"
-								}
-							},
-							{
-								"front" :
-								{
-									"name" : "textures/earthmap.ppm"
+									"name" : "textures/skybox/negx.ppm"
 								}
 							},
 							{
 								"right" :
 								{
-									"name" : "textures/earthmap.ppm"
-								}
-							},
-							{
-								"back" :
-								{
-									"name" : "textures/earthmap.ppm"
-								}
-							},
-							{
-								"up" :
-								{
-									"name" : "textures/earthmap.ppm"
-								}
-							},
-							{
-								"down" :
-								{
-									"name" : "textures/earthmap.ppm"
-								}
-							}
-						]
-					}
-				}
-			}
-		},
-		{
-			"cube" :
-			{
-				"transform" :
-				{
-					"translation" : [-2, 2, 0],
-					"rotation" : [0.7854, 2.3562, 0],
-					"scale" : [1, 1, 1]
-				},
-				"material" :
-				{
-					"ambient" : 0.2,
-					"diffuse" : 0.8,
-					"specular" : 0,
-					"shininess" : 200,
-					"init_colour" : [0.42, 0.55, 0.59]
-				},
-				"appearance" :
-				{
-					"texture" :
-					{
-						"type" : "align_check",
-						"transform" :
-						{
-							"translation" : [0, 0, 0],
-							"rotation" : [0, 0, 0],
-							"scale" : [1, 1, 1]
-						},
-						"face" :
-						[
-							{
-								"left" :
-								{
-									"main" : [1, 1, 0],
-									"ul": [0, 1, 1],
-									"ur": [1, 0, 0],
-									"bl": [0, 0, 1],
-									"br": [1, 0.5, 0]
+									"name" : "textures/skybox/posx.ppm"
 								}
 							},
 							{
 								"front" :
 								{
-									"main" : [0, 1, 1],
-									"ul": [1, 0, 0],
-									"ur": [1, 1, 0],
-									"bl": [1, 0.5, 0],
-									"br": [0, 1, 0]
-								}
-							},
-							{
-								"right" :
-								{
-									"main" : [1, 0, 0],
-									"ul": [1, 1, 0],
-									"ur": [1, 0, 1],
-									"bl": [0, 1, 0],
-									"br": [1, 1, 1]
+									"name" : "textures/skybox/posz.ppm"
 								}
 							},
 							{
 								"back" :
 								{
-									"main" : [0, 1, 0],
-									"ul": [1, 0, 1],
-									"ur": [0, 1, 1],
-									"bl": [1, 1, 1],
-									"br": [0, 0, 1]
+									"name" : "textures/skybox/negz.ppm"
 								}
 							},
 							{
 								"up" :
 								{
-									"main" : [1, 0.5, 0],
-									"ul": [0, 1, 1],
-									"ur": [1, 0, 1],
-									"bl": [1, 0, 0],
-									"br": [1, 1, 0]
+									"name" : "textures/skybox/posy.ppm"
 								}
 							},
 							{
 								"down" :
 								{
-									"main" : [1, 0, 1],
-									"ul": [1, 0.5, 0],
-									"ur": [0, 1, 0],
-									"bl": [0, 0, 1],
-									"br": [1, 1, 1]
-								}
-							}
-						]
-					}
-				}
-			}
-		},
-		{
-			"cube" :
-			{
-				"transform" :
-				{
-					"translation" : [2, 2, 0],
-					"rotation" : [0.7854, 3.927, 0],
-					"scale" : [1, 1, 1]
-				},
-				"material" :
-				{
-					"ambient" : 0.2,
-					"diffuse" : 0.8,
-					"specular" : 0,
-					"shininess" : 200,
-					"init_colour" : [0.42, 0.55, 0.59]
-				},
-				"appearance" :
-				{
-					"texture" :
-					{
-						"type" : "align_check",
-						"transform" :
-						{
-							"translation" : [0, 0, 0],
-							"rotation" : [0, 0, 0],
-							"scale" : [1, 1, 1]
-						},
-						"face" :
-						[
-							{
-								"left" :
-								{
-									"main" : [1, 1, 0],
-									"ul": [0, 1, 1],
-									"ur": [1, 0, 0],
-									"bl": [0, 0, 1],
-									"br": [1, 0.5, 0]
-								}
-							},
-							{
-								"front" :
-								{
-									"main" : [0, 1, 1],
-									"ul": [1, 0, 0],
-									"ur": [1, 1, 0],
-									"bl": [1, 0.5, 0],
-									"br": [0, 1, 0]
-								}
-							},
-							{
-								"right" :
-								{
-									"main" : [1, 0, 0],
-									"ul": [1, 1, 0],
-									"ur": [1, 0, 1],
-									"bl": [0, 1, 0],
-									"br": [1, 1, 1]
-								}
-							},
-							{
-								"back" :
-								{
-									"main" : [0, 1, 0],
-									"ul": [1, 0, 1],
-									"ur": [0, 1, 1],
-									"bl": [1, 1, 1],
-									"br": [0, 0, 1]
-								}
-							},
-							{
-								"up" :
-								{
-									"main" : [1, 0.5, 0],
-									"ul": [0, 1, 1],
-									"ur": [1, 0, 1],
-									"bl": [1, 0, 0],
-									"br": [1, 1, 0]
-								}
-							},
-							{
-								"down" :
-								{
-									"main" : [1, 0, 1],
-									"ul": [1, 0.5, 0],
-									"ur": [0, 1, 0],
-									"bl": [0, 0, 1],
-									"br": [1, 1, 1]
-								}
-							}
-						]
-					}
-				}
-			}
-		},
-		{
-			"cube" :
-			{
-				"transform" :
-				{
-					"translation" : [6, 2, 0],
-					"rotation" : [0.7854, 5.4978, 0],
-					"scale" : [1, 1, 1]
-				},
-				"material" :
-				{
-					"ambient" : 0.2,
-					"diffuse" : 0.8,
-					"specular" : 0,
-					"shininess" : 200,
-					"init_colour" : [0.42, 0.55, 0.59]
-				},
-				"appearance" :
-				{
-					"texture" :
-					{
-						"type" : "align_check",
-						"transform" :
-						{
-							"translation" : [0, 0, 0],
-							"rotation" : [0, 0, 0],
-							"scale" : [1, 1, 1]
-						},
-						"face" :
-						[
-							{
-								"left" :
-								{
-									"main" : [1, 1, 0],
-									"ul": [0, 1, 1],
-									"ur": [1, 0, 0],
-									"bl": [0, 0, 1],
-									"br": [1, 0.5, 0]
-								}
-							},
-							{
-								"front" :
-								{
-									"main" : [0, 1, 1],
-									"ul": [1, 0, 0],
-									"ur": [1, 1, 0],
-									"bl": [1, 0.5, 0],
-									"br": [0, 1, 0]
-								}
-							},
-							{
-								"right" :
-								{
-									"main" : [1, 0, 0],
-									"ul": [1, 1, 0],
-									"ur": [1, 0, 1],
-									"bl": [0, 1, 0],
-									"br": [1, 1, 1]
-								}
-							},
-							{
-								"back" :
-								{
-									"main" : [0, 1, 0],
-									"ul": [1, 0, 1],
-									"ur": [0, 1, 1],
-									"bl": [1, 1, 1],
-									"br": [0, 0, 1]
-								}
-							},
-							{
-								"up" :
-								{
-									"main" : [1, 0.5, 0],
-									"ul": [0, 1, 1],
-									"ur": [1, 0, 1],
-									"bl": [1, 0, 0],
-									"br": [1, 1, 0]
-								}
-							},
-							{
-								"down" :
-								{
-									"main" : [1, 0, 1],
-									"ul": [1, 0.5, 0],
-									"ur": [0, 1, 0],
-									"bl": [0, 0, 1],
-									"br": [1, 1, 1]
-								}
-							}
-						]
-					}
-				}
-			}
-		},
-		{
-			"cube" :
-			{
-				"transform" :
-				{
-					"translation" : [-6, -2, 0],
-					"rotation" : [-0.7854, 0.7854, 0],
-					"scale" : [1, 1, 1]
-				},
-				"material" :
-				{
-					"ambient" : 0.2,
-					"diffuse" : 0.8,
-					"specular" : 0,
-					"shininess" : 200,
-					"init_colour" : [0.42, 0.55, 0.59]
-				},
-				"appearance" :
-				{
-					"texture" :
-					{
-						"type" : "align_check",
-						"transform" :
-						{
-							"translation" : [0, 0, 0],
-							"rotation" : [0, 0, 0],
-							"scale" : [1, 1, 1]
-						},
-						"face" :
-						[
-							{
-								"left" :
-								{
-									"main" : [1, 1, 0],
-									"ul": [0, 1, 1],
-									"ur": [1, 0, 0],
-									"bl": [0, 0, 1],
-									"br": [1, 0.5, 0]
-								}
-							},
-							{
-								"front" :
-								{
-									"main" : [0, 1, 1],
-									"ul": [1, 0, 0],
-									"ur": [1, 1, 0],
-									"bl": [1, 0.5, 0],
-									"br": [0, 1, 0]
-								}
-							},
-							{
-								"right" :
-								{
-									"main" : [1, 0, 0],
-									"ul": [1, 1, 0],
-									"ur": [1, 0, 1],
-									"bl": [0, 1, 0],
-									"br": [1, 1, 1]
-								}
-							},
-							{
-								"back" :
-								{
-									"main" : [0, 1, 0],
-									"ul": [1, 0, 1],
-									"ur": [0, 1, 1],
-									"bl": [1, 1, 1],
-									"br": [0, 0, 1]
-								}
-							},
-							{
-								"up" :
-								{
-									"main" : [1, 0.5, 0],
-									"ul": [0, 1, 1],
-									"ur": [1, 0, 1],
-									"bl": [1, 0, 0],
-									"br": [1, 1, 0]
-								}
-							},
-							{
-								"down" :
-								{
-									"main" : [1, 0, 1],
-									"ul": [1, 0.5, 0],
-									"ur": [0, 1, 0],
-									"bl": [0, 0, 1],
-									"br": [1, 1, 1]
-								}
-							}
-						]
-					}
-				}
-			}
-		},
-		{
-			"cube" :
-			{
-				"transform" :
-				{
-					"translation" : [-2, -2, 0],
-					"rotation" : [-0.7854, 2.3562, 0],
-					"scale" : [1, 1, 1]
-				},
-				"material" :
-				{
-					"ambient" : 0.2,
-					"diffuse" : 0.8,
-					"specular" : 0,
-					"shininess" : 200,
-					"init_colour" : [0.42, 0.55, 0.59]
-				},
-				"appearance" :
-				{
-					"texture" :
-					{
-						"type" : "align_check",
-						"transform" :
-						{
-							"translation" : [0, 0, 0],
-							"rotation" : [0, 0, 0],
-							"scale" : [1, 1, 1]
-						},
-						"face" :
-						[
-							{
-								"left" :
-								{
-									"main" : [1, 1, 0],
-									"ul": [0, 1, 1],
-									"ur": [1, 0, 0],
-									"bl": [0, 0, 1],
-									"br": [1, 0.5, 0]
-								}
-							},
-							{
-								"front" :
-								{
-									"main" : [0, 1, 1],
-									"ul": [1, 0, 0],
-									"ur": [1, 1, 0],
-									"bl": [1, 0.5, 0],
-									"br": [0, 1, 0]
-								}
-							},
-							{
-								"right" :
-								{
-									"main" : [1, 0, 0],
-									"ul": [1, 1, 0],
-									"ur": [1, 0, 1],
-									"bl": [0, 1, 0],
-									"br": [1, 1, 1]
-								}
-							},
-							{
-								"back" :
-								{
-									"main" : [0, 1, 0],
-									"ul": [1, 0, 1],
-									"ur": [0, 1, 1],
-									"bl": [1, 1, 1],
-									"br": [0, 0, 1]
-								}
-							},
-							{
-								"up" :
-								{
-									"main" : [1, 0.5, 0],
-									"ul": [0, 1, 1],
-									"ur": [1, 0, 1],
-									"bl": [1, 0, 0],
-									"br": [1, 1, 0]
-								}
-							},
-							{
-								"down" :
-								{
-									"main" : [1, 0, 1],
-									"ul": [1, 0.5, 0],
-									"ur": [0, 1, 0],
-									"bl": [0, 0, 1],
-									"br": [1, 1, 1]
-								}
-							}
-						]
-					}
-				}
-			}
-		},
-		{
-			"cube" :
-			{
-				"transform" :
-				{
-					"translation" : [2, -2, 0],
-					"rotation" : [-0.7854, 3.927, 0],
-					"scale" : [1, 1, 1]
-				},
-				"material" :
-				{
-					"ambient" : 0.2,
-					"diffuse" : 0.8,
-					"specular" : 0,
-					"shininess" : 200,
-					"init_colour" : [0.42, 0.55, 0.59]
-				},
-				"appearance" :
-				{
-					"texture" :
-					{
-						"type" : "align_check",
-						"transform" :
-						{
-							"translation" : [0, 0, 0],
-							"rotation" : [0, 0, 0],
-							"scale" : [1, 1, 1]
-						},
-						"face" :
-						[
-							{
-								"left" :
-								{
-									"main" : [1, 1, 0],
-									"ul": [0, 1, 1],
-									"ur": [1, 0, 0],
-									"bl": [0, 0, 1],
-									"br": [1, 0.5, 0]
-								}
-							},
-							{
-								"front" :
-								{
-									"main" : [0, 1, 1],
-									"ul": [1, 0, 0],
-									"ur": [1, 1, 0],
-									"bl": [1, 0.5, 0],
-									"br": [0, 1, 0]
-								}
-							},
-							{
-								"right" :
-								{
-									"main" : [1, 0, 0],
-									"ul": [1, 1, 0],
-									"ur": [1, 0, 1],
-									"bl": [0, 1, 0],
-									"br": [1, 1, 1]
-								}
-							},
-							{
-								"back" :
-								{
-									"main" : [0, 1, 0],
-									"ul": [1, 0, 1],
-									"ur": [0, 1, 1],
-									"bl": [1, 1, 1],
-									"br": [0, 0, 1]
-								}
-							},
-							{
-								"up" :
-								{
-									"main" : [1, 0.5, 0],
-									"ul": [0, 1, 1],
-									"ur": [1, 0, 1],
-									"bl": [1, 0, 0],
-									"br": [1, 1, 0]
-								}
-							},
-							{
-								"down" :
-								{
-									"main" : [1, 0, 1],
-									"ul": [1, 0.5, 0],
-									"ur": [0, 1, 0],
-									"bl": [0, 0, 1],
-									"br": [1, 1, 1]
-								}
-							}
-						]
-					}
-				}
-			}
-		},
-		{
-			"cube" :
-			{
-				"transform" :
-				{
-					"translation" : [6, -2, 0],
-					"rotation" : [-0.7854, 5.4978, 0],
-					"scale" : [1, 1, 1]
-				},
-				"material" :
-				{
-					"ambient" : 0.2,
-					"diffuse" : 0.8,
-					"specular" : 0,
-					"shininess" : 200,
-					"init_colour" : [0.42, 0.55, 0.59]
-				},
-				"appearance" :
-				{
-				"texture" :
-					{
-						"type" : "align_check",
-						"transform" :
-						{
-							"translation" : [0, 0, 0],
-							"rotation" : [0, 0, 0],
-							"scale" : [1, 1, 1]
-						},
-						"face" :
-						[
-							{
-								"left" :
-								{
-									"main" : [1, 1, 0],
-									"ul": [0, 1, 1],
-									"ur": [1, 0, 0],
-									"bl": [0, 0, 1],
-									"br": [1, 0.5, 0]
-								}
-							},
-							{
-								"front" :
-								{
-									"main" : [0, 1, 1],
-									"ul": [1, 0, 0],
-									"ur": [1, 1, 0],
-									"bl": [1, 0.5, 0],
-									"br": [0, 1, 0]
-								}
-							},
-							{
-								"right" :
-								{
-									"main" : [1, 0, 0],
-									"ul": [1, 1, 0],
-									"ur": [1, 0, 1],
-									"bl": [0, 1, 0],
-									"br": [1, 1, 1]
-								}
-							},
-							{
-								"back" :
-								{
-									"main" : [0, 1, 0],
-									"ul": [1, 0, 1],
-									"ur": [0, 1, 1],
-									"bl": [1, 1, 1],
-									"br": [0, 0, 1]
-								}
-							},
-							{
-								"up" :
-								{
-									"main" : [1, 0.5, 0],
-									"ul": [0, 1, 1],
-									"ur": [1, 0, 1],
-									"bl": [1, 0, 0],
-									"br": [1, 1, 0]
-								}
-							},
-							{
-								"down" :
-								{
-									"main" : [1, 0, 1],
-									"ul": [1, 0.5, 0],
-									"ur": [0, 1, 0],
-									"bl": [0, 0, 1],
-									"br": [1, 1, 1]
+									"name" : "textures/skybox/negy.ppm"
 								}
 							}
 						]

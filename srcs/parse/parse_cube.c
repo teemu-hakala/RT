@@ -39,4 +39,3 @@ void	parse_cube(t_parser *parser, t_object *shape)
 		handle_errors("cube syntax error");
 	transform_object(&shape->object.cube.transform);
 }
-

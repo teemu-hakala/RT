@@ -231,6 +231,11 @@ t_uv_map	cylindrical_map(t_tuple *p);
 t_uv_map	conical_map(t_tuple *p);
 t_uv_map	cubic_map(t_tuple *p, t_texture *texture);
 
+int			face_from_point(t_tuple *p);
+t_uv_map	cube_uv_right(t_tuple *p);
+t_uv_map	cube_uv_up(t_tuple *p);
+t_uv_map	cube_uv_down(t_tuple *p);
+
 /* parsing */
 double		rt_atof(t_parser *parser);
 int			rt_atoi(t_parser *parser);

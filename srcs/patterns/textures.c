@@ -11,8 +11,8 @@ void	no_texture_at(t_texture *texture, t_material *material, t_uv_map *map)
 
 void	checkered_at(t_texture *texture, t_material *material, t_uv_map *map)
 {
-	uint32_t u2;
-	uint32_t v2;
+	uint32_t	u2;
+	uint32_t	v2;
 
 	u2 = floor(map->u * texture->width);
 	v2 = floor(map->v * texture->height);

@@ -30,6 +30,14 @@ t_object	cylinder_prototype(void)
 	});
 }
 
+void	cylinder_continued(t_object *shape)
+{
+	transform_object(&shape->object.cylinder.transform);
+	if (shape->object.cylinder.appearance.texture.type == TEXTURE_CHECKERED)
+		shape->object.cylinder.appearance.texture.width = \
+			2 * shape->object.cylinder.appearance.texture.height;
+}
+
 void	parse_cylinder(t_parser *parser, t_object *shape)
 {
 	if (dispatch_find_subobject_keyword(parser, shape))
@@ -56,8 +64,5 @@ void	parse_cylinder(t_parser *parser, t_object *shape)
 	}
 	else if (!find_matching_bracket(parser))
 		handle_errors("cylinder syntax error");
-	transform_object(&shape->object.cylinder.transform);
-	if (shape->object.cylinder.appearance.texture.type == TEXTURE_CHECKERED)
-		shape->object.cylinder.appearance.texture.width = \
-			2 * shape->object.cylinder.appearance.texture.height;
+	cylinder_continued(shape);
 }

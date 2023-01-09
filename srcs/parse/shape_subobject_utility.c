@@ -25,7 +25,8 @@ int	cylinder_subobject_keywords(t_parser *parser, t_object *shape)
 {
 	return (find_subobject_keyword(parser,
 			&shape->object.cylinder.transform,
-			&shape->object.cylinder.material, &shape->object.cylinder.appearance));
+			&shape->object.cylinder.material, \
+			&shape->object.cylinder.appearance));
 }
 
 int	cube_subobject_keywords(t_parser *parser, t_object *shape)

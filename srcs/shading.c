@@ -97,8 +97,9 @@ void	shade_cylinder(t_world *world, void *cylinder, t_tuple *colour,
 		.material = ((t_cylinder *)cylinder)->material
 	};
 	pattern_at(&((t_cylinder *)cylinder)->appearance.pattern, \
-		&((t_cylinder *)cylinder)->material, ((t_cylinder *)cylinder)->transform, \
-		&world->hit.computations.over_point);
+		&((t_cylinder *)cylinder)->material, \
+			((t_cylinder *)cylinder)->transform, \
+			&world->hit.computations.over_point);
 	temp = transform_point(&world->hit.computations.over_point, \
 		&((t_cylinder *)cylinder)->transform,
 			&((t_cylinder *)cylinder)->appearance.texture.transform);
