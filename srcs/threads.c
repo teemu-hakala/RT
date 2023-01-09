@@ -59,7 +59,7 @@ void	*render_n_pixels(void *param)
 	}
 	return (NULL);
 }
-# define THREAD_COUNT 32
+# define THREAD_COUNT 12
 # define PIXEL_COUNT ((WIDTH * HEIGHT) / THREAD_COUNT)
 
 void	threaded_loop(t_win *win)
@@ -67,10 +67,9 @@ void	threaded_loop(t_win *win)
 	pthread_t				thread_id[THREAD_COUNT];
 	static t_renderer_info	renderer_info[THREAD_COUNT];
 	uint16_t				thread_count;
-	t_canvas				from;
+	t_canvas_64				from;
 
-	printf("PIXEL_COUNT: %i\n", PIXEL_COUNT);
-	from = (t_canvas){.vertical = 0, .horizontal = 0};
+	from = (t_canvas_64){.vertical = 0, .horizontal = 0};
 	thread_count = 0;
 	while (thread_count < THREAD_COUNT)
 	{

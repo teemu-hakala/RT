@@ -22,7 +22,7 @@ typedef struct s_renderer_info
 {
 	t_win		*win;
 	t_camera	*camera;
-	t_canvas	from;
+	t_canvas_64	from;
 	uint64_t	pixels;
 	pthread_t	thread_id;
 }	t_renderer_info;
