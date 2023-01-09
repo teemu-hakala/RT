@@ -51,6 +51,7 @@ void		parse_transform_subobject(t_parser *parser, t_transform *transform);
 void		parse_material(t_material *material, t_parser *parser);
 void		parse_pattern(t_pattern *pattern, t_parser *parser);
 void		parse_texture(t_texture *texture, t_parser *parser);
+void		find_name(t_ppm_image *image, t_parser *parser);
 void		parse_face(t_texture *texture, t_parser *parser);
 int			cone_and_cylinder_objects(t_parser *parser, t_object *object);
 

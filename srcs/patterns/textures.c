@@ -49,7 +49,8 @@ void	external_at(t_texture *texture, t_material *material, t_uv_map *map)
 	t_fl	y;
 
 	map->v = 1 - map->v;
-	x = map->u * (texture->image.width - 1);
-	y = map->v * (texture->image.height - 1);
-	material->final_colour = texture->image.pixels[(int)y][(int)x];
+	x = map->u * (texture->image[texture->face].width - 1);
+	y = map->v * (texture->image[texture->face].height - 1);
+	material->final_colour = \
+		texture->image[texture->face].pixels[(int)y][(int)x];
 }

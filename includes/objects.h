@@ -43,7 +43,7 @@ typedef struct s_transform
 
 typedef struct s_ppm_image
 {
-int			fd;
+	int		fd;
 	char	*name;
 	int		height;
 	int		width;
@@ -66,7 +66,7 @@ typedef struct s_texture
 	t_tuple				bl[6];
 	t_uv_map			map;
 	t_transform			transform; //maybe
-	t_ppm_image			image;
+	t_ppm_image			image[6];
 }				t_texture;
 
 typedef struct s_pattern

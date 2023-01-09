@@ -5,7 +5,7 @@
 The PPM file is built in 9 sections separated by white-spaces.
 */
 
-int check_for_comments(char *str)
+int	check_for_comments(char *str)
 {
 	int	i;
 
