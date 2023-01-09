@@ -26,6 +26,7 @@ typedef struct s_renderer_info
 	uint64_t	pixels;
 	pthread_t	thread_id;
 	uint64_t	frame;
+	uint64_t	*current_frame;
 }	t_renderer_info;
 
 typedef enum e_frame_check
