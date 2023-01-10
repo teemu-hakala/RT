@@ -38,10 +38,10 @@ void	render_n_pixels_inc(t_win *win, t_camera *camera, t_canvas from, \
 	}
 }
 
-t_img	progress_bar_image(t_win *win, t_canvas *bar_dimensions)
+t_img	progress_bar_image(t_win *win, t_canvas *bar_dimensions, uint8_t flag)
 {
-	static t_img	bar_img = {};
-	t_rectangle		filler;
+	static t_img		bar_img = {};
+	static t_rectangle	filler;
 
 	if (bar_img.img == NULL)
 	{
@@ -54,8 +54,10 @@ t_img	progress_bar_image(t_win *win, t_canvas *bar_dimensions)
 		if (bar_img.addr == NULL)
 			handle_errors("bar_img.addr got NULL");
 		filler = (t_rectangle){{}, *bar_dimensions, {}};
-		put_rectangle_to_image(bar_img, filler, filler, (t_tuple){.tuple.colour = {0, 0, 0, 1}});
 	}
+	if (flag & BAR_CLEAR || bar_img.img == NULL)
+		put_rectangle_to_image(bar_img, filler, filler, \
+			(t_tuple){.tuple.colour = {0, 0, 0, 1}});
 	return (bar_img);
 }
 
@@ -70,11 +72,11 @@ int	incremental_loop(t_win *win)
 		return (0);
 	}
 	render_n_pixels_inc(win, &win->world.camera, canvas, WIDTH * 1);
-	progress_bar(progress_bar_image(win, &(t_canvas){.horizontal = WIDTH - 20, .vertical = 20}), (t_fl)canvas.vertical / \
-		win->world.camera.canvas.vertical);
+	progress_bar(progress_bar_image(win, &(t_canvas){.horizontal = WIDTH - 20, .vertical = 20}, BAR_NON_ACTION), (t_fl)canvas.vertical / \
+		win->world.camera.canvas.vertical, 0);
 	canvas.vertical += 1;
 	mlx_put_image_to_window(win->mlx, win->win, win->img.img, 0, 0);
-	mlx_put_image_to_window(win->mlx, win->win, progress_bar_image(win, NULL).img, 10, HEIGHT / 2 - 10);
+	mlx_put_image_to_window(win->mlx, win->win, progress_bar_image(win, NULL, BAR_NON_ACTION).img, 10, HEIGHT / 2 - 10);
 	// printf("[%hu, %hu]\n", canvas.vertical, canvas.horizontal);
 	return (0);
 }

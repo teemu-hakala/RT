@@ -55,9 +55,8 @@ void	put_rectangle_to_image(t_img img, t_rectangle image,
 	}
 }
 
-void	progress_bar(t_img img, t_fl progress_percentage)
+void	progress_bar(t_img img, t_fl progress_percentage, t_fl prev_perc)
 {
-	static t_fl	prev_perc = 0;
 	t_rectangle	image_bounds;
 	t_rectangle	rectangle;
 	t_tuple		colour;

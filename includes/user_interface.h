@@ -23,11 +23,17 @@ typedef struct s_rectangle
 	t_canvas	canvas;
 }	t_rectangle;
 
+enum e_progress_bar_flag
+{
+	BAR_NON_ACTION = 0b0,
+	BAR_CLEAR = 0b1
+};
 
 void	put_rectangle_to_image(t_img img, t_rectangle image,
 	t_rectangle rect, t_tuple colour);
-void	progress_bar(t_img img, t_fl progress_percentage);
+void	progress_bar(t_img img, t_fl progress_percentage, t_fl prev_perc);
 void	toggle_key_user_interface(t_win *win);
-t_img	progress_bar_image(t_win *win, t_canvas *bar_dimensions);
+t_img	progress_bar_image(t_win *win, t_canvas *bar_dimensions, uint8_t flag);
+void	*progress_percentage(void *param);
 
 #endif

@@ -64,13 +64,16 @@ typedef struct s_pixel_index
 
 typedef struct s_win
 {
-	t_img		img;
-	void		*mlx;
-	void		*win;
-	int			fd;
-	t_world		world;
-	t_input		input;
-	t_progress	*progress;
+	t_img			img;
+	void			*mlx;
+	void			*win;
+	int				fd;
+	t_world			world;
+	t_input			input;
+	t_progress		*progress;
+	int8_t			drawn;
+	pthread_t		bar_thread;
+	pthread_mutex_t	drawn_mutex;
 }	t_win;
 
 typedef void	(*t_intersect_function)(t_ray, void *, t_world *);
