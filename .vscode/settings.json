@@ -27,6 +27,7 @@
 		"tuple": "c",
 		"__bit_reference": "c",
 		"chrono": "c",
-		"pthread.h": "c"
+		"pthread.h": "c",
+		"parse.h": "c"
 	}
 }

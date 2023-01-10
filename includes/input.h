@@ -37,6 +37,13 @@ enum e_mouse
 	SCROLL_UP = 5
 };
 
+enum e_key
+{
+	KEY_LEFT_COMMAND = 259,
+	KEY_RIGHT_COMMAND = 260,
+	KEY_TABULATOR = 48
+};
+
 typedef struct s_point
 {
 	int		row;
@@ -66,4 +73,6 @@ int		mouse_handler_down(int button, int x, int y, t_win *win);
 int		mouse_handler_move(int x, int y, t_win *win);
 int		mouse_handler_up(int button, int x, int y, t_win *win);
 void	navigate_camera(t_win *win);
+char	command_key_state(int change_state);
+
 #endif

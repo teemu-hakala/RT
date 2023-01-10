@@ -44,7 +44,7 @@ typedef struct s_colour_channels
 	t_fl	r;
 	t_fl	g;
 	t_fl	b;
-	t_fl	w;
+	t_fl	a;
 }	t_colour;
 
 typedef struct s_units_of_axial_rotation

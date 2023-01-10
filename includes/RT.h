@@ -25,6 +25,7 @@
 # include "parse.h"
 # include "input.h"
 # include "threads.h"
+# include "user_interface.h"
 
 # define USAGE "./RT ./scenes/[.json file]"
 # define WIDTH 501
@@ -41,11 +42,12 @@
 
 typedef struct s_img
 {
-	void	*img;
-	char	*addr;
-	int		bpp;
-	int		length;
-	int		endian;
+	void		*img;
+	char		*addr;
+	int			bpp;
+	int			length;
+	int			endian;
+	t_rectangle	dimensions;
 }	t_img;
 
 typedef struct s_coords
@@ -115,11 +117,12 @@ void		initialise_world(t_world *world);
 void		initialise_window(t_win *win);
 
 /* handle input*/
-int			handle_input(int key);
+int			handle_input(int key, t_win *win);
 
 /* colour and lighting*/
 t_tuple		hex_to_tuple_colour(uint32_t colour);
 uint32_t	clamped_rgb_to_hex(t_colour *colour);
+uint32_t	clamped_rgba_to_hex(t_colour *colour);
 t_tuple		lighting(t_info *lighting_info, t_light *light, t_phong vectors,
 				t_tuple point);
 void		is_shadow(t_world *world, t_tuple point, t_light *light);
@@ -189,5 +192,8 @@ void		transform_camera_for_rotations(t_camera *camera);
 /* parsing */
 double		rt_atof(t_parser *parser);
 int			rt_atoi(t_parser *parser);
+
+/* loops */
+int			incremental_loop(t_win *win);
 
 #endif

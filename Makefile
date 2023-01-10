@@ -6,7 +6,7 @@
 #    By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2023/01/09 21:57:42 by thakala          ###   ########.fr        #
+#    Updated: 2023/01/10 18:26:03 by thakala          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -191,6 +191,9 @@ FILES = \
 	threads.c \
 	put_image.c \
 	threads_mid.c \
+	loop.c \
+	progress_bar.c \
+	key_handlers.c \
 
 OBJS = $(addprefix $(OBJS_DIR)/, \
 	$(addprefix $(PARSE_DIR)/, $(PARSE_SRCS:.c=.o)) \
