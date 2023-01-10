@@ -89,6 +89,7 @@ void	*render_n_pixels(void *param)
 }
 # define THREAD_COUNT 64
 # define PIXEL_COUNT ((WIDTH * HEIGHT) / THREAD_COUNT)
+# define REMAINING_PIXELS (WIDTH * HEIGHT - THREAD_COUNT * PIXEL_COUNT)
 
 void	threaded_loop(t_win *win)
 {
@@ -102,7 +103,7 @@ void	threaded_loop(t_win *win)
 	frame++;
 	from = (t_canvas_64){.vertical = 0, .horizontal = 0};
 	thread_count = 0;
-	while (thread_count < THREAD_COUNT)
+	while (thread_count < THREAD_COUNT - 1)
 	{
 		renderer_info[thread_count] = (t_renderer_info){.win = win, \
 			.camera = &win->world.camera, .from = from, .pixels = PIXEL_COUNT, \
@@ -115,4 +116,10 @@ void	threaded_loop(t_win *win)
 		from.horizontal %= win->world.camera.canvas.horizontal;
 		thread_count++;
 	}
+	renderer_info[thread_count] = (t_renderer_info){.win = win, \
+		.camera = &win->world.camera, .from = from, .pixels = PIXEL_COUNT + \
+		REMAINING_PIXELS, .thread_id = thread_id[thread_count], .frame = \
+		frame, .current_frame = &frame};
+	pthread_create(&thread_id[thread_count], NULL, render_n_pixels, \
+		&renderer_info[thread_count]);
 }
