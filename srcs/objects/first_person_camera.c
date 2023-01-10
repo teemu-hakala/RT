@@ -27,6 +27,7 @@ void	navigate_camera(t_win *win)
 {
 	first_person_camera(win);
 	// threaded_loop_mid(win);
-	threaded_loop(win);
+	if (win->progress != NULL)
+		threaded_loop(win, win->progress);
 	//render(win, &win->world.camera);
 }

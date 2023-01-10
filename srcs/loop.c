@@ -38,7 +38,7 @@ void	render_n_pixels_inc(t_win *win, t_camera *camera, t_canvas from, \
 	}
 }
 
-static t_img	progress_bar_image(t_win *win, t_canvas *bar_dimensions)
+t_img	progress_bar_image(t_win *win, t_canvas *bar_dimensions)
 {
 	static t_img	bar_img = {};
 	t_rectangle		filler;

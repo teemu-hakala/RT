@@ -60,10 +60,13 @@ void	*render_n_pixels(void *param)
 	world_safe = world_selectively_shallow_copy(&info.win->world);
 	canvas.vertical = info.from.vertical;
 	canvas.horizontal = info.from.horizontal;
+	pthread_mutex_lock(&info.progress->mutex);
+	info.progress->pixels = 0;
 	while (canvas.vertical < info.camera->canvas.vertical)
 	{
 		while (canvas.horizontal < info.camera->canvas.horizontal)
 		{
+			pthread_mutex_unlock(&info.progress->mutex);
 			world_safe.ray = ray_for_pixel(info.camera, canvas);
 			colour = colour_at(&world_safe);
 			if (info.frame != *info.current_frame)
@@ -76,22 +79,23 @@ void	*render_n_pixels(void *param)
 			img_pixel_put(info.win, canvas.horizontal, canvas.vertical,
 				clamped_rgb_to_hex(&colour.tuple.colour));
 			canvas.horizontal++;
-			if (--info.pixels == 0)
+			pthread_mutex_lock(&info.progress->mutex);
+			info.progress->pixels++;
+			if (info.progress->pixels >= info.pixels)
 			{
 				world_end(&world_safe);
+				pthread_mutex_unlock(&info.progress->mutex);
 				return (NULL);
 			}
 		}
 		canvas.horizontal = 0;
 		canvas.vertical++;
 	}
+	pthread_mutex_unlock(&info.progress->mutex);
 	return (NULL);
 }
-# define THREAD_COUNT 64
-# define PIXEL_COUNT ((WIDTH * HEIGHT) / THREAD_COUNT)
-# define REMAINING_PIXELS (WIDTH * HEIGHT - THREAD_COUNT * PIXEL_COUNT)
 
-void	threaded_loop(t_win *win)
+void	threaded_loop(t_win *win, t_progress progress[THREAD_COUNT])
 {
 	static pthread_t		thread_id[THREAD_COUNT];
 	static t_renderer_info	renderer_info[THREAD_COUNT];
@@ -108,7 +112,7 @@ void	threaded_loop(t_win *win)
 		renderer_info[thread_count] = (t_renderer_info){.win = win, \
 			.camera = &win->world.camera, .from = from, .pixels = PIXEL_COUNT, \
 			.thread_id = thread_id[thread_count], .frame = frame, \
-			.current_frame = &frame};
+			.current_frame = &frame, .progress = &progress[thread_count]};
 		pthread_create(&thread_id[thread_count], NULL, render_n_pixels, \
 			&renderer_info[thread_count]);
 		from.horizontal += PIXEL_COUNT;
@@ -119,7 +123,7 @@ void	threaded_loop(t_win *win)
 	renderer_info[thread_count] = (t_renderer_info){.win = win, \
 		.camera = &win->world.camera, .from = from, .pixels = PIXEL_COUNT + \
 		REMAINING_PIXELS, .thread_id = thread_id[thread_count], .frame = \
-		frame, .current_frame = &frame};
+		frame, .current_frame = &frame, .progress = &progress[thread_count]};
 	pthread_create(&thread_id[thread_count], NULL, render_n_pixels, \
 		&renderer_info[thread_count]);
 }

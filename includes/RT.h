@@ -70,6 +70,7 @@ typedef struct s_win
 	int			fd;
 	t_world		world;
 	t_input		input;
+	t_progress	*progress;
 }	t_win;
 
 typedef void	(*t_intersect_function)(t_ray, void *, t_world *);

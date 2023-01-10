@@ -44,6 +44,7 @@ void	initialise_window(t_win *win)
 	if (!win->win)
 		handle_errors("error");
 	initialise_image(&win->img, win);
+	win->progress = NULL;
 }
 
 void	identity_matrix_set(t_mtx *dst)
