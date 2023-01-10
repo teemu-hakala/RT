@@ -21,6 +21,7 @@ t_object	cone_prototype(void)
 			.transform = default_transform_1(),
 			.material = default_material_1(),
 			.appearance.pattern = default_pattern(),
+			.appearance.texture = default_texture(),
 			.min = -INFINITY,
 			.max = INFINITY,
 			.closed = false

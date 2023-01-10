@@ -32,6 +32,7 @@ t_object	plane_prototype(void)
 			.transform = plane_transform(),
 			.material = default_material_1(),
 			.appearance.pattern = default_pattern(),
+			.appearance.texture = default_texture(),
 		},
 		.type = OBJECT_PLANE
 	});
