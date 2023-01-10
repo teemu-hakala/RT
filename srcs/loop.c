@@ -13,7 +13,7 @@
 #include "RT.h"
 #include <stdio.h>
 
-void	render_n_pixels(t_win *win, t_camera *camera, t_canvas from, \
+void	render_n_pixels_inc(t_win *win, t_camera *camera, t_canvas from, \
 	uint64_t pixels)
 {
 	t_canvas	canvas;
@@ -69,7 +69,7 @@ int	incremental_loop(t_win *win)
 		mlx_loop_hook(win->mlx, NULL, NULL);
 		return (0);
 	}
-	render_n_pixels(win, &win->world.camera, canvas, WIDTH * 1);
+	render_n_pixels_inc(win, &win->world.camera, canvas, WIDTH * 1);
 	progress_bar(progress_bar_image(win, &(t_canvas){.horizontal = WIDTH - 20, .vertical = 20}), (t_fl)canvas.vertical / \
 		win->world.camera.canvas.vertical);
 	canvas.vertical += 1;
