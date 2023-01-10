@@ -41,6 +41,34 @@ typedef struct s_transform
 	t_tuple	scale;
 }	t_transform;
 
+typedef struct s_ppm_image
+{
+	int		fd;
+	char	*name;
+	int		height;
+	int		width;
+	int		max_value;
+	t_tuple	**pixels;
+}				t_ppm_image;
+
+typedef struct s_texture
+{
+	enum e_text_type	type;
+	t_fl				width;
+	t_fl				height;
+	t_tuple				colour_a;
+	t_tuple				colour_b;
+	int					face;
+	t_tuple				main[6];
+	t_tuple				ul[6];
+	t_tuple				ur[6];
+	t_tuple				br[6];
+	t_tuple				bl[6];
+	t_uv_map			map;
+	t_transform			transform; //maybe
+	t_ppm_image			image[6];
+}				t_texture;
+
 typedef struct s_pattern
 {
 	enum e_pattern_type	type;
@@ -48,15 +76,14 @@ typedef struct s_pattern
 	t_fl				height;
 	t_tuple				colour_a;
 	t_tuple				colour_b;
-	t_tuple				main[6];
-	t_tuple				ul[6];
-	t_tuple				ur[6];
-	t_tuple				br[6];
-	t_tuple				bl[6];
-	int					face;
 	t_transform			transform;
-	t_uv_map			map;
 }	t_pattern;
+
+typedef struct s_appearance
+{
+	t_pattern	pattern;
+	t_texture	texture;
+}				t_appearance;
 
 typedef struct s_material
 {
@@ -90,51 +117,51 @@ typedef struct s_info
 
 typedef struct s_plane
 {
-	t_tuple		origin;
-	t_transform	transform;
-	t_material	material;
-	t_pattern	pattern;
+	t_tuple			origin;
+	t_transform		transform;
+	t_material		material;
+	t_appearance	appearance;
 }	t_plane;
 
 typedef struct s_sphere
 {
-	t_tuple		origin;
-	t_transform	transform;
-	t_material	material;
-	t_pattern	pattern;
+	t_tuple			origin;
+	t_transform		transform;
+	t_material		material;
+	t_appearance	appearance;
 }	t_sphere;
 
 typedef struct s_cone
 {
-	t_tuple		origin;
-	t_transform	transform;
-	t_material	material;
-	t_pattern	pattern;
-	t_fl		radius;
-	t_fl		min;
-	t_fl		max;
-	int			closed;
+	t_tuple			origin;
+	t_transform		transform;
+	t_material		material;
+	t_appearance	appearance;
+	t_fl			radius;
+	t_fl			min;
+	t_fl			max;
+	int				closed;
 }	t_cone;
 
 typedef struct s_cylinder
 {
-	t_tuple		origin;
-	t_transform	transform;
-	t_material	material;
-	t_pattern	pattern;
-	t_fl		radius;
-	t_fl		min;
-	t_fl		max;
-	int			closed;
+	t_tuple			origin;
+	t_transform		transform;
+	t_material		material;
+	t_appearance	appearance;
+	t_fl			radius;
+	t_fl			min;
+	t_fl			max;
+	int				closed;
 }	t_cylinder;
 
 typedef struct s_cube
 {
-	t_tuple		origin;
-	t_transform	transform;
-	t_material	material;
-	t_pattern	pattern;
-	t_fl		length;
+	t_tuple			origin;
+	t_transform		transform;
+	t_material		material;
+	t_appearance	appearance;
+	t_fl			length;
 }	t_cube;
 
 typedef struct s_light

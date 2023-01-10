@@ -20,7 +20,7 @@ t_object	cylinder_prototype(void)
 			.origin = default_origin(),
 			.transform = default_transform_1(),
 			.material = default_material_1(),
-			.pattern = default_pattern(),
+			.appearance.pattern = default_pattern(),
 			.radius = 1,
 			.min = -INFINITY,
 			.max = INFINITY,
@@ -28,6 +28,14 @@ t_object	cylinder_prototype(void)
 		},
 		.type = OBJECT_CYLINDER
 	});
+}
+
+void	cylinder_continued(t_object *shape)
+{
+	transform_object(&shape->object.cylinder.transform);
+	if (shape->object.cylinder.appearance.texture.type == TEXTURE_CHECKERED)
+		shape->object.cylinder.appearance.texture.width = \
+			2 * shape->object.cylinder.appearance.texture.height;
 }
 
 void	parse_cylinder(t_parser *parser, t_object *shape)
@@ -56,8 +64,5 @@ void	parse_cylinder(t_parser *parser, t_object *shape)
 	}
 	else if (!find_matching_bracket(parser))
 		handle_errors("cylinder syntax error");
-	transform_object(&shape->object.cylinder.transform);
-	if (shape->object.cylinder.pattern.type == PATTERN_CHECKERED)
-		shape->object.cylinder.pattern.width = \
-			2 * shape->object.cylinder.pattern.height;
+	cylinder_continued(shape);
 }

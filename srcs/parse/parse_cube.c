@@ -20,6 +20,7 @@ t_object	cube_prototype(void)
 			.origin = default_origin(),
 			.transform = default_transform_1(),
 			.material = default_material_1(),
+			.appearance.pattern = default_pattern(),
 		},
 		.type = OBJECT_CUBE
 	});
@@ -38,4 +39,3 @@ void	parse_cube(t_parser *parser, t_object *shape)
 		handle_errors("cube syntax error");
 	transform_object(&shape->object.cube.transform);
 }
-

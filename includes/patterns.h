@@ -2,16 +2,24 @@
 #ifndef PATTERNS_H
 # define PATTERNS_H
 # include "RT.h"
+# include "objects.h"
+
+typedef enum e_text_type
+{
+	TEXTURE_NONE = 0,
+	TEXTURE_CHECKERED = 1,
+	TEXTURE_ALIGN_CHECK = 2,
+	TEXTURE_EXTERNAL = 3
+}	t_text_type;
 
 typedef enum e_pattern_type
 {
 	PATTERN_NONE = 0,
 	PATTERN_VERTICAL_STRIPES = 1,
 	PATTERN_HORIZONTAL_STRIPES = 2,
-	PATTERN_CHECKERED = 3,
-	PATTERN_CIRCLES = 4,
-	PATTERN_GRADIENT = 5,
-	PATTERN_ALIGN_CHECK = 6
+	PATTERN_CIRCLES = 3,
+	PATTERN_GRADIENT = 4,
+	PATTERN_SIMPLE_CHECKERED = 5
 }	t_type;
 
 typedef enum e_cube_face
@@ -43,7 +51,5 @@ typedef struct s_uv_map
 // 	t_uv_pattern pattern;
 // 	t_uv_map	map;
 // }				t_texture_map;
-
-
 
 #endif

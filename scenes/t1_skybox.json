@@ -1,0 +1,105 @@
+{
+	"camera" :
+	{
+		"origin" : [0, 0, 0],
+		"transform" :
+		{
+			"translation": [0, 0, 0],
+			"rotation": [0, 0, 0],
+			"scale": [1, 1, 1]
+		},
+		"center_of_interest" : [0, 0, 5],
+		"field_of_view" : 1.2
+	},
+	"lights" :
+	[
+		{
+			"light" :
+			{
+				"position" : [0, 100, 0],
+				"intensity" : [1, 1, 1]
+			}
+		}
+	],
+	"shapes" :
+	[
+		{
+			"sphere" :
+			{
+				"transform" :
+				{
+					"scale" : [0.75, 0.75, 0.75],
+					"translation" : [0, 0, 5]
+				},
+				"material" :
+				{
+					"diffuse" : 0.4,
+					"specular" : 0.6,
+					"shininess" : 20,
+					"ambient" : 0.6
+				}
+			}
+		},
+		{
+			"cube" :
+			{
+				"transform" :
+				{
+					"scale" : [1000, 1000, 1000]
+				},
+				"material" :
+				{
+					"ambient" :1,
+					"diffuse" : 0,
+					"specular" : 0
+				},
+				"appearance" :
+				{
+					"texture" :
+					{
+						"type" : "external",
+						"face" :
+						[
+							{
+								"left" :
+								{
+									"name" : "textures/skybox/negx.ppm"
+								}
+							},
+							{
+								"right" :
+								{
+									"name" : "textures/skybox/posx.ppm"
+								}
+							},
+							{
+								"front" :
+								{
+									"name" : "textures/skybox/posz.ppm"
+								}
+							},
+							{
+								"back" :
+								{
+									"name" : "textures/skybox/negz.ppm"
+								}
+							},
+							{
+								"up" :
+								{
+									"name" : "textures/skybox/posy.ppm"
+								}
+							},
+							{
+								"down" :
+								{
+									"name" : "textures/skybox/negy.ppm"
+								}
+							}
+						]
+					}
+				}
+			}
+		}
+	]
+}

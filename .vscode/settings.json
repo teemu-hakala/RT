@@ -27,6 +27,8 @@
 		"tuple": "c",
 		"__bit_reference": "c",
 		"chrono": "c",
-		"ios": "c"
+		"ios": "c",
+		"cstring": "c",
+		"typeinfo": "c"
 	}
 }
