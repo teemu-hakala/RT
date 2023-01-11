@@ -74,6 +74,10 @@ typedef void	(*t_shading_function)(t_world *, void *, t_tuple *, t_light *);
 
 typedef void	(*t_computation_fn)(t_world *);
 
+typedef void	(*t_pattern_at_fn)(t_pattern *, t_tuple *, t_tuple *);
+
+typedef void	(*t_texture_at_fn)(t_texture *, t_uv_map *, t_tuple *);
+
 /*tuple operations & matrix maths*/
 t_tuple		point(t_fl x, t_fl y, t_fl z);
 t_tuple		vector(t_fl x, t_fl y, t_fl z);
@@ -197,32 +201,25 @@ t_texture	default_checkered_texture(void);
 t_texture	default_align_check(void);
 t_texture	default_external(void);
 
+t_tuple	get_appearance_colour(t_appearance *appearance, t_transform transform,
+t_tuple *p);
+
 /* patterns*/
-typedef void	(*t_pattern_at_fn)(t_pattern *, t_material *, t_tuple *);
-typedef void	(*t_texture_at_fn)(t_texture *, t_material *, t_uv_map *);
-void		pattern_at(t_pattern *pattern, t_material *material, \
+t_tuple		pattern_at(t_pattern *pattern, \
 			t_transform transform, t_tuple *point);
-void		none_at(t_pattern *pattern, t_material *material, t_tuple *point);
-void		vertical_striped_at(t_pattern *pattern, t_material *material, \
-			t_tuple *point);
-void		horizontal_striped_at(t_pattern *pattern, t_material *material, \
-			t_tuple *point);
-void		simple_checkered_at(t_pattern *pattern, t_material *material, \
-	t_tuple *point);
-void		circle_at(t_pattern *pattern, t_material *material, t_tuple *point);
-void		gradient_at(t_pattern *pattern, t_material *material, \
-			t_tuple *point);
+void		none_at(t_pattern *pattern, t_tuple *point, t_tuple *colour);
+void		vertical_striped_at(t_pattern *pattern, t_tuple *point, t_tuple *colour);
+void		horizontal_striped_at(t_pattern *pattern, t_tuple *point, t_tuple *colour);
+void		simple_checkered_at(t_pattern *pattern, t_tuple *point, t_tuple *colour);
+void		circle_at(t_pattern *pattern, t_tuple *point, t_tuple *colour);
+void		gradient_at(t_pattern *pattern, t_tuple *point, t_tuple *colour);
 
 /*textures*/
-void		texture_at(t_texture *texture, t_material *material, t_uv_map *map);
-void		no_texture_at(t_texture *texture, t_material *material, \
-			t_uv_map *map);
-void		checkered_at(t_texture *texture, t_material *material, \
-			t_uv_map *map);
-void		align_check_at(t_texture *texture, t_material *material, \
-			t_uv_map *map);
-void		external_at(t_texture *texture, t_material *material, \
-			t_uv_map *map);
+t_tuple		texture_at(t_texture *texture, t_uv_map *map);
+void		no_texture_at(t_texture *texture, t_uv_map *map, t_tuple *colour);
+void		checkered_at(t_texture *texture, t_uv_map *map, t_tuple *colour);
+void		align_check_at(t_texture *texture, t_uv_map *map, t_tuple *colour);
+void		external_at(t_texture *texture, t_uv_map *map, t_tuple *colour);
 t_tuple		transform_point(t_tuple *point, t_transform *shape_transform, \
 			t_transform *pattern_transform);
 t_uv_map	spherical_map(t_tuple *p);
