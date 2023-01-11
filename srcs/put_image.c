@@ -124,7 +124,7 @@ int	put_image(t_win *win)
 		pthread_create(&win->bar_thread, NULL, progress_percentage, win);
 		win->drawn = 0;
 	}
-	mlx_clear_window(win->mlx, win->win);
+	// mlx_clear_window(win->mlx, win->win);
 	mlx_put_image_to_window(win->mlx, win->win, win->img.img, 0, 0);
 	// printf("win->drawn %hhi\n", win->drawn);
 	if (win->drawn == false)

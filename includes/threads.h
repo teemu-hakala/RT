@@ -14,7 +14,7 @@
 # define THREADS_H
 # include "RT.h"
 # include <pthread.h>
-# define THREAD_COUNT 13
+# define THREAD_COUNT 24
 # define PIXEL_COUNT ((WIDTH * HEIGHT) / THREAD_COUNT)
 # define REMAINING_PIXELS (WIDTH * HEIGHT - THREAD_COUNT * PIXEL_COUNT)
 
@@ -48,4 +48,5 @@ void	threaded_loop(t_win *win, t_progress progress[THREAD_COUNT]);
 void	*world_end(t_world *ending_world);
 t_world	world_selectively_shallow_copy(t_world *original);
 void	threaded_loop_mid(t_win *win);
+
 #endif
