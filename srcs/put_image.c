@@ -44,6 +44,7 @@ void	cleanup(void *param)
 	t_win	*win;
 
 	win = (t_win *)param;
+	(void)win;
 	printf("cleanup function called\n");
 }
 
@@ -74,17 +75,17 @@ void	*progress_percentage(void *param)
 			pixel_progress += win->progress[t].pixels;
 			if (win->progress[t].frame != frame_previous)
 			{
-				printf("testcancel before😇\n");
-				pthread_testcancel();
-				printf("testcancel after🤜\n");
 				printf("frame doesn't match\n");
 				//pthread_detach(pthread_self());
 				pixel_progress = 0;
 				frame_previous = win->progress[t].frame;
 				t = 0;
 				previous_percentage = 0;
-				progress_bar_image(win, \
-					&(t_canvas){.horizontal = WIDTH - 20, .vertical = 20}, BAR_CLEAR);
+				// progress_bar_image(win, \
+					// &(t_canvas){.horizontal = WIDTH - 20, .vertical = 20}, BAR_CLEAR);
+				printf("testcancel before😇\n");
+				pthread_testcancel();
+				printf("testcancel after🤜\n");
 				while (frame_previous != win->progress[t].frame)
 					printf("%llu != %llu RAAAAHH\n", frame_previous, win->progress[t].frame);
 				continue ;

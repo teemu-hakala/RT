@@ -72,7 +72,7 @@ void	*render_n_pixels(void *param)
 			if (info.frame != *info.current_frame)
 			{
 				// printf("!!!!!!!!!!!! info.frame != *info.current_frame\n");
-				img_pixel_put(info.win, canvas.horizontal, canvas.vertical, 0x00FFFFFFu);
+				//img_pixel_put(info.win, canvas.horizontal, canvas.vertical, 0x00FFFFFFu);
 				//darken_n_pixels(info, canvas);
 				world_end(&world_safe);
 				pthread_exit(NULL);

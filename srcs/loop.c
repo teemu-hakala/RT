@@ -37,7 +37,7 @@ void	render_n_pixels_inc(t_win *win, t_camera *camera, t_canvas from, \
 		canvas.vertical++;
 	}
 }
-
+/*
 t_img	dimmer_image(t_win *win)
 {
 	static t_img			bar_img = {};
@@ -61,7 +61,7 @@ t_img	dimmer_image(t_win *win)
 		put_rectangle_to_image(bar_img, filler, filler, \
 			(t_tuple){.tuple.colour = {0, 0, 0, 1}});
 	return (bar_img);
-}
+}*/
 
 t_img	progress_bar_image(t_win *win, t_canvas *bar_dimensions, uint8_t flag)
 {
