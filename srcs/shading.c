@@ -161,7 +161,7 @@ void	shade_plane(t_world *world, void *plane, t_tuple *colour,
 
 	is_shadow(world, world->hit.computations.over_point, light);
 	lighting_info.material = ((t_plane *)plane)->material;
-	//world->hit.computations.reflective = lighting_info.material.reflectiveness;
+	world->hit.computations.reflective = lighting_info.material.reflectiveness;
 	temp_colour = lighting(&lighting_info, light, \
 		world->hit.computations.vectors, world->hit.computations.over_point);
 	temp_point = transform_point(&world->hit.computations.over_point, \
@@ -173,6 +173,7 @@ void	shade_plane(t_world *world, void *plane, t_tuple *colour,
 		temp_colour = get_appearance_colour(&((t_plane *)plane)->appearance, \
 			((t_plane *)plane)->transform, &world->hit.computations.over_point);
 	*colour = tuple_add(*colour, temp_colour);
+	*colour = tuple_add(*colour, reflected_colour(world, &world->hit.computations));
 }
 
 void	shade_sphere(t_world *world, void *sphere, t_tuple *colour,
@@ -184,7 +185,7 @@ void	shade_sphere(t_world *world, void *sphere, t_tuple *colour,
 
 	is_shadow(world, world->hit.computations.over_point, light);
 	lighting_info.material = ((t_sphere *)sphere)->material;
-	//world->hit.computations.reflective = lighting_info.material.reflectiveness;
+	world->hit.computations.reflective = lighting_info.material.reflectiveness;
 	temp_colour = lighting(&lighting_info, light, \
 		world->hit.computations.vectors, world->hit.computations.over_point);
 	temp_point = transform_point(&world->hit.computations.over_point, \
@@ -196,6 +197,7 @@ void	shade_sphere(t_world *world, void *sphere, t_tuple *colour,
 		temp_colour = get_appearance_colour(&((t_sphere *)sphere)->appearance, \
 			((t_sphere *)sphere)->transform, &world->hit.computations.over_point);
 	*colour = tuple_add(*colour, temp_colour);
+	*colour = tuple_add(*colour, reflected_colour(world, &world->hit.computations));
 }
 
 void	shade_cone(t_world *world, void *cone, t_tuple *colour, t_light *light)
@@ -206,7 +208,7 @@ void	shade_cone(t_world *world, void *cone, t_tuple *colour, t_light *light)
 
 	is_shadow(world, world->hit.computations.over_point, light);
 	lighting_info.material = ((t_cone *)cone)->material;
-	//world->hit.computations.reflective = lighting_info.material.reflectiveness;
+	world->hit.computations.reflective = lighting_info.material.reflectiveness;
 	temp_colour = lighting(&lighting_info, light, \
 		world->hit.computations.vectors, world->hit.computations.over_point);
 	temp_point = transform_point(&world->hit.computations.over_point, \
@@ -218,6 +220,7 @@ void	shade_cone(t_world *world, void *cone, t_tuple *colour, t_light *light)
 		temp_colour = get_appearance_colour(&((t_cone *)cone)->appearance, \
 			((t_cone *)cone)->transform, &world->hit.computations.over_point);
 	*colour = tuple_add(*colour, temp_colour);
+	*colour = tuple_add(*colour, reflected_colour(world, &world->hit.computations));
 }
 
 void	shade_cylinder(t_world *world, void *cylinder, t_tuple *colour,
@@ -229,7 +232,7 @@ void	shade_cylinder(t_world *world, void *cylinder, t_tuple *colour,
 
 	is_shadow(world, world->hit.computations.over_point, light);
 	lighting_info.material = ((t_cylinder *)cylinder)->material;
-	//world->hit.computations.reflective = lighting_info.material.reflectiveness;
+	world->hit.computations.reflective = lighting_info.material.reflectiveness;
 	temp_colour = lighting(&lighting_info, light, \
 		world->hit.computations.vectors, world->hit.computations.over_point);
 	temp_point = transform_point(&world->hit.computations.over_point, \
@@ -241,6 +244,7 @@ void	shade_cylinder(t_world *world, void *cylinder, t_tuple *colour,
 		temp_colour = get_appearance_colour(&((t_cylinder *)cylinder)->appearance, \
 			((t_cylinder *)cylinder)->transform, &world->hit.computations.over_point);
 	*colour = tuple_add(*colour, temp_colour);
+	*colour = tuple_add(*colour, reflected_colour(world, &world->hit.computations));
 }
 
 void	shade_cube(t_world *world, void *cube, t_tuple *colour,
@@ -252,16 +256,18 @@ void	shade_cube(t_world *world, void *cube, t_tuple *colour,
 
 	is_shadow(world, world->hit.computations.over_point, light);
 	lighting_info.material = ((t_cube *)cube)->material;
-	//world->hit.computations.reflective = lighting_info.material.reflectiveness;
+	world->hit.computations.reflective = lighting_info.material.reflectiveness;
 	temp_colour = lighting(&lighting_info, light, \
 		world->hit.computations.vectors, world->hit.computations.over_point);
 	temp_point = transform_point(&world->hit.computations.over_point, \
 		&((t_cube *)cube)->transform, \
 		&((t_cube *)cube)->appearance.texture.transform);
-	((t_cube *)cube)->appearance.texture.map = cubic_map(&temp_point,&((t_cube *)cube)->appearance.texture);
+	((t_cube *)cube)->appearance.texture.map = \
+		cubic_map(&temp_point,&((t_cube *)cube)->appearance.texture);
 	if (((t_cube *)cube)->appearance.pattern.type > 0 || \
 		((t_cube *)cube)->appearance.texture.type > 0)
 		temp_colour = get_appearance_colour(&((t_cube *)cube)->appearance, \
 			((t_cube *)cube)->transform, &world->hit.computations.over_point);
 	*colour = tuple_add(*colour, temp_colour);
+	*colour = tuple_add(*colour, reflected_colour(world, &world->hit.computations));
 }

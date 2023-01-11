@@ -11,7 +11,6 @@ t_tuple	shade_hit(t_world *world)
 		shade_cube
 	};
 	t_tuple		colour;
-	t_tuple		reflected;
 	t_light		*light;
 	uint64_t	i;
 
@@ -25,8 +24,5 @@ t_tuple	shade_hit(t_world *world)
 			(world, &world->hit.intersection.shape->object, &colour, light);
 		i++;
 	}
-	reflected = reflected_colour(world, &world->hit.computations);
-	if (world->hit.computations.reflective > 0)
-		colour = tuple_add(colour, reflected);
 	return (colour);
 }

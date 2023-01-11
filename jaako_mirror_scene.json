@@ -65,7 +65,7 @@
 					"diffuse" : 0.9,
 					"specular" : 1,
 					"shininess" : 200,
-					"reflectiveness" : 0.0005
+					"reflectiveness" : 0
 				}
 			}
 		},
@@ -84,7 +84,7 @@
 					"diffuse" : 0.9,
 					"specular" : 1,
 					"shininess" : 200,
-					"reflectiveness" : 0.0005
+					"reflectiveness" : 0
 				}
 			}
 		},

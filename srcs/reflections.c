@@ -77,7 +77,7 @@ t_tuple reflected_colour(t_world *world, t_comp *computations)
 		reflected_ray = ray(computations->over_point, computations->reflectv);
 		reflected_colour = colour_at(world, reflected_ray);
 		world->lifetime--;
-		if (world->lifetime == 5)
+		if (world->lifetime == 3)
 			printf("remaining = %d\n", world->lifetime);
 		return (tuple_scale(reflected_colour, computations->reflective));
 	}
