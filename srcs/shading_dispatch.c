@@ -1,6 +1,6 @@
 #include "RT.h"
 
-t_tuple	shade_hit(t_world *world, int remaining)
+t_tuple	shade_hit(t_world *world)
 {
 	static const t_shading_function	\
 				shape_shading[] = {
@@ -11,6 +11,7 @@ t_tuple	shade_hit(t_world *world, int remaining)
 		shade_cube
 	};
 	t_tuple		colour;
+	t_tuple		reflected;
 	t_light		*light;
 	uint64_t	i;
 
@@ -21,8 +22,11 @@ t_tuple	shade_hit(t_world *world, int remaining)
 		light = (t_light *)vec_get(&world->lights, i);
 		shape_shading[world->hit.intersection.shape->type \
 			- OBJECT_INDEX_OFFSET] \
-			(world, &world->hit.intersection.shape->object, &colour, light, remaining);
+			(world, &world->hit.intersection.shape->object, &colour, light);
 		i++;
 	}
+	reflected = reflected_colour(world, &world->hit.computations);
+	if (world->hit.computations.reflective > 0)
+		colour = tuple_add(colour, reflected);
 	return (colour);
 }

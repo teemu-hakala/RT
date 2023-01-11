@@ -65,16 +65,20 @@ void	is_shadow(t_world *world, t_tuple point, t_light *light)
 // 	return (tuple_scale(reflected_colour, computations->reflective));
 // }
 
-t_tuple reflected_colour(t_world *world, t_comp *computations, int remaining)
+t_tuple reflected_colour(t_world *world, t_comp *computations)
 {
 	t_tuple	reflected_colour;
+	t_ray	reflected_ray;
 
-	if (remaining < 1)
+	if (world->lifetime < 1)
 		return (point(0, 0 ,0));
 	if (computations->reflective > 0 && computations->reflective <= 1)
 	{
-		world->reflected_ray = ray(computations->over_point, computations->reflectv);
-		reflected_colour = colour_at(world, world->reflected_ray, remaining - 1);
+		reflected_ray = ray(computations->over_point, computations->reflectv);
+		reflected_colour = colour_at(world, reflected_ray);
+		world->lifetime--;
+		if (world->lifetime == 5)
+			printf("remaining = %d\n", world->lifetime);
 		return (tuple_scale(reflected_colour, computations->reflective));
 	}
 	else

@@ -27,8 +27,8 @@
 # include <stdio.h>
 
 # define USAGE "./RT ./scenes/[.json file]"
-# define WIDTH 400
-# define HEIGHT 400
+# define WIDTH 500
+# define HEIGHT 350
 # define WALL_WIDTH 7
 # define WALL_HEIGHT 7
 # define KEY_DOWN 2
@@ -70,7 +70,7 @@ typedef struct s_win
 
 typedef void	(*t_intersect_function)(t_ray, void *, t_world *);
 
-typedef void	(*t_shading_function)(t_world *, void *, t_tuple *, t_light *, int);
+typedef void	(*t_shading_function)(t_world *, void *, t_tuple *, t_light *);
 
 typedef void	(*t_computation_fn)(t_world *, t_ray);
 
@@ -124,17 +124,17 @@ void		is_shadow(t_world *world, t_tuple point, t_light *light);
 t_tuple		reflect(t_tuple input, t_tuple normal);
 
 /* shading */
-t_tuple		shade_hit(t_world *world, int remaining);
+t_tuple		shade_hit(t_world *world);
 void		shade_plane(t_world *world, void *plane, t_tuple *colour,
-				t_light *light, int remaining);
+				t_light *light);
 void		shade_sphere(t_world *world, void *sphere, t_tuple *colour,
-				t_light *light, int remaining);
+				t_light *light);
 void		shade_cone(t_world *world, void *cone, t_tuple *colour,
-				t_light *light, int remaining);
+				t_light *light);
 void		shade_cylinder(t_world *world, void *cylinder, t_tuple *colour,
-				t_light *light, int remaining);
+				t_light *light);
 void		shade_cube(t_world *world, void *cube, t_tuple *colour,
-				t_light *light, int remaining);
+				t_light *light);
 
 /* object intersection */
 void		intersect_world(t_world *world, t_ray ray);
@@ -158,7 +158,7 @@ void		prepare_cylinder(t_world *world, t_ray ray);
 void		prepare_cube(t_world *world, t_ray ray);
 
 /* reflections*/
-t_tuple reflected_colour(t_world *world, t_comp *computations, int remaining);
+t_tuple reflected_colour(t_world *world, t_comp *computations);
 
 /* object transformation */
 void		transform_object(t_transform *object);
@@ -181,7 +181,7 @@ void		img_pixel_put(t_win *win, int x, int y, unsigned int colour);
 
 /* camera */
 t_ray		ray_for_pixel(t_camera *camera, t_canvas position);
-t_tuple		colour_at(t_world *world, t_ray ray, int remaining);
+t_tuple		colour_at(t_world *world, t_ray ray);
 t_fl		get_pixel_size(t_camera *camera, t_canvas size, t_fl field_of_view);
 
 /* default patterns*/
