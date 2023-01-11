@@ -27,26 +27,22 @@ void	navigate_camera(t_win *win)
 {
 	first_person_camera(win);
 	// threaded_loop_mid(win);
-	if (win->progress != NULL)
+	if (win->progress == NULL)
+		return ;
+	pthread_mutex_lock(&win->drawn_mutex);
+	if (win->drawn == false)
 	{
-		pthread_mutex_lock(&win->drawn_mutex);
-		if (win->drawn == false)
-		{
-			pthread_cancel(win->bar_thread);
-			// pthread_exit(win->bar_thread);
-			printf("%li : pthread_cancel\n", (long)win->bar_thread);
-			pthread_mutex_unlock(&win->drawn_mutex);
-		}
-		else
-		{
-			pthread_mutex_unlock(&win->drawn_mutex);
-			win->drawn = false;
-			printf("win->drawn false\n");
-			progress_bar_image(win, \
-				&(t_canvas){.horizontal = WIDTH - 20, .vertical = 20}, BAR_CLEAR);
-			pthread_create(&win->bar_thread, NULL, progress_percentage, win);
-			threaded_loop(win, win->progress);
-		}
+		pthread_cancel(win->bar_thread);
+		pthread_detach(win->bar_thread);
+		// pthread_exit(win->bar_thread);
+		printf("%li : pthread_cancel\n", (long)win->bar_thread);
 	}
+	pthread_mutex_unlock(&win->drawn_mutex);
+	win->drawn = false;
+	printf("win->drawn false\n");
+	//progress_bar_image(win, \
+	//	&(t_canvas){.horizontal = WIDTH - 20, .vertical = 20}, BAR_CLEAR);
+	pthread_create(&win->bar_thread, NULL, progress_percentage, win);
+	threaded_loop(win, win->progress);
 	//render(win, &win->world.camera);
 }

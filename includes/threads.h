@@ -14,7 +14,7 @@
 # define THREADS_H
 # include "RT.h"
 # include <pthread.h>
-# define THREAD_COUNT 64
+# define THREAD_COUNT 13
 # define PIXEL_COUNT ((WIDTH * HEIGHT) / THREAD_COUNT)
 # define REMAINING_PIXELS (WIDTH * HEIGHT - THREAD_COUNT * PIXEL_COUNT)
 

@@ -71,6 +71,8 @@ void	*render_n_pixels(void *param)
 			colour = colour_at(&world_safe);
 			if (info.frame != *info.current_frame)
 			{
+				// printf("!!!!!!!!!!!! info.frame != *info.current_frame\n");
+				img_pixel_put(info.win, canvas.horizontal, canvas.vertical, 0x00FFFFFFu);
 				//darken_n_pixels(info, canvas);
 				world_end(&world_safe);
 				pthread_exit(NULL);
@@ -84,6 +86,7 @@ void	*render_n_pixels(void *param)
 			if (info.frame != info.progress->frame \
 				|| info.progress->pixels >= info.pixels)
 			{
+				//img_pixel_put(info.win, canvas.horizontal, canvas.vertical, 0x0000FF00u);
 				world_end(&world_safe);
 				pthread_mutex_unlock(&info.progress->mutex);
 				return (NULL);
