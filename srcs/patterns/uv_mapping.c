@@ -27,10 +27,6 @@ t_uv_map	planar_map(t_tuple *p)
 	map.v = fmod(p->tuple.units.z, 1);
 	if (map.v < 0)
 		map.v += 1;
-	if (map.v > 1 || map.v < 0)
-		printf("v = %f\n", map.v);
-	if (map.u > 1 || map.u < 0)
-		printf("u = %f\n", map.u);
 	return (map);
 }
 

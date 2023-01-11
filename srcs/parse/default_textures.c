@@ -32,7 +32,7 @@ t_texture	default_checkered_texture(void)
 		.height = 4,
 		.colour_a = hex_to_tuple_colour(COLOUR_BLUE),
 		.colour_b = hex_to_tuple_colour(COLOUR_WHITE),
-		.transform = default_transform_2(),
+		.transform = default_transform_1(),
 		.face = 0,
 		.image[0].fd = -1
 	});

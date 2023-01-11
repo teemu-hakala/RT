@@ -25,7 +25,8 @@
 					"init_colour" : [1, 1, 1],
 					"diffuse" : 0.1,
 					"specular" : 0,
-					"ambient" :0
+					"ambient" :0,
+					"reflectiveness" : 0.4
 				}
 			}
 		},
@@ -40,7 +41,8 @@
 					"init_colour" : [1, 1, 1],
 					"diffuse" : 0.2,
 					"specular" : 0,
-					"ambient" : 0
+					"ambient" : 0,
+					"reflectiveness" : 0.1
 				}
 			}
 		},

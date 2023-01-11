@@ -36,8 +36,8 @@
 					"diffuse" : 0.4,
 					"specular" : 0.6,
 					"shininess" : 20,
-					"ambient" : 0.6,
-					"reflectiveness" : 1
+					"ambient" : 0,
+					"reflectiveness" : 0.6
 				}
 			}
 		},

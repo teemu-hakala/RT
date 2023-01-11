@@ -24,16 +24,22 @@ void	shade_plane(t_world *world, void *plane, t_tuple *colour,
 	reflected_col = point(0, 0, 0);
 	is_shadow(world, world->hit.computations.over_point, light);
 	lighting_info.material = ((t_plane *)plane)->material;
-	pattern_at(&((t_plane *)plane)->appearance.pattern, \
+	if (((t_plane *)plane)->appearance.pattern.type != 0)
+	{
+		pattern_at(&((t_plane *)plane)->appearance.pattern, \
 		&((t_plane *)plane)->material, ((t_plane *)plane)->transform, \
 		&world->hit.computations.over_point);
+	}
 	temp = transform_point(&world->hit.computations.over_point, \
 		&((t_plane *)plane)->transform, \
 			&((t_plane *)plane)->appearance.texture.transform);
 	((t_plane *)plane)->appearance.texture.map = planar_map(&temp);
-	texture_at(&((t_plane *)plane)->appearance.texture, \
+	if (((t_plane *)plane)->appearance.texture.type != 0)
+	{
+		texture_at(&((t_plane *)plane)->appearance.texture, \
 		&((t_plane *)plane)->material, \
-	&((t_plane *)plane)->appearance.texture.map);
+		&((t_plane *)plane)->appearance.texture.map);
+	}
 	surface_col = lighting(&lighting_info, light, \
 		world->hit.computations.vectors, world->hit.computations.over_point);
 	reflected_col = reflected_colour(world, &world->hit.computations);
