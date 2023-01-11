@@ -13,13 +13,29 @@ t_tuple	transform_point(t_tuple *point, t_transform *shape_transform, \
 	return (pattern_space);
 }
 
-void	texture_at(t_texture *texture, t_material *material, t_uv_map *map)
+t_tuple	texture_at(t_texture *texture, t_uv_map *map)
 {
 	static const t_texture_at_fn	textures[] = {\
 		no_texture_at,
 		checkered_at,
 		align_check_at,
 		external_at};
+	t_tuple	colour;
 
-	return (textures[texture->type](texture, material, map));
+	colour = point(0, 0, 0);
+	textures[texture->type](texture, map, &colour);
+	return (colour);
+}
+
+t_tuple	get_appearance_colour(t_appearance *appearance, t_transform transform,
+t_tuple *p)
+{
+	t_tuple colour;
+
+	colour = point(0, 0, 0);
+	if (appearance->pattern.type > 0)
+		colour = pattern_at(&appearance->pattern, transform, p);
+	else
+		colour = texture_at(&appearance->texture, &appearance->texture.map);
+	return (colour);
 }

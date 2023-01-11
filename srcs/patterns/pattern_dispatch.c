@@ -1,11 +1,11 @@
 
 #include "RT.h"
 
-void	pattern_at(t_pattern *pattern, t_material *material, \
-	t_transform transform, t_tuple *point)
+t_tuple	pattern_at(t_pattern *pattern, t_transform transform, t_tuple *p)
 {
-	t_tuple							object_space;
-	t_tuple							pattern_space;
+	t_tuple	object_space;
+	t_tuple	pattern_space;
+	t_tuple	colour;
 	static const t_pattern_at_fn	patterns[] = {\
 		none_at,
 		vertical_striped_at,
@@ -14,8 +14,10 @@ void	pattern_at(t_pattern *pattern, t_material *material, \
 		gradient_at,
 		simple_checkered_at};
 
-	object_space = matrix_tuple_multi(&transform.inverse, point);
+	colour = point(0, 0, 0);
+	object_space = matrix_tuple_multi(&transform.inverse, p);
 	pattern_space = matrix_tuple_multi(&pattern->transform.inverse, \
 		&object_space);
-	return (patterns[pattern->type](pattern, material, &pattern_space));
+	patterns[pattern->type](pattern, &pattern_space, &colour);
+	return (colour);
 }
