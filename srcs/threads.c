@@ -80,8 +80,9 @@ void	*render_n_pixels(void *param)
 				clamped_rgb_to_hex(&colour.tuple.colour));
 			canvas.horizontal++;
 			pthread_mutex_lock(&info.progress->mutex);
-			info.progress->pixels++;
-			if (info.progress->pixels >= info.pixels)
+			info.progress->pixels += info.frame == info.progress->frame;
+			if (info.frame != info.progress->frame \
+				|| info.progress->pixels >= info.pixels)
 			{
 				world_end(&world_safe);
 				pthread_mutex_unlock(&info.progress->mutex);
@@ -105,6 +106,7 @@ void	threaded_loop(t_win *win, t_progress progress[THREAD_COUNT])
 
 	//mlx_clear_window(win->mlx, win->win);
 	frame++;
+	clear_progress(progress, frame);
 	from = (t_canvas_64){.vertical = 0, .horizontal = 0};
 	thread_count = 0;
 	while (thread_count < THREAD_COUNT - 1)
