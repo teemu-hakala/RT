@@ -65,7 +65,10 @@ void	*progress_percentage(void *param)
 			if (win->progress[t].frame != frame_previous)
 			{
 				pixel_progress = 0;
-				break;
+				t = -1;
+				previous_percentage = 0;
+				progress_bar_image(win, \
+					&(t_canvas){.horizontal = WIDTH - 20, .vertical = 20}, BAR_CLEAR);
 			}
 			frame_previous = win->progress[t].frame;
 			t++;
