@@ -25,7 +25,7 @@ void	render(t_win *win, t_camera *camera)
 		{
 			win->world.ray = ray_for_pixel(camera, canvas);
 			win->world.lifetime = 3;
-			colour = colour_at(&win->world, win->world.ray);
+			colour = colour_at(&win->world, win->world.ray, 5);
 			img_pixel_put(win, canvas.horizontal, canvas.vertical,
 				clamped_rgb_to_hex(&colour.tuple.colour));
 			canvas.horizontal++;

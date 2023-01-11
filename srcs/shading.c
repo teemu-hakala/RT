@@ -13,7 +13,7 @@
 #include "RT.h"
 
 void	shade_plane(t_world *world, void *plane, t_tuple *colour,
-	t_light *light)
+	t_light *light, int remaining)
 {
 	t_info	lighting_info;
 	t_tuple	temp;
@@ -42,12 +42,12 @@ void	shade_plane(t_world *world, void *plane, t_tuple *colour,
 	}
 	surface_col = lighting(&lighting_info, light, \
 		world->hit.computations.vectors, world->hit.computations.over_point);
-	reflected_col = reflected_colour(world, &world->hit.computations);
+	reflected_col = reflected_colour(world, &world->hit.computations, remaining);
 	*colour = tuple_add(*colour, tuple_add(surface_col, reflected_col));
 }
 
 void	shade_sphere(t_world *world, void *sphere, t_tuple *colour,
-	t_light *light)
+	t_light *light, int remaining)
 {
 	t_info	lighting_info;
 	t_tuple	temp;
@@ -70,11 +70,11 @@ void	shade_sphere(t_world *world, void *sphere, t_tuple *colour,
 	&((t_sphere *)sphere)->appearance.texture.map);
 	surface_col = lighting(&lighting_info, light, \
 		world->hit.computations.vectors, world->hit.computations.over_point);
-	reflected_col = reflected_colour(world, &world->hit.computations);
+	reflected_col = reflected_colour(world, &world->hit.computations, remaining);
 	*colour = tuple_add(*colour, tuple_add(surface_col, reflected_col));
 }
 
-void	shade_cone(t_world *world, void *cone, t_tuple *colour, t_light *light)
+void	shade_cone(t_world *world, void *cone, t_tuple *colour, t_light *light, int remaining)
 {
 	t_info	lighting_info;
 	t_tuple	temp;
@@ -97,12 +97,12 @@ void	shade_cone(t_world *world, void *cone, t_tuple *colour, t_light *light)
 		&((t_cone *)cone)->appearance.texture.map);
 	surface_col = lighting(&lighting_info, light, \
 		world->hit.computations.vectors, world->hit.computations.over_point);
-	reflected_col = reflected_colour(world, &world->hit.computations);
+	reflected_col = reflected_colour(world, &world->hit.computations, remaining);
 	*colour = tuple_add(*colour, tuple_add(surface_col, reflected_col));
 }
 
 void	shade_cylinder(t_world *world, void *cylinder, t_tuple *colour,
-	t_light *light)
+	t_light *light, int remaining)
 {
 	t_info	lighting_info;
 	t_tuple	temp;
@@ -127,12 +127,12 @@ void	shade_cylinder(t_world *world, void *cylinder, t_tuple *colour,
 		&((t_cylinder *)cylinder)->appearance.texture.map);
 	surface_col = lighting(&lighting_info, light, \
 		world->hit.computations.vectors, world->hit.computations.over_point);
-	reflected_col = reflected_colour(world, &world->hit.computations);
+	reflected_col = reflected_colour(world, &world->hit.computations, remaining);
 	*colour = tuple_add(*colour, tuple_add(surface_col, reflected_col));
 }
 
 void	shade_cube(t_world *world, void *cube, t_tuple *colour,
-	t_light *light)
+	t_light *light, int remaining)
 {
 	t_info	lighting_info;
 	t_tuple	temp;
@@ -156,6 +156,6 @@ void	shade_cube(t_world *world, void *cube, t_tuple *colour,
 		&((t_cube *)cube)->appearance.texture.map);
 	surface_col = lighting(&lighting_info, light, \
 		world->hit.computations.vectors, world->hit.computations.over_point);
-	reflected_col = reflected_colour(world, &world->hit.computations);
+	reflected_col = reflected_colour(world, &world->hit.computations, remaining);
 	*colour = tuple_add(*colour, tuple_add(surface_col, reflected_col));
 }

@@ -12,7 +12,20 @@
 
 #include "RT.h"
 
-t_tuple	colour_at(t_world *world, t_ray ray)
+// t_tuple	colour_at(t_world *world, t_ray ray)
+// {
+// 	vec_clear(&world->intersections);
+// 	intersect_world(world, ray);
+// 	identify_hit(world, &world->hit);
+// 	if (world->hit.hit_check == true)
+// 	{
+// 		prepare_computations(world, ray);
+// 		return (shade_hit(world));
+// 	}
+// 	else
+// 		return (vector(0, 0, 0));
+// }
+t_tuple	colour_at(t_world *world, t_ray ray, int remaining)
 {
 	vec_clear(&world->intersections);
 	intersect_world(world, ray);
@@ -20,7 +33,7 @@ t_tuple	colour_at(t_world *world, t_ray ray)
 	if (world->hit.hit_check == true)
 	{
 		prepare_computations(world, ray);
-		return (shade_hit(world));
+		return (shade_hit(world, remaining));
 	}
 	else
 		return (vector(0, 0, 0));
