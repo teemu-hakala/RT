@@ -29,7 +29,7 @@ void	clear_progress(t_progress progress[THREAD_COUNT], uint64_t frame)
 	uint16_t	t;
 
 	t = THREAD_COUNT;
-	printf("clear_progress: frame %llu\n", frame);
+	if (DEBUG) printf("clear_progress: frame %llu\n", frame);
 	while (t-- > 0)
 	{
 		pthread_mutex_lock(&progress[t].mutex);
@@ -37,6 +37,7 @@ void	clear_progress(t_progress progress[THREAD_COUNT], uint64_t frame)
 		progress[t].frame = frame;
 		pthread_mutex_unlock(&progress[t].mutex);
 	}
+	if (DEBUG) printf("cleared_progress: frame %llu\n", frame);
 }
 
 void	cleanup(void *param)
@@ -45,7 +46,7 @@ void	cleanup(void *param)
 
 	win = (t_win *)param;
 	(void)win;
-	printf("cleanup function called\n");
+	if (DEBUG) printf("%li : cleanup function called\n", win->progress_percentage_pthread_id);
 }
 
 void	*progress_percentage(void *param)
@@ -57,17 +58,28 @@ void	*progress_percentage(void *param)
 	t_fl					percentage;
 	t_fl					previous_percentage;
 	uint64_t				frame_previous;
-	long	asd;
+	static long				asd[100000];
+	uint16_t				t_previous;
 
 	win = (t_win *)param;
-	pthread_cleanup_push(&cleanup, win);
+	asd[win->progress[THREAD_COUNT - 1].frame] = (long)win->bar_thread;
+	pthread_cleanup_push(&cleanup, &(t_win){.progress_percentage_pthread_id = asd[win->progress[THREAD_COUNT - 1].frame]});
 	pixel_progress = 0;
-	asd = (long)win->bar_thread;
-	printf("%li : spawned progress_percentage thread\n", asd);
+	if (DEBUG) {
+		printf("%li : spawned progress_percentage thread\n", asd[win->progress[THREAD_COUNT - 1].frame]);
+		printf("frame %llu\n", win->progress[THREAD_COUNT - 1].frame);
+		for (int i = 0; i < 100; i++)
+		{
+			if (asd[i] != 0)
+				printf("asd[%i].frame: %li\n", i, asd[i]);
+		}
+	}
+
 	frame_previous = win->progress[0].frame;
 	previous_percentage = 0;
 	while (pixel_progress < pixels)
 	{
+		if (DEBUG && pixel_progress > (WIDTH * HEIGHT * 0.99)) printf("%li ; pixel_progress %llu\n", asd[win->progress[THREAD_COUNT - 1].frame], pixel_progress);
 		pixel_progress = 0;
 		t = 0;
 		while (t < THREAD_COUNT)
@@ -75,34 +87,36 @@ void	*progress_percentage(void *param)
 			pixel_progress += win->progress[t].pixels;
 			if (win->progress[t].frame != frame_previous)
 			{
-				printf("frame doesn't match\n");
+				if (DEBUG) printf("%li frame doesn't match {%llu != %llu}\n", asd[frame_previous], win->progress[t].frame, frame_previous);
 				//pthread_detach(pthread_self());
 				pixel_progress = 0;
-				frame_previous = win->progress[t].frame;
+				t_previous = t;
 				t = 0;
 				previous_percentage = 0;
 				// progress_bar_image(win, \
 					// &(t_canvas){.horizontal = WIDTH - 20, .vertical = 20}, BAR_CLEAR);
-				printf("testcancel before😇\n");
+				if (DEBUG) printf("%li : testcancel before😇\n", asd[frame_previous]);
 				pthread_testcancel();
-				printf("testcancel after🤜\n");
+				if (DEBUG) printf("%li : testcancel after🤜\n", asd[frame_previous]);
+				frame_previous = win->progress[t_previous].frame;
 				while (frame_previous != win->progress[t].frame)
-					printf("%llu != %llu RAAAAHH\n", frame_previous, win->progress[t].frame);
+					if (DEBUG) printf("%llu != %llu RAAAAHH\n", frame_previous, win->progress[t].frame);
 				continue ;
 			}
 			frame_previous = win->progress[t].frame;
 			t++;
 		}
 		percentage = ((t_fl)pixel_progress) / pixels;
-		//printf("percentage %lf%%\n", percentage);
+		//if (DEBUG) printf("percentage %lf%%\n", percentage);
 		progress_bar(progress_bar_image(win, \
 			&(t_canvas){.horizontal = WIDTH - 20, .vertical = 20}, \
 			BAR_NON_ACTION), percentage, previous_percentage);
 		previous_percentage = percentage;
 	}
+	if (DEBUG) printf("%li ; pixel_progress %llu\n", asd[win->progress[THREAD_COUNT - 1].frame], pixel_progress);
 	pthread_mutex_lock(&win->drawn_mutex);
 	win->drawn = true;
-	// printf("%li : win->drawn true\n", asd);
+	if (DEBUG) printf("%li : win->drawn true\n", asd[win->progress[THREAD_COUNT - 1].frame]);
 	pthread_mutex_unlock(&win->drawn_mutex);
 	pthread_cleanup_pop(1);
 	return (NULL);
@@ -127,12 +141,12 @@ int	put_image(t_win *win)
 	}
 	// mlx_clear_window(win->mlx, win->win);
 	mlx_put_image_to_window(win->mlx, win->win, win->img.img, 0, 0);
-	// printf("win->drawn %hhi\n", win->drawn);
+	// if (DEBUG) printf("win->drawn %hhi\n", win->drawn);
 	if (win->drawn == false)
 	{
 		mlx_put_image_to_window(win->mlx, win->win, \
 			progress_bar_image(win, NULL, BAR_NON_ACTION).img, 10, HEIGHT - 30);
-		// printf("image_put_to_window\n");
+		// if (DEBUG) printf("image_put_to_window\n");
 	}
 	return (0);
 }

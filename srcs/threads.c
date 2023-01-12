@@ -60,8 +60,14 @@ void	*render_n_pixels(void *param)
 	world_safe = world_selectively_shallow_copy(&info.win->world);
 	canvas.vertical = info.from.vertical;
 	canvas.horizontal = info.from.horizontal;
+	if (DEBUG && info.progress->pixels != 0)
+	{
+		printf("info.progress->pixels: %llu\n", info.progress->pixels);
+	}
 	pthread_mutex_lock(&info.progress->mutex);
 	info.progress->pixels = 0;
+	img_pixel_put(info.win, canvas.horizontal++, canvas.vertical,
+				0x00FF0000u);
 	while (canvas.vertical < info.camera->canvas.vertical)
 	{
 		while (canvas.horizontal < info.camera->canvas.horizontal)
@@ -71,10 +77,13 @@ void	*render_n_pixels(void *param)
 			colour = colour_at(&world_safe);
 			if (info.frame != *info.current_frame)
 			{
-				// printf("!!!!!!!!!!!! info.frame != *info.current_frame\n");
+				// if (DEBUG) printf("!!!!!!!!!!!! info.frame != *info.current_frame\n");
 				//img_pixel_put(info.win, canvas.horizontal, canvas.vertical, 0x00FFFFFFu);
 				//darken_n_pixels(info, canvas);
 				world_end(&world_safe);
+				pthread_detach(pthread_self());
+				pthread_cancel(pthread_self());
+				pthread_testcancel();
 				pthread_exit(NULL);
 				return (NULL);
 			}
