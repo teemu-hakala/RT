@@ -38,11 +38,24 @@ void	clear_progress(t_progress progress[THREAD_COUNT], uint64_t frame)
 	}
 }
 
+void	progress_percentage_loop(uint64_t *pixel_progress, t_win *win)
+{
+	uint16_t	t;
+
+	*pixel_progress = 0;
+	t = 0;
+	while (t < THREAD_COUNT)
+	{
+		pthread_testcancel();
+		*pixel_progress += win->progress[t].pixels;
+		t++;
+	}
+}
+
 void	*progress_percentage(void *param)
 {
 	t_win					*win;
 	uint64_t				pixel_progress;
-	uint16_t				t;
 	t_fl					percentage;
 	t_fl					previous_percentage;
 
@@ -51,14 +64,7 @@ void	*progress_percentage(void *param)
 	previous_percentage = 0;
 	while (pixel_progress < WIDTH * HEIGHT)
 	{
-		pixel_progress = 0;
-		t = 0;
-		while (t < THREAD_COUNT)
-		{
-			pthread_testcancel();
-			pixel_progress += win->progress[t].pixels;
-			t++;
-		}
+		progress_percentage_loop(&pixel_progress, win);
 		percentage = ((t_fl)pixel_progress) / (WIDTH * HEIGHT);
 		progress_bar(progress_bar_image(win, \
 			&(t_canvas){.horizontal = WIDTH - 20, .vertical = 20}, \

@@ -38,7 +38,6 @@
 # define EPSILON 0.00001
 # define PLANE_EPSILON 0.00001
 # define TUPLE_EPSILON 0.00001
-# define ROTATION_STEP (M_PI / 448)
 
 typedef struct s_img
 {
@@ -76,6 +75,7 @@ typedef struct s_win
 	pthread_mutex_t	drawn_mutex;
 	uint64_t		pixels;
 	uint64_t		remaining_pixels;
+	t_fl			rotation_step;
 }	t_win;
 
 typedef void	(*t_intersect_function)(t_ray, void *, t_world *);

@@ -47,10 +47,7 @@ void	*render_norme(t_norme_render r)
 	r.info->progress->pixels += r.info->frame == r.info->progress->frame;
 	if (r.info->frame != r.info->progress->frame \
 		|| r.info->progress->pixels >= r.info->pixels)
-	{
-		printf("at world_end progress->pixels %llu\n", r.info->progress->pixels);
 		return (world_end(r.world_safe, &r.info->progress->mutex));
-	}
 	pthread_mutex_unlock(&r.info->progress->mutex);
 	return ((void *)1);
 }
@@ -96,7 +93,6 @@ void	threaded_loop(t_win *win, t_progress progress[THREAD_COUNT])
 	clear_progress(progress, frame);
 	from = (t_canvas_64){.vertical = 0, .horizontal = 0};
 	thread_count = 0;
-	printf("\n");
 	while (thread_count < THREAD_COUNT)
 	{
 		renderer_info[thread_count] = (t_renderer_info){.win = win, \

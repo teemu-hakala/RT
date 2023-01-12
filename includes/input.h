@@ -14,7 +14,7 @@
 # define INPUT_H
 # include "RT.h"
 
-typedef struct s_win t_win;
+typedef struct s_win	t_win;
 
 enum e_event
 {
