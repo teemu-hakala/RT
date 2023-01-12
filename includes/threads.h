@@ -46,7 +46,7 @@ typedef struct s_norme_render
 {
 	t_renderer_info	info;
 	t_canvas		canvas;
-	t_world			world_safe;
+	t_world			*world_safe;
 }	t_norme_render;
 
 int		put_image(t_win *win);

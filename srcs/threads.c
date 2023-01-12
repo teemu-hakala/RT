@@ -38,17 +38,17 @@ void	*render_norme(t_norme_render r)
 {
 	t_tuple			colour;
 
-	r.world_safe.ray = ray_for_pixel(r.info.camera, r.canvas);
-	colour = colour_at(&r.world_safe);
+	r.world_safe->ray = ray_for_pixel(r.info.camera, r.canvas);
+	colour = colour_at(r.world_safe);
 	if (r.info.frame != *r.info.current_frame)
-		return (world_end(&r.world_safe, &r.info.progress->mutex));
+		return (world_end(r.world_safe, &r.info.progress->mutex));
 	img_pixel_put(r.info.win, r.canvas.horizontal, r.canvas.vertical,
 		clamped_rgb_to_hex(&colour.tuple.colour));
 	pthread_mutex_lock(&r.info.progress->mutex);
 	r.info.progress->pixels += r.info.frame == r.info.progress->frame;
 	if (r.info.frame != r.info.progress->frame \
 		|| r.info.progress->pixels >= r.info.pixels)
-		return (world_end(&r.world_safe, &r.info.progress->mutex));
+		return (world_end(r.world_safe, &r.info.progress->mutex));
 	pthread_mutex_unlock(&r.info.progress->mutex);
 	return ((void *)1);
 }
@@ -72,7 +72,7 @@ void	*render_n_pixels(void *param)
 		while (canvas.horizontal < info.camera->canvas.horizontal - 1)
 		{
 			norme_render = (t_norme_render){.info = info, .canvas = canvas,
-				.world_safe = world_safe};
+				.world_safe = &world_safe};
 			if (render_norme(norme_render) != (void *)1)
 				return (NULL);
 			canvas.horizontal++;
