@@ -48,6 +48,8 @@ void	initialise_window(t_win *win)
 	win->drawn = false;
 	pthread_mutex_init(&win->drawn_mutex, NULL);
 	win->input.mouse.rmb_is_down = false;
+	win->pixels = (WIDTH * HEIGHT) / THREAD_COUNT;
+	win->remaining_pixels = (WIDTH * HEIGHT - THREAD_COUNT * win->pixels);
 }
 
 void	identity_matrix_set(t_mtx *dst)

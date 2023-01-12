@@ -75,7 +75,8 @@ typedef struct s_win
 	int8_t			drawn;
 	pthread_t		bar_thread;
 	pthread_mutex_t	drawn_mutex;
-	long			progress_percentage_pthread_id;
+	uint64_t		pixels;
+	uint64_t		remaining_pixels;
 }	t_win;
 
 typedef void	(*t_intersect_function)(t_ray, void *, t_world *);

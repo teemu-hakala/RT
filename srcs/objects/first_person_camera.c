@@ -11,7 +11,7 @@
 
 
 #include "RT.h"
-#include <stdio.h>
+
 void	first_person_camera(t_win *win)
 {
 	win->world.camera.transform.rotation.tuple.rotation = \
@@ -26,7 +26,6 @@ win->input.mouse.diff.col * ROTATION_STEP, \
 void	navigate_camera(t_win *win)
 {
 	first_person_camera(win);
-	// threaded_loop_mid(win);
 	if (win->progress == NULL)
 		return ;
 	pthread_mutex_lock(&win->drawn_mutex);
@@ -34,20 +33,11 @@ void	navigate_camera(t_win *win)
 	{
 		pthread_detach(win->bar_thread);
 		pthread_cancel(win->bar_thread);
-		// pthread_exit(win->bar_thread);
-		if (DEBUG) printf("%li : pthread_cancel\n", (long)win->bar_thread);
-	}
-	else
-	{
-		if (DEBUG) printf("should be nothing to cancel\n");
 	}
 	pthread_mutex_unlock(&win->drawn_mutex);
 	win->drawn = false;
-	if (DEBUG) printf("win->drawn false\n");
 	progress_bar_image(win, \
 		&(t_canvas){.horizontal = WIDTH - 20, .vertical = 20}, BAR_CLEAR);
 	pthread_create(&win->bar_thread, NULL, progress_percentage, win);
-	if (DEBUG) printf("onto threaded_loop\n");
 	threaded_loop(win, win->progress);
-	//render(win, &win->world.camera);
 }

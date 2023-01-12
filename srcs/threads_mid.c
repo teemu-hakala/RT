@@ -39,19 +39,11 @@ void	*render_n_pixels_mid(void *param)
 			world_safe.ray = ray_for_pixel(info.camera, canvas);
 			colour = colour_at(&world_safe);
 			if (info.frame != *info.current_frame)
-			{
-				//darken_n_pixels(info, canvas);
-				world_end(&world_safe);
-				pthread_exit(NULL);
-				return (NULL);
-			}
+				return (world_end(&world_safe, &info.progress->mutex));
 			img_pixel_put(info.win, pixeler, info.from.vertical,
 				clamped_rgb_to_hex(&colour.tuple.colour));
 			if (--info.pixels == 0)
-			{
-				world_end(&world_safe);
-				return (NULL);
-			}
+				return (world_end(&world_safe, &info.progress->mutex));
 		}
 		pixeler = pixel_number + pixel_count;
 		canvas.horizontal = pixeler;
@@ -60,19 +52,11 @@ void	*render_n_pixels_mid(void *param)
 			world_safe.ray = ray_for_pixel(info.camera, canvas);
 			colour = colour_at(&world_safe);
 			if (info.frame != *info.current_frame)
-			{
-				//darken_n_pixels(info, canvas);
-				world_end(&world_safe);
-				pthread_exit(NULL);
-				return (NULL);
-			}
+				return (world_end(&world_safe, &info.progress->mutex));
 			img_pixel_put(info.win, pixeler, info.from.vertical,
 				clamped_rgb_to_hex(&colour.tuple.colour));
 			if (--info.pixels == 0)
-			{
-				world_end(&world_safe);
-				return (NULL);
-			}
+				return (world_end(&world_safe, &info.progress->mutex));
 		}
 		pixel_count++;
 	}

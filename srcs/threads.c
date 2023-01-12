@@ -24,29 +24,13 @@ t_world	world_selectively_shallow_copy(t_world *original)
 	return (copy);
 }
 
-void	*world_end(t_world *ending_world)
+void	*world_end(t_world *ending_world, pthread_mutex_t *progress_mutex)
 {
+	pthread_mutex_unlock(progress_mutex);
+	pthread_detach(pthread_self());
+	pthread_exit(NULL);
 	free(ending_world->intersections.memory);
 	return (NULL);
-}
-
-void	darken_n_pixels(t_renderer_info info, t_canvas to)
-{
-	t_canvas	canvas;
-
-	canvas.vertical = info.from.vertical;
-	canvas.horizontal = info.from.horizontal;
-	while (canvas.vertical < to.vertical)
-	{
-		while (canvas.horizontal < to.horizontal)
-		{
-			img_pixel_put(info.win, canvas.horizontal, canvas.vertical,
-				0xffff0000);
-			canvas.horizontal++;
-		}
-		canvas.horizontal = 0;
-		canvas.vertical++;
-	}
 }
 
 void	*render_n_pixels(void *param)
@@ -57,17 +41,13 @@ void	*render_n_pixels(void *param)
 	t_world			world_safe;
 
 	info = *(t_renderer_info *)param;
+	if (info.is_last)
+		info.pixels += info.win->remaining_pixels;
 	world_safe = world_selectively_shallow_copy(&info.win->world);
 	canvas.vertical = info.from.vertical;
 	canvas.horizontal = info.from.horizontal;
-	if (DEBUG && info.progress->pixels != 0)
-	{
-		printf("info.progress->pixels: %llu\n", info.progress->pixels);
-	}
 	pthread_mutex_lock(&info.progress->mutex);
 	info.progress->pixels = 0;
-	img_pixel_put(info.win, canvas.horizontal++, canvas.vertical,
-				0x00FF0000u);
 	while (canvas.vertical < info.camera->canvas.vertical)
 	{
 		while (canvas.horizontal < info.camera->canvas.horizontal)
@@ -76,17 +56,7 @@ void	*render_n_pixels(void *param)
 			world_safe.ray = ray_for_pixel(info.camera, canvas);
 			colour = colour_at(&world_safe);
 			if (info.frame != *info.current_frame)
-			{
-				// if (DEBUG) printf("!!!!!!!!!!!! info.frame != *info.current_frame\n");
-				//img_pixel_put(info.win, canvas.horizontal, canvas.vertical, 0x00FFFFFFu);
-				//darken_n_pixels(info, canvas);
-				world_end(&world_safe);
-				pthread_detach(pthread_self());
-				pthread_cancel(pthread_self());
-				pthread_testcancel();
-				pthread_exit(NULL);
-				return (NULL);
-			}
+				return (world_end(&world_safe, &info.progress->mutex));
 			img_pixel_put(info.win, canvas.horizontal, canvas.vertical,
 				clamped_rgb_to_hex(&colour.tuple.colour));
 			canvas.horizontal++;
@@ -94,16 +64,7 @@ void	*render_n_pixels(void *param)
 			info.progress->pixels += info.frame == info.progress->frame;
 			if (info.frame != info.progress->frame \
 				|| info.progress->pixels >= info.pixels)
-			{
-				//img_pixel_put(info.win, canvas.horizontal, canvas.vertical, 0x0000FF00u);
-				world_end(&world_safe);
-				pthread_mutex_unlock(&info.progress->mutex);
-				pthread_detach(pthread_self());
-				pthread_cancel(pthread_self());
-				pthread_testcancel();
-				pthread_exit(NULL);
-				return (NULL);
-			}
+				return (world_end(&world_safe, &info.progress->mutex));
 		}
 		canvas.horizontal = 0;
 		canvas.vertical++;
@@ -120,28 +81,22 @@ void	threaded_loop(t_win *win, t_progress progress[THREAD_COUNT])
 	t_canvas_64				from;
 	static uint64_t			frame = 0;
 
-	//mlx_clear_window(win->mlx, win->win);
 	frame++;
 	clear_progress(progress, frame);
 	from = (t_canvas_64){.vertical = 0, .horizontal = 0};
 	thread_count = 0;
-	while (thread_count < THREAD_COUNT - 1)
+	while (thread_count < THREAD_COUNT)
 	{
 		renderer_info[thread_count] = (t_renderer_info){.win = win, \
-			.camera = &win->world.camera, .from = from, .pixels = PIXEL_COUNT, \
+			.camera = &win->world.camera, .from = from, .pixels = win->pixels, \
 			.thread_id = thread_id[thread_count], .frame = frame, \
-			.current_frame = &frame, .progress = &progress[thread_count]};
+			.current_frame = &frame, .progress = &progress[thread_count], \
+			.is_last = thread_count == THREAD_COUNT - 1};
 		pthread_create(&thread_id[thread_count], NULL, render_n_pixels, \
 			&renderer_info[thread_count]);
-		from.horizontal += PIXEL_COUNT;
+		from.horizontal += win->pixels;
 		from.vertical += from.horizontal / win->world.camera.canvas.horizontal;
 		from.horizontal %= win->world.camera.canvas.horizontal;
 		thread_count++;
 	}
-	renderer_info[thread_count] = (t_renderer_info){.win = win, \
-		.camera = &win->world.camera, .from = from, .pixels = PIXEL_COUNT + \
-		REMAINING_PIXELS, .thread_id = thread_id[thread_count], .frame = \
-		frame, .current_frame = &frame, .progress = &progress[thread_count]};
-	pthread_create(&thread_id[thread_count], NULL, render_n_pixels, \
-		&renderer_info[thread_count]);
 }

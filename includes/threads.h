@@ -15,8 +15,6 @@
 # include "RT.h"
 # include <pthread.h>
 # define THREAD_COUNT 24
-# define PIXEL_COUNT ((WIDTH * HEIGHT) / THREAD_COUNT)
-# define REMAINING_PIXELS (WIDTH * HEIGHT - THREAD_COUNT * PIXEL_COUNT)
 
 typedef struct s_progress
 {
@@ -35,6 +33,7 @@ typedef struct s_renderer_info
 	uint64_t	frame;
 	uint64_t	*current_frame;
 	t_progress	*progress;
+	uint8_t		is_last;
 }	t_renderer_info;
 
 typedef enum e_frame_check
@@ -45,7 +44,7 @@ typedef enum e_frame_check
 
 int		put_image(t_win *win);
 void	threaded_loop(t_win *win, t_progress progress[THREAD_COUNT]);
-void	*world_end(t_world *ending_world);
+void	*world_end(t_world *ending_world, pthread_mutex_t *progress_mutex);
 t_world	world_selectively_shallow_copy(t_world *original);
 void	threaded_loop_mid(t_win *win);
 
