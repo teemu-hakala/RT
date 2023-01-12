@@ -188,6 +188,12 @@ typedef struct s_canvas_size
 	uint16_t	horizontal;
 }	t_canvas;
 
+typedef struct s_canvas_size_64
+{
+	uint64_t	vertical;
+	uint64_t	horizontal;
+}	t_canvas_64;
+
 typedef struct s_camera
 {
 	t_tuple		origin;

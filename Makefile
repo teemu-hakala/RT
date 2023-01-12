@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
+#    By: thakala <thakala@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2023/01/12 17:25:08 by deelliot         ###   ########.fr        #
+#    Updated: 2023/01/12 17:46:32 by thakala          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,10 @@ HDRS = includes/RT.h \
 	includes/tuple.h \
 	includes/world.h \
 	includes/patterns.h \
-	includes/parse.h
+	includes/parse.h \
+	includes/threads.h \
+	includes/user_interface.h \
+
 LIBFT_DIR = libft
 MINILIBX_DIR = minilibx
 
@@ -80,6 +83,12 @@ FILES = \
 	ray.c \
 	render.c \
 	colour.c \
+	threads.c \
+	put_image.c \
+	threads_mid.c \
+	loop.c \
+	progress_bar.c \
+	key_handlers.c \
 
 OBJS = $(addprefix $(OBJS_DIR)/, \
 	$(addprefix $(PARSE_DIR)/, $(PARSE_SRCS:.c=.o)) \

@@ -45,6 +45,13 @@ void	initialise_window(t_win *win)
 	if (!win->win)
 		handle_errors("error");
 	initialise_image(&win->img, win);
+	win->progress = NULL;
+	win->drawn = false;
+	pthread_mutex_init(&win->drawn_mutex, NULL);
+	win->input.mouse.rmb_is_down = false;
+	win->pixels = (WIDTH * HEIGHT) / THREAD_COUNT;
+	win->remaining_pixels = (WIDTH * HEIGHT - THREAD_COUNT * win->pixels);
+	win->rotation_step = M_PI / 448;
 }
 
 void	identity_matrix_set(t_mtx *dst)

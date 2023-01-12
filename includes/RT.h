@@ -25,6 +25,8 @@
 # include "world.h"
 # include "parse.h"
 # include "input.h"
+# include "threads.h"
+# include "user_interface.h"
 
 # define USAGE "./RT ./scenes/[.json file]"
 # define WIDTH 501
@@ -37,15 +39,15 @@
 # define EPSILON 0.00001
 # define PLANE_EPSILON 0.00001
 # define TUPLE_EPSILON 0.00001
-# define ROTATION_STEP (M_PI / 448)
 
 typedef struct s_img
 {
-	void	*img;
-	char	*addr;
-	int		bpp;
-	int		length;
-	int		endian;
+	void		*img;
+	char		*addr;
+	int			bpp;
+	int			length;
+	int			endian;
+	t_rectangle	dimensions;
 }	t_img;
 
 typedef struct s_coords
@@ -62,12 +64,19 @@ typedef struct s_pixel_index
 
 typedef struct s_win
 {
-	t_img		img;
-	void		*mlx;
-	void		*win;
-	int			fd;
-	t_world		world;
-	t_input		input;
+	t_img			img;
+	void			*mlx;
+	void			*win;
+	int				fd;
+	t_world			world;
+	t_input			input;
+	t_progress		*progress;
+	int8_t			drawn;
+	pthread_t		bar_thread;
+	pthread_mutex_t	drawn_mutex;
+	uint64_t		pixels;
+	uint64_t		remaining_pixels;
+	t_fl			rotation_step;
 }	t_win;
 
 typedef void	(*t_intersect_function)(t_ray, void *, t_world *);
@@ -119,11 +128,12 @@ void		initialise_world(t_world *world);
 void		initialise_window(t_win *win);
 
 /* handle input*/
-int			handle_input(int key);
+int			handle_input(int key, t_win *win);
 
 /* colour and lighting*/
 t_tuple		hex_to_tuple_colour(uint32_t colour);
 uint32_t	clamped_rgb_to_hex(t_colour *colour);
+uint32_t	clamped_rgba_to_hex(t_colour *colour);
 t_tuple		lighting(t_info *lighting_info, t_light *light, t_phong vectors,
 				t_tuple point);
 t_info		get_lighting_info(t_material material, t_appearance appearance, \
@@ -244,5 +254,8 @@ t_uv_map	cube_uv_down(t_tuple *p);
 /* parsing */
 double		rt_atof(t_parser *parser);
 int			rt_atoi(t_parser *parser);
+
+/* loops */
+int			incremental_loop(t_win *win);
 
 #endif

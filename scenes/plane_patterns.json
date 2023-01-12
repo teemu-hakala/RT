@@ -2,17 +2,10 @@
 	"lights" :
 	[
 		{
-			"light" :
+			"spot" :
 			{
 				"position" : [ -4.9, 4.9, -1],
 				"intensity" : [1, 1, 1]
-			}
-		},
-		{
-			"light" :
-			{
-				"position" : [ 4.9, 94, -1],
-				"intensity" : [0.5, 0.5, 0.5]
 			}
 		}
 	],

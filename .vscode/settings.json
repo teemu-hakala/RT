@@ -29,6 +29,8 @@
 		"chrono": "c",
 		"ios": "c",
 		"cstring": "c",
-		"typeinfo": "c"
+		"typeinfo": "c",
+		"pthread.h": "c",
+		"parse.h": "c"
 	}
 }
