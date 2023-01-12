@@ -42,6 +42,13 @@ typedef enum e_frame_check
 	FRAME_NEXT = 0b1
 }	t_frame_check;
 
+typedef struct s_norme_render
+{
+	t_renderer_info	info;
+	t_canvas		canvas;
+	t_world			world_safe;
+}	t_norme_render;
+
 int		put_image(t_win *win);
 void	threaded_loop(t_win *win, t_progress progress[THREAD_COUNT]);
 void	*world_end(t_world *ending_world, pthread_mutex_t *progress_mutex);
