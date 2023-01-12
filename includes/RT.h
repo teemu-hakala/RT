@@ -39,7 +39,6 @@
 # define PLANE_EPSILON 0.00001
 # define TUPLE_EPSILON 0.00001
 # define ROTATION_STEP (M_PI / 448)
-# define DEBUG true
 
 typedef struct s_img
 {

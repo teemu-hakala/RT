@@ -10,7 +10,7 @@
 
 
 #include "RT.h"
-
+#include <stdio.h>
 t_world	world_selectively_shallow_copy(t_world *original)
 {
 	t_world		copy;
@@ -25,12 +25,11 @@ t_world	world_selectively_shallow_copy(t_world *original)
 
 void	*world_end(t_world *ending_world, pthread_mutex_t *progress_mutex)
 {
+	free(ending_world->intersections.memory);
+	ending_world->intersections.memory = NULL;
 	pthread_mutex_unlock(progress_mutex);
 	pthread_detach(pthread_self());
 	pthread_exit(NULL);
-	(void)ending_world;
-	free(ending_world->intersections.memory);
-	ending_world->intersections.memory = NULL;
 	return (NULL);
 }
 
@@ -38,18 +37,21 @@ void	*render_norme(t_norme_render r)
 {
 	t_tuple			colour;
 
-	r.world_safe->ray = ray_for_pixel(r.info.camera, r.canvas);
+	r.world_safe->ray = ray_for_pixel(r.info->camera, r.canvas);
 	colour = colour_at(r.world_safe);
-	if (r.info.frame != *r.info.current_frame)
-		return (world_end(r.world_safe, &r.info.progress->mutex));
-	img_pixel_put(r.info.win, r.canvas.horizontal, r.canvas.vertical,
+	if (r.info->frame != *r.info->current_frame)
+		return (world_end(r.world_safe, &r.info->progress->mutex));
+	img_pixel_put(r.info->win, r.canvas.horizontal, r.canvas.vertical,
 		clamped_rgb_to_hex(&colour.tuple.colour));
-	pthread_mutex_lock(&r.info.progress->mutex);
-	r.info.progress->pixels += r.info.frame == r.info.progress->frame;
-	if (r.info.frame != r.info.progress->frame \
-		|| r.info.progress->pixels >= r.info.pixels)
-		return (world_end(r.world_safe, &r.info.progress->mutex));
-	pthread_mutex_unlock(&r.info.progress->mutex);
+	pthread_mutex_lock(&r.info->progress->mutex);
+	r.info->progress->pixels += r.info->frame == r.info->progress->frame;
+	if (r.info->frame != r.info->progress->frame \
+		|| r.info->progress->pixels >= r.info->pixels)
+	{
+		printf("at world_end progress->pixels %llu\n", r.info->progress->pixels);
+		return (world_end(r.world_safe, &r.info->progress->mutex));
+	}
+	pthread_mutex_unlock(&r.info->progress->mutex);
 	return ((void *)1);
 }
 
@@ -69,9 +71,9 @@ void	*render_n_pixels(void *param)
 	pthread_mutex_unlock(&info.progress->mutex);
 	while (++canvas.vertical < info.camera->canvas.vertical)
 	{
-		while (canvas.horizontal < info.camera->canvas.horizontal - 1)
+		while (canvas.horizontal < info.camera->canvas.horizontal)
 		{
-			norme_render = (t_norme_render){.info = info, .canvas = canvas,
+			norme_render = (t_norme_render){.info = &info, .canvas = canvas,
 				.world_safe = &world_safe};
 			if (render_norme(norme_render) != (void *)1)
 				return (NULL);
@@ -94,6 +96,7 @@ void	threaded_loop(t_win *win, t_progress progress[THREAD_COUNT])
 	clear_progress(progress, frame);
 	from = (t_canvas_64){.vertical = 0, .horizontal = 0};
 	thread_count = 0;
+	printf("\n");
 	while (thread_count < THREAD_COUNT)
 	{
 		renderer_info[thread_count] = (t_renderer_info){.win = win, \

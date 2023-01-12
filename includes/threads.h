@@ -44,7 +44,7 @@ typedef enum e_frame_check
 
 typedef struct s_norme_render
 {
-	t_renderer_info	info;
+	t_renderer_info	*info;
 	t_canvas		canvas;
 	t_world			*world_safe;
 }	t_norme_render;
