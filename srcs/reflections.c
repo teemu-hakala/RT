@@ -18,6 +18,15 @@ t_tuple	reflect(t_tuple input, t_tuple normal)
 			tuple_scale(normal, 2 * dot_product(input, normal))));
 }
 
+t_ray	ray(t_tuple origin, t_tuple reflectv)
+{
+	t_ray	ray;
+
+	ray.origin = origin;
+	ray.direction = normalize(reflectv);
+	return (ray);
+}
+
 static void	direction_and_distance(t_light *light, t_tuple *direction,
 	t_tuple point, t_fl *distance)
 {
@@ -56,3 +65,19 @@ void	is_shadow(t_world *world, t_tuple point, t_light *light)
 		}
 	}
 }
+
+t_tuple	reflected_colour(t_world *world, t_comp *computations)
+{
+	t_tuple	reflected_colour;
+
+	reflected_colour = point(0, 0, 0);
+	if (world->lifetime-- <= 0)
+		return (reflected_colour);
+	if (computations->reflective < EPSILON)
+		return (reflected_colour);
+	world->reflected_ray = \
+		ray(computations->over_point, computations->reflectv);
+	reflected_colour = colour_at(world, world->reflected_ray);
+	return (tuple_scale(reflected_colour, computations->reflective));
+}
+

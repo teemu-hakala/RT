@@ -28,16 +28,15 @@ t_transform	default_transform_1(void)
 	return (d);
 }
 
-t_material	default_phong_mat(void)
+t_transform	default_transform_2(void)
 {
-	return ((t_material){
-		.ambient = 0.1,
-		.diffuse = 0.9,
-		.specular = 0.9,
-		.shininess = 200,
-		.init_colour = vector(1.0, 1.0, 1.0),
-		.col_mash = vector(0, 0, 0)
-	});
+	t_transform	d;
+
+	d.translation = point(0, 0, 0);
+	d.rotation = point(0, 0, 0);
+	d.scale = point(0.3, 0.3, 0.3);
+	transform_object(&d);
+	return (d);
 }
 
 t_material	default_material_1(void)
@@ -48,7 +47,8 @@ t_material	default_material_1(void)
 		.specular = 0.2,
 		.shininess = 200,
 		.init_colour = vector(0.8, 1.0, 0.6),
-		.col_mash = vector(0, 0, 0)
+		.col_mash = vector(0, 0, 0),
+		.reflectiveness = 0
 	});
 }
 

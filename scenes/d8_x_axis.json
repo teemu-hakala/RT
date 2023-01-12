@@ -26,7 +26,6 @@
 		{
 			"cylinder" :
 			{
-				"origin" : [0, 0, 0],
 				"transform" :
 				{
 					"translation" : [0, 0, 0],
@@ -46,7 +45,6 @@
 		{
 			"sphere" :
 			{
-				"origin" : [0, 0, 0],
 				"transform" :
 				{
 					"translation" : [-2.5, 0, 0],
@@ -66,7 +64,6 @@
 		{
 			"cone" :
 			{
-				"origin" : [0, 0, 0],
 				"transform" :
 				{
 					"translation" : [0, 0, 0],
@@ -78,7 +75,6 @@
 		{
 			"plane" :
 			{
-				"origin" : [0, 0, 0],
 				"transform" :
 				{
 					"translation" : [0, 0, 4],

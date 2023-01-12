@@ -26,5 +26,5 @@ test:
 	make -C ..
 	-for scene in  $(SCENES) ; do \
 		echo "$$scene"; \
-		../RTv1 $$scene ; \
+		../RT $$scene ; \
 	done

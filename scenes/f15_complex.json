@@ -33,7 +33,6 @@
 		{
 			"sphere" :
 			{
-				"origin" : [0, 0, 0],
 				"transform" :
 				{
 					"translation" : [-2.7, 0, 0],
@@ -53,7 +52,6 @@
 		{
 			"cylinder" :
 			{
-				"origin" : [0, 0, 0],
 				"transform" :
 				{
 					"translation" : [-2.7, 0, 0],
@@ -73,7 +71,6 @@
 		{
 			"sphere" :
 			{
-				"origin" : [0, 0, 0],
 				"transform" :
 				{
 					"translation" : [-2.7, 4, 0],
@@ -93,7 +90,6 @@
 		{
 			"sphere" :
 			{
-				"origin" : [0, 0, 0],
 				"transform" :
 				{
 					"translation" : [2.7, 4, 0],
@@ -113,7 +109,6 @@
 		{
 			"cylinder" :
 			{
-				"origin" : [0, 0, 0],
 				"transform" :
 				{
 					"translation" : [2.7, 0, 0],
@@ -133,7 +128,6 @@
 		{
 			"sphere" :
 			{
-				"origin" : [0, 0, 0],
 				"transform" :
 				{
 					"translation" : [2.7, 0, 0],
@@ -153,7 +147,6 @@
 		{
 			"sphere" :
 			{
-				"origin" : [0, 0, 0],
 				"transform" :
 				{
 					"translation" : [2.7, 4, -5],
@@ -173,7 +166,6 @@
 		{
 			"cylinder" :
 			{
-				"origin" : [0, 0, 0],
 				"transform" :
 				{
 					"translation" : [2.7, 0, -5],
@@ -193,7 +185,6 @@
 		{
 			"sphere" :
 			{
-				"origin" : [0, 0, 0],
 				"transform" :
 				{
 					"translation" : [2.7, 0, -5],
@@ -213,7 +204,6 @@
 		{
 			"sphere" :
 			{
-				"origin" : [0, 0, 0],
 				"transform" :
 				{
 					"translation" : [-2.7, 4, -5],
@@ -233,7 +223,6 @@
 		{
 			"cylinder" :
 			{
-				"origin" : [0, 0, 0],
 				"transform" :
 				{
 					"translation" : [-2.7, 0, -5],
@@ -253,7 +242,6 @@
 		{
 			"sphere" :
 			{
-				"origin" : [0, 0, 0],
 				"transform" :
 				{
 					"translation" : [-2.7, 0, -5],
@@ -273,7 +261,6 @@
 		{
 			"plane" :
 			{
-				"origin" : [0, 0, 0],
 				"transform" :
 				{
 					"translation" : [0, 0, 0],
@@ -293,7 +280,6 @@
 		{
 			"plane" :
 			{
-				"origin" : [0, 0, 0],
 				"transform" :
 				{
 					"translation" : [0, 0, 6],
@@ -313,7 +299,6 @@
 		{
 			"plane" :
 			{
-				"origin" : [0, 0, 0],
 				"transform" :
 				{
 					"translation" : [0, 4, 0],
@@ -333,7 +318,6 @@
 		{
 			"sphere" :
 			{
-				"origin" : [0, 0, 0],
 				"transform" :
 				{
 					"translation" : [0, 0.9, -4.2],

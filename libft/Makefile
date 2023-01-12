@@ -64,7 +64,7 @@ ASCII_SRCS = ft_isuppercase.c ft_islowercase.c ft_isalpha.c ft_isdigit.c \
 CONVERSION_SRCS = ft_toupper.c ft_tolower.c ft_atoi.c ft_itoa.c ft_atof.c
 
 MATHS_SRCS = ft_abs.c  ft_sqrt.c ft_find_next_sqrt.c ft_max.c \
-	ft_linear_conversion.c ft_create_range.c ft_normalise_data.c double_min.c \
+	ft_linear_conversion.c ft_create_range.c normalise_data.c double_min.c \
 	double_max.c
 
 INPUT_SRCS = get_next_line.c gnl_read_ret.c

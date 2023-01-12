@@ -4,7 +4,31 @@
 	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
 	"version": "0.2.0",
 	"configurations": [
+		{
+			"name": "ppm_test",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/RT",
+			"args": ["${workspaceFolder}/test.ppm"],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb"
+		},
 
+		{
+			"name": "g4_cube_pattern",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/RT",
+			"args": ["${workspaceFolder}/scenes/g4_cube_pattern.json"],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb"
+		},
 		{
 			"name": "minimum",
 			"type": "cppdbg",
@@ -23,6 +47,18 @@
 			"request": "launch",
 			"program": "${workspaceFolder}/RT",
 			"args": ["${workspaceFolder}/scenes/a0_sphere.json"],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb"
+		},
+		{
+			"name": "rayacers D2",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/RT",
+			"args": ["${workspaceFolder}/scenes/rayacers/d2_default_world_test_4.json"],
 			"stopAtEntry": true,
 			"cwd": "${workspaceFolder}",
 			"environment": [],

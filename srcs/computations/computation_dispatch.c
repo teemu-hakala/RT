@@ -12,7 +12,7 @@
 
 #include "RT.h"
 
-void	prepare_computations(t_world *world)
+void	prepare_computations(t_world *world, t_ray ray)
 {
 	static const t_computation_fn	\
 			precompute_shape[] = {
@@ -24,5 +24,5 @@ void	prepare_computations(t_world *world)
 	};
 
 	precompute_shape[world->hit.intersection.shape->type - OBJECT_INDEX_OFFSET]
-		(world);
+		(world, ray);
 }

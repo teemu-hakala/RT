@@ -26,21 +26,40 @@
 		{
 			"cone" :
 			{
-				"origin" : [0, 0, 0],
 				"transform" :
 				{
-					"translation" : [0, 0, 0],
+					"translation" : [0, 0, -2],
 					"rotation" : [0, 0, 0],
-					"scale" : [1, 1, 1]
+					"scale" : [2, 2, 2]
 				},
 				"material" :
 				{
-					"ambient" : 0.42,
-					"diffuse" : 0.5,
-					"specular" : 0.1,
-					"shininess" : 200,
-					"init_colour" : [0.1, 0.75, 0.7]
-				}
+					"ambient" : 0.1,
+					"specular" : 0.4,
+					"shininess" : 10,
+					"diffuse" : 0.6,
+					"init_colour" : [0.42, 0.55, 0.09]
+				},
+				"appearance" :
+				{
+						"texture" :
+					{
+						"type" : "checkered",
+						"width" : 16,
+						"height" : 8,
+						"colour_a" : [0, 0.5, 0],
+						"colour_b" : [1, 1, 1],
+						"transform" :
+						{
+							"translation" : [0, 0, 0],
+							"rotation" : [0, 0, 0],
+							"scale" : [1, 1, 1]
+						}
+					}
+				},
+				"min" : 0,
+				"max" : 1,
+				"closed" : 1
 			}
 		}
 	]

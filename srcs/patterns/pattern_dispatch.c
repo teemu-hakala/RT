@@ -1,27 +1,18 @@
 
 #include "RT.h"
 
-t_pattern_col	set_pattern_colours(t_tuple a, t_tuple b)
+t_tuple	pattern_at(t_pattern *pattern, t_tuple *p)
 {
-	return ((t_pattern_col){
-		.a = a,
-		.b = b
-	});
-}
-
-void	pattern_at(t_material *material, t_tuple *point, t_transform transform)
-{
-	t_tuple							object_space;
-	t_tuple							pattern_space;
+	t_tuple							colour;
 	static const t_pattern_at_fn	patterns[] = {\
 		none_at,
-		striped_at,
-		checkered_at,
+		vertical_striped_at,
+		horizontal_striped_at,
 		circle_at,
-		gradient_at};
+		gradient_at,
+		simple_checkered_at};
 
-	object_space = matrix_tuple_multi(&transform.inverse, point);
-	pattern_space = matrix_tuple_multi(&material->pattern.transform.inverse, \
-		&object_space);
-	return (patterns[material->pattern.type](material, &pattern_space));
+	colour = point(0, 0, 0);
+	patterns[pattern->type](pattern, p, &colour);
+	return (colour);
 }

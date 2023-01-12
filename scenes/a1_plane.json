@@ -1,7 +1,7 @@
 {
 	"camera" :
 	{
-		"origin" : [0, 10, 0],
+		"origin" : [1, 2, -5],
 		"transform" :
 		{
 			"translation": [0, 0, 0],
@@ -9,7 +9,7 @@
 			"scale": [1, 1, 1]
 		},
 		"center_of_interest" : [0, 0, 0],
-		"field_of_view" : 1.0
+		"field_of_view" : 0.5
 	},
 	"lights" :
 	[
@@ -26,7 +26,6 @@
 		{
 			"plane" :
 			{
-				"origin" : [0, 0, 0],
 				"transform" :
 				{
 					"translation" : [0, 0, 0],
@@ -35,11 +34,24 @@
 				},
 				"material" :
 				{
-					"ambient" : 0.42,
-					"diffuse" : 0.5,
-					"specular" : 0.1,
-					"shininess" : 200,
-					"init_colour" : [0.8, 0.75, 0.02]
+					"ambient" : 0.1,
+					"specular" : 0.4,
+					"shininess" : 10,
+					"diffuse" : 0.6,
+					"init_colour" : [1, 1, 1]
+				},
+				"appearance" :
+				{
+					"pattern" :
+					{
+						"type" : "simple_checkered",
+						"transform" :
+						{
+							"translation" : [0, 0, 0],
+							"rotation" : [0, 0, 0],
+							"scale" : [1, 1, 1]
+						}
+					}
 				}
 			}
 		}

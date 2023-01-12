@@ -26,6 +26,9 @@
 		"iosfwd": "c",
 		"tuple": "c",
 		"__bit_reference": "c",
-		"chrono": "c"
+		"chrono": "c",
+		"ios": "c",
+		"cstring": "c",
+		"typeinfo": "c"
 	}
 }

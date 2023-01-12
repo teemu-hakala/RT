@@ -14,7 +14,7 @@
 
 void	find_min(t_parser *parser, t_object *object)
 {
-	int	min;
+	t_fl	min;
 
 	parser->c += sizeof("\"min\"") - 1;
 	find_colon(parser);
@@ -27,7 +27,7 @@ void	find_min(t_parser *parser, t_object *object)
 
 void	find_max(t_parser *parser, t_object *object)
 {
-	int	max;
+	t_fl	max;
 
 	parser->c += sizeof("\"max\"") - 1;
 	find_colon(parser);

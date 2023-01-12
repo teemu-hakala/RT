@@ -1,5 +1,16 @@
 #include "RT.h"
 
+t_info get_lighting_info(t_material material, t_appearance appearance, \
+	t_transform transform, t_tuple colour)
+{
+	return ((t_info){
+		.material = material,
+		.appearance = appearance,
+		.transform = transform,
+		.col = colour
+	});
+}
+
 void	lighting_cont(t_info *info, t_light *light, t_phong *vectors,
 	t_fl incidence_l)
 {
@@ -28,7 +39,7 @@ t_tuple	lighting(t_info *info, t_light *light, t_phong vectors,
 {
 	t_fl		incidence_l;
 
-	info->material.col_mash = tuple_multi(info->material.init_colour, \
+	info->material.col_mash = tuple_multi(info->col, \
 		light->intensity);
 	if (light->type == LIGHT_SPOT)
 		vectors.light = normalize(tuple_sub(light->position, point));

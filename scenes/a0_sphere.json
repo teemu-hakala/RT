@@ -26,7 +26,6 @@
 		{
 			"sphere" :
 			{
-				"origin" : [0, 0, 0],
 				"transform" :
 				{
 					"translation" : [0, 0, 0],
@@ -35,11 +34,18 @@
 				},
 				"material" :
 				{
-					"ambient" : 0.42,
-					"diffuse" : 0.5,
-					"specular" : 0.1,
-					"shininess" : 200,
+					"ambient" : 0.1,
+					"specular" : 0.4,
+					"shininess" : 10,
+					"diffuse" : 0.6,
 					"init_colour" : [0.42, 0.55, 0.09]
+				},
+				"appearance" :
+				{
+					"texture" :
+					{
+						"name" : "test.ppm"
+					}
 				}
 			}
 		}

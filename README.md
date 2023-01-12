@@ -12,7 +12,7 @@
 - antialiasing to combat the cone jagged edge issue with certain pixel ratios
 	- FXAA, subsampling + supersampling -> configurable from .json
 - object IDs?
-- remove 42 headers
+- # remove 42 headers
 -
 
 ---

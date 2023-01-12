@@ -20,12 +20,22 @@ t_object	cone_prototype(void)
 			.origin = default_origin(),
 			.transform = default_transform_1(),
 			.material = default_material_1(),
+			.appearance.pattern = default_pattern(),
+			.appearance.texture = default_texture(),
 			.min = -INFINITY,
 			.max = INFINITY,
 			.closed = false
 		},
 		.type = OBJECT_CONE
 	});
+}
+
+void	cone_continued(t_object *shape)
+{
+	transform_object(&shape->object.cone.transform);
+	if (shape->object.cone.appearance.texture.type == TEXTURE_CHECKERED)
+		shape->object.cone.appearance.texture.width = \
+			2 * shape->object.cone.appearance.texture.height;
 }
 
 void	parse_cone(t_parser *parser, t_object *shape)
@@ -54,4 +64,5 @@ void	parse_cone(t_parser *parser, t_object *shape)
 	}
 	else if (!find_matching_bracket(parser))
 		handle_errors("cone syntax error");
+	cone_continued(shape);
 }

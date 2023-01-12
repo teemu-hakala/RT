@@ -1,47 +1,51 @@
 
 #include "RT.h"
 
-void	none_at(t_material *material, t_tuple *point)
+void	none_at(t_pattern *pattern, t_tuple *point, t_tuple *colour)
 {
 	(void)point;
-	material->final_colour = material->init_colour;
+	(void)pattern;
+	(void)colour;
 }
 
-void	striped_at(t_material *material, t_tuple *point)
+void	vertical_striped_at(t_pattern *pattern, \
+	t_tuple *point, t_tuple *colour)
 {
 	if (fmod(floor(point->tuple.units.x), 2) == 0)
-		material->final_colour = material->pattern.colour.a;
+		*colour = pattern->colour_a;
 	else
-		material->final_colour = material->pattern.colour.b;
+		*colour = pattern->colour_b;
 }
 
-void	checkered_at(t_material *material, t_tuple *point)
+void	horizontal_striped_at(t_pattern *pattern, \
+	t_tuple *point, t_tuple *colour)
 {
-	if (fmod((floor(point->tuple.units.x) + floor(point->tuple.units.y) + \
-		floor(point->tuple.units.z)), 2) == 0)
-		material->final_colour = material->pattern.colour.a;
+	if (fmod(floor(point->tuple.units.y), 2) == 0)
+		*colour = pattern->colour_a;
 	else
-		material->final_colour = material->pattern.colour.b;
+		*colour = pattern->colour_b;
 }
 
-void	circle_at(t_material *material, t_tuple *point)
+void	circle_at(t_pattern *pattern, t_tuple *point, t_tuple *colour)
 {
-	t_fl	temp;
-
-	temp = sqrt((point->tuple.units.x * point->tuple.units.x) + \
-		(point->tuple.units.z * point->tuple.units.z));
-	if (fmod(floor(temp), 2) == 0)
-		material->final_colour = material->pattern.colour.a;
+	if (fmod(floor(sqrt((point->tuple.units.x * point->tuple.units.x) + \
+	(point->tuple.units.z * point->tuple.units.z))), 2) == 0)
+		*colour = pattern->colour_a;
 	else
-		material->final_colour = material->pattern.colour.b;
+		*colour = pattern->colour_b;
 }
 
-void	gradient_at(t_material *material, t_tuple *point)
+void	gradient_at(t_pattern *pattern, t_tuple *point, t_tuple *colour)
 {
 	t_fl	x_fraction;
 
 	x_fraction = fabs(point->tuple.units.x) - floor(fabs(point->tuple.units.x));
-	material->final_colour = tuple_add(material->pattern.colour.a, \
-	tuple_scale(tuple_sub(material->pattern.colour.b, \
-	material->pattern.colour.a), x_fraction));
+	if (x_fraction < 0.5)
+		*colour = tuple_add(pattern->colour_a, \
+		tuple_scale(tuple_sub(pattern->colour_b, \
+		pattern->colour_a), x_fraction));
+	else
+		*colour = tuple_add(pattern->colour_b, \
+		tuple_scale(tuple_sub(pattern->colour_a, \
+		pattern->colour_b), x_fraction));
 }

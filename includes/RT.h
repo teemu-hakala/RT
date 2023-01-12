@@ -21,6 +21,7 @@
 # include "matrices.h"
 # include "colour_and_light.h"
 # include "objects.h"
+# include "patterns.h"
 # include "world.h"
 # include "parse.h"
 # include "input.h"
@@ -73,7 +74,11 @@ typedef void	(*t_intersect_function)(t_ray, void *, t_world *);
 
 typedef void	(*t_shading_function)(t_world *, void *, t_tuple *, t_light *);
 
-typedef void	(*t_computation_fn)(t_world *);
+typedef void	(*t_computation_fn)(t_world *, t_ray);
+
+typedef void	(*t_pattern_at_fn)(t_pattern *, t_tuple *, t_tuple *);
+
+typedef void	(*t_texture_at_fn)(t_texture *, t_uv_map *, t_tuple *);
 
 /*tuple operations & matrix maths*/
 t_tuple		point(t_fl x, t_fl y, t_fl z);
@@ -121,6 +126,8 @@ t_tuple		hex_to_tuple_colour(uint32_t colour);
 uint32_t	clamped_rgb_to_hex(t_colour *colour);
 t_tuple		lighting(t_info *lighting_info, t_light *light, t_phong vectors,
 				t_tuple point);
+t_info		get_lighting_info(t_material material, t_appearance appearance, \
+				t_transform transform, t_tuple colour);
 void		is_shadow(t_world *world, t_tuple point, t_light *light);
 t_tuple		reflect(t_tuple input, t_tuple normal);
 
@@ -150,14 +157,16 @@ void		identify_hit(t_world *world, t_hit *hit);
 
 /*computations*/
 void		prepare_object(t_world *world, t_object *object, \
-			t_comp *computations);
-void		prepare_plane(t_world *world);
-void		prepare_sphere(t_world *world);
-void		prepare_cone(t_world *world);
-void		prepare_cylinder(t_world *world);
-void		prepare_cube(t_world *world);
+			t_comp *computations, t_ray ray);
+void		prepare_computations(t_world *world, t_ray ray);
+void		prepare_plane(t_world *world, t_ray ray);
+void		prepare_sphere(t_world *world, t_ray ray);
+void		prepare_cone(t_world *world, t_ray ray);
+void		prepare_cylinder(t_world *world, t_ray ray);
+void		prepare_cube(t_world *world, t_ray ray);
 
 /* reflections*/
+t_tuple		reflected_colour(t_world *world, t_comp *computations);
 
 /* object transformation */
 void		transform_object(t_transform *object);
@@ -180,10 +189,57 @@ void		img_pixel_put(t_win *win, int x, int y, unsigned int colour);
 
 /* camera */
 t_ray		ray_for_pixel(t_camera *camera, t_canvas position);
-void		prepare_computations(t_world *world);
-t_tuple		colour_at(t_world *world);
+t_tuple		colour_at(t_world *world, t_ray ray);
 t_fl		get_pixel_size(t_camera *camera, t_canvas size, t_fl field_of_view);
 void		transform_camera_for_rotations(t_camera *camera);
+
+/* default patterns*/
+t_pattern	default_vertical_stripe_pattern(void);
+t_pattern	default_horizontal_stripe_pattern(void);
+t_pattern	default_gradient_pattern(void);
+t_pattern	default_ring_pattern(void);
+t_pattern	default_simple_checkered_pattern(void);
+t_pattern	default_pattern(void);
+
+/* default textures*/
+t_texture	default_texture(void);
+t_texture	default_checkered_texture(void);
+t_texture	default_align_check(void);
+t_texture	default_external(void);
+
+t_tuple		get_appearance_colour(t_info *obj_info, t_tuple *p, t_uv_map \
+			(*f)(t_tuple *));
+
+/* patterns*/
+t_tuple		pattern_at(t_pattern *pattern, t_tuple *point);
+void		none_at(t_pattern *pattern, t_tuple *point, t_tuple *colour);
+void		vertical_striped_at(t_pattern *pattern, t_tuple *point, \
+			t_tuple *colour);
+void		horizontal_striped_at(t_pattern *pattern, t_tuple *point, \
+			t_tuple *colour);
+void		simple_checkered_at(t_pattern *pattern, t_tuple *point, \
+			t_tuple *colour);
+void		circle_at(t_pattern *pattern, t_tuple *point, t_tuple *colour);
+void		gradient_at(t_pattern *pattern, t_tuple *point, t_tuple *colour);
+
+/*textures*/
+t_tuple		texture_at(t_texture *texture, t_uv_map *map);
+void		no_texture_at(t_texture *texture, t_uv_map *map, t_tuple *colour);
+void		checkered_at(t_texture *texture, t_uv_map *map, t_tuple *colour);
+void		align_check_at(t_texture *texture, t_uv_map *map, t_tuple *colour);
+void		external_at(t_texture *texture, t_uv_map *map, t_tuple *colour);
+t_tuple		transform_point(t_tuple *point, t_transform *shape_transform, \
+			t_transform *pattern_transform);
+t_uv_map	spherical_map(t_tuple *p);
+t_uv_map	planar_map(t_tuple *p);
+t_uv_map	cylindrical_map(t_tuple *p);
+t_uv_map	conical_map(t_tuple *p);
+t_uv_map	cubic_map(t_tuple *p);
+
+int			face_from_point(t_tuple *p);
+t_uv_map	cube_uv_right(t_tuple *p);
+t_uv_map	cube_uv_up(t_tuple *p);
+t_uv_map	cube_uv_down(t_tuple *p);
 
 /* parsing */
 double		rt_atof(t_parser *parser);
