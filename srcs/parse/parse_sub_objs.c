@@ -22,16 +22,6 @@ void	parse_transform_subobject(t_parser *parser, t_transform *transform)
 	parse_transform(transform, parser);
 }
 
-// static void	parse_appearance_cont(t_appearance *appearance, t_parser *parser)
-// {
-// 	parser->c += sizeof("\"texture\"") - 1;
-// 	find_colon(parser);
-// 	find_open_bracket(parser);
-// 	if (find_matching_bracket(parser))
-// 		return ;
-// 	parse_texture(&appearance->texture, parser);
-// }
-
 void	parse_appearance(t_appearance *appearance, t_parser *parser)
 {
 	parser->c += ft_clear_whitespace(&parser->string[parser->c]);

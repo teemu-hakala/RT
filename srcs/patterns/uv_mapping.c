@@ -51,7 +51,6 @@ t_uv_map	conical_map(t_tuple *p)
 	theta = atan2(p->tuple.units.x, p->tuple.units.z);
 	map.u = 1 - ((theta / (2 * M_PI)) + 0.5);
 	map.v = fmod(p->tuple.units.y, 1);
-	//map.v = fmod((2 * p->tuple.units.y + 1), 1); //no idea if this is correct
 	if (map.v < 0)
 		map.v += 1;
 	return (map);
