@@ -111,8 +111,11 @@ typedef struct s_comp
 
 typedef struct s_info
 {
-	t_material	material;
-	t_const		channels;
+	t_material		material;
+	t_appearance	appearance;
+	t_transform		transform;
+	t_const			channels;
+	t_tuple			col;
 }				t_info;
 
 typedef struct s_plane

@@ -19,6 +19,13 @@
 				"position" : [0, 100, 0],
 				"intensity" : [1, 1, 1]
 			}
+		},
+		{
+			"light" :
+			{
+				"position" : [10, 100, 0],
+				"intensity" : [1, 1, 1]
+			}
 		}
 	],
 	"shapes" :
@@ -37,7 +44,8 @@
 					"specular" : 0.6,
 					"shininess" : 20,
 					"ambient" : 0,
-					"reflectiveness" : 1
+					"init_colour" : [1, 1, 1],
+					"reflectiveness" : 0.6
 				}
 			}
 		},

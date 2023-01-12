@@ -40,18 +40,21 @@
 					"diffuse" : 0.8,
 					"init_colour" : [0.42, 0.55, 0.09]
 				},
-				"pattern" :
+				"appearance" :
 				{
-					"type" : "checkered",
-					"width" : 16,
-					"height" : 8,
-					"colour_a" : [0, 0.5, 0],
-					"colour_b" : [1, 1, 1],
-					"transform" :
+						"texture" :
 					{
-						"translation" : [0, 0, 0],
-						"rotation" : [0, 0, 0],
-						"scale" : [1, 1, 1]
+						"type" : "checkered",
+						"width" : 16,
+						"height" : 8,
+						"colour_a" : [0, 0.5, 0],
+						"colour_b" : [1, 1, 1],
+						"transform" :
+						{
+							"translation" : [0, 0, 0],
+							"rotation" : [0, 0, 0],
+							"scale" : [1, 1, 1]
+						}
 					}
 				},
 				"min" : 0,

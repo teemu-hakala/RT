@@ -34,13 +34,12 @@ static t_uv_map	cube_uv_left(t_tuple *p)
 	return (map);
 }
 
-t_uv_map	cubic_map(t_tuple *p, t_texture *texture)
+t_uv_map	cubic_map(t_tuple *p)
 {
 	t_fl		temp;
 
 	temp = max_double(fabs(p->tuple.units.x), fabs(p->tuple.units.y), \
 		fabs(p->tuple.units.z));
-	texture->face = face_from_point(p);
 	if (temp == p->tuple.units.x)
 		return (cube_uv_right(p));
 	else if (temp == (p->tuple.units.x * -1))
