@@ -37,6 +37,10 @@ int	mouse_handler_down(int button, int x, int y, t_win *win)
 	(void)win;
 	if (button == RIGHT_CLICK)
 		mouse_register_click_down(button, (t_point){.row = y, .col = x}, win);
+	else if (button == SCROLL_UP)
+		apply_scroll_effect(win, 1);
+	else if (button == SCROLL_DOWN)
+		apply_scroll_effect(win, -1);
 	return (EXIT_SUCCESS);
 }
 

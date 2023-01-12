@@ -52,6 +52,7 @@ void	initialise_window(t_win *win)
 	win->pixels = (WIDTH * HEIGHT) / THREAD_COUNT;
 	win->remaining_pixels = (WIDTH * HEIGHT - THREAD_COUNT * win->pixels);
 	win->rotation_step = M_PI / 448;
+	win->input.mouse.mode = MODE_NONE;
 }
 
 void	identity_matrix_set(t_mtx *dst)

@@ -16,6 +16,14 @@
 
 typedef struct s_win	t_win;
 
+typedef enum e_scroll_mode
+{
+	MODE_NONE = 0,
+	CAMERA_UP = 77,
+	CAMERA_FORWARD,
+	CAMERA_LEFT
+}	t_scroll_mode;
+
 enum e_event
 {
 	ON_KEY_DOWN = 2,
@@ -52,10 +60,11 @@ typedef struct s_point
 
 typedef struct s_mouse
 {
-	t_point	prev;
-	t_point	curr;
-	t_point	diff;
-	uint8_t	rmb_is_down : 1;
+	t_point			prev;
+	t_point			curr;
+	t_point			diff;
+	uint8_t			rmb_is_down : 1;
+	t_scroll_mode	mode;
 }	t_mouse;
 
 typedef struct s_keyboard

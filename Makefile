@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: thakala <thakala@student.42.fr>            +#+  +:+       +#+         #
+#    By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2023/01/12 17:46:32 by thakala          ###   ########.fr        #
+#    Updated: 2023/01/12 22:10:49 by thakala          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,6 +89,8 @@ FILES = \
 	loop.c \
 	progress_bar.c \
 	key_handlers.c \
+	movement_agent.c \
+	scroll_effect.c \
 
 OBJS = $(addprefix $(OBJS_DIR)/, \
 	$(addprefix $(PARSE_DIR)/, $(PARSE_SRCS:.c=.o)) \

@@ -24,11 +24,8 @@ win->input.mouse.diff.col * win->rotation_step, \
 	transform_camera_for_rotations(&win->world.camera);
 }
 
-void	navigate_camera(t_win *win)
+void	refresh_image(t_win *win)
 {
-	first_person_camera(win);
-	if (win->progress == NULL)
-		return ;
 	pthread_mutex_lock(&win->drawn_mutex);
 	if (win->drawn == false)
 	{
@@ -41,4 +38,12 @@ void	navigate_camera(t_win *win)
 		&(t_canvas){.horizontal = WIDTH - 20, .vertical = 20}, BAR_CLEAR);
 	pthread_create(&win->bar_thread, NULL, progress_percentage, win);
 	threaded_loop(win, win->progress);
+}
+
+void	navigate_camera(t_win *win)
+{
+	first_person_camera(win);
+	if (win->progress == NULL)
+		return ;
+	refresh_image(win);
 }

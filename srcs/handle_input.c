@@ -28,5 +28,8 @@ int	handle_input(int key, t_win *win)
 		command_key_state(true);
 	if (key == KEY_TABULATOR)
 		toggle_key_user_interface(win);
+	if (key == KEY_Q || key == KEY_W || key == KEY_E \
+		|| key == KEY_A || key == KEY_S || key == KEY_D)
+		movement_agent(win, key);
 	return (0);
 }
