@@ -79,7 +79,7 @@ void	*progress_percentage(void *param)
 	previous_percentage = 0;
 	while (pixel_progress < pixels)
 	{
-		if (DEBUG && pixel_progress > (WIDTH * HEIGHT * 0.99)) printf("%li ; pixel_progress %llu\n", asd[win->progress[THREAD_COUNT - 1].frame], pixel_progress);
+		//if (DEBUG && pixel_progress > (WIDTH * HEIGHT * 0.99)) printf("%li ; pixel_progress %llu\n", asd[win->progress[THREAD_COUNT - 1].frame], pixel_progress);
 		pixel_progress = 0;
 		t = 0;
 		while (t < THREAD_COUNT)
@@ -132,10 +132,10 @@ int	put_image(t_win *win)
 		win->progress = progress;
 		init_progress_mutex(progress);
 		// threaded_loop_mid(win);
-		threaded_loop(win, progress);
-		first = 0;
 		progress_bar_image(win, \
 			&(t_canvas){.horizontal = WIDTH - 20, .vertical = 20}, BAR_CLEAR);
+		threaded_loop(win, progress);
+		first = 0;
 		pthread_create(&win->bar_thread, NULL, progress_percentage, win);
 		win->drawn = 0;
 	}

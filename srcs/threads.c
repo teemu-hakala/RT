@@ -98,6 +98,10 @@ void	*render_n_pixels(void *param)
 				//img_pixel_put(info.win, canvas.horizontal, canvas.vertical, 0x0000FF00u);
 				world_end(&world_safe);
 				pthread_mutex_unlock(&info.progress->mutex);
+				pthread_detach(pthread_self());
+				pthread_cancel(pthread_self());
+				pthread_testcancel();
+				pthread_exit(NULL);
 				return (NULL);
 			}
 		}
