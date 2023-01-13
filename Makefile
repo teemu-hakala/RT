@@ -6,7 +6,7 @@
 #    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2023/01/13 11:52:36 by deelliot         ###   ########.fr        #
+#    Updated: 2023/01/13 12:00:44 by deelliot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,7 +77,7 @@ PARSE_SRCS = default_files.c default_patterns.c parse_camera.c parse_cone.c \
 PATTERNS_SRCS = pattern_dispatch.c patterns.c textures.c texture_dispatch.c \
 	uv_mapping.c cube_mapping.c cube_mapping_utility.c
 
-RENDER_SRCS = colour.c image.c put_image.c ray.c threads.c
+RENDER_SRCS = colour.c image_utility.c put_image.c ray.c threads.c
 
 FILES = \
 	main.c \

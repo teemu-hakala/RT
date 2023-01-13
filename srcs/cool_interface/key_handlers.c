@@ -73,11 +73,12 @@ void	toggle_key_user_interface(t_win *win)
 {
 	if (win->keys_image.addr == NULL)
 	{
-		win->keys_image = initialise_keys_image(win->mlx, win->world.camera.canvas);
+		win->keys_image = initialise_keys_image(win->mlx, \
+			win->world.camera.canvas);
 		put_rectangle_to_image(win->keys_image,
-			(t_rectangle){.start = {0,0}, .end = {.vertical = \
+			(t_rectangle){.start = {0, 0}, .end = {.vertical = \
 			win->keys_image.dimensions.canvas.vertical, .horizontal = \
-			win->keys_image.dimensions.canvas.horizontal}, .canvas = {}},\
+			win->keys_image.dimensions.canvas.horizontal}, .canvas = {}}, \
 			win->keys_image.dimensions, \
 			(t_tuple){.tuple.colour = {.r = 0, .g = 0, .b = 1, .a = 0}});
 	}
