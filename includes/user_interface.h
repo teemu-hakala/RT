@@ -13,12 +13,22 @@
 #ifndef USER_INTERFACE_H
 # define USER_INTERFACE_H
 # include "objects.h"
+# include <sys/stat.h>
 # define UP_STEP 0.0375
 # define FORWARD_STEP 0.0375
 # define LEFT_STEP 0.0375
 # define ZOOM_STEP 0.1
+# define PPM_SUFFIX ".ppm"
+# define PPM_BUFFER_SIZE 0b10000000000
 
 typedef struct s_img	t_img;
+
+enum e_ppm_image_flag
+{
+	PPM_NON_ACTION = 0b0,
+	PPM_NEW_IMAGE = 0b1,
+	PPM_OUTPUT_IMAGE_DATA = 0b10
+};
 
 typedef struct s_rectangle
 {
@@ -53,7 +63,8 @@ enum e_key_code
 	KEY_X = 7,
 	KEY_C = 8,
 	KEY_R = 15,
-	KEY_F = 3
+	KEY_F = 3,
+	KEY_P_ICTURE = 35
 };
 
 void	put_rectangle_to_image(t_img img, t_rectangle image, \
@@ -73,5 +84,7 @@ void	put_keys_image(t_win *win);
 void	field_of_view_zoomer(t_win *win, int key);
 void	compound_scroll_effect(t_win *win, int8_t direction);
 void	field_of_view_delta(t_win *win, t_fl step);
+void	save_screenshot_once_drawn(t_win *win);
+int		get_new_file_for_image(void);
 
 #endif

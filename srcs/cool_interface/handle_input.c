@@ -33,5 +33,7 @@ int	handle_input(int key, t_win *win)
 		movement_agent(win, key);
 	if (key == KEY_R || key == KEY_F)
 		field_of_view_zoomer(win, key);
+	if (key == KEY_P_ICTURE)
+		save_screenshot_once_drawn(win);
 	return (0);
 }

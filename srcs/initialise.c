@@ -13,8 +13,14 @@
 
 void	initialise_image(t_img *img, t_win *win)
 {
-	img->img = mlx_new_image(win->mlx, win->world.camera.canvas.horizontal \
-		, win->world.camera.canvas.vertical);
+	t_canvas	dimensions;
+
+	dimensions = (t_canvas){.horizontal = win->world.camera.canvas.horizontal, \
+		.vertical = win->world.camera.canvas.vertical};
+	img->dimensions = (t_rectangle){.canvas = dimensions, \
+		.start = {0, 0}, .end = dimensions};
+	img->img = mlx_new_image(win->mlx, dimensions.horizontal, \
+		dimensions.vertical);
 	if (!img->img)
 		handle_errors("error");
 	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->length, \
