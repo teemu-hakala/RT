@@ -31,5 +31,7 @@ int	handle_input(int key, t_win *win)
 	if (key == KEY_Q || key == KEY_W || key == KEY_E \
 		|| key == KEY_A || key == KEY_S || key == KEY_D)
 		movement_agent(win, key);
+	// if (key == KEY_R || key == KEY_F)
+		// field_of_view_zoomer();
 	return (0);
 }

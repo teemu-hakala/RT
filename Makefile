@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
+#    By: thakala <thakala@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2023/01/13 12:00:44 by deelliot         ###   ########.fr        #
+#    Updated: 2023/01/13 12:21:37 by thakala          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ HDRS = includes/RT.h \
 	includes/parse.h \
 	includes/threads.h \
 	includes/user_interface.h \
+	includes/input.h \
 
 LIBFT_DIR = libft
 MINILIBX_DIR = minilibx

@@ -14,7 +14,7 @@
 # define INPUT_H
 # include "RT.h"
 
-typedef struct s_win	t_win;
+typedef struct s_win		t_win;
 
 typedef enum e_scroll_mode
 {
@@ -58,6 +58,13 @@ typedef struct s_point
 	int		col;
 }	t_point;
 
+typedef struct s_compounder
+{
+	uint64_t		compounds;
+	t_scroll_mode	mode;
+	int8_t			direction;
+}	t_compounder;
+
 typedef struct s_mouse
 {
 	t_point			prev;
@@ -65,6 +72,7 @@ typedef struct s_mouse
 	t_point			diff;
 	uint8_t			rmb_is_down : 1;
 	t_scroll_mode	mode;
+	t_compounder	compounder;
 }	t_mouse;
 
 typedef struct s_keyboard
