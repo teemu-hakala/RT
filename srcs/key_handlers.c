@@ -56,29 +56,31 @@ void	print_text_on_keys_image(t_win *win, t_img *keys_image)
 	mlx_string_put(win->mlx, win->win, column, row, 0x00FFFFFF, "hello world");
 }
 
-void	toggle_key_user_interface(t_win *win)
+void	put_keys_image(t_win *win)
 {
-	static char		visible = false;
-	static t_img	keys_image;
-
-	if (keys_image.addr == NULL)
+	if (win->keys_visible)
 	{
-		keys_image = initialise_keys_image(win->mlx, win->world.camera.canvas);
-		put_rectangle_to_image(keys_image,
-			(t_rectangle){.start = {0,0}, .end = {.vertical = \
-			keys_image.dimensions.canvas.vertical, .horizontal = \
-			keys_image.dimensions.canvas.horizontal}, .canvas = {}},\
-			keys_image.dimensions, \
-			(t_tuple){.tuple.colour = {.r = 0, .g = 0, .b = 1, .a = 0}});
-	}
-	visible = !visible;
-	if (visible)
-	{
-		mlx_put_image_to_window(win->mlx, win->win, keys_image.img, \
-			keys_image.dimensions.start.horizontal, \
-			keys_image.dimensions.start.vertical);
-		print_text_on_keys_image(win, &keys_image);
+		mlx_put_image_to_window(win->mlx, win->win, win->keys_image.img, \
+			win->keys_image.dimensions.start.horizontal, \
+			win->keys_image.dimensions.start.vertical);
+		print_text_on_keys_image(win, &win->keys_image);
 	}
 	else
 		mlx_put_image_to_window(win->mlx, win->win, win->img.img, 0, 0);
+}
+
+void	toggle_key_user_interface(t_win *win)
+{
+	if (win->keys_image.addr == NULL)
+	{
+		win->keys_image = initialise_keys_image(win->mlx, win->world.camera.canvas);
+		put_rectangle_to_image(win->keys_image,
+			(t_rectangle){.start = {0,0}, .end = {.vertical = \
+			win->keys_image.dimensions.canvas.vertical, .horizontal = \
+			win->keys_image.dimensions.canvas.horizontal}, .canvas = {}},\
+			win->keys_image.dimensions, \
+			(t_tuple){.tuple.colour = {.r = 0, .g = 0, .b = 1, .a = 0}});
+	}
+	win->keys_visible = !win->keys_visible;
+	put_keys_image(win);
 }

@@ -77,6 +77,8 @@ typedef struct s_win
 	uint64_t		pixels;
 	uint64_t		remaining_pixels;
 	t_fl			rotation_step;
+	t_img			keys_image;
+	int8_t			keys_visible;
 }	t_win;
 
 typedef void	(*t_intersect_function)(t_ray, void *, t_world *);

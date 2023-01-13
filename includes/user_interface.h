@@ -58,4 +58,6 @@ void	apply_scroll_effect(t_win *win, int8_t direction);
 void	camera_upwards(t_win *win, t_fl magnitude);
 void	camera_forwards(t_win *win, t_fl magnitude);
 void	camera_sideways(t_win *win, t_fl magnitude);
+void	put_keys_image(t_win *win);
+
 #endif

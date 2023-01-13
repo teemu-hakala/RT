@@ -38,6 +38,8 @@ void	refresh_image(t_win *win)
 		&(t_canvas){.horizontal = WIDTH - 20, .vertical = 20}, BAR_CLEAR);
 	pthread_create(&win->bar_thread, NULL, progress_percentage, win);
 	threaded_loop(win, win->progress);
+	put_keys_image(win);
+	mlx_loop_hook(win->mlx, put_image, win);
 }
 
 void	navigate_camera(t_win *win)
