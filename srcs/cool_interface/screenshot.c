@@ -12,19 +12,6 @@
 
 #include "RT.h"
 
-t_vec	*ppm_write_buffer(uint8_t flag, int fd)
-{
-	static t_vec	write_buffer;
-
-	if (write_buffer.memory == NULL)
-		vec_new(&write_buffer, PPM_BUFFER_SIZE, sizeof(char));
-	if (flag & PPM_NEW_IMAGE)
-		vec_clear(&write_buffer);
-	else if (flag & PPM_OUTPUT_IMAGE_DATA)
-		write(fd, write_buffer.memory, write_buffer.len);
-	return (&write_buffer);
-}
-
 void	write_ppm_pixel_max_255(uint32_t pixel)
 {
 	uint8_t		*pixel_chars;
@@ -32,12 +19,11 @@ void	write_ppm_pixel_max_255(uint32_t pixel)
 	char		result;
 
 	pixel_chars = (uint8_t *)&pixel;
-	channel = 4;
+	channel = 3;
 	while (channel-- > 0)
 	{
 		result = (char)pixel_chars[channel];
-		vec_push_arr(ppm_write_buffer(PPM_NON_ACTION, -1), \
-			&result, 1);
+		ppm_push_string(&result, 1);
 	}
 }
 
@@ -51,8 +37,7 @@ void	write_ppm_from(t_win *win)
 
 	image_file_descriptor = get_new_file_for_image();
 	p = 0;
-	vec_push_arr(ppm_write_buffer(PPM_NEW_IMAGE, -1), "P6", 2);
-
+	buffer_ppm_image_header(win, PPM_MAX_255);
 	while (p < pixel_count)
 	{
 		write_ppm_pixel_max_255(pixel_argb[p]);
@@ -81,7 +66,8 @@ void	save_screenshot_once_drawn(t_win *win)
 
 	if (first == false)
 		pthread_cancel(screenshot_thread);
-	pthread_create(&screenshot_thread, NULL, watch_for_screenshot, &win);
 	if (first == true)
 		first = false;
+	pthread_create(&screenshot_thread, NULL, watch_for_screenshot, win);
+
 }

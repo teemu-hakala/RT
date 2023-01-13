@@ -20,6 +20,8 @@
 # define ZOOM_STEP 0.1
 # define PPM_SUFFIX ".ppm"
 # define PPM_BUFFER_SIZE 0b10000000000
+# define PPM_MAGIC_NUMERAL "P6"
+# define PPM_MAX_255 255
 
 typedef struct s_img	t_img;
 
@@ -86,5 +88,8 @@ void	compound_scroll_effect(t_win *win, int8_t direction);
 void	field_of_view_delta(t_win *win, t_fl step);
 void	save_screenshot_once_drawn(t_win *win);
 int		get_new_file_for_image(void);
+t_vec	*ppm_write_buffer(uint8_t flag, int fd);
+void	ppm_push_string(char *string, uint64_t len);
+void	buffer_ppm_image_header(t_win *win, int max_value);
 
 #endif

@@ -29,3 +29,24 @@ int	get_new_file_for_image(void)
 		handle_errors("mkstemps returned < 0");
 	return (file_descriptor);
 }
+
+void	buffer_ppm_image_header(t_win *win, int max_value)
+{
+	char	*dimension;
+
+	ppm_write_buffer(PPM_NEW_IMAGE, -1);
+	ppm_push_string(PPM_MAGIC_NUMERAL, sizeof(PPM_MAGIC_NUMERAL) - 1);
+	ppm_push_string(" ", sizeof(" ") - 1);
+	dimension = ft_itoa((int)win->img.dimensions.canvas.horizontal);
+	ppm_push_string(dimension, ft_strlen(dimension));
+	free(dimension);
+	ppm_push_string(" ", sizeof(" ") - 1);
+	dimension = ft_itoa((int)win->img.dimensions.canvas.vertical);
+	ppm_push_string(dimension, ft_strlen(dimension));
+	free(dimension);
+	ppm_push_string(" ", sizeof(" ") - 1);
+	dimension = ft_itoa(max_value);
+	ppm_push_string(dimension, ft_strlen(dimension));
+	free(dimension);
+	ppm_push_string("\n", sizeof("\n") - 1);
+}
