@@ -16,6 +16,7 @@
 # define UP_STEP 0.0375
 # define FORWARD_STEP 0.0375
 # define LEFT_STEP 0.0375
+# define ZOOM_STEP 0.1
 
 typedef struct s_img	t_img;
 
@@ -42,7 +43,9 @@ enum e_key_code
 	KEY_D = 2,
 	KEY_Z = 6,
 	KEY_X = 7,
-	KEY_C = 8
+	KEY_C = 8,
+	KEY_R = 15,
+	KEY_F = 3
 };
 
 void	put_rectangle_to_image(t_img img, t_rectangle image, \
@@ -59,5 +62,6 @@ void	camera_upwards(t_win *win, t_fl magnitude);
 void	camera_forwards(t_win *win, t_fl magnitude);
 void	camera_sideways(t_win *win, t_fl magnitude);
 void	put_keys_image(t_win *win);
+void	field_of_view_zoomer(t_win *win, int key);
 
 #endif

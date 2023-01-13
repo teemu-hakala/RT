@@ -21,7 +21,8 @@ typedef enum e_scroll_mode
 	MODE_NONE = 0,
 	CAMERA_UP = 77,
 	CAMERA_FORWARD,
-	CAMERA_LEFT
+	CAMERA_LEFT,
+	CAMERA_FOV
 }	t_scroll_mode;
 
 enum e_event
