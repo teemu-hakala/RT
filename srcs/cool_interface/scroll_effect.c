@@ -37,6 +37,8 @@ void	apply_scroll_effect(t_win *win, int8_t direction)
 		camera_forwards(win, direction * FORWARD_STEP * c);
 	else if (win->input.mouse.mode == CAMERA_LEFT)
 		camera_sideways(win, direction * LEFT_STEP * c);
+	else if (win->input.mouse.mode == CAMERA_FOV)
+		field_of_view_delta(win, direction * ZOOM_STEP * c);
 	if (win->input.mouse.mode != MODE_NONE)
 		refresh_image(win);
 }

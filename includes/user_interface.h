@@ -33,6 +33,14 @@ enum e_progress_bar_flag
 	BAR_CLEAR = 0b1
 };
 
+enum e_directions
+{
+	POSITIVE_DIRECTION = 1,
+	KEY_R_DIRECTION = POSITIVE_DIRECTION,
+	NEGATIVE_DIRECTION = -1,
+	KEY_F_DIRECTION = NEGATIVE_DIRECTION
+};
+
 enum e_key_code
 {
 	KEY_Q = 12,
@@ -63,5 +71,7 @@ void	camera_forwards(t_win *win, t_fl magnitude);
 void	camera_sideways(t_win *win, t_fl magnitude);
 void	put_keys_image(t_win *win);
 void	field_of_view_zoomer(t_win *win, int key);
+void	compound_scroll_effect(t_win *win, int8_t direction);
+void	field_of_view_delta(t_win *win, t_fl step);
 
 #endif

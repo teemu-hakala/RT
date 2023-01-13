@@ -204,6 +204,7 @@ t_ray		ray_for_pixel(t_camera *camera, t_canvas position);
 t_tuple		colour_at(t_world *world, t_ray ray);
 t_fl		get_pixel_size(t_camera *camera, t_canvas size, t_fl field_of_view);
 void		transform_camera_for_rotations(t_camera *camera);
+void		transform_camera_for_field_of_view(t_camera *camera);
 
 /* default patterns*/
 t_pattern	default_vertical_stripe_pattern(void);

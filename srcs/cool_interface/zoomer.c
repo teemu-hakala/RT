@@ -17,19 +17,37 @@ void	field_of_view_delta(t_win *win, t_fl step)
 {
 	win->input.mouse.mode = CAMERA_FOV;
 	win->world.camera.field_of_view += step;
-	transform_camera(&win->world.camera);
+	transform_camera_for_field_of_view(&win->world.camera);
 
+}
+
+void	handle_key_compounding(t_win *win, int8_t direction)
+{
+	if (win->input.mouse.compounder.direction != direction)
+	{
+		if (win->input.mouse.compounder.compounds == 0)
+			win->input.mouse.compounder.compounds = 1;
+		else if (win->input.mouse.compounder.compounds > 1)
+			win->input.mouse.compounder.compounds -= 1;
+		win->input.mouse.compounder.direction = direction;
+	}
+	else
+		win->input.mouse.compounder.compounds += 1;
 }
 
 void	field_of_view_zoomer(t_win *win, int key)
 {
 	if (key == KEY_R)
 	{
-		field_of_view_delta(win, ZOOM_STEP);
+		handle_key_compounding(win, POSITIVE_DIRECTION);
+		field_of_view_delta(win, ZOOM_STEP \
+			* win->input.mouse.compounder.compounds);
 	}
 	else if (key == KEY_F)
 	{
-		field_of_view_delta(win, -ZOOM_STEP);
+		handle_key_compounding(win, NEGATIVE_DIRECTION);
+		field_of_view_delta(win, -ZOOM_STEP \
+			* win->input.mouse.compounder.compounds);
 	}
 	refresh_image(win);
 }
