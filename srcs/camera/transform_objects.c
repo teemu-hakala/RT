@@ -50,7 +50,8 @@ void	transform_camera_for_field_of_view(t_camera *camera)
 	scale(&camera->transform.matrix, &camera->transform.scale);
 	view_matrix = view_transform(camera->origin, camera->center_of_interest, \
 		vector(0, 1, 0));
-	camera->transform.inverse = view_matrix;
+	matrix_multi_square(&camera->transform.matrix, &view_matrix, 4);
+	camera->transform.inverse = camera->transform.matrix;
 	matrix_inversion(&camera->transform.inverse, 4);
 	camera->pixel_size = get_pixel_size(camera, camera->canvas, \
 		camera->field_of_view);
