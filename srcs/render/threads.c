@@ -38,6 +38,7 @@ void	*render_norme(t_norme_render r)
 	t_tuple			colour;
 
 	r.world_safe->ray = ray_for_pixel(r.info->camera, r.canvas);
+	r.world_safe->lifetime = 5;
 	colour = colour_at(r.world_safe, r.world_safe->ray);
 	if (r.info->frame != *r.info->current_frame)
 		return (world_end(r.world_safe, &r.info->progress->mutex));
