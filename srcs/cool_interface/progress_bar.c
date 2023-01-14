@@ -42,18 +42,17 @@ static void	rect_pixel_put(t_img img, int y, int x, uint32_t colour)
 	*(uint32_t *)pixel = colour;
 }
 
-static t_rectangle	fit_rectangle_to_image_bounds(t_rectangle rect,
+static void	fit_rectangle_to_image_bounds(t_rectangle *rect,
 	t_rectangle image)
 {
-	if (rect.start.horizontal < image.start.horizontal)
-		rect.start.horizontal = image.start.horizontal;
-	if (rect.start.vertical < image.start.vertical)
-		rect.start.vertical = image.start.vertical;
-	if (rect.end.horizontal > image.end.horizontal)
-		rect.end.horizontal = image.end.horizontal;
-	if (rect.end.vertical > image.end.vertical)
-		rect.end.vertical = image.end.vertical;
-	return (rect);
+	if (rect->start.horizontal != image.start.horizontal)
+		rect->start.horizontal = image.start.horizontal;
+	if (rect->start.vertical != image.start.vertical)
+		rect->start.vertical = image.start.vertical;
+	if (rect->end.horizontal != image.end.horizontal)
+		rect->end.horizontal = image.end.horizontal;
+	if (rect->end.vertical != image.end.vertical)
+		rect->end.vertical = image.end.vertical;
 }
 
 void	put_rectangle_to_image(t_img img, t_rectangle image,
@@ -63,7 +62,7 @@ void	put_rectangle_to_image(t_img img, t_rectangle image,
 	t_canvas	point;
 
 	colour_hex = clamped_rgba_to_hex(&colour.tuple.colour);
-	rect = fit_rectangle_to_image_bounds(rect, image);
+	fit_rectangle_to_image_bounds(&rect, image);
 	point.vertical = rect.start.vertical;
 	while (point.vertical < rect.end.vertical)
 	{

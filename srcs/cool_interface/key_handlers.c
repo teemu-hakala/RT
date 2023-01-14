@@ -25,8 +25,8 @@ t_img	initialise_keys_image(void *mlx, t_canvas canvas)
 	t_img		keys_image;
 
 	keys_image.dimensions = (t_rectangle){.start = \
-		{.vertical = canvas.vertical * 0.125, .horizontal = canvas.horizontal \
-		* 0.125}, .end = {.vertical = canvas.vertical * 0.875, .horizontal = \
+		{.vertical = canvas.vertical * 0.025, .horizontal = canvas.horizontal \
+		* 0.025}, .end = {.vertical = canvas.vertical * 0.975, .horizontal = \
 		canvas.horizontal * 0.375}};
 	keys_image.dimensions.canvas = (t_canvas){
 		keys_image.dimensions.end.vertical - \
@@ -52,8 +52,8 @@ void	print_text_on_keys_image(t_win *win, t_img *keys_image)
 	uint16_t	column;
 
 	row = keys_image->dimensions.start.vertical;
-	column = keys_image->dimensions.start.horizontal;
-	mlx_string_put(win->mlx, win->win, column, row, 0x00FFFFFF, "hello world");
+	column = keys_image->dimensions.start.horizontal + 10;
+	mlx_string_put(win->mlx, win->win, column, row, 0x00FFFFFF, "Cool Interface:");
 }
 
 void	put_keys_image(t_win *win)
@@ -80,7 +80,7 @@ void	toggle_key_user_interface(t_win *win)
 			win->keys_image.dimensions.canvas.vertical, .horizontal = \
 			win->keys_image.dimensions.canvas.horizontal}, .canvas = {}}, \
 			win->keys_image.dimensions, \
-			(t_tuple){.tuple.colour = {.r = 0, .g = 0, .b = 1, .a = 0}});
+			(t_tuple){.tuple.colour = {.r = 0, .g = 0, .b = 1, .a = 0.5}});
 	}
 	win->keys_visible = !win->keys_visible;
 	put_keys_image(win);
