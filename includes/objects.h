@@ -113,7 +113,6 @@ typedef struct s_comp
 	t_phong			vectors;
 	int				inside;
 	t_tuple			reflectv;
-	t_fl			reflective;
 }				t_comp;
 
 typedef struct s_info

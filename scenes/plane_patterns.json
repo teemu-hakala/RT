@@ -23,7 +23,7 @@
 				"material" :
 				{
 					"specular" : 0,
-					"reflectiveness" : 0.4
+					"reflectiveness" : 0
 				},
 				"transform" :
 				{
@@ -50,7 +50,7 @@
 					"ambient" : 0,
 					"diffuse" : 0.4,
 					"specular" : 0,
-					"reflectiveness" : 0.3
+					"reflectiveness" : 0
 				},
 				"transform" :
 				{
