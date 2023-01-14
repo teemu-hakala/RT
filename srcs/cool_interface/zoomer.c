@@ -23,7 +23,13 @@ void	field_of_view_delta(t_win *win, t_fl step)
 
 void	handle_key_compounding(t_win *win, int8_t direction)
 {
-	if (win->input.mouse.compounder.direction != direction)
+	if (win->input.mouse.mode != CAMERA_FOV)
+	{
+		win->input.mouse.mode = CAMERA_FOV;
+		win->input.mouse.compounder = (t_compounder){.compounds = 1, \
+			.direction = direction, .mode = CAMERA_FOV};
+	}
+	else if (win->input.mouse.compounder.direction != direction)
 	{
 		if (win->input.mouse.compounder.compounds == 0)
 			win->input.mouse.compounder.compounds = 1;
