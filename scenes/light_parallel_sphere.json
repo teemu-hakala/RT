@@ -1,7 +1,7 @@
 {
 	"camera" :
 	{
-		"origin" : [0, 0, -10],
+		"origin" : [5, 0, 0],
 		"transform" :
 		{
 			"translation": [0, 0, 0],
@@ -14,28 +14,27 @@
 	"lights" :
 	[
 		{
-			"spot" :
+			"parallel" :
 			{
-				"position" : [0, 0, -10],
-				"intensity" : [1, 1, 1]
+				"intensity" : [1, 1, 1],
+				"direction" : [0, 0, -1]
 			}
 		}
 	],
 	"shapes" :
 	[
 		{
-			"cylinder" :
+			"sphere" :
 			{
-				"origin" : [0, 0, 0],
 				"transform" :
 				{
 					"translation" : [0, 0, 0],
-					"rotation" : [0, 0, 1.570796326794897],
+					"rotation" : [0, 0, 0],
 					"scale" : [1, 1, 1]
 				},
 				"material" :
 				{
-					"ambient" : 0.42,
+					"ambient" : 0.1,
 					"diffuse" : 0.5,
 					"specular" : 0.1,
 					"shininess" : 200,

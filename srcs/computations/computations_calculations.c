@@ -36,6 +36,9 @@ void	prepare_object(t_world *world, t_object *object, t_comp *computations, \
 		computations->inside = false;
 	computations->over_point = tuple_add(computations->point, \
 		tuple_scale(computations->vectors.surface_normal, EPSILON));
+	computations->over_point_parellel_light = \
+		tuple_add(computations->point, \
+			tuple_scale(computations->vectors.surface_normal, -EPSILON));
 	computations->reflectv = reflect(ray.direction, \
 		computations->vectors.surface_normal);
 }

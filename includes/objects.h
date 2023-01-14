@@ -115,6 +115,7 @@ typedef struct s_comp
 	int				inside;
 	t_tuple			reflectv;
 	t_fl			reflective;
+	t_tuple			over_point_parellel_light;
 }				t_comp;
 
 typedef struct s_info

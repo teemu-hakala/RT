@@ -39,8 +39,10 @@ static void	direction_and_distance(t_light *light, t_tuple *direction,
 	}
 	else
 	{
-		temp = normalize(light->direction);
-		*distance = -INFINITY;
+		// temp = tuple_scale(light->direction, -1); // tuple_scale resets .w to VECTOR_0
+		temp = light->direction;
+		temp.array[W] = VECTOR_0;
+		*distance = INFINITY;
 	}
 	*direction = normalize(temp);
 }
@@ -52,7 +54,9 @@ void	is_shadow(t_world *world, t_tuple point, t_light *light)
 	t_ray	ray;
 
 	direction_and_distance(light, &direction, point, &distance);
-	ray = (t_ray){point, direction};
+	ray = (t_ray){.origin = point, .direction = direction};
+	// if (light->type != LIGHT_SPOT)
+	// 	ray.origin = world->hit.computations.over_point_parellel_light;
 	vec_clear(&world->intersections);
 	intersect_world(world, ray);
 	identify_hit(world, &world->shadow_hit);
