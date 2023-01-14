@@ -23,7 +23,8 @@ t_object	sphere_prototype(void)
 			.appearance.pattern = default_pattern(),
 			.appearance.texture = default_texture(),
 		},
-		.type = OBJECT_SPHERE
+		.type = OBJECT_SPHERE,
+		.id = object_identification()
 	});
 }
 

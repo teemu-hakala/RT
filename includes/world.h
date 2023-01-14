@@ -58,4 +58,6 @@ typedef struct s_world
 	int			lifetime;
 }	t_world;
 
+
+
 #endif

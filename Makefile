@@ -6,7 +6,7 @@
 #    By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2023/01/14 07:42:42 by thakala          ###   ########.fr        #
+#    Updated: 2023/01/14 10:59:26 by thakala          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,9 @@ COOL_INTERFACE_SRCS = handle_input.c key_handlers.c mouse_input.c \
 	screenshot.c new_image_file.c ppm_buffer.c
 
 INTERSECT_SRCS = intersect_plane.c intersect_sphere.c intersect_cone.c \
-	intersect_cylinder.c intersect_cube.c intersect_dispatch.c
+	intersect_cylinder.c intersect_cube.c intersect_dispatch.c \
+	identify_hit.c is_positive_object.c get_material_flows.c \
+	get_material_dispatch.c
 
 LIGHTING_SRCS = lighting.c reflections.c shading_dispatch.c shading.c
 
@@ -75,7 +77,7 @@ PARSE_SRCS = default_files.c default_patterns.c parse_camera.c parse_cone.c \
 	parse_transform.c parse_cone_cylinder_subobj.c parse_cube.c \
 	shape_subobject_utility.c parse_patterns.c parse_faces.c parse_ppm.c \
 	ppm_utility.c parse_textures.c default_textures.c parse_face_subobjects.c \
-	parse_boolean.c
+	parse_boolean.c object_identification.c
 
 PATTERNS_SRCS = pattern_dispatch.c patterns.c textures.c texture_dispatch.c \
 	uv_mapping.c cube_mapping.c cube_mapping_utility.c

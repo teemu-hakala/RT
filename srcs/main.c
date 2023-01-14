@@ -31,8 +31,7 @@ void	hooks(t_win *win)
 }
 
 int	main(int argc, char **argv)
-{
-	t_win	win;
+{	t_win	win;
 
 	if (argc != 2)
 		handle_errors(USAGE);

@@ -29,26 +29,6 @@ static int	sort_intersections(void *xs_a, void *xs_b)
 		return (-1);
 }
 
-void	identify_hit(t_world *world, t_hit *hit)
-{
-	t_intersect	*intersection;
-	uint64_t	i;
-
-	i = 0;
-	hit->hit_check = false;
-	while (i < world->intersections.len)
-	{
-		intersection = \
-			(t_intersect *)vec_get(&world->intersections, i++);
-		if (intersection->time >= 0)
-		{
-			hit->intersection = *intersection;
-			hit->hit_check = true;
-			break ;
-		}
-	}
-}
-
 void	intersect_world(t_world *world, t_ray ray)
 {
 	static const t_intersect_function	\

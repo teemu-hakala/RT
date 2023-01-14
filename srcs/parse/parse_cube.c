@@ -23,7 +23,8 @@ t_object	cube_prototype(void)
 			.appearance.pattern = default_pattern(),
 			.appearance.texture = default_texture(),
 		},
-		.type = OBJECT_CUBE
+		.type = OBJECT_CUBE,
+		.id = object_identification()
 	});
 }
 

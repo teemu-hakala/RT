@@ -34,7 +34,8 @@ t_object	plane_prototype(void)
 			.appearance.pattern = default_pattern(),
 			.appearance.texture = default_texture(),
 		},
-		.type = OBJECT_PLANE
+		.type = OBJECT_PLANE,
+		.id = object_identification()
 	});
 }
 

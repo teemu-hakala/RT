@@ -27,7 +27,8 @@ t_object	cylinder_prototype(void)
 			.max = INFINITY,
 			.closed = false
 		},
-		.type = OBJECT_CYLINDER
+		.type = OBJECT_CYLINDER,
+		.id = object_identification()
 	});
 }
 

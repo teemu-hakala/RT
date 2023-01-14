@@ -26,7 +26,8 @@ t_object	cone_prototype(void)
 			.max = INFINITY,
 			.closed = false
 		},
-		.type = OBJECT_CONE
+		.type = OBJECT_CONE,
+		.id = object_identification()
 	});
 }
 

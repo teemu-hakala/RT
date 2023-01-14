@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
+#    By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/03 13:04:07 by deelliot          #+#    #+#              #
-#    Updated: 2022/11/18 15:47:24 by deelliot         ###   ########.fr        #
+#    Updated: 2023/01/14 11:18:31 by thakala          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g
 
 # Directories
 SRC_DIR = srcs
@@ -37,7 +37,8 @@ GRAPHICS_DIR = graphics
 VEC_SRCS = check_overflow.c vec_append.c vec_clear.c vec_copy.c vec_filter.c \
 	vec_free.c vec_from.c vec_get.c vec_insert.c vec_iter.c vec_map.c \
 	vec_new.c vec_pop.c vec_prepend.c vec_push_array.c vec_push.c vec_reduce.c \
-	vec_remove.c vec_resize.c vec_sort.c vec_stick_size.c vec_swap.c
+	vec_remove.c vec_resize.c vec_sort.c vec_stick_size.c vec_swap.c \
+	vec_find.c
 
 LIST_SRCS = ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c ft_lstiter.c \
 	ft_lstadd_back.c ft_lstmap.c
@@ -83,7 +84,7 @@ OBJ = $(addprefix $(OBJ_DIR)/,\
 	$(addprefix $(GRAPHICS_DIR)/,$(GRAPHICS_SRCS:.c=.o)))
 
 #Rules
-all: obj-rule $(NAME)
+all: obj-rule $(NAME) Makefile
 
 obj-rule:
 	@mkdir -p $(OBJ_DIR)/$(VEC_DIR)
@@ -96,10 +97,10 @@ obj-rule:
 	@mkdir -p $(OBJ_DIR)/$(INPUT_DIR)
 	@mkdir -p $(OBJ_DIR)/$(GRAPHICS_DIR)
 
-$(OBJ_DIR)/%.o:$(SRC_DIR)/%.c
+$(OBJ_DIR)/%.o:$(SRC_DIR)/%.c Makefile
 	@gcc -c -I $(INC_DIR) $(FLAGS) -o $@  $<
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) Makefile
 	@clear
 	@echo "***** $(NAME) generated *****"
 	@ar rc $(NAME) $(OBJ)

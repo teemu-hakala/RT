@@ -220,10 +220,23 @@ typedef struct s_object
 {
 	union u_object		object;
 	enum e_object_type	type;
+	uint64_t			id;
 }	t_object;
 
 typedef t_tuple	(*t_normal_fn)(void *, t_tuple *);
 
 typedef void	(*t_object_transform)(t_object *);
+
+typedef t_material *(*t_get_material_function)(t_object *);
+
+t_material	*is_positive_object(t_object *shape);
+t_material	*get_material(t_object *shape);
+t_material	*plane_get_material(t_object *shape);
+t_material	*sphere_get_material(t_object *shape);
+t_material	*cone_get_material(t_object *shape);
+t_material	*cylinder_get_material(t_object *shape);
+t_material	*cube_get_material(t_object *shape);
+
+uint64_t	object_identification(void);
 
 #endif
