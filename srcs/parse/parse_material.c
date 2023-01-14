@@ -12,6 +12,24 @@
 
 #include "RT.h"
 
+static void	material_keywords_cont_2(t_material *material, t_parser *parser)
+{
+	if (ft_strncmp(&parser->string[parser->c], "\"positive\"", 10) == 0)
+	{
+		parser->c += sizeof("\"positive\"") - 1;
+		find_colon(parser);
+		material->negative = !parse_boolean(parser);
+	}
+	else if (ft_strncmp(&parser->string[parser->c], "\"negative\"", 10) == 0)
+	{
+		parser->c += sizeof("\"negative\"") - 1;
+		find_colon(parser);
+		material->negative = parse_boolean(parser);
+	}
+	else
+		handle_errors("material syntax error");
+}
+
 static void	material_keywords_cont(t_material *material, t_parser *parser)
 {
 	if (ft_strncmp(&parser->string[parser->c], "\"shininess\"", 11) == 0)
@@ -34,7 +52,7 @@ static void	material_keywords_cont(t_material *material, t_parser *parser)
 		material->reflectiveness = rt_atof(parser);
 	}
 	else
-		handle_errors("material syntax error");
+		material_keywords_cont_2(material, parser);
 }
 
 static void	find_material_keywords(t_material *material, t_parser *parser)

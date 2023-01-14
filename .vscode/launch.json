@@ -256,6 +256,18 @@
 			"environment": [],
 			"externalConsole": false,
 			"MIMode": "lldb"
+		},
+		{
+			"name": "n0_two_spheres.json",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/RT",
+			"args": ["${workspaceFolder}/scenes/rayacers/n0_two_spheres.json"],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb"
 		}
 	]
 }

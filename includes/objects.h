@@ -102,6 +102,7 @@ typedef struct s_material
 	t_tuple		final_colour;
 	t_tuple		col_mash;
 	t_fl		reflectiveness;
+	uint8_t		negative : 1;
 }				t_material;
 
 typedef struct s_comp
