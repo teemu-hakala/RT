@@ -18,7 +18,7 @@ void	sphere_intersection(t_ray ray, void *sphere, t_world *world)
 	t_tuple		sphere_to_ray;
 	t_intersect	temp;
 
-	temp.shape = sphere;
+	temp.shape = *(t_object *)sphere;
 	ray = ray_transform(&ray, &((t_sphere *)sphere)->transform.inverse);
 	sphere_to_ray = tuple_sub(ray.origin, ((t_sphere *)sphere)->origin);
 	params.a = dot_product(ray.direction, ray.direction);

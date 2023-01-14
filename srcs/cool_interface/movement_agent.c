@@ -43,10 +43,10 @@ void	movement_agent(t_win *win, int key)
 	else if (key == KEY_E)
 		camera_upwards(win, -UP_STEP);
 	else if (key == KEY_A)
-		camera_sideways(win, LEFT_STEP);
+		camera_sideways(win, RIGHT_STEP);
 	else if (key == KEY_S)
 		camera_forwards(win, -FORWARD_STEP);
 	else if (key == KEY_D)
-		camera_sideways(win, -LEFT_STEP);
+		camera_sideways(win, -RIGHT_STEP);
 	refresh_image(win);
 }

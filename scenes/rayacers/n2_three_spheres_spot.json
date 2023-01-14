@@ -1,0 +1,90 @@
+{
+	"camera" :
+	{
+		"origin" : [-5, 0, -2.3],
+		"transform" :
+		{
+			"translation": [0, 0, 0],
+			"rotation": [0, 0, 0],
+			"scale": [1, 1, 1]
+		},
+		"center_of_interest" : [0, 0, -2],
+		"field_of_view" : 1.0
+	},
+	"lights" :
+	[
+		{
+			"spot" :
+			{
+				"position" : [0, 0, -2],
+				"intensity" : [1, 1, 1]
+			}
+		}
+	],
+	"shapes" :
+	[
+		{
+			"sphere" :
+			{
+				"transform" :
+				{
+					"translation" : [0, 0, 0],
+					"rotation" : [0, 0, 0],
+					"scale" : [2,2,2]
+				},
+				"material" :
+				{
+					"ambient" : 0.42,
+					"diffuse" : 0.5,
+					"specular" : 0.1,
+					"shininess" : 200,
+					"init_colour" : [0, 1, 0],
+					"reflectiveness": 0,
+					"positive" : true
+				}
+			}
+		},
+		{
+			"sphere" :
+			{
+				"transform" :
+				{
+					"translation" : [0, 0, -2],
+					"rotation" : [0, 0, 0],
+					"scale" : [1, 1, 1]
+				},
+				"material" :
+				{
+					"ambient" : 0.42,
+					"diffuse" : 0.5,
+					"specular" : 0.1,
+					"shininess" : 200,
+					"init_colour" : [1, 0, 0],
+					"reflectiveness": 0,
+					"negative" : true
+				}
+			}
+		},
+		{
+			"sphere" :
+			{
+				"transform" :
+				{
+					"translation" : [0, 0, -3],
+					"rotation" : [0, 0, 0],
+					"scale" : [0.5, 0.5, 0.5]
+				},
+				"material" :
+				{
+					"ambient" : 0.42,
+					"diffuse" : 0.5,
+					"specular" : 0.1,
+					"shininess" : 200,
+					"init_colour" : [1, 0, 0],
+					"reflectiveness": 0,
+					"negative" : false
+				}
+			}
+		}
+	]
+}

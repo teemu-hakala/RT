@@ -16,7 +16,7 @@
 # include <sys/stat.h>
 # define UP_STEP 0.0375
 # define FORWARD_STEP 0.0375
-# define LEFT_STEP 0.0375
+# define RIGHT_STEP -0.0375
 # define ZOOM_STEP 0.1
 # define PPM_SUFFIX ".ppm"
 # define PPM_BUFFER_SIZE 0b10000000000
