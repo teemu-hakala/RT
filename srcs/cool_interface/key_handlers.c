@@ -53,21 +53,22 @@ void	print_text_on_keys_image(t_win *win, t_img *keys_image)
 	char		*str[4];
 	int			i;
 
-	str[0] = "MOVE";
+	str[0] = "MOVE CAM  R-CLICK";
 	str[1] = "ZOOM";
-	str[2] = "something cool";
+	str[2] = "PICTURE   P";
 	str[3] = "something else";
 
 	row = keys_image->dimensions.start.vertical;
 	column = keys_image->dimensions.start.horizontal;
-	mlx_string_put(win->mlx, win->win, column + 10, row, 0x00FFFFFF, "Cool Interface:");
+	mlx_string_put(win->mlx, win->win, column + 10, row, 0x00FCBB6D, "Cool Interface:");
 	row += 30;
 	i = 0;
 	while (i < 4)
 	{
-		mlx_string_put(win->mlx, win->win, column, row + (i * 20), 0x00FFFFFF, str[i]);
+		mlx_string_put(win->mlx, win->win, column, row + (i * 25), 0x00D8737F, str[i]);
 		i++;
 	}
+	//if more text that aren't keys - use #AB6C62 & #475C7A
 }
 
 void	put_keys_image(t_win *win)
@@ -94,7 +95,7 @@ void	toggle_key_user_interface(t_win *win)
 			win->keys_image.dimensions.canvas.vertical, .horizontal = \
 			win->keys_image.dimensions.canvas.horizontal}, .canvas = {}}, \
 			win->keys_image.dimensions, \
-			(t_tuple){.tuple.colour = {.r = 0, .g = 0, .b = 1, .a = 0.5}});
+			(t_tuple){.tuple.colour = {.r = 0.278, .g = 0.360, .b = 0.478, .a = 0.25}});
 	}
 	win->keys_visible = !win->keys_visible;
 	put_keys_image(win);
