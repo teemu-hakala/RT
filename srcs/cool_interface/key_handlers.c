@@ -27,7 +27,7 @@ t_img	initialise_keys_image(void *mlx, t_canvas canvas)
 	keys_image.dimensions = (t_rectangle){.start = \
 		{.vertical = canvas.vertical * 0.125, .horizontal = canvas.horizontal \
 		* 0.125}, .end = {.vertical = canvas.vertical * 0.875, .horizontal = \
-		canvas.horizontal = canvas.horizontal * 0.375}};
+		canvas.horizontal * 0.375}};
 	keys_image.dimensions.canvas = (t_canvas){
 		keys_image.dimensions.end.vertical - \
 		keys_image.dimensions.start.vertical,
