@@ -50,10 +50,24 @@ void	print_text_on_keys_image(t_win *win, t_img *keys_image)
 {
 	uint16_t	row;
 	uint16_t	column;
+	char		*str[4];
+	int			i;
+
+	str[0] = "MOVE";
+	str[1] = "ZOOM";
+	str[2] = "something cool";
+	str[3] = "something else";
 
 	row = keys_image->dimensions.start.vertical;
-	column = keys_image->dimensions.start.horizontal + 10;
-	mlx_string_put(win->mlx, win->win, column, row, 0x00FFFFFF, "Cool Interface:");
+	column = keys_image->dimensions.start.horizontal;
+	mlx_string_put(win->mlx, win->win, column + 10, row, 0x00FFFFFF, "Cool Interface:");
+	row += 30;
+	i = 0;
+	while (i < 4)
+	{
+		mlx_string_put(win->mlx, win->win, column, row + (i * 20), 0x00FFFFFF, str[i]);
+		i++;
+	}
 }
 
 void	put_keys_image(t_win *win)
