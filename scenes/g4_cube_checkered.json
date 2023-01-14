@@ -14,28 +14,28 @@
 	"lights" :
 	[
 		{
-			"light" :
+			"spot" :
 			{
 				"position" : [0, 100, -100],
 				"intensity" : [0.25, 0.25, 0.25]
 			}
 		},
 		{
-			"light" :
+			"spot" :
 			{
 				"position" : [0, -100, -100],
 				"intensity" : [0.25, 0.25, 0.25]
 			}
 		},
 		{
-			"light" :
+			"spot" :
 			{
 				"position" : [-100, 0, -100],
 				"intensity" : [0.25, 0.25, 0.25]
 			}
 		},
 		{
-			"light" :
+			"spot" :
 			{
 				"position" : [100, 0, -100],
 				"intensity" : [0.25, 0.25, 0.25]
@@ -65,7 +65,7 @@
 				{
 					"pattern" :
 					{
-						"type" : "checkered",
+						"type" : "simple_checkered",
 						"transform" :
 						{
 							"translation" : [0, 0, 0],
@@ -99,7 +99,7 @@
 				{
 					"pattern" :
 					{
-						"type" : "checkered",
+						"type" : "simple_checkered",
 						"transform" :
 						{
 							"translation" : [0, 0, 0],
@@ -133,7 +133,7 @@
 				{
 					"pattern" :
 					{
-						"type" : "checkered",
+						"type" : "simple_checkered",
 						"transform" :
 						{
 							"translation" : [0, 0, 0],
@@ -167,7 +167,7 @@
 				{
 					"pattern" :
 					{
-						"type" : "checkered",
+						"type" : "simple_checkered",
 						"transform" :
 						{
 							"translation" : [0, 0, 0],
@@ -201,7 +201,7 @@
 				{
 					"pattern" :
 					{
-						"type" : "checkered",
+						"type" : "simple_checkered",
 						"transform" :
 						{
 							"translation" : [0, 0, 0],
@@ -235,7 +235,7 @@
 				{
 					"pattern" :
 					{
-						"type" : "checkered",
+						"type" : "simple_checkered",
 						"transform" :
 						{
 							"translation" : [0, 0, 0],
@@ -269,7 +269,7 @@
 				{
 					"pattern" :
 					{
-						"type" : "checkered",
+						"type" : "simple_checkered",
 						"transform" :
 						{
 							"translation" : [0, 0, 0],
@@ -303,7 +303,7 @@
 				{
 				"pattern" :
 					{
-						"type" : "checkered",
+						"type" : "simple_checkered",
 						"transform" :
 						{
 							"translation" : [0, 0, 0],
