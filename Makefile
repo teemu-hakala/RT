@@ -6,7 +6,7 @@
 #    By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2023/01/14 10:59:26 by thakala          ###   ########.fr        #
+#    Updated: 2023/01/14 12:55:01 by thakala          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,7 @@ COOL_INTERFACE_SRCS = handle_input.c key_handlers.c mouse_input.c \
 INTERSECT_SRCS = intersect_plane.c intersect_sphere.c intersect_cone.c \
 	intersect_cylinder.c intersect_cube.c intersect_dispatch.c \
 	identify_hit.c is_positive_object.c get_material_flows.c \
-	get_material_dispatch.c
+	get_material_dispatch.c change_shape_material.c shapeshift.c
 
 LIGHTING_SRCS = lighting.c reflections.c shading_dispatch.c shading.c
 

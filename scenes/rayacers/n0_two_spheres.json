@@ -49,13 +49,18 @@
 			{
 				"transform" :
 				{
-					"translation" : [0, 0, 0],
+					"translation" : [0, 0, -1],
 					"rotation" : [0, 0, 0],
-					"scale" : [1, 1, 1]
+					"scale" : [0.5, 0.5, 0.5]
 				},
 				"material" :
 				{
+					"ambient" : 0.42,
+					"diffuse" : 0.5,
+					"specular" : 0.1,
+					"shininess" : 200,
 					"init_colour" : [1, 0, 0],
+					"reflectiveness": 0,
 					"negative" : true
 				}
 			}

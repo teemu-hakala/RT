@@ -50,6 +50,11 @@ void	volume_negator(t_world *world, t_vec *front, t_object *shape)
 		vec_remove(front, find_result.at);
 }
 
+t_intersect	intersection_data()
+{
+
+}
+
 void	identify_hit(t_world *world, t_hit *hit)
 {
 	t_vec			positive_front_ids;
@@ -70,9 +75,13 @@ void	identify_hit(t_world *world, t_hit *hit)
 			volume_negator(world, &positive_front_ids, intersection->shape);
 		else
 			volume_negator(world, &negative_front_ids, intersection->shape);
-		if (intersection->time >= 0)
+		if (intersection->time >= 0 && negative_front_ids.len == 0
+			&& positive_front_ids.len == 1)
 		{
 			hit->intersection = *intersection;
+			change_shape_material(hit->intersection.shape, \
+				vec_get(&world->objects, \
+					*(uint64_t *)positive_front_ids.memory));
 			hit->hit_check = true;
 			break ;
 		}

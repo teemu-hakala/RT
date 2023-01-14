@@ -229,6 +229,8 @@ typedef void	(*t_object_transform)(t_object *);
 
 typedef t_material *(*t_get_material_function)(t_object *);
 
+typedef void	(*t_change_shape_material_function)(t_object *, t_object *);
+
 t_material	*is_positive_object(t_object *shape);
 t_material	*get_material(t_object *shape);
 t_material	*plane_get_material(t_object *shape);
@@ -238,5 +240,13 @@ t_material	*cylinder_get_material(t_object *shape);
 t_material	*cube_get_material(t_object *shape);
 
 uint64_t	object_identification(void);
+
+void		change_shape_material(t_object *recipient, t_object *giver);
+void		plane_shapeshift(t_object *recipient, t_object *giver);
+void		sphere_shapeshift(t_object *recipient, t_object *giver);
+void		cone_shapeshift(t_object *recipient, t_object *giver);
+void		cylinder_shapeshift(t_object *recipient, t_object *giver);
+void		cube_shapeshift(t_object *recipient, t_object *giver);
+
 
 #endif
