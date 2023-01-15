@@ -31,9 +31,9 @@ void	initialise_image(t_img *img, t_win *win)
 void	initialise_world(t_world *world)
 {
 	world->camera = camera_prototype();
-	if (vec_new(&world->lights, 1, sizeof(t_light)) != VEC_SUCCESS
-		|| vec_new(&world->objects, 1, sizeof(t_object)) != VEC_SUCCESS
-		|| vec_new(&world->intersections, 1, sizeof(t_intersect))
+	if (vec_new(&world->lights, 32, sizeof(t_light)) != VEC_SUCCESS
+		|| vec_new(&world->objects, 64, sizeof(t_object)) != VEC_SUCCESS
+		|| vec_new(&world->intersections, 128, sizeof(t_intersect))
 		!= VEC_SUCCESS)
 		handle_errors("initialise_world malloc returned NULL");
 	world->hit.hit_check = false;

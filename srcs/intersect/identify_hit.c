@@ -33,7 +33,7 @@ bool	back_matcher_by_id(void *hay, void *needle)
 	return (false);
 }
 
-void	volume_negator(t_world *world, t_vec *front, t_object *shape)
+bool	volume_negator(t_world *world, t_vec *front, t_object *shape)
 {
 	t_vec_find_result	find_result;
 
@@ -45,9 +45,11 @@ void	volume_negator(t_world *world, t_vec *front, t_object *shape)
 		if (vec_push_arr(front, &shape->id, 1) \
 			== VEC_ERROR)
 			handle_errors("vec_push find_result error");
+		return (false);
 	}
 	else
 		vec_remove(front, find_result.at);
+	return (true);
 }
 /*
 t_intersect	intersection_data()
@@ -80,9 +82,12 @@ void	identify_hit(t_world *world, t_hit *hit)
 			(t_intersect *)vec_get(&world->intersections, i++);
 		if (is_positive_object(intersection->shape))
 		{
-			if (intersection->time < 0)
+			if (volume_negator(world, &positive_front_ids, intersection->shape))
+				positive_misses -= !!positive_misses;
+			else if (intersection->time < 0)
 				positive_misses++;
-			volume_negator(world, &positive_front_ids, intersection->shape);
+			if (positive_misses > 128)
+				hit->hit_check = false;
 		}
 		else
 			volume_negator(world, &negative_front_ids, intersection->shape);
@@ -98,6 +103,13 @@ void	identify_hit(t_world *world, t_hit *hit)
 						// *(uint64_t *)positive_front_ids.memory));
 			hit->hit_check = true;
 			break ;
+		}
+		else if (shadow_mode)
+		{
+			if (shadow_mode)
+			{
+
+			}
 		}
 	}
 	free(positive_front_ids.memory);

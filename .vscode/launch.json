@@ -305,5 +305,17 @@
 			"externalConsole": false,
 			"MIMode": "lldb"
 		},
+		{
+			"name": "n3_three_spheres_parallel.json",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/RT",
+			"args": ["${workspaceFolder}/scenes/rayacers/n3_three_spheres_parallel.json"],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb"
+		},
 	]
 }

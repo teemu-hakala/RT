@@ -40,7 +40,7 @@ static void	direction_and_distance(t_light *light, t_tuple *direction,
 	else
 	{
 		// temp = tuple_scale(light->direction, -1); // tuple_scale resets .w to VECTOR_0
-		temp = light->direction;
+		temp = tuple_scale(light->direction, 1);
 		temp.array[W] = VECTOR_0;
 		*distance = INFINITY;
 	}
@@ -84,4 +84,3 @@ t_tuple	reflected_colour(t_world *world, t_comp *computations)
 	reflected_colour = colour_at(world, world->reflected_ray);
 	return (tuple_scale(reflected_colour, computations->reflective));
 }
-
