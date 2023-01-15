@@ -78,19 +78,20 @@ void	identify_hit(t_world *world, t_hit *hit)
 	{
 		intersection = \
 			(t_intersect *)vec_get(&world->intersections, i++);
-		if (is_positive_object(&intersection->shape))
+		if (is_positive_object(intersection->shape))
 		{
 			if (intersection->time < 0)
 				positive_misses++;
-			volume_negator(world, &positive_front_ids, &intersection->shape);
+			volume_negator(world, &positive_front_ids, intersection->shape);
 		}
 		else
-			volume_negator(world, &negative_front_ids, &intersection->shape);
+			volume_negator(world, &negative_front_ids, intersection->shape);
 		if (intersection->time >= 0 && negative_front_ids.len == 0
 			&& positive_front_ids.len - positive_misses == 1)
 		{
-			hit->intersection = *intersection;
-			if (((uint64_t *)positive_front_ids.memory)[0] != intersection->shape.id)
+			hit->intersection = (t_hit_intersection){.time = intersection->time,
+				.shape = *intersection->shape};
+			if (((uint64_t *)positive_front_ids.memory)[0] != intersection->shape->id)
 				change_shape_material(&hit->intersection.shape, \
 					vec_get(&world->objects, \
 						((uint64_t *)positive_front_ids.memory)[positive_misses]));

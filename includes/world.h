@@ -29,14 +29,20 @@ typedef struct s_quadratic
 typedef struct s_intersect
 {
 	t_fl		time;
-	t_object	shape;
+	t_object	*shape;
 }				t_intersect;
+
+typedef struct s_hit_intersection
+{
+	t_fl		time;
+	t_object	shape;
+}	t_hit_intersection;
 
 typedef struct s_hit
 {
-	t_intersect	intersection;
-	t_comp		computations;
-	int			hit_check;
+	t_hit_intersection	intersection;
+	t_comp				computations;
+	int					hit_check;
 }	t_hit;
 
 typedef struct s_ray
