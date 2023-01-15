@@ -60,7 +60,7 @@ void	identify_hit(t_world *world, t_hit *hit)
 	t_vec			positive_front_ids;
 	t_vec			negative_front_ids;
 	t_intersect		*intersection;
-	// uint64_t		positive_misses;
+	uint64_t		positive_misses;
 	uint64_t		i;
 	bool			shadow_mode;
 
@@ -72,7 +72,7 @@ void	identify_hit(t_world *world, t_hit *hit)
 	negative_front_ids.memory = NULL;
 	initialise_front_vecs(&positive_front_ids, &negative_front_ids);
 	i = 0;
-	// positive_misses = 0;
+	positive_misses = 0;
 	hit->hit_check = false;
 	while (i < world->intersections.len)
 	{
@@ -80,20 +80,21 @@ void	identify_hit(t_world *world, t_hit *hit)
 			(t_intersect *)vec_get(&world->intersections, i++);
 		if (is_positive_object(&intersection->shape))
 		{
-			// if (intersection->time < 0)
-			// 	positive_misses++;
+			if (intersection->time < 0)
+				positive_misses++;
 			volume_negator(world, &positive_front_ids, &intersection->shape);
 		}
 		else
 			volume_negator(world, &negative_front_ids, &intersection->shape);
 		if (intersection->time >= 0 && negative_front_ids.len == 0
-			&& positive_front_ids.len == 1)
+			&& positive_front_ids.len - positive_misses == 1)
 		{
 			hit->intersection = *intersection;
-			change_shape_material(&hit->intersection.shape, \
-				vec_get(&world->objects, \
-					*(uint64_t *)positive_front_ids.memory));
-					// ((uint64_t *)positive_front_ids.memory)[positive_misses]));
+			if (((uint64_t *)positive_front_ids.memory)[0] != intersection->shape.id)
+				change_shape_material(&hit->intersection.shape, \
+					vec_get(&world->objects, \
+						((uint64_t *)positive_front_ids.memory)[positive_misses]));
+						// *(uint64_t *)positive_front_ids.memory));
 			hit->hit_check = true;
 			break ;
 		}
