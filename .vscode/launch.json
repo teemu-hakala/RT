@@ -258,6 +258,18 @@
 			"MIMode": "lldb"
 		},
 		{
+			"name": "f15_complex_debug.json",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/RT",
+			"args": ["${workspaceFolder}/scenes/f15_complex_debug.json"],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb"
+		},
+		{
 			"name": "n0_two_spheres.json",
 			"type": "cppdbg",
 			"request": "launch",
