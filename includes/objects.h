@@ -102,6 +102,8 @@ typedef struct s_material
 	t_tuple		final_colour;
 	t_tuple		col_mash;
 	t_fl		reflectiveness;
+	t_fl		transparency;
+	t_fl		refractive_index;
 }				t_material;
 
 typedef struct s_comp
@@ -109,6 +111,7 @@ typedef struct s_comp
 	t_fl			time;
 	t_object_type	type;
 	t_tuple			point;
+	t_tuple			under_point;
 	t_tuple			over_point;
 	t_phong			vectors;
 	int				inside;
