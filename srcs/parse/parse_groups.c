@@ -9,7 +9,10 @@ static void	parse_group_keyword(t_group *group, t_parser *parser)
 		parse_shapes(group, parser);
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "\"transform\"", 11) == 0)
-		parse_transform_subobject(parser, &group->transform);
+		{
+			parse_transform_subobject(parser, &group->transform);
+			transform_object(&group->transform);
+		}
 	else
 		handle_errors("group keyword error");
 }
@@ -31,6 +34,7 @@ void	parse_groups(t_world *world, t_parser *parser)
 {
 	t_group	group;
 
+	group.transform = default_transform_1();
 	find_colon(parser);
 	find_open_bracket(parser);
 	find_open_bracket(parser);

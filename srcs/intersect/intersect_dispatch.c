@@ -69,6 +69,7 @@ void	intersect_world(t_world *world, t_ray ray)
 	{
 		i = (uint64_t)(-1);
 		current = (t_group *)vec_get(&world->groups, g);
+		ray = ray_transform(&ray, &current->transform.inverse);
 		while (++i < current->objects.len)
 			intersect_object[((t_object *)vec_get(&current->objects, \
 				i))->type](ray, ((t_object *)vec_get(&current->objects, \

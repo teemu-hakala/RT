@@ -1,4 +1,8 @@
 {
+	"camera" :
+	{
+		"field_of_view" : 1.5
+	},
 	"groups" :
 	[
 		{
@@ -6,26 +10,30 @@
 			[
 				{
 					"sphere" :{}
+				},
+				{
+					"sphere" :
+					{
+						"transform" :
+						{
+							"translation" : [0, 0, -3]
+						}
+					}
+				},
+				{
+					"sphere" :
+					{
+						"transform" :
+						{
+							"translation" : [5, 0, 0]
+						}
+					}
 				}
 			],
 			"transform" :
 			{
-				"rotation" : [0, 1.5, 0]
+				"scale" : [2, 2, 2]
 			}
-		},
-		{
-			"shapes" :
-			[
-				{
-					"cube" :
-					{
-						"transform" :
-						{
-							"translation" : [-5, 0, 0]
-						}
-					}
-				}
-			]
 		}
 	]
 }
