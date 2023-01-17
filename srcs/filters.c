@@ -1,5 +1,15 @@
 #include "RT.h"
 
+t_tuple	apply_negative(t_tuple original)
+{
+	t_tuple	temp;
+
+	temp.tuple.colour.r = (1 - original.tuple.colour.r);
+	temp.tuple.colour.g = (1 - original.tuple.colour.g);
+	temp.tuple.colour.b = (1 - original.tuple.colour.b);
+	return (temp);
+}
+
 t_tuple	apply_sepia(t_tuple original)
 {
 	t_tuple	temp;
@@ -20,6 +30,8 @@ t_tuple	apply_filter(t_world *world, t_tuple colour)
 {
 	if (world->filter == SEPIA)
 		return (apply_sepia(colour));
+	if (world->filter == NEGATIVE)
+		return (apply_negative(colour));
 	else
 		return (colour);
 }

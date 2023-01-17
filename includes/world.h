@@ -21,7 +21,8 @@ typedef enum e_filter_type
 	FILTER_NONE = 0,
 	SEPIA = 1,
 	CARTOON = 2,
-	MOTION_BLUR = 3
+	MOTION_BLUR = 3,
+	NEGATIVE = 4
 }		t_filter_type;
 
 typedef struct s_quadratic
