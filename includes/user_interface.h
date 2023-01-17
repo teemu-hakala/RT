@@ -66,7 +66,8 @@ enum e_key_code
 	KEY_C = 8,
 	KEY_R = 15,
 	KEY_F = 3,
-	KEY_P_ICTURE = 35
+	KEY_P_ICTURE = 35,
+	KEY_DOT = 47
 };
 
 void	put_rectangle_to_image(t_img img, t_rectangle image, \
@@ -91,5 +92,6 @@ int		get_new_file_for_image(void);
 t_vec	*ppm_write_buffer(uint8_t flag, int fd);
 void	ppm_push_string(char *string, uint64_t len);
 void	buffer_ppm_image_header(t_win *win, int max_value);
+void	loop_filters(t_win *win);
 
 #endif

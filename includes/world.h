@@ -16,6 +16,14 @@
 /*inside == true if hit occurs inside object, false otherwise. If hit occurs
 iside object, normal vector is inverted*/
 
+typedef enum e_filter_type
+{
+	FILTER_NONE = 0,
+	SEPIA = 1,
+	CARTOON = 2,
+	MOTION_BLUR = 3
+}		t_filter_type;
+
 typedef struct s_quadratic
 {
 	t_fl	a;
@@ -57,7 +65,7 @@ typedef struct s_world
 	t_ray		ray;
 	t_ray		reflected_ray;
 	int			lifetime;
-	
+	int			filter;
 }	t_world;
 
 #endif

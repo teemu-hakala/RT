@@ -202,6 +202,7 @@ void		img_pixel_put(t_win *win, int x, int y, unsigned int colour);
 /* camera */
 t_ray		ray_for_pixel(t_camera *camera, t_canvas position);
 t_tuple		colour_at(t_world *world, t_ray ray);
+t_tuple 	apply_filter(t_world *world, t_tuple colour);
 t_fl		get_pixel_size(t_camera *camera, t_canvas size, t_fl field_of_view);
 void		transform_camera_for_rotations(t_camera *camera);
 void		transform_camera_for_field_of_view(t_camera *camera);
