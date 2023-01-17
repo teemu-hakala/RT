@@ -57,6 +57,7 @@ typedef struct s_world
 	t_ray		ray;
 	t_ray		reflected_ray;
 	int			lifetime;
+	
 }	t_world;
 
 #endif
