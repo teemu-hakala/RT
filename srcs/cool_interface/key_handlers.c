@@ -50,26 +50,30 @@ void	print_text_on_keys_image(t_win *win, t_img *keys_image)
 {
 	uint16_t	row;
 	uint16_t	column;
-	char		*str[4];
+	char		*str[6];
 	int			i;
 
-	str[0] = "MOVE CAM  R-CLICK";
-	str[1] = "ZOOM";
-	str[2] = "PICTURE   P";
-	str[3] = "something else";
-
+	i = 0;
+	str[i++] = "MOVE CAM  R-CLICK";
+	str[i++] = "FILTER    [DOT]";
+	str[i++] = "SCROLL /+:";
+	str[i++] = " -ZOOM      QE";
+	str[i++] = " -TRANSLATE WASD";
+	str[i++] = " -PICTURE   P";
 	row = keys_image->dimensions.start.vertical;
 	column = keys_image->dimensions.start.horizontal;
-	mlx_string_put(win->mlx, win->win, column + 10, row, 0x00FCBB6D, "Cool Interface:");
+	mlx_string_put(win->mlx, win->win, column + 10, row, 0x00FCBB6D, \
+		"Cool Interface:");
 	row += 30;
 	i = 0;
-	while (i < 4)
+	while (i < 5)
 	{
-		mlx_string_put(win->mlx, win->win, column, row + (i * 25), 0x00D8737F, str[i]);
+		mlx_string_put(win->mlx, win->win, column, row + (i * 25), \
+			0x00D8737F, str[i]);
 		i++;
 	}
-	//if more text that aren't keys - use #AB6C62 & #475C7A
 }
+	//if more text that aren't keys - use #AB6C62 & #475C7A
 
 void	put_keys_image(t_win *win)
 {
