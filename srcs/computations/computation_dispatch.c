@@ -23,6 +23,6 @@ void	prepare_computations(t_world *world, t_ray ray)
 		prepare_cube
 	};
 
-	precompute_shape[world->hit.intersection.shape->type - OBJECT_INDEX_OFFSET]
+	precompute_shape[world->hit.intersection.shape->type]
 		(world, ray);
 }

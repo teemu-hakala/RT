@@ -50,7 +50,8 @@ typedef struct s_world
 {
 	t_camera	camera;
 	t_vec		lights;
-	t_vec		objects;
+//	t_vec		objects;
+	t_vec		groups;
 	t_vec		intersections;
 	t_hit		hit;
 	t_hit		shadow_hit;

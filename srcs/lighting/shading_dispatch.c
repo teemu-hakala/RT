@@ -19,8 +19,7 @@ t_tuple	shade_hit(t_world *world)
 	while (i < world->lights.len)
 	{
 		light = (t_light *)vec_get(&world->lights, i);
-		shape_shading[world->hit.intersection.shape->type \
-			- OBJECT_INDEX_OFFSET] \
+		shape_shading[world->hit.intersection.shape->type] \
 			(world, &world->hit.intersection.shape->object, &colour, light);
 		i++;
 	}

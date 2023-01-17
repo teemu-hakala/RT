@@ -60,14 +60,18 @@ void	intersect_world(t_world *world, t_ray ray)
 		cylinder_intersection,
 		cube_intersection
 	};
+	uint64_t		g;
 	uint64_t		i;
+	t_group			*current;
 
-	i = (uint64_t)(-1);
-	while (++i < world->objects.len)
+	g = (uint64_t)(-1);
+	while (++g < world->groups.len)
 	{
-		intersect_object[((t_object *)vec_get(&world->objects, \
-			i))->type - OBJECT_INDEX_OFFSET] \
-			(ray, ((t_object *)vec_get(&world->objects, \
+		i = (uint64_t)(-1);
+		current = (t_group *)vec_get(&world->groups, g);
+		while (++i < current->objects.len)
+			intersect_object[((t_object *)vec_get(&current->objects, \
+				i))->type](ray, ((t_object *)vec_get(&current->objects, \
 			i)), world);
 	}
 	vec_sort(&world->intersections, sort_intersections);

@@ -24,12 +24,11 @@ typedef enum e_light_type
 
 typedef enum e_object_type
 {
-	OBJECT_INDEX_OFFSET = 42,
-	OBJECT_PLANE = 42,
-	OBJECT_SPHERE = 43,
-	OBJECT_CONE = 44,
-	OBJECT_CYLINDER = 45,
-	OBJECT_CUBE = 46,
+	OBJECT_PLANE = 0,
+	OBJECT_SPHERE = 1,
+	OBJECT_CONE = 2,
+	OBJECT_CYLINDER = 3,
+	OBJECT_CUBE = 4,
 }	t_object_type;
 
 typedef struct s_phong_colour_constituents
@@ -218,6 +217,7 @@ typedef struct s_object
 {
 	union u_object		object;
 	enum e_object_type	type;
+	uint64_t			parent;
 }	t_object;
 
 typedef t_tuple	(*t_normal_fn)(void *, t_tuple *);
