@@ -1,5 +1,4 @@
 #include "RT.h"
-#include <stdio.h>
 
 t_tuple	apply_sepia(t_tuple original)
 {
