@@ -90,6 +90,8 @@ void	parse_shapes(t_group *group, t_parser *parser)
 	find_colon(parser);
 	find_open_bracket(parser);
 	find_open_bracket(parser);
+	if (vec_new(&group->objects, 1, sizeof(t_object)) != VEC_SUCCESS)
+		handle_errors("group objects vector error");
 	find_shape(&object, parser);
 	while (1)
 	{

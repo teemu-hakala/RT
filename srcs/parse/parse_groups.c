@@ -34,15 +34,11 @@ void	parse_groups(t_world *world, t_parser *parser)
 	find_colon(parser);
 	find_open_bracket(parser);
 	find_open_bracket(parser);
-	if (vec_new(&group.objects, 1, sizeof(t_object)) != VEC_SUCCESS)
-		handle_errors("group objects vector error");
 	parse_individual_group(&group, parser);
 	while (1)
 	{
 		if (vec_push(&world->groups, &group) == VEC_ERROR)
 			handle_errors("vec_push group error");
-		// if (find_matching_bracket(parser) == false)
-		// 	handle_errors("groups syntax error");
 		else if (parser->string[parser->c] == ',')
 		{
 			parser->c++;

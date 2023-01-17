@@ -17,7 +17,13 @@
 			"shapes" :
 			[
 				{
-					"sphere" :{}
+					"cube" :
+					{
+						"transform" :
+						{
+							"translation" : [-5, 0, 0]
+						}
+					}
 				}
 			]
 		}
