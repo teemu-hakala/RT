@@ -16,7 +16,7 @@ t_world	world_selectively_shallow_copy(t_world *original)
 	t_world		copy;
 
 	copy = (t_world){.camera = original->camera, .lights = original->lights, \
-		.objects = original->objects};
+		.groups = original->groups};
 	if (vec_new(&copy.intersections, 1, sizeof(t_intersect))
 		!= VEC_SUCCESS)
 		handle_errors("world_selectively_shallow_copy malloc returned NULL");

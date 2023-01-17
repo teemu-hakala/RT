@@ -83,7 +83,7 @@ static void	find_shape(t_object *shape, t_parser *parser)
 		find_cone_or_cylinder(shape, parser);
 }
 
-void	parse_shapes(t_world *world, t_parser *parser)
+void	parse_shapes(t_group *group, t_parser *parser)
 {
 	t_object	object;
 
@@ -93,7 +93,7 @@ void	parse_shapes(t_world *world, t_parser *parser)
 	find_shape(&object, parser);
 	while (1)
 	{
-		if (vec_push(&world->objects, &object) == VEC_ERROR)
+		if (vec_push(&group->objects, &object) == VEC_ERROR)
 			handle_errors("vec_push shape error");
 		if (find_matching_bracket(parser) == false)
 			handle_errors("shapes object syntax error");

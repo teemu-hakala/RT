@@ -4,12 +4,13 @@
 	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
 	"version": "0.2.0",
 	"configurations": [
+
 		{
-			"name": "ppm_test",
+			"name": "group_prototype",
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/RT",
-			"args": ["${workspaceFolder}/test.ppm"],
+			"args": ["${workspaceFolder}/scenes/group_prototype.json"],
 			"stopAtEntry": true,
 			"cwd": "${workspaceFolder}",
 			"environment": [],

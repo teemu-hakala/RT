@@ -54,10 +54,10 @@ static void	find_object_keyword(t_world *world, t_parser *parser)
 		parser->c += sizeof("\"lights\"") - 1;
 		parse_lights(world, parser);
 	}
-	else if (ft_strncmp(&parser->string[parser->c], "\"shapes\"", 8) == 0)
+	else if (ft_strncmp(&parser->string[parser->c], "\"groups\"", 8) == 0)
 	{
-		parser->c += sizeof("\"shapes\"") - 1;
-		parse_shapes(world, parser);
+		parser->c += sizeof("\"groups\"") - 1;
+		parse_groups(world, parser);
 	}
 	else
 		handle_errors("DENIED:object not recognised");

@@ -220,6 +220,14 @@ typedef struct s_object
 	uint64_t			parent;
 }	t_object;
 
+typedef struct s_group
+{
+	t_vec		objects;
+	t_transform	transform;
+	//t_material	material;
+}				t_group;
+
+
 typedef t_tuple	(*t_normal_fn)(void *, t_tuple *);
 
 typedef void	(*t_object_transform)(t_object *);
