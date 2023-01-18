@@ -1,5 +1,15 @@
 #include "RT.h"
 
+t_tuple	apply_grayscale(t_tuple original)
+{
+	t_tuple	temp;
+
+	temp.tuple.colour.r = (original.tuple.colour.r + original.tuple.colour.g + original.tuple.colour.b)/3;
+	temp.tuple.colour.g = (original.tuple.colour.r + original.tuple.colour.g + original.tuple.colour.b)/3;
+	temp.tuple.colour.b = (original.tuple.colour.r + original.tuple.colour.g + original.tuple.colour.b)/3;
+	return (temp);
+}
+
 t_tuple	apply_negative(t_tuple original)
 {
 	t_tuple	temp;
@@ -32,6 +42,8 @@ t_tuple	apply_filter(t_world *world, t_tuple colour)
 		return (apply_sepia(colour));
 	if (world->filter == NEGATIVE)
 		return (apply_negative(colour));
+	if (world->filter == GRAYSCALE)
+		return (apply_grayscale(colour));
 	else
 		return (colour);
 }
