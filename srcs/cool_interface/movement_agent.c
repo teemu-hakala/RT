@@ -20,8 +20,8 @@ void	camera_upwards(t_win *win, t_fl magnitude)
 	win->world.camera.transform.translation.tuple.units.y += magnitude;
 	// win->world.camera.origin.tuple.units.y += magnitude;
 	win->world.camera.center_of_interest.array[Y] += magnitude;
-	transform_camera(&win->world.camera);
-	// transform_camera_for_rotations(&win->world.camera);
+	// transform_camera(&win->world.camera);
+	transform_camera_for_rotations(&win->world.camera);
 }
 
 void	camera_forwards(t_win *win, t_fl magnitude)
@@ -31,8 +31,8 @@ void	camera_forwards(t_win *win, t_fl magnitude)
 	win->world.camera.transform.translation.tuple.units.z += magnitude;
 	// win->world.camera.origin.tuple.units.z += magnitude;
 	win->world.camera.center_of_interest.array[Z] += magnitude;
-	transform_camera(&win->world.camera);
-	// transform_camera_for_rotations(&win->world.camera);
+	// transform_camera(&win->world.camera);
+	transform_camera_for_rotations(&win->world.camera);
 }
 
 void	camera_sideways(t_win *win, t_fl magnitude)
@@ -42,8 +42,8 @@ void	camera_sideways(t_win *win, t_fl magnitude)
 	win->world.camera.transform.translation.tuple.units.x += magnitude;
 	// win->world.camera.origin.tuple.units.x += magnitude;
 	win->world.camera.center_of_interest.array[X] += magnitude;
-	transform_camera(&win->world.camera);
-	// transform_camera_for_rotations(&win->world.camera);
+	// transform_camera(&win->world.camera);
+	transform_camera_for_rotations(&win->world.camera);
 }
 
 void	movement_agent(t_win *win, int key)

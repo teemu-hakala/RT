@@ -36,8 +36,10 @@ void	transform_camera(t_camera *camera)
 	identity_matrix_set(&camera->transform.matrix);
 	translate(&camera->transform.matrix, &camera->transform.translation);
 	print_tuple(camera->transform.translation, "translation");
-	camera->transform.translation = point(0, 0, 0);
+	//camera->transform.translation = point(0, 0, 0);
 	rotate(&camera->transform.matrix, &camera->transform.rotation);
+	print_tuple(camera->transform.rotation, "rotation");
+	//camera->transform.rotation = point(0, 0, 0);
 	scale(&camera->transform.matrix, &camera->transform.scale);
 	print_tuple(camera->origin, "origin before");
 	camera->origin = matrix_tuple_multi(&camera->transform.matrix, \
@@ -68,7 +70,7 @@ void	transform_camera_for_field_of_view(t_camera *camera)
 		camera->field_of_view);
 }
 
-void	transform_camera_for_rotations(t_camera *camera)
+/*void	transform_camera_for_rotations(t_camera *camera)
 {
 	t_mtx		view_matrix;
 
@@ -83,4 +85,28 @@ void	transform_camera_for_rotations(t_camera *camera)
 	matrix_multi_square(&camera->transform.matrix, &view_matrix, 4);
 	camera->transform.inverse = camera->transform.matrix;
 	matrix_inversion(&camera->transform.inverse, 4);
+}*/
+
+void	transform_camera_for_rotations(t_camera *camera)
+{
+	t_mtx	view_matrix;
+
+	identity_matrix_set(&camera->transform.matrix);
+	translate(&camera->transform.matrix, &camera->transform.translation);
+	print_tuple(camera->transform.translation, "translation");
+	camera->transform.translation = point(0, 0, 0);
+	rotate(&camera->transform.matrix, &camera->transform.rotation);
+	print_tuple(camera->transform.rotation, "rotation");
+	camera->transform.rotation = point(0, 0, 0);
+	scale(&camera->transform.matrix, &camera->transform.scale);
+	print_tuple(camera->origin, "origin before");
+	camera->origin = matrix_tuple_multi(&camera->transform.matrix, \
+		&camera->origin);
+	print_tuple(camera->origin, "origin after");
+	view_matrix = view_transform(camera->origin, camera->center_of_interest, \
+		vector(0, 1, 0));
+	camera->transform.inverse = view_matrix;
+	matrix_inversion(&camera->transform.inverse, 4);
+	camera->pixel_size = get_pixel_size(camera, camera->canvas, \
+		camera->field_of_view);
 }
