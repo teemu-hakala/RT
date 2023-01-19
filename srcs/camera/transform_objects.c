@@ -34,13 +34,13 @@ void	transform_camera(t_camera *camera)
 	t_mtx	view_matrix;
 
 	identity_matrix_set(&camera->transform.matrix);
-	translate(&camera->transform.matrix, &camera->transform.translation);
-	print_tuple(camera->transform.translation, "translation");
-	//camera->transform.translation = point(0, 0, 0);
-	rotate(&camera->transform.matrix, &camera->transform.rotation);
-	print_tuple(camera->transform.rotation, "rotation");
-	//camera->transform.rotation = point(0, 0, 0);
-	scale(&camera->transform.matrix, &camera->transform.scale);
+	// translate(&camera->transform.matrix, &camera->transform.translation);
+	// print_tuple(camera->transform.translation, "translation");
+	// //camera->transform.translation = point(0, 0, 0);
+	// rotate(&camera->transform.matrix, &camera->transform.rotation);
+	// print_tuple(camera->transform.rotation, "rotation");
+	// //camera->transform.rotation = point(0, 0, 0);
+	// scale(&camera->transform.matrix, &camera->transform.scale);
 	print_tuple(camera->origin, "origin before");
 	camera->origin = matrix_tuple_multi(&camera->transform.matrix, \
 		&camera->origin);
@@ -97,7 +97,7 @@ void	transform_camera_for_rotations(t_camera *camera)
 	camera->transform.translation = point(0, 0, 0);
 	rotate(&camera->transform.matrix, &camera->transform.rotation);
 	print_tuple(camera->transform.rotation, "rotation");
-	camera->transform.rotation = point(0, 0, 0);
+	// camera->transform.rotation = point(0, 0, 0);
 	scale(&camera->transform.matrix, &camera->transform.scale);
 	print_tuple(camera->origin, "origin before");
 	camera->origin = matrix_tuple_multi(&camera->transform.matrix, \

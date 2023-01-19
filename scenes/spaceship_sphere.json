@@ -1,14 +1,14 @@
 {
 	"camera" :
 	{
-		"origin" : [0, 0, 0],
+		"origin" : [10, 0, 0],
 		"transform" :
 		{
 			"translation": [0, 0, 0],
 			"rotation": [0, 0, 0],
 			"scale": [1, 1, 1]
 		},
-		"center_of_interest" : [0, 0, 1],
+		"center_of_interest" : [0, 1, 0],
 		"field_of_view" : 1.0
 	},
 	"lights" :
@@ -23,6 +23,26 @@
 	],
 	"shapes" :
 	[
+
+		{
+			"sphere" :
+			{
+				"transform" :
+				{
+					"translation" : [0, 0, 0],
+					"rotation" : [0, 0, 0],
+					"scale" : [0.1, 0.1, 0.1]
+				},
+				"material" :
+				{
+					"ambient" : 0.1,
+					"specular" : 0.4,
+					"shininess" : 10,
+					"diffuse" : 0.6,
+					"init_colour" : [2, 2, 2]
+				}
+			}
+		},
 		{
 			"sphere" :
 			{
@@ -39,7 +59,7 @@
 					"shininess" : 10,
 					"diffuse" : 0.6,
 					"init_colour" : [0.42, 0.55, 0.09]
-				},
+				}
 			}
 		},
 		{
@@ -66,7 +86,7 @@
 			{
 				"transform" :
 				{
-					"translation" : [25, 4, 0],
+					"translation" : [25, 0, 0],
 					"rotation" : [0, 0, 0],
 					"scale" : [1, 1, 1]
 				},

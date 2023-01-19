@@ -12,7 +12,7 @@
 
 #include "RT.h"
 
-static void	rot_x(t_mtx *mtx, t_fl angle)
+void	rot_x(t_mtx *mtx, t_fl angle)
 {
 	t_mtx	rotate_x;
 
@@ -24,7 +24,7 @@ static void	rot_x(t_mtx *mtx, t_fl angle)
 	matrix_multi_square(mtx, &rotate_x, 4);
 }
 
-static void	rot_y(t_mtx *mtx, t_fl angle)
+void	rot_y(t_mtx *mtx, t_fl angle)
 {
 	t_mtx	rotate_y;
 
@@ -36,7 +36,7 @@ static void	rot_y(t_mtx *mtx, t_fl angle)
 	matrix_multi_square(mtx, &rotate_y, 4);
 }
 
-static void	rot_z(t_mtx *mtx, t_fl angle)
+void	rot_z(t_mtx *mtx, t_fl angle)
 {
 	t_mtx	rotate_z;
 
