@@ -31,15 +31,15 @@
 				{
 					"translation" : [0, 0, 0],
 					"rotation" : [0, 0, 0],
-					"scale" : [0.1, 0.1, 0.1]
+					"scale" : [0.01, 0.01, 0.01]
 				},
 				"material" :
 				{
-					"ambient" : 0.1,
+					"ambient" : 200,
 					"specular" : 0.4,
 					"shininess" : 10,
 					"diffuse" : 0.6,
-					"init_colour" : [2, 2, 2]
+					"init_colour" : [200, 200, 200]
 				}
 			}
 		},
