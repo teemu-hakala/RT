@@ -43,7 +43,8 @@ t_camera	camera_prototype(void)
 	camera.canvas = default_canvas();
 	camera.pixel_size = get_pixel_size(&camera, camera.canvas, \
 		camera.field_of_view);
-	camera.shutter = (t_shutter){.time = SHUTTER_TIME, .count = 0};
+	camera.shutter = (t_shutter){.time = SHUTTER_TIME, .count = 0, \
+		.step = SHUTTER_TIME / SHUTTER_COUNT};
 	transform_camera(&camera);
 	return (camera);
 }

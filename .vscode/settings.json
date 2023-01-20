@@ -31,6 +31,7 @@
 		"cstring": "c",
 		"typeinfo": "c",
 		"pthread.h": "c",
-		"parse.h": "c"
+		"parse.h": "c",
+		"rt.h": "c"
 	}
 }

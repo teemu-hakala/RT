@@ -18,12 +18,13 @@ typedef struct s_shutter_configuration
 {
 	t_fl		time;
 	uint64_t	count;
+	t_fl		step;
 }	t_shutter;
 
 typedef struct s_movement
 {
 	// t_tuple		origin;
-	t_tuple		velocity;
+	t_tuple		movement;
 	double		time;
 	bool		active;
 }	t_movement;

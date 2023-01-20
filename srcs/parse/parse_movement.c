@@ -19,7 +19,7 @@ static void	find_movement_keywords(t_movement *movement, t_parser *parser)
 	{
 		parser->c += sizeof("\"velocity\"") - 1;
 		find_colon(parser);
-		parse_tuple(&movement->velocity, parser);
+		parse_tuple(&movement->movement, parser);
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "\"time\"", 6) == 0)
 	{

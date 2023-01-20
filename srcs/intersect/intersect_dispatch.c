@@ -72,3 +72,8 @@ void	intersect_world(t_world *world, t_ray ray)
 	}
 	vec_sort(&world->intersections, sort_intersections);
 }
+
+void	intersect_world_at_time(t_world *world, t_ray ray, t_fl time)
+{
+	
+}
