@@ -27,6 +27,12 @@ static void	find_movement_keywords(t_movement *movement, t_parser *parser)
 		find_colon(parser);
 		movement->time = rt_atof(parser);
 	}
+	else if (ft_strncmp(&parser->string[parser->c], "\"active\"", 8) == 0)
+	{
+		parser->c += sizeof("\"active\"") - 1;
+		find_colon(parser);
+		movement->active = parse_boolean(parser);
+	}
 }
 
 void	parse_movement(t_movement *movement, t_parser *parser)

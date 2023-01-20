@@ -6,7 +6,7 @@
 #    By: thakala <thakala@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2023/01/20 17:53:04 by thakala          ###   ########.fr        #
+#    Updated: 2023/01/20 18:16:56 by thakala          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,7 +77,7 @@ PARSE_SRCS = default_files.c default_patterns.c parse_camera.c parse_cone.c \
 	parse_transform.c parse_cone_cylinder_subobj.c parse_cube.c \
 	shape_subobject_utility.c parse_patterns.c parse_faces.c parse_ppm.c \
 	ppm_utility.c parse_textures.c default_textures.c parse_face_subobjects.c \
-	parse_movement.c
+	parse_movement.c parse_boolean.c
 
 PATTERNS_SRCS = pattern_dispatch.c patterns.c textures.c texture_dispatch.c \
 	uv_mapping.c cube_mapping.c cube_mapping_utility.c

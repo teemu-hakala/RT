@@ -54,6 +54,7 @@ void		parse_material(t_material *material, t_parser *parser);
 void		parse_movement(t_movement *movement, t_parser *parser);
 void		parse_pattern(t_pattern *pattern, t_parser *parser);
 void		parse_texture(t_texture *texture, t_parser *parser);
+bool		parse_boolean(t_parser *parser);
 void		find_name(t_ppm_image *image, t_parser *parser);
 int			cone_and_cylinder_objects(t_parser *parser, t_object *object);
 

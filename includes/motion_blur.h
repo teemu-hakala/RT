@@ -25,6 +25,7 @@ typedef struct s_movement
 	// t_tuple		origin;
 	t_tuple		velocity;
 	double		time;
+	bool		active;
 }	t_movement;
 
 #endif
