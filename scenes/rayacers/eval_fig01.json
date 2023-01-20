@@ -1,0 +1,154 @@
+{
+	"camera" :
+	{
+		"origin" : [0, 0, -30],
+		"transform" :
+		{
+			"translation": [0, 0, 0],
+			"rotation": [0, 0, 0],
+			"scale": [1, 1, 1]
+		},
+		"center_of_interest" : [0, 0, 0],
+		"field_of_view" : 1.0
+	},
+	"lights" :
+	[
+		{
+			"spot" :
+			{
+				"position" : [-10, 10, -10],
+				"intensity" : [2, 1, 1]
+			}
+		},
+		{
+			"spot" :
+			{
+				"position" : [-10, 20, -10],
+				"intensity" : [1, 1, 2]
+			}
+		}
+	],
+	"shapes" :
+	[
+		{
+			"sphere" :
+			{
+				"transform" :
+				{
+					"translation" : [-4, -3, -6],
+					"rotation" : [0, 0, 0],
+					"scale" : [1.5, 1.5, 1.5]
+				},
+				"material" :
+				{
+					"ambient" : 0.1,
+					"diffuse" : 0.7,
+					"specular" : 0.2,
+					"shininess" : 200,
+					"init_colour" : [0.8, 1.0, 0.6],
+					"reflectiveness": 0.7
+				}
+			}
+		},
+		{
+			"sphere" :
+			{
+				"transform" :
+				{
+					"translation" : [0, 0, 0],
+					"rotation" : [0, 0, 0],
+					"scale" : [0.5, 0.5, 0.5]
+				},
+				"material" :
+				{
+					"ambient" : 0.1,
+					"diffuse" : 0.5,
+					"specular" : 0.1,
+					"shininess" : 200,
+					"init_colour" : [0.42, 0.55, 0.09],
+					"reflectiveness": 0
+				}
+			}
+		},
+		{
+			"cone" :
+			{
+				"transform" :
+				{
+					"translation" : [0, 0, 0],
+					"rotation" : [0, 0, -2],
+					"scale" : [0.3, 1, 1]
+				},
+				"material" :
+				{
+					"ambient" : 0.1,
+					"diffuse" : 0.5,
+					"specular" : 0.1,
+					"shininess" : 200,
+					"init_colour" : [0.42, 0.55, 0.99],
+					"reflectiveness": 0
+				}
+			}
+		},
+		{
+			"cylinder" :
+			{
+				"transform" :
+				{
+					"translation" : [0, 0, 0],
+					"rotation" : [0, 0.9, -0.4],
+					"scale" : [2, 1, 1]
+				},
+				"material" :
+				{
+					"ambient" : 0.1,
+					"diffuse" : 0.5,
+					"specular" : 0.1,
+					"shininess" : 200,
+					"init_colour" : [0.92, 0.95, 0.09],
+					"reflectiveness": 0
+				}
+			}
+		},
+		{
+				"plane" :
+			{
+				"transform" :
+				{
+					"translation" : [0, 5, 0],
+					"rotation" : [1, 0, 0],
+					"scale" : [1, 1, 1]
+				},
+				"material" :
+				{
+					"ambient" : 0.1,
+					"diffuse" : 0.5,
+					"specular" : 0.1,
+					"shininess" : 200,
+					"init_colour" : [0.42, 0.55, 0.09],
+					"reflectiveness": 0
+				}
+			}
+		},
+		{
+				"plane" :
+			{
+				"transform" :
+				{
+					"translation" : [0, -5, 0],
+					"rotation" : [0, 1, 0],
+					"scale" : [1, 1, 1]
+				},
+				"material" :
+				{
+					"ambient" : 0.1,
+					"diffuse" : 0.5,
+					"specular" : 0.1,
+					"shininess" : 200,
+					"init_colour" : [0.62, 0.65, 0.09],
+					"reflectiveness": 0
+				}
+			}
+		}
+	]
+}
