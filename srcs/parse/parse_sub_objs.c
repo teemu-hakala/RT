@@ -53,12 +53,28 @@ void	parse_appearance(t_appearance *appearance, t_parser *parser)
 		handle_errors("error in appearance parser");
 }
 
-int	find_subobject_keyword(t_parser *parser, t_transform *transform, \
-	t_material *material, t_appearance *appearance)
+int	find_subobject_keyword_continued(t_parser *parser, t_object_prototype *prototype)
+{
+	if (ft_strncmp(&parser->string[parser->c], "\"movement\"", 10) == 0)
+	{
+		parser->c += sizeof("\"movement\"") - 1;
+		find_colon(parser);
+		find_open_bracket(parser);
+		if (find_matching_bracket(parser))
+			return (true);
+		parse_movement(prototype->movement, parser);
+	}
+	else
+		return (false);
+	return (true);
+}
+
+int	find_subobject_keyword(t_parser *parser, t_object_prototype *prototype)/*t_transform *transform, \
+	t_material *material, t_appearance *appearance*/
 {
 	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
 	if (ft_strncmp(&parser->string[parser->c], "\"transform\"", 11) == 0)
-		parse_transform_subobject(parser, transform);
+		parse_transform_subobject(parser, prototype->transform);
 	else if (ft_strncmp(&parser->string[parser->c], "\"material\"", 10) == 0)
 	{
 		parser->c += sizeof("\"material\"") - 1;
@@ -66,7 +82,7 @@ int	find_subobject_keyword(t_parser *parser, t_transform *transform, \
 		find_open_bracket(parser);
 		if (find_matching_bracket(parser))
 			return (true);
-		parse_material(material, parser);
+		parse_material(prototype->material, parser);
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "\"appearance\"", 12) == 0)
 	{
@@ -75,11 +91,9 @@ int	find_subobject_keyword(t_parser *parser, t_transform *transform, \
 		find_open_bracket(parser);
 		if (find_matching_bracket(parser))
 			return (true);
-		parse_appearance(appearance, parser);
+		parse_appearance(prototype->appearance, parser);
 	}
-	else
-		return (false);
-	return (true);
+	return (find_subobject_keyword_continued(parser, prototype));
 }
 
 void	parse_tuple(t_tuple *tuple, t_parser *parser)

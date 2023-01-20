@@ -20,6 +20,7 @@
 # include "tuple.h"
 # include "matrices.h"
 # include "colour_and_light.h"
+# include "motion_blur.h"
 # include "objects.h"
 # include "patterns.h"
 # include "world.h"

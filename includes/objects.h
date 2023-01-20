@@ -130,6 +130,7 @@ typedef struct s_plane
 	t_transform		transform;
 	t_material		material;
 	t_appearance	appearance;
+	t_movement		movement;
 }	t_plane;
 
 typedef struct s_sphere
@@ -138,6 +139,7 @@ typedef struct s_sphere
 	t_transform		transform;
 	t_material		material;
 	t_appearance	appearance;
+	t_movement		movement;
 }	t_sphere;
 
 typedef struct s_cone
@@ -146,6 +148,7 @@ typedef struct s_cone
 	t_transform		transform;
 	t_material		material;
 	t_appearance	appearance;
+	t_movement		movement;
 	t_fl			radius;
 	t_fl			min;
 	t_fl			max;
@@ -158,6 +161,7 @@ typedef struct s_cylinder
 	t_transform		transform;
 	t_material		material;
 	t_appearance	appearance;
+	t_movement		movement;
 	t_fl			radius;
 	t_fl			min;
 	t_fl			max;
@@ -170,6 +174,7 @@ typedef struct s_cube
 	t_transform		transform;
 	t_material		material;
 	t_appearance	appearance;
+	t_movement		movement;
 	t_fl			length;
 }	t_cube;
 
@@ -178,6 +183,7 @@ typedef struct s_light
 	t_tuple			position;
 	t_tuple			intensity;
 	t_tuple			direction;
+	// t_movement		movement;
 	t_light_type	type;
 }	t_light;
 
@@ -203,7 +209,17 @@ typedef struct s_camera
 	t_fl		pixel_size;
 	t_fl		half_width;
 	t_fl		half_height;
+	t_shutter	shutter;
+	// t_movement	movement;
 }	t_camera;
+
+typedef struct s_object_prototype
+{
+	t_transform		*transform;
+	t_material		*material;
+	t_appearance	*appearance;
+	t_movement		*movement;
+}	t_object_prototype;
 
 union	u_object
 {

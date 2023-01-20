@@ -37,8 +37,10 @@ void		parse_cone(t_parser *parser, t_object *shape);
 void		parse_cylinder(t_parser *parser, t_object *shape);
 void		parse_cube(t_parser *parser, t_object *shape);
 /*parse sub-objects*/
-int			find_subobject_keyword(t_parser *parser, t_transform *transform, \
-			t_material *material, t_appearance *appearance);
+int			find_subobject_keyword(t_parser *parser, \
+	t_object_prototype *prototype);
+// int			find_subobject_keyword(t_parser *parser, t_transform *transform, \
+			// t_material *material, t_appearance *appearance);
 int			dispatch_find_subobject_keyword(t_parser *parser, t_object *shape);
 int			plane_subobject_keywords(t_parser *parser, t_object *shape);
 int			sphere_subobject_keywords(t_parser *parser, t_object *shape);
@@ -49,6 +51,7 @@ void		parse_tuple(t_tuple *tuple, t_parser *parser);
 void		parse_transform(t_transform *transform, t_parser *parser);
 void		parse_transform_subobject(t_parser *parser, t_transform *transform);
 void		parse_material(t_material *material, t_parser *parser);
+void		parse_movement(t_movement *movement, t_parser *parser);
 void		parse_pattern(t_pattern *pattern, t_parser *parser);
 void		parse_texture(t_texture *texture, t_parser *parser);
 void		find_name(t_ppm_image *image, t_parser *parser);
