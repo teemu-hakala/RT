@@ -68,4 +68,6 @@ typedef union u_wrapper
 	t_fl			array[sizeof(t_units) / sizeof(t_fl)];
 }	t_tuple;
 
+int	tuple_nearly_equals(t_tuple tuple_a, t_tuple tuple_b);
+
 #endif

@@ -26,7 +26,7 @@ t_transform	default_transform(void)
 	);
 }
 
-static int	tuple_nearly_equals(t_tuple tuple_a, t_tuple tuple_b)
+int	tuple_nearly_equals(t_tuple tuple_a, t_tuple tuple_b)
 {
 	t_tuple	diff;
 

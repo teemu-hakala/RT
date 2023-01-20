@@ -52,20 +52,20 @@ void	identify_hit(t_world *world, t_hit *hit)
 void	intersect_world(t_world *world, t_ray ray)
 {
 	static const t_intersect_function	\
-					intersect_object[] = \
+					intersect_object_if[] = \
 	{
-		plane_intersection,
-		sphere_intersection,
-		cone_intersection,
-		cylinder_intersection,
-		cube_intersection
+		plane_intersect_if,
+		sphere_intersect_if,
+		cone_intersect_if,
+		cylinder_intersect_if,
+		cube_intersect_if
 	};
 	uint64_t		i;
 
 	i = (uint64_t)(-1);
 	while (++i < world->objects.len)
 	{
-		intersect_object[((t_object *)vec_get(&world->objects, \
+		intersect_object_if[((t_object *)vec_get(&world->objects, \
 			i))->type - OBJECT_INDEX_OFFSET] \
 			(ray, ((t_object *)vec_get(&world->objects, \
 			i)), world);

@@ -159,6 +159,11 @@ void		shade_cube(t_world *world, void *cube, t_tuple *colour,
 
 /* object intersection */
 void		intersect_world(t_world *world, t_ray ray);
+void		plane_intersect_if(t_ray ray, void *object, t_world *world);
+void		sphere_intersect_if(t_ray ray, void *object, t_world *world);
+void		cone_intersect_if(t_ray ray, void *object, t_world *world);
+void		cylinder_intersect_if(t_ray ray, void *object, t_world *world);
+void		cube_intersect_if(t_ray ray, void *object, t_world *world);
 void		plane_intersection(t_ray ray, void *plane, t_world *world);
 void		sphere_intersection(t_ray ray, void *sphere, t_world *world);
 void		cone_intersection(t_ray ray, void *cone, t_world *world);

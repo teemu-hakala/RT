@@ -10,7 +10,7 @@
 
 
 #include "RT.h"
-#include <stdio.h>
+
 t_world	world_selectively_shallow_copy(t_world *original)
 {
 	t_world		copy;
