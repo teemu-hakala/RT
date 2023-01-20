@@ -34,6 +34,7 @@
 # define WALL_WIDTH 7
 # define WALL_HEIGHT 7
 # define KEY_DOWN 2
+# define KEY_UP 3
 # define ESC 53
 # define MOUSE_ESC 17
 # define EPSILON 0.00001
@@ -130,7 +131,7 @@ void		initialise_world(t_world *world);
 void		initialise_window(t_win *win);
 
 /* handle input*/
-int			handle_input(int key, t_win *win);
+int			handle_on_key_down(int key, t_win *win);
 
 /* colour and lighting*/
 t_tuple		hex_to_tuple_colour(uint32_t colour);

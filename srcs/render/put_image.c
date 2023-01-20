@@ -91,7 +91,12 @@ int	put_image(t_win *win)
 		threaded_loop(win, progress);
 		first = 0;
 		pthread_create(&win->bar_thread, NULL, progress_percentage, win);
-		win->drawn = 0;
+		win->drawn = false;
+	}
+	if (win->input.keyboard.multiple_key_was_pressed == true)
+	{
+		refresh_image(win);
+		win->input.keyboard.multiple_key_was_pressed = false;
 	}
 	mlx_put_image_to_window(win->mlx, win->win, win->img.img, 0, 0);
 	put_keys_image(win);

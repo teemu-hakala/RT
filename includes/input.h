@@ -76,17 +76,6 @@ typedef struct s_mouse
 	t_compounder	compounder;
 }	t_mouse;
 
-typedef struct s_keyboards
-{
-	uint8_t	cmd_is_toggled : 1;
-}	t_keyboard;
-
-typedef struct s_user_inputs
-{
-	t_mouse		mouse;
-	t_keyboard	keyboard;
-}	t_input;
-
 typedef union u_keys
 {
 	struct s_keys_that_are_down
@@ -103,6 +92,19 @@ typedef union u_keys
 	}						keys_bitfield;
 	uint32_t				keys_uint;
 }	t_keys;
+
+typedef struct s_keyboards
+{
+	uint8_t		cmd_is_toggled : 1;
+	t_keys		keys;
+	bool		multiple_key_was_pressed; // init somewhere?
+}	t_keyboard;
+
+typedef struct s_user_inputs
+{
+	t_mouse		mouse;
+	t_keyboard	keyboard;
+}	t_input;
 
 int		mouse_handler_down(int button, int x, int y, t_win *win);
 int		mouse_handler_move(int x, int y, t_win *win);

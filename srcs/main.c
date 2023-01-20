@@ -22,7 +22,8 @@ int	expose_handler(t_win *win)
 void	hooks(t_win *win)
 {
 	mlx_do_key_autorepeatoff(win->mlx);
-	mlx_hook(win->win, KEY_DOWN, 0, handle_input, win);
+	mlx_hook(win->win, KEY_DOWN, 0, handle_on_key_down, win);
+	mlx_hook(win->win, KEY_UP, 0, handle_on_key_up, win);
 	mlx_hook(win->win, MOUSE_ESC, 0, close_success, win);
 	mlx_hook(win->win, ON_MOUSE_DOWN, 0, mouse_handler_down, win);
 	mlx_hook(win->win, ON_MOUSE_MOVE, 0, mouse_handler_move, win);

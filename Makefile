@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+         #
+#    By: thakala <thakala@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2023/01/14 00:33:54 by thakala          ###   ########.fr        #
+#    Updated: 2023/01/20 20:05:26 by thakala          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,7 @@ COMPUTATION_SRCS = computation_dispatch.c computations_calculations.c \
 
 COOL_INTERFACE_SRCS = handle_input.c key_handlers.c mouse_input.c \
 	movement_agent.c progress_bar.c scroll_effect.c zoomer.c \
-	screenshot.c new_image_file.c ppm_buffer.c
+	screenshot.c new_image_file.c ppm_buffer.c multiple_keys.c
 
 INTERSECT_SRCS = intersect_plane.c intersect_sphere.c intersect_cone.c \
 	intersect_cylinder.c intersect_cube.c intersect_dispatch.c
