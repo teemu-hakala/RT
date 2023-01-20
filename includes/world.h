@@ -23,7 +23,8 @@ typedef enum e_filter_type
 	CARTOON = 2,
 	MOTION_BLUR = 3,
 	NEGATIVE = 4,
-	GRAYSCALE = 5
+	GRAYSCALE = 5,
+	HEATMAP = 6
 }		t_filter_type;
 
 typedef struct s_quadratic

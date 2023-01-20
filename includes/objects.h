@@ -214,6 +214,13 @@ union	u_object
 	t_cube		cube;
 };
 
+//typedef struct s_movement
+//{
+//	t_tuple		origin;
+//	t_tuple		direction;
+//	double		time;
+//}	t_movement;
+
 typedef struct s_object
 {
 	union u_object		object;

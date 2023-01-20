@@ -1,5 +1,26 @@
 #include "RT.h"
 
+t_tuple	apply_heatmap(t_tuple original)
+{
+	t_tuple	temp;
+	t_tuple	colour;
+
+	colour.tuple.colour = (t_colour){0.0, 0.0, 0.0, 0.0};
+
+//	temp.tuple.colour.r = (original.tuple.colour.r + original.tuple.colour.g + original.tuple.colour.b)/3;
+//	temp.tuple.colour.g = (original.tuple.colour.r + original.tuple.colour.g + original.tuple.colour.b)/3;
+//	temp.tuple.colour.b = (original.tuple.colour.r + original.tuple.colour.g + original.tuple.colour.b)/3;
+	if (((temp.tuple.colour.r + temp.tuple.colour.g + temp.tuple.colour.b) / 3) < 0.3)
+	{
+		temp.tuple.colour.b = original.tuple.colour.r  * 0.769 + original.tuple.colour.g * 0.769 + original.tuple.colour.b;
+	}
+	if (((temp.tuple.colour.r + temp.tuple.colour.g + temp.tuple.colour.b) / 3) > 0.3)
+	{
+		temp.tuple.colour.r = original.tuple.colour.r + original.tuple.colour.g  * 0.369 + original.tuple.colour.b * 0.769;
+	}
+	return (temp);
+}
+
 t_tuple	apply_grayscale(t_tuple original)
 {
 	t_tuple	temp;
@@ -44,6 +65,8 @@ t_tuple	apply_filter(t_world *world, t_tuple colour)
 		return (apply_negative(colour));
 	if (world->filter == GRAYSCALE)
 		return (apply_grayscale(colour));
+	if (world->filter == HEATMAP)
+		return (apply_heatmap(colour));
 	else
 		return (colour);
 }
