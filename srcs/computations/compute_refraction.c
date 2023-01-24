@@ -30,6 +30,7 @@ void	compute_refraction_index(t_world *world, t_comp *computation)
 	t_intersect *current;
 
 	i = 0;
+	container = NULL;
 	if (vec_new(container, 1, sizeof(t_container)) != VEC_SUCCESS)
 		handle_errors("unable to malloc for container vector");
 
