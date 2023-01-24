@@ -30,7 +30,6 @@ typedef struct s_intersect
 {
 	t_fl		time;
 	t_object	*shape;
-	t_fl		shape_id;
 	t_material	material;
 }				t_intersect;
 
