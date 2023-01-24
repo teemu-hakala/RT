@@ -21,7 +21,7 @@ t_tuple	shade_hit(t_world *world)
 	{
 		light = (t_light *)vec_get(&world->lights, i);
 		light_info = shape_shading[world->hit.intersection.shape->type] \
-			(&world->hit.intersection.shape->object, &light_info);
+			(&world->hit.intersection.shape->object);
 		shade_object(world, &colour, light, &light_info);
 		i++;
 	}

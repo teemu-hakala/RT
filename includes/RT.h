@@ -84,7 +84,7 @@ typedef struct s_win
 
 typedef void	(*t_intersect_function)(t_ray, void *, t_world *);
 
-typedef t_info	(*t_shading_function)(void *, t_info *);
+typedef t_info	(*t_shading_function)(void *);
 
 typedef void	(*t_computation_fn)(t_world *, t_ray);
 
