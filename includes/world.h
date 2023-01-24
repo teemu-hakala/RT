@@ -30,6 +30,7 @@ typedef struct s_intersect
 {
 	t_fl		time;
 	t_object	*shape;
+	t_fl		shape_id;
 	t_material	material;
 }				t_intersect;
 
@@ -56,7 +57,9 @@ typedef struct s_world
 	t_hit		shadow_hit;
 	t_ray		ray;
 	t_ray		reflected_ray;
+	t_ray		refracted_ray;
 	int			lifetime;
+	int			refraction_lifetime;
 }	t_world;
 
 #endif

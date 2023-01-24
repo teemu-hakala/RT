@@ -51,7 +51,7 @@ CAMERA_SRCS = camera.c transform_objects.c first_person_camera.c \
 	view_transform.c
 
 COMPUTATION_SRCS = computation_dispatch.c computations_calculations.c \
-	computations_utility.c
+	computations_utility.c compute_refraction.c
 
 COOL_INTERFACE_SRCS = handle_input.c key_handlers.c mouse_input.c \
 	movement_agent.c progress_bar.c scroll_effect.c zoomer.c \
@@ -60,7 +60,8 @@ COOL_INTERFACE_SRCS = handle_input.c key_handlers.c mouse_input.c \
 INTERSECT_SRCS = intersect_plane.c intersect_sphere.c intersect_cone.c \
 	intersect_cylinder.c intersect_cube.c intersect_dispatch.c
 
-LIGHTING_SRCS = lighting.c reflections.c shading_dispatch.c shading.c
+LIGHTING_SRCS = lighting.c reflections.c shading_dispatch.c shading.c \
+	refractions.c
 
 MATHS_SRCS = matrix_inversion.c matrix_maths.c matrix_transformations.c \
 	tuple_operations.c matrix_rotations.c tuple_w.c tuple_basic_operations.c

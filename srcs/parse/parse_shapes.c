@@ -93,6 +93,7 @@ void	parse_shapes(t_world *world, t_parser *parser)
 	find_shape(&object, parser);
 	while (1)
 	{
+		object.shape_id = world->objects.len;
 		if (vec_push(&world->objects, &object) == VEC_ERROR)
 			handle_errors("vec_push shape error");
 		if (find_matching_bracket(parser) == false)

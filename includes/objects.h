@@ -119,6 +119,12 @@ typedef struct s_comp
 	t_fl			n2; //refractive index material being entered
 }				t_comp;
 
+typedef struct s_container
+{
+	t_material	material;
+	t_fl		shape_id;
+}				t_container;
+
 typedef struct s_info
 {
 	t_material		material;
@@ -222,6 +228,7 @@ typedef struct s_object
 {
 	union u_object		object;
 	enum e_object_type	type;
+	t_fl				shape_id;
 }	t_object;
 
 typedef t_tuple	(*t_normal_fn)(void *, t_tuple *);
