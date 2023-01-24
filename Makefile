@@ -61,7 +61,7 @@ INTERSECT_SRCS = intersect_plane.c intersect_sphere.c intersect_cone.c \
 	intersect_cylinder.c intersect_cube.c intersect_dispatch.c
 
 LIGHTING_SRCS = lighting.c reflections.c shading_dispatch.c shading.c \
-	refractions.c
+	refractions.c shading_utility.c
 
 MATHS_SRCS = matrix_inversion.c matrix_maths.c matrix_transformations.c \
 	tuple_operations.c matrix_rotations.c tuple_w.c tuple_basic_operations.c

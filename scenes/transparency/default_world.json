@@ -24,46 +24,6 @@
 	"shapes" :
 	[
 		{
-			"sphere" :
-			{
-				"transform" :
-				{
-					"translation" : [0, 0, 0],
-					"rotation" : [0, 0, 0],
-					"scale" : [0.5, 0.5, 0.5]
-				},
-				"material" :
-				{
-					"ambient" : 0.1,
-					"diffuse" : 0.7,
-					"specular" : 0.2,
-					"shininess" : 200,
-					"init_colour" : [0.8, 1.0, 0.6],
-					"reflectiveness": 0.7
-				}
-			}
-		},
-		{
-			"sphere" :
-			{
-				"transform" :
-				{
-					"translation" : [0, 0, 0],
-					"rotation" : [0, 0, 0],
-					"scale" : [1, 1, 1]
-				},
-				"material" :
-				{
-					"ambient" : 0.1,
-					"diffuse" : 0.5,
-					"specular" : 0.1,
-					"shininess" : 200,
-					"init_colour" : [0.42, 0.55, 0.09],
-					"reflectiveness": 0
-				}
-			}
-		},
-		{
 			"plane" :
 			{
 				"transform" :
@@ -76,7 +36,7 @@
 					"diffuse" : 0.5,
 					"specular" : 0.1,
 					"shininess" : 200,
-					"init_colour" : [0.42, 0.55, 0.09],
+					"init_colour" : [1, 1, 1],
 					"transparency" : 0.5,
 					"refractive_index" : 1.5
 				}
@@ -87,9 +47,7 @@
 			{
 				"transform" :
 				{
-					"translation" : [0, -3.5, -0.5],
-					"rotation" : [0, 0, 0],
-					"scale" : [1, 1, 1]
+					"translation" : [0, -3.5, -0.5]
 				},
 				"material" :
 				{

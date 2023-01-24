@@ -23,50 +23,71 @@ the light ray will reflect off the interface instead of passing through it */
 
 #include "RT.h"
 
-int	check_for_total_internal_reflection(t_comp *computations)
+typedef struct s_refraction_calculations
 {
 	t_fl	n_ratio;
 	t_fl	cos_i;
 	t_fl	sin2_t;
+	t_fl	cos_t;
+}				t_calc;
 
-	n_ratio = computations->n1 / computations->n2;
-	cos_i = dot_product(computations->vectors.eye, \
-		computations->vectors.surface_normal);
-	sin2_t = (n_ratio * n_ratio) * (1 - (cos_i * cos_i));
-	if (sin2_t > 1)
+int	check_for_total_internal_reflection(t_calc *helper)
+{
+	if (helper->sin2_t > 1)
 		return (true);
 	return (false);
+}
+
+
+void	calculate_angles(t_comp *computations, t_calc *helper)
+{
+	helper->n_ratio = computations->n1 / computations->n2;
+	helper->cos_i = dot_product(computations->vectors.eye, \
+		computations->vectors.surface_normal);
+	helper->sin2_t = (helper->n_ratio * helper->n_ratio) * \
+		(1 - (helper->cos_i * helper->cos_i));
+	helper->cos_t = sqrt(1 - helper->sin2_t);
 }
 
 t_tuple	refracted_colour(t_world *world, t_comp *computations)
 {
 	t_tuple	refracted_colour;
 	t_fl	transparency;
-	t_fl	n_ratio;
-	t_fl	cos_i;
-	t_fl	sin2_t;
-	t_fl	cos_t;
 	t_tuple	direction;
+	t_calc	helper;
 
 	refracted_colour = point(0, 0, 0);
 	transparency = world->hit.intersection.material.transparency;
-	n_ratio = computations->n1 / computations->n2;
-	cos_i = dot_product(computations->vectors.eye, \
-		computations->vectors.surface_normal);
-	sin2_t = (n_ratio * n_ratio) * (1 - (cos_i * cos_i));
-	cos_t = sqrt(1 - sin2_t);
+	calculate_angles(computations, &helper);
 	direction = tuple_sub(tuple_scale(computations->vectors.surface_normal,\
-		(n_ratio * (cos_i - cos_t))), \
-		tuple_scale(computations->vectors.eye, n_ratio));
+		(helper.n_ratio * (helper.cos_i - helper.cos_t))), \
+		tuple_scale(computations->vectors.eye, helper.n_ratio));
 	if (world->refraction_lifetime-- <= 0)
  		return (refracted_colour);
 	if (transparency < EPSILON)
 		return (refracted_colour);
-	if (check_for_total_internal_reflection(computations) == true)
+	if (check_for_total_internal_reflection(&helper) == true)
 		return (refracted_colour);
 	else
 		world->refracted_ray = ray(computations->under_point, direction);
 		return (point(1, 1, 1));
 	refracted_colour = colour_at(world, world->refracted_ray);
 	return (tuple_scale(refracted_colour, transparency));
+}
+
+t_fl	schlick(t_comp *comps)
+{
+	t_calc	helper;
+	t_fl	reflectance;
+
+	calculate_angles(comps, &helper);
+	if (comps->n1 > comps->n2)
+	{
+		if (check_for_total_internal_reflection(&helper) == true)
+			return (1);
+		helper.cos_i = helper.cos_t;
+	}
+	reflectance = (((comps->n1 - comps->n2) / (comps->n1 + comps->n2)) * \
+		((comps->n1 - comps->n2) / (comps->n1 + comps->n2)));
+	return (reflectance + (1 - reflectance) * pow((1 - helper.cos_i), 5));
 }

@@ -84,7 +84,7 @@ typedef struct s_win
 
 typedef void	(*t_intersect_function)(t_ray, void *, t_world *);
 
-typedef void	(*t_shading_function)(t_world *, void *, t_tuple *, t_light *);
+typedef t_info	(*t_shading_function)(void *, t_info *);
 
 typedef void	(*t_computation_fn)(t_world *, t_ray);
 
@@ -146,16 +146,13 @@ t_tuple		reflect(t_tuple input, t_tuple normal);
 
 /* shading */
 t_tuple		shade_hit(t_world *world);
-void		shade_plane(t_world *world, void *plane, t_tuple *colour,
-				t_light *light);
-void		shade_sphere(t_world *world, void *sphere, t_tuple *colour,
-				t_light *light);
-void		shade_cone(t_world *world, void *cone, t_tuple *colour,
-				t_light *light);
-void		shade_cylinder(t_world *world, void *cylinder, t_tuple *colour,
-				t_light *light);
-void		shade_cube(t_world *world, void *cube, t_tuple *colour,
-				t_light *light);
+t_info		shade_plane(void *plane);
+t_info		shade_sphere(void *sphere);
+t_info		shade_cone(void *cone);
+t_info		shade_cylinder(void *cylinder);
+t_info		shade_cube(void *cube);
+void		shade_object(t_world *world, t_tuple *colour, t_light *light, \
+			t_info *light_info);
 
 /* object intersection */
 void		intersect_world(t_world *world, t_ray ray);
@@ -183,6 +180,7 @@ void		prepare_cube(t_world *world, t_ray ray);
 t_ray		ray(t_tuple origin, t_tuple reflectv);
 t_tuple		reflected_colour(t_world *world, t_comp *computations);
 t_tuple		refracted_colour(t_world *world, t_comp *computations);
+t_fl			schlick(t_comp *comps);
 
 /* object transformation */
 void		transform_object(t_transform *object);
