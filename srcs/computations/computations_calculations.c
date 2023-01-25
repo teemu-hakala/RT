@@ -5,11 +5,6 @@
 
 
 
-
-
-
-
-
 #include "RT.h"
 
 static t_tuple	hit_position(t_ray *ray, t_fl distance)
@@ -38,4 +33,7 @@ void	prepare_object(t_world *world, t_object *object, t_comp *computations, \
 		tuple_scale(computations->vectors.surface_normal, EPSILON));
 	computations->reflectv = reflect(ray.direction, \
 		computations->vectors.surface_normal);
+	compute_refraction_index(world, computations);
+	computations->under_point = tuple_sub(computations->point, \
+		tuple_scale(computations->vectors.surface_normal, EPSILON));
 }

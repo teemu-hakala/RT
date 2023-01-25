@@ -31,6 +31,8 @@
 		"cstring": "c",
 		"typeinfo": "c",
 		"pthread.h": "c",
-		"parse.h": "c"
+		"parse.h": "c",
+		"condition_variable": "c",
+		"sstream": "c"
 	}
 }

@@ -38,6 +38,7 @@ void	initialise_world(t_world *world)
 		handle_errors("initialise_world malloc returned NULL");
 	world->hit.hit_check = false;
 	world->lifetime = 5;
+	world->refraction_lifetime = 5;
 }
 
 void	initialise_window(t_win *win)

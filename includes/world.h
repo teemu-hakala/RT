@@ -56,7 +56,9 @@ typedef struct s_world
 	t_hit		shadow_hit;
 	t_ray		ray;
 	t_ray		reflected_ray;
+	t_ray		refracted_ray;
 	int			lifetime;
+	int			refraction_lifetime;
 }	t_world;
 
 #endif

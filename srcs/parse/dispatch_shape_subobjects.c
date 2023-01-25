@@ -23,5 +23,5 @@ int	dispatch_find_subobject_keyword(t_parser *parser, t_object *shape)
 		cube_subobject_keywords
 	};
 
-	return (kw_fns[shape->type - OBJECT_INDEX_OFFSET](parser, shape));
+	return (kw_fns[shape->type](parser, shape));
 }

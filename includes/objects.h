@@ -19,17 +19,17 @@ typedef enum e_light_type
 {
 	LIGHT_NOT_FOUND = 0,
 	LIGHT_SPOT = 52,
-	LIGHT_PARALLEL = 53
+	LIGHT_PARALLEL = 53 //why? lets just stick to normal number
 }	t_light_type;
 
 typedef enum e_object_type
 {
-	OBJECT_INDEX_OFFSET = 42,
-	OBJECT_PLANE = 42,
-	OBJECT_SPHERE = 43,
-	OBJECT_CONE = 44,
-	OBJECT_CYLINDER = 45,
-	OBJECT_CUBE = 46,
+	//OBJECT_INDEX_OFFSET = 0,
+	OBJECT_PLANE = 0,
+	OBJECT_SPHERE = 1,
+	OBJECT_CONE = 2,
+	OBJECT_CYLINDER = 3,
+	OBJECT_CUBE = 4,
 }	t_object_type;
 
 typedef struct s_phong_colour_constituents
@@ -99,9 +99,10 @@ typedef struct s_material
 	t_fl		specular;
 	t_fl		shininess;
 	t_tuple		init_colour;
-	t_tuple		final_colour;
 	t_tuple		col_mash;
 	t_fl		reflectiveness;
+	t_fl		transparency;
+	t_fl		refractive_index;
 }				t_material;
 
 typedef struct s_comp
@@ -109,11 +110,20 @@ typedef struct s_comp
 	t_fl			time;
 	t_object_type	type;
 	t_tuple			point;
+	t_tuple			under_point;
 	t_tuple			over_point;
 	t_phong			vectors;
 	int				inside;
 	t_tuple			reflectv;
+	t_fl			n1; //refractive index material being exited
+	t_fl			n2; //refractive index material being entered
 }				t_comp;
+
+typedef struct s_container
+{
+	t_material	material;
+	t_fl		shape_id;
+}				t_container;
 
 typedef struct s_info
 {
@@ -122,6 +132,7 @@ typedef struct s_info
 	t_transform		transform;
 	t_const			channels;
 	t_tuple			col;
+	t_uv_map (*f)(t_tuple *);
 }				t_info;
 
 typedef struct s_plane
@@ -218,6 +229,7 @@ typedef struct s_object
 {
 	union u_object		object;
 	enum e_object_type	type;
+	t_fl				shape_id;
 }	t_object;
 
 typedef t_tuple	(*t_normal_fn)(void *, t_tuple *);

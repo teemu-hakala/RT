@@ -33,6 +33,20 @@ static void	material_keywords_cont(t_material *material, t_parser *parser)
 		find_colon(parser);
 		material->reflectiveness = rt_atof(parser);
 	}
+	else if (ft_strncmp(&parser->string[parser->c], "\"transparency\"", 14) \
+		== 0)
+	{
+		parser->c += sizeof("\"transparency\"") - 1;
+		find_colon(parser);
+		material->transparency = rt_atof(parser);
+	}
+	else if (ft_strncmp(&parser->string[parser->c], "\"refractive_index\"", 18) \
+		== 0)
+	{
+		parser->c += sizeof("\"refractive_index\"") - 1;
+		find_colon(parser);
+		material->refractive_index = rt_atof(parser);
+	}
 	else
 		handle_errors("material syntax error");
 }
