@@ -53,12 +53,15 @@
 							"diffuse" : 0.2,
 							"ambient" : 0.0,
 							"specular" : 1.0,
-							"shininess" : 200
+							"shininess" : 200,
+							"reflectiveness" : 0.7,
+							"transparency" : 0.7,
+							"refractive_index" : 1.5
 						},
 						"transform" :
 						{
 							"translation" : [1, -1, 1],
-							"scale" : [1, 1, 1]
+							"scale" : [3.5, 3.5, 3.5]
 						}
 					}
 				},
@@ -70,12 +73,13 @@
 							"init_colour" : [1, 1, 1],
 							"diffuse" : 0.7,
 							"ambient" : 0.1,
-							"specular" : 0.0
+							"specular" : 0.0,
+							"reflectiveness" : 0.1
 						},
 						"transform" :
 						{
 							"translation" : [4, 0, 0],
-							"scale" : [1, 1, 1]
+							"scale" : [3, 3, 3]
 						}
 					}
 				},
@@ -87,12 +91,13 @@
 						"init_colour" : [0.537, 0.831, 0.914],
 						"diffuse" : 0.7,
 						"ambient" : 0.1,
-						"specular" : 0.0
+						"specular" : 0.0,
+						"reflectiveness" : 0.1
 					},
 						"transform" :
 						{
 							"translation" : [8.5, 1.5, -0.5],
-							"scale" : [1, 1, 1]
+							"scale" : [3.5, 3.5, 3.5]
 						}
 					}
 				},
@@ -104,12 +109,13 @@
 						"init_colour" : [0.941, 0.322, 0.388],
 						"diffuse" : 0.7,
 						"ambient" : 0.1,
-						"specular" : 0.0
+						"specular" : 0.0,
+						"reflectiveness" : 0.1
 					},
 						"transform" :
 						{
 							"translation" : [0, 0, 4],
-							"scale" : [1, 1, 1]
+							"scale" : [3.5, 3.5, 3.5]
 						}
 					}
 				},
@@ -121,12 +127,13 @@
 							"init_colour" : [1, 1, 1],
 							"diffuse" : 0.7,
 							"ambient" : 0.1,
-							"specular" : 0.0
+							"specular" : 0.0,
+							"reflectiveness" : 0.1
 						},
 						"transform" :
 						{
 							"translation" : [4, 0, 4],
-							"scale" : [1, 1, 1]
+							"scale" : [2, 2, 2]
 						}
 					}
 				},
@@ -138,12 +145,13 @@
 							"init_colour" : [0.373, 0.404, 0.550],
 							"diffuse" : 0.7,
 							"ambient" : 0.1,
-							"specular" : 0.0
+							"specular" : 0.0,
+							"reflectiveness" : 0.1
 						},
 						"transform" :
 						{
 							"translation" : [7.5, 0.5, 4],
-							"scale" : [1, 1, 1]
+							"scale" : [3, 3, 3]
 						}
 					}
 				},
@@ -155,12 +163,13 @@
 							"init_colour" : [1, 1, 1],
 							"diffuse" : 0.7,
 							"ambient" : 0.1,
-							"specular" : 0.0
+							"specular" : 0.0,
+							"reflectiveness" : 0.1
 						},
 						"transform" :
 						{
 							"translation" : [-0.25, 0.25, 8],
-							"scale" : [1, 1, 1]
+							"scale" : [3, 3, 3]
 						}
 					}
 				},
@@ -172,12 +181,13 @@
 							"init_colour" : [0.537, 0.831, 0.914],
 							"diffuse" : 0.7,
 							"ambient" : 0.1,
-							"specular" : 0.0
+							"specular" : 0.0,
+							"reflectiveness" : 0.1
 						},
 						"transform" :
 						{
 							"translation" : [4, 1, 7.5],
-							"scale" : [1, 1, 1]
+							"scale" : [3.5, 3.5, 3.5]
 						}
 					}
 				},
@@ -189,12 +199,13 @@
 							"init_colour" : [0.941, 0.322, 0.388],
 							"diffuse" : 0.7,
 							"ambient" : 0.1,
-							"specular" : 0.0
+							"specular" : 0.0,
+							"reflectiveness" : 0.1
 						},
 						"transform" :
 						{
 							"translation" : [10, 2, 7.5],
-							"scale" : [1, 1, 1]
+							"scale" : [3, 3, 3]
 						}
 					}
 				},
@@ -206,12 +217,13 @@
 							"init_colour" : [1, 1, 1],
 							"diffuse" : 0.7,
 							"ambient" : 0.1,
-							"specular" : 0.0
+							"specular" : 0.0,
+							"reflectiveness" : 0.1
 						},
 						"transform" :
 						{
 							"translation" : [8, 2, 12],
-							"scale" : [1, 1, 1]
+							"scale" : [2, 2, 2]
 						}
 					}
 				},
@@ -223,12 +235,13 @@
 							"init_colour" : [1, 1, 1],
 							"diffuse" : 0.7,
 							"ambient" : 0.1,
-							"specular" : 0.0
+							"specular" : 0.0,
+							"reflectiveness" : 0.1
 						},
 						"transform" :
 						{
 							"translation" : [20, 1, 9],
-							"scale" : [1, 1, 1]
+							"scale" : [2, 2, 2]
 						}
 					}
 				},
@@ -240,12 +253,13 @@
 							"init_colour" : [0.537, 0.831, 0.914],
 							"diffuse" : 0.7,
 							"ambient" : 0.1,
-							"specular" : 0.0
+							"specular" : 0.0,
+							"reflectiveness" : 0.1
 						},
 						"transform" :
 						{
 							"translation" : [-0.5, -5, 0.25],
-							"scale" : [1, 1, 1]
+							"scale" : [3.5, 3.5, 3.5]
 						}
 					}
 				},
@@ -257,12 +271,13 @@
 							"init_colour" : [0.941, 0.322, 0.388],
 							"diffuse" : 0.7,
 							"ambient" : 0.1,
-							"specular" : 0.0
+							"specular" : 0.0,
+							"reflectiveness" : 0.1
 						},
 						"transform" :
 						{
 							"translation" : [4, -4, 0],
-							"scale" : [1, 1, 1]
+							"scale" : [3.5, 3.5, 3.5]
 						}
 					}
 				},
@@ -274,12 +289,13 @@
 							"init_colour" : [1, 1, 1],
 							"diffuse" : 0.7,
 							"ambient" : 0.1,
-							"specular" : 0.0
+							"specular" : 0.0,
+							"reflectiveness" : 0.1
 						},
 						"transform" :
 						{
 							"translation" : [8.5, -4, 0],
-							"scale" : [1, 1, 1]
+							"scale" : [3.5, 3.5, 3.5]
 						}
 					}
 				},
@@ -291,12 +307,13 @@
 							"init_colour" : [1, 1, 1],
 							"diffuse" : 0.7,
 							"ambient" : 0.1,
-							"specular" : 0.0
+							"specular" : 0.0,
+							"reflectiveness" : 0.1
 						},
 						"transform" :
 						{
 							"translation" : [0, -4, 4],
-							"scale" : [1, 1, 1]
+							"scale" : [3.5, 3.5, 3.5]
 						}
 					}
 				},
@@ -308,12 +325,13 @@
 							"init_colour" : [0.373, 0.404, 0.550],
 							"diffuse" : 0.7,
 							"ambient" : 0.1,
-							"specular" : 0.0
+							"specular" : 0.0,
+							"reflectiveness" : 0.1
 						},
 						"transform" :
 						{
 							"translation" : [-0.5, -4.5, 8],
-							"scale" : [1, 1, 1]
+							"scale" : [3.5, 3.5, 3.5]
 						}
 					}
 				},
@@ -325,12 +343,13 @@
 							"init_colour" : [1, 1, 1],
 							"diffuse" : 0.7,
 							"ambient" : 0.1,
-							"specular" : 0.0
+							"specular" : 0.0,
+							"reflectiveness" : 0.1
 						},
 						"transform" :
 						{
 							"translation" : [0, -8, 4],
-							"scale" : [1, 1, 1]
+							"scale" : [3.5, 3.5, 3.5]
 						}
 					}
 				},
@@ -342,12 +361,13 @@
 							"init_colour" : [1, 1, 1],
 							"diffuse" : 0.7,
 							"ambient" : 0.1,
-							"specular" : 0.0
+							"specular" : 0.0,
+							"reflectiveness" : 0.1
 						},
 						"transform" :
 						{
 							"translation" : [-0.5, -8.5, 8],
-							"scale" : [1, 1, 1]
+							"scale" : [3.5, 3.5, 3.5]
 						}
 					}
 				}

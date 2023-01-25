@@ -95,6 +95,8 @@ void	parse_shapes(t_group *group, t_parser *parser)
 	find_shape(&object, parser);
 	while (1)
 	{
+		object.shape_id = group->objects.len;
+		object.parent = group->id;
 		if (vec_push(&group->objects, &object) == VEC_ERROR)
 			handle_errors("vec_push shape error");
 		if (find_matching_bracket(parser) == false)

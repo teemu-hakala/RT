@@ -41,12 +41,14 @@ void	parse_groups(t_world *world, t_parser *parser)
 	parse_individual_group(&group, parser);
 	while (1)
 	{
+		group.id = world->groups.len;
 		if (vec_push(&world->groups, &group) == VEC_ERROR)
 			handle_errors("vec_push group error");
 		else if (parser->string[parser->c] == ',')
 		{
 			parser->c++;
 			find_open_bracket(parser);
+			group.transform = default_transform_1();
 			parse_individual_group(&group, parser);
 		}
 		else

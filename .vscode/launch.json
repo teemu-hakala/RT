@@ -17,6 +17,18 @@
 			"externalConsole": false,
 			"MIMode": "lldb"
 		},
+		{
+			"name": "cover_image",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/RT",
+			"args": ["${workspaceFolder}/scenes/cover_image.json"],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb"
+		},
 
 		{
 			"name": "g4_cube_pattern",

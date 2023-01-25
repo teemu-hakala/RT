@@ -19,7 +19,7 @@ typedef enum e_light_type
 {
 	LIGHT_NOT_FOUND = 0,
 	LIGHT_SPOT = 52,
-	LIGHT_PARALLEL = 53
+	LIGHT_PARALLEL = 53 //why? lets just stick to normal number
 }	t_light_type;
 
 typedef enum e_object_type
@@ -98,9 +98,10 @@ typedef struct s_material
 	t_fl		specular;
 	t_fl		shininess;
 	t_tuple		init_colour;
-	t_tuple		final_colour;
 	t_tuple		col_mash;
 	t_fl		reflectiveness;
+	t_fl		transparency;
+	t_fl		refractive_index;
 }				t_material;
 
 typedef struct s_comp
@@ -108,11 +109,20 @@ typedef struct s_comp
 	t_fl			time;
 	t_object_type	type;
 	t_tuple			point;
+	t_tuple			under_point;
 	t_tuple			over_point;
 	t_phong			vectors;
 	int				inside;
 	t_tuple			reflectv;
+	t_fl			n1; //refractive index material being exited
+	t_fl			n2; //refractive index material being entered
 }				t_comp;
+
+typedef struct s_container
+{
+	t_material	material;
+	uint64_t	shape_id;
+}				t_container;
 
 typedef struct s_info
 {
@@ -121,6 +131,7 @@ typedef struct s_info
 	t_transform		transform;
 	t_const			channels;
 	t_tuple			col;
+	t_uv_map (*f)(t_tuple *);
 }				t_info;
 
 typedef struct s_plane
@@ -218,12 +229,14 @@ typedef struct s_object
 	union u_object		object;
 	enum e_object_type	type;
 	uint64_t			parent;
+	uint64_t			shape_id;
 }	t_object;
 
 typedef struct s_group
 {
 	t_vec		objects;
 	t_transform	transform;
+	uint64_t	id;
 }				t_group;
 
 

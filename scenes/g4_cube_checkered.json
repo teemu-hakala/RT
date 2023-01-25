@@ -14,31 +14,31 @@
 	"lights" :
 	[
 		{
-			"light" :
+			"spot" :
 			{
 				"position" : [0, 100, -100],
-				"intensity" : [0.25, 0.25, 0.25]
+				"intensity" : [0.5, 0.5, 0.5]
 			}
 		},
 		{
-			"light" :
+			"spot" :
 			{
 				"position" : [0, -100, -100],
-				"intensity" : [0.25, 0.25, 0.25]
+				"intensity" : [0.5, 0.5, 0.5]
 			}
 		},
 		{
-			"light" :
+			"spot" :
 			{
 				"position" : [-100, 0, -100],
-				"intensity" : [0.25, 0.25, 0.25]
+				"intensity" : [0.5, 0.5, 0.5]
 			}
 		},
 		{
-			"light" :
+			"spot" :
 			{
 				"position" : [100, 0, -100],
-				"intensity" : [0.25, 0.25, 0.25]
+				"intensity" : [0.5, 0.5, 0.5]
 			}
 		}
 	],
@@ -65,12 +65,12 @@
 				{
 					"pattern" :
 					{
-						"type" : "checkered",
+						"type" : "simple_checkered",
 						"transform" :
 						{
 							"translation" : [0, 0, 0],
 							"rotation" : [0, 0, 0],
-							"scale" : [1, 1, 1]
+							"scale" : [0.5, 0.5, 0.5]
 						},
 						"colour_a" : [0.564, 0.93, 0.564],
 						"colour_b" : [0.466, 0.027, 0.216]
@@ -99,12 +99,12 @@
 				{
 					"pattern" :
 					{
-						"type" : "checkered",
+						"type" : "simple_checkered",
 						"transform" :
 						{
 							"translation" : [0, 0, 0],
 							"rotation" : [0, 0, 0],
-							"scale" : [1, 1, 1]
+							"scale" : [0.5, 0.5, 0.5]
 						},
 						"colour_a" : [0.564, 0.93, 0.564],
 						"colour_b" : [0.466, 0.027, 0.216]
@@ -133,12 +133,12 @@
 				{
 					"pattern" :
 					{
-						"type" : "checkered",
+						"type" : "simple_checkered",
 						"transform" :
 						{
 							"translation" : [0, 0, 0],
 							"rotation" : [0, 0, 0],
-							"scale" : [1, 1, 1]
+							"scale" : [0.5, 0.5, 0.5]
 						},
 						"colour_a" : [0.564, 0.93, 0.564],
 						"colour_b" : [0.466, 0.027, 0.216]
@@ -167,12 +167,12 @@
 				{
 					"pattern" :
 					{
-						"type" : "checkered",
+						"type" : "simple_checkered",
 						"transform" :
 						{
 							"translation" : [0, 0, 0],
 							"rotation" : [0, 0, 0],
-							"scale" : [1, 1, 1]
+							"scale" : [0.5, 0.5, 0.5]
 						},
 						"colour_a" : [0.564, 0.93, 0.564],
 						"colour_b" : [0.466, 0.027, 0.216]
@@ -201,12 +201,12 @@
 				{
 					"pattern" :
 					{
-						"type" : "checkered",
+						"type" : "simple_checkered",
 						"transform" :
 						{
 							"translation" : [0, 0, 0],
 							"rotation" : [0, 0, 0],
-							"scale" : [1, 1, 1]
+							"scale" : [0.5, 0.5, 0.5]
 						},
 						"colour_a" : [0.564, 0.93, 0.564],
 						"colour_b" : [0.466, 0.027, 0.216]
@@ -235,12 +235,12 @@
 				{
 					"pattern" :
 					{
-						"type" : "checkered",
+						"type" : "simple_checkered",
 						"transform" :
 						{
 							"translation" : [0, 0, 0],
 							"rotation" : [0, 0, 0],
-							"scale" : [1, 1, 1]
+							"scale" : [0.5, 0.5, 0.5]
 						},
 						"colour_a" : [0.564, 0.93, 0.564],
 						"colour_b" : [0.466, 0.027, 0.216]
@@ -269,12 +269,12 @@
 				{
 					"pattern" :
 					{
-						"type" : "checkered",
+						"type" : "simple_checkered",
 						"transform" :
 						{
 							"translation" : [0, 0, 0],
 							"rotation" : [0, 0, 0],
-							"scale" : [1, 1, 1]
+							"scale" : [0.5, 0.5, 0.5]
 						},
 						"colour_a" : [0.564, 0.93, 0.564],
 						"colour_b" : [0.466, 0.027, 0.216]
@@ -303,12 +303,12 @@
 				{
 				"pattern" :
 					{
-						"type" : "checkered",
+						"type" : "simple_checkered",
 						"transform" :
 						{
 							"translation" : [0, 0, 0],
 							"rotation" : [0, 0, 0],
-							"scale" : [1, 1, 1]
+							"scale" : [0.5, 0.5, 0.5]
 						},
 						"colour_a" : [0.564, 0.93, 0.564],
 						"colour_b" : [0.466, 0.027, 0.216]
