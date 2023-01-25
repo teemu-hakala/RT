@@ -38,6 +38,7 @@ void	cylinder_continued(t_object *shape)
 	if (shape->object.cylinder.appearance.texture.type == TEXTURE_CHECKERED)
 		shape->object.cylinder.appearance.texture.width = \
 			2 * shape->object.cylinder.appearance.texture.height;
+	shape->object.cylinder.material.negative = false;
 }
 
 void	parse_cylinder(t_parser *parser, t_object *shape)

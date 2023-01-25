@@ -51,4 +51,5 @@ void	parse_plane(t_parser *parser, t_object *shape)
 	else if (!find_matching_bracket(parser))
 		handle_errors("plane syntax error");
 	transform_object(&shape->object.plane.transform);
+	shape->object.plane.material.negative = false;
 }

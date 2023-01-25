@@ -37,6 +37,7 @@ void	cone_continued(t_object *shape)
 	if (shape->object.cone.appearance.texture.type == TEXTURE_CHECKERED)
 		shape->object.cone.appearance.texture.width = \
 			2 * shape->object.cone.appearance.texture.height;
+	shape->object.cone.material.negative = false;
 }
 
 void	parse_cone(t_parser *parser, t_object *shape)
