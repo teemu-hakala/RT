@@ -59,18 +59,16 @@ t_tuple	refracted_colour(t_world *world, t_comp *computations)
 	refracted_colour = point(0, 0, 0);
 	transparency = world->hit.intersection.material.transparency;
 	calculate_angles(computations, &helper);
-	direction = tuple_sub(tuple_scale(computations->vectors.surface_normal,\
+	direction = tuple_sub(tuple_scale(computations->vectors.surface_normal, \
 		(helper.n_ratio * (helper.cos_i - helper.cos_t))), \
 		tuple_scale(computations->vectors.eye, helper.n_ratio));
 	if (world->refraction_lifetime-- <= 0)
- 		return (refracted_colour);
+		return (refracted_colour);
 	if (transparency < EPSILON)
 		return (refracted_colour);
 	if (check_for_total_internal_reflection(&helper) == true)
 		return (refracted_colour);
-	else
-		world->refracted_ray = ray(computations->under_point, direction);
-		return (point(1, 1, 1));
+	world->refracted_ray = ray(computations->under_point, direction);
 	refracted_colour = colour_at(world, world->refracted_ray);
 	return (tuple_scale(refracted_colour, transparency));
 }
