@@ -132,6 +132,7 @@ typedef struct s_info
 	t_transform		transform;
 	t_const			channels;
 	t_tuple			col;
+	t_uv_map (*f)(t_tuple *);
 }				t_info;
 
 typedef struct s_plane

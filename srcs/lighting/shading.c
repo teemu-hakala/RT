@@ -16,7 +16,7 @@ void	shade_object(t_world *world, t_tuple *colour,
 		light_info->appearance.texture.type > 0)
 	{
 		light_info->col = get_appearance_colour(light_info, \
-			&world->hit.computations.over_point, planar_map);
+			&world->hit.computations.over_point, light_info->f);
 		surface_col = lighting(light_info, light, \
 		world->hit.computations.vectors, world->hit.computations.over_point);
 	}
