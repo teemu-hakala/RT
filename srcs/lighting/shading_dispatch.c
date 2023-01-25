@@ -13,7 +13,7 @@ t_tuple	shade_hit(t_world *world)
 	t_tuple		colour;
 	t_light		*light;
 	uint64_t	i;
-	t_info	light_info;
+	t_info		light_info;
 
 	colour.tuple.colour = (t_colour){0.0, 0.0, 0.0, 0.0};
 	i = 0;
