@@ -1,6 +1,6 @@
 #include "RT.h"
 
-t_info get_lighting_info(t_material material, t_appearance appearance, \
+t_info	get_lighting_info(t_material material, t_appearance appearance, \
 	t_transform transform, t_tuple colour)
 {
 	return ((t_info){

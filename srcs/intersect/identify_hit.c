@@ -44,7 +44,7 @@ bool	volume_negator(t_world *world, t_vec *front, t_object *shape)
 	{
 		if (vec_push_arr(front, &shape->id, 1) \
 			== VEC_ERROR)
-			handle_errors("vec_push find_result error");
+			handle_errors("vec_push_arr find_result error");
 		return (false);
 	}
 	else
@@ -63,7 +63,6 @@ void	identify_hit(t_world *world, t_hit *hit)
 	t_vec			negative_front_ids;
 	t_intersect		*intersection;
 	uint64_t		positive_misses;
-	//uint64_t		plane_hit;
 	uint64_t		i;
 	bool			shadow_mode;
 
@@ -76,29 +75,25 @@ void	identify_hit(t_world *world, t_hit *hit)
 	initialise_front_vecs(&positive_front_ids, &negative_front_ids);
 	i = 0;
 	positive_misses = 0;
-	//plane_hit = false;
 	hit->hit_check = false;
 	while (i < world->intersections.len)
 	{
 		intersection = \
 			(t_intersect *)vec_get(&world->intersections, i++);
-		if (is_positive_object(intersection->shape))
+		if (intersection->shape->type == OBJECT_SPHERE)
 		{
-			if (intersection->shape->type != OBJECT_PLANE)
+			if (is_positive_object(intersection->shape))
 			{
-				if (volume_negator(world, &positive_front_ids, intersection->shape))
+				if (volume_negator(world, &positive_front_ids, \
+					intersection->shape))
 					positive_misses -= !!positive_misses;
 				else if (intersection->time < 0)
 					positive_misses++;
-				if (positive_misses > 128)
-					hit->hit_check = false; // ((non-action for debugging))
-			}/*
-			else if (intersection->time > 0)
-				plane_hit = true;*/
-		}
-		else
-		{
-			volume_negator(world, &negative_front_ids, intersection->shape);
+			}
+			else
+			{
+				volume_negator(world, &negative_front_ids, intersection->shape);
+			}
 		}
 		if (intersection->time >= 0 && negative_front_ids.len == 0
 			&& positive_front_ids.len - positive_misses == 1)
