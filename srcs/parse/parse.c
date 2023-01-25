@@ -82,7 +82,8 @@ void	parse_into(t_world *world, const int file_descriptor)
 
 	read_file_contents(&string_vec, file_descriptor);
 	parser.string = (char *)string_vec.memory;
-	vec_new(&parser.brackets, 256, sizeof(char));
+	if (vec_new(&parser.brackets, 256, sizeof(char)) == VEC_ERROR)
+		handle_errors("vec_new error");
 	parser.c = 0;
 	find_open_bracket(&parser);
 	find_object_keyword(world, &parser);

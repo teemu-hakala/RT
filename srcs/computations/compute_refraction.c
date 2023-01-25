@@ -30,7 +30,8 @@ void	compute_refraction_index(t_world *world, t_comp *computation)
 	t_intersect *current;
 
 	i = 0;
-	vec_new(&container, 1, sizeof(t_container));
+	if (vec_new(&container, 1, sizeof(t_container)) == VEC_ERROR)
+		handle_errors("vec_new error");
 	while (i < world->intersections.len)
 	{
 		current = vec_get(&world->intersections, i);
