@@ -33,7 +33,7 @@ void	transform_camera(t_camera *camera)
 	camera->origin = matrix_tuple_multi(&camera->transform.matrix, \
 		&camera->origin);
 	view_matrix = view_transform(camera->origin, camera->center_of_interest, \
-		vector(0, 1, 0));
+		vector(-0.45, 1, 0));
 	camera->transform.inverse = view_matrix;
 	matrix_inversion(&camera->transform.inverse, 4);
 	camera->pixel_size = get_pixel_size(camera, camera->canvas, \

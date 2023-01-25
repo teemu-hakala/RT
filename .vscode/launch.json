@@ -5,12 +5,13 @@
 	"version": "0.2.0",
 	"configurations": [
 
+
 		{
-			"name": "refraction_world",
+			"name": "cover_image",
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/RT",
-			"args": ["${workspaceFolder}/scenes/transparency/default_world.json"],
+			"args": ["${workspaceFolder}/scenes/cover_image.json"],
 			"stopAtEntry": true,
 			"cwd": "${workspaceFolder}",
 			"environment": [],

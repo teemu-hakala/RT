@@ -2,7 +2,7 @@
 	"camera" :
 	{
 		"field_of_view" : 0.785,
-		"origin" : [6, 6, -10],
+		"origin" : [-6, 6, -10],
 		"center_of_interest" : [6, 0, 6]
 	},
 	"lights" :
@@ -12,13 +12,6 @@
 			{
 				"position" : [50, 100, -50],
 				"intensity" : [1, 1, 1]
-			}
-		},
-		{
-			"spot" :
-			{
-				"position" : [-400, 50, -10],
-				"intensity" : [0.2, 0.2, 0.2]
 			}
 		}
 	],
@@ -51,7 +44,7 @@
 					"ambient" : 0.0,
 					"specular" : 1.0,
 					"shininess" : 200,
-					"reflectivenessness" : 0.7,
+					"reflectiveness" : 0.7,
 					"transparency" : 0.7,
 					"refractive_index" : 1.5
 				},
