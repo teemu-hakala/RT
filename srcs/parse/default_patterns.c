@@ -58,7 +58,7 @@ t_pattern	default_simple_checkered_pattern(void)
 		.type = PATTERN_SIMPLE_CHECKERED,
 		.colour_a = hex_to_tuple_colour(COLOUR_BLUE),
 		.colour_b = hex_to_tuple_colour(COLOUR_WHITE),
-		.transform = default_transform_2()
+		.transform = default_transform_1()
 	});
 }
 

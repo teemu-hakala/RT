@@ -68,7 +68,10 @@ static void	find_pattern_keywords(t_pattern *pattern, t_parser *parser)
 		parse_tuple(&pattern->colour_b, parser);
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "\"transform\"", 10) == 0)
+	{
 		parse_transform_subobject(parser, &pattern->transform);
+		transform_object(&pattern->transform);
+	}
 	else
 		handle_errors("pattern syntax error");
 }
@@ -85,10 +88,7 @@ void	parse_pattern(t_pattern *pattern, t_parser *parser)
 	else
 	{
 		if (find_matching_bracket(parser))
-		{
-			transform_object(&pattern->transform);
 			return ;
-		}
 		else
 			handle_errors("pattern syntax error");
 	}
