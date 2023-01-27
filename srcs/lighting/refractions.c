@@ -89,3 +89,21 @@ t_fl	schlick(t_comp *comps)
 		((comps->n1 - comps->n2) / (comps->n1 + comps->n2)));
 	return (reflectance + (1 - reflectance) * pow((1 - helper.cos_i), 5));
 }
+
+// t_fl	schlick(t_comp *comps)
+// {
+// 	t_calc t;
+// 	t_fl	reflectance;
+// 	t.cos_i = dot_product(comps->vectors.eye, comps->vectors.surface_normal);
+// 	if (comps->n1 > comps->n2)
+// 	{
+// 		t.n_ratio = comps->n1 / comps->n2;
+// 		t.sin2_t = pow(t.n_ratio, 2) * (1 - pow(t.cos_i, 2));
+// 		if (t.sin2_t > 1)
+// 			return (1.0);
+// 	}
+// 	t.cos_t = sqrt(1 - t.sin2_t);
+// 	t.cos_i = t.cos_t;
+// 	reflectance = pow(((comps->n1 - comps->n2) / (comps->n1 + comps->n2)), 2);
+// 	return (reflectance + (1 - reflectance) * pow((1 - t.cos_i), 5));
+// }

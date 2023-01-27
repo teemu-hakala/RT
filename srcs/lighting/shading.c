@@ -24,6 +24,8 @@ void	shade_object(t_world *world, t_tuple *colour,
 	if (light_info->material.reflectiveness > 0 && light_info->material.transparency > 0)
 	{
 		reflectance = schlick(&world->hit.computations);
+		if (reflectance > 1)
+			printf("reflectance : %f\n", reflectance);
 		*colour = tuple_add(*colour, tuple_add(surface_col, \
 			tuple_add(tuple_scale(reflected_col, reflectance), \
 				tuple_scale(refracted_col, 1 - reflectance))));
