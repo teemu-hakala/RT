@@ -21,12 +21,12 @@ static int	sort_intersections(void *xs_a, void *xs_b)
 	a = (t_intersect *)xs_a;
 	b = (t_intersect *)xs_b;
 	diff = a->time - b->time;
-	if (diff > 0)
+	if (diff > EPSILON)
 		return (1);
-	else if (diff == 0)
-		return (0);
-	else
+	else if (diff < EPSILON)
 		return (-1);
+	else
+		return (0);
 }
 
 void	identify_hit(t_world *world, t_hit *hit)
