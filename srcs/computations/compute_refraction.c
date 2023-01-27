@@ -27,7 +27,7 @@ void	compute_refraction_index(t_world *world, t_comp *computation)
 {
 	t_vec		container;
 	uint64_t	i;
-	t_intersect *current;
+	t_intersect	*current;
 
 	i = 0;
 	if (vec_new(&container, 1, sizeof(t_container)) == VEC_ERROR)

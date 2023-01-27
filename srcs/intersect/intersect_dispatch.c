@@ -66,7 +66,7 @@ void	intersect_world(t_world *world, t_ray ray)
 	while (++i < world->objects.len)
 	{
 		intersect_object[((t_object *)vec_get(&world->objects, \
-			i))->type] (ray, ((t_object *)vec_get(&world->objects, i)), world);
+			i))->type](ray, ((t_object *)vec_get(&world->objects, i)), world);
 	}
 	vec_sort(&world->intersections, sort_intersections);
 }
