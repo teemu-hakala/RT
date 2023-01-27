@@ -168,19 +168,13 @@ void		identify_hit(t_world *world, t_hit *hit);
 /*computations*/
 void		prepare_object(t_world *world, t_object *object, \
 			t_comp *computations, t_ray ray);
-void		prepare_computations(t_world *world, t_ray ray);
 void		compute_refraction_index(t_world *world, t_comp *computation);
-void		prepare_plane(t_world *world, t_ray ray);
-void		prepare_sphere(t_world *world, t_ray ray);
-void		prepare_cone(t_world *world, t_ray ray);
-void		prepare_cylinder(t_world *world, t_ray ray);
-void		prepare_cube(t_world *world, t_ray ray);
 
 /* reflections, transparency & refractions*/
 t_ray		ray(t_tuple origin, t_tuple reflectv);
 t_tuple		reflected_colour(t_world *world, t_comp *computations);
 t_tuple		refracted_colour(t_world *world, t_comp *computations);
-t_fl			schlick(t_comp *comps);
+t_fl		schlick(t_comp *comps);
 
 /* object transformation */
 void		transform_object(t_transform *object);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+         #
+#    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2023/01/14 00:33:54 by thakala          ###   ########.fr        #
+#    Updated: 2023/01/27 14:07:41 by deelliot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,8 +50,7 @@ RENDER_DIR = render
 CAMERA_SRCS = camera.c transform_objects.c first_person_camera.c \
 	view_transform.c
 
-COMPUTATION_SRCS = computation_dispatch.c computations_calculations.c \
-	computations_utility.c compute_refraction.c
+COMPUTATION_SRCS = computations_calculations.c compute_refraction.c
 
 COOL_INTERFACE_SRCS = handle_input.c key_handlers.c mouse_input.c \
 	movement_agent.c progress_bar.c scroll_effect.c zoomer.c \

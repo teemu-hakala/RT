@@ -19,7 +19,8 @@ t_tuple	colour_at(t_world *world, t_ray ray)
 	identify_hit(world, &world->hit);
 	if (world->hit.hit_check == true)
 	{
-		prepare_computations(world, ray);
+		prepare_object(world, world->hit.intersection.shape, \
+		&world->hit.computations, ray);
 		return (shade_hit(world));
 	}
 	else
