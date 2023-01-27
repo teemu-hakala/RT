@@ -68,6 +68,7 @@ void	is_shadow(t_world *world, t_tuple point, t_light *light)
 
 t_tuple	reflected_colour(t_world *world, t_comp *computations)
 {
+	(void)computations;
 	t_tuple	reflected_colour;
 	t_fl	reflective;
 
@@ -78,7 +79,7 @@ t_tuple	reflected_colour(t_world *world, t_comp *computations)
 	if (reflective < EPSILON)
 		return (reflected_colour);
 	world->reflected_ray = \
-		ray(computations->over_point, computations->reflectv);
+		ray(world->hit.computations.over_point, world->hit.computations.reflectv);
 	reflected_colour = colour_at(world, world->reflected_ray);
 	return (tuple_scale(reflected_colour,reflective));
 }

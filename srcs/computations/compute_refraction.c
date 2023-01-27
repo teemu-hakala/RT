@@ -25,6 +25,7 @@ static void	check_container(t_vec *container, t_intersect *current)
 
 void	compute_refraction_index(t_world *world, t_comp *computation)
 {
+	(void)computation;
 	t_vec		container;
 	uint64_t	i;
 	t_intersect	*current;
@@ -38,18 +39,18 @@ void	compute_refraction_index(t_world *world, t_comp *computation)
 		if (current->time == world->hit.intersection.time)
 		{
 			if (container.len == 0)
-				computation->n1 = 1.0;
+				world->hit.computations.n1 = 1.0;
 			else
-				computation->n1 = ((t_container *)vec_get(&container, \
+				world->hit.computations.n1 = ((t_container *)vec_get(&container, \
 					container.len - 1))->material.refractive_index;
 		}
 		check_container(&container, current);
 		if (current->time == world->hit.intersection.time)
 		{
 			if (container.len == 0)
-				computation->n2 = 1.0;
+				world->hit.computations.n2 = 1.0;
 			else
-				computation->n2 = ((t_container *)vec_get(&container, \
+				world->hit.computations.n2 = ((t_container *)vec_get(&container, \
 					container.len - 1))->material.refractive_index;
 		}
 		i++;
