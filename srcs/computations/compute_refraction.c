@@ -2,10 +2,8 @@
 
 static void	check_container(t_vec *container, t_intersect *current)
 {
-	int			check;
 	uint64_t	j;
 
-	check = false;
 	j = 0;
 	while (j < container->len)
 	{
@@ -14,13 +12,12 @@ static void	check_container(t_vec *container, t_intersect *current)
 		{
 			if (vec_remove(container, j) != VEC_SUCCESS)
 				handle_errors("unable to remove object from container");
-			check = true;
+			return ;
 		}
 		j++;
 	}
-	if (check == false)
-		if (vec_push(container, current) != VEC_SUCCESS)
-			handle_errors("unable to add object to container");
+	if (vec_push(container, current) != VEC_SUCCESS)
+		handle_errors("unable to add object to container");
 }
 
 void	compute_refraction_index(t_world *world)

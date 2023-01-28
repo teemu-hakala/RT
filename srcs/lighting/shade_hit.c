@@ -29,6 +29,7 @@ t_tuple	shade_hit(t_world *world)
 	while (i < world->lights.len)
 	{
 		light = (t_light *)vec_get(&world->lights, i);
+		is_shadow(world, world->hit.computations.over_point, light);
 		if (world->hit.intersection.appearance.pattern.type > 0 || \
 		world->hit.intersection.appearance.texture.type > 0)
 		{
