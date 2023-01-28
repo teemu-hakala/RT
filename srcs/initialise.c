@@ -47,7 +47,7 @@ void	initialise_window(t_win *win)
 	if (!win->mlx)
 		handle_errors("error");
 	win->win = mlx_new_window(win->mlx, win->world.camera.canvas.horizontal, \
-		win->world.camera.canvas.vertical, "RTV1");
+		win->world.camera.canvas.vertical, "RT");
 	if (!win->win)
 		handle_errors("error");
 	initialise_image(&win->img, win);

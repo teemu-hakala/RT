@@ -31,23 +31,6 @@ typedef struct s_snell_calculations
 	t_fl	cos_t;
 }				t_snell;
 
-int	check_for_total_internal_reflection(t_snell *helper)
-{
-	if (helper->sin2_t > 1)
-		return (true);
-	return (false);
-}
-
-
-void	calculate_angles(t_comp *computations, t_snell *helper)
-{
-	helper->n_ratio = computations->n1 / computations->n2;
-	helper->cos_i = dot_product(computations->vectors.eye, \
-		computations->vectors.surface_normal);
-	helper->sin2_t = (helper->n_ratio * helper->n_ratio) * \
-		(1 - (helper->cos_i * helper->cos_i));
-	helper->cos_t = sqrt(1 - helper->sin2_t);
-}
 
 t_tuple	refracted_colour(t_world *world, t_comp *computations)
 {
@@ -84,7 +67,7 @@ t_fl	schlick(t_comp *comps)
 	if (comps->n1 > comps->n2)
 	{
 		t.n_ratio = comps->n1 / comps->n2;
-		t.sin2_t = pow(t.n_ratio, 2) * (1 - pow(t.cos_i, 2));
+		t.sin2_t = (t.n_ratio * t.n_ratio) * (1 - (t.cos_i * t.cos_i));
 		if (t.sin2_t > 1)
 			return (1.0);
 		t.cos_t = sqrt(1 - t.sin2_t);

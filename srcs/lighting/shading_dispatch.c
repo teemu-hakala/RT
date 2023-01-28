@@ -48,11 +48,11 @@ t_tuple	shade_hit(t_world *world)
 
 	colour = point(0, 0, 0);
 	i = 0;
+	light_info = shape_shading[world->hit.intersection.shape->type] \
+			(&world->hit.intersection.shape->object);
 	while (i < world->lights.len)
 	{
 		light = (t_light *)vec_get(&world->lights, i);
-		light_info = shape_shading[world->hit.intersection.shape->type] \
-			(&world->hit.intersection.shape->object);
 		if (light_info.appearance.pattern.type > 0 || \
 		light_info.appearance.texture.type > 0)
 	{
@@ -66,10 +66,12 @@ t_tuple	shade_hit(t_world *world)
 	}
 	reflected = reflected_colour(world, &world->hit.computations);
 	refracted = refracted_colour(world, &world->hit.computations);
-	if (light_info.material.reflectiveness > 0 && light_info.material.transparency > 0)
+	if (light_info.material.reflectiveness > 0 && \
+		light_info.material.transparency > 0)
 	{
 		reflectance = schlick(&world->hit.computations);
-		return (tuple_add(colour, tuple_add(tuple_scale(reflected, reflectance),\
+		return (tuple_add(colour, \
+			tuple_add(tuple_scale(reflected, reflectance), \
 			tuple_scale(refracted, (1- reflectance)))));
 	}
 	return (tuple_add(refracted, tuple_add(colour, reflected)));
