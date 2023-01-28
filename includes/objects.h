@@ -121,12 +121,6 @@ typedef struct s_comp
 /* n1 = refractive index material being exited & n2 =
 	refractive index material being entered */
 
-typedef struct s_container
-{
-	t_material	material;
-	t_fl		shape_id;
-}				t_container;
-
 typedef struct s_plane
 {
 	t_tuple			origin;

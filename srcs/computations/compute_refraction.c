@@ -10,7 +10,7 @@ static void	check_container(t_vec *container, t_intersect *current)
 	while (j < container->len)
 	{
 		if (current->shape->shape_id == \
-			((t_container *)vec_get(container, j))->shape_id)
+			((t_intersect *)vec_get(container, j))->shape->shape_id)
 		{
 			if (vec_remove(container, j) != VEC_SUCCESS)
 				handle_errors("unable to remove object from container");
@@ -30,17 +30,18 @@ void	compute_refraction_index(t_world *world)
 	t_intersect	*current;
 
 	i = 0;
-	if (vec_new(&container, 1, sizeof(t_container)) == VEC_ERROR)
-		handle_errors("vec_new error");
+
+	vec_new(&container, 1, sizeof(t_intersect));
 	while (i < world->intersections.len)
 	{
-		current = vec_get(&world->intersections, i);
+		current = (t_intersect *)vec_get(&world->intersections, i++);
 		if (current->time == world->hit.intersection.time)
 		{
 			if (container.len == 0)
 				world->hit.computations.n1 = 1.0;
 			else
-				world->hit.computations.n1 = ((t_container *)vec_get(&container, \
+				world->hit.computations.n1 = \
+					((t_intersect *)vec_get(&container, \
 					container.len - 1))->material.refractive_index;
 		}
 		check_container(&container, current);
@@ -49,10 +50,10 @@ void	compute_refraction_index(t_world *world)
 			if (container.len == 0)
 				world->hit.computations.n2 = 1.0;
 			else
-				world->hit.computations.n2 = ((t_container *)vec_get(&container, \
+				world->hit.computations.n2 = \
+					((t_intersect *)vec_get(&container, \
 					container.len - 1))->material.refractive_index;
 		}
-		i++;
 	}
 	vec_free (&container);
 }

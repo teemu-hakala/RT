@@ -76,7 +76,7 @@
 					"shininess" : 300,
 					"reflectiveness" : 1,
 					"transparency" : 1,
-					"refractive_index" : 1
+					"refractive_index" : 1.52
 				}
 			}
 		}

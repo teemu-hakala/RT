@@ -5,13 +5,12 @@
 	"version": "0.2.0",
 	"configurations": [
 
-
 		{
-			"name": "cover_image",
+			"name": "simple_refraction",
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/RT",
-			"args": ["${workspaceFolder}/scenes/cover_image.json"],
+			"args": ["${workspaceFolder}/scenes/refraction/simple_refraction.json"],
 			"stopAtEntry": true,
 			"cwd": "${workspaceFolder}",
 			"environment": [],
