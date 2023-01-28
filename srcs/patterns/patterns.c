@@ -20,7 +20,7 @@ void	vertical_striped_at(t_pattern *pattern, \
 void	horizontal_striped_at(t_pattern *pattern, \
 	t_tuple *point, t_tuple *colour)
 {
-	if (fmod(floor(point->tuple.units.y), 2) == 0)
+	if (fmod(floor(point->tuple.units.z), 2) == 0)
 		*colour = pattern->colour_a;
 	else
 		*colour = pattern->colour_b;

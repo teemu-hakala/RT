@@ -1,0 +1,90 @@
+{
+	"camera" :
+	{
+		"field_of_view" : 1.152,
+		"origin" : [-2.6, 1.5, -3.9],
+		"center_of_interest" : [-0.6, 1, -0.8]
+	},
+	"lights" :
+	[
+		{
+			"spot" :
+			{
+				"position" : [-4.9, 4.9, -1],
+				"intensity" : [1, 1, 1]
+			}
+		}
+	],
+	"shapes" :
+	[
+		{
+			"plane" :
+			{
+				"transform" :
+				{
+					"rotation" : [0, 0.31415, 0]
+				},
+				"material" :
+				{
+					"specular" : 0,
+					"reflectiveness" : 0.4
+				},
+				"appearance" :
+				{
+					"pattern" :
+					{
+						"type" : "simple_checkered",
+						"colour_a" : [0.35, 0.35, 0.35],
+						"colour_b" : [0.65, 0.65, 0.65]
+					}
+				}
+			}
+		},
+		{
+			"plane" :
+			{
+				"transform" :
+				{
+					"translation" : [0, 5, 0]
+				},
+				"material" :
+				{
+					"init_colour" : [0.8, 0.8, 0.8],
+					"ambient" : 0.3,
+					"specular" : 0
+				}
+			}
+		},
+		{
+			"plane" :
+			{
+				"transform" :
+				{
+					"rotation" : [0, 0, 1.5708],
+					"translation" : [5, 0, 0]
+				},
+				"appearance" :
+				{
+					"pattern" :
+					{
+						"type" : "vertical_stripes",
+						"colour_a" : [0.45, 0.45, 0.45],
+						"colour_b" : [0.55, 0.55, 0.55],
+						"transform" :
+						{
+							"scale" : [0.25, 0.25, 0.25],
+							"rotation" : [0, 0, 0]
+						}
+					}
+				},
+				"material" :
+				{
+					"ambient" : 0,
+					"diffuse" : 0.4,
+					"specular" : 0,
+					"reflectiveness" : 0.3
+				}
+			}
+		}
+	]
+}

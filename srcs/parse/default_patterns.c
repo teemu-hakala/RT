@@ -18,7 +18,7 @@ t_pattern	default_vertical_stripe_pattern(void)
 		.type = PATTERN_VERTICAL_STRIPES,
 		.colour_a = hex_to_tuple_colour(COLOUR_YELLOW),
 		.colour_b = hex_to_tuple_colour(COLOUR_WHITE),
-		.transform = default_transform_2()
+		.transform = default_transform_1()
 	});
 }
 
@@ -28,7 +28,7 @@ t_pattern	default_horizontal_stripe_pattern(void)
 		.type = PATTERN_HORIZONTAL_STRIPES,
 		.colour_a = hex_to_tuple_colour(COLOUR_YELLOW),
 		.colour_b = hex_to_tuple_colour(COLOUR_WHITE),
-		.transform = default_transform_2()
+		.transform = default_transform_1()
 	});
 }
 

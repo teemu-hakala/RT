@@ -54,80 +54,42 @@ t_tuple	refracted_colour(t_world *world, t_comp *computations)
 	t_fl	transparency;
 	t_snell	calc;
 	t_comp	comp;
+	t_tuple	refracted_col;
 
 	(void)computations;
 	comp = world->hit.computations;
 	transparency = world->hit.intersection.material.transparency;
 	if (transparency < EPSILON && transparency > -EPSILON)
 		return (point(0, 0, 0));
-	if (world->refraction_lifetime <= 0)
+	if (world->refraction_lifetime-- <= 0)
 		return (point(0, 0, 0));
 	calc.n_ratio = comp.n1 / comp.n2;
 	calc.cos_i = dot_product(comp.vectors.eye, comp.vectors.surface_normal);
 	calc.sin2_t = pow(calc.n_ratio, 2) * (1 - pow(calc.cos_i, 2));
 	if (calc.sin2_t > 1)
 		return (point(0, 0, 0));
-	return (point(1, 1, 1));
 	calc.cos_t = sqrt(1 - calc.sin2_t);
 	world->refracted_ray.direction = tuple_sub(tuple_scale(comp.vectors.surface_normal, \
 	(calc.n_ratio * calc.cos_i - calc.cos_t)), tuple_scale(comp.vectors.eye, calc.n_ratio));
+	world->refracted_ray.origin = comp.under_point;
+	refracted_col = colour_at(world, world->refracted_ray);
+	return (tuple_scale(refracted_col, transparency));
 }
-
-// t_tuple	refracted_colour(t_world *world, t_comp *computations)
-// {
-// 	t_tuple	refracted_colour;
-// 	t_fl	transparency;
-// 	t_tuple	direction;
-// 	t_snell	helper;
-
-// 	refracted_colour = point(0, 0, 0);
-// 	transparency = world->hit.intersection.material.transparency;
-// 	calculate_angles(computations, &helper);
-// 	direction = tuple_sub(tuple_scale(computations->vectors.surface_normal, \
-// 		(helper.n_ratio * (helper.cos_i - helper.cos_t))), \
-// 		tuple_scale(computations->vectors.eye, helper.n_ratio));
-// 	if (world->refraction_lifetime-- <= 0)
-// 		return (refracted_colour);
-// 	if (transparency < EPSILON && transparency > -EPSILON)
-// 		return (refracted_colour);
-// 	if (check_for_total_internal_reflection(&helper) == true)
-// 		return (refracted_colour);
-// 	world->refracted_ray = ray(computations->under_point, direction);
-// 	refracted_colour = colour_at(world, world->refracted_ray);
-// 	return (tuple_scale(refracted_colour, transparency));
-// }
 
 t_fl	schlick(t_comp *comps)
 {
-	t_snell	helper;
+	t_snell t;
 	t_fl	reflectance;
-
-	calculate_angles(comps, &helper);
+	t.cos_i = dot_product(comps->vectors.eye, comps->vectors.surface_normal);
 	if (comps->n1 > comps->n2)
 	{
-		if (check_for_total_internal_reflection(&helper) == true)
-			return (1);
-		helper.cos_i = helper.cos_t;
+		t.n_ratio = comps->n1 / comps->n2;
+		t.sin2_t = pow(t.n_ratio, 2) * (1 - pow(t.cos_i, 2));
+		if (t.sin2_t > 1)
+			return (1.0);
+		t.cos_t = sqrt(1 - t.sin2_t);
+		t.cos_i = t.cos_t;
 	}
-	reflectance = (((comps->n1 - comps->n2) / (comps->n1 + comps->n2)) * \
-		((comps->n1 - comps->n2) / (comps->n1 + comps->n2)));
-	return (reflectance + (1 - reflectance) * pow((1 - helper.cos_i), 5));
+	reflectance = pow(((comps->n1 - comps->n2) / (comps->n1 + comps->n2)), 2);
+	return (reflectance + (1 - reflectance) * pow((1 - t.cos_i), 5));
 }
-
-// t_fl	schlick(t_comp *comps)
-// {
-// 	t_snell t;
-// 	t_fl	reflectance;
-// 	t.cos_i = dot_product(comps->vectors.eye, comps->vectors.surface_normal);
-// 	if (comps->n1 > comps->n2)
-// 	{
-// 		t.n_ratio = comps->n1 / comps->n2;
-// 		t.sin2_t = pow(t.n_ratio, 2) * (1 - pow(t.cos_i, 2));
-// 		if (t.sin2_t > 1)
-// 			return (1.0);
-// 	}
-// 	t.cos_t = sqrt(1 - t.sin2_t);
-// 	t.cos_i = t.cos_t;
-// 	reflectance = pow(((comps->n1 - comps->n2) / (comps->n1 + comps->n2)), 2);
-// 	return (reflectance + (1 - reflectance) * pow((1 - t.cos_i), 5));
-// }
