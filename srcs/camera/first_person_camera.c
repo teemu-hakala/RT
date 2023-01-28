@@ -15,11 +15,8 @@
 void	first_person_camera(t_win *win)
 {
 	static t_tuple	rotation;
-	t_object		*object;
 	t_mtx			matrix;
 
-	object = ((t_object *)vec_get(&win->world.objects, 0));
-	transform_object(&object->object.sphere.transform);
 	// print_tuple(object->object.sphere.transform.translation, \
 	// 	"object->object.sphere.transform.translation");
 	matrix = identity_matrix();
@@ -31,8 +28,6 @@ void	first_person_camera(t_win *win)
 	win->world.camera.center_of_interest = \
 		tuple_add(matrix_tuple_multi(&matrix, &(t_tuple){{{0, 0, 1, 1}}}), \
 		win->world.camera.origin);
-	object->object.sphere.transform.translation = \
-		win->world.camera.center_of_interest;
 	transform_camera(&win->world.camera);
 }
 
