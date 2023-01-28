@@ -114,6 +114,9 @@ void		matrix_inversion(t_mtx *mtx, uint32_t size);
 
 /* matrix transformations */
 void		rotate(t_mtx *mtx, t_tuple *rotations);
+void		rot_x(t_mtx *mtx, t_fl angle);
+void		rot_y(t_mtx *mtx, t_fl angle);
+void		rot_z(t_mtx *mtx, t_fl angle);
 void		translate(t_mtx *mtx, t_tuple *transform);
 void		scale(t_mtx *mtx, t_tuple *transform);
 

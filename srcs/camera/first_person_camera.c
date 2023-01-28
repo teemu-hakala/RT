@@ -14,14 +14,21 @@
 
 void	first_person_camera(t_win *win)
 {
-	win->world.camera.transform.rotation.tuple.rotation = \
-		(t_rotation){win->world.camera.transform.rotation.\
-tuple.rotation.x_wid_lat_pitch + win->input.mouse.diff.row * \
-	-win->rotation_step, \
-win->world.camera.transform.rotation.tuple.rotation.y_hei_vert_yaw + \
-win->input.mouse.diff.col * win->rotation_step, \
-		win->world.camera.transform.rotation.tuple.rotation.z_dep_long_roll, 1};
-	transform_camera_for_rotations(&win->world.camera);
+	static t_tuple	rotation;
+	t_mtx			matrix;
+
+	// print_tuple(object->object.sphere.transform.translation, \
+	// 	"object->object.sphere.transform.translation");
+	matrix = identity_matrix();
+	rotation.array[X] += win->input.mouse.diff.row * win->rotation_step;
+	rotation.array[Y] += win->input.mouse.diff.col * win->rotation_step;
+// print_tuple(rotation, "static rotation");
+	rot_y(&matrix, rotation.array[Y]);
+	rot_x(&matrix, rotation.array[X]);
+	win->world.camera.center_of_interest = \
+		tuple_add(matrix_tuple_multi(&matrix, &(t_tuple){{{0, 0, 1, 1}}}), \
+		win->world.camera.origin);
+	transform_camera(&win->world.camera);
 }
 
 void	refresh_image(t_win *win)

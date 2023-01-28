@@ -46,9 +46,9 @@ t_mtx	view_transform(t_tuple from, t_tuple to, t_tuple up)
 
 	forward = normalize(tuple_sub(to, from));
 	up_n = normalize(up);
-	left = cross_product(forward, up_n);
+	left = normalize(cross_product(forward, up_n));
 	if (tuple_nearly_equals(left, vector(0, 0, 0)))
-		left = cross_product(forward, vector(0, 0, 1));
+		left = normalize(cross_product(forward, vector(0, 0, 1)));
 	true_up = cross_product(left, forward);
 	orientation = (t_mtx){
 		.tuple_rows = {\
