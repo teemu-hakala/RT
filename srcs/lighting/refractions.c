@@ -36,42 +36,51 @@ t_tuple	refracted_colour(t_world *world)
 {
 	t_fl	transparency;
 	t_snell	calc;
-	t_comp	comp;
 	t_tuple	refracted_col;
 
-	comp = world->hit.computations;
 	transparency = world->hit.intersection.material.transparency;
 	if (transparency < EPSILON && transparency > -EPSILON)
 		return (point(0, 0, 0));
 	if (world->refraction_lifetime-- <= 0)
 		return (point(0, 0, 0));
-	calc.n_ratio = comp.n1 / comp.n2;
-	calc.cos_i = dot_product(comp.vectors.eye, comp.vectors.surface_normal);
-	calc.sin2_t = pow(calc.n_ratio, 2) * (1 - pow(calc.cos_i, 2));
+	calc.n_ratio = world->hit.computations.n1 / world->hit.computations.n2;
+	calc.cos_i = dot_product(world->hit.computations.vectors.eye, \
+		world->hit.computations.vectors.surface_normal);
+	calc.sin2_t = (calc.n_ratio * calc.n_ratio) * \
+		(1 - (calc.cos_i * calc.cos_i));
 	if (calc.sin2_t > 1)
+	{
+		printf("sin2t = %0.2f\n", calc.sin2_t);
 		return (point(0, 0, 0));
+	}
 	calc.cos_t = sqrt(1 - calc.sin2_t);
-	world->refracted_ray.direction = tuple_sub(tuple_scale(comp.vectors.surface_normal, \
-	(calc.n_ratio * calc.cos_i - calc.cos_t)), tuple_scale(comp.vectors.eye, calc.n_ratio));
-	world->refracted_ray.origin = comp.under_point;
+	world->refracted_ray.direction = \
+		tuple_sub(tuple_scale(world->hit.computations.vectors.surface_normal, \
+		(calc.n_ratio * calc.cos_i - calc.cos_t)), \
+		tuple_scale(world->hit.computations.vectors.eye, calc.n_ratio));
+	world->refracted_ray.origin = world->hit.computations.under_point;
 	refracted_col = colour_at(world, world->refracted_ray);
 	return (tuple_scale(refracted_col, transparency));
 }
 
-t_fl	schlick(t_comp *comps)
+t_fl	schlick(t_world *world)
 {
-	t_snell t;
+	t_snell	t;
 	t_fl	reflectance;
-	t.cos_i = dot_product(comps->vectors.eye, comps->vectors.surface_normal);
-	if (comps->n1 > comps->n2)
+
+	t.cos_i = dot_product(world->hit.computations.vectors.eye, \
+		world->hit.computations.vectors.surface_normal);
+	if (world->hit.computations.n1 > world->hit.computations.n2)
 	{
-		t.n_ratio = comps->n1 / comps->n2;
+		t.n_ratio = world->hit.computations.n1 / world->hit.computations.n2;
 		t.sin2_t = (t.n_ratio * t.n_ratio) * (1 - (t.cos_i * t.cos_i));
 		if (t.sin2_t > 1)
 			return (1.0);
 		t.cos_t = sqrt(1 - t.sin2_t);
 		t.cos_i = t.cos_t;
 	}
-	reflectance = pow(((comps->n1 - comps->n2) / (comps->n1 + comps->n2)), 2);
+	reflectance = pow(((world->hit.computations.n1 - \
+		world->hit.computations.n2) / \
+			(world->hit.computations.n1 + world->hit.computations.n2)), 2);
 	return (reflectance + (1 - reflectance) * pow((1 - t.cos_i), 5));
 }

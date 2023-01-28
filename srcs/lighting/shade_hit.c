@@ -11,7 +11,7 @@ t_tuple	reflection_and_refraction(t_world *world)
 	if (world->hit.intersection.material.reflectiveness > 0 && \
 		world->hit.intersection.material.transparency > 0)
 	{
-		reflectance = schlick(&world->hit.computations);
+		reflectance = schlick(world);
 		return (tuple_add(tuple_scale(reflected, reflectance), \
 			tuple_scale(refracted, (1 - reflectance))));
 	}

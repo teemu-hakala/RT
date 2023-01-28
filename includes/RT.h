@@ -167,7 +167,7 @@ void		compute_refraction_index(t_world *world);
 t_ray		ray(t_tuple origin, t_tuple reflectv);
 t_tuple		reflected_colour(t_world *world);
 t_tuple		refracted_colour(t_world *world);
-t_fl		schlick(t_comp *comps);
+t_fl		schlick(t_world *world);
 
 /* object transformation */
 void		transform_object(t_transform *object);
