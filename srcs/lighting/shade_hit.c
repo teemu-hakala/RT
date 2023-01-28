@@ -33,7 +33,6 @@ t_tuple	shade_hit(t_world *world)
 	t_tuple		colour;
 	t_light		*light;
 	uint64_t	i;
-	t_info		light_info;
 	t_tuple		reflected;
 	t_tuple		refracted;
 	t_fl		reflectance;
@@ -47,7 +46,7 @@ t_tuple	shade_hit(t_world *world)
 		world->hit.intersection.appearance.texture.type > 0)
 	{
 		world->hit.intersection.material.init_colour = get_appearance_colour(world, \
-			&world->hit.computations.over_point, light_info.f);
+			&world->hit.computations.over_point);
 	}
 		colour = tuple_add(colour, \
 			lighting(world, light, world->hit.computations.vectors, \

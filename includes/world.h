@@ -33,6 +33,7 @@ typedef struct s_intersect
 	t_material		material;
 	t_appearance	appearance;
 	t_transform		transform;
+	t_uv_map (*f)(t_tuple *);
 }				t_intersect;
 
 typedef struct s_hit

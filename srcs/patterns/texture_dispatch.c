@@ -27,8 +27,7 @@ t_tuple	texture_at(t_texture *texture, t_uv_map *map)
 	return (colour);
 }
 
-t_tuple	get_appearance_colour(t_world *world, t_tuple *p, t_uv_map \
-	(*f)(t_tuple *))
+t_tuple	get_appearance_colour(t_world *world, t_tuple *p)
 {
 	t_tuple	colour;
 	t_tuple	pattern_space;
@@ -44,11 +43,11 @@ t_tuple	get_appearance_colour(t_world *world, t_tuple *p, t_uv_map \
 	{
 		pattern_space = transform_point(p, &world->hit.intersection.transform, \
 			&world->hit.intersection.appearance.texture.transform);
-		if (f == cubic_map)
+		if (world->hit.intersection.f == cubic_map)
 		{
 			world->hit.intersection.appearance.texture.face = face_from_point(&pattern_space);
 		}
-		world->hit.intersection.appearance.texture.map = f(&pattern_space);
+		world->hit.intersection.appearance.texture.map = world->hit.intersection.f(&pattern_space);
 		colour = texture_at(&world->hit.intersection.appearance.texture, \
 			&world->hit.intersection.appearance.texture.map);
 	}

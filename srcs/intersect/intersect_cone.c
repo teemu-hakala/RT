@@ -34,10 +34,9 @@ t_world *world)
 {
 	t_intersect	cap_intersect;
 
+	cap_intersect = set_intersect_info(((t_cone *)cone)->material, \
+	((t_cone *)cone)->appearance,((t_cone *)cone)->transform, conical_map);
 	cap_intersect.shape = cone;
-	cap_intersect.material = ((t_cone *)cone)->material;
-	cap_intersect.appearance = ((t_cone *)cone)->appearance;
-	cap_intersect.transform = ((t_cone *)cone)->transform;
 	if (cone->object.cone.closed == false || \
 		(ray->direction.tuple.units.y < EPSILON && \
 			ray->direction.tuple.units.y > -EPSILON))
@@ -64,10 +63,9 @@ t_object *cone, t_world *world)
 	t_fl		y0;
 	t_intersect	temp;
 
+	temp = set_intersect_info(((t_cone *)cone)->material, \
+	((t_cone *)cone)->appearance,((t_cone *)cone)->transform, conical_map);
 	temp.shape = cone;
-	temp.material = ((t_cone *)cone)->material;
-	temp.appearance = ((t_cone *)cone)->appearance;
-	temp.transform = ((t_cone *)cone)->transform;
 	y0 = (ray.origin.tuple.units.y + double_min(params.res_1, params.res_2) \
 		* ray.direction.tuple.units.y);
 	if ((((t_object *)cone)->object.cone.min) < y0 && y0 < \
@@ -99,11 +97,11 @@ void	cone_intersection(t_ray ray, void *cone, t_world *world)
 	{
 		if (params.a < EPSILON && params.a > -EPSILON)
 		{
+			temp = set_intersect_info(((t_cone *)cone)->material, \
+				((t_cone *)cone)->appearance,((t_cone *)cone)->transform, \
+					conical_map);
 			temp.time = -params.c / (2 * params.b);
 			temp.shape = cone;
-			temp.material = ((t_cone *)cone)->material;
-			temp.appearance = ((t_cone *)cone)->appearance;
-			temp.transform = ((t_cone *)cone)->transform;
 			if (vec_push(&world->intersections, &temp) == VEC_ERROR)
 				handle_errors("vec_push malloc error cone_intersection");
 		}

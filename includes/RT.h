@@ -84,8 +84,6 @@ typedef struct s_win
 
 typedef void	(*t_intersect_function)(t_ray, void *, t_world *);
 
-typedef t_info	(*t_shading_function)(void *);
-
 typedef void	(*t_computation_fn)(t_world *, t_ray);
 
 typedef void	(*t_pattern_at_fn)(t_pattern *, t_tuple *, t_tuple *);
@@ -142,23 +140,16 @@ uint32_t	clamped_rgb_to_hex(t_colour *colour);
 uint32_t	clamped_rgba_to_hex(t_colour *colour);
 t_tuple		lighting(t_world *world, t_light *light, t_phong vectors,
 				t_tuple point);
-t_info		get_lighting_info(t_material material, t_appearance appearance, \
-				t_transform transform, t_tuple colour);
 void		is_shadow(t_world *world, t_tuple point, t_light *light);
 t_tuple		reflect(t_tuple input, t_tuple normal);
 
 /* shading */
 t_tuple		shade_hit(t_world *world);
-t_info		shade_plane(void *plane);
-t_info		shade_sphere(void *sphere);
-t_info		shade_cone(void *cone);
-t_info		shade_cylinder(void *cylinder);
-t_info		shade_cube(void *cube);
-void		shade_object(t_world *world, t_tuple *colour, t_light *light, \
-			t_info *light_info);
 
 /* object intersection */
 void		intersect_world(t_world *world, t_ray ray);
+t_intersect	set_intersect_info(t_material material, t_appearance appearance, \
+			t_transform transform, t_uv_map (*f)(t_tuple *));
 void		plane_intersection(t_ray ray, void *plane, t_world *world);
 void		sphere_intersection(t_ray ray, void *sphere, t_world *world);
 void		cone_intersection(t_ray ray, void *cone, t_world *world);
@@ -219,9 +210,7 @@ t_texture	default_checkered_texture(void);
 t_texture	default_align_check(void);
 t_texture	default_external(void);
 
-t_tuple		get_appearance_colour(t_world *world, t_tuple *p, t_uv_map \
-			(*f)(t_tuple *));
-
+t_tuple		get_appearance_colour(t_world *world, t_tuple *p);
 /* patterns*/
 t_tuple		pattern_at(t_pattern *pattern, t_tuple *point);
 void		none_at(t_pattern *pattern, t_tuple *point, t_tuple *colour);

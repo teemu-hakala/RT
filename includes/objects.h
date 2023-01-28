@@ -125,16 +125,6 @@ typedef struct s_container
 	t_fl		shape_id;
 }				t_container;
 
-typedef struct s_info
-{
-	t_material		material;
-	t_appearance	appearance;
-	t_transform		transform;
-	t_const			channels;
-	t_tuple			col;
-	t_uv_map (*f)(t_tuple *);
-}				t_info;
-
 typedef struct s_plane
 {
 	t_tuple			origin;

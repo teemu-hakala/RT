@@ -1,16 +1,5 @@
 #include "RT.h"
 
-t_info get_lighting_info(t_material material, t_appearance appearance, \
-	t_transform transform, t_tuple colour)
-{
-	return ((t_info){
-		.material = material,
-		.appearance = appearance,
-		.transform = transform,
-		.col = colour
-	});
-}
-
 void	lighting_cont(t_world *world, t_light *light, t_phong *vectors,
 	t_fl incidence_l, t_const *channels)
 {
@@ -39,7 +28,7 @@ t_tuple	lighting(t_world *world, t_light *light, t_phong vectors,
 {
 	t_fl		incidence_l;
 	t_const		channels;
-	
+
 	world->hit.intersection.material.col_mash = \
 		tuple_multi(world->hit.intersection.material.init_colour, \
 		light->intensity);
