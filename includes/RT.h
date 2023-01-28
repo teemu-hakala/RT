@@ -140,7 +140,7 @@ int			handle_input(int key, t_win *win);
 t_tuple		hex_to_tuple_colour(uint32_t colour);
 uint32_t	clamped_rgb_to_hex(t_colour *colour);
 uint32_t	clamped_rgba_to_hex(t_colour *colour);
-t_tuple		lighting(t_info *lighting_info, t_light *light, t_phong vectors,
+t_tuple		lighting(t_world *world, t_light *light, t_phong vectors,
 				t_tuple point);
 t_info		get_lighting_info(t_material material, t_appearance appearance, \
 				t_transform transform, t_tuple colour);
@@ -171,12 +171,12 @@ void		identify_hit(t_world *world, t_hit *hit);
 /*computations*/
 void		prepare_object(t_world *world, t_object *object, \
 			t_comp *computations, t_ray ray);
-void		compute_refraction_index(t_world *world, t_comp *computation);
+void		compute_refraction_index(t_world *world);
 
 /* reflections, transparency & refractions*/
 t_ray		ray(t_tuple origin, t_tuple reflectv);
-t_tuple		reflected_colour(t_world *world, t_comp *computations);
-t_tuple		refracted_colour(t_world *world, t_comp *computations);
+t_tuple		reflected_colour(t_world *world);
+t_tuple		refracted_colour(t_world *world);
 t_fl		schlick(t_comp *comps);
 
 /* object transformation */
@@ -219,7 +219,7 @@ t_texture	default_checkered_texture(void);
 t_texture	default_align_check(void);
 t_texture	default_external(void);
 
-t_tuple		get_appearance_colour(t_info *obj_info, t_tuple *p, t_uv_map \
+t_tuple		get_appearance_colour(t_world *world, t_tuple *p, t_uv_map \
 			(*f)(t_tuple *));
 
 /* patterns*/

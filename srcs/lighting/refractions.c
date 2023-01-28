@@ -32,14 +32,13 @@ typedef struct s_snell_calculations
 }				t_snell;
 
 
-t_tuple	refracted_colour(t_world *world, t_comp *computations)
+t_tuple	refracted_colour(t_world *world)
 {
 	t_fl	transparency;
 	t_snell	calc;
 	t_comp	comp;
 	t_tuple	refracted_col;
 
-	(void)computations;
 	comp = world->hit.computations;
 	transparency = world->hit.intersection.material.transparency;
 	if (transparency < EPSILON && transparency > -EPSILON)

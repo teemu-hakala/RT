@@ -28,9 +28,11 @@ typedef struct s_quadratic
 
 typedef struct s_intersect
 {
-	t_fl		time;
-	t_object	*shape;
-	t_material	material;
+	t_fl			time;
+	t_object		*shape;
+	t_material		material;
+	t_appearance	appearance;
+	t_transform		transform;
 }				t_intersect;
 
 typedef struct s_hit

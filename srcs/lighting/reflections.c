@@ -66,9 +66,8 @@ void	is_shadow(t_world *world, t_tuple point, t_light *light)
 	}
 }
 
-t_tuple	reflected_colour(t_world *world, t_comp *computations)
+t_tuple	reflected_colour(t_world *world)
 {
-	(void)computations;
 	t_tuple	reflected_colour;
 	t_fl	reflective;
 

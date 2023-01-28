@@ -11,53 +11,55 @@ t_info get_lighting_info(t_material material, t_appearance appearance, \
 	});
 }
 
-void	lighting_cont(t_info *info, t_light *light, t_phong *vectors,
-	t_fl incidence_l)
+void	lighting_cont(t_world *world, t_light *light, t_phong *vectors,
+	t_fl incidence_l, t_const *channels)
 {
 	t_fl		reflect_l;
 	t_fl		factor;
 	t_material	material;
 
-	material = info->material;
-	info->channels.diff = tuple_scale(
+	material = world->hit.intersection.material;
+	channels->diff = tuple_scale(
 			tuple_scale(material.col_mash, material.diffuse), incidence_l);
 	vectors->reflection = reflect(
 			tuple_scale(vectors->light, -1.0), vectors->surface_normal);
 	reflect_l = dot_product(vectors->reflection, vectors->eye);
 	if (light->type == LIGHT_PARALLEL || reflect_l <= 0.0)
-		info->channels.spec = vector(0, 0, 0);
+		channels->spec = vector(0, 0, 0);
 	else
 	{
 		factor = pow(reflect_l, material.shininess);
-		info->channels.spec = tuple_scale(
+		channels->spec = tuple_scale(
 				tuple_scale(light->intensity, material.specular), factor);
 	}
 }
 
-t_tuple	lighting(t_info *info, t_light *light, t_phong vectors,
+t_tuple	lighting(t_world *world, t_light *light, t_phong vectors,
 	t_tuple point)
 {
 	t_fl		incidence_l;
-
-	info->material.col_mash = tuple_multi(info->col, \
+	t_const		channels;
+	
+	world->hit.intersection.material.col_mash = \
+		tuple_multi(world->hit.intersection.material.init_colour, \
 		light->intensity);
 	if (light->type == LIGHT_SPOT)
 		vectors.light = normalize(tuple_sub(light->position, point));
 	else
 		vectors.light = normalize(light->direction);
-	info->channels.amb = tuple_scale(info->material.col_mash, \
-		info->material.ambient);
+		channels.amb = tuple_scale(world->hit.intersection.material.col_mash, \
+		world->hit.intersection.material.ambient);
 	incidence_l = dot_product(vectors.light, vectors.surface_normal);
 	if (incidence_l < 0.0)
 	{
-		info->channels.diff = vector(0, 0, 0);
-		info->channels.spec = vector(0, 0, 0);
+		channels.diff = vector(0, 0, 0);
+		channels.spec = vector(0, 0, 0);
 	}
 	else
-		lighting_cont(info, light, &vectors, incidence_l);
+		lighting_cont(world, light, &vectors, incidence_l, &channels);
 	if (vectors.in_shadow == true)
-		return (info->channels.amb);
+		return (channels.amb);
 	return (tuple_add(
-			tuple_add(info->channels.amb, info->channels.diff),
-			info->channels.spec));
+			tuple_add(channels.amb, channels.diff),
+			channels.spec));
 }

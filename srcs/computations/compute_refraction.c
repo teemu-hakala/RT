@@ -23,9 +23,8 @@ static void	check_container(t_vec *container, t_intersect *current)
 			handle_errors("unable to add object to container");
 }
 
-void	compute_refraction_index(t_world *world, t_comp *computation)
+void	compute_refraction_index(t_world *world)
 {
-	(void)computation;
 	t_vec		container;
 	uint64_t	i;
 	t_intersect	*current;

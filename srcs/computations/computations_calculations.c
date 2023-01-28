@@ -34,7 +34,7 @@ void	prepare_object(t_world *world, t_object *object, t_comp *computations, \
 		tuple_scale(world->hit.computations.vectors.surface_normal, EPSILON));
 	world->hit.computations.reflectv = reflect(ray.direction, \
 		world->hit.computations.vectors.surface_normal);
-	compute_refraction_index(world, computations);
+	compute_refraction_index(world);
 	world->hit.computations.under_point = tuple_sub(world->hit.computations.point, \
 		tuple_scale(world->hit.computations.vectors.surface_normal, EPSILON));
 }
