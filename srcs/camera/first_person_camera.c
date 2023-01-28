@@ -11,10 +11,7 @@
 
 
 #include "RT.h"
-void	print_tuple(t_tuple tuple, const char *name);
-void	rot_x(t_mtx *mtx, t_fl angle);
-void	rot_y(t_mtx *mtx, t_fl angle);
-void	rot_z(t_mtx *mtx, t_fl angle);
+
 void	first_person_camera(t_win *win)
 {
 	static t_tuple	rotation;
@@ -23,12 +20,12 @@ void	first_person_camera(t_win *win)
 
 	object = ((t_object *)vec_get(&win->world.objects, 0));
 	transform_object(&object->object.sphere.transform);
-	print_tuple(object->object.sphere.transform.translation, \
-		"object->object.sphere.transform.translation");
+	// print_tuple(object->object.sphere.transform.translation, \
+	// 	"object->object.sphere.transform.translation");
 	matrix = identity_matrix();
 	rotation.array[X] += win->input.mouse.diff.row * win->rotation_step;
 	rotation.array[Y] += win->input.mouse.diff.col * win->rotation_step;
-print_tuple(rotation, "static rotation");
+// print_tuple(rotation, "static rotation");
 	rot_y(&matrix, rotation.array[Y]);
 	rot_x(&matrix, rotation.array[X]);
 	win->world.camera.center_of_interest = \
