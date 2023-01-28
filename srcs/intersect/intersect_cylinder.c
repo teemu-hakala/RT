@@ -37,7 +37,8 @@ t_world *world)
 	t_intersect	cap_intersect;
 
 	cap_intersect = set_intersect_info(((t_cylinder *)cylinder)->material, \
-	((t_cylinder *)cylinder)->appearance,((t_cylinder *)cylinder)->transform, cylindrical_map);
+	((t_cylinder *)cylinder)->appearance, ((t_cylinder *)cylinder)->transform, \
+		cylindrical_map);
 	cap_intersect.shape = cylinder;
 	if (cylinder->object.cylinder.closed == false || \
 		(ray->direction.tuple.units.y < EPSILON && \
@@ -78,7 +79,8 @@ t_object *cylinder, t_world *world)
 	t_intersect	temp;
 
 	temp = set_intersect_info(((t_cylinder *)cylinder)->material, \
-	((t_cylinder *)cylinder)->appearance,((t_cylinder *)cylinder)->transform, cylindrical_map);
+	((t_cylinder *)cylinder)->appearance, ((t_cylinder *)cylinder)->transform, \
+		cylindrical_map);
 	temp.shape = cylinder;
 	y0 = ray.origin.tuple.units.y + double_min(params.res_1, params.res_2) \
 		* ray.direction.tuple.units.y;

@@ -49,7 +49,7 @@ void	identify_hit(t_world *world, t_hit *hit)
 	}
 }
 
-t_intersect set_intersect_info(t_material material, t_appearance appearance, \
+t_intersect	set_intersect_info(t_material material, t_appearance appearance, \
 	t_transform transform, t_uv_map (*f)(t_tuple *))
 {
 	return ((t_intersect){

@@ -46,8 +46,6 @@ t_tuple	normalize(t_tuple a)
 /* the dot product calculates the cosine angle between two vectors
 the smaller the dot product, the larger the angle between vectors*/
 
-
-
 t_fl	dot_product(t_tuple a, t_tuple b)
 {
 	return ((a.tuple.units.x * b.tuple.units.x)

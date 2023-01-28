@@ -12,10 +12,8 @@ static t_tuple	hit_position(t_ray *ray, t_fl distance)
 	return (tuple_add(ray->origin, tuple_scale(ray->direction, distance)));
 }
 
-void	prepare_object(t_world *world, t_object *object, t_comp *computations, \
-	t_ray ray)
+void	prepare_object(t_world *world, t_object *object, t_ray ray)
 {
-	(void)computations;
 	world->hit.computations.time = world->hit.intersection.time;
 	world->hit.computations.point = hit_position(&ray, world->hit.computations.time);
 	world->hit.computations.vectors.eye = tuple_scale(ray.direction, -1);

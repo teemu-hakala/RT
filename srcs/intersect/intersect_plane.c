@@ -17,7 +17,7 @@ void	plane_intersection(t_ray ray, void *plane, t_world *world)
 	t_intersect	temp;
 
 	temp = set_intersect_info(((t_plane *)plane)->material, \
-	((t_plane *)plane)->appearance,((t_plane *)plane)->transform, planar_map);
+	((t_plane *)plane)->appearance, ((t_plane *)plane)->transform, planar_map);
 	temp.shape = plane;
 	ray = ray_transform(&ray, &((t_plane *)plane)->transform.inverse);
 	if (EPSILON > ray.direction.tuple.units.y \

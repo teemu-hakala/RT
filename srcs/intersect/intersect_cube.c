@@ -60,7 +60,7 @@ void	cube_intersection(t_ray ray, void *cube, t_world *world)
 	t_range		z;
 
 	temp = set_intersect_info(((t_cube *)cube)->material, \
-	((t_cube *)cube)->appearance,((t_cube *)cube)->transform, cubic_map);
+	((t_cube *)cube)->appearance, ((t_cube *)cube)->transform, cubic_map);
 	temp.shape = cube;
 	ray = ray_transform(&ray, &((t_cube *)cube)->transform.inverse);
 	x = check_axis(ray.origin.tuple.units.x, ray.direction.tuple.units.x);

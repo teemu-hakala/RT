@@ -19,12 +19,11 @@ typedef enum e_light_type
 {
 	LIGHT_NOT_FOUND = 0,
 	LIGHT_SPOT = 52,
-	LIGHT_PARALLEL = 53 //why? lets just stick to normal number
+	LIGHT_PARALLEL = 53
 }	t_light_type;
 
 typedef enum e_object_type
 {
-	//OBJECT_INDEX_OFFSET = 0,
 	OBJECT_PLANE = 0,
 	OBJECT_SPHERE = 1,
 	OBJECT_CONE = 2,
@@ -72,7 +71,7 @@ typedef struct s_texture
 	t_tuple				br[6];
 	t_tuple				bl[6];
 	t_uv_map			map;
-	t_transform			transform; //maybe
+	t_transform			transform;
 	t_ppm_image			image[6];
 }				t_texture;
 
@@ -115,9 +114,12 @@ typedef struct s_comp
 	t_phong			vectors;
 	int				inside;
 	t_tuple			reflectv;
-	t_fl			n1; //refractive index material being exited
-	t_fl			n2; //refractive index material being entered
+	t_fl			n1;
+	t_fl			n2;
 }				t_comp;
+
+/* n1 = refractive index material being exited & n2 =
+	refractive index material being entered */
 
 typedef struct s_container
 {

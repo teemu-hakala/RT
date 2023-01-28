@@ -35,7 +35,7 @@ t_world *world)
 	t_intersect	cap_intersect;
 
 	cap_intersect = set_intersect_info(((t_cone *)cone)->material, \
-	((t_cone *)cone)->appearance,((t_cone *)cone)->transform, conical_map);
+	((t_cone *)cone)->appearance, ((t_cone *)cone)->transform, conical_map);
 	cap_intersect.shape = cone;
 	if (cone->object.cone.closed == false || \
 		(ray->direction.tuple.units.y < EPSILON && \
@@ -64,7 +64,7 @@ t_object *cone, t_world *world)
 	t_intersect	temp;
 
 	temp = set_intersect_info(((t_cone *)cone)->material, \
-	((t_cone *)cone)->appearance,((t_cone *)cone)->transform, conical_map);
+	((t_cone *)cone)->appearance, ((t_cone *)cone)->transform, conical_map);
 	temp.shape = cone;
 	y0 = (ray.origin.tuple.units.y + double_min(params.res_1, params.res_2) \
 		* ray.direction.tuple.units.y);
@@ -98,7 +98,7 @@ void	cone_intersection(t_ray ray, void *cone, t_world *world)
 		if (params.a < EPSILON && params.a > -EPSILON)
 		{
 			temp = set_intersect_info(((t_cone *)cone)->material, \
-				((t_cone *)cone)->appearance,((t_cone *)cone)->transform, \
+				((t_cone *)cone)->appearance, ((t_cone *)cone)->transform, \
 					conical_map);
 			temp.time = -params.c / (2 * params.b);
 			temp.shape = cone;

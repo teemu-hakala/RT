@@ -160,8 +160,7 @@ t_fl		max_double(t_fl x, t_fl y, t_fl z);
 void		identify_hit(t_world *world, t_hit *hit);
 
 /*computations*/
-void		prepare_object(t_world *world, t_object *object, \
-			t_comp *computations, t_ray ray);
+void		prepare_object(t_world *world, t_object *object, t_ray ray);
 void		compute_refraction_index(t_world *world);
 
 /* reflections, transparency & refractions*/
