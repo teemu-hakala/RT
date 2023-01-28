@@ -66,8 +66,8 @@ t_tuple	shade_hit(t_world *world)
 	}
 	reflected = reflected_colour(world, &world->hit.computations);
 	refracted = refracted_colour(world, &world->hit.computations);
-	if (light_info.material.reflectiveness > 0 && \
-		light_info.material.transparency > 0)
+	if (world->hit.intersection.material.reflectiveness > 0 && \
+		world->hit.intersection.material.transparency > 0)
 	{
 		reflectance = schlick(&world->hit.computations);
 		return (tuple_add(colour, \
