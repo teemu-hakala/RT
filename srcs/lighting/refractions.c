@@ -32,20 +32,20 @@ typedef struct s_snell_calculations
 }				t_snell;
 
 
-t_tuple	refracted_colour(t_world *world)
+t_tuple	refracted_colour(t_world *world, t_hit *hit)
 {
 	t_fl	transparency;
 	t_snell	calc;
 	t_tuple	refracted_col;
 
-	transparency = world->hit.intersection.material.transparency;
+	transparency = hit->intersection.material.transparency;
 	if (transparency < EPSILON && transparency > -EPSILON)
 		return (point(0, 0, 0));
 	if (world->refraction_lifetime-- <= 0)
 		return (point(0, 0, 0));
-	calc.n_ratio = world->hit.computations.n1 / world->hit.computations.n2;
-	calc.cos_i = dot_product(world->hit.computations.vectors.eye, \
-		world->hit.computations.vectors.surface_normal);
+	calc.n_ratio = hit->computations.n1 / hit->computations.n2;
+	calc.cos_i = dot_product(hit->computations.vectors.eye, \
+		hit->computations.vectors.surface_normal);
 	calc.sin2_t = (calc.n_ratio * calc.n_ratio) * \
 		(1 - (calc.cos_i * calc.cos_i));
 	if (calc.sin2_t > 1)
@@ -54,33 +54,34 @@ t_tuple	refracted_colour(t_world *world)
 		return (point(0, 0, 0));
 	}
 	calc.cos_t = sqrt(1 - calc.sin2_t);
-	world->refracted_ray.direction = \
-		tuple_sub(tuple_scale(world->hit.computations.vectors.surface_normal, \
+	world->refracted_ray.direction = normalize(tuple_sub \
+		(tuple_scale(hit->computations.vectors.surface_normal, \
 		(calc.n_ratio * calc.cos_i - calc.cos_t)), \
-		tuple_scale(world->hit.computations.vectors.eye, calc.n_ratio));
-	world->refracted_ray.origin = world->hit.computations.under_point;
+		tuple_scale(hit->computations.vectors.eye, calc.n_ratio)));
+	world->refracted_ray.origin = hit->computations.under_point;
 	refracted_col = colour_at(world, world->refracted_ray);
+	//refracted_col = tuple_multi(refracted_col, hit->intersection.material.init_colour);
 	return (tuple_scale(refracted_col, transparency));
 }
 
-t_fl	schlick(t_world *world)
+t_fl	schlick(t_hit *hit)
 {
 	t_snell	t;
 	t_fl	reflectance;
 
-	t.cos_i = dot_product(world->hit.computations.vectors.eye, \
-		world->hit.computations.vectors.surface_normal);
-	if (world->hit.computations.n1 > world->hit.computations.n2)
+	t.cos_i = dot_product(hit->computations.vectors.eye, \
+		hit->computations.vectors.surface_normal);
+	if (hit->computations.n1 > hit->computations.n2)
 	{
-		t.n_ratio = world->hit.computations.n1 / world->hit.computations.n2;
+		t.n_ratio = hit->computations.n1 / hit->computations.n2;
 		t.sin2_t = (t.n_ratio * t.n_ratio) * (1 - (t.cos_i * t.cos_i));
-		if (t.sin2_t > 1)
+		if (t.sin2_t >= 1)
 			return (1.0);
 		t.cos_t = sqrt(1 - t.sin2_t);
 		t.cos_i = t.cos_t;
 	}
-	reflectance = pow(((world->hit.computations.n1 - \
-		world->hit.computations.n2) / \
-			(world->hit.computations.n1 + world->hit.computations.n2)), 2);
+	reflectance = pow(((hit->computations.n1 - \
+		hit->computations.n2) / \
+			(hit->computations.n1 + hit->computations.n2)), 2);
 	return (reflectance + (1 - reflectance) * pow((1 - t.cos_i), 5));
 }

@@ -30,8 +30,8 @@
 # include <stdio.h>
 
 # define USAGE "./RT ./scenes/[.json file]"
-# define WIDTH 800
-# define HEIGHT 400
+# define WIDTH 1000
+# define HEIGHT 1000
 # define WALL_WIDTH 7
 # define WALL_HEIGHT 7
 # define KEY_DOWN 2
@@ -138,13 +138,12 @@ int			handle_input(int key, t_win *win);
 t_tuple		hex_to_tuple_colour(uint32_t colour);
 uint32_t	clamped_rgb_to_hex(t_colour *colour);
 uint32_t	clamped_rgba_to_hex(t_colour *colour);
-t_tuple		lighting(t_world *world, t_light *light, t_phong vectors,
-				t_tuple point);
-void		is_shadow(t_world *world, t_tuple point, t_light *light);
+t_tuple		lighting(t_light *light, t_phong vectors, t_hit *hit);
+void		is_shadow(t_world *world, t_hit *hit, t_light *light);
 t_tuple		reflect(t_tuple input, t_tuple normal);
 
 /* shading */
-t_tuple		shade_hit(t_world *world);
+t_tuple		shade_hit(t_world *world, t_hit *hit);
 
 /* object intersection */
 void		intersect_world(t_world *world, t_ray ray);
@@ -160,14 +159,14 @@ t_fl		max_double(t_fl x, t_fl y, t_fl z);
 void		identify_hit(t_world *world, t_hit *hit);
 
 /*computations*/
-void		prepare_object(t_world *world, t_object *object, t_ray ray);
-void		compute_refraction_index(t_world *world);
+void		prepare_object(t_world *world, t_hit *hit, t_ray ray);
+void		compute_refraction_index(t_world *world, t_hit *hit);
 
 /* reflections, transparency & refractions*/
 t_ray		ray(t_tuple origin, t_tuple reflectv);
-t_tuple		reflected_colour(t_world *world);
-t_tuple		refracted_colour(t_world *world);
-t_fl		schlick(t_world *world);
+t_tuple		reflected_colour(t_world *world, t_hit *hit);
+t_tuple		refracted_colour(t_world *world, t_hit *hit);
+t_fl		schlick(t_hit *hit);
 
 /* object transformation */
 void		transform_object(t_transform *object);
@@ -209,7 +208,7 @@ t_texture	default_checkered_texture(void);
 t_texture	default_align_check(void);
 t_texture	default_external(void);
 
-t_tuple		get_appearance_colour(t_world *world, t_tuple *p);
+t_tuple		get_appearance_colour(t_hit *hit, t_tuple *p);
 /* patterns*/
 t_tuple		pattern_at(t_pattern *pattern, t_tuple *point);
 void		none_at(t_pattern *pattern, t_tuple *point, t_tuple *colour);

@@ -2,27 +2,25 @@
 
 /* reflectance represents the fraction of light reflected*/
 
-t_tuple	reflection_and_refraction(t_world *world)
+t_tuple	reflection_and_refraction(t_world *world, t_hit *hit)
 {
 	t_tuple		reflected;
 	t_tuple		refracted;
 	t_fl		reflectance;
 
-	reflected = reflected_colour(world);
-	refracted = refracted_colour(world);
-	if (world->hit.intersection.material.reflectiveness > 0 && \
-		world->hit.intersection.material.transparency > 0)
+	reflected = reflected_colour(world, hit);
+	refracted = refracted_colour(world, hit);
+	if (hit->intersection.material.reflectiveness > 0 && \
+		hit->intersection.material.transparency > 0)
 	{
-		reflectance = schlick(world);
-		if (reflectance > 1 || reflectance < 0)
-			printf("reflectance = %f\n", reflectance);
+		reflectance = schlick(hit);
 		return (tuple_add(tuple_scale(reflected, reflectance), \
 			tuple_scale(refracted, (1 - reflectance))));
 	}
 	return (tuple_add(refracted, reflected));
 }
 
-t_tuple	shade_hit(t_world *world)
+t_tuple	shade_hit(t_world *world, t_hit *hit)
 {
 	t_tuple		colour;
 	t_light		*light;
@@ -33,18 +31,16 @@ t_tuple	shade_hit(t_world *world)
 	while (i < world->lights.len)
 	{
 		light = (t_light *)vec_get(&world->lights, i);
-		is_shadow(world, world->hit.computations.over_point, light);
-		if (world->hit.intersection.appearance.pattern.type > 0 || \
-		world->hit.intersection.appearance.texture.type > 0)
+		is_shadow(world, hit, light);
+		if (hit->intersection.appearance.pattern.type > 0 || \
+		hit->intersection.appearance.texture.type > 0)
 		{
-			world->hit.intersection.material.init_colour = \
-				get_appearance_colour(world, \
-					&world->hit.computations.over_point);
+			hit->intersection.material.init_colour = \
+				get_appearance_colour(hit, &hit->computations.over_point);
 		}
 		colour = tuple_add(colour, \
-			lighting(world, light, world->hit.computations.vectors, \
-				world->hit.computations.over_point));
+			lighting(light, hit->computations.vectors, hit));
 		i++;
 	}
-	return (tuple_add(colour, reflection_and_refraction(world)));
+	return (tuple_add(colour, reflection_and_refraction(world, hit)));
 }

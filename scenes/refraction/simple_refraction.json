@@ -3,7 +3,12 @@
 	{
 		"field_of_view" : 1.152,
 		"origin" : [0.0, 1, -5],
-		"center_of_interest" : [0, 0, 0]
+		"center_of_interest" : [0, 0, 0],
+		"canvas" :
+		{
+			"horizontal" : 500,
+			"vertical" : 500
+		}
 	},
 	"lights" :
 	[
@@ -69,14 +74,14 @@
 			{
 				"material" :
 				{
-					"init_colour" : [1, 0, 0],
+					"init_colour" : [0.3, 0, 0],
 					"ambient" : 0.1,
 					"diffuse" : 0.1,
 					"specular" : 1.0,
 					"shininess" : 300,
 					"reflectiveness" : 1,
 					"transparency" : 1,
-					"refractive_index" : 1.52
+					"refractive_index" : 1.0
 				}
 			}
 		}
