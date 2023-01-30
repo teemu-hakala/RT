@@ -30,7 +30,7 @@
 # include <stdio.h>
 
 # define USAGE "./RT ./scenes/[.json file]"
-# define WIDTH 600
+# define WIDTH 800
 # define HEIGHT 400
 # define WALL_WIDTH 7
 # define WALL_HEIGHT 7

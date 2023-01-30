@@ -50,7 +50,7 @@ t_tuple	refracted_colour(t_world *world)
 		(1 - (calc.cos_i * calc.cos_i));
 	if (calc.sin2_t > 1)
 	{
-		printf("sin2t = %0.2f\n", calc.sin2_t);
+		//printf("sin2t = %0.2f\n", calc.sin2_t);
 		return (point(0, 0, 0));
 	}
 	calc.cos_t = sqrt(1 - calc.sin2_t);

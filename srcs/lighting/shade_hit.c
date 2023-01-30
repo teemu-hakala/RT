@@ -1,5 +1,7 @@
 #include "RT.h"
 
+/* reflectance represents the fraction of light reflected*/
+
 t_tuple	reflection_and_refraction(t_world *world)
 {
 	t_tuple		reflected;
@@ -12,6 +14,8 @@ t_tuple	reflection_and_refraction(t_world *world)
 		world->hit.intersection.material.transparency > 0)
 	{
 		reflectance = schlick(world);
+		if (reflectance > 1 || reflectance < 0)
+			printf("reflectance = %f\n", reflectance);
 		return (tuple_add(tuple_scale(reflected, reflectance), \
 			tuple_scale(refracted, (1 - reflectance))));
 	}
