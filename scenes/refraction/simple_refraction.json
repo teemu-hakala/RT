@@ -27,20 +27,21 @@
 			{
 				"transform" :
 				{
-					"translation" : [0, -1, 0]
+					"translation" : [0, -1, 0],
+					"rotation" : [0, 0, 0]
 				},
 				"material" :
 				{
 					"specular" : 0,
-					"reflectiveness" : 0
+					"reflectiveness" : 0.1
 				},
 				"appearance" :
 				{
 					"pattern" :
 					{
-						"type" : "vertical_stripes",
+						"type" : "simple_checkered",
 						"colour_a" : [ 0.1, 0.1, 0.1 ],
-						"colour_b" : [ 0.4, 0, 0.9 ]
+						"colour_b" : [ 0.9, 0.9, 0.9 ]
 					}
 				}
 			}
@@ -56,7 +57,7 @@
 				"material" :
 				{
 					"specular" : 0,
-					"reflectiveness" : 0
+					"reflectiveness" : 0.1
 				},
 				"appearance" :
 				{
@@ -74,30 +75,13 @@
 			{
 				"material" :
 				{
-					"init_colour" : [0.1, 0.1, 1],
+					"init_colour" : [0.4, 0, 0],
 					"ambient" : 0.1,
 					"diffuse" : 0.1,
-					"specular" : 0,
+					"specular" : 1,
 					"shininess" : 300,
 					"transparency" : 1,
-					"refractive_index" : 1.1
-				}
-			}
-		},
-		{
-			"sphere" :
-			{
-				"material" :
-				{
-					"init_colour" : [0,1, 0],
-					"ambient" : 0.1,
-					"diffuse" : 0.1,
-					"specular" : 0,
-					"shininess" : 300
-				},
-				"transform" :
-				{
-					"translation" : [-1, 0, 3]
+					"refractive_index" : 1
 				}
 			}
 		}
