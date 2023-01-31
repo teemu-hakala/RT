@@ -39,8 +39,8 @@ void	refresh_image(t_win *win)
 		pthread_detach(win->bar_thread);
 		pthread_cancel(win->bar_thread);
 	}
-	pthread_mutex_unlock(&win->drawn_mutex);
 	win->drawn = false;
+	pthread_mutex_unlock(&win->drawn_mutex);
 	progress_bar_image(win, \
 		&(t_canvas){.horizontal = WIDTH - 20, .vertical = 20}, BAR_CLEAR);
 	pthread_create(&win->bar_thread, NULL, progress_percentage, win);

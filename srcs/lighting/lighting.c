@@ -7,7 +7,7 @@ void	lighting_cont(t_world *world, t_light *light, t_phong *vectors,
 	t_fl		factor;
 	t_material	material;
 	(void)world;
-	
+
 	material = hit->intersection.material;
 	channels->diff = tuple_scale(
 			tuple_scale(material.col_mash, material.diffuse), incidence_l);
@@ -37,7 +37,7 @@ t_tuple	lighting(t_world *world, t_light *light, t_phong vectors,
 		vectors.light = normalize(tuple_sub(light->position, point));
 	else
 		vectors.light = normalize(light->direction);
-		channels.amb = tuple_scale(hit->intersection.material.col_mash, \
+	channels.amb = tuple_scale(hit->intersection.material.col_mash, \
 		hit->intersection.material.ambient);
 	incidence_l = dot_product(vectors.light, vectors.surface_normal);
 	if (incidence_l < 0.0)

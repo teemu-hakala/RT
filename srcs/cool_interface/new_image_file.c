@@ -14,7 +14,7 @@
 
 int	get_new_file_for_image(void)
 {
-	static const char	*template =
+	static const char	*template = 
 		"screenshots/screenshot_"
 		"XXXXXXXXXXXXX"
 		PPM_SUFFIX;

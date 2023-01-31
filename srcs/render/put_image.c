@@ -62,7 +62,7 @@ void	*progress_percentage(void *param)
 	win = (t_win *)param;
 	pixel_progress = 0;
 	previous_percentage = 0;
-	while (pixel_progress < WIDTH * HEIGHT)
+	while (pixel_progress < WIDTH * HEIGHT) // camera->canvas...
 	{
 		progress_percentage_loop(&pixel_progress, win);
 		percentage = ((t_fl)pixel_progress) / (WIDTH * HEIGHT);
@@ -72,6 +72,7 @@ void	*progress_percentage(void *param)
 		previous_percentage = percentage;
 	}
 	pthread_mutex_lock(&win->drawn_mutex);
+	pthread_testcancel();
 	win->drawn = true;
 	pthread_mutex_unlock(&win->drawn_mutex);
 	return (NULL);

@@ -55,8 +55,8 @@ void	initialise_window(t_win *win)
 	win->drawn = false;
 	pthread_mutex_init(&win->drawn_mutex, NULL);
 	win->input.mouse.rmb_is_down = false;
-	win->pixels = (WIDTH * HEIGHT) / THREAD_COUNT;
-	win->remaining_pixels = (WIDTH * HEIGHT - THREAD_COUNT * win->pixels);
+	win->pixels = (WIDTH * HEIGHT) / THREAD_COUNT; //read the camera canvas size
+	win->remaining_pixels = (WIDTH * HEIGHT - THREAD_COUNT * win->pixels); //read the camera canvas size
 	win->rotation_step = M_PI / 448;
 	win->input.mouse.mode = MODE_NONE;
 	win->keys_image = (t_img){};
