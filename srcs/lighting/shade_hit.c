@@ -1,30 +1,12 @@
 #include "RT.h"
 
-/* reflectance represents the fraction of light reflected*/
-
-t_tuple	reflection_and_refraction(t_world *world, t_hit *hit)
-{
-	t_tuple		reflected;
-	t_tuple		refracted;
-	t_fl		reflectance;
-
-	reflected = reflected_colour(world, hit);
-	refracted = refracted_colour(world, hit);
-	if (hit->intersection.material.reflectiveness > 0 && \
-		hit->intersection.material.transparency > 0)
-	{
-		reflectance = schlick(hit);
-		return (tuple_add(tuple_scale(reflected, reflectance), \
-			tuple_scale(refracted, (1 - reflectance))));
-	}
-	return (tuple_add(refracted, reflected));
-}
 
 t_tuple	shade_hit(t_world *world, t_hit *hit)
 {
 	t_tuple		colour;
 	t_light		*light;
 	uint64_t	i;
+	t_tuple		reflection;
 
 	colour = point(0, 0, 0);
 	i = 0;
@@ -42,5 +24,6 @@ t_tuple	shade_hit(t_world *world, t_hit *hit)
 			lighting(light, hit->computations.vectors, hit));
 		i++;
 	}
-	return (tuple_add(colour, reflection_and_refraction(world, hit)));
+	reflection = reflected_colour(world, hit);
+	return (tuple_add(colour, reflection));
 }

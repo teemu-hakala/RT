@@ -14,6 +14,7 @@ static t_tuple	hit_position(t_ray *ray, t_fl distance)
 
 void	prepare_object(t_world *world, t_hit *hit, t_ray ray)
 {
+	(void)world; //need this for refractions later
 	hit->computations.time = hit->intersection.time;
 	hit->computations.point = \
 		hit_position(&ray, hit->computations.time);
@@ -37,5 +38,4 @@ void	prepare_object(t_world *world, t_hit *hit, t_ray ray)
 	hit->computations.under_point = \
 		tuple_sub(hit->computations.point, \
 		tuple_scale(hit->computations.vectors.surface_normal, EPSILON));
-	compute_refraction_index(world, hit);
 }
