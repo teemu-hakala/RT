@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
+#    By: thakala <thakala@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2023/01/27 14:07:41 by deelliot         ###   ########.fr        #
+#    Updated: 2023/01/31 16:24:28 by thakala          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,8 @@ INTERSECT_SRCS = intersect_plane.c intersect_sphere.c intersect_cone.c \
 LIGHTING_SRCS = lighting.c reflections.c shade_hit.c refractions.c
 
 MATHS_SRCS = matrix_inversion.c matrix_maths.c matrix_transformations.c \
-	tuple_operations.c matrix_rotations.c tuple_w.c tuple_basic_operations.c
+	tuple_operations.c matrix_rotations.c tuple_w.c tuple_basic_operations.c \
+	tuple_angles.c
 
 NORMAL_SRCS = normal_at_cone.c normal_at_cube.c normal_at_cylinder.c \
 	normal_at_plane.c normal_at_sphere.c normal_dispatch.c

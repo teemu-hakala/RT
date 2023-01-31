@@ -109,6 +109,7 @@ t_mtx		transpose_matrix(t_mtx *mtx);
 t_mtx		identity_matrix(void);
 t_fl		determinant(t_mtx *mtx, uint32_t size);
 void		matrix_inversion(t_mtx *mtx, uint32_t size);
+t_fl		calc_y_rot(t_tuple a, t_tuple b);
 
 /* matrix transformations */
 void		rotate(t_mtx *mtx, t_tuple *rotations);
