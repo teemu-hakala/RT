@@ -35,7 +35,7 @@ t_world *world)
 	t_intersect	cap_intersect;
 
 	cap_intersect = set_intersect_info(((t_cone *)cone)->material, \
-	((t_cone *)cone)->appearance, ((t_cone *)cone)->transform, conical_map);
+	((t_cone *)cone)->appearance, ((t_cone *)cone)->transform, planar_map);
 	cap_intersect.shape = cone;
 	if (cone->object.cone.closed == false || \
 		(ray->direction.tuple.units.y < EPSILON && \

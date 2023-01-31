@@ -38,7 +38,7 @@ t_world *world)
 
 	cap_intersect = set_intersect_info(((t_cylinder *)cylinder)->material, \
 	((t_cylinder *)cylinder)->appearance, ((t_cylinder *)cylinder)->transform, \
-		cylindrical_map);
+		planar_map);
 	cap_intersect.shape = cylinder;
 	if (cylinder->object.cylinder.closed == false || \
 		(ray->direction.tuple.units.y < EPSILON && \
