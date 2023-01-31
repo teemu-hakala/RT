@@ -15,7 +15,8 @@ void	initialise_image(t_img *img, t_win *win)
 {
 	t_canvas	dimensions;
 
-	dimensions = (t_canvas){.horizontal = WIDTH, .vertical = HEIGHT};
+	dimensions = (t_canvas){.horizontal = win->world.camera.canvas.horizontal, \
+		.vertical = win->world.camera.canvas.vertical};
 	img->dimensions = (t_rectangle){.canvas = dimensions, \
 		.start = {0, 0}, .end = dimensions};
 	img->img = mlx_new_image(win->mlx, dimensions.horizontal, \
@@ -43,11 +44,13 @@ void	initialise_world(t_world *world)
 
 void	initialise_window(t_win *win)
 {
+	t_canvas	c;
+
+	c = win->world.camera.canvas;
 	win->mlx = mlx_init();
 	if (!win->mlx)
 		handle_errors("error");
-	win->win = mlx_new_window(win->mlx, win->world.camera.canvas.horizontal, \
-		win->world.camera.canvas.vertical, "RT");
+	win->win = mlx_new_window(win->mlx, c.horizontal, c.vertical, "RT");
 	if (!win->win)
 		handle_errors("error");
 	initialise_image(&win->img, win);
@@ -55,8 +58,9 @@ void	initialise_window(t_win *win)
 	win->drawn = false;
 	pthread_mutex_init(&win->drawn_mutex, NULL);
 	win->input.mouse.rmb_is_down = false;
-	win->pixels = (WIDTH * HEIGHT) / THREAD_COUNT;
-	win->remaining_pixels = (WIDTH * HEIGHT - THREAD_COUNT * win->pixels);
+	win->pixels = (c.horizontal * c.vertical) / THREAD_COUNT;
+	win->remaining_pixels = (c.horizontal * c.vertical - THREAD_COUNT \
+		* win->pixels);
 	win->rotation_step = M_PI / 448;
 	win->input.mouse.mode = MODE_NONE;
 	win->keys_image = (t_img){};

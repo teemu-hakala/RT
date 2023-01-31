@@ -58,16 +58,18 @@ void	*progress_percentage(void *param)
 	uint64_t				pixel_progress;
 	t_fl					percentage;
 	t_fl					previous_percentage;
+	t_canvas				c;
 
 	win = (t_win *)param;
+	c = win->world.camera.canvas;
 	pixel_progress = 0;
 	previous_percentage = 0;
-	while (pixel_progress < WIDTH * HEIGHT)
+	while (pixel_progress < c.horizontal * c.vertical)
 	{
 		progress_percentage_loop(&pixel_progress, win);
-		percentage = ((t_fl)pixel_progress) / (WIDTH * HEIGHT);
+		percentage = ((t_fl)pixel_progress) / (c.horizontal * c.vertical);
 		progress_bar(progress_bar_image(win, \
-			&(t_canvas){.horizontal = WIDTH - 20, .vertical = 20}, \
+			&(t_canvas){.horizontal = c.horizontal - 20, .vertical = 20}, \
 			BAR_NON_ACTION), percentage, previous_percentage);
 		previous_percentage = percentage;
 	}
@@ -97,7 +99,8 @@ int	put_image(t_win *win)
 	put_keys_image(win);
 	if (win->drawn == false)
 		mlx_put_image_to_window(win->mlx, win->win, \
-			progress_bar_image(win, NULL, BAR_NON_ACTION).img, 10, HEIGHT - 30);
+			progress_bar_image(win, NULL, BAR_NON_ACTION).img, 10, \
+				win->world.camera.canvas.vertical - 30);
 	if (win->drawn == true)
 		mlx_loop_hook(win->mlx, NULL, NULL);
 	return (0);
