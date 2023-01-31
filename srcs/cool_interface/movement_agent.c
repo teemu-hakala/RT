@@ -21,7 +21,7 @@ void	camera_upwards(t_win *win, t_fl magnitude)
 	// win->world.camera.origin.tuple.units.y += magnitude;
 	win->world.camera.center_of_interest.array[Y] += magnitude;
 	// transform_camera(&win->world.camera);
-	transform_camera_for_rotations(&win->world.camera);
+	transform_camera(&win->world.camera);
 }
 
 void	camera_forwards(t_win *win, t_fl magnitude)
@@ -43,13 +43,21 @@ void	camera_forwards(t_win *win, t_fl magnitude)
 
 void	camera_sideways(t_win *win, t_fl magnitude)
 {
+	t_tuple		difference;
+	t_tuple		left;
+
 	(void)magnitude;
 	win->input.mouse.mode = CAMERA_LEFT;
-	win->world.camera.transform.translation.tuple.units.x += magnitude;
-	// win->world.camera.origin.tuple.units.x += magnitude;
-	win->world.camera.center_of_interest.array[X] += magnitude;
-	// transform_camera(&win->world.camera);
-	transform_camera_for_rotations(&win->world.camera);
+	difference = tuple_sub(win->world.camera.center_of_interest, \
+		win->world.camera.origin);
+	left = cross_product(difference, vector(0, 1, 0));
+	if (tuple_nearly_equals(left, vector(0, 0, 0)))
+		left = cross_product(difference, vector(0, 0, 1));
+	left = tuple_scale(normalize(left), magnitude);
+	win->world.camera.origin = tuple_add(win->world.camera.origin, left);
+	win->world.camera.center_of_interest = \
+		tuple_add(win->world.camera.center_of_interest, left);
+	transform_camera(&win->world.camera);
 }
 
 void	movement_agent(t_win *win, int key)
