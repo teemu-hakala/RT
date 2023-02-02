@@ -27,8 +27,7 @@
 			{
 				"transform" :
 				{
-					"translation" : [0, -1, 0],
-					"rotation" : [0, 0, 0]
+					"translation" : [0, -1, 0]
 				},
 				"material" :
 				{
@@ -78,8 +77,9 @@
 					"init_colour" : [0.3, 0, 0],
 					"ambient" : 0.1,
 					"diffuse" : 0.1,
-					"specular" : 1,
+					"specular" : 1.0,
 					"shininess" : 300,
+					"reflectiveness" : 1,
 					"transparency" : 1,
 					"refractive_index" : 1.5
 				}
