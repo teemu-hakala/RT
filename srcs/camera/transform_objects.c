@@ -41,6 +41,7 @@ void	transform_camera(t_camera *camera)
 	// print_tuple(camera->transform.rotation, "rotation");
 	// //camera->transform.rotation = point(0, 0, 0);
 	// scale(&camera->transform.matrix, &camera->transform.scale);
+	// print_tuple(camera->transform.rotation, "rotation");
 	camera->origin = matrix_tuple_multi(&camera->transform.matrix, \
 		&camera->origin);
 	view_matrix = view_transform(camera->origin, camera->center_of_interest, \

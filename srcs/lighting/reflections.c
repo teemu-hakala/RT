@@ -45,14 +45,15 @@ static void	direction_and_distance(t_light *light, t_tuple *direction,
 	*direction = normalize(temp);
 }
 
-void	is_shadow(t_world *world, t_tuple point, t_light *light, t_hit *hit)
+void	is_shadow(t_world *world, t_hit *hit, t_light *light)
 {
 	t_tuple	direction;
 	t_fl	distance;
 	t_ray	ray;
 
-	direction_and_distance(light, &direction, point, &distance);
-	ray = (t_ray){point, direction};
+	direction_and_distance(light, &direction, \
+		hit->computations.over_point, &distance);
+	ray = (t_ray){hit->computations.over_point, direction};
 	vec_clear(&world->intersections);
 	intersect_world(world, ray);
 	identify_hit(world, &world->shadow_hit);
@@ -77,14 +78,8 @@ t_tuple	reflected_colour(t_world *world, t_hit *hit)
 		return (reflected_colour);
 	if (reflective < EPSILON)
 		return (reflected_colour);
-	if (dot_product(hit->computations.vectors.surface_normal, \
-		world->ray.direction) < 0)
-		world->reflected_ray = \
+	world->reflected_ray = \
 		ray(hit->computations.over_point, hit->computations.reflectv);
-	else
-		world->reflected_ray = \
-		ray(hit->computations.under_point, hit->computations.reflectv);
 	reflected_colour = colour_at(world, world->reflected_ray);
-	return (tuple_scale(reflected_colour,reflective));
+	return (tuple_scale(reflected_colour, reflective));
 }
-

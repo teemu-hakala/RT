@@ -109,6 +109,7 @@ t_mtx		transpose_matrix(t_mtx *mtx);
 t_mtx		identity_matrix(void);
 t_fl		determinant(t_mtx *mtx, uint32_t size);
 void		matrix_inversion(t_mtx *mtx, uint32_t size);
+t_fl		calc_y_rot(t_tuple a, t_tuple b);
 
 /* matrix transformations */
 void		rotate(t_mtx *mtx, t_tuple *rotations);
@@ -138,9 +139,8 @@ int			handle_input(int key, t_win *win);
 t_tuple		hex_to_tuple_colour(uint32_t colour);
 uint32_t	clamped_rgb_to_hex(t_colour *colour);
 uint32_t	clamped_rgba_to_hex(t_colour *colour);
-t_tuple		lighting(t_world *world, t_light *light, t_phong vectors,
-				t_tuple point, t_hit *hit);
-void		is_shadow(t_world *world, t_tuple point, t_light *light, t_hit *hit);
+t_tuple		lighting(t_light *light, t_phong vectors, t_hit *hit);
+void		is_shadow(t_world *world, t_hit *hit, t_light *light);
 t_tuple		reflect(t_tuple input, t_tuple normal);
 
 /* shading */
@@ -160,13 +160,13 @@ t_fl		max_double(t_fl x, t_fl y, t_fl z);
 void		identify_hit(t_world *world, t_hit *hit);
 
 /*computations*/
-void		prepare_object(t_world *world, t_object *object, t_ray ray, t_hit *hit);
+void		prepare_object(t_world *world, t_hit *hit, t_ray ray);
 void		compute_refraction_index(t_world *world, t_hit *hit);
 
 /* reflections, transparency & refractions*/
 t_ray		ray(t_tuple origin, t_tuple reflectv);
 t_tuple		reflected_colour(t_world *world, t_hit *hit);
-t_tuple		refracted_colour(t_world *world,  t_hit *hit);
+t_tuple		refracted_colour(t_world *world, t_hit *hit);
 t_fl		schlick(t_hit *hit);
 
 /* object transformation */
@@ -209,7 +209,7 @@ t_texture	default_checkered_texture(void);
 t_texture	default_align_check(void);
 t_texture	default_external(void);
 
-t_tuple		get_appearance_colour(t_world *world, t_tuple *p, t_hit *hit);
+t_tuple		get_appearance_colour(t_hit *hit, t_tuple *p);
 /* patterns*/
 t_tuple		pattern_at(t_pattern *pattern, t_tuple *point);
 void		none_at(t_pattern *pattern, t_tuple *point, t_tuple *colour);

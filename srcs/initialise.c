@@ -36,7 +36,7 @@ void	initialise_world(t_world *world)
 		|| vec_new(&world->intersections, 256, sizeof(t_intersect))
 		!= VEC_SUCCESS)
 		handle_errors("initialise_world malloc returned NULL");
-	world->hit.hit_check = false;
+	//world->hit.hit_check = false;
 	world->lifetime = 5;
 	world->refraction_lifetime = 5;
 }

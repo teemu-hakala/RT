@@ -89,6 +89,8 @@ static void	parse_camera_subobjects(t_world *world, t_parser *parser)
 
 void	parse_camera(t_world *world, t_parser *parser)
 {
+	t_tuple		camera_direction;
+
 	find_colon(parser);
 	find_open_bracket(parser);
 	if (find_matching_bracket(parser) == true)
@@ -101,5 +103,9 @@ void	parse_camera(t_world *world, t_parser *parser)
 	}
 	if (!find_matching_bracket(parser))
 		handle_errors("camera syntax error");
+	camera_direction = normalize(tuple_sub(world->camera.center_of_interest, \
+		world->camera.origin));
+	world->camera.transform.rotation.array[Y] = \
+		-calc_y_rot(camera_direction, vector(0, 0, 1));
 	transform_camera(&world->camera);
 }

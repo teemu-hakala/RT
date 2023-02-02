@@ -1,12 +1,11 @@
 #include "RT.h"
 
-void	lighting_cont(t_world *world, t_light *light, t_phong *vectors,
-	t_fl incidence_l, t_const *channels, t_hit *hit)
+void	lighting_cont(t_hit *hit, t_light *light, t_phong *vectors,
+	t_fl incidence_l, t_const *channels)
 {
 	t_fl		reflect_l;
 	t_fl		factor;
 	t_material	material;
-	(void)world;
 
 	material = hit->intersection.material;
 	channels->diff = tuple_scale(
@@ -24,8 +23,7 @@ void	lighting_cont(t_world *world, t_light *light, t_phong *vectors,
 	}
 }
 
-t_tuple	lighting(t_world *world, t_light *light, t_phong vectors,
-	t_tuple point, t_hit *hit)
+t_tuple	lighting(t_light *light, t_phong vectors, t_hit *hit)
 {
 	t_fl		incidence_l;
 	t_const		channels;
@@ -34,10 +32,11 @@ t_tuple	lighting(t_world *world, t_light *light, t_phong vectors,
 		tuple_multi(hit->intersection.material.init_colour, \
 		light->intensity);
 	if (light->type == LIGHT_SPOT)
-		vectors.light = normalize(tuple_sub(light->position, point));
+		vectors.light = normalize(tuple_sub(light->position, \
+			hit->computations.over_point));
 	else
 		vectors.light = normalize(light->direction);
-	channels.amb = tuple_scale(hit->intersection.material.col_mash, \
+		channels.amb = tuple_scale(hit->intersection.material.col_mash, \
 		hit->intersection.material.ambient);
 	incidence_l = dot_product(vectors.light, vectors.surface_normal);
 	if (incidence_l < 0.0)
@@ -46,10 +45,9 @@ t_tuple	lighting(t_world *world, t_light *light, t_phong vectors,
 		channels.spec = vector(0, 0, 0);
 	}
 	else
-		lighting_cont(world, light, &vectors, incidence_l, &channels, hit);
+		lighting_cont(hit, light, &vectors, incidence_l, &channels);
 	if (vectors.in_shadow == true)
 		return (channels.amb);
 	return (tuple_add(
-			tuple_add(channels.amb, channels.diff),
-			channels.spec));
+			tuple_add(channels.amb, channels.diff), channels.spec));
 }

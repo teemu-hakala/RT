@@ -27,7 +27,6 @@ void	compute_refraction_index(t_world *world, t_hit *hit)
 	t_intersect	*current;
 
 	i = 0;
-
 	vec_new(&container, 1, sizeof(t_intersect));
 	while (i < world->intersections.len)
 	{

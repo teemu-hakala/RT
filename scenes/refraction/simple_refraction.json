@@ -75,13 +75,13 @@
 			{
 				"material" :
 				{
-					"init_colour" : [0.4, 0, 0],
+					"init_colour" : [0.3, 0, 0],
 					"ambient" : 0.1,
 					"diffuse" : 0.1,
 					"specular" : 1,
 					"shininess" : 300,
 					"transparency" : 1,
-					"refractive_index" : 1
+					"refractive_index" : 1.5
 				}
 			}
 		}
