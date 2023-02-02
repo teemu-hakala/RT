@@ -74,6 +74,7 @@ void	*progress_percentage(void *param)
 		previous_percentage = percentage;
 	}
 	pthread_mutex_lock(&win->drawn_mutex);
+	pthread_testcancel();
 	win->drawn = true;
 	pthread_mutex_unlock(&win->drawn_mutex);
 	return (NULL);

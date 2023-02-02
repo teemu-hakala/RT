@@ -1,6 +1,12 @@
 {
 	"camera" :
 	{
+<<<<<<< HEAD
+
+		"origin" : [0, 0, -5],
+		"center_of_interest" : [ 0, 0, 0 ],
+		"field_of_view" : 0.45
+=======
 
 		"origin" : [0, 0, -5],
 		"center_of_interest" : [ 0, 0, 0 ],
@@ -10,6 +16,7 @@
 			"horizontal" : 500,
 			"vertical" : 500
 		}
+>>>>>>> refraction_stepback
 	},
 	"lights" :
 	[

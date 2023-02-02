@@ -32,7 +32,7 @@ int	find_matching_bracket(t_parser *parser)
 
 	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
 	open_bracket = ((char *)parser->brackets.memory)[parser->brackets.len - 1];
-	close_bracket = open_bracket + (open_bracket & 0x1U) + 1;
+	close_bracket = open_bracket + (open_bracket & 0x1U) + 1; //next_odd_number()
 	if (parser->string[parser->c] != close_bracket)
 		return (false);
 	parser->brackets.len--;

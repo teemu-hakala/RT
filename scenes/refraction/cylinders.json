@@ -29,14 +29,16 @@
 				{
 					"ambient" : 0.2,
 					"diffuse" : 0.9,
-					"specular" : 0
+					"specular" : 0,
+					"transparency" : 0.5,
+					"refractive_index" : 0.1
 				},
 				"appearance" :
 				{
 					"pattern" :
 					{
 						"type" : "simple_checkered",
-						"colour_a" : [0.5, 0.5, 0.5],
+						"colour_a" : [0.2, 0.1, 0.6],
 						"colour_b" : [0.75, 0.75, 0.75],
 						"transform" :
 						{
@@ -257,9 +259,23 @@
 					"diffuse" : 0.1,
 					"specular" : 0.9,
 					"shininess" : 300,
-					"reflectiveness" : 0.9,
-					"transparency" : 0.9,
+					"reflectiveness" : 0.6,
+					"transparency" : 1,
 					"refractive_index" : 1.5
+				}
+			}
+		},
+		{
+			"sphere" :
+			{
+				"transform" :
+				{
+					"translation" : [0, 0.1, -1.4],
+					"scale" : [0.2, 0.2, 0.2]
+				},
+				"material" :
+				{
+					"init_colour" : [1, 0.1, 0.1]
 				}
 			}
 		}

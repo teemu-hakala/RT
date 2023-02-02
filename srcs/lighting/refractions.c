@@ -63,7 +63,7 @@ t_fl	schlick(t_hit *hit)
 {
 	t_snell	t;
 	t_fl	reflectance;
-
+	
 	t.cos_i = dot_product(hit->computations.vectors.eye, \
 		hit->computations.vectors.surface_normal);
 	if (hit->computations.n1 > hit->computations.n2)
