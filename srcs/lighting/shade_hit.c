@@ -8,12 +8,14 @@ t_tuple	reflection_and_refraction(t_world *world, t_hit *hit)
 	t_tuple		refracted;
 	t_fl		reflectance;
 
-	reflected = reflected_colour(world, hit);
 	refracted = refracted_colour(world, hit);
+	reflected = reflected_colour(world, hit);
 	if (hit->intersection.material.reflectiveness > 0 && \
 		hit->intersection.material.transparency > 0)
 	{
 		reflectance = schlick(hit);
+		if (reflectance > 1)
+			printf("reflectance = %f\n", reflectance);
 		return (tuple_add(tuple_scale(reflected, reflectance), \
 			tuple_scale(refracted, (1 - reflectance))));
 	}

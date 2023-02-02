@@ -58,7 +58,7 @@
 					"diffuse" : 0,
 					"specular" : 0.9,
 					"shininess" : 300,
-					"reflectiveness" : 0.9,
+					"reflectiveness" : 0.91,
 					"transparency" : 0.9,
 					"refractive_index" : 1.5
 				}
@@ -74,11 +74,11 @@
 				"material" :
 				{
 					"init_colour" : [1, 1, 1],
-					"ambient" : 0,
-					"diffuse" : 0,
+					"ambient" : 0.0,
+					"diffuse" : 0.0,
 					"specular" : 0.9,
 					"shininess" : 300,
-					"reflectiveness" : 0.9,
+					"reflectiveness" : 0.91,
 					"transparency" : 0.9,
 					"refractive_index" : 1.0000034
 				}
