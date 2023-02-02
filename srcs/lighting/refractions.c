@@ -39,9 +39,8 @@ t_tuple	refracted_colour(t_world *world, t_hit *hit)
 	t_tuple	refracted_col;
 
 	transparency = hit->intersection.material.transparency;
-	if (transparency < EPSILON && transparency > -EPSILON)
-		return (point(0, 0, 0));
-	if (world->refraction_lifetime-- <= 0)
+	if ((transparency < EPSILON && transparency > -EPSILON) ||
+		world->refraction_lifetime-- <= 0)
 		return (point(0, 0, 0));
 	calc.n_ratio = hit->computations.n1 / hit->computations.n2;
 	calc.cos_i = dot_product(hit->computations.vectors.eye, \
@@ -49,10 +48,7 @@ t_tuple	refracted_colour(t_world *world, t_hit *hit)
 	calc.sin2_t = (calc.n_ratio * calc.n_ratio) * \
 		(1 - (calc.cos_i * calc.cos_i));
 	if (calc.sin2_t > 1)
-	{
-		//printf("sin2t = %0.2f\n", calc.sin2_t);
 		return (point(0, 0, 0));
-	}
 	calc.cos_t = sqrt(1 - calc.sin2_t);
 	world->refracted_ray.direction = normalize(tuple_sub \
 		(tuple_scale(hit->computations.vectors.surface_normal, \

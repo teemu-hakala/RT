@@ -32,10 +32,13 @@ void	prepare_object(t_world *world, t_hit *hit, t_ray ray)
 	hit->computations.over_point = \
 		tuple_add(hit->computations.point, \
 		tuple_scale(hit->computations.vectors.surface_normal, EPSILON));
-	hit->computations.reflectv = reflect(ray.direction, \
-		hit->computations.vectors.surface_normal);
 	hit->computations.under_point = \
 		tuple_sub(hit->computations.point, \
 		tuple_scale(hit->computations.vectors.surface_normal, EPSILON));
-	compute_refraction_index(world, hit);
+	hit->computations.reflectv = reflect(ray.direction, \
+		hit->computations.vectors.surface_normal);
+	hit->computations.n1 = 1;
+	hit->computations.n2 = 1;
+	if (world->intersections.len >= 1)
+		compute_refraction_index(world, hit);
 }
