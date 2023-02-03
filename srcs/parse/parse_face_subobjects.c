@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:36:47 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 11:36:48 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/03 12:59:27 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ static void	find_face_keyword(t_texture *texture, t_parser *parser, int face)
 	}
 	else
 		find_face_continued(texture, parser, face);
-
 }
 
 void	set_face(t_texture *texture, t_parser *parser, int face)
