@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:21:55 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 11:21:57 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/03 12:43:40 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ typedef struct s_snell_calculations
 	t_fl	cos_t;
 }				t_snell;
 
-
 t_tuple	refracted_colour(t_world *world, t_hit *hit)
 {
 	t_fl	transparency;
@@ -42,8 +41,8 @@ t_tuple	refracted_colour(t_world *world, t_hit *hit)
 	t_tuple	refracted_col;
 
 	transparency = hit->intersection.material.transparency;
-	if ((transparency < EPSILON && transparency > -EPSILON) ||
-		world->refraction_lifetime-- <= 0)
+	if ((transparency < EPSILON && transparency > -EPSILON) \
+		|| world->refraction_lifetime-- <= 0)
 		return (point(0, 0, 0));
 	calc.n_ratio = hit->computations.n1 / hit->computations.n2;
 	calc.cos_i = dot_product(hit->computations.vectors.eye, \

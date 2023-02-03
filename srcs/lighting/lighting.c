@@ -6,19 +6,21 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:21:42 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 11:21:46 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/03 12:40:08 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RT.h"
 
-void	lighting_cont(t_hit *hit, t_light *light, t_phong *vectors,
-	t_fl incidence_l, t_const *channels)
+void	lighting_cont(t_hit *hit, t_light *light, t_phong *vectors, \
+	t_const *channels)
 {
 	t_fl		reflect_l;
 	t_fl		factor;
 	t_material	material;
+	t_fl		incidence_l;
 
+	incidence_l = dot_product(vectors->light, vectors->surface_normal);
 	material = hit->intersection.material;
 	channels->diff = tuple_scale(
 			tuple_scale(material.col_mash, material.diffuse), incidence_l);
@@ -57,7 +59,7 @@ t_tuple	lighting(t_light *light, t_phong vectors, t_hit *hit)
 		channels.spec = vector(0, 0, 0);
 	}
 	else
-		lighting_cont(hit, light, &vectors, incidence_l, &channels);
+		lighting_cont(hit, light, &vectors, &channels);
 	if (vectors.in_shadow == true)
 		return (channels.amb);
 	return (tuple_add(

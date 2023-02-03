@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:01:17 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 12:01:19 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/03 12:52:23 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int			cube_subobject_keywords(t_parser *parser, t_object *shape);
 void		parse_tuple(t_tuple *tuple, t_parser *parser);
 void		parse_transform(t_transform *transform, t_parser *parser);
 void		parse_transform_subobject(t_parser *parser, t_transform *transform);
+void		parse_appearance(t_appearance *appearance, t_parser *parser);
 void		parse_material(t_material *material, t_parser *parser);
 void		parse_pattern(t_pattern *pattern, t_parser *parser);
 void		parse_texture(t_texture *texture, t_parser *parser);
