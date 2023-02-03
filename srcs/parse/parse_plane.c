@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:37:16 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 11:37:18 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/03 13:12:48 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,4 @@ void	parse_plane(t_parser *parser, t_object *shape)
 	}
 	else if (!find_matching_bracket(parser))
 		handle_errors("plane syntax error");
-	transform_object(&shape->object.plane.transform);
 }

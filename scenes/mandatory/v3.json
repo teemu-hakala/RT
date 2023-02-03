@@ -16,21 +16,21 @@
 			"spot" :
 			{
 				"position" : [8, 10, -1],
-				"intensity" : [3, 3, 3]
+				"intensity" : [1.5, 1.5, 1.5]
 			}
 		},
 		{
 			"spot" :
 			{
 				"position" : [10, 10, 0],
-				"intensity" : [3, 3, 3]
+				"intensity" : [1.5, 1.5, 1.5]
 			}
 		},
 		{
 			"spot" :
 			{
 				"position" : [12, 10, 1],
-				"intensity" : [3, 3, 3]
+				"intensity" : [1.5, 1.5, 1.5]
 			}
 		}
 	],

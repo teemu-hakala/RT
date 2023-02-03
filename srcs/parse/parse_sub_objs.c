@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:38:22 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 12:50:10 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/03 13:10:21 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	parse_transform_subobject(t_parser *parser, t_transform *transform)
 	if (find_matching_bracket(parser))
 		return ;
 	parse_transform(transform, parser);
+	transform_object(transform);
 }
 
 int	find_subobject_keyword(t_parser *parser, t_transform *transform, \

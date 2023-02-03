@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:36:40 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 11:36:41 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/03 13:12:05 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ t_object	cylinder_prototype(void)
 
 void	cylinder_continued(t_object *shape)
 {
-	transform_object(&shape->object.cylinder.transform);
 	if (shape->object.cylinder.appearance.texture.type == TEXTURE_CHECKERED)
 		shape->object.cylinder.appearance.texture.width = \
 			2 * shape->object.cylinder.appearance.texture.height;
