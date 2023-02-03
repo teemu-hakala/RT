@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:58:27 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 11:58:29 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/03 12:06:13 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ t_uv_map	spherical_map(t_tuple *p)
 	radius = magnitude(vector(p->tuple.units.x, p->tuple.units.y, \
 		p->tuple.units.z));
 	phi = acos(p->tuple.units.y / radius);
-
 	map.u = 1 - ((theta / (2 * M_PI)) + 0.5);
 	map.v = 1 - phi / M_PI;
 	return (map);

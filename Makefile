@@ -6,7 +6,7 @@
 #    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2023/02/03 12:00:43 by deelliot         ###   ########.fr        #
+#    Updated: 2023/02/03 12:10:10 by deelliot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,8 +83,7 @@ RENDER_SRCS = colour.c image_utility.c put_image.c ray.c threads.c
 FILES = \
 	main.c \
 	initialise.c \
-	error_handling.c \
-	threads_mid.c \
+	error_handling.c 
 
 OBJS = $(addprefix $(OBJS_DIR)/, \
 	$(addprefix $(CAMERA_DIR)/, $(CAMERA_SRCS:.c=.o)) \

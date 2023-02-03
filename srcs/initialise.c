@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:00:12 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 12:00:14 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/03 12:02:44 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	initialise_world(t_world *world)
 		|| vec_new(&world->intersections, 256, sizeof(t_intersect))
 		!= VEC_SUCCESS)
 		handle_errors("initialise_world malloc returned NULL");
-	//world->hit.hit_check = false;
 	world->lifetime = 5;
 	world->refraction_lifetime = 5;
 }

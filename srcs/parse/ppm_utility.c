@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:39:00 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 11:39:01 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/03 12:37:17 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,28 @@ static int	check_for_comments(char *str)
 	return (0);
 }
 
+int	handle_first(int first, t_vec *string, int read_bytes)
+{
+	if (first == 1)
+	{
+		if (vec_new(string, read_bytes * 4, sizeof(char)) == VEC_ERROR)
+			handle_errors("vec_new error");
+	}
+	return (0);
+}
+
+void	handle_vec_push_arr(t_vec *string, char *line, int len)
+{
+	if (vec_push_arr(string, line, len) == VEC_ERROR)
+		handle_errors("vec_push_arr error");
+}
+
 void	read_ppm_contents(t_vec *string, const int file_descriptor)
 {
 	char	*line;
 	int		read_bytes;
 	int		gnl_status;
-	char	first;
+	int		first;
 
 	first = true;
 	while (1)
@@ -41,23 +57,16 @@ void	read_ppm_contents(t_vec *string, const int file_descriptor)
 			break ;
 		if (gnl_status < 0)
 			handle_errors("DENIED: get_next_line error");
-		if (first)
-		{
-			if (vec_new(string, read_bytes * 4, sizeof(char)) == VEC_ERROR)
-				handle_errors("vec_new error");
-			first = false;
-		}
+		first = handle_first(first, string, read_bytes);
 		if (check_for_comments(line) == true)
 		{
 			free (line);
 			continue ;
 		}
-		if (vec_push_arr(string, line, ft_strlen(line)) == VEC_ERROR)
-			handle_errors("vec_push_arr error");
+		handle_vec_push_arr(string, line, ft_strlen(line));
 		free (line);
 	}
-	if (vec_push_arr(string, "\0", 1) == VEC_ERROR)
-		handle_errors("vec_push_arr error");
+	handle_vec_push_arr(string, "\0", 1);
 }
 
 void	parse_name(t_ppm_image *image, t_parser *parser)
