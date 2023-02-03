@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:50:13 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 12:53:36 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/03 13:16:30 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	parse_appearance(t_appearance *appearance, t_parser *parser)
 	}
 	else if (ft_strncmp(&parser->string[parser->c], "\"texture\"", 9) == 0)
 		textures(appearance, parser);
-
 	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
 	if (parser->string[parser->c] == ',')
 		parse_appearance(appearance, parser);
