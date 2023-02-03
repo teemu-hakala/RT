@@ -6,14 +6,13 @@
 #    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2023/02/02 17:24:56 by deelliot         ###   ########.fr        #
+#    Updated: 2023/02/03 12:00:43 by deelliot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = RT
 
 FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
-# FLAGS += -fsanitize=address -Wconversion -Ofast -flto
 
 # Directories
 SRCS_DIR = srcs
