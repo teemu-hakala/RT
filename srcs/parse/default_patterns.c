@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 16:49:47 by deelliot          #+#    #+#             */
-/*   Updated: 2023/01/09 16:17:53 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/02 18:28:45 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_pattern	default_simple_checkered_pattern(void)
 {
 	return ((t_pattern){
 		.type = PATTERN_SIMPLE_CHECKERED,
-		.colour_a = hex_to_tuple_colour(COLOUR_BLUE),
+		.colour_a = hex_to_tuple_colour(COLOUR_BLACK),
 		.colour_b = hex_to_tuple_colour(COLOUR_WHITE),
 		.transform = default_transform_1()
 	});

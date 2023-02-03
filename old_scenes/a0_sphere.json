@@ -1,0 +1,58 @@
+{
+	"camera" :
+	{
+		"canvas" :
+		{
+			"horizontal": 501,
+			"vertical": 400
+		},
+		"origin" : [0, 0, -3],
+		"center_of_interest" : [0, 0, 0],
+		"field_of_view" : 1.0
+	},
+	"lights" :
+	[
+		{
+			"spot" :
+			{
+				"position" : [-10, 10, -10],
+				"intensity" : [1, 1, 1]
+			}
+		}
+	],
+	"shapes" :
+	[
+		{
+			"sphere" :
+			{
+				"transform" :
+				{
+					"translation" : [0, 0, 0],
+					"rotation" : [0, 0, 0],
+					"scale" : [1, 1, 1]
+				},
+				"material" :
+				{
+					"ambient" : 0.1,
+					"specular" : 0.4,
+					"shininess" : 10,
+					"diffuse" : 0.6,
+					"init_colour" : [0.42, 0.55, 0.09]
+				},
+				"appearance" :
+				{
+					"pattern" :
+					{
+						"type" : "simple_checkered",
+						"transform" :
+						{
+							"scale" : [0.33, 0.33, 0.33]
+						},
+						"colour_a" : [1, 1, 1],
+						"colour_b" : [0, 1, 0]
+					}
+				}
+			}
+		}
+	]
+}

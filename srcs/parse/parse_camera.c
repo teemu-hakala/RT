@@ -76,13 +76,6 @@ static void	parse_camera_subobjects(t_world *world, t_parser *parser)
 		find_colon(parser);
 		parse_tuple(&world->camera.origin, parser);
 	}
-	else if (ft_strncmp(&parser->string[parser->c], "\"transform\"", 11) == 0)
-	{
-		parser->c += sizeof("\"transform\"") - 1;
-		find_colon(parser);
-		find_open_bracket(parser);
-		parse_transform(&world->camera.transform, parser);
-	}
 	else
 		camera_subobjects_cont(world, parser);
 }

@@ -1,0 +1,274 @@
+{
+	"camera" :
+	{
+		"origin" : [1, 2, -15],
+		"center_of_interest" : [0.5, 1.1, 0],
+		"field_of_view" : 0.8,
+		"canvas" :
+		{
+			"horizontal" : 800,
+			"vertical" : 400
+		}
+	},
+	"lights" :
+	[
+		{
+			"spot" :
+			{
+				"position" : [-100, 100, -100],
+				"intensity" : [1, 1, 1]
+			}
+		},
+		{
+			"spot" :
+			{
+				"position" : [100, 100, -100],
+				"intensity" : [1, 1, 1]
+			}
+		}
+	],
+	"shapes" :
+	[
+		{
+			"plane" :
+			{
+				"material" :
+				{
+					"init_colour" : [1, 1, 1],
+					"diffuse" : 0.1,
+					"specular" : 0,
+					"ambient" :0,
+					"reflectiveness" : 0.4
+				}
+			}
+		},
+		{
+			"cylinder" :
+			{
+				"min" : 0,
+				"max" : 0.1,
+				"closed" : 1,
+				"material" :
+				{
+					"init_colour" : [1, 1, 1],
+					"diffuse" : 0.2,
+					"specular" : 0,
+					"ambient" : 0,
+					"reflectiveness" : 0.1
+				},
+				"transform" :
+				{
+					"translation" : [-4, 0, 0]
+				}
+			}
+		},
+		{
+			"cube" :
+			{
+				"transform" :
+				{
+					"rotation" : [0, 1.9, 0],
+					"translation" : [-4, 1.1, 0],
+					"scale" : [0.75, 0.75, 0.75]
+				},
+				"appearance" :
+				{
+					"texture" :
+					{
+						"type" : "external",
+						"name" : "textures/stylized_stone.ppm",
+						"face" :
+						[
+							{
+								"left" :
+								{
+									"name" : "textures/stylized_stone.ppm"
+								}
+							},
+							{
+								"front" :
+								{
+									"name" : "textures/stylized_stone.ppm"
+								}
+							},
+							{
+								"right" :
+								{
+									"name" : "textures/stylized_stone.ppm"
+								}
+							},
+							{
+								"back" :
+								{
+									"name" : "textures/stylized_stone.ppm"
+								}
+							},
+							{
+								"up" :
+								{
+									"name" : "textures/stylized_stone.ppm"
+								}
+							},
+							{
+								"down" :
+								{
+									"name" : "textures/stylized_stone.ppm"
+								}
+							}
+						]
+					}
+				},
+				"material" :
+				{
+					"diffuse" : 0.9,
+					"specular" : 0.1,
+					"shininess" : 10,
+					"ambient" : 0.1
+				}
+			}
+		},
+		{
+			"cylinder" :
+			{
+				"min" : 0,
+				"max" : 0.1,
+				"closed" : 1,
+				"material" :
+				{
+					"init_colour" : [1, 1, 1],
+					"diffuse" : 0.2,
+					"specular" : 0,
+					"ambient" : 0,
+					"reflectiveness" : 0.1
+				},
+				"transform" :
+				{
+					"translation" : [-1, 0, 0]
+				}
+			}
+		},
+		{
+			"sphere" :
+			{
+				"transform" :
+				{
+					"rotation" : [0, 1.9, 0],
+					"translation" : [-1, 1.1, 0]
+				},
+				"appearance" :
+				{
+					"texture" :
+					{
+						"type" : "external",
+						"name" : "textures/earthmap.ppm"
+					}
+				},
+				"material" :
+				{
+					"diffuse" : 0.9,
+					"specular" : 0.1,
+					"shininess" : 10,
+					"ambient" : 0.1
+				}
+			}
+		},
+		{
+			"cylinder" :
+			{
+				"min" : 0,
+				"max" : 0.1,
+				"closed" : 1,
+				"material" :
+				{
+					"init_colour" : [1, 1, 1],
+					"diffuse" : 0.2,
+					"specular" : 0,
+					"ambient" : 0,
+					"reflectiveness" : 0.1
+				},
+				"transform" :
+				{
+					"translation" : [2, 0, 0]
+				}
+			}
+		},
+		{
+			"cylinder" :
+			{
+				"transform" :
+				{
+					"rotation" : [0, 1.9, 0],
+					"translation" : [2, 0.1, 0],
+					"scale" : [0.7, 0.7, 0.7]
+				},
+				"min" : 0.05,
+				"max" : 3,
+				"closed" : 1,
+				"appearance" :
+				{
+					"texture" :
+					{
+						"type" : "external",
+						"name" : "textures/bark.ppm"
+					}
+				},
+				"material" :
+				{
+					"diffuse" : 0.9,
+					"specular" : 0.1,
+					"shininess" : 10,
+					"ambient" : 0.1
+				}
+			}
+		},
+		{
+			"cylinder" :
+			{
+				"min" : 0,
+				"max" : 0.1,
+				"closed" : 1,
+				"material" :
+				{
+					"init_colour" : [1, 1, 1],
+					"diffuse" : 0.2,
+					"specular" : 0,
+					"ambient" : 0,
+					"reflectiveness" : 0.1
+				},
+				"transform" :
+				{
+					"translation" : [5, 0, 0]
+				}
+			}
+		},
+		{
+			"cone" :
+			{
+				"transform" :
+				{
+					"rotation" : [0, 1.9, 0],
+					"translation" : [5, 0.1, 0],
+					"scale" : [0.7, 0.7, 0.3]
+				},
+				"min" : 0.05,
+				"max" : 3,
+				"closed" : 1,
+				"appearance" :
+				{
+					"texture" :
+					{
+						"type" : "external",
+						"name" : "textures/abstract.ppm"
+					}
+				},
+				"material" :
+				{
+					"diffuse" : 0.9,
+					"specular" : 0.1,
+					"shininess" : 10,
+					"ambient" : 0.1
+				}
+			}
+		}
+	]
+}
