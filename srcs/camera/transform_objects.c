@@ -12,13 +12,6 @@
 
 #include "RT.h"
 
-#include <stdio.h>
-
-void	print_tuple(t_tuple tuple, const char *name)
-{
-	printf("%s [%lf, %lf, %lf, %lf]\n", name, tuple.tuple.units.x, tuple.tuple.units.y, tuple.tuple.units.z, tuple.tuple.units.w);
-}
-
 void	transform_object(t_transform *object)
 {
 	identity_matrix_set(&object->matrix);

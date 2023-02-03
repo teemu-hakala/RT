@@ -10,7 +10,6 @@
 
 
 #include "RT.h"
-#include <stdio.h>
 
 void	init_progress_mutex(t_progress progress[THREAD_COUNT])
 {

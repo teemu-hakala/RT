@@ -11,7 +11,6 @@
 
 
 #include "RT.h"
-#include <stdio.h>
 
 void	compound_scroll_effect(t_win *win, int8_t direction)
 {

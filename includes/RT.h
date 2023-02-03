@@ -27,7 +27,6 @@
 # include "input.h"
 # include "threads.h"
 # include "user_interface.h"
-# include <stdio.h>
 
 # define USAGE "./RT ./scenes/[.json file]"
 # define WIDTH 501

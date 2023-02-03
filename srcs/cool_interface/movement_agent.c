@@ -11,7 +11,6 @@
 
 
 #include "RT.h"
-#include <stdio.h>
 
 void	camera_upwards(t_win *win, t_fl magnitude)
 {

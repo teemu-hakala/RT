@@ -11,7 +11,6 @@
 
 
 #include "RT.h"
-#include <stdio.h>
 
 void	field_of_view_delta(t_win *win, t_fl step)
 {
