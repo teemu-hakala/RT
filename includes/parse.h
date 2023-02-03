@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:01:17 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 12:52:23 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/03 13:17:15 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ int			cone_and_cylinder_objects(t_parser *parser, t_object *object);
 void		parse_face(t_texture *texture, t_parser *parser);
 void		set_face(t_texture *texture, t_parser *parser, int face);
 void		set_default_face(t_texture *texture, int face);
-
-
 
 /*utility parse functions*/
 void		find_open_bracket(t_parser *parser);
