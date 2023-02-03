@@ -29,7 +29,10 @@ static void	parse_texture_type(t_texture *texture, t_parser *parser)
 static void	parse_final_texture(t_texture *texture, t_parser *parser)
 {
 	if (ft_strncmp(&parser->string[parser->c], "\"transform\"", 11) == 0)
+	{
 		parse_transform_subobject(parser, &texture->transform);
+		transform_object(&texture->transform);
+	}
 	else if (ft_strncmp(&parser->string[parser->c], "\"name\"", 6) == 0)
 	{
 		parser->c += sizeof("\"name\"") - 1;

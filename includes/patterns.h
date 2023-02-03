@@ -32,24 +32,11 @@ typedef enum e_cube_face
 	FACE_DOWN = 5,
 }	t_face;
 
-// typedef struct s_uv_pattern
-// {
-// 	t_fl	width;
-// 	t_fl	height;
-// 	t_tuple	colour_a;
-// 	t_tuple	colour_b;
-// }				t_uv_pattern;
 
 typedef struct s_uv_map
 {
 	t_fl	u;
 	t_fl	v;
 }			t_uv_map;
-
-// typedef struct s_texture_map
-// {
-// 	t_uv_pattern pattern;
-// 	t_uv_map	map;
-// }				t_texture_map;
 
 #endif

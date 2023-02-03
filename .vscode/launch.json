@@ -4,7 +4,6 @@
 	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
 	"version": "0.2.0",
 	"configurations": [
-
 		{
 			"name": "simple_refraction",
 			"type": "cppdbg",
@@ -19,11 +18,11 @@
 		},
 
 		{
-			"name": "g4_cube_pattern",
+			"name": "texture_transformed",
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/RT",
-			"args": ["${workspaceFolder}/scenes/g4_cube_pattern.json"],
+			"args": ["${workspaceFolder}/scenes/bonuses/textures/transformed_tex.json"],
 			"stopAtEntry": true,
 			"cwd": "${workspaceFolder}",
 			"environment": [],
