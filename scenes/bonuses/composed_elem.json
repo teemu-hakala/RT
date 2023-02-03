@@ -10,7 +10,14 @@
 		{
 			"spot" :
 			{
-				"position" : [-100, 100, -100],
+				"position" : [-10, 10, -10],
+				"intensity" : [1, 1, 1]
+			}
+		},
+		{
+			"spot" :
+			{
+				"position" : [10, 10, -10],
 				"intensity" : [1, 1, 1]
 			}
 		}
@@ -58,73 +65,43 @@
 				{
 					"texture" :
 					{
-						"type" : "align_check",
-						"transform" :
-						{
-							"translation" : [0, 0, 0],
-							"rotation" : [0, 0, 0],
-							"scale" : [1, 1, 1]
-						},
+						"type" : "external",
 						"face" :
 						[
 							{
 								"left" :
 								{
-									"main" : [1, 1, 0],
-									"ul": [0, 1, 1],
-									"ur": [1, 0, 0],
-									"bl": [0, 0, 1],
-									"br": [1, 0.5, 0]
-								}
-							},
-							{
-								"front" :
-								{
-									"main" : [0, 1, 1],
-									"ul": [1, 0, 0],
-									"ur": [1, 1, 0],
-									"bl": [1, 0.5, 0],
-									"br": [0, 1, 0]
+									"name" : "textures/bark.ppm"
 								}
 							},
 							{
 								"right" :
 								{
-									"main" : [1, 0, 0],
-									"ul": [1, 1, 0],
-									"ur": [1, 0, 1],
-									"bl": [0, 1, 0],
-									"br": [1, 1, 1]
+									"name" : "textures/abstract.ppm"
+								}
+							},
+							{
+								"front" :
+								{
+									"name" : "textures/brick_rough.ppm"
 								}
 							},
 							{
 								"back" :
 								{
-									"main" : [0, 1, 0],
-									"ul": [1, 0, 1],
-									"ur": [0, 1, 1],
-									"bl": [1, 1, 1],
-									"br": [0, 0, 1]
+									"name" : "textures/geometric.ppm"
 								}
 							},
 							{
 								"up" :
 								{
-									"main" : [1, 0.5, 0],
-									"ul": [0, 1, 1],
-									"ur": [1, 0, 1],
-									"bl": [1, 0, 0],
-									"br": [1, 1, 0]
+									"name" : "textures/roof.ppm"
 								}
 							},
 							{
 								"down" :
 								{
-									"main" : [1, 0, 1],
-									"ul": [1, 0.5, 0],
-									"ur": [0, 1, 0],
-									"bl": [0, 0, 1],
-									"br": [1, 1, 1]
+									"name" : "textures/stylized_stone.ppm"
 								}
 							}
 						]

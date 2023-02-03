@@ -16,21 +16,21 @@
 			"spot" :
 			{
 				"position" : [8, 10, -1],
-				"intensity" : [1, 1, 1]
+				"intensity" : [3, 3, 3]
 			}
 		},
 		{
 			"spot" :
 			{
 				"position" : [10, 10, 0],
-				"intensity" : [1, 1, 1]
+				"intensity" : [3, 3, 3]
 			}
 		},
 		{
 			"spot" :
 			{
 				"position" : [12, 10, 1],
-				"intensity" : [1, 1, 1]
+				"intensity" : [3, 3, 3]
 			}
 		}
 	],
@@ -47,7 +47,7 @@
 				},
 				"material" :
 				{
-					"ambient" : -1,
+					"ambient" : 0.1,
 					"specular" : 0.6,
 					"shininess" : 300,
 					"diffuse" : 0.4,
