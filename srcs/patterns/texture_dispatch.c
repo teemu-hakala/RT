@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   texture_dispatch.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/03 11:40:11 by deelliot          #+#    #+#             */
+/*   Updated: 2023/02/03 11:51:01 by deelliot         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "RT.h"
 
@@ -16,6 +27,7 @@ t_tuple	transform_point(t_tuple *point, t_transform *shape_transform, \
 t_tuple	texture_at(t_texture *texture, t_uv_map *map)
 {
 	t_tuple							colour;
+
 	static const t_texture_at_fn	textures[] = {\
 		no_texture_at,
 		checkered_at,

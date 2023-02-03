@@ -1,14 +1,14 @@
-
-
-
-
-
-
-
-
-
-
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   matrix_maths.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/03 11:32:50 by deelliot          #+#    #+#             */
+/*   Updated: 2023/02/03 11:33:13 by deelliot         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "RT.h"
 
@@ -35,8 +35,6 @@ int	matrix_comparison(t_fl **a, t_fl **b, uint32_t size)
 	}
 	return (1);
 }
-
-
 
 void	matrix_multi_square(t_mtx *mtx, t_mtx *transformation, uint32_t size)
 {
@@ -67,8 +65,6 @@ void	matrix_multi_square(t_mtx *mtx, t_mtx *transformation, uint32_t size)
 	*mtx = temp;
 }
 
-
-
 t_tuple	matrix_tuple_multi(t_mtx *mtx, t_tuple *tuple)
 {
 	int		y;
@@ -91,8 +87,6 @@ t_tuple	matrix_tuple_multi(t_mtx *mtx, t_tuple *tuple)
 	}
 	return (new);
 }
-
-
 
 t_mtx	transpose_matrix(t_mtx *mtx)
 {

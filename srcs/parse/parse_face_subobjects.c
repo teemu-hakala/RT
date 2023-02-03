@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_face_subobjects.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/03 11:36:47 by deelliot          #+#    #+#             */
+/*   Updated: 2023/02/03 11:36:48 by deelliot         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "RT.h"
 
 static void	find_face_continued(t_texture *texture, t_parser *parser, int face)

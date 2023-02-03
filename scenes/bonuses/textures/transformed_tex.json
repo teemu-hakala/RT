@@ -126,11 +126,7 @@
 					{
 						"type" : "checkered",
 						"width" : 20,
-						"height" : 10,
-						"transform" :
-						{
-							"scale" : [5, 5, 5]
-						}
+						"height" : 10
 					}
 				},
 				"material" :

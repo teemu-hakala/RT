@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   compute_refraction.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/03 11:19:55 by deelliot          #+#    #+#             */
+/*   Updated: 2023/02/03 11:19:58 by deelliot         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "RT.h"
 
 static void	check_container(t_vec *container, t_intersect *current)

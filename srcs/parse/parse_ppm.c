@@ -1,10 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_ppm.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/03 11:37:41 by deelliot          #+#    #+#             */
+/*   Updated: 2023/02/03 11:38:03 by deelliot         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "RT.h"
 
-/*
-
-The PPM file is built in 9 sections separated by white-spaces.
-*/
-
+/*The PPM file is built in 9 sections separated by white-spaces.*/
 
 void	allocate_pixel_array(t_ppm_image *image)
 {

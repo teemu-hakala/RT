@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   textures.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/03 11:41:49 by deelliot          #+#    #+#             */
+/*   Updated: 2023/02/03 11:52:40 by deelliot         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "RT.h"
 
@@ -8,14 +19,13 @@ void	no_texture_at(t_texture *texture, t_uv_map *map, t_tuple *colour)
 	(void)colour;
 }
 
-
 void	checkered_at(t_texture *texture, t_uv_map *map, t_tuple *colour)
 {
 	uint32_t	u2;
 	uint32_t	v2;
 
-	u2 = floor(map->u * texture->width);
-	v2 = floor(map->v * texture->height);
+	u2 = floor(map->u * (texture->width / texture->transform.scale.array[0]));
+	v2 = floor(map->v * (texture->height / texture->transform.scale.array[1]));
 	if ((u2 + v2) % 2 == 0)
 		*colour = texture->colour_a;
 	else

@@ -1,20 +1,20 @@
-
-
-
-
-
-
-
-
-
-
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   new_image_file.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/03 11:20:30 by deelliot          #+#    #+#             */
+/*   Updated: 2023/02/03 11:20:32 by deelliot         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "RT.h"
 
 int	get_new_file_for_image(void)
 {
-	static const char	*template = 
+	static const char	*template =
 		"screenshots/screenshot_"
 		"XXXXXXXXXXXXX"
 		PPM_SUFFIX;

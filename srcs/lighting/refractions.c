@@ -1,11 +1,14 @@
-
-
-
-
-
-
-
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   refractions.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/03 11:21:55 by deelliot          #+#    #+#             */
+/*   Updated: 2023/02/03 11:21:57 by deelliot         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 /* Snell's law: n1sin(ti) = n2sin(tr)
 	ti = angle of incidence
@@ -63,7 +66,7 @@ t_fl	schlick(t_hit *hit)
 {
 	t_snell	t;
 	t_fl	reflectance;
-	
+
 	t.cos_i = dot_product(hit->computations.vectors.eye, \
 		hit->computations.vectors.surface_normal);
 	if (hit->computations.n1 > hit->computations.n2)
