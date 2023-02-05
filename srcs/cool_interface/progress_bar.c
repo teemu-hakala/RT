@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   progress_bar.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:20:40 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 11:20:42 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/05 11:21:05 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,15 @@ void	progress_bar(t_img img, t_fl progress_percentage, t_fl prev_perc)
 	t_rectangle	rectangle;
 	t_tuple		colour;
 
-	image_bounds = (t_rectangle){.start = {.horizontal = (WIDTH - 20) * \
+	image_bounds = (t_rectangle){.start = {.horizontal = \
+		(img.dimensions.end.horizontal - 20) * \
 		prev_perc, .vertical = 0}, \
-		.end = {.horizontal = WIDTH - 20, .vertical = 20}};
+		.end = {.horizontal = img.dimensions.end.horizontal - 20, \
+		.vertical = 20}};
 	rectangle = (t_rectangle){.start = {.horizontal = progress_percentage, \
 		.vertical = 0}, \
-		.end = {.horizontal = (WIDTH - 20) * progress_percentage + 10, \
+		.end = {.horizontal = (img.dimensions.end.horizontal - 20)\
+			* progress_percentage + 10, \
 		.vertical = 20}};
 	if (prev_perc == 0)
 		rectangle.start.horizontal = 0;
