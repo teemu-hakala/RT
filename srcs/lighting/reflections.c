@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reflections.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jraivio <jraivio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:21:50 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 11:21:52 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/07 14:31:04 by jraivio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	is_shadow(t_world *world, t_hit *hit, t_light *light)
 	{
 		if (world->shadow_hit.intersection.time < distance)
 		{
-			hit->computations.vectors.in_shadow = true;
+			set_shadow_occlusion(world, hit);
 		}
 	}
 }

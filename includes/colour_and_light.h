@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:00:58 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 12:01:00 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/07 14:25:58 by jraivio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_phong
 	t_tuple	surface_normal;
 	t_tuple	reflection;
 	int		in_shadow;
+	t_fl	shadow_occlusion;
 }				t_phong;
 
 #endif

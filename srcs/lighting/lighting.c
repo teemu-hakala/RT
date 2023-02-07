@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lighting.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jraivio <jraivio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:21:42 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 11:21:46 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/07 14:55:01 by jraivio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ t_tuple	lighting(t_light *light, t_phong vectors, t_hit *hit)
 	}
 	else
 		lighting_cont(hit, light, &vectors, incidence_l, &channels);
-	if (vectors.in_shadow == true)
+	if (vectors.shadow_occlusion >= 1)
 		return (channels.amb);
-	return (tuple_add(
-			tuple_add(channels.amb, channels.diff), channels.spec));
+	return (tuple_scale(tuple_add(
+			tuple_add(channels.amb, channels.diff), channels.spec), (t_fl)1 - vectors.shadow_occlusion));
 }
