@@ -45,7 +45,7 @@ void	movement_agent(t_win *win, int key)
 
 	keys = win->input.keyboard.keys;
 	scalar = step_scalar(keys.keys_bitfield.left_shift);
-	if (key == KEY_Q)	
+	if (key == KEY_Q)
 		camera_upwards(win, (scalar * UP_STEP));
 	if (key == KEY_W)
 		camera_forwards(win, (scalar * FORWARD_STEP));

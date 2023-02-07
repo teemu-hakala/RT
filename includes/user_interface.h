@@ -68,7 +68,7 @@ enum e_key_code
 	KEY_R = 15,
 	KEY_F = 3,
 	KEY_P_ICTURE = 35,
-	KEY_LEFT_SHIFT = 57
+	KEY_LEFT_SHIFT = 257
 };
 
 void	put_rectangle_to_image(t_img img, t_rectangle image, \

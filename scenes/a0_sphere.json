@@ -39,13 +39,6 @@
 					"shininess" : 10,
 					"diffuse" : 0.6,
 					"init_colour" : [0.42, 0.55, 0.09]
-				},
-				"appearance" :
-				{
-					"texture" :
-					{
-						"name" : "test.ppm"
-					}
 				}
 			}
 		}

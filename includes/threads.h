@@ -16,6 +16,8 @@
 # include <pthread.h>
 # define THREAD_COUNT 24
 
+typedef struct s_win	t_win;
+
 typedef struct s_progress
 {
 	uint64_t		pixels;
