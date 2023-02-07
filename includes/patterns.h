@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:01:23 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 12:01:27 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/03 13:17:06 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ typedef enum e_cube_face
 	FACE_UP = 4,
 	FACE_DOWN = 5,
 }	t_face;
-
 
 typedef struct s_uv_map
 {

@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:36:36 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 11:36:38 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/03 13:12:19 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,4 @@ void	parse_cube(t_parser *parser, t_object *shape)
 	}
 	else if (!find_matching_bracket(parser))
 		handle_errors("cube syntax error");
-	transform_object(&shape->object.cube.transform);
 }

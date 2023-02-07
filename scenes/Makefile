@@ -22,10 +22,15 @@ SCENES = \
 	bonuses/textures/t1_skybox.json \
 	bonuses/composed_elem.json \
 
-
 test:
+	echo "skipping $(N) first items"
 	make -C ..
-	-for scene in  $(SCENES) ; do \
-		echo "$$scene"; \
-		../RT $$scene ; \
+	-cd ..; a=-1; for scene in $(SCENES) ; do \
+		((a=a+1)); \
+		if [[ "$$a" -lt "$(N)" ]] ;then \
+			echo "SKIPPED: scene $$a:	$$scene "; \
+			continue; \
+		fi;\
+		echo "scene $$a: $$scene"; \
+		./RT scenes/$$scene ; \
 	done

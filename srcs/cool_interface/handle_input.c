@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:20:07 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 11:20:09 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/03 13:29:00 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@ void	esc_program(void)
 {
 	exit(EXIT_SUCCESS);
 }
-
-//should we add the press x to exit to this as well?
 
 int	handle_input(int key, t_win *win)
 {

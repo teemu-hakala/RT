@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:36:31 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 11:36:33 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/03 13:12:10 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ t_object	cone_prototype(void)
 
 void	cone_continued(t_object *shape)
 {
-	transform_object(&shape->object.cone.transform);
 	if (shape->object.cone.appearance.texture.type == TEXTURE_CHECKERED)
 		shape->object.cone.appearance.texture.width = \
 			2 * shape->object.cone.appearance.texture.height;

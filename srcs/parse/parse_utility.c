@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:38:49 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 11:38:52 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/03 12:59:46 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	find_matching_bracket(t_parser *parser)
 
 	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
 	open_bracket = ((char *)parser->brackets.memory)[parser->brackets.len - 1];
-	close_bracket = open_bracket + (open_bracket & 0x1U) + 1; //next_odd_number()
+	close_bracket = open_bracket + (open_bracket & 0x1U) + 1;
 	if (parser->string[parser->c] != close_bracket)
 		return (false);
 	parser->brackets.len--;

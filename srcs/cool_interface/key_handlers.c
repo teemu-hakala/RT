@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:20:12 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 11:20:14 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/03 12:05:48 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,14 @@ void	print_text_on_keys_image(t_win *win, t_img *keys_image)
 {
 	uint16_t	row;
 	uint16_t	column;
-	char		*str[6];
+	char		*str[8];
 	int			i;
 
 	i = 0;
 	str[i++] = "MOVE CAM  R-CLICK";
 	str[i++] = "FILTER    [DOT]";
+	str[i++] = "RESET     ENT";
+	str[i++] = "EXIT      ESC";
 	str[i++] = "SCROLL /+:";
 	str[i++] = " -ZOOM      QE";
 	str[i++] = " -TRANSLATE WASD";
@@ -100,7 +102,8 @@ void	toggle_key_user_interface(t_win *win)
 			win->keys_image.dimensions.canvas.vertical, .horizontal = \
 			win->keys_image.dimensions.canvas.horizontal}, .canvas = {}}, \
 			win->keys_image.dimensions, \
-			(t_tuple){.tuple.colour = {.r = 0.278, .g = 0.360, .b = 0.478, .a = 0.25}});
+			(t_tuple){.tuple.colour = {.r = 0.278, .g = 0.360, .b = 0.478, \
+				.a = 0.25}});
 	}
 	win->keys_visible = !win->keys_visible;
 	put_keys_image(win);

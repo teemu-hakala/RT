@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   first_person_camera.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:19:25 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 11:19:27 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/04 15:20:28 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ void	first_person_camera(t_win *win)
 
 void	refresh_image(t_win *win)
 {
+	t_canvas	c;
+
+	c = win->world.camera.canvas;
 	pthread_mutex_lock(&win->drawn_mutex);
 	if (win->drawn == false)
 	{
@@ -44,7 +47,8 @@ void	refresh_image(t_win *win)
 	win->drawn = false;
 	pthread_mutex_unlock(&win->drawn_mutex);
 	progress_bar_image(win, \
-		&(t_canvas){.horizontal = WIDTH - 20, .vertical = 20}, BAR_CLEAR);
+		&(t_canvas){.horizontal = c.horizontal - 20, \
+			.vertical = 20}, BAR_CLEAR);
 	pthread_create(&win->bar_thread, NULL, progress_percentage, win);
 	threaded_loop(win, win->progress);
 	put_keys_image(win);

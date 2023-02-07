@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:01:50 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 12:01:58 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/03 13:17:25 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ typedef struct s_world
 	t_vec		lights;
 	t_vec		objects;
 	t_vec		intersections;
-	//t_hit		hit;
 	t_hit		shadow_hit;
 	t_ray		ray;
 	t_ray		reflected_ray;

@@ -6,7 +6,7 @@
 #    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2023/02/07 14:59:02 by jraivio          ###   ########.fr        #
+#    Updated: 2023/02/07 15:07:18 by jraivio          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,8 @@ PARSE_SRCS = default_files.c default_patterns.c parse_camera.c parse_cone.c \
 	rt_atof.c rt_atoi.c dispatch_shape_subobjects.c parse_material.c \
 	parse_transform.c parse_cone_cylinder_subobj.c parse_cube.c \
 	shape_subobject_utility.c parse_patterns.c parse_faces.c parse_ppm.c \
-	ppm_utility.c parse_textures.c default_textures.c parse_face_subobjects.c
+	ppm_utility.c parse_textures.c default_textures.c parse_face_subobjects.c \
+	parse_appearance.c
 
 PATTERNS_SRCS = pattern_dispatch.c patterns.c textures.c texture_dispatch.c \
 	uv_mapping.c cube_mapping.c cube_mapping_utility.c
@@ -84,8 +85,7 @@ RENDER_SRCS = colour.c image_utility.c put_image.c ray.c threads.c
 FILES = \
 	main.c \
 	initialise.c \
-	error_handling.c \
-	threads_mid.c 
+	error_handling.c
 
 OBJS = $(addprefix $(OBJS_DIR)/, \
 	$(addprefix $(CAMERA_DIR)/, $(CAMERA_SRCS:.c=.o)) \

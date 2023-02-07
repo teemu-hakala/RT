@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:38:17 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 11:38:19 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/03 13:12:29 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	parse_sphere(t_parser *parser, t_object *shape)
 	}
 	else if (!find_matching_bracket(parser))
 		handle_errors("sphere syntax error");
-	transform_object(&shape->object.sphere.transform);
 	if (shape->object.sphere.appearance.texture.type == TEXTURE_CHECKERED)
 		shape->object.sphere.appearance.texture.width = \
 			2 * shape->object.sphere.appearance.texture.height;

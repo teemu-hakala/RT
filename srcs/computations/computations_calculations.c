@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:19:46 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 11:19:47 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/03 12:48:11 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ void	prepare_object(t_world *world, t_hit *hit, t_ray ray)
 		tuple_scale(hit->computations.vectors.surface_normal, EPSILON));
 	hit->computations.reflectv = reflect(ray.direction, \
 		hit->computations.vectors.surface_normal);
-	hit->computations.n1 = 1;
-	hit->computations.n2 = 1;
 	if (world->intersections.len >= 1)
 		compute_refraction_index(world, hit);
 }

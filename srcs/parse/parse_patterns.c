@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:37:12 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 11:37:14 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/03 13:10:51 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ static void	find_pattern_keywords(t_pattern *pattern, t_parser *parser)
 	else if (ft_strncmp(&parser->string[parser->c], "\"transform\"", 10) == 0)
 	{
 		parse_transform_subobject(parser, &pattern->transform);
-		transform_object(&pattern->transform);
 	}
 	else
 		handle_errors("pattern syntax error");

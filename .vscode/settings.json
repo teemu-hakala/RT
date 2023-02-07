@@ -34,6 +34,7 @@
 		"parse.h": "c",
 		"condition_variable": "c",
 		"sstream": "c",
-		"cmath": "c"
+		"cmath": "c",
+		"tuple.h": "c"
 	}
 }
