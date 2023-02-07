@@ -24,15 +24,9 @@ int	handle_on_key_down(int key, t_win *win)
 	printf("key down: %i\n", key);
 	if (key == ESC)
 		esc_program();
-	/* all keys that are allowed to be simultaneously pressed
-		into one if statement, more precise handling further down
-		handling of normal press via multiple_keys_handler too
-	 */
-	if (/***/)
-	{
+	if (key == KEY_LEFT_SHIFT || key == KEY_Q || key == KEY_W || \
+		key == KEY_E || key == KEY_A || key == KEY_S || key == KEY_D)
 		multiple_keys_handler(key, win, true);
-	}
-
 	if (key == KEY_LEFT_COMMAND || key == KEY_RIGHT_COMMAND)
 		command_key_state(true);
 	if (key == KEY_TABULATOR)
@@ -49,9 +43,9 @@ int	handle_on_key_down(int key, t_win *win)
 
 int	handle_on_key_up(int key, t_win *win)
 {
-
 	printf("key up: %i\n", key);
-	if (/**/)
+	if (key == KEY_LEFT_SHIFT || key == KEY_Q || key == KEY_W || \
+		key == KEY_E || key == KEY_A || key == KEY_S || key == KEY_D)
 		multiple_keys_handler(key, win, false);
 	return (0);
 }

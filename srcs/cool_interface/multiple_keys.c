@@ -1,27 +1,16 @@
 #include "RT.h"
 
-void	act_upon_pressed_keys(t_win *win)
-{
-	/* no else ifs */
-	if (win->input.keyboard.keys.keys_bitfield.w)
-		/* look into movement_agent.c */
-	if (win->input.keyboard.keys.keys_bitfield.a)
-	/* think about refresh_image and act wisely,
-		since multiple keys might be pressed during a frame
-		maybe coordinate with mlx_loop_hooked function: */
-}
-
-// lisaa headeriin RT.h?
 void	multiple_keys_handler(int key, t_win *win, bool pressed)
 {
-	/* signal to put_image to refresh_image after
-		all keys have been handled */
+	t_keys	keys;
 
-	win->input.keyboard.multiple_key_was_pressed = true;
-	/* handle t_keys combinations via struct aliases */
-	if (key == KEY_W)
-		win->input.keyboard.keys.keys_bitfield.w = pressed;
-	else if () /* use else ifs */
-		;
-	act_upon_pressed_keys();
+	keys = win->input.keyboard.keys;
+	keys.keys_bitfield.q = key == KEY_Q && pressed;
+	keys.keys_bitfield.w = key == KEY_W && pressed;
+	keys.keys_bitfield.e = key == KEY_E && pressed;
+	keys.keys_bitfield.a = key == KEY_A && pressed;
+	keys.keys_bitfield.s = key == KEY_S && pressed;
+	keys.keys_bitfield.d = key == KEY_D && pressed;
+	keys.keys_bitfield.left_shift = key == KEY_LEFT_SHIFT && pressed;
+	mlx_loop_hook(win->mlx, put_image, win);
 }

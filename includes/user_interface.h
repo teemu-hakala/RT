@@ -17,6 +17,7 @@
 # define UP_STEP 0.0375
 # define FORWARD_STEP 0.0375
 # define LEFT_STEP 0.0375
+# define SCALE_COEFFICIENT 0.2
 # define ZOOM_STEP 0.1
 # define PPM_SUFFIX ".ppm"
 # define PPM_BUFFER_SIZE 0b10000000000
@@ -66,7 +67,8 @@ enum e_key_code
 	KEY_C = 8,
 	KEY_R = 15,
 	KEY_F = 3,
-	KEY_P_ICTURE = 35
+	KEY_P_ICTURE = 35,
+	KEY_LEFT_SHIFT = 57
 };
 
 void	put_rectangle_to_image(t_img img, t_rectangle image, \

@@ -16,6 +16,7 @@
 # include <math.h>
 # include <mlx.h>
 # include <stdint.h>
+# include <stdbool.h>
 # include "libft.h"
 # include "tuple.h"
 # include "matrices.h"
@@ -261,5 +262,8 @@ int			rt_atoi(t_parser *parser);
 
 /* loops */
 int			incremental_loop(t_win *win);
+
+void		multiple_keys_handler(int key, t_win *win, bool pressed);
+int			handle_on_key_up(int key, t_win *win);
 
 #endif
