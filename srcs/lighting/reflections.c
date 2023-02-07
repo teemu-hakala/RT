@@ -6,7 +6,7 @@
 /*   By: jraivio <jraivio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:21:50 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/07 15:08:07 by jraivio          ###   ########.fr       */
+/*   Updated: 2023/02/07 15:47:36 by jraivio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	is_shadow(t_world *world, t_hit *hit, t_light *light)
 	{
 		if (world->shadow_hit.intersection.time < distance)
 		{
-			set_shadow_occlusion(world, hit);
+			set_shadow_occlusion(world, hit, distance);
 		}
 	}
 }
