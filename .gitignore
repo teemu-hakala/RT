@@ -5,3 +5,5 @@ obj/
 *.a
 .DS_Store
 .prerequisites
+*.swp
+*.swo

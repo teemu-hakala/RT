@@ -6,7 +6,7 @@
 #    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2023/02/03 12:52:47 by deelliot         ###   ########.fr        #
+#    Updated: 2023/02/07 15:07:18 by jraivio          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,8 @@ COOL_INTERFACE_SRCS = handle_input.c key_handlers.c mouse_input.c \
 INTERSECT_SRCS = intersect_plane.c intersect_sphere.c intersect_cone.c \
 	intersect_cylinder.c intersect_cube.c intersect_dispatch.c
 
-LIGHTING_SRCS = lighting.c reflections.c shade_hit.c refractions.c
+LIGHTING_SRCS = lighting.c reflections.c shade_hit.c refractions.c \
+	set_shadow_occlusion.c
 
 MATHS_SRCS = matrix_inversion.c matrix_maths.c matrix_transformations.c \
 	tuple_operations.c matrix_rotations.c tuple_w.c tuple_basic_operations.c \

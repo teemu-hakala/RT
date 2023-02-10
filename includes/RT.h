@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:01:29 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 12:01:32 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/07 15:49:09 by jraivio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,7 @@ t_ray		ray(t_tuple origin, t_tuple reflectv);
 t_tuple		reflected_colour(t_world *world, t_hit *hit);
 t_tuple		refracted_colour(t_world *world, t_hit *hit);
 t_fl		schlick(t_hit *hit);
+void		set_shadow_occlusion(t_world *world, t_hit *hit, t_fl distance);
 
 /* object transformation */
 void		transform_object(t_transform *object);
