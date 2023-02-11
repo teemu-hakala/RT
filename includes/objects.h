@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:01:12 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/11 12:08:29 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/11 13:42:05 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ typedef struct s_material
 	t_fl		reflectiveness;
 	t_fl		transparency;
 	t_fl		refractive_index;
+	bool		disruption;
 }				t_material;
 
 typedef struct s_comp
@@ -127,7 +128,6 @@ typedef struct s_plane
 	t_transform		transform;
 	t_material		material;
 	t_appearance	appearance;
-	bool			disruption;
 }	t_plane;
 
 typedef struct s_sphere
@@ -136,7 +136,6 @@ typedef struct s_sphere
 	t_transform		transform;
 	t_material		material;
 	t_appearance	appearance;
-	bool			disruption;
 }	t_sphere;
 
 typedef struct s_cone
@@ -149,7 +148,6 @@ typedef struct s_cone
 	t_fl			min;
 	t_fl			max;
 	bool			closed;
-	bool			disruption;
 }	t_cone;
 
 typedef struct s_cylinder
@@ -162,7 +160,6 @@ typedef struct s_cylinder
 	t_fl			min;
 	t_fl			max;
 	bool			closed;
-	bool			disruption;
 }	t_cylinder;
 
 typedef struct s_cube
@@ -172,7 +169,6 @@ typedef struct s_cube
 	t_material		material;
 	t_appearance	appearance;
 	t_fl			length;
-	bool			disruption;
 }	t_cube;
 
 typedef struct s_light

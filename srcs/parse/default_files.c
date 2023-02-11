@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:36:07 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 11:36:09 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/11 13:44:41 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ t_material	default_material_1(void)
 		.col_mash = vector(0, 0, 0),
 		.reflectiveness = 0,
 		.transparency = 0,
-		.refractive_index = 1
+		.refractive_index = 1,
+		.disruption = true
 	});
 }
 

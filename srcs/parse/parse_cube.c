@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:36:36 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/11 12:09:24 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/11 13:42:48 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ t_object	cube_prototype(void)
 			.transform = default_transform_1(),
 			.material = default_material_1(),
 			.appearance.pattern = default_pattern(),
-			.appearance.texture = default_texture(),
-			.disruption = false
+			.appearance.texture = default_texture()
 		},
 		.type = OBJECT_CUBE
 	});

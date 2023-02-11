@@ -23,7 +23,7 @@
 	"shapes" :
 	[
 		{
-			"cone" :
+			"sphere" :
 			{
 				"material" :
 				{

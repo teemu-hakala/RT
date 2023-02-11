@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:36:40 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/11 12:09:32 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/11 13:42:44 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ t_object	cylinder_prototype(void)
 			.radius = 1,
 			.min = -INFINITY,
 			.max = INFINITY,
-			.closed = false,
-			.disruption = false
+			.closed = false
 		},
 		.type = OBJECT_CYLINDER
 	});
