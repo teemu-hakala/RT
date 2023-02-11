@@ -94,7 +94,7 @@
 			{
 				"min" : 0,
 				"max" : 0.3,
-				"closed" : 1,
+				"closed" : 0,
 				"transform" :
 				{
 					"scale" : [0.6, 1, 0.6],
@@ -244,7 +244,7 @@
 			{
 				"min" : 0.0001,
 				"max" : 0.5,
-				"closed" : 0,
+				"closed" : 1,
 				"transform" :
 				{
 					"scale" : [0.33, 1, 0.33],
