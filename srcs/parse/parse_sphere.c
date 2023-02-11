@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:38:17 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/11 12:25:05 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/11 13:35:20 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_object	sphere_prototype(void)
 			.material = default_material_1(),
 			.appearance.pattern = default_pattern(),
 			.appearance.texture = default_texture(),
-			.disruption = true
+			.disruption = false
 		},
 		.type = OBJECT_SPHERE
 	});

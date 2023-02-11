@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:36:31 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/11 13:12:13 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/11 13:35:08 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_object	cone_prototype(void)
 			.min = -INFINITY,
 			.max = INFINITY,
 			.closed = false,
-			.disruption = true
+			.disruption = false
 		},
 		.type = OBJECT_CONE
 	});
