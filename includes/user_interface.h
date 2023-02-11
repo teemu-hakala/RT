@@ -17,7 +17,7 @@
 # define UP_STEP 0.0375
 # define FORWARD_STEP 0.0375
 # define LEFT_STEP 0.0375
-# define SCALE_COEFFICIENT 0.2
+# define SCALE_COEFFICIENT 40.2
 # define ZOOM_STEP 0.1
 # define PPM_SUFFIX ".ppm"
 # define PPM_BUFFER_SIZE 0b10000000000
@@ -78,7 +78,7 @@ void	toggle_key_user_interface(t_win *win);
 t_img	progress_bar_image(t_win *win, t_canvas *bar_dimensions, uint8_t flag);
 void	*progress_percentage(void *param);
 void	clear_progress(t_progress progress[THREAD_COUNT], uint64_t frame);
-void	movement_agent(t_win *win, int key);
+int		movement_agent(void *win);
 void	refresh_image(t_win *win);
 void	apply_scroll_effect(t_win *win, int8_t direction);
 void	camera_upwards(t_win *win, t_fl magnitude);

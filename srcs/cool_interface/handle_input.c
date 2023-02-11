@@ -31,9 +31,6 @@ int	handle_on_key_down(int key, t_win *win)
 		command_key_state(true);
 	if (key == KEY_TABULATOR)
 		toggle_key_user_interface(win);
-	if (key == KEY_Q || key == KEY_W || key == KEY_E \
-		|| key == KEY_A || key == KEY_S || key == KEY_D)
-		movement_agent(win, key);
 	if (key == KEY_R || key == KEY_F)
 		field_of_view_zoomer(win, key);
 	if (key == KEY_P_ICTURE)

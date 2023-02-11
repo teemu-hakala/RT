@@ -37,25 +37,28 @@ t_fl	step_scalar(bool left_shift)
 {
 	return (1 + (left_shift * SCALE_COEFFICIENT));
 }
-
-void	movement_agent(t_win *win, int key)
+ 
+int	movement_agent(void *param)
 {
 	t_keys		keys;
 	t_fl		scalar;
+	t_win		*win;
 
+	win = (t_win *)param;
 	keys = win->input.keyboard.keys;
 	scalar = step_scalar(keys.keys_bitfield.left_shift);
-	if (key == KEY_Q)
+	if (keys.keys_bitfield.q)
 		camera_upwards(win, (scalar * UP_STEP));
-	if (key == KEY_W)
+	if (keys.keys_bitfield.w)
 		camera_forwards(win, (scalar * FORWARD_STEP));
-	if (key == KEY_E)
+	if (keys.keys_bitfield.e)
 		camera_upwards(win, (scalar * -UP_STEP));
-	if (key == KEY_A)
+	if (keys.keys_bitfield.a)
 		camera_sideways(win, (scalar * LEFT_STEP));
-	if (key == KEY_S)
+	if (keys.keys_bitfield.s)
 		camera_forwards(win, (scalar * -FORWARD_STEP));
-	if (key == KEY_D)
+	if (keys.keys_bitfield.d)
 		camera_sideways(win, (scalar * -LEFT_STEP));
 	refresh_image(win);
+	return (0);
 }

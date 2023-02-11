@@ -104,6 +104,6 @@ int	put_image(t_win *win)
 		mlx_put_image_to_window(win->mlx, win->win, \
 			progress_bar_image(win, NULL, BAR_NON_ACTION).img, 10, HEIGHT - 30);
 	if (win->drawn == true && win->input.keyboard.keys.keys_uint == 0)
-		mlx_loop_hook(win->mlx, NULL, NULL);
+		mlx_loop_hook(win->mlx, movement_agent, win);
 	return (0);
 }

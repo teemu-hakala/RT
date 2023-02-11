@@ -12,5 +12,6 @@ void	multiple_keys_handler(int key, t_win *win, bool pressed)
 	keys.keys_bitfield.s = key == KEY_S && pressed;
 	keys.keys_bitfield.d = key == KEY_D && pressed;
 	keys.keys_bitfield.left_shift = key == KEY_LEFT_SHIFT && pressed;
+	movement_agent(win);
 	mlx_loop_hook(win->mlx, put_image, win);
 }
