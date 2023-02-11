@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:20:12 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 12:05:48 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/11 09:24:16 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,16 @@ void	print_text_on_keys_image(t_win *win, t_img *keys_image)
 	str[i++] = "RESET     ENT";
 	str[i++] = "EXIT      ESC";
 	str[i++] = "SCROLL /+:";
-	str[i++] = " -ZOOM      QE";
-	str[i++] = " -TRANSLATE WASD";
-	str[i++] = " -PICTURE   P";
+	str[i++] = " -ZOOM         QE";
+	str[i++] = " -TRANSLATE    WASD";
+	str[i++] = " -SCREENSHOT   P";
 	row = keys_image->dimensions.start.vertical;
 	column = keys_image->dimensions.start.horizontal;
 	mlx_string_put(win->mlx, win->win, column + 10, row, 0x00FCBB6D, \
 		"Cool Interface:");
 	row += 30;
 	i = 0;
-	while (i < 5)
+	while (i < 8)
 	{
 		mlx_string_put(win->mlx, win->win, column, row + (i * 25), \
 			0x00D8737F, str[i]);
