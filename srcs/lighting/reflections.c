@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reflections.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jraivio <jraivio@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:21:50 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/07 15:47:36 by jraivio          ###   ########.fr       */
+/*   Updated: 2023/02/11 10:48:34 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ static void	direction_and_distance(t_light *light, t_tuple *direction,
 	}
 	else
 	{
-		temp = normalize(light->direction);
-		*distance = -INFINITY;
+		temp = tuple_scale(light->direction, 1);
+		*distance = INFINITY;
 	}
 	*direction = normalize(temp);
 }
