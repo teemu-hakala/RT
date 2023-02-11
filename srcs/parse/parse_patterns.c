@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:37:12 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 13:10:51 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/11 09:08:13 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static void	find_pattern_keywords(t_pattern *pattern, t_parser *parser)
 		find_colon(parser);
 		parse_tuple(&pattern->colour_b, parser);
 	}
-	else if (ft_strncmp(&parser->string[parser->c], "\"transform\"", 10) == 0)
+	else if (ft_strncmp(&parser->string[parser->c], "\"transform\"", 11) == 0)
 	{
 		parse_transform_subobject(parser, &pattern->transform);
 	}
