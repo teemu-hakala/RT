@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:36:31 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 13:12:10 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/11 13:12:13 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ t_object	cone_prototype(void)
 			.appearance.texture = default_texture(),
 			.min = -INFINITY,
 			.max = INFINITY,
-			.closed = false
+			.closed = false,
+			.disruption = true
 		},
 		.type = OBJECT_CONE
 	});

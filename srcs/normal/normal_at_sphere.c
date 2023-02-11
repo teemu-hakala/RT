@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:35:07 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 11:35:09 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/11 13:22:55 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ t_tuple	normal_at_sphere(void *sphere, t_tuple *point_at)
 	obj_point = \
 		matrix_tuple_multi(&((t_sphere *)sphere)->transform.inverse, point_at);
 	obj_normal = tuple_sub(obj_point, ((t_sphere *)sphere)->origin);
+	if (((t_sphere *)sphere)->disruption == true)
+		obj_normal = perturb_normal(&obj_point, obj_normal);
 	transposed_inverse = \
 		transpose_matrix(&((t_sphere *)sphere)->transform.inverse);
 	world_normal = matrix_tuple_multi(&transposed_inverse, &obj_normal);

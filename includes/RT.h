@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:01:29 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/07 15:49:09 by jraivio          ###   ########.fr       */
+/*   Updated: 2023/02/11 13:22:42 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,6 +203,7 @@ t_pattern	default_gradient_pattern(void);
 t_pattern	default_ring_pattern(void);
 t_pattern	default_simple_checkered_pattern(void);
 t_pattern	default_pattern(void);
+t_tuple		perturb_normal(t_tuple *p, t_tuple normal);
 
 /* default textures*/
 t_texture	default_texture(void);

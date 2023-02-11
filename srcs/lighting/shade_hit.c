@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:47:09 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 12:47:10 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/11 13:11:33 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_tuple	shade_hit(t_world *world, t_hit *hit)
 	while (i < world->lights.len)
 	{
 		light = (t_light *)vec_get(&world->lights, i);
-		is_shadow(world, hit, light);
+		//is_shadow(world, hit, light);
 		if (hit->intersection.appearance.pattern.type > 0 || \
 		hit->intersection.appearance.texture.type > 0)
 		{
