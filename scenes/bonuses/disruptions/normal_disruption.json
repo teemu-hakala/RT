@@ -23,7 +23,7 @@
 	"shapes" :
 	[
 		{
-			"cylinder" :
+			"sphere" :
 			{
 				"material" :
 				{
