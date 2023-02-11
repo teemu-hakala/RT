@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:37:16 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 13:12:48 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/11 13:42:37 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_object	plane_prototype(void)
 			.transform = plane_transform(),
 			.material = default_material_1(),
 			.appearance.pattern = default_pattern(),
-			.appearance.texture = default_texture(),
+			.appearance.texture = default_texture()
 		},
 		.type = OBJECT_PLANE
 	});

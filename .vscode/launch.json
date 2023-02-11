@@ -22,7 +22,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/RT",
-			"args": ["${workspaceFolder}/scenes/bonuses/textures/transformed_tex.json"],
+			"args": ["${workspaceFolder}/scenes/bonuses/textures/transformed_tex_scaled.json"],
 			"stopAtEntry": true,
 			"cwd": "${workspaceFolder}",
 			"environment": [],
