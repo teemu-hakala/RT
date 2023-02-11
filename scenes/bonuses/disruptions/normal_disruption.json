@@ -31,7 +31,8 @@
 					"specular" : 0.4,
 					"shininess" : 10,
 					"diffuse" : 0.6,
-					"init_colour" : [1, 1, 0.09]
+					"init_colour" : [1, 1, 0.09],
+					"disruption" : 1
 				}
 			}
 		}
