@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:20:18 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 11:20:20 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/11 17:48:26 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,6 @@ void	mouse_register_click_up(int button, t_point mouse_pointer, t_win *win)
 
 int	mouse_handler_down(int button, int x, int y, t_win *win)
 {
-	(void)button;
-	(void)x;
-	(void)y;
-	(void)win;
-
 	if (button == RIGHT_CLICK)
 		mouse_register_click_down(button, (t_point){.row = y, .col = x}, win);
 	else if (button == SCROLL_UP)
@@ -47,9 +42,6 @@ int	mouse_handler_down(int button, int x, int y, t_win *win)
 
 int	mouse_handler_move(int x, int y, t_win *win)
 {
-	(void)x;
-	(void)y;
-	(void)win;
 	if (win->input.mouse.rmb_is_down == true)
 	{
 		win->input.mouse.diff = (t_point){.row = y - win->input.mouse.curr.row,
@@ -57,16 +49,11 @@ int	mouse_handler_move(int x, int y, t_win *win)
 		navigate_camera(win);
 		win->input.mouse.curr = (t_point){.row = y, .col = x};
 	}
-
 	return (EXIT_SUCCESS);
 }
 
 int	mouse_handler_up(int button, int x, int y, t_win *win)
 {
-	(void)button;
-	(void)x;
-	(void)y;
-	(void)win;
 	if (button == RIGHT_CLICK)
 		mouse_register_click_up(button, (t_point){.row = y, .col = x}, win);
 	return (EXIT_SUCCESS);

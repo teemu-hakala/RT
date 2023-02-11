@@ -35,6 +35,7 @@
 		"condition_variable": "c",
 		"sstream": "c",
 		"cmath": "c",
-		"tuple.h": "c"
+		"tuple.h": "c",
+		"rt.h": "c"
 	}
 }
