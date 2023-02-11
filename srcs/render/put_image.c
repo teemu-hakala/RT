@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_image.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:59:51 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 11:59:52 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/11 16:36:23 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,8 @@ int	put_image(t_win *win)
 		win->progress = progress;
 		init_progress_mutex(progress);
 		progress_bar_image(win, \
-			&(t_canvas){.horizontal = WIDTH - 20, .vertical = 20}, BAR_CLEAR);
+			&(t_canvas){.horizontal = win->world.camera.canvas.horizontal - \
+			20, .vertical = 20}, BAR_CLEAR);
 		threaded_loop(win, progress);
 		first = 0;
 		pthread_create(&win->bar_thread, NULL, progress_percentage, win);
