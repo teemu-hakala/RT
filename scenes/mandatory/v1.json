@@ -3,7 +3,7 @@
 	{
 		"canvas" :
 		{
-			"horizontal" : 600,
+			"horizontal" : 1000,
 			"vertical" : 500
 		},
 		"field_of_view" : 0.785,
