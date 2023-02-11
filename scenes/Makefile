@@ -18,7 +18,7 @@ SCENES = \
 	bonuses/textures/one_object.json \
 	bonuses/textures/4_objects.json \
 	bonuses/textures/transformed_tex_scaled.json \
-	bonuses/textures/transformed_tex.json \
+	bonuses/textures/transformed_tex_shifted.json \
 	bonuses/textures/t1_skybox.json \
 	bonuses/composed_elem.json \
 

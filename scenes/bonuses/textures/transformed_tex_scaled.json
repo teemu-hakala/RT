@@ -1,28 +1,16 @@
 {
 	"camera" :
 	{
-		"origin" : [1, 2, -12],
-		"center_of_interest" : [0, 1.1, 0],
-		"field_of_view" : 0.8,
-		"canvas" :
-		{
-			"horizontal" : 800,
-			"vertical" : 400
-		}
+		"origin" : [0, 1.5, -5],
+		"center_of_interest" : [0, 1, 0],
+		"field_of_view" : 1.047
 	},
 	"lights" :
 	[
 		{
 			"spot" :
 			{
-				"position" : [-100, 100, -100],
-				"intensity" : [1, 1, 1]
-			}
-		},
-		{
-			"spot" :
-			{
-				"position" : [100, 100, -100],
+				"position" : [0, 10, -10],
 				"intensity" : [1, 1, 1]
 			}
 		}
@@ -43,152 +31,72 @@
 			}
 		},
 		{
-			"cylinder" :
-			{
-				"min" : 0,
-				"max" : 0.1,
-				"closed" : 1,
-				"material" :
-				{
-					"init_colour" : [1, 1, 1],
-					"diffuse" : 0.2,
-					"specular" : 0,
-					"ambient" : 0,
-					"reflectiveness" : 0.1
-				},
-				"transform" :
-				{
-					"translation" : [-3, 0, 0]
-				}
-			}
-		},
-		{
-			"sphere" :
+			"plane" :
 			{
 				"transform" :
 				{
-					"rotation" : [0, 1.9, 0],
-					"translation" : [-3, 1.1, 0]
+					"translation" : [0, 0, 5],
+					"rotation" : [1.57, 0, -0.78539]
 				},
 				"appearance" :
 				{
 					"texture" :
 					{
-						"type" : "checkered",
-						"width" : 20,
-						"height" : 10,
+						"type" : "external",
+						"name" : "textures/brick_rough.ppm",
 						"transform" :
 						{
-							"scale" : [1, 1, 1]
+							"scale" : [5, 5, 5]
 						}
 					}
-				},
-				"material" :
+				}
+			}
+		},
+		{
+			"plane" :
+			{
+				"transform" :
 				{
-					"diffuse" : 0.9,
-					"specular" : 0.1,
-					"shininess" : 10,
-					"ambient" : 0.1
+					"translation" : [0, 0, 5],
+					"rotation" : [1.57, 0, 0.78539]
+				},
+				"appearance" :
+				{
+					"texture" :
+					{
+						"type" : "external",
+						"name" : "textures/brick_rough.ppm",
+						"transform" :
+						{
+							"scale" : [10, 10, 10]
+						}
+					}
 				}
 			}
 		},
 		{
 			"cylinder" :
 			{
-				"min" : 0,
-				"max" : 0.1,
-				"closed" : 1,
-				"material" :
-				{
-					"init_colour" : [1, 1, 1],
-					"diffuse" : 0.2,
-					"specular" : 0,
-					"ambient" : 0,
-					"reflectiveness" : 0.1
-				},
+				"min" : -1,
+				"max" : 1,
 				"transform" :
 				{
-					"translation" : [0, 0, 0]
-				}
-			}
-		},
-		{
-			"sphere" :
-			{
-				"transform" :
-				{
-					"rotation" : [0, 1.9, 0],
-					"translation" : [0, 1.1, 0]
+					"scale" : [0.75, 1, 1],
+					"translation" : [0, 1, 0],
+					"rotation" : [0, 0.785, 0]
 				},
 				"appearance" :
 				{
 					"texture" :
 					{
-						"type" : "checkered",
-						"width" : 20,
-						"height" : 10,
+						"type" : "external",
+						"name" : "textures/coke.ppm",
 						"transform" :
 						{
-							"scale" : [0.5, 0.5, 0.5]
+							"translation" : [0, 5, 0],
+							"scale" : [1, 2, 1]
 						}
 					}
-				},
-				"material" :
-				{
-					"diffuse" : 0.9,
-					"specular" : 0.1,
-					"shininess" : 10,
-					"ambient" : 0.1
-				}
-			}
-		},
-		{
-			"cylinder" :
-			{
-				"min" : 0,
-				"max" : 0.1,
-				"closed" : 1,
-				"material" :
-				{
-					"init_colour" : [1, 1, 1],
-					"diffuse" : 0.2,
-					"specular" : 0,
-					"ambient" : 0,
-					"reflectiveness" : 0.1
-				},
-				"transform" :
-				{
-					"translation" : [3, 0, 0]
-				}
-			}
-		},
-		{
-			"sphere" :
-			{
-				"transform" :
-				{
-					"rotation" : [0, 1.9, 0],
-					"translation" : [3, 1.1, 0]
-				},
-				"appearance" :
-				{
-					"texture" :
-					{
-						"type" : "checkered",
-						"width" : 20,
-						"height" : 10,
-						"transform" :
-						{
-							"scale" : [2, 2, 2]
-						}
-					}
-				},
-				"material" :
-				{
-					"diffuse" : 0.9,
-					"specular" : 0.1,
-					"shininess" : 10,
-					"ambient" : 0.1
 				}
 			}
 		}
