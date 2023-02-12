@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialise.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:00:12 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 12:02:44 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/12 17:30:28 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	initialise_window(t_win *win)
 	win->keys_image = (t_img){};
 	win->keys_visible = false;
 	win->input.mouse.compounder = (t_compounder){};
+	win->world.filter = FILTER_NONE;
 }
 
 void	identity_matrix_set(t_mtx *dst)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RT.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:01:29 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/12 17:00:31 by ekantane         ###   ########.fr       */
+/*   Updated: 2023/02/12 17:25:44 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,4 +250,7 @@ t_uv_map	cube_uv_down(t_tuple *p);
 double		rt_atof(t_parser *parser);
 int			rt_atoi(t_parser *parser);
 
+/* loops */
+void		loop_filters(t_win *win);
+t_tuple		apply_filter(t_world *world, t_tuple colour);
 #endif

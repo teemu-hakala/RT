@@ -1,32 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   colour.c                                           :+:      :+:    :+:   */
+/*   looper.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/03 11:59:13 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/12 17:25:07 by thakala          ###   ########.fr       */
+/*   Created: 2023/02/12 16:55:16 by thakala           #+#    #+#             */
+/*   Updated: 2023/02/12 17:16:12 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RT.h"
 
-t_tuple	colour_at(t_world *world, t_ray ray)
+void	loop_filters(t_win *win)
 {
-	t_hit	hit;
-	t_tuple colour_final;
-
-	hit.hit_check = false;
-	vec_clear(&world->intersections);
-	intersect_world(world, ray);
-	identify_hit(world, &hit);
-	if (hit.hit_check == true)
-	{
-		prepare_object(world, &hit, ray);
-		colour_final = shade_hit(world, &hit);
-		return (apply_filter(world, colour_final));
-	}
-	else
-		return (vector(0, 0, 0));
+	win->world.filter = (win->world.filter + 1) % FILTER_COUNT;
+	refresh_image(win);
 }

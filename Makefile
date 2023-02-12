@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
+#    By: jraivio <jraivio@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2023/02/12 17:26:30 by jraivio          ###   ########.fr        #
+#    Updated: 2023/02/12 17:32:49 by jraivio          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,7 +80,8 @@ PARSE_SRCS = default_files.c default_patterns.c parse_camera.c parse_cone.c \
 PATTERNS_SRCS = pattern_dispatch.c patterns.c textures.c texture_dispatch.c \
 	uv_mapping.c cube_mapping.c cube_mapping_utility.c
 
-RENDER_SRCS = colour.c image_utility.c put_image.c ray.c threads.c
+RENDER_SRCS = colour.c image_utility.c put_image.c ray.c threads.c looper.c \
+	filters.c
 
 FILES = \
 	main.c \
