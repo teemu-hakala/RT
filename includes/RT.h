@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:01:29 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/12 17:02:13 by thakala          ###   ########.fr       */
+/*   Updated: 2023/02/12 17:02:56 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,6 @@ int			tuple_nearly_equals(t_tuple tuple_a, t_tuple tuple_b);
 void		rotate(t_mtx *mtx, t_tuple *rotations);
 void		rot_x(t_mtx *mtx, t_fl angle);
 void		rot_y(t_mtx *mtx, t_fl angle);
-void		rot_z(t_mtx *mtx, t_fl angle);
 void		translate(t_mtx *mtx, t_tuple *transform);
 void		scale(t_mtx *mtx, t_tuple *transform);
 

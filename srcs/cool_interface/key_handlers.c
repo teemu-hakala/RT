@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_handlers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:20:12 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/11 17:47:59 by thakala          ###   ########.fr       */
+/*   Updated: 2023/02/12 16:40:38 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,12 @@ void	print_text_on_keys_image(t_win *win, t_img *keys_image)
 {
 	uint16_t	row;
 	uint16_t	column;
-	char		*str[8];
+	char		*str[7];
 	int			i;
 
 	i = 0;
 	str[i++] = "MOVE CAM  R-CLICK";
 	str[i++] = "FILTER    [DOT]";
-	str[i++] = "RESET     ENT";
 	str[i++] = "EXIT      ESC";
 	str[i++] = "SCROLL /+:";
 	str[i++] = " -ZOOM         QE";
@@ -69,7 +68,7 @@ void	print_text_on_keys_image(t_win *win, t_img *keys_image)
 		"Cool Interface:");
 	row += 30;
 	i = -1;
-	while (++i < 8)
+	while (++i < 7)
 		mlx_string_put(win->mlx, win->win, column, row + (i * 25), \
 			0x00D8737F, str[i]);
 }
