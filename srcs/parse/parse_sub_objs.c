@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_sub_objs.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:38:22 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/11 13:43:28 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/12 14:00:37 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	parse_tuple(t_tuple *tuple, t_parser *parser)
 			tuple->array[i] = rt_atof(parser);
 			parser->c += ft_clear_whitespace(&parser->string[parser->c]);
 			if (i < 2 && parser->string[parser->c++] != ',')
-				handle_errors("array syntax error");
+				handle_parser_errors("array syntax error", parser);
 			i++;
 		}
 		if (parser->string[parser->c] == ']')
@@ -75,5 +75,5 @@ void	parse_tuple(t_tuple *tuple, t_parser *parser)
 			return ;
 		}
 	}
-	handle_errors("DENIED: parse_tuple");
+	handle_parser_errors("DENIED: parse_tuple", parser);
 }

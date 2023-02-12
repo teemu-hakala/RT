@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt_atof.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:39:06 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 11:39:08 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/12 14:03:01 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static double	rt_atof_digits(t_parser *parser, uint64_t *d, char sign)
 			decimal_digits *= 10;
 		}
 		if (decimal_digits == 0)
-			handle_errors("user error, number too long");
+			handle_parser_errors("user error, number too long", parser);
 	}
 	return (sign * ((double)integral + (double)fractional / decimal_digits));
 }
@@ -52,7 +52,7 @@ double	rt_atof(t_parser *parser)
 		sign = 44 - parser->string[d++];
 	result = rt_atof_digits(parser, &d, sign);
 	if (parser->atof_index == 0)
-		handle_errors("atof error");
+		handle_parser_errors("atof error", parser);
 	parser->c = d;
 	return (result);
 }

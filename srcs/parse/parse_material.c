@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_material.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:37:04 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/11 14:01:55 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/12 14:01:38 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	parse_disruption(t_material *material, t_parser *parser)
 	else if (parser->string[parser->c] == '0')
 		material->disruption = false;
 	else
-		handle_errors("disruption error");
+		handle_parser_errors("disruption error", parser);
 	parser->c++;
 }
 
@@ -45,7 +45,7 @@ static void	material_keywords_final(t_material *material, t_parser *parser)
 	else if (ft_strncmp(&parser->string[parser->c], "\"disruption\"", 12) == 0)
 		parse_disruption(material, parser);
 	else
-		handle_errors("not a material keyword");
+		handle_parser_errors("not a material keyword", parser);
 }
 
 static void	material_keywords_cont(t_material *material, t_parser *parser)
@@ -112,6 +112,6 @@ void	parse_material(t_material *material, t_parser *parser)
 		if (find_matching_bracket(parser))
 			return ;
 		else
-			handle_errors("material syntax error");
+			handle_parser_errors("material syntax error", parser);
 	}
 }

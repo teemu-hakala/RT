@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_sphere.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:38:17 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/11 13:42:28 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/12 13:02:58 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	parse_sphere(t_parser *parser, t_object *shape)
 		parse_sphere(parser, shape);
 	}
 	else if (!find_matching_bracket(parser))
-		handle_errors("sphere syntax error");
+		handle_parser_errors("sphere syntax error", parser);
 	if (shape->object.sphere.appearance.texture.type == TEXTURE_CHECKERED)
 		shape->object.sphere.appearance.texture.width = \
 			2 * shape->object.sphere.appearance.texture.height;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_appearance.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:50:13 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 13:16:30 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/12 13:53:55 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,5 @@ void	parse_appearance(t_appearance *appearance, t_parser *parser)
 	else if (find_matching_bracket(parser))
 		return ;
 	else
-		handle_errors("error in appearance parser");
+		handle_parser_errors("error in appearance parser", parser);
 }

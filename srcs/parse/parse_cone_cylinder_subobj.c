@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cone_cylinder_subobj.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:36:27 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 11:36:29 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/12 14:03:26 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	find_closed(t_parser *parser, t_object *object)
 	else if (parser->string[parser->c] == '0')
 		closed = false;
 	else
-		handle_errors("cone/cylinder syntax error");
+		handle_parser_errors("cone/cylinder syntax error", parser);
 	if (object->type == OBJECT_CONE)
 		object->object.cone.closed = closed;
 	else

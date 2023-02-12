@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_transform.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:38:42 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 11:38:44 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/12 14:01:56 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,6 @@ void	parse_transform(t_transform *transform, t_parser *parser)
 		if (find_matching_bracket(parser))
 			return ;
 		else
-			handle_errors("transform syntax error");
+			handle_parser_errors("transform syntax error", parser);
 	}
 }
