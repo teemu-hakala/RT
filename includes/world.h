@@ -3,18 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   world.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:01:50 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 13:17:25 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/12 16:58:30 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WORLD_H
 # define WORLD_H
 # include "RT.h"
-/*inside == true if hit occurs inside object, false otherwise. If hit occurs
-iside object, normal vector is inverted*/
+
+typedef enum e_filter_type
+{
+	SEPIA = 0,
+	NEGATIVE = 1,
+	GRAYSCALE = 2,
+	FILTER_COUNT
+}		t_filter_type;
 
 typedef struct s_quadratic
 {
@@ -51,16 +57,17 @@ typedef struct s_ray
 
 typedef struct s_world
 {
-	t_camera	camera;
-	t_vec		lights;
-	t_vec		objects;
-	t_vec		intersections;
-	t_hit		shadow_hit;
-	t_ray		ray;
-	t_ray		reflected_ray;
-	t_ray		refracted_ray;
-	int			lifetime;
-	int			refraction_lifetime;
+	t_camera		camera;
+	t_vec			lights;
+	t_vec			objects;
+	t_vec			intersections;
+	t_hit			shadow_hit;
+	t_ray			ray;
+	t_ray			reflected_ray;
+	t_ray			refracted_ray;
+	int				lifetime;
+	int				refraction_lifetime;
+	t_filter_type	filter;
 }	t_world;
 
 #endif
