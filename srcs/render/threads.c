@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   threads.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:00:02 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 12:00:03 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/12 17:30:54 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_world	world_selectively_shallow_copy(t_world *original)
 	if (vec_new(&copy.intersections, 1, sizeof(t_intersect))
 		!= VEC_SUCCESS)
 		handle_errors("world_selectively_shallow_copy malloc returned NULL");
+	copy.filter = original->filter;
 	return (copy);
 }
 

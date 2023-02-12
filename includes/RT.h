@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:01:29 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/12 17:02:56 by thakala          ###   ########.fr       */
+/*   Updated: 2023/02/12 17:25:44 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,5 +252,5 @@ int			rt_atoi(t_parser *parser);
 
 /* loops */
 void		loop_filters(t_win *win);
-
+t_tuple		apply_filter(t_world *world, t_tuple colour);
 #endif
