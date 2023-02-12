@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement_agent.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:20:24 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 11:20:26 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/11 17:49:09 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ void	camera_upwards(t_win *win, t_fl magnitude)
 	(void)magnitude;
 	win->input.mouse.mode = CAMERA_UP;
 	win->world.camera.transform.translation.tuple.units.y += magnitude;
-	// win->world.camera.origin.tuple.units.y += magnitude;
 	win->world.camera.center_of_interest.array[Y] += magnitude;
-	// transform_camera(&win->world.camera);
 	transform_camera(&win->world.camera);
 }
 
@@ -27,8 +25,6 @@ void	camera_forwards(t_win *win, t_fl magnitude)
 {
 	t_tuple	difference;
 
-
-	(void)magnitude;
 	win->input.mouse.mode = CAMERA_FORWARD;
 	difference = tuple_sub(win->world.camera.center_of_interest, \
 		win->world.camera.origin);
@@ -45,7 +41,6 @@ void	camera_sideways(t_win *win, t_fl magnitude)
 	t_tuple		difference;
 	t_tuple		left;
 
-	(void)magnitude;
 	win->input.mouse.mode = CAMERA_LEFT;
 	difference = tuple_sub(win->world.camera.center_of_interest, \
 		win->world.camera.origin);

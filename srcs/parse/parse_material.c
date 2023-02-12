@@ -6,11 +6,25 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:37:04 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 13:03:56 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/11 14:01:55 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RT.h"
+
+static void	parse_disruption(t_material *material, t_parser *parser)
+{
+	parser->c += sizeof("\"disruption\"") - 1;
+	find_colon(parser);
+	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
+	if (parser->string[parser->c] == '1')
+		material->disruption = true;
+	else if (parser->string[parser->c] == '0')
+		material->disruption = false;
+	else
+		handle_errors("disruption error");
+	parser->c++;
+}
 
 static void	material_keywords_final(t_material *material, t_parser *parser)
 {
@@ -28,6 +42,10 @@ static void	material_keywords_final(t_material *material, t_parser *parser)
 		find_colon(parser);
 		material->refractive_index = rt_atof(parser);
 	}
+	else if (ft_strncmp(&parser->string[parser->c], "\"disruption\"", 12) == 0)
+		parse_disruption(material, parser);
+	else
+		handle_errors("not a material keyword");
 }
 
 static void	material_keywords_cont(t_material *material, t_parser *parser)

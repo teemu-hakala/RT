@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:01:29 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/07 15:49:09 by jraivio          ###   ########.fr       */
+/*   Updated: 2023/02/11 19:00:03 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ t_mtx		identity_matrix(void);
 t_fl		determinant(t_mtx *mtx, uint32_t size);
 void		matrix_inversion(t_mtx *mtx, uint32_t size);
 t_fl		calc_y_rot(t_tuple a, t_tuple b);
+t_fl		calc_x_rot(t_tuple a, t_tuple b);
 int			tuple_nearly_equals(t_tuple tuple_a, t_tuple tuple_b);
 
 /* matrix transformations */
@@ -203,6 +204,7 @@ t_pattern	default_gradient_pattern(void);
 t_pattern	default_ring_pattern(void);
 t_pattern	default_simple_checkered_pattern(void);
 t_pattern	default_pattern(void);
+t_tuple		perturb_normal(t_tuple *p, t_tuple normal);
 
 /* default textures*/
 t_texture	default_texture(void);

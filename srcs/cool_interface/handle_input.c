@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   handle_input.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:20:07 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 13:29:00 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/11 17:46:47 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RT.h"
+
 void	esc_program(void)
 {
 	exit(EXIT_SUCCESS);

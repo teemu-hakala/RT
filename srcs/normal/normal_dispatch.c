@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:35:14 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 11:35:15 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/11 13:23:01 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,14 @@ t_tuple	normal_at(void *object, t_tuple *point)
 		normal_at_cube};
 
 	return (normals[((t_object *)object)->type](object, point));
+}
+
+t_tuple	perturb_normal(t_tuple *p, t_tuple normal)
+{
+	t_fl	offset;
+	t_tuple	new_normal;
+
+	offset = sin((fmod((p->tuple.units.y * 4), 1) * 2 * M_PI));
+	new_normal = vector(0, offset * 0.25, 0);
+	return (tuple_add(normal, new_normal));
 }

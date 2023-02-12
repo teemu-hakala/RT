@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   zoomer.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:20:54 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 11:20:56 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/11 17:50:14 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	field_of_view_delta(t_win *win, t_fl step)
 	win->input.mouse.mode = CAMERA_FOV;
 	win->world.camera.field_of_view += step;
 	transform_camera_for_field_of_view(&win->world.camera);
-
 }
 
 void	handle_key_compounding(t_win *win, int8_t direction)

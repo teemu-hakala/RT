@@ -26,7 +26,8 @@
 					"diffuse" : 0.1,
 					"specular" : 0,
 					"ambient" :0,
-					"reflectiveness" : 0.4
+					"reflectiveness" : 0.4,
+					"disruption" : 0
 				}
 			}
 		},
