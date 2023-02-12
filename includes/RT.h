@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RT.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:01:29 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/11 19:00:03 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/12 13:38:52 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@
 # define EPSILON 0.00001
 # define PLANE_EPSILON 0.00001
 # define TUPLE_EPSILON 0.00001
+# define START_BUFFER 20
+# define END_BUFFER 10
 
 typedef struct s_img
 {
@@ -127,6 +129,7 @@ void		identity_matrix_set(t_mtx *dst);
 t_ray		ray_transform(t_ray *ray, t_mtx *transform);
 
 /* error handle*/
+void	handle_parser_errors(char *str, t_parser *parser);
 void		handle_errors(char *str);
 
 /* initialise */
