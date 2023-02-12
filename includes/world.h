@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:01:50 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/12 16:58:30 by thakala          ###   ########.fr       */
+/*   Updated: 2023/02/12 17:19:11 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ typedef enum e_filter_type
 	SEPIA = 0,
 	NEGATIVE = 1,
 	GRAYSCALE = 2,
-	FILTER_COUNT
+	FILTER_COUNT,
+	FILTER_NONE
 }		t_filter_type;
 
 typedef struct s_quadratic
