@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:01:17 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 13:17:15 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/12 16:27:29 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,5 @@ t_object	cube_prototype(void);
 void		parse_name(t_ppm_image *image, t_parser *parser);
 void		open_ppm(t_ppm_image *image);
 void		read_ppm_contents(t_vec *string, const int file_descriptor);
-
+int			handle_first(int first, t_vec *string, int read_bytes);
 #endif

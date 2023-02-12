@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:38:55 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/12 14:25:53 by ekantane         ###   ########.fr       */
+/*   Updated: 2023/02/12 16:29:49 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,13 @@ static void	read_file_contents(t_vec *string, const int file_descriptor)
 			break ;
 		if (gnl_status < 0)
 			handle_errors("DENIED: get_next_line error");
-		if (first)
-		{
-			if (vec_new(string, read_bytes * 4, sizeof(char)) == VEC_ERROR)
-				handle_errors("vec_new error");
-			first = false;
-		}
+		first = handle_first(first, string, read_bytes);
 		if (vec_push_arr(string, line, ft_strlen(line)) == VEC_ERROR)
 			handle_errors("vec_push_arr error");
 		free (line);
 	}
-	if (vec_push_arr(string, "\0", 1) == VEC_ERROR)
+	if ((string->memory == NULL && vec_new(string, 1, sizeof(char)) \
+		== VEC_ERROR) || vec_push_arr(string, "\0", 1) == VEC_ERROR)
 		handle_errors("vec_push_arr error");
 }
 
@@ -77,8 +73,8 @@ void	check_light(t_world *world)
 
 void	parse_into(t_world *world, const int file_descriptor)
 {
-	t_parser	parser;
-	t_vec		string_vec;
+	t_parser		parser;
+	static t_vec	string_vec;
 
 	read_file_contents(&string_vec, file_descriptor);
 	parser.string = (char *)string_vec.memory;
