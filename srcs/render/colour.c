@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colour.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:59:13 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/12 17:25:07 by thakala          ###   ########.fr       */
+/*   Updated: 2023/02/12 17:41:36 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_tuple	colour_at(t_world *world, t_ray ray)
 {
 	t_hit	hit;
-	t_tuple colour_final;
+	t_tuple	colour_final;
 
 	hit.hit_check = false;
 	vec_clear(&world->intersections);

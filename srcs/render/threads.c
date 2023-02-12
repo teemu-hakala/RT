@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:00:02 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/12 17:30:54 by thakala          ###   ########.fr       */
+/*   Updated: 2023/02/12 17:44:41 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,10 @@ t_world	world_selectively_shallow_copy(t_world *original)
 	t_world		copy;
 
 	copy = (t_world){.camera = original->camera, .lights = original->lights, \
-		.objects = original->objects};
+		.objects = original->objects, .filter = original->filter};
 	if (vec_new(&copy.intersections, 1, sizeof(t_intersect))
 		!= VEC_SUCCESS)
 		handle_errors("world_selectively_shallow_copy malloc returned NULL");
-	copy.filter = original->filter;
 	return (copy);
 }
 
