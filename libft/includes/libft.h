@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 15:25:23 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/12 17:59:41 by jraivio          ###   ########.fr       */
+/*   Updated: 2023/02/12 18:02:14 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# include <string.h>
-# include <fcntl.h>
 # include "vec.h"
 # define BUFF_SIZE 800
 # define MAX_FD 4096

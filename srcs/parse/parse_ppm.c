@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_ppm.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:37:41 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/12 14:10:00 by ekantane         ###   ########.fr       */
+/*   Updated: 2023/02/12 18:02:30 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	parse_ppm(t_ppm_image *image, char *str)
 	length = ft_count_words(str, ' ');
 	if ((length - 4) % 3 != 0)
 		handle_errors("ppm parser error");
-	if (strcmp("P3", array[0]) != 0)
+	if (ft_strcmp("P3", array[0]) != 0)
 		handle_errors("incorrect ppm type");
 	image->width = ft_atoi(array[1]);
 	image->height = ft_atoi(array[2]);
