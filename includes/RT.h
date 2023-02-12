@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RT.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:01:29 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/12 16:57:05 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/12 17:00:31 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,6 @@ int			tuple_nearly_equals(t_tuple tuple_a, t_tuple tuple_b);
 void		rotate(t_mtx *mtx, t_tuple *rotations);
 void		rot_x(t_mtx *mtx, t_fl angle);
 void		rot_y(t_mtx *mtx, t_fl angle);
-void		rot_z(t_mtx *mtx, t_fl angle);
 void		translate(t_mtx *mtx, t_tuple *transform);
 void		scale(t_mtx *mtx, t_tuple *transform);
 
@@ -250,8 +249,5 @@ t_uv_map	cube_uv_down(t_tuple *p);
 /* parsing */
 double		rt_atof(t_parser *parser);
 int			rt_atoi(t_parser *parser);
-
-/* loops */
-int			incremental_loop(t_win *win);
 
 #endif

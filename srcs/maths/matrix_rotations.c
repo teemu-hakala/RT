@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_rotations.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:33:24 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 11:33:26 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/12 16:58:25 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RT.h"
+
+static void	rot_z(t_mtx *mtx, t_fl angle)
+{
+	t_mtx	rotate_z;
+
+	identity_matrix_set(&rotate_z);
+	rotate_z.array[4 * 0 + 0] = cos(angle);
+	rotate_z.array[4 * 0 + 1] = -sin(angle);
+	rotate_z.array[4 * 1 + 0] = sin(angle);
+	rotate_z.array[4 * 1 + 1] = cos(angle);
+	matrix_multi_square(mtx, &rotate_z, 4);
+}
 
 void	rot_x(t_mtx *mtx, t_fl angle)
 {
@@ -34,18 +46,6 @@ void	rot_y(t_mtx *mtx, t_fl angle)
 	rotate_y.array[4 * 2 + 0] = -sin(angle);
 	rotate_y.array[4 * 2 + 2] = cos(angle);
 	matrix_multi_square(mtx, &rotate_y, 4);
-}
-
-void	rot_z(t_mtx *mtx, t_fl angle)
-{
-	t_mtx	rotate_z;
-
-	identity_matrix_set(&rotate_z);
-	rotate_z.array[4 * 0 + 0] = cos(angle);
-	rotate_z.array[4 * 0 + 1] = -sin(angle);
-	rotate_z.array[4 * 1 + 0] = sin(angle);
-	rotate_z.array[4 * 1 + 1] = cos(angle);
-	matrix_multi_square(mtx, &rotate_z, 4);
 }
 
 void	rotate(t_mtx *mtx, t_tuple *rotations)
