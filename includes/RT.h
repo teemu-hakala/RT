@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RT.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:01:29 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/12 14:37:14 by ekantane         ###   ########.fr       */
+/*   Updated: 2023/02/12 16:58:23 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,6 +252,6 @@ double		rt_atof(t_parser *parser);
 int			rt_atoi(t_parser *parser);
 
 /* loops */
-int			incremental_loop(t_win *win);
+void		loop_filters(t_win *win);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user_interface.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:01:44 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/05 11:18:51 by thakala          ###   ########.fr       */
+/*   Updated: 2023/02/12 16:56:38 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ enum e_key_code
 	KEY_C = 8,
 	KEY_R = 15,
 	KEY_F = 3,
-	KEY_P_ICTURE = 35
+	KEY_P_ICTURE = 35,
+	KEY_DOT = 47
 };
 
 void	put_rectangle_to_image(t_img img, t_rectangle image, \

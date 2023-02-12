@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:20:07 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/11 17:46:47 by thakala          ###   ########.fr       */
+/*   Updated: 2023/02/12 16:54:57 by thakala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,7 @@ int	handle_input(int key, t_win *win)
 		field_of_view_zoomer(win, key);
 	if (key == KEY_P_ICTURE)
 		save_screenshot_once_drawn(win);
+	if (key == KEY_DOT)
+		loop_filters(win);
 	return (0);
 }
