@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   filters.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 16:53:46 by thakala           #+#    #+#             */
-/*   Updated: 2023/02/12 16:54:24 by thakala          ###   ########.fr       */
+/*   Updated: 2023/02/12 17:41:58 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ t_tuple	apply_sepia(t_tuple original)
 		(original.tuple.colour.g * 0.769) + \
 		(original.tuple.colour.b * 0.189);
 	temp.tuple.colour.g = (original.tuple.colour.r * 0.349) + \
-		(original.tuple.colour.g *  0.686) + \
-		(original.tuple.colour.b *  0.168);
+		(original.tuple.colour.g * 0.686) + \
+		(original.tuple.colour.b * 0.168);
 	temp.tuple.colour.b = (original.tuple.colour.r * 0.272) + \
-		(original.tuple.colour.g *  0.534) + \
-		(original.tuple.colour.b *  0.131);
+		(original.tuple.colour.g * 0.534) + \
+		(original.tuple.colour.b * 0.131);
 	return (temp);
 }
 
