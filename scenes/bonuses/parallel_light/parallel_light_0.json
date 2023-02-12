@@ -2,9 +2,9 @@
 	"camera" :
 	{
 
-		"origin" : [15, 1.1, 0],
-		"center_of_interest" : [0, 0, 0],
-		"field_of_view" : 1.0
+		"origin" : [0, 4, 4],
+		"center_of_interest" : [0, 1, 0],
+		"field_of_view" : 1.5
 	},
 	"lights" :
 	[
@@ -12,7 +12,7 @@
 			"parallel" :
 			{
 				"intensity" : [1, 1, 1],
-				"direction" : [0, 0, -1]
+				"direction" : [0, 1, 0]
 			}
 		}
 	],
@@ -23,9 +23,9 @@
 			{
 				"transform" :
 				{
-					"translation" : [0, -1.6, 0],
+					"translation" : [0, 100, 0],
 					"rotation" : [0, 0, 1.57079],
-					"scale" : [1, 1, 1]
+					"scale" : [0.5, 0.5, 0.5]
 				},
 				"material" :
 				{
@@ -42,7 +42,7 @@
 			{
 				"transform" :
 				{
-					"translation" : [0, 1.6, 0],
+					"translation" : [0, 1, 0],
 					"rotation" : [0, 0, 1.57079],
 					"scale" : [1, 1, 1]
 				},
@@ -61,8 +61,8 @@
 			{
 				"transform" :
 				{
-					"translation" : [0, -10, 0],
-					"rotation" : [-1, 0, -0.2],
+					"translation" : [0, -1, 0],
+					"rotation" : [0, 0, 0],
 					"scale" : [1, 1, 1]
 				},
 				"material" :
@@ -71,45 +71,7 @@
 					"specular" : 0.9,
 					"shininess" : 300,
 					"diffuse" : 0.2,
-					"init_colour" : [0.96, 0.71, 0.4]
-				}
-			}
-		},
-		{
-			"plane" :
-			{
-				"transform" :
-				{
-					"translation" : [0, -10, 0],
-					"rotation" : [1.0, 0, 0],
-					"scale" : [1, 1, 1]
-				},
-				"material" :
-				{
-					"ambient" : 0,
-					"specular" : 0.9,
-					"shininess" : 300,
-					"diffuse" : 0.2,
-					"init_colour" : [0.96, 0.71, 0]
-				}
-			}
-		},
-		{
-			"plane" :
-			{
-				"transform" :
-				{
-					"translation" : [-100, -10, 0],
-					"rotation" : [0, 0, -1.57],
-					"scale" : [1, 1, 1]
-				},
-				"material" :
-				{
-					"ambient" : 0,
-					"specular" : 0.9,
-					"shininess" : 300,
-					"diffuse" : 0.2,
-					"init_colour" : [0.20, 0.71, 0.81]
+					"init_colour" : [1, 0, 0]
 				}
 			}
 		}
