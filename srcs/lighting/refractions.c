@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:21:55 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 12:43:40 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/12 16:53:26 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,6 @@ lower refractive index than the current medium, at a sufficiently acute angle,
 the light ray will reflect off the interface instead of passing through it */
 
 #include "RT.h"
-
-typedef struct s_snell_calculations
-{
-	t_fl	n_ratio;
-	t_fl	cos_i;
-	t_fl	sin2_t;
-	t_fl	cos_t;
-}				t_snell;
 
 t_tuple	refracted_colour(t_world *world, t_hit *hit)
 {

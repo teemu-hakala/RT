@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:00:58 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/07 14:25:58 by jraivio          ###   ########.fr       */
+/*   Updated: 2023/02/12 16:53:54 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,13 @@ typedef struct s_phong
 	int		in_shadow;
 	t_fl	shadow_occlusion;
 }				t_phong;
+
+typedef struct s_snell_calculations
+{
+	t_fl	n_ratio;
+	t_fl	cos_i;
+	t_fl	sin2_t;
+	t_fl	cos_t;
+}				t_snell;
 
 #endif
