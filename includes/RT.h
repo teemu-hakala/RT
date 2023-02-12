@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:01:29 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/12 16:53:50 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/12 16:57:05 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ void		identity_matrix_set(t_mtx *dst);
 t_ray		ray_transform(t_ray *ray, t_mtx *transform);
 
 /* error handle*/
-void	handle_parser_errors(char *str, t_parser *parser);
+void		handle_parser_errors(char *str, t_parser *parser);
 void		handle_errors(char *str);
 
 /* initialise */
