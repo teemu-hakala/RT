@@ -6,15 +6,13 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 15:25:23 by deelliot          #+#    #+#             */
-/*   Updated: 2022/11/18 15:46:40 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/12 17:59:41 by jraivio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 # include <string.h>
-# include <stdlib.h>
-# include <unistd.h>
 # include <fcntl.h>
 # include "vec.h"
 # define BUFF_SIZE 800

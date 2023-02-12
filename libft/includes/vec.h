@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 10:27:10 by thakala           #+#    #+#             */
-/*   Updated: 2022/11/15 14:50:53 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/12 18:00:25 by jraivio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdbool.h>
-# include <stdint.h>
 # include "libft.h"
 
 typedef struct s_vec
