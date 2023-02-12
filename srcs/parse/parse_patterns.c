@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_patterns.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:37:12 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/11 09:08:13 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/12 14:09:29 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	pattern_type_continued(t_pattern *pattern, t_parser *parser)
 		*pattern = default_ring_pattern();
 	}
 	else
-		handle_errors("not a pattern type");
+		handle_parser_errors("not a pattern type", parser);
 }
 
 static void	parse_pattern_type(t_pattern *pattern, t_parser *parser)
@@ -83,7 +83,7 @@ static void	find_pattern_keywords(t_pattern *pattern, t_parser *parser)
 		parse_transform_subobject(parser, &pattern->transform);
 	}
 	else
-		handle_errors("pattern syntax error");
+		handle_parser_errors("pattern syntax error", parser);
 }
 
 void	parse_pattern(t_pattern *pattern, t_parser *parser)
@@ -100,6 +100,6 @@ void	parse_pattern(t_pattern *pattern, t_parser *parser)
 		if (find_matching_bracket(parser))
 			return ;
 		else
-			handle_errors("pattern syntax error");
+			handle_parser_errors("pattern syntax error", parser);
 	}
 }

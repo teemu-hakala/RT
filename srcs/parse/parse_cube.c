@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cube.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:36:36 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/11 13:42:48 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/12 14:03:34 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,5 @@ void	parse_cube(t_parser *parser, t_object *shape)
 		parse_cube(parser, shape);
 	}
 	else if (!find_matching_bracket(parser))
-		handle_errors("cube syntax error");
+		handle_parser_errors("cube syntax error", parser);
 }

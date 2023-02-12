@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:01:29 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/12 13:38:52 by ekantane         ###   ########.fr       */
+/*   Updated: 2023/02/12 14:37:14 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 # define PLANE_EPSILON 0.00001
 # define TUPLE_EPSILON 0.00001
 # define START_BUFFER 20
-# define END_BUFFER 10
+# define END_BUFFER 30
 
 typedef struct s_img
 {

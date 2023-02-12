@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_shapes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:38:08 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 11:38:10 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/12 13:56:50 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	find_cube(t_object *shape, t_parser *parser)
 		parse_cube(parser, shape);
 	}
 	else
-		handle_errors("shape syntax error");
+		handle_parser_errors("shape syntax error", parser);
 }
 
 static void	find_cone_or_cylinder(t_object *shape, t_parser *parser)
@@ -95,9 +95,9 @@ void	parse_shapes(t_world *world, t_parser *parser)
 	{
 		object.shape_id = world->objects.len;
 		if (vec_push(&world->objects, &object) == VEC_ERROR)
-			handle_errors("vec_push shape error");
+			handle_parser_errors("vec_push shape error", parser);
 		if (find_matching_bracket(parser) == false)
-			handle_errors("shapes object syntax error");
+			handle_parser_errors("shapes object syntax error", parser);
 		else if (parser->string[parser->c] == ',')
 		{
 			parser->c++;
@@ -109,5 +109,5 @@ void	parse_shapes(t_world *world, t_parser *parser)
 	}
 	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
 	if (find_matching_bracket(parser) == false)
-		handle_errors("shapes array syntax error");
+		handle_parser_errors("shapes array syntax error", parser);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:38:55 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 13:06:37 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/12 14:25:53 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	parse_into(t_world *world, const int file_descriptor)
 	|| find_matching_bracket(&parser) == true)
 			break ;
 		else
-			handle_errors("object syntax error");
+			handle_parser_errors("non-matching bracket", &parser);
 	}
 	check_light(world);
 	vec_free(&string_vec);

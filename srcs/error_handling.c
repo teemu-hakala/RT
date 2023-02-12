@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:00:07 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/12 13:50:27 by ekantane         ###   ########.fr       */
+/*   Updated: 2023/02/12 16:13:22 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ void	handle_parser_errors(char *str, t_parser *parser)
 		end_point++;
 	}
 	ft_stderror(str);
-	write(1, &parser->string[start_point], end_point - start_point);
+	write(1, &parser->string[start_point], START_BUFFER - remainder);
+	write(1, "\e[41m", 5);
+	write(1, &parser->string[parser->c], end_point - parser->c);
+	write(1, "\n", 1);
 	exit(EXIT_FAILURE);
 }
 

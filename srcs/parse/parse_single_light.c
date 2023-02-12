@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_single_light.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:38:12 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 11:38:14 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/12 14:03:15 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	find_light_subobject_keyword(t_light *light, t_parser *parser)
 		parse_tuple(&light->direction, parser);
 	}
 	else
-		handle_errors("syntax error light object");
+		handle_parser_errors("syntax error light object", parser);
 }
 
 void	parse_single_light(t_parser *parser, t_light *light)
@@ -47,5 +47,5 @@ void	parse_single_light(t_parser *parser, t_light *light)
 		parse_single_light(parser, light);
 	}
 	else if (!find_matching_bracket(parser))
-		handle_errors("light syntax error");
+		handle_parser_errors("light syntax error", parser);
 }

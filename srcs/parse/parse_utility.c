@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utility.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:38:49 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 12:59:46 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/12 13:58:45 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void	find_open_bracket(t_parser *parser)
 	{
 		if (vec_push_arr(&parser->brackets, &parser->string[parser->c++], 1) \
 			== VEC_ERROR)
-			handle_errors("vec_push_arr error");
+			handle_parser_errors("vec_push_arr error", parser);
 	}
 	else
-		handle_errors("open bracket format error");
+		handle_parser_errors("open bracket format error", parser);
 }
 
 int	find_matching_bracket(t_parser *parser)
@@ -44,6 +44,6 @@ void	find_colon(t_parser *parser)
 {
 	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
 	if (parser->string[parser->c] != ':')
-		handle_errors("colon format error");
+		handle_parser_errors("colon format error", parser);
 	parser->c++;
 }

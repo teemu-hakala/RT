@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_camera.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:36:21 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/11 17:32:57 by thakala          ###   ########.fr       */
+/*   Updated: 2023/02/12 13:54:42 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	parse_canvas(t_world *world, t_parser *parser)
 		find_canvas_keywords(world, parser);
 	}
 	if (!find_matching_bracket(parser))
-		handle_errors("canvas syntax error");
+		handle_parser_errors("canvas syntax error", parser);
 }
 
 static void	camera_subobjects_cont(t_world *world, t_parser *parser)
@@ -65,7 +65,7 @@ static void	camera_subobjects_cont(t_world *world, t_parser *parser)
 		world->camera.field_of_view = rt_atof(parser);
 	}
 	else
-		handle_errors("camera subobject parser error");
+		handle_parser_errors("camera subobject parser error", parser);
 }
 
 static void	parse_camera_subobjects(t_world *world, t_parser *parser)
@@ -96,7 +96,7 @@ void	parse_camera(t_world *world, t_parser *parser)
 		parse_camera_subobjects(world, parser);
 	}
 	if (!find_matching_bracket(parser))
-		handle_errors("camera syntax error");
+		handle_parser_errors("camera syntax error", parser);
 	camera_direction = normalize(tuple_sub(world->camera.center_of_interest, \
 		world->camera.origin));
 	world->camera.transform.rotation.array[Y] = \

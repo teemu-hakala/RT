@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_faces.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:36:52 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 11:36:56 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/12 13:55:51 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	set_up_and_down(t_texture *texture, t_parser *parser)
 		set_face(texture, parser, FACE_DOWN);
 	}
 	else
-		handle_errors("incorrect face");
+		handle_parser_errors("incorrect face", parser);
 }
 
 static void	set_left_and_right(t_texture *texture, t_parser *parser)
@@ -99,7 +99,7 @@ void	parse_face(t_texture *texture, t_parser *parser)
 	while (1)
 	{
 		if (find_matching_bracket(parser) == false)
-			handle_errors("face side syntax error");
+			handle_parser_errors("face side syntax error", parser);
 		else if (parser->string[parser->c] == ',')
 		{
 			parser->c++;
@@ -111,5 +111,5 @@ void	parse_face(t_texture *texture, t_parser *parser)
 	}
 	parser->c += ft_clear_whitespace(&parser->string[parser->c]);
 	if (find_matching_bracket(parser) == false)
-		handle_errors("face array syntax error");
+		handle_parser_errors("face array syntax error", parser);
 }

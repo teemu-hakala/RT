@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cylinder.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:36:40 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/11 13:42:44 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/12 14:04:10 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	parse_cylinder(t_parser *parser, t_object *shape)
 			parse_cylinder(parser, shape);
 		}
 		else if (!find_matching_bracket(parser))
-			handle_errors("cylinder syntax error");
+			handle_parser_errors("cylinder syntax error", parser);
 	}
 	else if (cone_and_cylinder_objects(parser, shape))
 	{
@@ -60,9 +60,9 @@ void	parse_cylinder(t_parser *parser, t_object *shape)
 			parse_cylinder(parser, shape);
 		}
 		else if (!find_matching_bracket(parser))
-			handle_errors("cylinder syntax error");
+			handle_parser_errors("cylinder syntax error", parser);
 	}
 	else if (!find_matching_bracket(parser))
-		handle_errors("cylinder syntax error");
+		handle_parser_errors("cylinder syntax error", parser);
 	cylinder_continued(shape);
 }

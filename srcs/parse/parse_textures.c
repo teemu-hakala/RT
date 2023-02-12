@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:38:28 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 13:10:07 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/12 14:02:45 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	parse_texture_type(t_texture *texture, t_parser *parser)
 		*texture = default_external();
 	}
 	else
-		handle_errors("not a texture type");
+		handle_parser_errors("not a texture type", parser);
 }
 
 static void	parse_final_texture(t_texture *texture, t_parser *parser)
@@ -49,7 +49,7 @@ static void	parse_final_texture(t_texture *texture, t_parser *parser)
 		open_ppm(&texture->image[0]);
 	}
 	else
-		handle_errors("texture keyword syntax error");
+		handle_parser_errors("texture keyword syntax error", parser);
 }
 
 static void	parse_texture_cont(t_texture *texture, t_parser *parser)
@@ -118,6 +118,6 @@ void	parse_texture(t_texture *texture, t_parser *parser)
 			return ;
 		}
 		else
-			handle_errors("texture syntax error");
+			handle_parser_errors("texture syntax error", parser);
 	}
 }

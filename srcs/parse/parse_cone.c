@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cone.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:36:31 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/11 13:42:16 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/12 14:03:53 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	parse_cone(t_parser *parser, t_object *shape)
 			parse_cone(parser, shape);
 		}
 		else if (!find_matching_bracket(parser))
-			handle_errors("cone syntax error");
+			handle_parser_errors("cone syntax error", parser);
 	}
 	else if (cone_and_cylinder_objects(parser, shape))
 	{
@@ -59,9 +59,9 @@ void	parse_cone(t_parser *parser, t_object *shape)
 			parse_cone(parser, shape);
 		}
 		else if (!find_matching_bracket(parser))
-			handle_errors("cone syntax error");
+			handle_parser_errors("cone syntax error", parser);
 	}
 	else if (!find_matching_bracket(parser))
-		handle_errors("cone syntax error");
+		handle_parser_errors("cone syntax error", parser);
 	cone_continued(shape);
 }

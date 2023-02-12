@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_plane.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:37:16 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/11 13:42:37 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/12 14:02:10 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,5 @@ void	parse_plane(t_parser *parser, t_object *shape)
 		parse_plane(parser, shape);
 	}
 	else if (!find_matching_bracket(parser))
-		handle_errors("plane syntax error");
+		handle_parser_errors("plane syntax error", parser);
 }

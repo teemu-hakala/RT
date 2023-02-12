@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_face_subobjects.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:36:47 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 12:59:27 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/12 13:55:18 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	find_face_continued(t_texture *texture, t_parser *parser, int face)
 		open_ppm(&texture->image[face]);
 	}
 	else
-		handle_errors("incorrect corner in face");
+		handle_parser_errors("incorrect corner in face", parser);
 }
 
 static void	find_face_keyword(t_texture *texture, t_parser *parser, int face)
@@ -72,7 +72,7 @@ void	set_face(t_texture *texture, t_parser *parser, int face)
 		set_face(texture, parser, face);
 	}
 	else if (!find_matching_bracket(parser))
-		handle_errors("face syntax error");
+		handle_parser_errors("face syntax error", parser);
 }
 
 void	set_default_face(t_texture *texture, int face)
