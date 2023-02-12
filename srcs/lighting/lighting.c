@@ -6,11 +6,20 @@
 /*   By: jraivio <jraivio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:21:42 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/07 16:47:44 by jraivio          ###   ########.fr       */
+/*   Updated: 2023/02/12 16:23:54 by jraivio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RT.h"
+
+static t_fl	clamp(t_fl min, t_fl clamped, t_fl max)
+{
+	if (clamped > max)
+		return (max);
+	else if (clamped < min)
+		return (min);
+	return (clamped);
+}
 
 void	lighting_cont(t_hit *hit, t_light *light, t_phong *vectors, \
 	t_const *channels)
@@ -59,9 +68,14 @@ t_tuple	lighting(t_light *light, t_phong vectors, t_hit *hit)
 	}
 	else
 		lighting_cont(hit, light, &vectors, &channels);
-	if (vectors.shadow_occlusion >= 1)
+	if (vectors.in_shadow)
 		return (channels.amb);
-	return (tuple_add(tuple_scale(
-				tuple_add(channels.spec, channels.diff), (t_fl)1 - \
-				vectors.shadow_occlusion), channels.amb));
+	t_tuple	temp;
+	temp = tuple_add(channels.spec, channels.diff);
+	temp = tuple_scale(temp, clamp(0, (t_fl) 1 - vectors.shadow_occlusion, 1));
+	temp = tuple_add(temp, channels.amb);
+	return (temp);
+//	return (tuple_add(tuple_scale(
+//				tuple_add(channels.spec, channels.diff), clamp(0, (t_fl) 1 - \
+//				vectors.shadow_occlusion, 1)), channels.amb));
 }

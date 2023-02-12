@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_shadow_occlusion.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jraivio <jraivio@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: jraivio <jraivio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:29:30 by jraivio           #+#    #+#             */
-/*   Updated: 2023/02/11 12:52:15 by jraivio          ###   ########.fr       */
+/*   Updated: 2023/02/12 16:27:03 by jraivio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	set_shadow_occlusion(t_world *world, t_hit *hit, t_fl distance)
 		intersect = (t_intersect *)vec_get(&world->intersections, i++);
 		if (intersect->time < distance && intersect->time > 0)
 		{
-			half_transparency = (1 - intersect->material.transparency) / 2;
-			if (half_transparency + EPSILON > 0.5)
+			half_transparency = (1 - intersect->material.transparency) / 4;
+			if (half_transparency + EPSILON >= 0.5)
 				hit->computations.vectors.shadow_occlusion += 1;
 			else
 				hit->computations.vectors.shadow_occlusion += half_transparency;

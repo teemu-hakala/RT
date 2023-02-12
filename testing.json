@@ -1,0 +1,73 @@
+{
+	"camera" :
+	{
+		"field_of_view" : 0.314,
+		"origin" : [8, 3.5, -9],
+		"center_of_interest" : [0, 0.3, 0],
+		"canvas" :
+		{
+			"horizontal" : 800,
+			"vertical" : 400
+		}
+	},
+	"lights" :
+	[
+		{
+			"spot" :
+			{
+				"position" : [1, 6.9, -4.9],
+				"intensity" : [1, 1, 1]
+			}
+		}
+	],
+	"shapes" :
+	[
+		{
+			"cylinder" :
+			{
+				"min" : 0.0001,
+				"max" : 0.5,
+				"closed" : 1,
+				"transform" :
+				{
+					"scale" : [0.33, 1, 0.33],
+					"translation" : [0, 0.2, -1.5]
+				},
+				"material" :
+				{
+					"ambient" : 0.1,
+					"diffuse" : 0.4,
+					"specular" : 0.1,
+					"reflectiveness" : 0.9,
+					"refractive_index" : 1.5,
+					"init_colour" : [0.25, 0, 0]
+				}
+			}
+		},
+		{
+			"plane" :
+			{
+				"material" :
+				{
+					"ambient" : 0.2,
+					"diffuse" : 0.9,
+					"specular" : 0
+				},
+				"appearance" :
+				{
+					"pattern" :
+					{
+						"type" : "simple_checkered",
+						"colour_a" : [0.5, 0.5, 0.5],
+						"colour_b" : [0.75, 0.75, 0.75],
+						"transform" :
+						{
+							"scale" : [0.25, 0.25, 0.25],
+							"rotation" : [0, 0.3, 0.0]
+						}
+					}
+				}
+			}
+		}
+	]
+}
