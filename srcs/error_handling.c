@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_handling.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:00:07 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/12 16:31:30 by ekantane         ###   ########.fr       */
+/*   Updated: 2023/02/12 16:56:16 by deelliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	handle_parser_errors(char *str, t_parser *parser)
 	int64_t		start_point;
 	uint64_t	remainder;
 	uint64_t	end_point;
-	
+
 	start_point = parser->c - START_BUFFER;
 	remainder = 0;
 	if (start_point < 0)
