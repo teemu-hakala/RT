@@ -6,7 +6,7 @@
 /*   By: thakala <thakala@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:01:29 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/12 17:25:44 by thakala          ###   ########.fr       */
+/*   Updated: 2023/02/12 17:51:35 by jraivio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,11 @@
 
 # include <math.h>
 # include <mlx.h>
-# include <stdint.h>
 # include "libft.h"
 # include "tuple.h"
 # include "matrices.h"
 # include "colour_and_light.h"
 # include "objects.h"
-# include "patterns.h"
 # include "world.h"
 # include "parse.h"
 # include "input.h"
