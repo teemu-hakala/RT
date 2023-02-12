@@ -6,7 +6,7 @@
 /*   By: jraivio <jraivio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:21:42 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/12 16:42:40 by jraivio          ###   ########.fr       */
+/*   Updated: 2023/02/12 17:31:49 by jraivio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	lighting_cont(t_hit *hit, t_light *light, t_phong *vectors, \
 	vectors->reflection = reflect(
 			tuple_scale(vectors->light, -1.0), vectors->surface_normal);
 	reflect_l = dot_product(vectors->reflection, vectors->eye);
-	if (light->type == LIGHT_PARALLEL || reflect_l <= 0.0)
+	if (light->type == LIGHT_PARALLEL || reflect_l <= 0.0 || vectors->in_shadow)
 		channels->spec = vector(0, 0, 0);
 	else
 	{
@@ -59,8 +59,9 @@ t_tuple	lighting(t_light *light, t_phong vectors, t_hit *hit)
 	}
 	else
 		lighting_cont(hit, light, &vectors, &channels);
-	if (vectors.in_shadow == true)
+	if (vectors.shadow_occlusion >= 1)
 		return (channels.amb);
-	return (tuple_add(
-			tuple_add(channels.amb, channels.diff), channels.spec));
+	return (tuple_add(tuple_scale(
+				tuple_add(channels.amb, channels.diff), \
+				1 - vectors.shadow_occlusion), channels.spec));
 }
