@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:01:23 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/03 13:17:06 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/12 12:44:34 by ikarjala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ typedef enum e_pattern_type
 	PATTERN_HORIZONTAL_STRIPES = 2,
 	PATTERN_CIRCLES = 3,
 	PATTERN_GRADIENT = 4,
-	PATTERN_SIMPLE_CHECKERED = 5
+	PATTERN_SIMPLE_CHECKERED = 5,
+	PATTERN_PERLIN_NOISE = 6
 }	t_type;
 
 typedef enum e_cube_face

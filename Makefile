@@ -6,7 +6,7 @@
 #    By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/09 16:16:41 by deelliot          #+#    #+#              #
-#    Updated: 2023/02/07 15:07:18 by jraivio          ###   ########.fr        #
+#    Updated: 2023/02/12 12:54:04 by ikarjala         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,7 +68,7 @@ MATHS_SRCS = matrix_inversion.c matrix_maths.c matrix_transformations.c \
 NORMAL_SRCS = normal_at_cone.c normal_at_cube.c normal_at_cylinder.c \
 	normal_at_plane.c normal_at_sphere.c normal_dispatch.c
 
-PARSE_SRCS = default_files.c default_patterns.c parse_camera.c parse_cone.c \
+PARSE_SRCS = default_files.c default_patterns.c default_patterns_2.c parse_camera.c parse_cone.c \
 	parse_cylinder.c parse_lights.c parse_single_light.c parse_plane.c \
 	parse_shapes.c parse_sphere.c parse_sub_objs.c parse_utility.c parse.c \
 	rt_atof.c rt_atoi.c dispatch_shape_subobjects.c parse_material.c \
@@ -78,7 +78,7 @@ PARSE_SRCS = default_files.c default_patterns.c parse_camera.c parse_cone.c \
 	parse_appearance.c
 
 PATTERNS_SRCS = pattern_dispatch.c patterns.c textures.c texture_dispatch.c \
-	uv_mapping.c cube_mapping.c cube_mapping_utility.c
+	uv_mapping.c cube_mapping.c cube_mapping_utility.c perlin.c
 
 RENDER_SRCS = colour.c image_utility.c put_image.c ray.c threads.c
 

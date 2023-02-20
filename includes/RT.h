@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 12:01:29 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/11 19:00:03 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/12 12:59:58 by ikarjala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,6 +204,7 @@ t_pattern	default_gradient_pattern(void);
 t_pattern	default_ring_pattern(void);
 t_pattern	default_simple_checkered_pattern(void);
 t_pattern	default_pattern(void);
+t_pattern	default_perlin_noise(void);
 t_tuple		perturb_normal(t_tuple *p, t_tuple normal);
 
 /* default textures*/
@@ -224,6 +225,7 @@ void		simple_checkered_at(t_pattern *pattern, t_tuple *point, \
 			t_tuple *colour);
 void		circle_at(t_pattern *pattern, t_tuple *point, t_tuple *colour);
 void		gradient_at(t_pattern *pattern, t_tuple *point, t_tuple *colour);
+void		perlin_at(t_pattern *pattern, t_tuple *point, t_tuple *colour);
 
 /*textures*/
 t_tuple		texture_at(t_texture *texture, t_uv_map *map);

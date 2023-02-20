@@ -6,7 +6,7 @@
 /*   By: deelliot <deelliot@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:37:12 by deelliot          #+#    #+#             */
-/*   Updated: 2023/02/11 09:08:13 by deelliot         ###   ########.fr       */
+/*   Updated: 2023/02/12 13:00:27 by ikarjala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ static void	pattern_type_continued(t_pattern *pattern, t_parser *parser)
 		parser->c += sizeof("\"circle\"") - 1;
 		pattern->type = PATTERN_CIRCLES;
 		*pattern = default_ring_pattern();
+	}
+	else if (ft_strncmp(&parser->string[parser->c], "\"perlin\"", 8) == 0)
+	{
+		parser->c += sizeof("\"perlin\"") - 1;
+		pattern->type = PATTERN_PERLIN_NOISE;
+		*pattern = default_perlin_noise();
 	}
 	else
 		handle_errors("not a pattern type");

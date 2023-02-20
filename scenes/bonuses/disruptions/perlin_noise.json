@@ -1,0 +1,143 @@
+{
+	"camera" :
+	{
+		"origin" : [0, 1.5, -5],
+		"center_of_interest" : [0, 1, 0],
+		"field_of_view" : 1.047
+	},
+	"lights" :
+	[
+		{
+			"spot" :
+			{
+				"position" : [10, 10, -10],
+				"intensity" : [1, 1, 1]
+			}
+		}
+	],
+	"shapes" :
+	[
+		{
+			"plane" :
+			{
+				"material" :
+				{
+					"init_colour" : [1, 1, 1],
+					"diffuse" : 0.1,
+					"specular" : 0,
+					"ambient" :0,
+					"reflectiveness" : 0.4,
+					"disruption" : 0
+				}
+			}
+		},
+		{
+			"plane" :
+			{
+				"transform" :
+				{
+					"translation" : [0, 0, 5],
+					"rotation" : [1.57, 0, -0.78539]
+				},
+				"material" :
+				{
+					"init_colour" : [1, 1, 1]
+				}
+			}
+		},
+		{
+			"plane" :
+			{
+				"transform" :
+				{
+					"translation" : [0, 0, 5],
+					"rotation" : [1.57, 0, 0.78539]
+				},
+				"material" :
+				{
+					"init_colour" : [1, 1, 1]
+				},
+				"appearance":
+				{
+					"pattern":
+					{
+						"type": "perlin",
+						"colour_a": [0, 1, 0],
+						"colour_b": [0, 0, 1]
+					}
+				}
+			}
+		},
+		{
+			"sphere" :
+			{
+				"transform" :
+				{
+					"scale" : [1, 1, 1],
+					"translation" : [0, 1, 0],
+					"rotation" : [0.785, 0, 0]
+				},
+				"material" :
+				{
+					"disruption" : 0,
+					"init_colour" : [0.729, 0.282, 0.282]
+				},
+				"appearance":
+				{
+					"pattern":
+					{
+						"type": "perlin",
+						"colour_a": [1, 0, 0]
+					}
+				}
+			}
+		},
+		{
+			"sphere" :
+			{
+				"transform" :
+				{
+					"scale" : [0.5, 0.5, 0.5],
+					"translation" : [-1, 0.5, -1]
+				},
+				"material" :
+				{
+					"disruption" : 1,
+					"init_colour" : [1.000, 0.309, 0.117]
+				},
+				"appearance":
+				{
+					"pattern":
+					{
+						"type": "perlin",
+						"colour_a": [0, 1, 0],
+						"colour_b": [0, 0, 1]
+					}
+				}
+			}
+		},
+		{
+			"sphere" :
+			{
+				"transform" :
+				{
+					"scale" : [0.5, 0.5, 0.5],
+					"translation" : [1, 0.5, -1],
+					"rotation" : [1.57, 0, 0.78]
+				},
+				"material" :
+				{
+					"disruption" : 1,
+					"init_colour" : [1.000, 0.850, 0.400]
+				},
+				"appearance":
+				{
+					"pattern":
+					{
+						"type": "perlin"
+					}
+				}
+			}
+		}
+	]
+}
