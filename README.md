@@ -1,52 +1,55 @@
-# Explanation
-- two remotes (github and vogsphere)
-- feature-based branching
----
-# Complete
-- `closed` keyword support for scene files
+# Raytracer in C
+## Final Hive project
 
-# To do
-## instant fixes
-- check that `origin` and `translation` are both applied
-	- (remove origin from parser)
-- antialiasing to combat the cone jagged edge issue with certain pixel ratios
-	- FXAA, subsampling + supersampling -> configurable from .json
-- object IDs?
-- # remove 42 headers
--
+### Task:
+Create a 3d graphics renderer to simulate light (raytracer) in C from a scene description file. 
+A minimum of 4 shapes are required, all which should be able to be translated, rotated and scaled.
+Multiple light sources are needed, and their position, brightness, colour and shininess should be able to be adjusted in the scene file. 
 
----
-## future
-- store references to intersections within the object as well as the sorted vector
-	- this allows easier dereferencing of a parent object intersections in case of limited objects
-- time the rendering phase and accept input in the middle of rendering (justified bonus library)
-- shasum from .json file to keep track of changes in scene
-- lights within transparent objects (christmas tree scene)
+### Installation / Prerequisites
 
----
-# Evaluation
-### (Check VIDEO and DEMO renders)
-- https://cdn.intra.42.fr/video/video/921/rtv1-rt_en.mp4
-- https://projects.intra.42.fr/projects/rt
-## Eval form
-- The group is organised, time is managed well
-- Submit the project
-- Author file
-- `norminette`
-- Everyone is present
-- No recalculation on expose. For `mlx`: use of `mlx_expose_hook`
-- Prepare scenes for validation (Images in subject)
-- 4 basic shapes. (Plane, Sphere, Cone, Cylinder)
-- Eye anywhere, in any direction
-- Multilight
-	- brightness
-	- shadows
-	- shine effect
-	- specular spot
-- scene file++ (hierarchical file)
-- ambiance light++ (configurable)
 
-...
+### Description
 
-- parented object limitations (shaped slices of a place limit the parent object)
----
+### Features
+- JSON parsed scene descriptions
+- Ambient light
+- Parallel light
+- Reflection
+- Transparency
+- Refraction
+- Patterns:
+	- can be scaled, rotated, shifted
+- Textures:
+	- parsed with ppm3 files
+	- can be applied to all objects with UV mapping
+	- can be scaled, rotated, shifted	
+- Normal disruption
+- Soft shadows
+- Composed elementes: cubes, made from 6 limited planes
+- Multithreading
+- Colour filters
+- Screenshots of rendered images from inside the project
+	- saved as ppm6 files
+- Loading progress bar
+- Live interaction with the scene
+	- first person camera
+- Skybox
+- Makefile to run all the available scenes
+
+### what's next?
+If given more time, additional features could include:
+- anti-aliasing
+- perlin noise
+- simplex noise
+- negative objects
+- bump mapping
+- textures used to modify objects transparency
+- groups
+
+### Known issues
+- ambient light not working when value is 0. 
+
+
+### Images
+
