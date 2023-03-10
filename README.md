@@ -26,11 +26,15 @@ eg :
 
 ### Description
 This raytracer was created with the help of "The Raytracer Challenge" book by James Buick.
+
 All objects are unit objects, meaning their radius or side has a starting size of 1 unit, and are their origin is found at the world origin. 
 Instead of changing an objects origin, each object has a transformation matrix, which holds the rotation, translation and scale inputed from the scene file. The inverse of this matrix is applied to the ray, in order to calculate the objects relative position in the 'world'. 
+
 The Phong reflection model is used to simulate the reflection of light from the object's surface, allowing it to appear 3D.
+
 Reflection and refraction cast secondary rays each time an object that is reflective/transparent is hit. The additional rays are limited in the code to a maximum of 5. 
 Schlick's approximation is used to approximate the Fresnel effect on transparent surfaces. 
+
 Textures are parsed from ppm type p3 files. Any image can be converted into a ppm3 file using ImageMagick's convert tool.  
 
 ### Features
@@ -59,7 +63,7 @@ Textures are parsed from ppm type p3 files. Any image can be converted into a pp
 - Skybox
 - Makefile to run all the available scenes
 
-### what's next?
+### What's next?
 If given more time, additional features could include:
 - anti-aliasing
 - perlin noise
