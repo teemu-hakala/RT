@@ -18,10 +18,11 @@ make
 ```
 
 ### Running
-To run provide the scene file path as an argument to the executable. (See above to build executable)
+To run provide the scene file path as an argument to the executable. (See above to build executable).  
 Scene files can be found in the scenes folder.
 eg :
-``` ./RT scenes/bonuses/composed_elem.json ```
+
+` ./RT scenes/bonuses/composed_elem.json `
 
 
 ### Description
