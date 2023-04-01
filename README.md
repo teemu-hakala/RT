@@ -81,13 +81,13 @@ If given more time, additional features could include:
 
 ### Images
 
-<img width="504" alt="normal_disruption" src="https://user-images.githubusercontent.com/93197340/224333058-c7eed153-eb57-40ee-9a2d-b28bf00f9f9d.png">
 <img width="497" alt="glass_sphere_with_airbubble" src="https://user-images.githubusercontent.com/93197340/224333069-b07f5100-188e-44ec-bea6-35ecc65b8a68.png">
 <img width="796" alt="4_textured_objects" src="https://user-images.githubusercontent.com/93197340/224333076-f9ec6d20-b617-416f-aa36-b61878e954cd.png">
 <img width="493" alt="composed_element_different_textures" src="https://user-images.githubusercontent.com/93197340/224333081-2d76e3a0-3fbe-46b2-9b54-c6f30519e388.png">
 <img width="500" alt="earth" src="https://user-images.githubusercontent.com/93197340/224333087-4588ad76-9c22-42a4-8df6-1e15dff352d3.png">
 <img width="778" alt="reflection_refraction_transparency" src="https://user-images.githubusercontent.com/93197340/224333426-c641d692-153d-4322-b349-2bad349f0368.png">
 <img width="797" alt="interface" src="https://user-images.githubusercontent.com/93197340/224333066-67b3e533-0d00-48c2-bc0a-135ac88c45c8.png">
+<img width="504" alt="normal_disruption" src="https://user-images.githubusercontent.com/93197340/224333058-c7eed153-eb57-40ee-9a2d-b28bf00f9f9d.png">
 
 ## :star: Credits
 Jamis Buick [The Ray Tracer Challenge](http://raytracerchallenge.com/)
