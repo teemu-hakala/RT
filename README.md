@@ -7,8 +7,8 @@ A minimum of 4 shapes are required, all which should be able to be translated, r
 Multiple light sources are needed, and their position, brightness, colour and shininess should be able to be adjusted in the scene file. 
 
 ### Prerequisites
-GCC compiler
-(the project also requires the MLX library, but that can be found inside the repository)
+Clang for OSX
+(the project also requires the MLX library, but that can be found inside the repository. This unfortunately does not current work with Linux).
 
 ### Building
 ```
